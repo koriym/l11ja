@@ -1,0 +1,4722 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://github.com/koriym/laravel11-ja/artisan.html">
+      
+      
+        <link rel="prev" href="logging.html">
+      
+      
+        <link rel="next" href="broadcasting.html">
+      
+      
+      <link rel="icon" href="assets/images/favicon_io/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.35">
+    
+    
+      
+        <title>Artisanコンソール - L11JA</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.35f28582.min.css">
+      
+      
+
+
+    
+    
+
+    
+
+    
+      <link rel="stylesheet" href="assets/css/php.css">
+    
+      <link rel="stylesheet" href="assets/css/mkdocs_material_extra.css">
+    
+      <link rel="stylesheet" href="assets/css/extra.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-G60CEHXLQ1"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-G60CEHXLQ1",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-G60CEHXLQ1",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#artisan" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      <!-- Determine classes -->
+
+
+
+<!-- Header -->
+<header class="md-header" data-md-component="header">
+  <nav
+          class="md-header__inner md-grid"
+          aria-label="Header"
+  >
+
+    <!-- Link to home -->
+    <a
+            href="."
+            title="L11JA"
+            class="md-header__button md-logo"
+            aria-label="L11JA"
+            data-md-component="logo"
+    >
+      
+  <img src="assets/images/logo.png" alt="logo">
+
+    </a>
+
+    <!-- Button to open drawer -->
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+
+    <!-- Header title -->
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            <span style="font-family: 'Noto Sans'; font-size: 20px" >
+            L11JA
+            </span>
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            <span style="font-family: 'Noto Sans Batak'; font-size: 20px" >
+            
+              Artisanコンソール
+            
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Color palette toggle -->
+    
+
+    <!-- User preference: color palette -->
+    
+    <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+
+    <!-- Site language selector -->
+    
+
+    <!-- Button to open search modal -->
+    
+    <label class="md-header__button md-icon" for="__search">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+    </label>
+
+    <!-- Search interface -->
+    <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    <!-- Repository information -->
+    
+    <div class="md-header__source">
+      
+
+<!--
+  Check whether the repository is hosted on one of the supported code hosting
+  platforms (GitHub, GitLab or Bitbucket) to show icon.
+-->
+
+
+  
+
+
+<!-- Repository containing source -->
+<a href="https://github.com/koriym/l11ja" title="source.link.title"
+    class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z" fill="#000"/></svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+    
+  </nav>
+
+  <!-- Navigation tabs (sticky) -->
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="releases.html" class="md-tabs__link">
+          
+  
+  プロローグ
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="installation.html" class="md-tabs__link">
+          
+  
+  はじめに
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="lifecycle.html" class="md-tabs__link">
+          
+  
+  アーキテクチャ
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="routing.html" class="md-tabs__link">
+          
+  
+  基本
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="artisan.html" class="md-tabs__link">
+          
+  
+  掘り下げる
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="authentication.html" class="md-tabs__link">
+          
+  
+  セキュリティ
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="database.html" class="md-tabs__link">
+          
+  
+  データベース
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="eloquent.html" class="md-tabs__link">
+          
+  
+  Eloquent ORM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="testing.html" class="md-tabs__link">
+          
+  
+  テスト
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="starter-kits.html" class="md-tabs__link">
+          
+  
+  パッケージ
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="L11JA" class="md-nav__button md-logo" aria-label="L11JA" data-md-component="logo">
+      
+  <img src="assets/images/logo.png" alt="logo">
+
+    </a>
+    L11JA
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+<!--
+  Check whether the repository is hosted on one of the supported code hosting
+  platforms (GitHub, GitLab or Bitbucket) to show icon.
+-->
+
+
+  
+
+
+<!-- Repository containing source -->
+<a href="https://github.com/koriym/l11ja" title="source.link.title"
+    class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z" fill="#000"/></svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    プロローグ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            プロローグ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="releases.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リリースノート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="upgrade.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    アップグレードガイド
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="contributions.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    貢献ガイド
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            はじめに
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="installation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    インストール
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="configuration.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    設定
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structure.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ディレクトリ構造
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="frontend.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    フロントエンド
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="starter-kits.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    スターターキット
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="deployment.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    デプロイ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    アーキテクチャ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            アーキテクチャ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="lifecycle.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リクエストライフサイクル
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="container.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    サービスコンテナ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="providers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    サービスプロバイダ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="facades.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ファサード
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    基本
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            基本
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="routing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ルーティング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="middleware.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ミドルウェア
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="csrf.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CSRF保護
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="controllers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コントローラ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="requests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リクエスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="responses.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    レスポンス
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="views.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ビュー
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="blade.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bladeテンプレート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="vite.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    アセットバンドル
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="urls.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    URL生成
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="session.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    セッション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="validation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    バリデーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="errors.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    エラー処理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="logging.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ログ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    掘り下げる
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            掘り下げる
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Artisanコンソール
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="artisan.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Artisanコンソール
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      はじめに
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="はじめに">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#laravel-sail" class="md-nav__link">
+    <span class="md-ellipsis">
+      Laravel Sail
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tinker-repl" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tinker (REPL)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tinker (REPL)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      インストール
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用方法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      コマンド許可リスト
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      エイリアス化すべきでないクラス
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      コマンドの作成
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="コマンドの作成">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      コマンドの生成
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      コマンドの構造
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="コマンドの構造">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      終了コード
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      クロージャコマンド
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="クロージャコマンド">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      依存関係のタイプヒント
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      クロージャコマンドの説明
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      分離可能なコマンド
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="分離可能なコマンド">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#id" class="md-nav__link">
+    <span class="md-ellipsis">
+      ロックID
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      ロックの有効期限
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      入力の期待値の定義
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="入力の期待値の定義">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      引数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      オプション
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="オプション">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      値を持つオプション
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      オプションのショートカット
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      入力配列
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="入力配列">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      オプション配列
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      入力の説明
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      不足している入力のプロンプト
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      コマンドの入出力
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="コマンドの入出力">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      入力の取得
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      入力のプロンプト
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="入力のプロンプト">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      確認を求める
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      自動補完
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      複数選択の質問
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      出力の書き込み
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="出力の書き込み">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_31" class="md-nav__link">
+    <span class="md-ellipsis">
+      テーブル
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_32" class="md-nav__link">
+    <span class="md-ellipsis">
+      プログレスバー
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_33" class="md-nav__link">
+    <span class="md-ellipsis">
+      コマンドの登録
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_34" class="md-nav__link">
+    <span class="md-ellipsis">
+      プログラムによるコマンドの実行
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="プログラムによるコマンドの実行">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_35" class="md-nav__link">
+    <span class="md-ellipsis">
+      配列値の渡し方
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_36" class="md-nav__link">
+    <span class="md-ellipsis">
+      ブール値の引き渡し
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#artisan_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Artisanコマンドのキューイング
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_37" class="md-nav__link">
+    <span class="md-ellipsis">
+      他のコマンドからのコマンド呼び出し
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_38" class="md-nav__link">
+    <span class="md-ellipsis">
+      シグナルハンドリング
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_39" class="md-nav__link">
+    <span class="md-ellipsis">
+      スタブのカスタマイズ
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_40" class="md-nav__link">
+    <span class="md-ellipsis">
+      イベント
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="broadcasting.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ブロードキャスティング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cache.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    キャッシュ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="collections.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コレクション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="concurrency.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    並行処理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="context.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コンテキスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="contracts.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コントラクト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="events.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    イベント
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="filesystem.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ファイルストレージ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="helpers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ヘルパー
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="http-client.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTTPクライアント
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="localization.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ローカライゼーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mail.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    メール
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="notifications.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    通知
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="packages.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    パッケージ開発
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="processes.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    プロセス
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="queues.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    キュー
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="rate-limiting.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    レート制限
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="strings.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    文字列
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="scheduling.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    タスクスケジューリング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    セキュリティ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            セキュリティ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="authentication.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    認証
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="authorization.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    認可
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="verification.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    メール確認
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="encryption.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    暗号化
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hashing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ハッシュ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="passwords.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    パスワードリセット
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    データベース
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            データベース
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="database.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="queries.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    クエリビルダ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pagination.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ページネーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="migrations.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    マイグレーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="seeding.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    シーディング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="redis.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Redis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Eloquent ORM
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Eloquent ORM
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-relationships.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リレーションシップ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-collections.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コレクション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-mutators.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ミューテータ / キャスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-resources.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    APIリソース
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-serialization.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    シリアライゼーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-factories.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ファクトリ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    テスト
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            テスト
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="testing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="http-tests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTTPテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="console-tests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コンソールテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="dusk.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ブラウザテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="database-testing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    データベース
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mocking.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    モック
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    パッケージ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            パッケージ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="starter-kits.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    スターターキット
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="billing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cashier (Stripe)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cashier-paddle.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cashier (Paddle)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="dusk.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ブラウザテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="envoy.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Envoy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fortify.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fortify
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="folio.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Folio
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="homestead.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Homestead
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="horizon.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Horizon
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mix.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mix
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="octane.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Octane
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="passport.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Passport
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pennant.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pennant
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pint.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pint
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="precognition.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Precognition
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="prompts.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prompts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pulse.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pulse
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reverb.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reverb
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sail.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sail
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sanctum.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sanctum
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="scout.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Scout
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="socialite.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Socialite
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="telescope.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Telescope
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="valet.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Valet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      はじめに
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="はじめに">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#laravel-sail" class="md-nav__link">
+    <span class="md-ellipsis">
+      Laravel Sail
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tinker-repl" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tinker (REPL)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tinker (REPL)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      インストール
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用方法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      コマンド許可リスト
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      エイリアス化すべきでないクラス
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      コマンドの作成
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="コマンドの作成">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      コマンドの生成
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      コマンドの構造
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="コマンドの構造">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      終了コード
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      クロージャコマンド
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="クロージャコマンド">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      依存関係のタイプヒント
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      クロージャコマンドの説明
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      分離可能なコマンド
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="分離可能なコマンド">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#id" class="md-nav__link">
+    <span class="md-ellipsis">
+      ロックID
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      ロックの有効期限
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      入力の期待値の定義
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="入力の期待値の定義">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      引数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      オプション
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="オプション">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      値を持つオプション
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      オプションのショートカット
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      入力配列
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="入力配列">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      オプション配列
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      入力の説明
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      不足している入力のプロンプト
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      コマンドの入出力
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="コマンドの入出力">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      入力の取得
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      入力のプロンプト
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="入力のプロンプト">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      確認を求める
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      自動補完
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      複数選択の質問
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      出力の書き込み
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="出力の書き込み">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_31" class="md-nav__link">
+    <span class="md-ellipsis">
+      テーブル
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_32" class="md-nav__link">
+    <span class="md-ellipsis">
+      プログレスバー
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_33" class="md-nav__link">
+    <span class="md-ellipsis">
+      コマンドの登録
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_34" class="md-nav__link">
+    <span class="md-ellipsis">
+      プログラムによるコマンドの実行
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="プログラムによるコマンドの実行">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_35" class="md-nav__link">
+    <span class="md-ellipsis">
+      配列値の渡し方
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_36" class="md-nav__link">
+    <span class="md-ellipsis">
+      ブール値の引き渡し
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#artisan_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Artisanコマンドのキューイング
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_37" class="md-nav__link">
+    <span class="md-ellipsis">
+      他のコマンドからのコマンド呼び出し
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_38" class="md-nav__link">
+    <span class="md-ellipsis">
+      シグナルハンドリング
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_39" class="md-nav__link">
+    <span class="md-ellipsis">
+      スタブのカスタマイズ
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_40" class="md-nav__link">
+    <span class="md-ellipsis">
+      イベント
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/koriym/l11ja/edit/master/docs/artisan.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="artisan">Artisanコンソール<a class="headerlink" href="#artisan" title="Permanent link">&para;</a></h1>
+<ul>
+<li><a href="#introduction">はじめに</a><ul>
+<li><a href="#tinker">Tinker (REPL)</a></li>
+</ul>
+</li>
+<li><a href="#writing-commands">コマンドの作成</a><ul>
+<li><a href="#generating-commands">コマンドの生成</a></li>
+<li><a href="#command-structure">コマンドの構造</a></li>
+<li><a href="#closure-commands">クロージャコマンド</a></li>
+<li><a href="#isolatable-commands">分離可能なコマンド</a></li>
+</ul>
+</li>
+<li><a href="#defining-input-expectations">入力の期待値の定義</a><ul>
+<li><a href="#arguments">引数</a></li>
+<li><a href="#options">オプション</a></li>
+<li><a href="#input-arrays">入力配列</a></li>
+<li><a href="#input-descriptions">入力の説明</a></li>
+<li><a href="#prompting-for-missing-input">不足している入力のプロンプト</a></li>
+</ul>
+</li>
+<li><a href="#command-io">コマンドのI/O</a><ul>
+<li><a href="#retrieving-input">入力の取得</a></li>
+<li><a href="#prompting-for-input">入力のプロンプト</a></li>
+<li><a href="#writing-output">出力の書き込み</a></li>
+</ul>
+</li>
+<li><a href="#registering-commands">コマンドの登録</a></li>
+<li><a href="#programmatically-executing-commands">プログラムによるコマンドの実行</a><ul>
+<li><a href="#calling-commands-from-other-commands">他のコマンドからのコマンド呼び出し</a></li>
+</ul>
+</li>
+<li><a href="#signal-handling">シグナルハンドリング</a></li>
+<li><a href="#stub-customization">スタブのカスタマイズ</a></li>
+<li><a href="#events">イベント</a></li>
+</ul>
+<p><a name="introduction"></a></p>
+<h2 id="_1">はじめに<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>Artisanは、Laravelに含まれるコマンドラインインターフェースです。Artisanはアプリケーションのルートに<code>artisan</code>スクリプトとして存在し、アプリケーションを構築する際に役立つ多くの便利なコマンドを提供します。利用可能なすべてのArtisanコマンドのリストを表示するには、<code>list</code>コマンドを使用できます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>list
+</code></pre></div>
+<p>すべてのコマンドには、コマンドの利用可能な引数とオプションを表示および説明する「ヘルプ」画面も含まれています。ヘルプ画面を表示するには、コマンド名の前に<code>help</code>を付けます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>php<span class="w"> </span>artisan<span class="w"> </span><span class="nb">help</span><span class="w"> </span>migrate
+</code></pre></div>
+<p><a name="laravel-sail"></a></p>
+<h4 id="laravel-sail">Laravel Sail<a class="headerlink" href="#laravel-sail" title="Permanent link">&para;</a></h4>
+<p>ローカル開発環境として<a href="sail.html">Laravel Sail</a>を使用している場合は、Artisanコマンドを呼び出す際に<code>sail</code>コマンドラインを使用することを忘れないでください。Sailは、アプリケーションのDockerコンテナ内でArtisanコマンドを実行します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>./vendor/bin/sail<span class="w"> </span>artisan<span class="w"> </span>list
+</code></pre></div>
+<p><a name="tinker"></a></p>
+<h3 id="tinker-repl">Tinker (REPL)<a class="headerlink" href="#tinker-repl" title="Permanent link">&para;</a></h3>
+<p>Laravel Tinkerは、<a href="https://github.com/bobthecow/psysh">PsySH</a>パッケージを利用した、Laravelフレームワーク用の強力なREPLです。</p>
+<p><a name="installation"></a></p>
+<h4 id="_2">インストール<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h4>
+<p>すべてのLaravelアプリケーションにはデフォルトでTinkerが含まれています。ただし、以前にアプリケーションからTinkerを削除した場合は、Composerを使用してTinkerをインストールできます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>composer<span class="w"> </span>require<span class="w"> </span>laravel/tinker
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Laravelアプリケーションと対話する際にホットリロード、複数行コード編集、オートコンプリートを探していますか？<a href="https://tinkerwell.app">Tinkerwell</a>をチェックしてください！</p>
+</div>
+<p><a name="usage"></a></p>
+<h4 id="_3">使用方法<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
+<p>Tinkerを使用すると、Eloquentモデル、ジョブ、イベントなど、Laravelアプリケーション全体をコマンドラインで操作できます。Tinker環境に入るには、<code>tinker</code> Artisanコマンドを実行します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>tinker
+</code></pre></div>
+<p>Tinkerの設定ファイルを公開するには、<code>vendor:publish</code>コマンドを使用します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>vendor:publish<span class="w"> </span>--provider<span class="o">=</span><span class="s2">&quot;Laravel\Tinker\TinkerServiceProvider&quot;</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><code>dispatch</code>ヘルパ関数と<code>Dispatchable</code>クラスの<code>dispatch</code>メソッドは、ジョブをキューに配置するためにガベージコレクションに依存しています。したがって、tinkerを使用する場合は、ジョブをディスパッチするために<code>Bus::dispatch</code>または<code>Queue::push</code>を使用する必要があります。</p>
+</div>
+<p><a name="command-allow-list"></a></p>
+<h4 id="_4">コマンド許可リスト<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
+<p>Tinkerは、どのArtisanコマンドがそのシェル内で実行できるかを決定するために「許可」リストを使用します。デフォルトでは、<code>clear-compiled</code>、<code>down</code>、<code>env</code>、<code>inspire</code>、<code>migrate</code>、<code>migrate:install</code>、<code>up</code>、<code>optimize</code>コマンドを実行できます。さらに多くのコマンドを許可したい場合は、<code>tinker.php</code>設定ファイルの<code>commands</code>配列に追加できます。</p>
+<div class="highlight"><pre><span></span><code><span class="s1">&#39;commands&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="c1">// App\Console\Commands\ExampleCommand::class,</span>
+<span class="p">],</span>
+</code></pre></div>
+<p><a name="classes-that-should-not-be-aliased"></a></p>
+<h4 id="_5">エイリアス化すべきでないクラス<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
+<p>通常、Tinker はクラスと対話する際に自動的にクラスにエイリアスを付けます。しかし、一部のクラスにはエイリアスを付けたくない場合があります。これは、<code>tinker.php</code> 設定ファイルの <code>dont_alias</code> 配列にクラスをリストすることで実現できます:</p>
+<div class="highlight"><pre><span></span><code><span class="s1">&#39;dont_alias&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="nx">App\Models\User</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+<span class="p">],</span>
+</code></pre></div>
+<p><a name="writing-commands"></a></p>
+<h2 id="_6">コマンドの作成<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>Artisan に付属するコマンドに加えて、独自のカスタムコマンドを作成することもできます。コマンドは通常 <code>app/Console/Commands</code> ディレクトリに保存されますが、Composer でコマンドをロードできる限り、保存場所は自由に選択できます。</p>
+<p><a name="generating-commands"></a></p>
+<h3 id="_7">コマンドの生成<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>新しいコマンドを作成するには、<code>make:command</code> Artisan コマンドを使用できます。このコマンドは、<code>app/Console/Commands</code> ディレクトリに新しいコマンドクラスを作成します。このディレクトリがアプリケーションに存在しない場合でも心配はいりません - <code>make:command</code> Artisan コマンドを初めて実行したときに作成されます:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>make:command<span class="w"> </span>SendEmails
+</code></pre></div>
+<p><a name="command-structure"></a></p>
+<h3 id="_8">コマンドの構造<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>コマンドを生成した後、クラスの <code>signature</code> および <code>description</code> プロパティに適切な値を定義する必要があります。これらのプロパティは、コマンドを <code>list</code> 画面に表示する際に使用されます。<code>signature</code> プロパティでは、<a href="#defining-input-expectations">コマンドの入力期待値</a>を定義することもできます。コマンドが実行されると、<code>handle</code> メソッドが呼び出されます。コマンドのロジックはこのメソッドに配置できます。</p>
+<p>例として、コマンドを見てみましょう。コマンドの <code>handle</code> メソッドを介して必要な依存関係を要求できることに注意してください。Laravel の <a href="container.html">サービスコンテナ</a> は、このメソッドのシグネチャで型ヒントされたすべての依存関係を自動的に注入します:</p>
+<div class="highlight"><pre><span></span><code><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Console\Commands</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">App\Models\User</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">App\Support\DripEmailer</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Console\Command</span><span class="p">;</span>
+</code></pre></div>
+<p>class SendEmails extends Command
+{
+    /*<em>
+     * コンソールコマンドの名前とシグネチャ。
+     *
+     * @var string
+     </em>/
+    protected $signature = 'mail:send {user}';</p>
+<div class="highlight"><pre><span></span><code><span class="sd">/**</span>
+<span class="sd"> * コンソールコマンドの説明。</span>
+<span class="sd"> *</span>
+<span class="sd"> * @var string</span>
+<span class="sd"> */</span>
+<span class="k">protected</span> <span class="nv">$description</span> <span class="o">=</span> <span class="s1">&#39;ユーザーにマーケティングメールを送信する&#39;</span><span class="p">;</span>
+
+<span class="sd">/**</span>
+<span class="sd"> * コンソールコマンドを実行する。</span>
+<span class="sd"> */</span>
+<span class="k">public</span> <span class="k">function</span> <span class="nf">handle</span><span class="p">(</span><span class="nx">DripEmailer</span> <span class="nv">$drip</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
+<span class="p">{</span>
+    <span class="nv">$drip</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nx">User</span><span class="o">::</span><span class="na">find</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">argument</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">)));</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>}</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>コードの再利用性を高めるために、コンソールコマンドを軽量に保ち、タスクを実行するためにアプリケーションサービスに処理を委譲することが良いプラクティスです。上記の例では、メール送信という「重い処理」を行うためにサービスクラスを注入していることに注意してください。</p>
+</div>
+<p><a name="exit-codes"></a></p>
+<h4 id="_9">終了コード<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h4>
+<p><code>handle</code> メソッドから何も返されず、コマンドが正常に実行された場合、コマンドは成功を示す <code>0</code> の終了コードで終了します。ただし、<code>handle</code> メソッドはオプションで整数を返すことで、コマンドの終了コードを手動で指定することができます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">error</span><span class="p">(</span><span class="s1">&#39;何かがうまくいかなかった。&#39;</span><span class="p">);</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+</code></pre></div>
+<p>コマンド内の任意のメソッドからコマンドを「失敗」させたい場合は、<code>fail</code> メソッドを利用できます。<code>fail</code> メソッドはコマンドの実行を即座に終了させ、終了コード <code>1</code> を返します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">fail</span><span class="p">(</span><span class="s1">&#39;何かがうまくいかなかった。&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="closure-commands"></a></p>
+<h3 id="_10">クロージャコマンド<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p>クロージャベースのコマンドは、コンソールコマンドをクラスとして定義する代わりの方法を提供します。ルートクロージャがコントローラの代わりになるのと同様に、コマンドクロージャはコマンドクラスの代わりになると考えてください。</p>
+<p><code>routes/console.php</code>ファイルはHTTPルートを定義しませんが、コンソールベースのエントリポイント（ルート）をアプリケーションに定義します。このファイル内で、<code>Artisan::command</code>メソッドを使用して、すべてのクロージャベースのコンソールコマンドを定義できます。<code>command</code>メソッドは2つの引数を受け取ります：<a href="#defining-input-expectations">コマンドシグネチャ</a>と、コマンドの引数とオプションを受け取るクロージャです：</p>
+<div class="highlight"><pre><span></span><code><span class="nx">Artisan</span><span class="o">::</span><span class="na">command</span><span class="p">(</span><span class="s1">&#39;mail:send {user}&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">string</span> <span class="nv">$user</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">info</span><span class="p">(</span><span class="s2">&quot;Sending email to: </span><span class="si">{</span><span class="nv">$user</span><span class="si">}</span><span class="s2">!&quot;</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>クロージャは基礎となるコマンドインスタンスにバインドされているため、通常は完全なコマンドクラスでアクセスできるすべてのヘルパーメソッドに完全にアクセスできます。</p>
+<p><a name="type-hinting-dependencies"></a></p>
+<h4 id="_11">依存関係のタイプヒント<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h4>
+<p>コマンドの引数とオプションを受け取るだけでなく、コマンドクロージャは、<a href="container.html">サービスコンテナ</a>から解決したい追加の依存関係をタイプヒントすることもできます：</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">App\Models\User</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">App\Support\DripEmailer</span><span class="p">;</span>
+
+<span class="nx">Artisan</span><span class="o">::</span><span class="na">command</span><span class="p">(</span><span class="s1">&#39;mail:send {user}&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">DripEmailer</span> <span class="nv">$drip</span><span class="p">,</span> <span class="nx">string</span> <span class="nv">$user</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$drip</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">(</span><span class="nx">User</span><span class="o">::</span><span class="na">find</span><span class="p">(</span><span class="nv">$user</span><span class="p">));</span>
+<span class="p">});</span>
+</code></pre></div>
+<p><a name="closure-command-descriptions"></a></p>
+<h4 id="_12">クロージャコマンドの説明<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h4>
+<p>クロージャベースのコマンドを定義する際に、<code>purpose</code>メソッドを使用してコマンドに説明を追加できます。この説明は、<code>php artisan list</code>または<code>php artisan help</code>コマンドを実行したときに表示されます：</p>
+<div class="highlight"><pre><span></span><code><span class="nx">Artisan</span><span class="o">::</span><span class="na">command</span><span class="p">(</span><span class="s1">&#39;mail:send {user}&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">string</span> <span class="nv">$user</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">})</span><span class="o">-&gt;</span><span class="na">purpose</span><span class="p">(</span><span class="s1">&#39;Send a marketing email to a user&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="isolatable-commands"></a></p>
+<h3 id="_13">分離可能なコマンド<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>この機能を利用するには、アプリケーションが<code>memcached</code>、<code>redis</code>、<code>dynamodb</code>、<code>database</code>、<code>file</code>、または<code>array</code>キャッシュドライバをアプリケーションのデフォルトキャッシュドライバとして使用している必要があります。さらに、すべてのサーバーが同じ中央キャッシュサーバーと通信している必要があります。</p>
+</div>
+<p>場合によっては、一度に1つのコマンドインスタンスのみが実行されるようにしたいことがあります。これを実現するために、コマンドクラスに <code>Illuminate\Contracts\Console\Isolatable</code> インターフェースを実装することができます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="o">&lt;?</span><span class="nx">php</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="k">namespace</span> <span class="nx">App\Console\Commands</span><span class="p">;</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="k">use</span> <span class="nx">Illuminate\Console\Command</span><span class="p">;</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="k">use</span> <span class="nx">Illuminate\Contracts\Console\Isolatable</span><span class="p">;</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="k">class</span> <span class="nc">SendEmails</span> <span class="k">extends</span> <span class="nx">Command</span> <span class="k">implements</span> <span class="nx">Isolatable</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="p">{</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>    <span class="c1">// ...</span>
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="p">}</span>
+</code></pre></div>
+<p>コマンドが <code>Isolatable</code> としてマークされると、Laravelは自動的にコマンドに <code>--isolated</code> オプションを追加します。そのオプションを指定してコマンドが呼び出されると、Laravelはそのコマンドの他のインスタンスが既に実行されていないことを確認します。Laravelは、アプリケーションのデフォルトのキャッシュドライバを使用してアトミックロックを取得することでこれを実現します。もし他のインスタンスが実行中であれば、コマンドは実行されませんが、コマンドは成功の終了ステータスコードで終了します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>mail:send<span class="w"> </span><span class="m">1</span><span class="w"> </span>--isolated
+</code></pre></div>
+<p>コマンドが実行できなかった場合に返す終了ステータスコードを指定したい場合は、<code>isolated</code> オプションを介して希望のステータスコードを指定できます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>mail:send<span class="w"> </span><span class="m">1</span><span class="w"> </span>--isolated<span class="o">=</span><span class="m">12</span>
+</code></pre></div>
+<p><a name="lock-id"></a></p>
+<h4 id="id">ロックID<a class="headerlink" href="#id" title="Permanent link">&para;</a></h4>
+<p>デフォルトでは、Laravelはコマンドの名前を使用して、アプリケーションのキャッシュでアトミックロックを取得するために使用される文字列キーを生成します。ただし、Artisanコマンドクラスに <code>isolatableId</code> メソッドを定義することでこのキーをカスタマイズできます。これにより、コマンドの引数やオプションをキーに組み込むことができます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="sd">/**</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="sd"> * コマンドの分離可能なIDを取得します。</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="sd"> */</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="k">public</span> <span class="k">function</span> <span class="nf">isolatableId</span><span class="p">()</span><span class="o">:</span> <span class="nx">string</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="p">{</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>    <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">argument</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">);</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="p">}</span>
+</code></pre></div>
+<p><a name="lock-expiration-time"></a></p>
+<h4 id="_14">ロックの有効期限<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h4>
+<p>ロックの有効期限については、デフォルトではLaravelが自動的に管理しますが、必要に応じてカスタマイズすることも可能です。</p>
+<p>デフォルトでは、隔離ロックはコマンドが終了した後に期限切れになります。または、コマンドが中断されて終了できない場合、ロックは1時間後に期限切れになります。ただし、コマンドに <code>isolationLockExpiresAt</code> メソッドを定義することで、ロックの有効期限を調整できます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">use</span> <span class="nx">DateTimeInterface</span><span class="p">;</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="k">use</span> <span class="nx">DateInterval</span><span class="p">;</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="sd">/**</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="sd"> * コマンドの隔離ロックがいつ期限切れになるかを決定します。</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="sd"> */</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="k">public</span> <span class="k">function</span> <span class="nf">isolationLockExpiresAt</span><span class="p">()</span><span class="o">:</span> <span class="nx">DateTimeInterface</span><span class="o">|</span><span class="nx">DateInterval</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="p">{</span>
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>    <span class="k">return</span> <span class="nx">now</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">addMinutes</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="p">}</span>
+</code></pre></div>
+<p><a name="defining-input-expectations"></a></p>
+<h2 id="_15">入力の期待値の定義<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h2>
+<p>コンソールコマンドを書く際、引数やオプションを通じてユーザーからの入力を収集することが一般的です。Laravelでは、コマンドの <code>signature</code> プロパティを使用して、ユーザーから期待する入力を定義することが非常に便利です。<code>signature</code> プロパティを使用すると、コマンドの名前、引数、オプションを1つの表現力豊かなルートのような構文で定義できます。</p>
+<p><a name="arguments"></a></p>
+<h3 id="_16">引数<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h3>
+<p>ユーザーが提供するすべての引数とオプションは、中括弧で囲まれます。以下の例では、コマンドは1つの必須引数 <code>user</code> を定義しています。</p>
+<div class="highlight"><pre><span></span><code><span class="sd">/**</span>
+<span class="sd"> * コンソールコマンドの名前とシグネチャ。</span>
+<span class="sd"> *</span>
+<span class="sd"> * @var string</span>
+<span class="sd"> */</span>
+<span class="k">protected</span> <span class="nv">$signature</span> <span class="o">=</span> <span class="s1">&#39;mail:send {user}&#39;</span><span class="p">;</span>
+</code></pre></div>
+<p>引数をオプションにしたり、引数にデフォルト値を定義することもできます。</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// オプションの引数...</span>
+<span class="s1">&#39;mail:send {user?}&#39;</span>
+
+<span class="c1">// デフォルト値を持つオプションの引数...</span>
+<span class="s1">&#39;mail:send {user=foo}&#39;</span>
+</code></pre></div>
+<p><a name="options"></a></p>
+<h3 id="_17">オプション<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h3>
+<p>オプションは、引数と同様に、ユーザー入力の別の形式です。オプションは、コマンドラインから提供されるときに2つのハイフン (<code>--</code>) が前に付きます。オプションには、値を受け取るものと受け取らないものの2種類があります。値を受け取らないオプションは、ブール値の "スイッチ" として機能します。このタイプのオプションの例を見てみましょう。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="sd">/**</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="sd"> * コンソールコマンドの名前とシグネチャ。</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="sd"> *</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="sd"> * @var string</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="sd"> */</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="k">protected</span> <span class="nv">$signature</span> <span class="o">=</span> <span class="s1">&#39;mail:send {user} {--queue}&#39;</span><span class="p">;</span>
+</code></pre></div>
+<p>この例では、Artisanコマンドを呼び出す際に<code>--queue</code>スイッチを指定することができます。<code>--queue</code>スイッチが渡された場合、オプションの値は<code>true</code>になります。それ以外の場合、値は<code>false</code>になります：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>mail:send<span class="w"> </span><span class="m">1</span><span class="w"> </span>--queue
+</code></pre></div>
+<p><a name="options-with-values"></a></p>
+<h4 id="_18">値を持つオプション<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h4>
+<p>次に、値を期待するオプションを見てみましょう。ユーザーがオプションに値を指定する必要がある場合、オプション名の後に<code>=</code>記号を付ける必要があります：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="sd">/**</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="sd"> * コンソールコマンドの名前とシグネチャ。</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="sd"> *</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="sd"> * @var string</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="sd"> */</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="k">protected</span> <span class="nv">$signature</span> <span class="o">=</span> <span class="s1">&#39;mail:send {user} {--queue=}&#39;</span><span class="p">;</span>
+</code></pre></div>
+<p>この例では、ユーザーは次のようにオプションに値を渡すことができます。オプションがコマンドの呼び出し時に指定されない場合、その値は<code>null</code>になります：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>mail:send<span class="w"> </span><span class="m">1</span><span class="w"> </span>--queue<span class="o">=</span>default
+</code></pre></div>
+<p>オプション名の後にデフォルト値を指定することで、オプションにデフォルト値を割り当てることができます。ユーザーがオプションの値を渡さない場合、デフォルト値が使用されます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="s1">&#39;mail:send {user} {--queue=default}&#39;</span>
+</code></pre></div>
+<p><a name="option-shortcuts"></a></p>
+<h4 id="_19">オプションのショートカット<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h4>
+<p>オプションを定義する際にショートカットを割り当てるには、オプション名の前に指定し、<code>|</code>文字を使用してショートカットと完全なオプション名を区切ることができます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="s1">&#39;mail:send {user} {--Q|queue}&#39;</span>
+</code></pre></div>
+<p>ターミナルでコマンドを呼び出す際、オプションのショートカットには単一のハイフンを付け、オプションの値を指定する際に<code>=</code>記号を含めるべきではありません：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>mail:send<span class="w"> </span><span class="m">1</span><span class="w"> </span>-Qdefault
+</code></pre></div>
+<p><a name="input-arrays"></a></p>
+<h3 id="_20">入力配列<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h3>
+<p>複数の入力値を期待する引数やオプションを定義したい場合、<code>*</code>文字を使用することができます。まず、そのような引数を指定する例を見てみましょう：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="s1">&#39;mail:send {user*}&#39;</span>
+</code></pre></div>
+<p>このメソッドを呼び出す際、<code>user</code>引数はコマンドラインに順番に渡すことができます。例えば、以下のコマンドは<code>user</code>の値を<code>1</code>と<code>2</code>を値とする配列に設定します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>mail:send<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span>
+</code></pre></div>
+<p>この<code>*</code>文字は、オプションの引数定義と組み合わせて、引数のゼロ以上のインスタンスを許可するために使用できます。</p>
+<div class="highlight"><pre><span></span><code><span class="s1">&#39;mail:send {user?*}&#39;</span>
+</code></pre></div>
+<p><a name="option-arrays"></a></p>
+<h4 id="_21">オプション配列<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h4>
+<p>複数の入力値を期待するオプションを定義する場合、コマンドに渡される各オプション値にはオプション名をプレフィックスとして付ける必要があります。</p>
+<div class="highlight"><pre><span></span><code><span class="s1">&#39;mail:send {--id=*}&#39;</span>
+</code></pre></div>
+<p>このようなコマンドは、複数の<code>--id</code>引数を渡すことで呼び出すことができます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>mail:send<span class="w"> </span>--id<span class="o">=</span><span class="m">1</span><span class="w"> </span>--id<span class="o">=</span><span class="m">2</span>
+</code></pre></div>
+<p><a name="input-descriptions"></a></p>
+<h3 id="_22">入力の説明<a class="headerlink" href="#_22" title="Permanent link">&para;</a></h3>
+<p>引数名と説明をコロンで区切ることで、入力引数とオプションに説明を割り当てることができます。コマンドの定義に少し余裕が必要な場合は、定義を複数行に広げても構いません。</p>
+<div class="highlight"><pre><span></span><code><span class="sd">/**</span>
+<span class="sd"> * コンソールコマンドの名前とシグネチャ。</span>
+<span class="sd"> *</span>
+<span class="sd"> * @var string</span>
+<span class="sd"> */</span>
+<span class="k">protected</span> <span class="nv">$signature</span> <span class="o">=</span> <span class="s1">&#39;mail:send</span>
+<span class="s1">                        {user : ユーザーのID}</span>
+<span class="s1">                        {--queue : ジョブをキューに入れるかどうか}&#39;</span><span class="p">;</span>
+</code></pre></div>
+<p><a name="prompting-for-missing-input"></a></p>
+<h3 id="_23">不足している入力のプロンプト<a class="headerlink" href="#_23" title="Permanent link">&para;</a></h3>
+<p>コマンドに必須の引数が含まれている場合、ユーザーはそれらが提供されないとエラーメッセージを受け取ります。代わりに、<code>PromptsForMissingInput</code>インターフェースを実装することで、必須の引数が欠落している場合に自動的にユーザーにプロンプトを表示するようにコマンドを設定できます。</p>
+<div class="highlight"><pre><span></span><code><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Console\Commands</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Illuminate\Console\Command</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Contracts\Console\PromptsForMissingInput</span><span class="p">;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="k">class</span> <span class="nc">SendEmails</span> <span class="k">extends</span> <span class="nx">Command</span> <span class="k">implements</span> <span class="nx">PromptsForMissingInput</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="p">{</span>
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>    <span class="sd">/**</span>
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="sd">     * コンソールコマンドの名前とシグネチャ。</span>
+<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="sd">     *</span>
+<a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a><span class="sd">     * @var string</span>
+<a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a><span class="sd">     */</span>
+<a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a>    <span class="k">protected</span> <span class="nv">$signature</span> <span class="o">=</span> <span class="s1">&#39;mail:send {user}&#39;</span><span class="p">;</span>
+<a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a>
+<a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a>    <span class="c1">// ...</span>
+<a id="__codelineno-24-11" name="__codelineno-24-11" href="#__codelineno-24-11"></a><span class="p">}</span>
+</code></pre></div>
+<p>Laravelがユーザーから必須の引数を収集する必要がある場合、引数名または説明を使用して賢く質問を組み立て、ユーザーに自動的に質問します。必須の引数を収集するために使用される質問をカスタマイズしたい場合は、<code>promptForMissingArgumentsUsing</code>メソッドを実装し、引数名をキーとする質問の配列を返すことができます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="sd">/**</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="sd"> * 不足している入力引数に対して返される質問を使用してプロンプトを表示します。</span>
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="sd"> *</span>
+<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="sd"> * @return array&lt;string, string&gt;</span>
+<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a><span class="sd"> */</span>
+<a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a><span class="k">protected</span> <span class="k">function</span> <span class="nf">promptForMissingArgumentsUsing</span><span class="p">()</span><span class="o">:</span> <span class="k">array</span>
+<a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a><span class="p">{</span>
+<a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a>    <span class="k">return</span> <span class="p">[</span>
+<a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a>        <span class="s1">&#39;user&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;どのユーザーIDにメールを送信すべきですか？&#39;</span><span class="p">,</span>
+<a id="__codelineno-25-10" name="__codelineno-25-10" href="#__codelineno-25-10"></a>    <span class="p">];</span>
+<a id="__codelineno-25-11" name="__codelineno-25-11" href="#__codelineno-25-11"></a><span class="p">}</span>
+</code></pre></div>
+<p>プレースホルダーテキストを提供するには、質問とプレースホルダーを含むタプルを使用します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="k">return</span> <span class="p">[</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>    <span class="s1">&#39;user&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;どのユーザーIDにメールを送信すべきですか？&#39;</span><span class="p">,</span> <span class="s1">&#39;例: 123&#39;</span><span class="p">],</span>
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="p">];</span>
+</code></pre></div>
+<p>プロンプトを完全に制御したい場合は、ユーザーにプロンプトを表示し、その回答を返すクロージャを提供することができます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="k">use</span> <span class="nx">App\Models\User</span><span class="p">;</span>
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="k">use</span> <span class="k">function</span> <span class="nf">Laravel\Prompts\search</span><span class="p">;</span>
+<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>
+<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="c1">// ...</span>
+<a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a>
+<a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a><span class="k">return</span> <span class="p">[</span>
+<a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a>    <span class="s1">&#39;user&#39;</span> <span class="o">=&gt;</span> <span class="nx">fn</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">search</span><span class="p">(</span>
+<a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a>        <span class="nx">label</span><span class="o">:</span> <span class="s1">&#39;ユーザーを検索:&#39;</span><span class="p">,</span>
+<a id="__codelineno-27-9" name="__codelineno-27-9" href="#__codelineno-27-9"></a>        <span class="nx">placeholder</span><span class="o">:</span> <span class="s1">&#39;例: Taylor Otwell&#39;</span><span class="p">,</span>
+<a id="__codelineno-27-10" name="__codelineno-27-10" href="#__codelineno-27-10"></a>        <span class="nx">options</span><span class="o">:</span> <span class="nx">fn</span> <span class="p">(</span><span class="nv">$value</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nb">strlen</span><span class="p">(</span><span class="nv">$value</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
+<a id="__codelineno-27-11" name="__codelineno-27-11" href="#__codelineno-27-11"></a>            <span class="o">?</span> <span class="nx">User</span><span class="o">::</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;like&#39;</span><span class="p">,</span> <span class="s2">&quot;%</span><span class="si">{</span><span class="nv">$value</span><span class="si">}</span><span class="s2">%&quot;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">pluck</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;id&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">all</span><span class="p">()</span>
+<a id="__codelineno-27-12" name="__codelineno-27-12" href="#__codelineno-27-12"></a>            <span class="o">:</span> <span class="p">[]</span>
+<a id="__codelineno-27-13" name="__codelineno-27-13" href="#__codelineno-27-13"></a>    <span class="p">),</span>
+<a id="__codelineno-27-14" name="__codelineno-27-14" href="#__codelineno-27-14"></a><span class="p">];</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>利用可能なプロンプトとその使用方法に関する詳細情報は、<a href="prompts.html">Laravel Prompts</a>の包括的なドキュメントに記載されています。</p>
+</div>
+<p>ユーザーに<a href="#options">オプション</a>を選択または入力するよう促したい場合、コマンドの<code>handle</code>メソッドにプロンプトを含めることができます。ただし、ユーザーが不足している引数について自動的にプロンプトされた場合にのみユーザーにプロンプトを表示したい場合は、<code>afterPromptingForMissingArguments</code>メソッドを実装することができます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="k">use</span> <span class="nx">Symfony\Component\Console\Input\InputInterface</span><span class="p">;</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="k">use</span> <span class="nx">Symfony\Component\Console\Output\OutputInterface</span><span class="p">;</span>
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="k">use</span> <span class="k">function</span> <span class="nf">Laravel\Prompts\confirm</span><span class="p">;</span>
+<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a>
+<a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="c1">// ...</span>
+<a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a>
+<a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a><span class="sd">/**</span>
+<a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a><span class="sd"> * ユーザーが不足している引数についてプロンプトされた後にアクションを実行する。</span>
+<a id="__codelineno-28-9" name="__codelineno-28-9" href="#__codelineno-28-9"></a><span class="sd"> */</span>
+<a id="__codelineno-28-10" name="__codelineno-28-10" href="#__codelineno-28-10"></a><span class="k">protected</span> <span class="k">function</span> <span class="nf">afterPromptingForMissingArguments</span><span class="p">(</span><span class="nx">InputInterface</span> <span class="nv">$input</span><span class="p">,</span> <span class="nx">OutputInterface</span> <span class="nv">$output</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
+<a id="__codelineno-28-11" name="__codelineno-28-11" href="#__codelineno-28-11"></a><span class="p">{</span>
+<a id="__codelineno-28-12" name="__codelineno-28-12" href="#__codelineno-28-12"></a>    <span class="nv">$input</span><span class="o">-&gt;</span><span class="na">setOption</span><span class="p">(</span><span class="s1">&#39;queue&#39;</span><span class="p">,</span> <span class="nx">confirm</span><span class="p">(</span>
+<a id="__codelineno-28-13" name="__codelineno-28-13" href="#__codelineno-28-13"></a>        <span class="nx">label</span><span class="o">:</span> <span class="s1">&#39;Would you like to queue the mail?&#39;</span><span class="p">,</span>
+<a id="__codelineno-28-14" name="__codelineno-28-14" href="#__codelineno-28-14"></a>        <span class="k">default</span><span class="o">:</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">option</span><span class="p">(</span><span class="s1">&#39;queue&#39;</span><span class="p">)</span>
+<a id="__codelineno-28-15" name="__codelineno-28-15" href="#__codelineno-28-15"></a>    <span class="p">));</span>
+<a id="__codelineno-28-16" name="__codelineno-28-16" href="#__codelineno-28-16"></a><span class="p">}</span>
+</code></pre></div>
+<p><a name="command-io"></a></p>
+<h2 id="_24">コマンドの入出力<a class="headerlink" href="#_24" title="Permanent link">&para;</a></h2>
+<p><a name="retrieving-input"></a></p>
+<h3 id="_25">入力の取得<a class="headerlink" href="#_25" title="Permanent link">&para;</a></h3>
+<p>コマンドの実行中に、コマンドが受け入れる引数とオプションの値にアクセスする必要がある場合があります。そのためには、<code>argument</code>メソッドと<code>option</code>メソッドを使用できます。引数またはオプションが存在しない場合、<code>null</code>が返されます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="sd">/**</span>
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="sd"> * コンソールコマンドを実行する。</span>
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="sd"> */</span>
+<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="k">public</span> <span class="k">function</span> <span class="nf">handle</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a><span class="p">{</span>
+<a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a>    <span class="nv">$userId</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">argument</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">);</span>
+<a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a><span class="p">}</span>
+</code></pre></div>
+<p>すべての引数を<code>array</code>として取得する場合は、<code>arguments</code>メソッドを呼び出します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="nv">$arguments</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">arguments</span><span class="p">();</span>
+</code></pre></div>
+<p>オプションは引数と同様に<code>option</code>メソッドを使用して取得できます。すべてのオプションを配列として取得するには、<code>options</code>メソッドを呼び出します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="c1">// 特定のオプションを取得...</span>
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="nv">$queueName</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">option</span><span class="p">(</span><span class="s1">&#39;queue&#39;</span><span class="p">);</span>
+<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>
+<a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a><span class="c1">// すべてのオプションを配列として取得...</span>
+<a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a><span class="nv">$options</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">options</span><span class="p">();</span>
+</code></pre></div>
+<p><a name="prompting-for-input"></a></p>
+<h3 id="_26">入力のプロンプト<a class="headerlink" href="#_26" title="Permanent link">&para;</a></h3>
+<p>ユーザーに入力を求めるプロンプトを表示する方法については、以下のセクションで詳しく説明します。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><a href="prompts.html">Laravel Prompts</a> は、コマンドラインアプリケーションに美しくユーザーフレンドリーなフォームを追加するためのPHPパッケージです。プレースホルダーテキストやバリデーションを含むブラウザのような機能を備えています。</p>
+</div>
+<p>出力を表示するだけでなく、コマンドの実行中にユーザーに入力を求めることもできます。<code>ask</code>メソッドは、指定された質問をユーザーに提示し、その入力を受け取り、その後ユーザーの入力をコマンドに返します。</p>
+<div class="highlight"><pre><span></span><code><span class="sd">/**</span>
+<span class="sd"> * コンソールコマンドを実行する。</span>
+<span class="sd"> */</span>
+<span class="k">public</span> <span class="k">function</span> <span class="nf">handle</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<span class="p">{</span>
+    <span class="nv">$name</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">ask</span><span class="p">(</span><span class="s1">&#39;あなたの名前は何ですか？&#39;</span><span class="p">);</span>
+
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>ask</code>メソッドは、ユーザーが入力を提供しなかった場合に返されるデフォルト値を指定するためのオプションの第二引数も受け入れます。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$name</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">ask</span><span class="p">(</span><span class="s1">&#39;あなたの名前は何ですか？&#39;</span><span class="p">,</span> <span class="s1">&#39;Taylor&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><code>secret</code>メソッドは<code>ask</code>に似ていますが、ユーザーがコンソールに入力する際にその入力が表示されません。このメソッドは、パスワードなどの機密情報を尋ねる際に便利です。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$password</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">secret</span><span class="p">(</span><span class="s1">&#39;パスワードは何ですか？&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="asking-for-confirmation"></a></p>
+<h4 id="_27">確認を求める<a class="headerlink" href="#_27" title="Permanent link">&para;</a></h4>
+<p>ユーザーに簡単な「はいかいいえ」の確認を求める必要がある場合、<code>confirm</code>メソッドを使用できます。デフォルトでは、このメソッドは<code>false</code>を返します。ただし、ユーザーがプロンプトに対して<code>y</code>または<code>yes</code>と入力した場合、メソッドは<code>true</code>を返します。</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">confirm</span><span class="p">(</span><span class="s1">&#39;続行しますか？&#39;</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>必要に応じて、確認プロンプトがデフォルトで<code>true</code>を返すように指定するには、<code>confirm</code>メソッドの第二引数に<code>true</code>を渡します。</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">confirm</span><span class="p">(</span><span class="s1">&#39;続行しますか？&#39;</span><span class="p">,</span> <span class="k">true</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><a name="auto-completion"></a></p>
+<h4 id="_28">自動補完<a class="headerlink" href="#_28" title="Permanent link">&para;</a></h4>
+<p><code>anticipate</code>メソッドは、可能な選択肢の自動補完を提供するために使用できます。ユーザーは自動補完のヒントに関係なく、任意の回答を提供できます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="nv">$name</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">anticipate</span><span class="p">(</span><span class="s1">&#39;What is your name?&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Taylor&#39;</span><span class="p">,</span> <span class="s1">&#39;Dayle&#39;</span><span class="p">]);</span>
+</code></pre></div>
+<p>Alternatively, you may pass a closure as the second argument to the <code>anticipate</code> method. The closure will be called each time the user types an input character. The closure should accept a string parameter containing the user's input so far, and return an array of options for auto-completion:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="nv">$name</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">anticipate</span><span class="p">(</span><span class="s1">&#39;What is your address?&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">string</span> <span class="nv">$input</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>    <span class="c1">// Return auto-completion options...</span>
+<a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a><span class="p">});</span>
+</code></pre></div>
+<p><a name="multiple-choice-questions"></a></p>
+<h4 id="_29">複数選択の質問<a class="headerlink" href="#_29" title="Permanent link">&para;</a></h4>
+<p>質問をする際に、ユーザーに事前に定義された選択肢を提示する必要がある場合、<code>choice</code>メソッドを使用できます。オプションが選択されなかった場合に返されるデフォルト値の配列インデックスを、メソッドの第3引数として渡すことができます:</p>
+<p>$name = $this-&gt;choice(
+    'What is your name?',
+    ['Taylor', 'Dayle'],
+    $defaultIndex
+);</p>
+<p>さらに、<code>choice</code>メソッドは、有効な応答を選択するための最大試行回数と、複数の選択が許可されるかどうかを決定するためのオプションの第4引数と第5引数を受け入れます:</p>
+<p>$name = $this-&gt;choice(
+    'What is your name?',
+    ['Taylor', 'Dayle'],
+    $defaultIndex,
+    $maxAttempts = null,
+    $allowMultipleSelections = false
+);</p>
+<p><a name="writing-output"></a></p>
+<h3 id="_30">出力の書き込み<a class="headerlink" href="#_30" title="Permanent link">&para;</a></h3>
+<p>コンソールに出力を送信するには、<code>line</code>、<code>info</code>、<code>comment</code>、<code>question</code>、<code>warn</code>、および<code>error</code>メソッドを使用できます。これらの各メソッドは、その目的に適したANSIカラーを使用します。例えば、ユーザーに一般的な情報を表示する場合、通常、<code>info</code>メソッドはコンソールに緑色のテキストとして表示されます:</p>
+<p>/*<em>
+ * Execute the console command.
+ </em>/
+public function handle(): void
+{
+    // ...</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">info</span><span class="p">(</span><span class="s1">&#39;The command was successful!&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p>}</p>
+<p>エラーメッセージを表示するには、<code>error</code>メソッドを使用します。エラーメッセージのテキストは通常、赤色で表示されます:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="sb">``</span><span class="err">`</span><span class="nx">php</span>
+<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">error</span><span class="p">(</span><span class="s1">&#39;Something went wrong!&#39;</span><span class="p">);</span>
+</code></pre></div></p>
+<p>プレーンで色の付いていないテキストを表示するには、<code>line</code>メソッドを使用できます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">line</span><span class="p">(</span><span class="s1">&#39;Display this on the screen&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p>空白行を表示するには、<code>newLine</code>メソッドを使用できます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="c1">// 1行の空白行を表示...</span>
+<a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">newLine</span><span class="p">();</span>
+<a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a>
+<a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a><span class="c1">// 3行の空白行を表示...</span>
+<a id="__codelineno-36-5" name="__codelineno-36-5" href="#__codelineno-36-5"></a><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">newLine</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="tables"></a></p>
+<h4 id="_31">テーブル<a class="headerlink" href="#_31" title="Permanent link">&para;</a></h4>
+<p><code>table</code>メソッドを使用すると、複数の行/列のデータを簡単に正しくフォーマットできます。必要なのは、テーブルの列名とデータを提供することだけで、Laravelが自動的にテーブルの適切な幅と高さを計算します：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="k">use</span> <span class="nx">App\Models\User</span><span class="p">;</span>
+<a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a>
+<a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">table</span><span class="p">(</span>
+<a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a>    <span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="s1">&#39;Email&#39;</span><span class="p">],</span>
+<a id="__codelineno-37-5" name="__codelineno-37-5" href="#__codelineno-37-5"></a>    <span class="nx">User</span><span class="o">::</span><span class="na">all</span><span class="p">([</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;email&#39;</span><span class="p">])</span><span class="o">-&gt;</span><span class="na">toArray</span><span class="p">()</span>
+<a id="__codelineno-37-6" name="__codelineno-37-6" href="#__codelineno-37-6"></a><span class="p">);</span>
+</code></pre></div>
+<p><a name="progress-bars"></a></p>
+<h4 id="_32">プログレスバー<a class="headerlink" href="#_32" title="Permanent link">&para;</a></h4>
+<p>長時間かかるタスクの場合、タスクがどの程度完了しているかをユーザーに知らせるプログレスバーを表示すると便利です。<code>withProgressBar</code>メソッドを使用すると、Laravelはプログレスバーを表示し、指定された反復可能な値を反復するたびにその進行状況を進めます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="k">use</span> <span class="nx">App\Models\User</span><span class="p">;</span>
+<a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a>
+<a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a><span class="nv">$users</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">withProgressBar</span><span class="p">(</span><span class="nx">User</span><span class="o">::</span><span class="na">all</span><span class="p">(),</span> <span class="k">function</span> <span class="p">(</span><span class="nx">User</span> <span class="nv">$user</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-38-4" name="__codelineno-38-4" href="#__codelineno-38-4"></a>    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">performTask</span><span class="p">(</span><span class="nv">$user</span><span class="p">);</span>
+<a id="__codelineno-38-5" name="__codelineno-38-5" href="#__codelineno-38-5"></a><span class="p">});</span>
+</code></pre></div>
+<p>場合によっては、プログレスバーの進行をより手動で制御する必要があります。まず、プロセスが反復するステップの総数を定義します。次に、各アイテムを処理した後にプログレスバーを進めます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="nv">$users</span> <span class="o">=</span> <span class="nx">App\Models\User</span><span class="o">::</span><span class="na">all</span><span class="p">();</span>
+<a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a>
+<a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a><span class="nv">$bar</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">output</span><span class="o">-&gt;</span><span class="na">createProgressBar</span><span class="p">(</span><span class="nb">count</span><span class="p">(</span><span class="nv">$users</span><span class="p">));</span>
+<a id="__codelineno-39-4" name="__codelineno-39-4" href="#__codelineno-39-4"></a>
+<a id="__codelineno-39-5" name="__codelineno-39-5" href="#__codelineno-39-5"></a><span class="nv">$bar</span><span class="o">-&gt;</span><span class="na">start</span><span class="p">();</span>
+<a id="__codelineno-39-6" name="__codelineno-39-6" href="#__codelineno-39-6"></a>
+<a id="__codelineno-39-7" name="__codelineno-39-7" href="#__codelineno-39-7"></a><span class="k">foreach</span> <span class="p">(</span><span class="nv">$users</span> <span class="k">as</span> <span class="nv">$user</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-39-8" name="__codelineno-39-8" href="#__codelineno-39-8"></a>    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">performTask</span><span class="p">(</span><span class="nv">$user</span><span class="p">);</span>
+<a id="__codelineno-39-9" name="__codelineno-39-9" href="#__codelineno-39-9"></a>
+<a id="__codelineno-39-10" name="__codelineno-39-10" href="#__codelineno-39-10"></a>    <span class="nv">$bar</span><span class="o">-&gt;</span><span class="na">advance</span><span class="p">();</span>
+<a id="__codelineno-39-11" name="__codelineno-39-11" href="#__codelineno-39-11"></a><span class="p">}</span>
+<a id="__codelineno-39-12" name="__codelineno-39-12" href="#__codelineno-39-12"></a>
+<a id="__codelineno-39-13" name="__codelineno-39-13" href="#__codelineno-39-13"></a><span class="nv">$bar</span><span class="o">-&gt;</span><span class="na">finish</span><span class="p">();</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>より高度なオプションについては、<a href="https://symfony.com/doc/7.0/components/console/helpers/progressbar.html">Symfony Progress Barコンポーネントのドキュメント</a>を確認してください。</p>
+</div>
+<p><a name="registering-commands"></a></p>
+<h2 id="_33">コマンドの登録<a class="headerlink" href="#_33" title="Permanent link">&para;</a></h2>
+<p>デフォルトでは、Laravelは<code>app/Console/Commands</code>ディレクトリ内のすべてのコマンドを自動的に登録します。ただし、アプリケーションの<code>bootstrap/app.php</code>ファイル内で<code>withCommands</code>メソッドを使用して、LaravelにArtisanコマンドを他のディレクトリからスキャンするよう指示することもできます。</p>
+<div class="highlight"><pre><span></span><code><span class="o">-&gt;</span><span class="na">withCommands</span><span class="p">([</span>
+    <span class="no">__DIR__</span><span class="o">.</span><span class="s1">&#39;/../app/Domain/Orders/Commands&#39;</span><span class="p">,</span>
+<span class="p">])</span>
+</code></pre></div>
+<p>必要に応じて、コマンドのクラス名を<code>withCommands</code>メソッドに渡すことで、手動でコマンドを登録することもできます。</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">App\Domain\Orders\Commands\SendEmails</span><span class="p">;</span>
+
+<span class="o">-&gt;</span><span class="na">withCommands</span><span class="p">([</span>
+    <span class="nx">SendEmails</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+<span class="p">])</span>
+</code></pre></div>
+<p>Artisanが起動すると、アプリケーション内のすべてのコマンドが<a href="container.html">サービスコンテナ</a>によって解決され、Artisanに登録されます。</p>
+<p><a name="programmatically-executing-commands"></a></p>
+<h2 id="_34">プログラムによるコマンドの実行<a class="headerlink" href="#_34" title="Permanent link">&para;</a></h2>
+<p>CLI以外でArtisanコマンドを実行したい場合があります。例えば、ルートやコントローラからArtisanコマンドを実行したい場合です。<code>Artisan</code>ファサードの<code>call</code>メソッドを使用してこれを実現できます。<code>call</code>メソッドは、コマンドのシグネチャ名またはクラス名を最初の引数として受け取り、コマンドパラメータの配列を2番目の引数として受け取ります。終了コードが返されます。</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Artisan</span><span class="p">;</span>
+
+<span class="nx">Route</span><span class="o">::</span><span class="na">post</span><span class="p">(</span><span class="s1">&#39;/user/{user}/mail&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">string</span> <span class="nv">$user</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$exitCode</span> <span class="o">=</span> <span class="nx">Artisan</span><span class="o">::</span><span class="na">call</span><span class="p">(</span><span class="s1">&#39;mail:send&#39;</span><span class="p">,</span> <span class="p">[</span>
+        <span class="s1">&#39;user&#39;</span> <span class="o">=&gt;</span> <span class="nv">$user</span><span class="p">,</span> <span class="s1">&#39;--queue&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;default&#39;</span>
+    <span class="p">]);</span>
+
+    <span class="c1">// ...</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>または、Artisanコマンド全体を文字列として<code>call</code>メソッドに渡すこともできます。</p>
+<div class="highlight"><pre><span></span><code><span class="nx">Artisan</span><span class="o">::</span><span class="na">call</span><span class="p">(</span><span class="s1">&#39;mail:send 1 --queue=default&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="passing-array-values"></a></p>
+<h4 id="_35">配列値の渡し方<a class="headerlink" href="#_35" title="Permanent link">&para;</a></h4>
+<p>コマンドが配列を受け入れるオプションを定義している場合、そのオプションに値の配列を渡すことができます。</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Artisan</span><span class="p">;</span>
+
+<span class="nx">Route</span><span class="o">::</span><span class="na">post</span><span class="p">(</span><span class="s1">&#39;/mail&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nv">$exitCode</span> <span class="o">=</span> <span class="nx">Artisan</span><span class="o">::</span><span class="na">call</span><span class="p">(</span><span class="s1">&#39;mail:send&#39;</span><span class="p">,</span> <span class="p">[</span>
+        <span class="s1">&#39;--id&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">13</span><span class="p">]</span>
+    <span class="p">]);</span>
+<span class="p">});</span>
+</code></pre></div>
+<p><a name="passing-boolean-values"></a></p>
+<h4 id="_36">ブール値の引き渡し<a class="headerlink" href="#_36" title="Permanent link">&para;</a></h4>
+<p>文字列値を受け入れないオプション（<code>migrate:refresh</code>コマンドの<code>--force</code>フラグなど）の値を指定する必要がある場合は、オプションの値として<code>true</code>または<code>false</code>を渡すべきです：</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$exitCode</span> <span class="o">=</span> <span class="nx">Artisan</span><span class="o">::</span><span class="na">call</span><span class="p">(</span><span class="s1">&#39;migrate:refresh&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;--force&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
+<span class="p">]);</span>
+</code></pre></div>
+<p><a name="queueing-artisan-commands"></a></p>
+<h4 id="artisan_1">Artisanコマンドのキューイング<a class="headerlink" href="#artisan_1" title="Permanent link">&para;</a></h4>
+<p><code>Artisan</code>ファサードの<code>queue</code>メソッドを使用すると、Artisanコマンドをキューに入れて、<a href="queues.html">キューワーカー</a>によってバックグラウンドで処理されるようにすることもできます。このメソッドを使用する前に、キューの設定とキューリスナーの実行が完了していることを確認してください：</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Artisan</span><span class="p">;</span>
+
+<span class="nx">Route</span><span class="o">::</span><span class="na">post</span><span class="p">(</span><span class="s1">&#39;/user/{user}/mail&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">string</span> <span class="nv">$user</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">Artisan</span><span class="o">::</span><span class="na">queue</span><span class="p">(</span><span class="s1">&#39;mail:send&#39;</span><span class="p">,</span> <span class="p">[</span>
+        <span class="s1">&#39;user&#39;</span> <span class="o">=&gt;</span> <span class="nv">$user</span><span class="p">,</span> <span class="s1">&#39;--queue&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;default&#39;</span>
+    <span class="p">]);</span>
+
+    <span class="c1">// ...</span>
+<span class="p">});</span>
+</code></pre></div>
+<p><code>onConnection</code>メソッドと<code>onQueue</code>メソッドを使用して、Artisanコマンドをディスパッチする接続やキューを指定できます：</p>
+<div class="highlight"><pre><span></span><code><span class="nx">Artisan</span><span class="o">::</span><span class="na">queue</span><span class="p">(</span><span class="s1">&#39;mail:send&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;user&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;--queue&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;default&#39;</span>
+<span class="p">])</span><span class="o">-&gt;</span><span class="na">onConnection</span><span class="p">(</span><span class="s1">&#39;redis&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">onQueue</span><span class="p">(</span><span class="s1">&#39;commands&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="calling-commands-from-other-commands"></a></p>
+<h3 id="_37">他のコマンドからのコマンド呼び出し<a class="headerlink" href="#_37" title="Permanent link">&para;</a></h3>
+<p>既存のArtisanコマンドから他のコマンドを呼び出したい場合があります。<code>call</code>メソッドを使用してこれを行うことができます。この<code>call</code>メソッドは、コマンド名とコマンドの引数/オプションの配列を受け取ります：</p>
+<div class="highlight"><pre><span></span><code><span class="sd">/**</span>
+<span class="sd"> * コンソールコマンドの実行</span>
+<span class="sd"> */</span>
+<span class="k">public</span> <span class="k">function</span> <span class="nf">handle</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<span class="p">{</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">call</span><span class="p">(</span><span class="s1">&#39;mail:send&#39;</span><span class="p">,</span> <span class="p">[</span>
+        <span class="s1">&#39;user&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;--queue&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;default&#39;</span>
+    <span class="p">]);</span>
+
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>別のコンソールコマンドを呼び出し、そのすべての出力を抑制したい場合は、<code>callSilently</code>メソッドを使用できます。<code>callSilently</code>メソッドは、<code>call</code>メソッドと同じシグネチャを持っています：</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">callSilently</span><span class="p">(</span><span class="s1">&#39;mail:send&#39;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="s1">&#39;user&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;--queue&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;default&#39;</span>
+<span class="p">]);</span>
+</code></pre></div>
+<p><a name="signal-handling"></a></p>
+<h2 id="_38">シグナルハンドリング<a class="headerlink" href="#_38" title="Permanent link">&para;</a></h2>
+<p>ご存知のように、オペレーティングシステムは実行中のプロセスにシグナルを送信することができます。例えば、<code>SIGTERM</code>シグナルは、オペレーティングシステムがプログラムに終了を要求する方法です。Artisanコンソールコマンドでシグナルをリッスンし、発生したときにコードを実行したい場合は、<code>trap</code>メソッドを使用できます。</p>
+<div class="highlight"><pre><span></span><code><span class="sd">/**</span>
+<span class="sd"> * コンソールコマンドの実行</span>
+<span class="sd"> */</span>
+<span class="k">public</span> <span class="k">function</span> <span class="nf">handle</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<span class="p">{</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">trap</span><span class="p">(</span><span class="nx">SIGTERM</span><span class="p">,</span> <span class="nx">fn</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">shouldKeepRunning</span> <span class="o">=</span> <span class="k">false</span><span class="p">);</span>
+
+    <span class="k">while</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">shouldKeepRunning</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// ...</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>一度に複数のシグナルをリッスンするには、<code>trap</code>メソッドにシグナルの配列を渡すことができます。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">trap</span><span class="p">([</span><span class="nx">SIGTERM</span><span class="p">,</span> <span class="nx">SIGQUIT</span><span class="p">],</span> <span class="k">function</span> <span class="p">(</span><span class="nx">int</span> <span class="nv">$signal</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">shouldKeepRunning</span> <span class="o">=</span> <span class="k">false</span><span class="p">;</span>
+
+    <span class="nx">dump</span><span class="p">(</span><span class="nv">$signal</span><span class="p">);</span> <span class="c1">// SIGTERM / SIGQUIT</span>
+<span class="p">});</span>
+</code></pre></div>
+<p><a name="stub-customization"></a></p>
+<h2 id="_39">スタブのカスタマイズ<a class="headerlink" href="#_39" title="Permanent link">&para;</a></h2>
+<p>Artisanコンソールの<code>make</code>コマンドは、コントローラ、ジョブ、マイグレーション、テストなど、さまざまなクラスを作成するために使用されます。これらのクラスは、"スタブ"ファイルを使用して生成され、入力に基づいて値が設定されます。しかし、Artisanによって生成されるファイルに小さな変更を加えたい場合があります。これを実現するには、<code>stub:publish</code>コマンドを使用して、最も一般的なスタブをアプリケーションに公開し、カスタマイズできるようにします。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>stub:publish
+</code></pre></div>
+<p>公開されたスタブは、アプリケーションのルートにある<code>stubs</code>ディレクトリ内に配置されます。これらのスタブに加えた変更は、Artisanの<code>make</code>コマンドを使用して対応するクラスを生成する際に反映されます。</p>
+<p><a name="events"></a></p>
+<h2 id="_40">イベント<a class="headerlink" href="#_40" title="Permanent link">&para;</a></h2>
+<p>Artisanは、コマンド実行時に3つのイベントを発行します: <code>Illuminate\Console\Events\ArtisanStarting</code>、<code>Illuminate\Console\Events\CommandStarting</code>、そして <code>Illuminate\Console\Events\CommandFinished</code>です。<code>ArtisanStarting</code>イベントは、Artisanが実行を開始した直後に発行されます。次に、<code>CommandStarting</code>イベントは、コマンドが実行される直前に発行されます。最後に、<code>CommandFinished</code>イベントは、コマンドの実行が完了した後に発行されます。</p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+<nav class="md-footer-nav">
+    
+    
+</nav>
+
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": ".", "features": ["back-to-top", "navigation.expand", "navigation.tabs", "navigation.footer", "navigation.sections", "navigation.expand", "content.code.copy", "hide_repository_button", "content.code.annotate", "content.tabs.link", "toc.none", "content.action.edit"], "search": "assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="assets/javascripts/bundle.56dfad97.min.js"></script>
+      
+    
+  </body>
+</html>

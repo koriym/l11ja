@@ -1,0 +1,29 @@
+/* PHP.net Custom Highlight Style */
+.highlight .k { color: #0000BB; font-weight: bold; } /* Keyword */
+.highlight .s { color: #DD0000; } /* String */
+.highlight .c { color: #008000; } /* Comment */
+.highlight .n { color: #000000; } /* Name */
+.highlight .nf { color: #0000BB; } /* Name.Function */
+.highlight .nt { color: #0000BB; font-weight: bold; } /* Name.Tag */
+.highlight .o { color: #000000; } /* Operator */
+.highlight .p { color: #000000; } /* Punctuation */
+.highlight .m { color: #0000BB; } /* Number */
+.highlight .sd { color: #FF8000; } /* Comment.Preproc */
+.highlight .kc { color: #0000BB; font-weight: bold; } /* Keyword.Constant */
+.highlight .kd { color: #0000BB; font-weight: bold; } /* Keyword.Declaration */
+.highlight .na { color: #0000BB; } /* Name.Attribute */
+.highlight .nb { color: #007700; } /* Name.Builtin */
+.highlight .nc { color: #0000BB; font-weight: bold; } /* Name.Class */
+.highlight .no { color: #0000BB; } /* Name.Constant */
+.highlight .nd { color: #0000BB; } /* Name.Decorator */
+.highlight .nv { color: #000000; } /* Name.Variable */
+.highlight .ow { color: #0000BB; font-weight: bold; } /* Operator.Word */
+.highlight .w { color: #bbbbbb; } /* Text.Whitespace */
+
+.highlight .nt { color: #0000BB; } /* Text.Whitespace */
+.highlight .s2 { color: #008000; } /* Text.Whitespace */
+.highlight .k { color: #008000; } /* Text.Whitespace */
+
+
+/* Background color for code blocks */
+.highlight { background-color: #f8f8f8; }

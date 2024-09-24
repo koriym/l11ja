@@ -1,0 +1,4081 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://github.com/koriym/laravel11-ja/telescope.html">
+      
+      
+        <link rel="prev" href="socialite.html">
+      
+      
+        <link rel="next" href="valet.html">
+      
+      
+      <link rel="icon" href="assets/images/favicon_io/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.35">
+    
+    
+      
+        <title>Telescope - L11JA</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.35f28582.min.css">
+      
+      
+
+
+    
+    
+
+    
+
+    
+      <link rel="stylesheet" href="assets/css/php.css">
+    
+      <link rel="stylesheet" href="assets/css/mkdocs_material_extra.css">
+    
+      <link rel="stylesheet" href="assets/css/extra.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-G60CEHXLQ1"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-G60CEHXLQ1",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-G60CEHXLQ1",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#laravel-telescope" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      <!-- Determine classes -->
+
+
+
+<!-- Header -->
+<header class="md-header" data-md-component="header">
+  <nav
+          class="md-header__inner md-grid"
+          aria-label="Header"
+  >
+
+    <!-- Link to home -->
+    <a
+            href="."
+            title="L11JA"
+            class="md-header__button md-logo"
+            aria-label="L11JA"
+            data-md-component="logo"
+    >
+      
+  <img src="assets/images/logo.png" alt="logo">
+
+    </a>
+
+    <!-- Button to open drawer -->
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+
+    <!-- Header title -->
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            <span style="font-family: 'Noto Sans'; font-size: 20px" >
+            L11JA
+            </span>
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            <span style="font-family: 'Noto Sans Batak'; font-size: 20px" >
+            
+              Telescope
+            
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Color palette toggle -->
+    
+
+    <!-- User preference: color palette -->
+    
+    <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+
+    <!-- Site language selector -->
+    
+
+    <!-- Button to open search modal -->
+    
+    <label class="md-header__button md-icon" for="__search">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+    </label>
+
+    <!-- Search interface -->
+    <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    <!-- Repository information -->
+    
+    <div class="md-header__source">
+      
+
+<!--
+  Check whether the repository is hosted on one of the supported code hosting
+  platforms (GitHub, GitLab or Bitbucket) to show icon.
+-->
+
+
+  
+
+
+<!-- Repository containing source -->
+<a href="https://github.com/koriym/l11ja" title="source.link.title"
+    class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z" fill="#000"/></svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+    
+  </nav>
+
+  <!-- Navigation tabs (sticky) -->
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="releases.html" class="md-tabs__link">
+          
+  
+  プロローグ
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="installation.html" class="md-tabs__link">
+          
+  
+  はじめに
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="lifecycle.html" class="md-tabs__link">
+          
+  
+  アーキテクチャ
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="routing.html" class="md-tabs__link">
+          
+  
+  基本
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="artisan.html" class="md-tabs__link">
+          
+  
+  掘り下げる
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="authentication.html" class="md-tabs__link">
+          
+  
+  セキュリティ
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="database.html" class="md-tabs__link">
+          
+  
+  データベース
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="eloquent.html" class="md-tabs__link">
+          
+  
+  Eloquent ORM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="testing.html" class="md-tabs__link">
+          
+  
+  テスト
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="starter-kits.html" class="md-tabs__link">
+          
+  
+  パッケージ
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="L11JA" class="md-nav__button md-logo" aria-label="L11JA" data-md-component="logo">
+      
+  <img src="assets/images/logo.png" alt="logo">
+
+    </a>
+    L11JA
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+<!--
+  Check whether the repository is hosted on one of the supported code hosting
+  platforms (GitHub, GitLab or Bitbucket) to show icon.
+-->
+
+
+  
+
+
+<!-- Repository containing source -->
+<a href="https://github.com/koriym/l11ja" title="source.link.title"
+    class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z" fill="#000"/></svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    プロローグ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            プロローグ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="releases.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リリースノート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="upgrade.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    アップグレードガイド
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="contributions.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    貢献ガイド
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            はじめに
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="installation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    インストール
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="configuration.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    設定
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structure.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ディレクトリ構造
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="frontend.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    フロントエンド
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="starter-kits.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    スターターキット
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="deployment.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    デプロイ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    アーキテクチャ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            アーキテクチャ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="lifecycle.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リクエストライフサイクル
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="container.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    サービスコンテナ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="providers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    サービスプロバイダ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="facades.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ファサード
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    基本
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            基本
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="routing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ルーティング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="middleware.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ミドルウェア
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="csrf.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CSRF保護
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="controllers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コントローラ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="requests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リクエスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="responses.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    レスポンス
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="views.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ビュー
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="blade.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bladeテンプレート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="vite.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    アセットバンドル
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="urls.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    URL生成
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="session.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    セッション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="validation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    バリデーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="errors.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    エラー処理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="logging.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ログ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    掘り下げる
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            掘り下げる
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="artisan.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Artisanコンソール
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="broadcasting.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ブロードキャスティング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cache.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    キャッシュ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="collections.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コレクション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="concurrency.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    並行処理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="context.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コンテキスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="contracts.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コントラクト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="events.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    イベント
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="filesystem.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ファイルストレージ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="helpers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ヘルパー
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="http-client.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTTPクライアント
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="localization.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ローカライゼーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mail.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    メール
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="notifications.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    通知
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="packages.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    パッケージ開発
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="processes.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    プロセス
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="queues.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    キュー
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="rate-limiting.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    レート制限
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="strings.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    文字列
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="scheduling.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    タスクスケジューリング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    セキュリティ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            セキュリティ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="authentication.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    認証
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="authorization.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    認可
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="verification.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    メール確認
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="encryption.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    暗号化
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hashing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ハッシュ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="passwords.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    パスワードリセット
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    データベース
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            データベース
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="database.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="queries.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    クエリビルダ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pagination.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ページネーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="migrations.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    マイグレーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="seeding.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    シーディング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="redis.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Redis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Eloquent ORM
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Eloquent ORM
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-relationships.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リレーションシップ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-collections.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コレクション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-mutators.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ミューテータ / キャスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-resources.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    APIリソース
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-serialization.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    シリアライゼーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-factories.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ファクトリ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    テスト
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            テスト
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="testing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="http-tests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTTPテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="console-tests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コンソールテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="dusk.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ブラウザテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="database-testing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    データベース
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mocking.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    モック
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    パッケージ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            パッケージ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="starter-kits.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    スターターキット
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="billing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cashier (Stripe)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cashier-paddle.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cashier (Paddle)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="dusk.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ブラウザテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="envoy.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Envoy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fortify.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fortify
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="folio.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Folio
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="homestead.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Homestead
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="horizon.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Horizon
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mix.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mix
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="octane.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Octane
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="passport.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Passport
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pennant.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pennant
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pint.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pint
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="precognition.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Precognition
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="prompts.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prompts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pulse.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pulse
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reverb.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reverb
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sail.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sail
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sanctum.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sanctum
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="scout.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Scout
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="socialite.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Socialite
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Telescope
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="telescope.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Telescope
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      はじめに
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      インストール
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="インストール">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      ローカル限定インストール
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      設定
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      データの整理
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      ダッシュボードの認可
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#telescope" class="md-nav__link">
+    <span class="md-ellipsis">
+      Telescopeのアップグレード
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      フィルタリング
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="フィルタリング">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      エントリ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      バッチ
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      タグ付け
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      利用可能なウォッチャー
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="利用可能なウォッチャー">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#batch-watcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      Batch Watcher
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cache-watcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cache Watcher
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command-watcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      Command Watcher
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dump-watcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dump Watcher
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event-watcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      Event Watcher
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exception-watcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exception Watcher
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gate-watcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gate Watcher
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-client-watcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      HTTP Client Watcher
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#job-watcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      Job Watcher
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log-watcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      Log Watcher
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mail-watcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mail Watcher
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-watcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model Watcher
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notification-watcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notification Watcher
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-watcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      Query Watcher
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis-watcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      Redis Watcher
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#request-watcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      Request Watcher
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#schedule-watcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      Schedule Watcher
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#view-watcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      View Watcher
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      ユーザーアバターの表示
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="valet.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Valet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      はじめに
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      インストール
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="インストール">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      ローカル限定インストール
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      設定
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      データの整理
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      ダッシュボードの認可
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#telescope" class="md-nav__link">
+    <span class="md-ellipsis">
+      Telescopeのアップグレード
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      フィルタリング
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="フィルタリング">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      エントリ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      バッチ
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      タグ付け
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      利用可能なウォッチャー
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="利用可能なウォッチャー">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#batch-watcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      Batch Watcher
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cache-watcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cache Watcher
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#command-watcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      Command Watcher
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dump-watcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dump Watcher
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event-watcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      Event Watcher
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exception-watcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exception Watcher
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gate-watcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gate Watcher
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-client-watcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      HTTP Client Watcher
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#job-watcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      Job Watcher
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log-watcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      Log Watcher
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mail-watcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mail Watcher
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-watcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model Watcher
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notification-watcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notification Watcher
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-watcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      Query Watcher
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis-watcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      Redis Watcher
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#request-watcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      Request Watcher
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#schedule-watcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      Schedule Watcher
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#view-watcher" class="md-nav__link">
+    <span class="md-ellipsis">
+      View Watcher
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      ユーザーアバターの表示
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/koriym/l11ja/edit/master/docs/telescope.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="laravel-telescope">Laravel Telescope<a class="headerlink" href="#laravel-telescope" title="Permanent link">&para;</a></h1>
+<ul>
+<li><a href="#introduction">はじめに</a></li>
+<li><a href="#installation">インストール</a><ul>
+<li><a href="#local-only-installation">ローカル限定インストール</a></li>
+<li><a href="#configuration">設定</a></li>
+<li><a href="#data-pruning">データの整理</a></li>
+<li><a href="#dashboard-authorization">ダッシュボードの認可</a></li>
+</ul>
+</li>
+<li><a href="#upgrading-telescope">Telescopeのアップグレード</a></li>
+<li><a href="#filtering">フィルタリング</a><ul>
+<li><a href="#filtering-entries">エントリ</a></li>
+<li><a href="#filtering-batches">バッチ</a></li>
+</ul>
+</li>
+<li><a href="#tagging">タグ付け</a></li>
+<li><a href="#available-watchers">利用可能なウォッチャー</a><ul>
+<li><a href="#batch-watcher">バッチウォッチャー</a></li>
+<li><a href="#cache-watcher">キャッシュウォッチャー</a></li>
+<li><a href="#command-watcher">コマンドウォッチャー</a></li>
+<li><a href="#dump-watcher">ダンプウォッチャー</a></li>
+<li><a href="#event-watcher">イベントウォッチャー</a></li>
+<li><a href="#exception-watcher">例外ウォッチャー</a></li>
+<li><a href="#gate-watcher">ゲートウォッチャー</a></li>
+<li><a href="#http-client-watcher">HTTPクライアントウォッチャー</a></li>
+<li><a href="#job-watcher">ジョブウォッチャー</a></li>
+<li><a href="#log-watcher">ログウォッチャー</a></li>
+<li><a href="#mail-watcher">メールウォッチャー</a></li>
+<li><a href="#model-watcher">モデルウォッチャー</a></li>
+<li><a href="#notification-watcher">通知ウォッチャー</a></li>
+<li><a href="#query-watcher">クエリウォッチャー</a></li>
+<li><a href="#redis-watcher">Redisウォッチャー</a></li>
+<li><a href="#request-watcher">リクエストウォッチャー</a></li>
+<li><a href="#schedule-watcher">スケジュールウォッチャー</a></li>
+<li><a href="#view-watcher">ビューウォッチャー</a></li>
+</ul>
+</li>
+<li><a href="#displaying-user-avatars">ユーザーアバターの表示</a></li>
+</ul>
+<p><a name="introduction"></a></p>
+<h2 id="_1">はじめに<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p><a href="https://github.com/laravel/telescope">Laravel Telescope</a> は、ローカルのLaravel開発環境に最適な相棒です。Telescopeは、アプリケーションに入ってくるリクエスト、例外、ログエントリ、データベースクエリ、キュージョブ、メール、通知、キャッシュ操作、スケジュールされたタスク、変数ダンプなどについての洞察を提供します。</p>
+<p><img src="https://laravel.com/img/docs/telescope-example.png"></p>
+<p><a name="installation"></a></p>
+<h2 id="_2">インストール<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>Composerパッケージマネージャを使用して、TelescopeをLaravelプロジェクトにインストールできます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>composer<span class="w"> </span>require<span class="w"> </span>laravel/telescope
+</code></pre></div>
+<p>Telescopeをインストールした後、<code>telescope:install</code> Artisanコマンドを使用してそのアセットとマイグレーションを公開します。Telescopeをインストールした後、Telescopeのデータを保存するために必要なテーブルを作成するために<code>migrate</code>コマンドも実行する必要があります：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>telescope:install
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>php<span class="w"> </span>artisan<span class="w"> </span>migrate
+</code></pre></div>
+<p>最後に、<code>/telescope</code>ルートからTelescopeダッシュボードにアクセスできます。</p>
+<p><a name="local-only-installation"></a></p>
+<h3 id="_3">ローカル限定インストール<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>ローカル開発のみでTelescopeを使用する予定の場合は、<code>--dev</code>フラグを使用してTelescopeをインストールできます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>composer<span class="w"> </span>require<span class="w"> </span>laravel/telescope<span class="w"> </span>--dev
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>php<span class="w"> </span>artisan<span class="w"> </span>telescope:install
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>php<span class="w"> </span>artisan<span class="w"> </span>migrate
+</code></pre></div>
+<p><code>telescope:install</code>を実行した後、アプリケーションの<code>bootstrap/providers.php</code>設定ファイルから<code>TelescopeServiceProvider</code>サービスプロバイダの登録を削除する必要があります。代わりに、<code>App\Providers\AppServiceProvider</code>クラスの<code>register</code>メソッドでTelescopeのサービスプロバイダを手動で登録します。現在の環境が<code>local</code>であることを確認してからプロバイダを登録します：</p>
+<div class="highlight"><pre><span></span><code><span class="sd">/**</span>
+<span class="sd"> * 任意のアプリケーションサービスを登録します。</span>
+<span class="sd"> */</span>
+<span class="k">public</span> <span class="k">function</span> <span class="nf">register</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">app</span><span class="o">-&gt;</span><span class="na">environment</span><span class="p">(</span><span class="s1">&#39;local&#39;</span><span class="p">))</span> <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">app</span><span class="o">-&gt;</span><span class="na">register</span><span class="p">(</span><span class="nx">\Laravel\Telescope\TelescopeServiceProvider</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">app</span><span class="o">-&gt;</span><span class="na">register</span><span class="p">(</span><span class="nx">TelescopeServiceProvider</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>最後に、Telescopeパッケージが<a href="packages.html#package-discovery">自動検出</a>されないように、<code>composer.json</code>ファイルに以下を追加する必要があります：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">&quot;extra&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="nt">&quot;laravel&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">        </span><span class="nt">&quot;dont-discover&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">            </span><span class="s2">&quot;laravel/telescope&quot;</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">        </span><span class="p">]</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="p">},</span>
+</code></pre></div>
+<p><a name="configuration"></a></p>
+<h3 id="_4">設定<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>Telescopeのアセットを公開した後、その主要な設定ファイルは<code>config/telescope.php</code>に配置されます。この設定ファイルでは、<a href="#available-watchers">ウォッチャーオプション</a>を設定できます。各設定オプションにはその目的の説明が含まれているため、このファイルを徹底的に確認してください。</p>
+<p>必要に応じて、<code>enabled</code>設定オプションを使用してTelescopeのデータ収集を完全に無効にすることができます：</p>
+<div class="highlight"><pre><span></span><code><span class="s1">&#39;enabled&#39;</span> <span class="o">=&gt;</span> <span class="nx">env</span><span class="p">(</span><span class="s1">&#39;TELESCOPE_ENABLED&#39;</span><span class="p">,</span> <span class="k">true</span><span class="p">),</span>
+</code></pre></div>
+<p><a name="data-pruning"></a></p>
+<h3 id="_5">データの整理<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>整理を行わない場合、<code>telescope_entries</code>テーブルはレコードを非常に迅速に蓄積する可能性があります。これを軽減するために、<code>telescope:prune</code> Artisanコマンドを毎日実行するように<a href="scheduling.html">スケジュール</a>する必要があります：</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Schedule</span><span class="p">;</span>
+
+<span class="nx">Schedule</span><span class="o">::</span><span class="na">command</span><span class="p">(</span><span class="s1">&#39;telescope:prune&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">daily</span><span class="p">();</span>
+</code></pre></div>
+<p>デフォルトでは、24時間以上前のすべてのエントリが整理されます。コマンドを呼び出す際に<code>hours</code>オプションを使用して、Telescopeデータを保持する期間を決定できます。たとえば、次のコマンドは48時間以上前に作成されたすべてのレコードを削除します：</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Schedule</span><span class="p">;</span>
+
+<span class="nx">Schedule</span><span class="o">::</span><span class="na">command</span><span class="p">(</span><span class="s1">&#39;telescope:prune --hours=48&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">daily</span><span class="p">();</span>
+</code></pre></div>
+<p><a name="dashboard-authorization"></a></p>
+<h3 id="_6">ダッシュボードの認可<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>Telescopeダッシュボードは<code>/telescope</code>ルートからアクセスできます。デフォルトでは、このダッシュボードには<code>local</code>環境でのみアクセスできます。<code>app/Providers/TelescopeServiceProvider.php</code>ファイル内には、<a href="authorization.html#gates">認可ゲート</a>の定義があります。この認可ゲートは、<strong>非ローカル</strong>環境でのTelescopeへのアクセスを制御します。必要に応じて、このゲートを自由に変更してTelescopeのインストールへのアクセスを制限できます：</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">App\Models\User</span><span class="p">;</span>
+
+<span class="sd">/**</span>
+<span class="sd"> * Telescopeゲートを登録します。</span>
+<span class="sd"> *</span>
+<span class="sd"> * このゲートは、非ローカル環境で誰がTelescopeにアクセスできるかを決定します。</span>
+<span class="sd"> */</span>
+<span class="k">protected</span> <span class="k">function</span> <span class="nf">gate</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<span class="p">{</span>
+    <span class="nx">Gate</span><span class="o">::</span><span class="na">define</span><span class="p">(</span><span class="s1">&#39;viewTelescope&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">User</span> <span class="nv">$user</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nb">in_array</span><span class="p">(</span><span class="nv">$user</span><span class="o">-&gt;</span><span class="na">email</span><span class="p">,</span> <span class="p">[</span>
+            <span class="s1">&#39;taylor@laravel.com&#39;</span><span class="p">,</span>
+        <span class="p">]);</span>
+    <span class="p">});</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>本番環境では、<code>APP_ENV</code>環境変数を<code>production</code>に変更するようにしてください。そうしないと、Telescopeのインストールが公開されてしまいます。</p>
+</div>
+<p><a name="upgrading-telescope"></a></p>
+<h2 id="telescope">Telescopeのアップグレード<a class="headerlink" href="#telescope" title="Permanent link">&para;</a></h2>
+<p>Telescopeの新しいメジャーバージョンにアップグレードする際には、<a href="https://github.com/laravel/telescope/blob/master/UPGRADE.md">アップグレードガイド</a>を注意深く確認することが重要です。</p>
+<p>さらに、新しいTelescopeバージョンにアップグレードする際には、Telescopeのアセットを再公開する必要があります：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>telescope:publish
+</code></pre></div>
+<p>アセットを最新の状態に保ち、将来のアップデートで問題が発生しないようにするために、アプリケーションの<code>composer.json</code>ファイルの<code>post-update-cmd</code>スクリプトに<code>vendor:publish --tag=laravel-assets</code>コマンドを追加することができます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="p">{</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="nt">&quot;scripts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">        </span><span class="nt">&quot;post-update-cmd&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">            </span><span class="s2">&quot;@php artisan vendor:publish --tag=laravel-assets --ansi --force&quot;</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">        </span><span class="p">]</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="p">}</span>
+</code></pre></div>
+<p><a name="filtering"></a></p>
+<h2 id="_7">フィルタリング<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p><a name="filtering-entries"></a></p>
+<h3 id="_8">エントリ<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p><code>App\Providers\TelescopeServiceProvider</code>クラスで定義された<code>filter</code>クロージャを介して、Telescopeによって記録されるデータをフィルタリングできます。デフォルトでは、このクロージャは<code>local</code>環境ですべてのデータを記録し、例外、失敗したジョブ、スケジュールされたタスク、および監視されたタグを持つデータを他のすべての環境で記録します：</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">Laravel\Telescope\IncomingEntry</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Laravel\Telescope\Telescope</span><span class="p">;</span>
+
+<span class="sd">/**</span>
+<span class="sd"> * 任意のアプリケーションサービスを登録します。</span>
+<span class="sd"> */</span>
+<span class="k">public</span> <span class="k">function</span> <span class="nf">register</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<span class="p">{</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">hideSensitiveRequestDetails</span><span class="p">();</span>
+
+    <span class="nx">Telescope</span><span class="o">::</span><span class="na">filter</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nx">IncomingEntry</span> <span class="nv">$entry</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">app</span><span class="o">-&gt;</span><span class="na">environment</span><span class="p">(</span><span class="s1">&#39;local&#39;</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="nv">$entry</span><span class="o">-&gt;</span><span class="na">isReportableException</span><span class="p">()</span> <span class="o">||</span>
+            <span class="nv">$entry</span><span class="o">-&gt;</span><span class="na">isFailedJob</span><span class="p">()</span> <span class="o">||</span>
+            <span class="nv">$entry</span><span class="o">-&gt;</span><span class="na">isScheduledTask</span><span class="p">()</span> <span class="o">||</span>
+            <span class="nv">$entry</span><span class="o">-&gt;</span><span class="na">isSlowQuery</span><span class="p">()</span> <span class="o">||</span>
+            <span class="nv">$entry</span><span class="o">-&gt;</span><span class="na">hasMonitoredTag</span><span class="p">();</span>
+    <span class="p">});</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><a name="filtering-batches"></a></p>
+<h3 id="_9">バッチ<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p><code>filter</code>クロージャは個々のエントリのデータをフィルタリングしますが、<code>filterBatch</code>メソッドを使用して、特定のリクエストまたはコンソールコマンドのすべてのデータをフィルタリングするクロージャを登録できます。クロージャが<code>true</code>を返す場合、すべてのエントリがTelescopeによって記録されます：</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">Illuminate\Support\Collection</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Laravel\Telescope\IncomingEntry</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Laravel\Telescope\Telescope</span><span class="p">;</span>
+
+<span class="sd">/**</span>
+<span class="sd"> * 任意のアプリケーションサービスを登録します。</span>
+<span class="sd"> */</span>
+<span class="k">public</span> <span class="k">function</span> <span class="nf">register</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<span class="p">{</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">hideSensitiveRequestDetails</span><span class="p">();</span>
+
+    <span class="nx">Telescope</span><span class="o">::</span><span class="na">filterBatch</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nx">Collection</span> <span class="nv">$entries</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">app</span><span class="o">-&gt;</span><span class="na">environment</span><span class="p">(</span><span class="s1">&#39;local&#39;</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="nv">$entries</span><span class="o">-&gt;</span><span class="na">contains</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nx">IncomingEntry</span> <span class="nv">$entry</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nv">$entry</span><span class="o">-&gt;</span><span class="na">isReportableException</span><span class="p">()</span> <span class="o">||</span>
+                <span class="nv">$entry</span><span class="o">-&gt;</span><span class="na">isFailedJob</span><span class="p">()</span> <span class="o">||</span>
+                <span class="nv">$entry</span><span class="o">-&gt;</span><span class="na">isScheduledTask</span><span class="p">()</span> <span class="o">||</span>
+                <span class="nv">$entry</span><span class="o">-&gt;</span><span class="na">isSlowQuery</span><span class="p">()</span> <span class="o">||</span>
+                <span class="nv">$entry</span><span class="o">-&gt;</span><span class="na">hasMonitoredTag</span><span class="p">();</span>
+            <span class="p">});</span>
+    <span class="p">});</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><a name="tagging"></a></p>
+<h2 id="_10">タグ付け<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<p>Telescopeでは、"タグ"によってエントリを検索できます。多くの場合、タグはEloquentモデルのクラス名や認証されたユーザーのIDであり、Telescopeは自動的にエントリに追加します。ときには、エントリに独自のカスタムタグを添付したい場合があります。これを実現するために、<code>Telescope::tag</code>メソッドを使用できます。<code>tag</code>メソッドは、タグの配列を返すべきクロージャを受け取ります。クロージャによって返されたタグは、Telescopeが自動的にエントリに添付するタグとマージされます。通常、<code>App\Providers\TelescopeServiceProvider</code>クラスの<code>register</code>メソッド内で<code>tag</code>メソッドを呼び出す必要があります：</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">Laravel\Telescope\IncomingEntry</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Laravel\Telescope\Telescope</span><span class="p">;</span>
+
+<span class="sd">/**</span>
+<span class="sd"> * 任意のアプリケーションサービスを登録します。</span>
+<span class="sd"> */</span>
+<span class="k">public</span> <span class="k">function</span> <span class="nf">register</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<span class="p">{</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">hideSensitiveRequestDetails</span><span class="p">();</span>
+
+    <span class="nx">Telescope</span><span class="o">::</span><span class="na">tag</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nx">IncomingEntry</span> <span class="nv">$entry</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$entry</span><span class="o">-&gt;</span><span class="na">type</span> <span class="o">===</span> <span class="s1">&#39;request&#39;</span>
+                    <span class="o">?</span> <span class="p">[</span><span class="s1">&#39;status:&#39;</span><span class="o">.</span><span class="nv">$entry</span><span class="o">-&gt;</span><span class="na">content</span><span class="p">[</span><span class="s1">&#39;response_status&#39;</span><span class="p">]]</span>
+                    <span class="o">:</span> <span class="p">[];</span>
+    <span class="p">});</span>
+ <span class="p">}</span>
+</code></pre></div>
+<p><a name="available-watchers"></a></p>
+<h2 id="_11">利用可能なウォッチャー<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<p>Telescopeの「ウォッチャー」は、リクエストやコンソールコマンドが実行されたときにアプリケーションデータを収集します。<code>config/telescope.php</code>設定ファイル内で、有効にしたいウォッチャーのリストをカスタマイズできます。</p>
+<div class="highlight"><pre><span></span><code><span class="s1">&#39;watchers&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="nx">Watchers\CacheWatcher</span><span class="o">::</span><span class="na">class</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
+    <span class="nx">Watchers\CommandWatcher</span><span class="o">::</span><span class="na">class</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
+    <span class="o">...</span>
+<span class="p">],</span>
+</code></pre></div>
+<p>一部のウォッチャーでは、追加のカスタマイズオプションを提供しています。</p>
+<div class="highlight"><pre><span></span><code><span class="s1">&#39;watchers&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="nx">Watchers\QueryWatcher</span><span class="o">::</span><span class="na">class</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;enabled&#39;</span> <span class="o">=&gt;</span> <span class="nx">env</span><span class="p">(</span><span class="s1">&#39;TELESCOPE_QUERY_WATCHER&#39;</span><span class="p">,</span> <span class="k">true</span><span class="p">),</span>
+        <span class="s1">&#39;slow&#39;</span> <span class="o">=&gt;</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="o">...</span>
+<span class="p">],</span>
+</code></pre></div>
+<p><a name="batch-watcher"></a></p>
+<h3 id="batch-watcher">Batch Watcher<a class="headerlink" href="#batch-watcher" title="Permanent link">&para;</a></h3>
+<p>Batchウォッチャーは、キューに入れられた<a href="queues.html#job-batching">バッチ</a>に関する情報を記録します。これには、ジョブと接続情報が含まれます。</p>
+<p><a name="cache-watcher"></a></p>
+<h3 id="cache-watcher">Cache Watcher<a class="headerlink" href="#cache-watcher" title="Permanent link">&para;</a></h3>
+<p>Cacheウォッチャーは、キャッシュキーがヒット、ミス、更新、削除されたときにデータを記録します。</p>
+<p><a name="command-watcher"></a></p>
+<h3 id="command-watcher">Command Watcher<a class="headerlink" href="#command-watcher" title="Permanent link">&para;</a></h3>
+<p>Commandウォッチャーは、Artisanコマンドが実行されたときに引数、オプション、終了コード、および出力を記録します。特定のコマンドをウォッチャーによる記録から除外したい場合は、<code>config/telescope.php</code>ファイル内の<code>ignore</code>オプションで指定できます。</p>
+<div class="highlight"><pre><span></span><code><span class="s1">&#39;watchers&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="nx">Watchers\CommandWatcher</span><span class="o">::</span><span class="na">class</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;enabled&#39;</span> <span class="o">=&gt;</span> <span class="nx">env</span><span class="p">(</span><span class="s1">&#39;TELESCOPE_COMMAND_WATCHER&#39;</span><span class="p">,</span> <span class="k">true</span><span class="p">),</span>
+        <span class="s1">&#39;ignore&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;key:generate&#39;</span><span class="p">],</span>
+    <span class="p">],</span>
+    <span class="o">...</span>
+<span class="p">],</span>
+</code></pre></div>
+<p><a name="dump-watcher"></a></p>
+<h3 id="dump-watcher">Dump Watcher<a class="headerlink" href="#dump-watcher" title="Permanent link">&para;</a></h3>
+<p>Dumpウォッチャーは、変数のダンプをTelescopeに記録して表示します。Laravelを使用している場合、グローバルな<code>dump</code>関数を使用して変数をダンプできます。Dumpウォッチャータブがブラウザで開いている場合にのみ、ダンプが記録されます。それ以外の場合、ダンプはウォッチャーによって無視されます。</p>
+<p><a name="event-watcher"></a></p>
+<h3 id="event-watcher">Event Watcher<a class="headerlink" href="#event-watcher" title="Permanent link">&para;</a></h3>
+<p>Eventウォッチャーは、アプリケーションによってディスパッチされた<a href="events.html">イベント</a>のペイロード、リスナー、およびブロードキャストデータを記録します。Laravelフレームワークの内部イベントは、Eventウォッチャーによって無視されます。</p>
+<p><a name="exception-watcher"></a></p>
+<h3 id="exception-watcher">Exception Watcher<a class="headerlink" href="#exception-watcher" title="Permanent link">&para;</a></h3>
+<p>Exceptionウォッチャーは、アプリケーションによってスローされた報告可能な例外のデータとスタックトレースを記録します。</p>
+<p><a name="gate-watcher"></a></p>
+<h3 id="gate-watcher">Gate Watcher<a class="headerlink" href="#gate-watcher" title="Permanent link">&para;</a></h3>
+<p>Gateウォッチャーは、アプリケーションによる<a href="authorization.html">ゲートとポリシー</a>のチェックのデータと結果を記録します。特定の能力をウォッチャーによる記録から除外したい場合は、<code>config/telescope.php</code>ファイル内の<code>ignore_abilities</code>オプションで指定できます。</p>
+<div class="highlight"><pre><span></span><code><span class="s1">&#39;watchers&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="nx">Watchers\GateWatcher</span><span class="o">::</span><span class="na">class</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;enabled&#39;</span> <span class="o">=&gt;</span> <span class="nx">env</span><span class="p">(</span><span class="s1">&#39;TELESCOPE_GATE_WATCHER&#39;</span><span class="p">,</span> <span class="k">true</span><span class="p">),</span>
+        <span class="s1">&#39;ignore_abilities&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;viewNova&#39;</span><span class="p">],</span>
+    <span class="p">],</span>
+    <span class="o">...</span>
+<span class="p">],</span>
+</code></pre></div>
+<p><a name="http-client-watcher"></a></p>
+<h3 id="http-client-watcher">HTTP Client Watcher<a class="headerlink" href="#http-client-watcher" title="Permanent link">&para;</a></h3>
+<p>HTTP Clientウォッチャーは、アプリケーションによって行われた送信<a href="http-client.html">HTTPクライアントリクエスト</a>を記録します。</p>
+<p><a name="job-watcher"></a></p>
+<h3 id="job-watcher">Job Watcher<a class="headerlink" href="#job-watcher" title="Permanent link">&para;</a></h3>
+<p>Jobウォッチャーは、アプリケーションによってディスパッチされた<a href="queues.html">ジョブ</a>のデータとステータスを記録します。</p>
+<p><a name="log-watcher"></a></p>
+<h3 id="log-watcher">Log Watcher<a class="headerlink" href="#log-watcher" title="Permanent link">&para;</a></h3>
+<p>Logウォッチャーは、アプリケーションによって書き込まれた<a href="logging.html">ログデータ</a>を記録します。</p>
+<p>デフォルトでは、Telescopeは<code>error</code>レベル以上のログのみを記録します。ただし、アプリケーションの<code>config/telescope.php</code>設定ファイル内の<code>level</code>オプションを変更して、この動作を変更できます。</p>
+<div class="highlight"><pre><span></span><code><span class="s1">&#39;watchers&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="nx">Watchers\LogWatcher</span><span class="o">::</span><span class="na">class</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;enabled&#39;</span> <span class="o">=&gt;</span> <span class="nx">env</span><span class="p">(</span><span class="s1">&#39;TELESCOPE_LOG_WATCHER&#39;</span><span class="p">,</span> <span class="k">true</span><span class="p">),</span>
+        <span class="s1">&#39;level&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;debug&#39;</span><span class="p">,</span>
+    <span class="p">],</span>
+
+    <span class="c1">// ...</span>
+<span class="p">],</span>
+</code></pre></div>
+<p><a name="mail-watcher"></a></p>
+<h3 id="mail-watcher">Mail Watcher<a class="headerlink" href="#mail-watcher" title="Permanent link">&para;</a></h3>
+<p>Mailウォッチャーを使用すると、アプリケーションによって送信された<a href="mail.html">メール</a>のブラウザ内プレビューと関連データを表示できます。また、メールを<code>.eml</code>ファイルとしてダウンロードすることもできます。</p>
+<p><a name="model-watcher"></a></p>
+<h3 id="model-watcher">Model Watcher<a class="headerlink" href="#model-watcher" title="Permanent link">&para;</a></h3>
+<p>Modelウォッチャーは、Eloquent <a href="eloquent.html#events">モデルイベント</a>がディスパッチされるたびにモデルの変更を記録します。ウォッチャーの<code>events</code>オプションを介して、どのモデルイベントを記録するかを指定できます。</p>
+<div class="highlight"><pre><span></span><code><span class="s1">&#39;watchers&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="nx">Watchers\ModelWatcher</span><span class="o">::</span><span class="na">class</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;enabled&#39;</span> <span class="o">=&gt;</span> <span class="nx">env</span><span class="p">(</span><span class="s1">&#39;TELESCOPE_MODEL_WATCHER&#39;</span><span class="p">,</span> <span class="k">true</span><span class="p">),</span>
+        <span class="s1">&#39;events&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;eloquent.created*&#39;</span><span class="p">,</span> <span class="s1">&#39;eloquent.updated*&#39;</span><span class="p">],</span>
+    <span class="p">],</span>
+    <span class="o">...</span>
+<span class="p">],</span>
+</code></pre></div>
+<p>特定のリクエスト中にハイドレートされたモデルの数を記録したい場合は、<code>hydrations</code>オプションを有効にします。</p>
+<div class="highlight"><pre><span></span><code><span class="s1">&#39;watchers&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="nx">Watchers\ModelWatcher</span><span class="o">::</span><span class="na">class</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;enabled&#39;</span> <span class="o">=&gt;</span> <span class="nx">env</span><span class="p">(</span><span class="s1">&#39;TELESCOPE_MODEL_WATCHER&#39;</span><span class="p">,</span> <span class="k">true</span><span class="p">),</span>
+        <span class="s1">&#39;events&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;eloquent.created*&#39;</span><span class="p">,</span> <span class="s1">&#39;eloquent.updated*&#39;</span><span class="p">],</span>
+        <span class="s1">&#39;hydrations&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="o">...</span>
+<span class="p">],</span>
+</code></pre></div>
+<p><a name="notification-watcher"></a></p>
+<h3 id="notification-watcher">Notification Watcher<a class="headerlink" href="#notification-watcher" title="Permanent link">&para;</a></h3>
+<p>Notificationウォッチャーは、アプリケーションによって送信されたすべての<a href="notifications.html">通知</a>を記録します。通知がメールをトリガーし、Mailウォッチャーが有効になっている場合、メールはMailウォッチャー画面でもプレビューできます。</p>
+<p><a name="query-watcher"></a></p>
+<h3 id="query-watcher">Query Watcher<a class="headerlink" href="#query-watcher" title="Permanent link">&para;</a></h3>
+<p>Queryウォッチャーは、アプリケーションによって実行されたすべてのクエリの生のSQL、バインディング、および実行時間を記録します。ウォッチャーは、100ミリ秒以上かかるクエリに<code>slow</code>タグを付けます。ウォッチャーの<code>slow</code>オプションを使用して、遅いクエリのしきい値をカスタマイズできます。</p>
+<div class="highlight"><pre><span></span><code><span class="s1">&#39;watchers&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="nx">Watchers\QueryWatcher</span><span class="o">::</span><span class="na">class</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;enabled&#39;</span> <span class="o">=&gt;</span> <span class="nx">env</span><span class="p">(</span><span class="s1">&#39;TELESCOPE_QUERY_WATCHER&#39;</span><span class="p">,</span> <span class="k">true</span><span class="p">),</span>
+        <span class="s1">&#39;slow&#39;</span> <span class="o">=&gt;</span> <span class="mi">50</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="o">...</span>
+<span class="p">],</span>
+</code></pre></div>
+<p><a name="redis-watcher"></a></p>
+<h3 id="redis-watcher">Redis Watcher<a class="headerlink" href="#redis-watcher" title="Permanent link">&para;</a></h3>
+<p>Redisウォッチャーは、アプリケーションによって実行されたすべての<a href="redis.html">Redis</a>コマンドを記録します。キャッシュにRedisを使用している場合、キャッシュコマンドもRedisウォッチャーによって記録されます。</p>
+<p><a name="request-watcher"></a></p>
+<h3 id="request-watcher">Request Watcher<a class="headerlink" href="#request-watcher" title="Permanent link">&para;</a></h3>
+<p>Requestウォッチャーは、アプリケーションによって処理されたリクエストに関連するリクエスト、ヘッダー、セッション、およびレスポンスデータを記録します。<code>size_limit</code>（キロバイト単位）オプションを介して、記録されるレスポンスデータを制限できます。</p>
+<div class="highlight"><pre><span></span><code><span class="s1">&#39;watchers&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="nx">Watchers\RequestWatcher</span><span class="o">::</span><span class="na">class</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;enabled&#39;</span> <span class="o">=&gt;</span> <span class="nx">env</span><span class="p">(</span><span class="s1">&#39;TELESCOPE_REQUEST_WATCHER&#39;</span><span class="p">,</span> <span class="k">true</span><span class="p">),</span>
+        <span class="s1">&#39;size_limit&#39;</span> <span class="o">=&gt;</span> <span class="nx">env</span><span class="p">(</span><span class="s1">&#39;TELESCOPE_RESPONSE_SIZE_LIMIT&#39;</span><span class="p">,</span> <span class="mi">64</span><span class="p">),</span>
+    <span class="p">],</span>
+    <span class="o">...</span>
+<span class="p">],</span>
+</code></pre></div>
+<p><a name="schedule-watcher"></a></p>
+<h3 id="schedule-watcher">Schedule Watcher<a class="headerlink" href="#schedule-watcher" title="Permanent link">&para;</a></h3>
+<p>Scheduleウォッチャーは、アプリケーションによって実行された<a href="scheduling.html">スケジュールされたタスク</a>のコマンドと出力を記録します。</p>
+<p><a name="view-watcher"></a></p>
+<h3 id="view-watcher">View Watcher<a class="headerlink" href="#view-watcher" title="Permanent link">&para;</a></h3>
+<p>Viewウォッチャーは、ビューのレンダリング時に使用された<a href="views.html">ビュー</a>の名前、パス、データ、および「コンポーザー」を記録します。</p>
+<p><a name="displaying-user-avatars"></a></p>
+<h2 id="_12">ユーザーアバターの表示<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<p>Telescopeダッシュボードは、特定のエントリが保存されたときに認証されたユーザーのユーザーアバターを表示します。デフォルトでは、TelescopeはGravatarウェブサービスを使用してアバターを取得します。ただし、<code>App\Providers\TelescopeServiceProvider</code>クラスにコールバックを登録することで、アバターのURLをカスタマイズできます。コールバックはユーザーのIDとメールアドレスを受け取り、ユーザーのアバター画像のURLを返す必要があります。</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">App\Models\User</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Laravel\Telescope\Telescope</span><span class="p">;</span>
+
+<span class="sd">/**</span>
+<span class="sd"> * アプリケーションサービスの登録</span>
+<span class="sd"> */</span>
+<span class="k">public</span> <span class="k">function</span> <span class="nf">register</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+
+    <span class="nx">Telescope</span><span class="o">::</span><span class="na">avatar</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nx">string</span> <span class="nv">$id</span><span class="p">,</span> <span class="nx">string</span> <span class="nv">$email</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="s1">&#39;/avatars/&#39;</span><span class="o">.</span><span class="nx">User</span><span class="o">::</span><span class="na">find</span><span class="p">(</span><span class="nv">$id</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">avatar_path</span><span class="p">;</span>
+    <span class="p">});</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+<nav class="md-footer-nav">
+    
+    
+</nav>
+
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": ".", "features": ["back-to-top", "navigation.expand", "navigation.tabs", "navigation.footer", "navigation.sections", "navigation.expand", "content.code.copy", "hide_repository_button", "content.code.annotate", "content.tabs.link", "toc.none", "content.action.edit"], "search": "assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="assets/javascripts/bundle.56dfad97.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,3856 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://github.com/koriym/laravel11-ja/configuration.html">
+      
+      
+        <link rel="prev" href="installation.html">
+      
+      
+        <link rel="next" href="structure.html">
+      
+      
+      <link rel="icon" href="assets/images/favicon_io/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.35">
+    
+    
+      
+        <title>設定 - L11JA</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.35f28582.min.css">
+      
+      
+
+
+    
+    
+
+    
+
+    
+      <link rel="stylesheet" href="assets/css/php.css">
+    
+      <link rel="stylesheet" href="assets/css/mkdocs_material_extra.css">
+    
+      <link rel="stylesheet" href="assets/css/extra.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-G60CEHXLQ1"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-G60CEHXLQ1",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-G60CEHXLQ1",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      <!-- Determine classes -->
+
+
+
+<!-- Header -->
+<header class="md-header" data-md-component="header">
+  <nav
+          class="md-header__inner md-grid"
+          aria-label="Header"
+  >
+
+    <!-- Link to home -->
+    <a
+            href="."
+            title="L11JA"
+            class="md-header__button md-logo"
+            aria-label="L11JA"
+            data-md-component="logo"
+    >
+      
+  <img src="assets/images/logo.png" alt="logo">
+
+    </a>
+
+    <!-- Button to open drawer -->
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+
+    <!-- Header title -->
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            <span style="font-family: 'Noto Sans'; font-size: 20px" >
+            L11JA
+            </span>
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            <span style="font-family: 'Noto Sans Batak'; font-size: 20px" >
+            
+              設定
+            
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Color palette toggle -->
+    
+
+    <!-- User preference: color palette -->
+    
+    <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+
+    <!-- Site language selector -->
+    
+
+    <!-- Button to open search modal -->
+    
+    <label class="md-header__button md-icon" for="__search">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+    </label>
+
+    <!-- Search interface -->
+    <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    <!-- Repository information -->
+    
+    <div class="md-header__source">
+      
+
+<!--
+  Check whether the repository is hosted on one of the supported code hosting
+  platforms (GitHub, GitLab or Bitbucket) to show icon.
+-->
+
+
+  
+
+
+<!-- Repository containing source -->
+<a href="https://github.com/koriym/l11ja" title="source.link.title"
+    class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z" fill="#000"/></svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+    
+  </nav>
+
+  <!-- Navigation tabs (sticky) -->
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="releases.html" class="md-tabs__link">
+          
+  
+  プロローグ
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="installation.html" class="md-tabs__link">
+          
+  
+  はじめに
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="lifecycle.html" class="md-tabs__link">
+          
+  
+  アーキテクチャ
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="routing.html" class="md-tabs__link">
+          
+  
+  基本
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="artisan.html" class="md-tabs__link">
+          
+  
+  掘り下げる
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="authentication.html" class="md-tabs__link">
+          
+  
+  セキュリティ
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="database.html" class="md-tabs__link">
+          
+  
+  データベース
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="eloquent.html" class="md-tabs__link">
+          
+  
+  Eloquent ORM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="testing.html" class="md-tabs__link">
+          
+  
+  テスト
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="starter-kits.html" class="md-tabs__link">
+          
+  
+  パッケージ
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="L11JA" class="md-nav__button md-logo" aria-label="L11JA" data-md-component="logo">
+      
+  <img src="assets/images/logo.png" alt="logo">
+
+    </a>
+    L11JA
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+<!--
+  Check whether the repository is hosted on one of the supported code hosting
+  platforms (GitHub, GitLab or Bitbucket) to show icon.
+-->
+
+
+  
+
+
+<!-- Repository containing source -->
+<a href="https://github.com/koriym/l11ja" title="source.link.title"
+    class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z" fill="#000"/></svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    プロローグ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            プロローグ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="releases.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リリースノート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="upgrade.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    アップグレードガイド
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="contributions.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    貢献ガイド
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            はじめに
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="installation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    インストール
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    設定
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="configuration.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    設定
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      はじめに
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="はじめに">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#about" class="md-nav__link">
+    <span class="md-ellipsis">
+      aboutコマンド
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      環境設定
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="環境設定">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      環境ファイルのセキュリティ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      追加の環境ファイル
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      環境変数の種類
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      環境設定の取得
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      現在の環境の決定
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      環境ファイルの暗号化
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="環境ファイルの暗号化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      暗号化
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      復号化
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      設定値へのアクセス
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      設定のキャッシュ
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      設定の公開
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      デバッグモード
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      メンテナンスモード
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="メンテナンスモード">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      メンテナンスモードのバイパス
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      複数サーバーでのメンテナンスモード
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      メンテナンスモードビューのプリレンダリング
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      メンテナンスモードリクエストのリダイレクト
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      メンテナンスモードの無効化
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      メンテナンスモードとキュー
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      メンテナンスモードの代替手段
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structure.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ディレクトリ構造
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="frontend.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    フロントエンド
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="starter-kits.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    スターターキット
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="deployment.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    デプロイ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    アーキテクチャ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            アーキテクチャ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="lifecycle.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リクエストライフサイクル
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="container.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    サービスコンテナ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="providers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    サービスプロバイダ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="facades.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ファサード
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    基本
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            基本
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="routing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ルーティング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="middleware.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ミドルウェア
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="csrf.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CSRF保護
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="controllers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コントローラ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="requests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リクエスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="responses.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    レスポンス
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="views.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ビュー
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="blade.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bladeテンプレート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="vite.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    アセットバンドル
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="urls.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    URL生成
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="session.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    セッション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="validation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    バリデーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="errors.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    エラー処理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="logging.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ログ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    掘り下げる
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            掘り下げる
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="artisan.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Artisanコンソール
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="broadcasting.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ブロードキャスティング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cache.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    キャッシュ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="collections.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コレクション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="concurrency.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    並行処理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="context.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コンテキスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="contracts.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コントラクト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="events.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    イベント
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="filesystem.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ファイルストレージ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="helpers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ヘルパー
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="http-client.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTTPクライアント
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="localization.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ローカライゼーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mail.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    メール
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="notifications.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    通知
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="packages.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    パッケージ開発
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="processes.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    プロセス
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="queues.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    キュー
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="rate-limiting.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    レート制限
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="strings.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    文字列
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="scheduling.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    タスクスケジューリング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    セキュリティ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            セキュリティ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="authentication.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    認証
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="authorization.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    認可
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="verification.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    メール確認
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="encryption.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    暗号化
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hashing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ハッシュ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="passwords.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    パスワードリセット
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    データベース
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            データベース
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="database.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="queries.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    クエリビルダ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pagination.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ページネーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="migrations.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    マイグレーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="seeding.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    シーディング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="redis.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Redis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Eloquent ORM
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Eloquent ORM
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-relationships.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リレーションシップ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-collections.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コレクション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-mutators.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ミューテータ / キャスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-resources.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    APIリソース
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-serialization.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    シリアライゼーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-factories.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ファクトリ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    テスト
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            テスト
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="testing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="http-tests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTTPテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="console-tests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コンソールテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="dusk.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ブラウザテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="database-testing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    データベース
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mocking.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    モック
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    パッケージ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            パッケージ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="starter-kits.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    スターターキット
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="billing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cashier (Stripe)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cashier-paddle.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cashier (Paddle)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="dusk.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ブラウザテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="envoy.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Envoy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fortify.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fortify
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="folio.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Folio
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="homestead.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Homestead
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="horizon.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Horizon
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mix.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mix
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="octane.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Octane
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="passport.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Passport
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pennant.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pennant
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pint.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pint
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="precognition.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Precognition
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="prompts.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prompts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pulse.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pulse
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reverb.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reverb
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sail.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sail
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sanctum.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sanctum
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="scout.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Scout
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="socialite.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Socialite
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="telescope.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Telescope
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="valet.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Valet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      はじめに
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="はじめに">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#about" class="md-nav__link">
+    <span class="md-ellipsis">
+      aboutコマンド
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      環境設定
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="環境設定">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      環境ファイルのセキュリティ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      追加の環境ファイル
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      環境変数の種類
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      環境設定の取得
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      現在の環境の決定
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      環境ファイルの暗号化
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="環境ファイルの暗号化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      暗号化
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      復号化
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      設定値へのアクセス
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      設定のキャッシュ
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      設定の公開
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      デバッグモード
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      メンテナンスモード
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="メンテナンスモード">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      メンテナンスモードのバイパス
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      複数サーバーでのメンテナンスモード
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      メンテナンスモードビューのプリレンダリング
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      メンテナンスモードリクエストのリダイレクト
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      メンテナンスモードの無効化
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      メンテナンスモードとキュー
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      メンテナンスモードの代替手段
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/koriym/l11ja/edit/master/docs/configuration.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="_1">設定<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<ul>
+<li><a href="#introduction">はじめに</a></li>
+<li><a href="#environment-configuration">環境設定</a><ul>
+<li><a href="#environment-variable-types">環境変数の種類</a></li>
+<li><a href="#retrieving-environment-configuration">環境設定の取得</a></li>
+<li><a href="#determining-the-current-environment">現在の環境の決定</a></li>
+<li><a href="#encrypting-environment-files">環境ファイルの暗号化</a></li>
+</ul>
+</li>
+<li><a href="#accessing-configuration-values">設定値へのアクセス</a></li>
+<li><a href="#configuration-caching">設定のキャッシュ</a></li>
+<li><a href="#configuration-publishing">設定の公開</a></li>
+<li><a href="#debug-mode">デバッグモード</a></li>
+<li><a href="#maintenance-mode">メンテナンスモード</a></li>
+</ul>
+<p><a name="introduction"></a></p>
+<h2 id="_2">はじめに<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>Laravelフレームワークのすべての設定ファイルは、<code>config</code>ディレクトリに保存されています。各オプションには説明があるので、ファイルを見て、利用可能なオプションに慣れてください。</p>
+<p>これらの設定ファイルを使用すると、データベース接続情報、メールサーバー情報などのようなものを設定できます。また、アプリケーションのタイムゾーンや暗号化キーなど、さまざまなコア設定値も設定できます。</p>
+<p><a name="the-about-command"></a></p>
+<h4 id="about"><code>about</code>コマンド<a class="headerlink" href="#about" title="Permanent link">&para;</a></h4>
+<p>Laravelは、<code>about</code> Artisanコマンドを介して、アプリケーションの設定、ドライバ、環境の概要を表示できます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>about
+</code></pre></div>
+<p>アプリケーション概要の出力の特定のセクションにのみ興味がある場合は、<code>--only</code>オプションを使用してそのセクションをフィルタリングできます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>about<span class="w"> </span>--only<span class="o">=</span>environment
+</code></pre></div>
+<p>また、特定の設定ファイルの値を詳細に調べるには、<code>config:show</code> Artisanコマンドを使用できます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>config:show<span class="w"> </span>database
+</code></pre></div>
+<p><a name="environment-configuration"></a></p>
+<h2 id="_3">環境設定<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>アプリケーションが実行されている環境に基づいて異なる設定値を持つと便利な場合があります。たとえば、ローカルでは本番サーバーとは異なるキャッシュドライバを使用したい場合があります。</p>
+<p>これを簡単にするために、Laravelは<a href="https://github.com/vlucas/phpdotenv">DotEnv</a> PHPライブラリを利用しています。新しいLaravelインストールでは、アプリケーションのルートディレクトリに、多くの一般的な環境変数を定義する<code>.env.example</code>ファイルが含まれています。Laravelのインストールプロセス中に、このファイルは自動的に<code>.env</code>にコピーされます。</p>
+<p>Laravelのデフォルトの<code>.env</code>ファイルには、アプリケーションがローカルで実行されているか本番Webサーバーで実行されているかに基づいて異なる可能性のある一般的な設定値が含まれています。これらの値は、Laravelの<code>env</code>関数を使用して<code>config</code>ディレクトリ内の設定ファイルから読み取られます。</p>
+<p>チームで開発している場合、アプリケーションに<code>.env.example</code>ファイルを含めて更新し続けることができます。例の設定ファイルにプレースホルダー値を入れることで、チームの他の開発者は、アプリケーションを実行するために必要な環境変数を明確に確認できます。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>.env</code>ファイル内のすべての変数は、サーバーレベルまたはシステムレベルの環境変数などの外部環境変数によってオーバーライドできます。</p>
+</div>
+<p><a name="environment-file-security"></a></p>
+<h4 id="_4">環境ファイルのセキュリティ<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
+<p><code>.env</code>ファイルをアプリケーションのソース管理にコミットしてはいけません。アプリケーションを使用する各開発者/サーバーには、異なる環境設定が必要になる可能性があるためです。さらに、これはセキュリティリスクになります。侵入者がソース管理リポジトリにアクセスした場合、すべての機密資格情報が公開されるためです。</p>
+<p>ただし、Laravelの組み込みの<a href="#encrypting-environment-files">環境暗号化</a>を使用して環境ファイルを暗号化することは可能です。暗号化された環境ファイルは、アプリケーションの残りの部分とともにソース管理に安全に追加できます。</p>
+<p><a name="additional-environment-files"></a></p>
+<h4 id="_5">追加の環境ファイル<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
+<p>アプリケーションの環境変数をロードする前に、Laravelは<code>APP_ENV</code>環境変数が外部から提供されているか、<code>--env</code> CLI引数が指定されているかを判断します。もしそうなら、Laravelは存在する場合に<code>.env.[APP_ENV]</code>ファイルをロードしようとします。存在しない場合は、デフォルトの<code>.env</code>ファイルがロードされます。</p>
+<p><a name="environment-variable-types"></a></p>
+<h3 id="_6">環境変数の種類<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p><code>.env</code>ファイル内のすべての変数は通常文字列として解析されるため、<code>env()</code>関数からより広範な型を返すことができるように、いくつかの予約値が作成されています：</p>
+<div class="overflow-auto">
+<table>
+<thead>
+<tr>
+<th><code>.env</code> 値</th>
+<th><code>env()</code> 値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>true</td>
+<td>(bool) true</td>
+</tr>
+<tr>
+<td>(true)</td>
+<td>(bool) true</td>
+</tr>
+<tr>
+<td>false</td>
+<td>(bool) false</td>
+</tr>
+<tr>
+<td>(false)</td>
+<td>(bool) false</td>
+</tr>
+<tr>
+<td>empty</td>
+<td>(string) ''</td>
+</tr>
+<tr>
+<td>(empty)</td>
+<td>(string) ''</td>
+</tr>
+<tr>
+<td>null</td>
+<td>(null) null</td>
+</tr>
+<tr>
+<td>(null)</td>
+<td>(null) null</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>スペースを含む値を持つ環境変数を定義する必要がある場合は、値を二重引用符で囲むことでそれを行うことができます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="na">APP_NAME</span><span class="o">=</span><span class="s">&quot;My Application&quot;</span>
+</code></pre></div>
+<p><a name="retrieving-environment-configuration"></a></p>
+<h3 id="_7">環境設定の取得<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p><code>.env</code>ファイルにリストされているすべての変数は、アプリケーションがリクエストを受け取るときに<code>$_ENV</code> PHPスーパーグローバルにロードされます。ただし、設定ファイル内のこれらの変数の値を取得するには、<code>env</code>関数を使用できます。実際、Laravelの設定ファイルを確認すると、多くのオプションがすでにこの関数を使用していることがわかります：</p>
+<div class="highlight"><pre><span></span><code><span class="s1">&#39;debug&#39;</span> <span class="o">=&gt;</span> <span class="nx">env</span><span class="p">(</span><span class="s1">&#39;APP_DEBUG&#39;</span><span class="p">,</span> <span class="k">false</span><span class="p">),</span>
+</code></pre></div>
+<p><code>env</code>関数に渡される2番目の値は「デフォルト値」です。この値は、指定されたキーに対して環境変数が存在しない場合に返されます。</p>
+<p><a name="determining-the-current-environment"></a></p>
+<h3 id="_8">現在の環境の決定<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>現在のアプリケーション環境は、<code>.env</code>ファイルの<code>APP_ENV</code>変数によって決定されます。この値には、<code>App</code> <a href="facades.html">facade</a>の<code>environment</code>メソッドを介してアクセスできます：</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">Illuminate\Support\Facades\App</span><span class="p">;</span>
+
+<span class="nv">$environment</span> <span class="o">=</span> <span class="nx">App</span><span class="o">::</span><span class="na">environment</span><span class="p">();</span>
+</code></pre></div>
+<p><code>environment</code>メソッドに引数を渡して、環境が指定された値と一致するかどうかを判断することもできます。メソッドは、環境が指定された値のいずれかと一致する場合に<code>true</code>を返します：</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="p">(</span><span class="nx">App</span><span class="o">::</span><span class="na">environment</span><span class="p">(</span><span class="s1">&#39;local&#39;</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// 環境はローカルです</span>
+<span class="p">}</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nx">App</span><span class="o">::</span><span class="na">environment</span><span class="p">([</span><span class="s1">&#39;local&#39;</span><span class="p">,</span> <span class="s1">&#39;staging&#39;</span><span class="p">]))</span> <span class="p">{</span>
+    <span class="c1">// 環境はローカルまたはステージングです...</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>現在のアプリケーション環境の検出は、サーバーレベルの<code>APP_ENV</code>環境変数を定義することでオーバーライドできます。</p>
+</div>
+<p><a name="encrypting-environment-files"></a></p>
+<h3 id="_9">環境ファイルの暗号化<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p>暗号化されていない環境ファイルをソース管理に保存してはいけません。ただし、Laravelを使用すると、環境ファイルを暗号化して、アプリケーションの残りの部分とともにソース管理に安全に追加できます。</p>
+<p><a name="encryption"></a></p>
+<h4 id="_10">暗号化<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h4>
+<p>環境ファイルを暗号化するには、<code>env:encrypt</code>コマンドを使用できます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>env:encrypt
+</code></pre></div>
+<p><code>env:encrypt</code>コマンドを実行すると、<code>.env</code>ファイルが暗号化され、暗号化された内容が<code>.env.encrypted</code>ファイルに配置されます。復号化キーはコマンドの出力に表示され、安全なパスワードマネージャに保存する必要があります。独自の暗号化キーを提供する場合は、コマンドを呼び出すときに<code>--key</code>オプションを使用できます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>env:encrypt<span class="w"> </span>--key<span class="o">=</span>3UVsEgGVK36XN82KKeyLFMhvosbZN1aF
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>提供されるキーの長さは、使用される暗号化暗号に必要なキーの長さと一致する必要があります。デフォルトでは、Laravelは<code>AES-256-CBC</code>暗号を使用します。これには32文字のキーが必要です。コマンドを呼び出すときに<code>--cipher</code>オプションを渡すことで、Laravelの<a href="encryption.html">暗号化</a>でサポートされている任意の暗号を自由に使用できます。</p>
+</div>
+<p>アプリケーションに<code>.env</code>や<code>.env.staging</code>などの複数の環境ファイルがある場合、<code>--env</code>オプションを介して暗号化する必要がある環境ファイルを指定できます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>env:encrypt<span class="w"> </span>--env<span class="o">=</span>staging
+</code></pre></div>
+<p><a name="decryption"></a></p>
+<h4 id="_11">復号化<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h4>
+<p>環境ファイルを復号化するには、<code>env:decrypt</code>コマンドを使用できます。このコマンドには復号化キーが必要で、Laravelは<code>LARAVEL_ENV_ENCRYPTION_KEY</code>環境変数から取得します：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>env:decrypt
+</code></pre></div>
+<p>または、キーを<code>--key</code>オプションを介してコマンドに直接提供できます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>env:decrypt<span class="w"> </span>--key<span class="o">=</span>3UVsEgGVK36XN82KKeyLFMhvosbZN1aF
+</code></pre></div>
+<p><code>env:decrypt</code>コマンドが呼び出されると、Laravelは<code>.env.encrypted</code>ファイルの内容を復号化し、復号化された内容を<code>.env</code>ファイルに配置します。</p>
+<p><code>--cipher</code>オプションを<code>env:decrypt</code>コマンドに提供して、カスタム暗号化暗号を使用することができます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>env:decrypt<span class="w"> </span>--key<span class="o">=</span>qUWuNRdfuImXcKxZ<span class="w"> </span>--cipher<span class="o">=</span>AES-128-CBC
+</code></pre></div>
+<p>アプリケーションに<code>.env</code>や<code>.env.staging</code>などの複数の環境ファイルがある場合、<code>--env</code>オプションを介して復号化する必要がある環境ファイルを指定できます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>env:decrypt<span class="w"> </span>--env<span class="o">=</span>staging
+</code></pre></div>
+<p>既存の環境ファイルを上書きするには、<code>env:decrypt</code>コマンドに<code>--force</code>オプションを提供できます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>env:decrypt<span class="w"> </span>--force
+</code></pre></div>
+<p><a name="accessing-configuration-values"></a></p>
+<h2 id="_12">設定値へのアクセス<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<p>アプリケーション内のどこからでも<code>Config</code> facadeまたはグローバル<code>config</code>関数を使用して設定値に簡単にアクセスできます。設定値には「ドット」構文を使用してアクセスできます。これには、アクセスしたいファイルとオプションの名前が含まれます。デフォルト値を指定することもでき、設定オプションが存在しない場合に返されます：</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Config</span><span class="p">;</span>
+
+<span class="nv">$value</span> <span class="o">=</span> <span class="nx">Config</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;app.timezone&#39;</span><span class="p">);</span>
+
+<span class="nv">$value</span> <span class="o">=</span> <span class="nx">config</span><span class="p">(</span><span class="s1">&#39;app.timezone&#39;</span><span class="p">);</span>
+
+<span class="c1">// 設定値が存在しない場合にデフォルト値を取得...</span>
+<span class="nv">$value</span> <span class="o">=</span> <span class="nx">config</span><span class="p">(</span><span class="s1">&#39;app.timezone&#39;</span><span class="p">,</span> <span class="s1">&#39;Asia/Seoul&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p>ランタイム時に設定値を設定するには、<code>Config</code>ファサードの<code>set</code>メソッドを呼び出すか、配列を<code>config</code>関数に渡します。</p>
+<div class="highlight"><pre><span></span><code><span class="nx">Config</span><span class="o">::</span><span class="na">set</span><span class="p">(</span><span class="s1">&#39;app.timezone&#39;</span><span class="p">,</span> <span class="s1">&#39;America/Chicago&#39;</span><span class="p">);</span>
+
+<span class="nx">config</span><span class="p">([</span><span class="s1">&#39;app.timezone&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;America/Chicago&#39;</span><span class="p">]);</span>
+</code></pre></div>
+<p>静的解析を支援するために、<code>Config</code>ファサードは型付きの設定取得メソッドも提供しています。取得された設定値が期待される型と一致しない場合、例外がスローされます。</p>
+<div class="highlight"><pre><span></span><code><span class="nx">Config</span><span class="o">::</span><span class="na">string</span><span class="p">(</span><span class="s1">&#39;config-key&#39;</span><span class="p">);</span>
+<span class="nx">Config</span><span class="o">::</span><span class="na">integer</span><span class="p">(</span><span class="s1">&#39;config-key&#39;</span><span class="p">);</span>
+<span class="nx">Config</span><span class="o">::</span><span class="na">float</span><span class="p">(</span><span class="s1">&#39;config-key&#39;</span><span class="p">);</span>
+<span class="nx">Config</span><span class="o">::</span><span class="na">boolean</span><span class="p">(</span><span class="s1">&#39;config-key&#39;</span><span class="p">);</span>
+<span class="nx">Config</span><span class="o">::</span><span class="na">array</span><span class="p">(</span><span class="s1">&#39;config-key&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="configuration-caching"></a></p>
+<h2 id="_13">設定のキャッシュ<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<p>アプリケーションの速度を向上させるために、<code>config:cache</code> Artisanコマンドを使用して、すべての設定ファイルを単一のファイルにキャッシュする必要があります。これにより、アプリケーションのすべての設定オプションが1つのファイルに結合され、フレームワークによって迅速に読み込まれるようになります。</p>
+<p>通常、<code>php artisan config:cache</code>コマンドは本番環境のデプロイプロセスの一部として実行する必要があります。このコマンドは、アプリケーションの開発中に設定オプションを頻繁に変更する必要があるため、ローカル開発中に実行すべきではありません。</p>
+<p>設定がキャッシュされると、アプリケーションの<code>.env</code>ファイルはリクエストやArtisanコマンド中にフレームワークによって読み込まれません。したがって、<code>env</code>関数はシステムレベルの環境変数のみを返します。</p>
+<p>このため、アプリケーションの設定（<code>config</code>）ファイル内からのみ<code>env</code>関数を呼び出すようにしてください。Laravelのデフォルト設定ファイルを調べることで、この例を多く見ることができます。設定値は、<a href="#accessing-configuration-values">前述</a>の<code>config</code>関数を使用して、アプリケーション内のどこからでもアクセスできます。</p>
+<p>キャッシュされた設定をクリアするには、<code>config:clear</code>コマンドを使用できます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>config:clear
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>デプロイプロセス中に<code>config:cache</code>コマンドを実行する場合、設定ファイル内からのみ<code>env</code>関数を呼び出していることを確認してください。設定がキャッシュされると、<code>.env</code>ファイルは読み込まれません。したがって、<code>env</code>関数はシステムレベルの環境変数のみを返します。</p>
+</div>
+<p><a name="configuration-publishing"></a></p>
+<h2 id="_14">設定の公開<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<p>Laravelのほとんどの設定ファイルは、既にアプリケーションの<code>config</code>ディレクトリに公開されています。ただし、<code>cors.php</code>や<code>view.php</code>などの特定の設定ファイルは、デフォルトでは公開されていません。ほとんどのアプリケーションはこれらを変更する必要がないためです。</p>
+<p>ただし、<code>config:publish</code> Artisanコマンドを使用して、デフォルトで公開されていない設定ファイルを公開することができます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>config:publish
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>php<span class="w"> </span>artisan<span class="w"> </span>config:publish<span class="w"> </span>--all
+</code></pre></div>
+<p><a name="debug-mode"></a></p>
+<h2 id="_15">デバッグモード<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h2>
+<p><code>config/app.php</code>設定ファイルの<code>debug</code>オプションは、エラーに関するどの程度の情報がユーザーに実際に表示されるかを決定します。デフォルトでは、このオプションは<code>.env</code>ファイルに保存されている<code>APP_DEBUG</code>環境変数の値を尊重するように設定されています。</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>ローカル開発では、<code>APP_DEBUG</code>環境変数を<code>true</code>に設定する必要があります。<strong>本番環境では、この値は常に<code>false</code>である必要があります。本番環境でこの変数が<code>true</code>に設定されていると、アプリケーションのエンドユーザーに機密性の高い設定値が公開されるリスクがあります。</strong></p>
+</div>
+<p><a name="maintenance-mode"></a></p>
+<h2 id="_16">メンテナンスモード<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h2>
+<p>アプリケーションがメンテナンスモードの場合、アプリケーションへのすべてのリクエストに対してカスタムビューが表示されます。これにより、更新中やメンテナンス中にアプリケーションを「無効化」することが容易になります。メンテナンスモードのチェックは、アプリケーションのデフォルトのミドルウェアスタックに含まれています。アプリケーションがメンテナンスモードの場合、ステータスコード503で<code>Symfony\Component\HttpKernel\Exception\HttpException</code>インスタンスがスローされます。</p>
+<p>メンテナンスモードを有効にするには、<code>down</code> Artisanコマンドを実行します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>down
+</code></pre></div>
+<p>すべてのメンテナンスモードのレスポンスで<code>Refresh</code> HTTPヘッダーを送信したい場合は、<code>down</code>コマンドを呼び出す際に<code>refresh</code>オプションを指定できます。<code>Refresh</code>ヘッダーは、指定された秒数後にブラウザに自動的にページを更新するよう指示します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>down<span class="w"> </span>--refresh<span class="o">=</span><span class="m">15</span>
+</code></pre></div>
+<p>また、<code>down</code>コマンドに<code>retry</code>オプションを指定することもできます。これは<code>Retry-After</code> HTTPヘッダーの値として設定されますが、通常ブラウザはこのヘッダーを無視します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>down<span class="w"> </span>--retry<span class="o">=</span><span class="m">60</span>
+</code></pre></div>
+<p><a name="bypassing-maintenance-mode"></a></p>
+<h4 id="_17">メンテナンスモードのバイパス<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h4>
+<p>シークレットトークンを使用してメンテナンスモードをバイパスできるようにするには、<code>secret</code>オプションを使用してメンテナンスモードバイパストークンを指定できます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>down<span class="w"> </span>--secret<span class="o">=</span><span class="s2">&quot;1630542a-246b-4b66-afa1-dd72a4c43515&quot;</span>
+</code></pre></div>
+<p>アプリケーションをメンテナンスモードにした後、このトークンに一致するアプリケーションURLに移動すると、Laravelはメンテナンスモードバイパスクッキーをブラウザに発行します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>https://example.com/1630542a-246b-4b66-afa1-dd72a4c43515
+</code></pre></div>
+<p>Laravelにシークレットトークンを生成させたい場合は、<code>with-secret</code>オプションを使用できます。シークレットは、アプリケーションがメンテナンスモードになった後に表示されます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>down<span class="w"> </span>--with-secret
+</code></pre></div>
+<p>この隠しルートにアクセスすると、アプリケーションの<code>/</code>ルートにリダイレクトされます。クッキーがブラウザに発行されると、メンテナンスモードでないかのようにアプリケーションを通常通り閲覧できます。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>メンテナンスモードのシークレットは、通常、英数字とオプションでダッシュで構成されるべきです。URLで特別な意味を持つ文字（例：<code>?</code>や<code>&amp;</code>）は避けるべきです。</p>
+</div>
+<p><a name="maintenance-mode-on-multiple-servers"></a></p>
+<h4 id="_18">複数サーバーでのメンテナンスモード<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h4>
+<p>デフォルトでは、Laravelはファイルベースのシステムを使用してアプリケーションがメンテナンスモードかどうかを判断します。これは、メンテナンスモードを有効にするために、<code>php artisan down</code>コマンドをアプリケーションをホストしている各サーバーで実行する必要があることを意味します。</p>
+<p>あるいは、Laravelはメンテナンスモードを処理するためのキャッシュベースの方法も提供しています。この方法では、<code>php artisan down</code>コマンドを1つのサーバーで実行するだけで済みます。このアプローチを使用するには、アプリケーションの<code>config/app.php</code>ファイルの「driver」設定を<code>cache</code>に変更します。次に、すべてのサーバーからアクセス可能なキャッシュ<code>store</code>を選択します。これにより、メンテナンスモードのステータスがすべてのサーバーで一貫して維持されます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="s1">&#39;maintenance&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>    <span class="s1">&#39;driver&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;cache&#39;</span><span class="p">,</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>    <span class="s1">&#39;store&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;database&#39;</span><span class="p">,</span>
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="p">],</span>
+</code></pre></div>
+<p><a name="pre-rendering-the-maintenance-mode-view"></a></p>
+<h4 id="_19">メンテナンスモードビューのプリレンダリング<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h4>
+<p>デプロイ中に<code>php artisan down</code>コマンドを使用する場合、Composerの依存関係やその他のインフラストラクチャコンポーネントが更新されている間に、ユーザーがアプリケーションにアクセスすると、エラーが発生することがあります。これは、Laravelフレームワークの大部分が起動してアプリケーションがメンテナンスモードであることを判断し、テンプレートエンジンを使用してメンテナンスモードビューをレンダリングする必要があるためです。</p>
+<p>このため、Laravelでは、リクエストサイクルの非常に早い段階で返されるメンテナンスモードビューをプリレンダリングできます。このビューは、アプリケーションの依存関係がいずれもロードされる前にレンダリングされます。<code>down</code>コマンドの<code>render</code>オプションを使用して、選択したテンプレートをプリレンダリングできます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>down<span class="w"> </span>--render<span class="o">=</span><span class="s2">&quot;errors::503&quot;</span>
+</code></pre></div>
+<p><a name="redirecting-maintenance-mode-requests"></a></p>
+<h4 id="_20">メンテナンスモードリクエストのリダイレクト<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h4>
+<p>メンテナンスモード中に、ユーザーがアクセスしようとするすべてのアプリケーションURLに対してメンテナンスモードビューが表示されます。必要に応じて、Laravelにすべてのリクエストを特定のURLにリダイレクトするよう指示できます。これは、<code>redirect</code>オプションを使用して行うことができます。たとえば、すべてのリクエストを<code>/</code> URIにリダイレクトすることができます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>down<span class="w"> </span>--redirect<span class="o">=</span>/
+</code></pre></div>
+<p><a name="disabling-maintenance-mode"></a></p>
+<h4 id="_21">メンテナンスモードの無効化<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h4>
+<p>メンテナンスモードを無効にするには、<code>up</code>コマンドを使用します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>up
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>デフォルトのメンテナンスモードテンプレートは、<code>resources/views/errors/503.blade.php</code>に独自のテンプレートを定義することでカスタマイズできます。</p>
+</div>
+<p><a name="maintenance-mode-queues"></a></p>
+<h4 id="_22">メンテナンスモードとキュー<a class="headerlink" href="#_22" title="Permanent link">&para;</a></h4>
+<p>アプリケーションがメンテナンスモードの間、<a href="queues.html">キュージョブ</a>は処理されません。アプリケーションがメンテナンスモードから抜けると、ジョブは通常通り処理されます。</p>
+<p><a name="alternatives-to-maintenance-mode"></a></p>
+<h4 id="_23">メンテナンスモードの代替手段<a class="headerlink" href="#_23" title="Permanent link">&para;</a></h4>
+<p>メンテナンスモードでは、アプリケーションに数秒のダウンタイムが必要になるため、Laravel VaporやEnvoyerなどの代替手段を検討して、Laravelでゼロダウンタイムデプロイを実現してください。</p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+<nav class="md-footer-nav">
+    
+    
+</nav>
+
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": ".", "features": ["back-to-top", "navigation.expand", "navigation.tabs", "navigation.footer", "navigation.sections", "navigation.expand", "content.code.copy", "hide_repository_button", "content.code.annotate", "content.tabs.link", "toc.none", "content.action.edit"], "search": "assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="assets/javascripts/bundle.56dfad97.min.js"></script>
+      
+    
+  </body>
+</html>

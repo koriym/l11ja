@@ -1,0 +1,4716 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://github.com/koriym/laravel11-ja/scout.html">
+      
+      
+        <link rel="prev" href="sanctum.html">
+      
+      
+        <link rel="next" href="socialite.html">
+      
+      
+      <link rel="icon" href="assets/images/favicon_io/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.35">
+    
+    
+      
+        <title>Scout - L11JA</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.35f28582.min.css">
+      
+      
+
+
+    
+    
+
+    
+
+    
+      <link rel="stylesheet" href="assets/css/php.css">
+    
+      <link rel="stylesheet" href="assets/css/mkdocs_material_extra.css">
+    
+      <link rel="stylesheet" href="assets/css/extra.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-G60CEHXLQ1"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-G60CEHXLQ1",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-G60CEHXLQ1",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#laravel-scout" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      <!-- Determine classes -->
+
+
+
+<!-- Header -->
+<header class="md-header" data-md-component="header">
+  <nav
+          class="md-header__inner md-grid"
+          aria-label="Header"
+  >
+
+    <!-- Link to home -->
+    <a
+            href="."
+            title="L11JA"
+            class="md-header__button md-logo"
+            aria-label="L11JA"
+            data-md-component="logo"
+    >
+      
+  <img src="assets/images/logo.png" alt="logo">
+
+    </a>
+
+    <!-- Button to open drawer -->
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+
+    <!-- Header title -->
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            <span style="font-family: 'Noto Sans'; font-size: 20px" >
+            L11JA
+            </span>
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            <span style="font-family: 'Noto Sans Batak'; font-size: 20px" >
+            
+              Scout
+            
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Color palette toggle -->
+    
+
+    <!-- User preference: color palette -->
+    
+    <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+
+    <!-- Site language selector -->
+    
+
+    <!-- Button to open search modal -->
+    
+    <label class="md-header__button md-icon" for="__search">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+    </label>
+
+    <!-- Search interface -->
+    <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    <!-- Repository information -->
+    
+    <div class="md-header__source">
+      
+
+<!--
+  Check whether the repository is hosted on one of the supported code hosting
+  platforms (GitHub, GitLab or Bitbucket) to show icon.
+-->
+
+
+  
+
+
+<!-- Repository containing source -->
+<a href="https://github.com/koriym/l11ja" title="source.link.title"
+    class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z" fill="#000"/></svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+    
+  </nav>
+
+  <!-- Navigation tabs (sticky) -->
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="releases.html" class="md-tabs__link">
+          
+  
+  プロローグ
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="installation.html" class="md-tabs__link">
+          
+  
+  はじめに
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="lifecycle.html" class="md-tabs__link">
+          
+  
+  アーキテクチャ
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="routing.html" class="md-tabs__link">
+          
+  
+  基本
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="artisan.html" class="md-tabs__link">
+          
+  
+  掘り下げる
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="authentication.html" class="md-tabs__link">
+          
+  
+  セキュリティ
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="database.html" class="md-tabs__link">
+          
+  
+  データベース
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="eloquent.html" class="md-tabs__link">
+          
+  
+  Eloquent ORM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="testing.html" class="md-tabs__link">
+          
+  
+  テスト
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="starter-kits.html" class="md-tabs__link">
+          
+  
+  パッケージ
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="L11JA" class="md-nav__button md-logo" aria-label="L11JA" data-md-component="logo">
+      
+  <img src="assets/images/logo.png" alt="logo">
+
+    </a>
+    L11JA
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+<!--
+  Check whether the repository is hosted on one of the supported code hosting
+  platforms (GitHub, GitLab or Bitbucket) to show icon.
+-->
+
+
+  
+
+
+<!-- Repository containing source -->
+<a href="https://github.com/koriym/l11ja" title="source.link.title"
+    class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z" fill="#000"/></svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    プロローグ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            プロローグ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="releases.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リリースノート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="upgrade.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    アップグレードガイド
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="contributions.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    貢献ガイド
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            はじめに
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="installation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    インストール
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="configuration.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    設定
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structure.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ディレクトリ構造
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="frontend.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    フロントエンド
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="starter-kits.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    スターターキット
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="deployment.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    デプロイ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    アーキテクチャ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            アーキテクチャ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="lifecycle.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リクエストライフサイクル
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="container.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    サービスコンテナ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="providers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    サービスプロバイダ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="facades.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ファサード
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    基本
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            基本
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="routing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ルーティング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="middleware.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ミドルウェア
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="csrf.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CSRF保護
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="controllers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コントローラ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="requests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リクエスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="responses.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    レスポンス
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="views.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ビュー
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="blade.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bladeテンプレート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="vite.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    アセットバンドル
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="urls.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    URL生成
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="session.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    セッション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="validation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    バリデーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="errors.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    エラー処理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="logging.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ログ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    掘り下げる
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            掘り下げる
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="artisan.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Artisanコンソール
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="broadcasting.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ブロードキャスティング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cache.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    キャッシュ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="collections.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コレクション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="concurrency.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    並行処理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="context.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コンテキスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="contracts.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コントラクト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="events.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    イベント
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="filesystem.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ファイルストレージ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="helpers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ヘルパー
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="http-client.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTTPクライアント
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="localization.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ローカライゼーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mail.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    メール
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="notifications.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    通知
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="packages.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    パッケージ開発
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="processes.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    プロセス
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="queues.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    キュー
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="rate-limiting.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    レート制限
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="strings.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    文字列
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="scheduling.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    タスクスケジューリング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    セキュリティ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            セキュリティ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="authentication.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    認証
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="authorization.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    認可
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="verification.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    メール確認
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="encryption.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    暗号化
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hashing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ハッシュ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="passwords.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    パスワードリセット
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    データベース
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            データベース
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="database.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="queries.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    クエリビルダ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pagination.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ページネーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="migrations.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    マイグレーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="seeding.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    シーディング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="redis.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Redis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Eloquent ORM
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Eloquent ORM
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-relationships.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リレーションシップ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-collections.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コレクション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-mutators.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ミューテータ / キャスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-resources.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    APIリソース
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-serialization.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    シリアライゼーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-factories.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ファクトリ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    テスト
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            テスト
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="testing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="http-tests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTTPテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="console-tests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コンソールテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="dusk.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ブラウザテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="database-testing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    データベース
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mocking.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    モック
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    パッケージ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            パッケージ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="starter-kits.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    スターターキット
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="billing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cashier (Stripe)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cashier-paddle.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cashier (Paddle)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="dusk.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ブラウザテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="envoy.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Envoy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fortify.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fortify
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="folio.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Folio
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="homestead.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Homestead
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="horizon.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Horizon
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mix.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mix
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="octane.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Octane
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="passport.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Passport
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pennant.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pennant
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pint.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pint
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="precognition.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Precognition
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="prompts.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prompts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pulse.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pulse
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reverb.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reverb
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sail.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sail
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sanctum.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sanctum
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Scout
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="scout.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Scout
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      はじめに
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      インストール
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="インストール">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      キューイング
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      ドライバの前提条件
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ドライバの前提条件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#algolia" class="md-nav__link">
+    <span class="md-ellipsis">
+      Algolia
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#meilisearch" class="md-nav__link">
+    <span class="md-ellipsis">
+      Meilisearch
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#typesense" class="md-nav__link">
+    <span class="md-ellipsis">
+      Typesense
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Typesense">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#typesense_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Typesenseへのデータ保存の準備
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      動的検索パラメータ
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      設定
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="設定">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      モデルインデックスの設定
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      検索可能なデータの設定
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="検索可能なデータの設定">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#meilisearch_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      フィルタ可能なデータとインデックス設定の設定 (Meilisearch)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#id" class="md-nav__link">
+    <span class="md-ellipsis">
+      モデルIDの設定
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      モデルごとの検索エンジンの設定
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      ユーザーの識別
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      データベース / コレクションエンジン
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="データベース / コレクションエンジン">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      データベースエンジン
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="データベースエンジン">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      データベース検索戦略のカスタマイズ
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      コレクションエンジン
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="コレクションエンジン">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      データベースエンジンとの違い
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      インデックス作成
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="インデックス作成">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      バッチインポート
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="バッチインポート">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      インポートクエリの変更
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      レコードの追加
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="レコードの追加">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      クエリによるレコードの追加
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      レコードの更新
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="レコードの更新">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      インポート前のレコードの変更
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      レコードの削除
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      インデックス作成の一時停止
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      条件付き検索可能なモデルインスタンス
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      検索
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="検索">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      カスタムインデックス
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#where" class="md-nav__link">
+    <span class="md-ellipsis">
+      Where句
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      ページネーション
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      ソフトデリート
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      エンジンの検索のカスタマイズ
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="エンジンの検索のカスタマイズ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#eloquent" class="md-nav__link">
+    <span class="md-ellipsis">
+      Eloquent結果クエリのカスタマイズ
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_31" class="md-nav__link">
+    <span class="md-ellipsis">
+      カスタムエンジン
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="カスタムエンジン">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_32" class="md-nav__link">
+    <span class="md-ellipsis">
+      エンジンの作成
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_33" class="md-nav__link">
+    <span class="md-ellipsis">
+      エンジンの登録
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="socialite.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Socialite
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="telescope.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Telescope
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="valet.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Valet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      はじめに
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      インストール
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="インストール">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      キューイング
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      ドライバの前提条件
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ドライバの前提条件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#algolia" class="md-nav__link">
+    <span class="md-ellipsis">
+      Algolia
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#meilisearch" class="md-nav__link">
+    <span class="md-ellipsis">
+      Meilisearch
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#typesense" class="md-nav__link">
+    <span class="md-ellipsis">
+      Typesense
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Typesense">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#typesense_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Typesenseへのデータ保存の準備
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      動的検索パラメータ
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      設定
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="設定">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      モデルインデックスの設定
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      検索可能なデータの設定
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="検索可能なデータの設定">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#meilisearch_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      フィルタ可能なデータとインデックス設定の設定 (Meilisearch)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#id" class="md-nav__link">
+    <span class="md-ellipsis">
+      モデルIDの設定
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      モデルごとの検索エンジンの設定
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      ユーザーの識別
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      データベース / コレクションエンジン
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="データベース / コレクションエンジン">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      データベースエンジン
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="データベースエンジン">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      データベース検索戦略のカスタマイズ
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      コレクションエンジン
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="コレクションエンジン">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      データベースエンジンとの違い
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      インデックス作成
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="インデックス作成">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      バッチインポート
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="バッチインポート">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      インポートクエリの変更
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      レコードの追加
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="レコードの追加">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      クエリによるレコードの追加
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      レコードの更新
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="レコードの更新">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      インポート前のレコードの変更
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      レコードの削除
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      インデックス作成の一時停止
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      条件付き検索可能なモデルインスタンス
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      検索
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="検索">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      カスタムインデックス
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#where" class="md-nav__link">
+    <span class="md-ellipsis">
+      Where句
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      ページネーション
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      ソフトデリート
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      エンジンの検索のカスタマイズ
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="エンジンの検索のカスタマイズ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#eloquent" class="md-nav__link">
+    <span class="md-ellipsis">
+      Eloquent結果クエリのカスタマイズ
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_31" class="md-nav__link">
+    <span class="md-ellipsis">
+      カスタムエンジン
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="カスタムエンジン">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_32" class="md-nav__link">
+    <span class="md-ellipsis">
+      エンジンの作成
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_33" class="md-nav__link">
+    <span class="md-ellipsis">
+      エンジンの登録
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/koriym/l11ja/edit/master/docs/scout.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="laravel-scout">Laravel Scout<a class="headerlink" href="#laravel-scout" title="Permanent link">&para;</a></h1>
+<ul>
+<li><a href="#introduction">はじめに</a></li>
+<li><a href="#installation">インストール</a><ul>
+<li><a href="#queueing">キューイング</a></li>
+</ul>
+</li>
+<li><a href="#driver-prerequisites">ドライバの前提条件</a><ul>
+<li><a href="#algolia">Algolia</a></li>
+<li><a href="#meilisearch">Meilisearch</a></li>
+<li><a href="#typesense">Typesense</a></li>
+</ul>
+</li>
+<li><a href="#configuration">設定</a><ul>
+<li><a href="#configuring-model-indexes">モデルインデックスの設定</a></li>
+<li><a href="#configuring-searchable-data">検索可能データの設定</a></li>
+<li><a href="#configuring-the-model-id">モデルIDの設定</a></li>
+<li><a href="#configuring-search-engines-per-model">モデルごとの検索エンジンの設定</a></li>
+<li><a href="#identifying-users">ユーザーの識別</a></li>
+</ul>
+</li>
+<li><a href="#database-and-collection-engines">データベース / コレクションエンジン</a><ul>
+<li><a href="#database-engine">データベースエンジン</a></li>
+<li><a href="#collection-engine">コレクションエンジン</a></li>
+</ul>
+</li>
+<li><a href="#indexing">インデックス作成</a><ul>
+<li><a href="#batch-import">バッチインポート</a></li>
+<li><a href="#adding-records">レコードの追加</a></li>
+<li><a href="#updating-records">レコードの更新</a></li>
+<li><a href="#removing-records">レコードの削除</a></li>
+<li><a href="#pausing-indexing">インデックス作成の一時停止</a></li>
+<li><a href="#conditionally-searchable-model-instances">条件付き検索可能なモデルインスタンス</a></li>
+</ul>
+</li>
+<li><a href="#searching">検索</a><ul>
+<li><a href="#where-clauses">Where句</a></li>
+<li><a href="#pagination">ページネーション</a></li>
+<li><a href="#soft-deleting">ソフトデリート</a></li>
+<li><a href="#customizing-engine-searches">エンジン検索のカスタマイズ</a></li>
+</ul>
+</li>
+<li><a href="#custom-engines">カスタムエンジン</a></li>
+</ul>
+<p><a name="introduction"></a></p>
+<h2 id="_1">はじめに<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p><a href="https://github.com/laravel/scout">Laravel Scout</a> は、<a href="eloquent.html">Eloquentモデル</a>にフルテキスト検索を追加するためのシンプルでドライバベースのソリューションを提供します。モデルオブザーバーを使用して、ScoutはEloquentレコードと検索インデックスを自動的に同期します。</p>
+<p>現在、Scoutは <a href="https://www.algolia.com/">Algolia</a>、<a href="https://www.meilisearch.com">Meilisearch</a>、<a href="https://typesense.org">Typesense</a>、およびMySQL / PostgreSQL (<code>database</code>) ドライバとともに提供されています。さらに、Scoutにはローカル開発用に設計された「コレクション」ドライバが含まれており、外部依存関係やサードパーティサービスを必要としません。また、カスタムドライバの作成は簡単であり、独自の検索実装でScoutを拡張することができます。</p>
+<p><a name="installation"></a></p>
+<h2 id="_2">インストール<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>まず、Composerパッケージマネージャを介してScoutをインストールします：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>composer<span class="w"> </span>require<span class="w"> </span>laravel/scout
+</code></pre></div>
+<p>Scoutをインストールした後、<code>vendor:publish</code> Artisanコマンドを使用してScoutの設定ファイルを公開する必要があります。このコマンドは、<code>scout.php</code>設定ファイルをアプリケーションの<code>config</code>ディレクトリに公開します：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>vendor:publish<span class="w"> </span>--provider<span class="o">=</span><span class="s2">&quot;Laravel\Scout\ScoutServiceProvider&quot;</span>
+</code></pre></div>
+<p>最後に、検索可能にしたいモデルに<code>Laravel\Scout\Searchable</code>トレイトを追加します。このトレイトは、モデルを検索ドライバと自動的に同期させるモデルオブザーバーを登録します：</p>
+<div class="highlight"><pre><span></span><code><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Models</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Illuminate\Database\Eloquent\Model</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Laravel\Scout\Searchable</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Post</span> <span class="k">extends</span> <span class="nx">Model</span>
+<span class="p">{</span>
+    <span class="k">use</span> <span class="nx">Searchable</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><a name="queueing"></a></p>
+<h3 id="_3">キューイング<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>Scoutを使用するために必須ではありませんが、ライブラリを使用する前に<a href="queues.html">キュードライバ</a>を設定することを強く検討する必要があります。キューワーカーを実行すると、Scoutはモデル情報を検索インデックスに同期するすべての操作をキューに入れることができ、アプリケーションのWebインターフェースの応答時間が大幅に向上します。</p>
+<p>キュードライバを設定したら、<code>config/scout.php</code>設定ファイルの<code>queue</code>オプションの値を<code>true</code>に設定します：</p>
+<div class="highlight"><pre><span></span><code><span class="s1">&#39;queue&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
+</code></pre></div>
+<p><code>queue</code>オプションが<code>false</code>に設定されている場合でも、AlgoliaやMeilisearchのような一部のScoutドライバは常にレコードを非同期でインデックス化することを覚えておくことが重要です。つまり、Laravelアプリケーション内でインデックス操作が完了しても、検索エンジン自体は新しいレコードや更新されたレコードをすぐに反映しない場合があります。</p>
+<p>Scoutジョブが使用する接続とキューを指定するには、<code>queue</code>設定オプションを配列として定義できます：</p>
+<div class="highlight"><pre><span></span><code><span class="s1">&#39;queue&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="s1">&#39;connection&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;redis&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;queue&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;scout&#39;</span>
+<span class="p">],</span>
+</code></pre></div>
+<p>もちろん、Scoutジョブが使用する接続とキューをカスタマイズした場合、その接続とキューでジョブを処理するためにキューワーカーを実行する必要があります：</p>
+<div class="highlight"><pre><span></span><code><span class="nx">php</span> <span class="nx">artisan</span> <span class="nx">queue</span><span class="o">:</span><span class="nx">work</span> <span class="nx">redis</span> <span class="o">--</span><span class="nx">queue</span><span class="o">=</span><span class="nx">scout</span>
+</code></pre></div>
+<p><a name="driver-prerequisites"></a></p>
+<h2 id="_4">ドライバの前提条件<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p><a name="algolia"></a></p>
+<h3 id="algolia">Algolia<a class="headerlink" href="#algolia" title="Permanent link">&para;</a></h3>
+<p>Algoliaドライバを使用する場合、<code>config/scout.php</code>設定ファイルでAlgoliaの<code>id</code>と<code>secret</code>の認証情報を設定する必要があります。認証情報を設定したら、Composerパッケージマネージャを介してAlgolia PHP SDKもインストールする必要があります：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>composer<span class="w"> </span>require<span class="w"> </span>algolia/algoliasearch-client-php
+</code></pre></div>
+<p><a name="meilisearch"></a></p>
+<h3 id="meilisearch">Meilisearch<a class="headerlink" href="#meilisearch" title="Permanent link">&para;</a></h3>
+<p><a href="https://www.meilisearch.com">Meilisearch</a> は、非常に高速でオープンソースの検索エンジンです。ローカルマシンにMeilisearchをインストールする方法がわからない場合は、Laravelの公式サポートされているDocker開発環境である<a href="sail.html#meilisearch">Laravel Sail</a>を使用できます。</p>
+<p>Meilisearchドライバを使用する場合、Composerパッケージマネージャを介してMeilisearch PHP SDKをインストールする必要があります：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>composer<span class="w"> </span>require<span class="w"> </span>meilisearch/meilisearch-php<span class="w"> </span>http-interop/http-factory-guzzle
+</code></pre></div>
+<p>次に、<code>SCOUT_DRIVER</code>環境変数とMeilisearchの<code>host</code>および<code>key</code>認証情報をアプリケーションの<code>.env</code>ファイル内に設定します：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="na">SCOUT_DRIVER</span><span class="o">=</span><span class="s">meilisearch</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="na">MEILISEARCH_HOST</span><span class="o">=</span><span class="s">http://127.0.0.1:7700</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="na">MEILISEARCH_KEY</span><span class="o">=</span><span class="s">masterKey</span>
+</code></pre></div>
+<p>Meilisearchに関する詳細情報については、<a href="https://docs.meilisearch.com/learn/getting_started/quick_start.html">Meilisearchのドキュメント</a>を参照してください。</p>
+<p>さらに、<code>meilisearch/meilisearch-php</code>のバージョンがMeilisearchバイナリバージョンと互換性があることを確認する必要があります。互換性については、<a href="https://github.com/meilisearch/meilisearch-php#-compatibility-with-meilisearch">Meilisearchのバイナリ互換性に関するドキュメント</a>を確認してください。</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Meilisearchを使用するアプリケーションでScoutをアップグレードする場合、常にMeilisearchサービス自体の<a href="https://github.com/meilisearch/Meilisearch/releases">追加の破壊的変更</a>を確認する必要があります。</p>
+</div>
+<p><a name="typesense"></a></p>
+<h3 id="typesense">Typesense<a class="headerlink" href="#typesense" title="Permanent link">&para;</a></h3>
+<p><a href="https://typesense.org">Typesense</a> は、非常に高速でオープンソースの検索エンジンであり、キーワード検索、セマンティック検索、地理検索、ベクトル検索をサポートしています。</p>
+<p>Typesenseは<a href="https://typesense.org/docs/guide/install-typesense.html#option-2-local-machine-self-hosting">自己ホスト</a>することも、<a href="https://cloud.typesense.org">Typesense Cloud</a>を使用することもできます。</p>
+<p>ScoutでTypesenseを使い始めるには、Composerパッケージマネージャを介してTypesense PHP SDKをインストールします：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>composer<span class="w"> </span>require<span class="w"> </span>typesense/typesense-php
+</code></pre></div>
+<p>次に、<code>SCOUT_DRIVER</code>環境変数とTypesenseのホストおよびAPIキー認証情報をアプリケーションの<code>.env</code>ファイル内に設定します：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="x">SCOUT_DRIVER=typesense</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="x">TYPESENSE_API_KEY=masterKey</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="x">TYPESENSE_HOST=localhost</span>
+</code></pre></div>
+<p><a href="sail.html">Laravel Sail</a>を使用している場合、<code>TYPESENSE_HOST</code>環境変数をDockerコンテナ名に合わせて調整する必要があるかもしれません。また、インストールのポート、パス、プロトコルをオプションで指定することもできます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="x">TYPESENSE_PORT=8108</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="x">TYPESENSE_PATH=</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="x">TYPESENSE_PROTOCOL=http</span>
+</code></pre></div>
+<p>Typesenseコレクションの追加設定とスキーマ定義は、アプリケーションの<code>config/scout.php</code>設定ファイル内にあります。Typesenseに関する詳細情報については、<a href="https://typesense.org/docs/guide/#quick-start">Typesenseのドキュメント</a>を参照してください。</p>
+<p><a name="preparing-data-for-storage-in-typesense"></a></p>
+<h4 id="typesense_1">Typesenseへのデータ保存の準備<a class="headerlink" href="#typesense_1" title="Permanent link">&para;</a></h4>
+<p>Typesenseを使用する場合、検索可能なモデルは、モデルの主キーを文字列にキャストし、作成日をUNIXタイムスタンプにキャストする<code>toSearchableArray</code>メソッドを定義する必要があります：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="sd">/**</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="sd"> * モデルのインデックス可能なデータ配列を取得します。</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="sd"> *</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="sd"> * @return array&lt;string, mixed&gt;</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="sd"> */</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="k">public</span> <span class="k">function</span> <span class="nf">toSearchableArray</span><span class="p">()</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="p">{</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>    <span class="k">return</span> <span class="nb">array_merge</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">toArray</span><span class="p">(),[</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>        <span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="p">(</span><span class="nx">string</span><span class="p">)</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">,</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>        <span class="s1">&#39;created_at&#39;</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">created_at</span><span class="o">-&gt;</span><span class="na">timestamp</span><span class="p">,</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>    <span class="p">]);</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="p">}</span>
+</code></pre></div>
+<p>また、Typesenseコレクションスキーマをアプリケーションの<code>config/scout.php</code>ファイルで定義する必要があります。コレクションスキーマは、Typesenseを介して検索可能な各フィールドのデータ型を記述します。利用可能なすべてのスキーマオプションについては、<a href="https://typesense.org/docs/latest/api/collections.html#schema-parameters">Typesenseのドキュメント</a>を参照してください。</p>
+<p>Typesenseコレクションのスキーマを定義した後に変更する必要がある場合は、<code>scout:flush</code>と<code>scout:import</code>を実行して、既存のインデックス化されたデータをすべて削除し、スキーマを再作成するか、TypesenseのAPIを使用してインデックス化されたデータを削除せずにコレクションのスキーマを変更することができます。</p>
+<p>検索可能なモデルがソフトデリート可能な場合、アプリケーションの<code>config/scout.php</code>設定ファイル内のモデルに対応するTypesenseスキーマに<code>__soft_deleted</code>フィールドを定義する必要があります：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nx">User</span><span class="o">::</span><span class="na">class</span> <span class="o">=&gt;</span> <span class="p">[</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>    <span class="s1">&#39;collection-schema&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>        <span class="s1">&#39;fields&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>            <span class="c1">// ...</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>            <span class="p">[</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>                <span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;__soft_deleted&#39;</span><span class="p">,</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>                <span class="s1">&#39;type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;int32&#39;</span><span class="p">,</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>                <span class="s1">&#39;optional&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>            <span class="p">],</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>        <span class="p">],</span>
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>    <span class="p">],</span>
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="p">],</span>
+</code></pre></div>
+<p><a name="typesense-dynamic-search-parameters"></a></p>
+<h4 id="_5">動的検索パラメータ<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
+<p>Typesenseでは、<code>options</code>メソッドを介して検索操作を実行する際に<a href="https://typesense.org/docs/latest/api/search.html#search-parameters">検索パラメータ</a>を動的に変更できます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">use</span> <span class="nx">App\Models\Todo</span><span class="p">;</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="nx">Todo</span><span class="o">::</span><span class="na">search</span><span class="p">(</span><span class="s1">&#39;Groceries&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">options</span><span class="p">([</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>    <span class="s1">&#39;query_by&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;title, description&#39;</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="p">])</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+</code></pre></div>
+<p><a name="configuration"></a></p>
+<h2 id="_6">設定<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p><a name="configuring-model-indexes"></a></p>
+<h3 id="_7">モデルインデックスの設定<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>各Eloquentモデルは、特定の検索「インデックス」と同期されます。このインデックスには、そのモデルのすべての検索可能なレコードが含まれています。言い換えれば、各インデックスはMySQLのテーブルのようなものだと考えることができます。デフォルトでは、各モデルはモデルの典型的な「テーブル」名に一致するインデックスに永続化されます。通常、これはモデル名の複数形ですが、モデルのインデックスをカスタマイズするために、モデルの<code>searchableAs</code>メソッドをオーバーライドすることができます。</p>
+<div class="highlight"><pre><span></span><code><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Models</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Illuminate\Database\Eloquent\Model</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Laravel\Scout\Searchable</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Post</span> <span class="k">extends</span> <span class="nx">Model</span>
+<span class="p">{</span>
+    <span class="k">use</span> <span class="nx">Searchable</span><span class="p">;</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * モデルに関連付けられたインデックスの名前を取得します。</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">searchableAs</span><span class="p">()</span><span class="o">:</span> <span class="nx">string</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="s1">&#39;posts_index&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><a name="configuring-searchable-data"></a></p>
+<h3 id="_8">検索可能なデータの設定<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>デフォルトでは、指定されたモデルの<code>toArray</code>形式全体が検索インデックスに永続化されます。検索インデックスに同期されるデータをカスタマイズしたい場合は、モデルの<code>toSearchableArray</code>メソッドをオーバーライドすることができます。</p>
+<div class="highlight"><pre><span></span><code><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Models</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Illuminate\Database\Eloquent\Model</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Laravel\Scout\Searchable</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Post</span> <span class="k">extends</span> <span class="nx">Model</span>
+<span class="p">{</span>
+    <span class="k">use</span> <span class="nx">Searchable</span><span class="p">;</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * モデルのインデックス可能なデータ配列を取得します。</span>
+<span class="sd">     *</span>
+<span class="sd">     * @return array&lt;string, mixed&gt;</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">toSearchableArray</span><span class="p">()</span><span class="o">:</span> <span class="k">array</span>
+    <span class="p">{</span>
+        <span class="nv">$array</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">toArray</span><span class="p">();</span>
+
+        <span class="c1">// データ配列をカスタマイズ...</span>
+
+        <span class="k">return</span> <span class="nv">$array</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Meilisearchなどの一部の検索エンジンは、正しい型のデータに対してのみフィルタ操作（<code>&gt;</code>, <code>&lt;</code>, など）を実行します。したがって、これらの検索エンジンを使用して検索可能なデータをカスタマイズする場合、数値が正しい型にキャストされていることを確認する必要があります。</p>
+<div class="highlight"><pre><span></span><code><span class="k">public</span> <span class="k">function</span> <span class="nf">toSearchableArray</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="p">[</span>
+        <span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="p">(</span><span class="nx">int</span><span class="p">)</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">,</span>
+        <span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">,</span>
+        <span class="s1">&#39;price&#39;</span> <span class="o">=&gt;</span> <span class="p">(</span><span class="nx">float</span><span class="p">)</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">price</span><span class="p">,</span>
+    <span class="p">];</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><a name="configuring-filterable-data-for-meilisearch"></a></p>
+<h4 id="meilisearch_1">フィルタ可能なデータとインデックス設定の設定 (Meilisearch)<a class="headerlink" href="#meilisearch_1" title="Permanent link">&para;</a></h4>
+<p>Scoutの他のドライバとは異なり、Meilisearchでは、フィルタ可能な属性、ソート可能な属性、および<a href="https://docs.meilisearch.com/reference/api/settings.html">その他のサポートされている設定フィールド</a>などのインデックス検索設定を事前に定義する必要があります。</p>
+<p>フィルタ可能な属性は、Scoutの<code>where</code>メソッドを呼び出す際にフィルタリングする予定の属性であり、ソート可能な属性は、Scoutの<code>orderBy</code>メソッドを呼び出す際にソートする予定の属性です。インデックス設定を定義するには、アプリケーションの<code>scout</code>設定ファイル内の<code>meilisearch</code>設定エントリの<code>index-settings</code>部分を調整します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">use</span> <span class="nx">App\Models\User</span><span class="p">;</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="k">use</span> <span class="nx">App\Models\Flight</span><span class="p">;</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="s1">&#39;meilisearch&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>    <span class="s1">&#39;host&#39;</span> <span class="o">=&gt;</span> <span class="nx">env</span><span class="p">(</span><span class="s1">&#39;MEILISEARCH_HOST&#39;</span><span class="p">,</span> <span class="s1">&#39;http://localhost:7700&#39;</span><span class="p">),</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>    <span class="s1">&#39;key&#39;</span> <span class="o">=&gt;</span> <span class="nx">env</span><span class="p">(</span><span class="s1">&#39;MEILISEARCH_KEY&#39;</span><span class="p">,</span> <span class="k">null</span><span class="p">),</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>    <span class="s1">&#39;index-settings&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>        <span class="nx">User</span><span class="o">::</span><span class="na">class</span> <span class="o">=&gt;</span> <span class="p">[</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>            <span class="s1">&#39;filterableAttributes&#39;</span><span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;email&#39;</span><span class="p">],</span>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>            <span class="s1">&#39;sortableAttributes&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;created_at&#39;</span><span class="p">],</span>
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>            <span class="c1">// その他の設定フィールド...</span>
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>        <span class="p">],</span>
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>        <span class="nx">Flight</span><span class="o">::</span><span class="na">class</span> <span class="o">=&gt;</span> <span class="p">[</span>
+<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a>            <span class="s1">&#39;filterableAttributes&#39;</span><span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;destination&#39;</span><span class="p">],</span>
+<a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a>            <span class="s1">&#39;sortableAttributes&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;updated_at&#39;</span><span class="p">],</span>
+<a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a>        <span class="p">],</span>
+<a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a>    <span class="p">],</span>
+<a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a><span class="p">],</span>
+</code></pre></div>
+<p>特定のインデックスの基になるモデルがソフトデリート可能であり、<code>index-settings</code>配列に含まれている場合、Scoutは自動的にそのインデックスでソフトデリートされたモデルのフィルタリングをサポートします。ソフトデリート可能なモデルインデックスに他のフィルタ可能またはソート可能な属性を定義する必要がない場合、そのモデルの<code>index-settings</code>配列に空のエントリを追加するだけで済みます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="s1">&#39;index-settings&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>    <span class="nx">Flight</span><span class="o">::</span><span class="na">class</span> <span class="o">=&gt;</span> <span class="p">[]</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="p">],</span>
+</code></pre></div>
+<p>アプリケーションのインデックス設定を構成した後、<code>scout:sync-index-settings</code> Artisanコマンドを実行する必要があります。このコマンドは、現在構成されているインデックス設定をMeilisearchに通知します。便宜上、このコマンドをデプロイプロセスの一部にすることをお勧めします。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>scout:sync-index-settings
+</code></pre></div>
+<p><a name="configuring-the-model-id"></a></p>
+<h3 id="id">モデルIDの設定<a class="headerlink" href="#id" title="Permanent link">&para;</a></h3>
+<p>デフォルトでは、Scoutはモデルの主キーを、検索インデックスに保存されるモデルの一意のID / キーとして使用します。この動作をカスタマイズする必要がある場合は、モデルの<code>getScoutKey</code>および<code>getScoutKeyName</code>メソッドをオーバーライドできます。</p>
+<div class="highlight"><pre><span></span><code><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Models</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Illuminate\Database\Eloquent\Model</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Laravel\Scout\Searchable</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">User</span> <span class="k">extends</span> <span class="nx">Model</span>
+<span class="p">{</span>
+    <span class="k">use</span> <span class="nx">Searchable</span><span class="p">;</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * モデルのインデックスに使用される値を取得します。</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getScoutKey</span><span class="p">()</span><span class="o">:</span> <span class="nx">mixed</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">email</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * モデルのインデックスに使用されるキー名を取得します。</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getScoutKeyName</span><span class="p">()</span><span class="o">:</span> <span class="nx">mixed</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="s1">&#39;email&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><a name="configuring-search-engines-per-model"></a></p>
+<h3 id="_9">モデルごとの検索エンジンの設定<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p>検索時に、Scoutは通常、アプリケーションの<code>scout</code>設定ファイルで指定されたデフォルトの検索エンジンを使用します。ただし、特定のモデルの検索エンジンは、モデルの<code>searchableUsing</code>メソッドをオーバーライドすることで変更できます。</p>
+<div class="highlight"><pre><span></span><code><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Models</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Illuminate\Database\Eloquent\Model</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Laravel\Scout\Engines\Engine</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Laravel\Scout\EngineManager</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Laravel\Scout\Searchable</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">User</span> <span class="k">extends</span> <span class="nx">Model</span>
+<span class="p">{</span>
+    <span class="k">use</span> <span class="nx">Searchable</span><span class="p">;</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * モデルのインデックスに使用されるエンジンを取得します。</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">searchableUsing</span><span class="p">()</span><span class="o">:</span> <span class="nx">Engine</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">app</span><span class="p">(</span><span class="nx">EngineManager</span><span class="o">::</span><span class="na">class</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">engine</span><span class="p">(</span><span class="s1">&#39;meilisearch&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><a name="identifying-users"></a></p>
+<h3 id="_10">ユーザーの識別<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p>Scoutでは、<a href="https://algolia.com">Algolia</a>を使用する際にユーザーを自動的に識別することもできます。認証されたユーザーを検索操作に関連付けることは、Algoliaのダッシュボード内で検索分析を表示する際に役立つ場合があります。ユーザー識別を有効にするには、アプリケーションの<code>.env</code>ファイルで<code>SCOUT_IDENTIFY</code>環境変数を<code>true</code>として定義します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="na">SCOUT_IDENTIFY</span><span class="o">=</span><span class="s">true</span>
+</code></pre></div>
+<p>この機能を有効にすると、リクエストのIPアドレスと認証されたユーザーの主識別子がAlgoliaに渡され、ユーザーが行ったすべての検索リクエストに関連付けられます。</p>
+<p><a name="database-and-collection-engines"></a></p>
+<h2 id="_11">データベース / コレクションエンジン<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<p><a name="database-engine"></a></p>
+<h3 id="_12">データベースエンジン<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>データベースエンジンは現在、MySQLとPostgreSQLをサポートしています。</p>
+</div>
+<p>アプリケーションが中小規模のデータベースと対話している場合や、軽いワークロードを持っている場合、Scoutの「データベース」エンジンを使用して始める方が便利かもしれません。データベースエンジンは、既存のデータベースから結果をフィルタリングする際に「where like」句と全文インデックスを使用して、クエリに適用される検索結果を決定します。</p>
+<p>データベースエンジンを使用するには、<code>SCOUT_DRIVER</code>環境変数の値を<code>database</code>に設定するか、アプリケーションの<code>scout</code>設定ファイルで<code>database</code>ドライバを直接指定します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="na">SCOUT_DRIVER</span><span class="o">=</span><span class="s">database</span>
+</code></pre></div>
+<p>データベースエンジンを好みのドライバとして指定したら、<a href="#configuring-searchable-data">検索可能なデータの設定</a>を行う必要があります。その後、モデルに対して<a href="#searching">検索クエリの実行</a>を開始できます。Algolia、Meilisearch、Typesenseインデックスのシードに必要なインデックス作成などの検索エンジンインデックス作成は、データベースエンジンを使用する場合は不要です。</p>
+<h4 id="_13">データベース検索戦略のカスタマイズ<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h4>
+<p>デフォルトでは、データベースエンジンは、<a href="#configuring-searchable-data">検索可能なデータとして設定された</a>すべてのモデル属性に対して「where like」クエリを実行します。ただし、状況によっては、これによりパフォーマンスが低下する可能性があります。したがって、データベースエンジンの検索戦略を設定して、特定の列が全文検索クエリを使用したり、文字列のプレフィックス（<code>example%</code>）のみを検索する「where like」制約を使用したり、文字列全体（<code>%example%</code>）を検索する代わりに使用するように設定できます。</p>
+<p>この動作を定義するには、モデルの<code>toSearchableArray</code>メソッドにPHP属性を割り当てることができます。追加の検索戦略動作が割り当てられていない列は、デフォルトの「where like」戦略を引き続き使用します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">use</span> <span class="nx">Laravel\Scout\Attributes\SearchUsingFullText</span><span class="p">;</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="k">use</span> <span class="nx">Laravel\Scout\Attributes\SearchUsingPrefix</span><span class="p">;</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="sd">/**</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="sd"> * モデルのインデックス可能なデータ配列を取得します。</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="sd"> *</span>
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="sd"> * @return array&lt;string, mixed&gt;</span>
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="sd"> */</span>
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="p">#[</span><span class="nd">SearchUsingPrefix</span><span class="p">([</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;email&#39;</span><span class="p">])]</span>
+<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="p">#[</span><span class="nd">SearchUsingFullText</span><span class="p">([</span><span class="s1">&#39;bio&#39;</span><span class="p">])]</span>
+<a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a><span class="k">public</span> <span class="k">function</span> <span class="nf">toSearchableArray</span><span class="p">()</span><span class="o">:</span> <span class="k">array</span>
+<a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a><span class="p">{</span>
+<a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a>    <span class="k">return</span> <span class="p">[</span>
+<a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a>        <span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">,</span>
+<a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a>        <span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">,</span>
+<a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a>        <span class="s1">&#39;email&#39;</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">email</span><span class="p">,</span>
+<a id="__codelineno-16-17" name="__codelineno-16-17" href="#__codelineno-16-17"></a>        <span class="s1">&#39;bio&#39;</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">bio</span><span class="p">,</span>
+<a id="__codelineno-16-18" name="__codelineno-16-18" href="#__codelineno-16-18"></a>    <span class="p">];</span>
+<a id="__codelineno-16-19" name="__codelineno-16-19" href="#__codelineno-16-19"></a><span class="p">}</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>列に全文クエリ制約を指定する前に、その列が<a href="migrations.html#available-index-types">全文インデックス</a>に割り当てられていることを確認してください。</p>
+</div>
+<p><a name="collection-engine"></a></p>
+<h3 id="_14">コレクションエンジン<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<p>ローカル開発中にAlgolia、Meilisearch、Typesense検索エンジンを自由に使用できますが、「コレクション」エンジンを使用して始める方が便利かもしれません。コレクションエンジンは、既存のデータベースからの結果に対して「where」句とコレクションフィルタリングを使用して、クエリに適用される検索結果を決定します。このエンジンを使用する場合、検索可能なモデルを「インデックス」する必要はありません。ローカルデータベースから単純に取得されます。</p>
+<p>コレクションエンジンを使用するには、<code>SCOUT_DRIVER</code>環境変数の値を<code>collection</code>に設定するか、アプリケーションの<code>scout</code>設定ファイルで<code>collection</code>ドライバを直接指定します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="na">SCOUT_DRIVER</span><span class="o">=</span><span class="s">collection</span>
+</code></pre></div>
+<p>コレクションドライバを優先ドライバとして指定したら、モデルに対して<a href="#searching">検索クエリを実行</a>できます。Algolia、Meilisearch、Typesenseインデックスのシードに必要なインデックス作成など、検索エンジンのインデックス作成は、コレクションエンジンを使用する場合は不要です。</p>
+<h4 id="_15">データベースエンジンとの違い<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h4>
+<p>一見すると、「データベース」と「コレクション」エンジンは非常によく似ています。どちらもデータベースと直接やり取りして検索結果を取得します。しかし、コレクションエンジンはフルテキストインデックスや<code>LIKE</code>句を使用して一致するレコードを見つけることはありません。代わりに、可能なすべてのレコードを取得し、Laravelの<code>Str::is</code>ヘルパーを使用して、検索文字列がモデル属性値内に存在するかどうかを判断します。</p>
+<p>コレクションエンジンは、Laravelがサポートするすべてのリレーショナルデータベース（SQLiteやSQL Serverを含む）で動作するため、最も移植性の高い検索エンジンです。ただし、Scoutのデータベースエンジンよりも効率は低くなります。</p>
+<p><a name="indexing"></a></p>
+<h2 id="_16">インデックス作成<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h2>
+<p><a name="batch-import"></a></p>
+<h3 id="_17">バッチインポート<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h3>
+<p>既存のプロジェクトにScoutをインストールする場合、既にデータベースにレコードが存在する可能性があります。Scoutは、既存のレコードを検索インデックスにインポートするために使用できる<code>scout:import</code> Artisanコマンドを提供しています。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>scout:import<span class="w"> </span><span class="s2">&quot;App\Models\Post&quot;</span>
+</code></pre></div>
+<p><code>flush</code>コマンドを使用して、モデルのすべてのレコードを検索インデックスから削除できます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>scout:flush<span class="w"> </span><span class="s2">&quot;App\Models\Post&quot;</span>
+</code></pre></div>
+<p><a name="modifying-the-import-query"></a></p>
+<h4 id="_18">インポートクエリの変更<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h4>
+<p>バッチインポートに使用されるクエリを変更したい場合は、モデルに<code>makeAllSearchableUsing</code>メソッドを定義できます。これは、モデルをインポートする前に必要な関係の読み込みを追加するのに最適な場所です。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">use</span> <span class="nx">Illuminate\Database\Eloquent\Builder</span><span class="p">;</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="sd">/**</span>
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="sd"> * モデルを検索可能にする際に使用されるクエリを変更する。</span>
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="sd"> */</span>
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="k">protected</span> <span class="k">function</span> <span class="nf">makeAllSearchableUsing</span><span class="p">(</span><span class="nx">Builder</span> <span class="nv">$query</span><span class="p">)</span><span class="o">:</span> <span class="nx">Builder</span>
+<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="p">{</span>
+<a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>    <span class="k">return</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">with</span><span class="p">(</span><span class="s1">&#39;author&#39;</span><span class="p">);</span>
+<a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a><span class="p">}</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><code>makeAllSearchableUsing</code>メソッドは、モデルをバッチインポートするためにキューを使用する場合には適用されない可能性があります。ジョブによって処理されるモデルコレクションの場合、関係は<a href="queues.html#handling-relationships">復元されません</a>。</p>
+</div>
+<p><a name="adding-records"></a></p>
+<h3 id="_19">レコードの追加<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h3>
+<p><code>Laravel\Scout\Searchable</code>トレイトをモデルに追加したら、モデルインスタンスを<code>save</code>または<code>create</code>するだけで、自動的に検索インデックスに追加されます。<a href="#queueing">キューを使用する</a>ようにScoutを設定している場合、この操作はキューワーカーによってバックグラウンドで実行されます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="k">use</span> <span class="nx">App\Models\Order</span><span class="p">;</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="nv">$order</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Order</span><span class="p">;</span>
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="c1">// ...</span>
+<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>
+<a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a><span class="nv">$order</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">();</span>
+</code></pre></div>
+<p><a name="adding-records-via-query"></a></p>
+<h4 id="_20">クエリによるレコードの追加<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h4>
+<p>Eloquentクエリを介してモデルのコレクションを検索インデックスに追加したい場合は、Eloquentクエリに<code>searchable</code>メソッドをチェーンできます。<code>searchable</code>メソッドはクエリの結果を<a href="eloquent.html#chunking-results">チャンク分割</a>し、レコードを検索インデックスに追加します。ここでも、Scoutをキューを使用するように設定している場合、すべてのチャンクはキューワーカーによってバックグラウンドでインポートされます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="k">use</span> <span class="nx">App\Models\Order</span><span class="p">;</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="nx">Order</span><span class="o">::</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;price&#39;</span><span class="p">,</span> <span class="s1">&#39;&gt;&#39;</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">searchable</span><span class="p">();</span>
+</code></pre></div>
+<p>Eloquentリレーションインスタンスに<code>searchable</code>メソッドを呼び出すこともできます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="nv">$user</span><span class="o">-&gt;</span><span class="na">orders</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">searchable</span><span class="p">();</span>
+</code></pre></div>
+<p>または、メモリ内に既にEloquentモデルのコレクションがある場合は、コレクションインスタンスに<code>searchable</code>メソッドを呼び出して、モデルインスタンスを対応するインデックスに追加できます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="nv">$orders</span><span class="o">-&gt;</span><span class="na">searchable</span><span class="p">();</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>searchable</code>メソッドは「upsert」操作と考えることができます。つまり、モデルレコードが既にインデックスに存在する場合は更新されます。インデックスに存在しない場合は、インデックスに追加されます。</p>
+</div>
+<p><a name="updating-records"></a></p>
+<h3 id="_21">レコードの更新<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h3>
+<p>検索可能なモデルを更新するには、モデルインスタンスのプロパティを更新し、データベースに<code>save</code>するだけです。Scoutは自動的に変更を検索インデックスに保持します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="k">use</span> <span class="nx">App\Models\Order</span><span class="p">;</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="nv">$order</span> <span class="o">=</span> <span class="nx">Order</span><span class="o">::</span><span class="na">find</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>
+<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a><span class="c1">// 注文を更新...</span>
+<a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a>
+<a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a><span class="nv">$order</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">();</span>
+</code></pre></div>
+<p>Eloquentクエリインスタンスに<code>searchable</code>メソッドを呼び出して、モデルのコレクションを更新することもできます。モデルが検索インデックスに存在しない場合は、作成されます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="nx">Order</span><span class="o">::</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;price&#39;</span><span class="p">,</span> <span class="s1">&#39;&gt;&#39;</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">searchable</span><span class="p">();</span>
+</code></pre></div>
+<p>リレーション内のすべてのモデルの検索インデックスレコードを更新したい場合は、リレーションインスタンスに<code>searchable</code>を呼び出すことができます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="nv">$user</span><span class="o">-&gt;</span><span class="na">orders</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">searchable</span><span class="p">();</span>
+</code></pre></div>
+<p>または、メモリ内に既にEloquentモデルのコレクションがある場合は、コレクションインスタンスに<code>searchable</code>メソッドを呼び出して、モデルインスタンスを対応するインデックスで更新できます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="nv">$orders</span><span class="o">-&gt;</span><span class="na">searchable</span><span class="p">();</span>
+</code></pre></div>
+<p><a name="modifying-records-before-importing"></a></p>
+<h4 id="_22">インポート前のレコードの変更<a class="headerlink" href="#_22" title="Permanent link">&para;</a></h4>
+<p>検索可能にする前にモデルのコレクションを準備する必要がある場合があります。たとえば、関係を事前に読み込んで、関係データを効率的に検索インデックスに追加したい場合です。これを実現するには、対応するモデルに<code>makeSearchableUsing</code>メソッドを定義します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="k">use</span> <span class="nx">Illuminate\Database\Eloquent\Collection</span><span class="p">;</span>
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="sd">/**</span>
+<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="sd"> * 検索可能にするモデルのコレクションを変更する。</span>
+<a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a><span class="sd"> */</span>
+<a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a><span class="k">public</span> <span class="k">function</span> <span class="nf">makeSearchableUsing</span><span class="p">(</span><span class="nx">Collection</span> <span class="nv">$models</span><span class="p">)</span><span class="o">:</span> <span class="nx">Collection</span>
+<a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a><span class="p">{</span>
+<a id="__codelineno-29-8" name="__codelineno-29-8" href="#__codelineno-29-8"></a>    <span class="k">return</span> <span class="nv">$models</span><span class="o">-&gt;</span><span class="na">load</span><span class="p">(</span><span class="s1">&#39;author&#39;</span><span class="p">);</span>
+<a id="__codelineno-29-9" name="__codelineno-29-9" href="#__codelineno-29-9"></a><span class="p">}</span>
+</code></pre></div>
+<p><a name="removing-records"></a></p>
+<h3 id="_23">レコードの削除<a class="headerlink" href="#_23" title="Permanent link">&para;</a></h3>
+<p>インデックスからレコードを削除するには、データベースからモデルを単に<code>delete</code>するだけです。これは、<a href="eloquent.html#soft-deleting">ソフトデリート</a>モデルを使用している場合でも可能です。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="k">use</span> <span class="nx">App\Models\Order</span><span class="p">;</span>
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>
+<a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="nv">$order</span> <span class="o">=</span> <span class="nx">Order</span><span class="o">::</span><span class="na">find</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a>
+<a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a><span class="nv">$order</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">();</span>
+</code></pre></div>
+<p>レコードを削除する前にモデルを取得したくない場合は、Eloquentクエリインスタンスに<code>unsearchable</code>メソッドを使用できます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="nx">Order</span><span class="o">::</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;price&#39;</span><span class="p">,</span> <span class="s1">&#39;&gt;&#39;</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">unsearchable</span><span class="p">();</span>
+</code></pre></div>
+<p>リレーション内のすべてのモデルの検索インデックスレコードを削除したい場合は、リレーションインスタンスに<code>unsearchable</code>を呼び出すことができます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="nv">$user</span><span class="o">-&gt;</span><span class="na">orders</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">unsearchable</span><span class="p">();</span>
+</code></pre></div>
+<p>または、メモリ内に既にEloquentモデルのコレクションがある場合は、コレクションインスタンスに<code>unsearchable</code>メソッドを呼び出して、モデルインスタンスを対応するインデックスから削除できます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="nv">$orders</span><span class="o">-&gt;</span><span class="na">unsearchable</span><span class="p">();</span>
+</code></pre></div>
+<p>モデルレコードを対応するインデックスからすべて削除するには、<code>removeAllFromSearch</code>メソッドを呼び出すことができます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="nx">Order</span><span class="o">::</span><span class="na">removeAllFromSearch</span><span class="p">();</span>
+</code></pre></div>
+<p><a name="pausing-indexing"></a></p>
+<h3 id="_24">インデックス作成の一時停止<a class="headerlink" href="#_24" title="Permanent link">&para;</a></h3>
+<p>モデルデータを検索インデックスに同期せずに、モデルに対してEloquent操作のバッチを実行する必要がある場合があります。<code>withoutSyncingToSearch</code>メソッドを使用してこれを行うことができます。このメソッドは、すぐに実行される単一のクロージャを受け取ります。クロージャ内で発生するモデル操作は、モデルのインデックスに同期されません。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="k">use</span> <span class="nx">App\Models\Order</span><span class="p">;</span>
+<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>
+<a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a><span class="nx">Order</span><span class="o">::</span><span class="na">withoutSyncingToSearch</span><span class="p">(</span><span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
+<a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a>    <span class="c1">// モデル操作を実行...</span>
+<a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a><span class="p">});</span>
+</code></pre></div>
+<p><a name="conditionally-searchable-model-instances"></a></p>
+<h3 id="_25">条件付き検索可能なモデルインスタンス<a class="headerlink" href="#_25" title="Permanent link">&para;</a></h3>
+<p>特定の条件でのみモデルを検索可能にする必要がある場合があります。たとえば、<code>App\Models\Post</code>モデルが「下書き」と「公開済み」の2つの状態のいずれかになるとします。「公開済み」の投稿のみを検索可能にする場合があります。これを実現するには、モデルに<code>shouldBeSearchable</code>メソッドを定義します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="sd">/**</span>
+<a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a><span class="sd"> * モデルが検索可能であるべきかどうかを判断する。</span>
+<a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a><span class="sd"> */</span>
+<a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a><span class="k">public</span> <span class="k">function</span> <span class="nf">shouldBeSearchable</span><span class="p">()</span><span class="o">:</span> <span class="nx">bool</span>
+<a id="__codelineno-36-5" name="__codelineno-36-5" href="#__codelineno-36-5"></a><span class="p">{</span>
+<a id="__codelineno-36-6" name="__codelineno-36-6" href="#__codelineno-36-6"></a>    <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">isPublished</span><span class="p">();</span>
+<a id="__codelineno-36-7" name="__codelineno-36-7" href="#__codelineno-36-7"></a><span class="p">}</span>
+</code></pre></div>
+<p><code>shouldBeSearchable</code>メソッドは、<code>save</code>および<code>create</code>メソッド、クエリ、またはリレーションを介してモデルを操作する場合にのみ適用されます。<code>searchable</code>メソッドを使用してモデルまたはコレクションを直接検索可能にすると、<code>shouldBeSearchable</code>メソッドの結果が上書きされます。</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><code>shouldBeSearchable</code>メソッドは、Scoutの「データベース」エンジンを使用する場合には適用されません。検索可能なデータは常にデータベースに保存されるためです。データベースエンジンを使用する場合に同様の動作を実現するには、代わりに<a href="#where-clauses">where句</a>を使用する必要があります。</p>
+</div>
+<p><a name="searching"></a></p>
+<h2 id="_26">検索<a class="headerlink" href="#_26" title="Permanent link">&para;</a></h2>
+<p>モデルの検索を開始するには、<code>search</code>メソッドを使用します。検索メソッドは、モデルを検索するために使用される単一の文字列を受け取ります。その後、検索クエリに<code>get</code>メソッドをチェーンして、指定された検索クエリに一致するEloquentモデルを取得する必要があります。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="k">use</span> <span class="nx">App\Models\Order</span><span class="p">;</span>
+<a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a>
+<a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a><span class="nv">$orders</span> <span class="o">=</span> <span class="nx">Order</span><span class="o">::</span><span class="na">search</span><span class="p">(</span><span class="s1">&#39;Star Trek&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+</code></pre></div>
+<p>Scoutの検索はEloquentモデルのコレクションを返すため、ルートまたはコントローラから直接結果を返すことができ、自動的にJSONに変換されます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="k">use</span> <span class="nx">App\Models\Order</span><span class="p">;</span>
+<a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span class="k">use</span> <span class="nx">Illuminate\Http\Request</span><span class="p">;</span>
+<a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a>
+<a id="__codelineno-38-4" name="__codelineno-38-4" href="#__codelineno-38-4"></a><span class="nx">Route</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;/search&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Request</span> <span class="nv">$request</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-38-5" name="__codelineno-38-5" href="#__codelineno-38-5"></a>    <span class="k">return</span> <span class="nx">Order</span><span class="o">::</span><span class="na">search</span><span class="p">(</span><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">search</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+<a id="__codelineno-38-6" name="__codelineno-38-6" href="#__codelineno-38-6"></a><span class="p">});</span>
+</code></pre></div>
+<p>Eloquentモデルに変換される前に生の検索結果を取得したい場合は、<code>raw</code>メソッドを使用できます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="nv">$orders</span> <span class="o">=</span> <span class="nx">Order</span><span class="o">::</span><span class="na">search</span><span class="p">(</span><span class="s1">&#39;Star Trek&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">raw</span><span class="p">();</span>
+</code></pre></div>
+<p><a name="custom-indexes"></a></p>
+<h4 id="_27">カスタムインデックス<a class="headerlink" href="#_27" title="Permanent link">&para;</a></h4>
+<p>検索クエリは通常、モデルの<a href="#configuring-model-indexes"><code>searchableAs</code></a>メソッドで指定されたインデックスで実行されます。ただし、代わりに検索するカスタムインデックスを指定するには、<code>within</code>メソッドを使用できます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="nv">$orders</span> <span class="o">=</span> <span class="nx">Order</span><span class="o">::</span><span class="na">search</span><span class="p">(</span><span class="s1">&#39;Star Trek&#39;</span><span class="p">)</span>
+<a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>    <span class="o">-&gt;</span><span class="na">within</span><span class="p">(</span><span class="s1">&#39;tv_shows_popularity_desc&#39;</span><span class="p">)</span>
+<a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a>    <span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+</code></pre></div>
+<p><a name="where-clauses"></a></p>
+<h3 id="where">Where句<a class="headerlink" href="#where" title="Permanent link">&para;</a></h3>
+<p>Scoutを使用すると、検索クエリに単純な「where」句を追加できます。現在、これらの句は基本的な数値の等価性チェックのみをサポートしており、主に所有者IDによる検索クエリのスコープに役立ちます。検索インデックスはリレーショナルデータベースではないため、より高度な「where」句は現在サポートされていません。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="k">use</span> <span class="nx">App\Models\Order</span><span class="p">;</span>
+<a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a>
+<a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a><span class="nv">$orders</span> <span class="o">=</span> <span class="nx">Order</span><span class="o">::</span><span class="na">search</span><span class="p">(</span><span class="s1">&#39;Star Trek&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;user_id&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+</code></pre></div>
+<p><code>whereIn</code>メソッドを使用して、結果を特定の値のセットに制限できます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="nv">$orders</span> <span class="o">=</span> <span class="nx">Order</span><span class="o">::</span><span class="na">search</span><span class="p">(</span><span class="s1">&#39;Star Trek&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">whereIn</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;paid&#39;</span><span class="p">,</span> <span class="s1">&#39;open&#39;</span><span class="p">])</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+</code></pre></div>
+<p>Scoutのwhere句は、Algoliaのような検索エンジンでのみ機能します。Scoutの「コレクション」エンジンを使用する場合、<code>where</code>メソッドは無視されます。</p>
+<p>Scoutでは、検索クエリにシンプルな「where」句を追加できます。現在、これらの句は基本的な数値の等価チェックのみをサポートしており、主に所有者IDによる検索クエリのスコープ指定に役立ちます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="k">use</span> <span class="nx">App\Models\Order</span><span class="p">;</span>
+<a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a>
+<a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a><span class="nv">$orders</span> <span class="o">=</span> <span class="nx">Order</span><span class="o">::</span><span class="na">search</span><span class="p">(</span><span class="s1">&#39;Star Trek&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;user_id&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+</code></pre></div>
+<p>さらに、<code>whereIn</code>メソッドを使用して、指定された列の値が指定された配列内に含まれていることを確認できます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="nv">$orders</span> <span class="o">=</span> <span class="nx">Order</span><span class="o">::</span><span class="na">search</span><span class="p">(</span><span class="s1">&#39;Star Trek&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">whereIn</span><span class="p">(</span>
+<a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a>    <span class="s1">&#39;status&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;open&#39;</span><span class="p">,</span> <span class="s1">&#39;paid&#39;</span><span class="p">]</span>
+<a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a><span class="p">)</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+</code></pre></div>
+<p><code>whereNotIn</code>メソッドは、指定された列の値が指定された配列内に含まれていないことを確認します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="nv">$orders</span> <span class="o">=</span> <span class="nx">Order</span><span class="o">::</span><span class="na">search</span><span class="p">(</span><span class="s1">&#39;Star Trek&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">whereNotIn</span><span class="p">(</span>
+<a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a>    <span class="s1">&#39;status&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;closed&#39;</span><span class="p">]</span>
+<a id="__codelineno-45-3" name="__codelineno-45-3" href="#__codelineno-45-3"></a><span class="p">)</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+</code></pre></div>
+<p>検索インデックスはリレーショナルデータベースではないため、より高度な「where」句は現在サポートされていません。</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>アプリケーションがMeilisearchを使用している場合、Scoutの「where」句を利用する前に、アプリケーションの<a href="#configuring-filterable-data-for-meilisearch">フィルタ可能な属性を設定</a>する必要があります。</p>
+</div>
+<p><a name="pagination"></a></p>
+<h3 id="_28">ページネーション<a class="headerlink" href="#_28" title="Permanent link">&para;</a></h3>
+<p>モデルのコレクションを取得するだけでなく、<code>paginate</code>メソッドを使用して検索結果をページネーションすることもできます。このメソッドは、<a href="pagination.html">従来のEloquentクエリをページネーション</a>した場合と同様に、<code>Illuminate\Pagination\LengthAwarePaginator</code>インスタンスを返します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a><span class="k">use</span> <span class="nx">App\Models\Order</span><span class="p">;</span>
+<a id="__codelineno-46-2" name="__codelineno-46-2" href="#__codelineno-46-2"></a>
+<a id="__codelineno-46-3" name="__codelineno-46-3" href="#__codelineno-46-3"></a><span class="nv">$orders</span> <span class="o">=</span> <span class="nx">Order</span><span class="o">::</span><span class="na">search</span><span class="p">(</span><span class="s1">&#39;Star Trek&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">paginate</span><span class="p">();</span>
+</code></pre></div>
+<p><code>paginate</code>メソッドの最初の引数として、ページごとに取得するモデルの数を指定できます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="nv">$orders</span> <span class="o">=</span> <span class="nx">Order</span><span class="o">::</span><span class="na">search</span><span class="p">(</span><span class="s1">&#39;Star Trek&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">paginate</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>
+</code></pre></div>
+<p>結果を取得したら、<a href="blade.html">Blade</a>を使用して結果を表示し、ページリンクをレンダリングできます。従来のEloquentクエリをページネーションした場合と同様です。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;container&quot;</span><span class="p">&gt;</span>
+<a id="__codelineno-48-2" name="__codelineno-48-2" href="#__codelineno-48-2"></a>    @foreach ($orders as $order)
+<a id="__codelineno-48-3" name="__codelineno-48-3" href="#__codelineno-48-3"></a>        {{ $order-&gt;price }}
+<a id="__codelineno-48-4" name="__codelineno-48-4" href="#__codelineno-48-4"></a>    @endforeach
+<a id="__codelineno-48-5" name="__codelineno-48-5" href="#__codelineno-48-5"></a><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<a id="__codelineno-48-6" name="__codelineno-48-6" href="#__codelineno-48-6"></a>
+<a id="__codelineno-48-7" name="__codelineno-48-7" href="#__codelineno-48-7"></a>{{ $orders-&gt;links() }}
+</code></pre></div>
+<p>もちろん、ページネーションの結果をJSONとして取得したい場合は、ルートまたはコントローラからページネータインスタンスを直接返すことができます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a><span class="k">use</span> <span class="nx">App\Models\Order</span><span class="p">;</span>
+<a id="__codelineno-49-2" name="__codelineno-49-2" href="#__codelineno-49-2"></a><span class="k">use</span> <span class="nx">Illuminate\Http\Request</span><span class="p">;</span>
+<a id="__codelineno-49-3" name="__codelineno-49-3" href="#__codelineno-49-3"></a>
+<a id="__codelineno-49-4" name="__codelineno-49-4" href="#__codelineno-49-4"></a><span class="nx">Route</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;/orders&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Request</span> <span class="nv">$request</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-49-5" name="__codelineno-49-5" href="#__codelineno-49-5"></a>    <span class="k">return</span> <span class="nx">Order</span><span class="o">::</span><span class="na">search</span><span class="p">(</span><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">input</span><span class="p">(</span><span class="s1">&#39;query&#39;</span><span class="p">))</span><span class="o">-&gt;</span><span class="na">paginate</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span>
+<a id="__codelineno-49-6" name="__codelineno-49-6" href="#__codelineno-49-6"></a><span class="p">});</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>検索エンジンはEloquentモデルのグローバルスコープ定義を認識しないため、Scoutのページネーションを利用するアプリケーションでグローバルスコープを使用しないでください。または、Scoutで検索する際にグローバルスコープの制約を再現する必要があります。</p>
+</div>
+<p><a name="soft-deleting"></a></p>
+<h3 id="_29">ソフトデリート<a class="headerlink" href="#_29" title="Permanent link">&para;</a></h3>
+<p>インデックス付けされたモデルが<a href="eloquent.html#soft-deleting">ソフトデリート</a>されており、ソフトデリートされたモデルを検索する必要がある場合は、<code>config/scout.php</code>設定ファイルの<code>soft_delete</code>オプションを<code>true</code>に設定します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a><span class="s1">&#39;soft_delete&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
+</code></pre></div>
+<p>この設定オプションが<code>true</code>の場合、Scoutはソフトデリートされたモデルを検索インデックスから削除しません。代わりに、インデックス付けされたレコードに非表示の<code>__soft_deleted</code>属性を設定します。その後、検索時に<code>withTrashed</code>または<code>onlyTrashed</code>メソッドを使用して、ソフトデリートされたレコードを取得できます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a><span class="k">use</span> <span class="nx">App\Models\Order</span><span class="p">;</span>
+<a id="__codelineno-51-2" name="__codelineno-51-2" href="#__codelineno-51-2"></a>
+<a id="__codelineno-51-3" name="__codelineno-51-3" href="#__codelineno-51-3"></a><span class="c1">// 結果を取得する際にソフトデリートされたレコードを含める...</span>
+<a id="__codelineno-51-4" name="__codelineno-51-4" href="#__codelineno-51-4"></a><span class="nv">$orders</span> <span class="o">=</span> <span class="nx">Order</span><span class="o">::</span><span class="na">search</span><span class="p">(</span><span class="s1">&#39;Star Trek&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">withTrashed</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+<a id="__codelineno-51-5" name="__codelineno-51-5" href="#__codelineno-51-5"></a>
+<a id="__codelineno-51-6" name="__codelineno-51-6" href="#__codelineno-51-6"></a><span class="c1">// 結果を取得する際にソフトデリートされたレコードのみを含める...</span>
+<a id="__codelineno-51-7" name="__codelineno-51-7" href="#__codelineno-51-7"></a><span class="nv">$orders</span> <span class="o">=</span> <span class="nx">Order</span><span class="o">::</span><span class="na">search</span><span class="p">(</span><span class="s1">&#39;Star Trek&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">onlyTrashed</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>ソフトデリートされたモデルが<code>forceDelete</code>を使用して完全に削除されると、Scoutは自動的に検索インデックスからそれを削除します。</p>
+</div>
+<p><a name="customizing-engine-searches"></a></p>
+<h3 id="_30">エンジンの検索のカスタマイズ<a class="headerlink" href="#_30" title="Permanent link">&para;</a></h3>
+<p>エンジンの検索動作を高度にカスタマイズする必要がある場合、<code>search</code>メソッドの第2引数としてクロージャを渡すことができます。たとえば、このコールバックを使用して、検索クエリがAlgoliaに渡される前に、地理的位置データを検索オプションに追加できます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a><span class="k">use</span> <span class="nx">Algolia\AlgoliaSearch\SearchIndex</span><span class="p">;</span>
+<a id="__codelineno-52-2" name="__codelineno-52-2" href="#__codelineno-52-2"></a><span class="k">use</span> <span class="nx">App\Models\Order</span><span class="p">;</span>
+<a id="__codelineno-52-3" name="__codelineno-52-3" href="#__codelineno-52-3"></a>
+<a id="__codelineno-52-4" name="__codelineno-52-4" href="#__codelineno-52-4"></a><span class="nx">Order</span><span class="o">::</span><span class="na">search</span><span class="p">(</span>
+<a id="__codelineno-52-5" name="__codelineno-52-5" href="#__codelineno-52-5"></a>    <span class="s1">&#39;Star Trek&#39;</span><span class="p">,</span>
+<a id="__codelineno-52-6" name="__codelineno-52-6" href="#__codelineno-52-6"></a>    <span class="k">function</span> <span class="p">(</span><span class="nx">SearchIndex</span> <span class="nv">$algolia</span><span class="p">,</span> <span class="nx">string</span> <span class="nv">$query</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$options</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-52-7" name="__codelineno-52-7" href="#__codelineno-52-7"></a>        <span class="nv">$options</span><span class="p">[</span><span class="s1">&#39;body&#39;</span><span class="p">][</span><span class="s1">&#39;query&#39;</span><span class="p">][</span><span class="s1">&#39;bool&#39;</span><span class="p">][</span><span class="s1">&#39;filter&#39;</span><span class="p">][</span><span class="s1">&#39;geo_distance&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-52-8" name="__codelineno-52-8" href="#__codelineno-52-8"></a>            <span class="s1">&#39;distance&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;1000km&#39;</span><span class="p">,</span>
+<a id="__codelineno-52-9" name="__codelineno-52-9" href="#__codelineno-52-9"></a>            <span class="s1">&#39;location&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;lat&#39;</span> <span class="o">=&gt;</span> <span class="mi">36</span><span class="p">,</span> <span class="s1">&#39;lon&#39;</span> <span class="o">=&gt;</span> <span class="mi">111</span><span class="p">],</span>
+<a id="__codelineno-52-10" name="__codelineno-52-10" href="#__codelineno-52-10"></a>        <span class="p">];</span>
+<a id="__codelineno-52-11" name="__codelineno-52-11" href="#__codelineno-52-11"></a>
+<a id="__codelineno-52-12" name="__codelineno-52-12" href="#__codelineno-52-12"></a>        <span class="k">return</span> <span class="nv">$algolia</span><span class="o">-&gt;</span><span class="na">search</span><span class="p">(</span><span class="nv">$query</span><span class="p">,</span> <span class="nv">$options</span><span class="p">);</span>
+<a id="__codelineno-52-13" name="__codelineno-52-13" href="#__codelineno-52-13"></a>    <span class="p">}</span>
+<a id="__codelineno-52-14" name="__codelineno-52-14" href="#__codelineno-52-14"></a><span class="p">)</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+</code></pre></div>
+<p><a name="customizing-the-eloquent-results-query"></a></p>
+<h4 id="eloquent">Eloquent結果クエリのカスタマイズ<a class="headerlink" href="#eloquent" title="Permanent link">&para;</a></h4>
+<p>Scoutがアプリケーションの検索エンジンから一致するEloquentモデルのリストを取得した後、Eloquentはそれらの主キーを使用してすべての一致するモデルを取得します。<code>query</code>メソッドを呼び出してこのクエリをカスタマイズできます。<code>query</code>メソッドは、Eloquentクエリビルダインスタンスを引数として受け取るクロージャを受け取ります。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a><span class="k">use</span> <span class="nx">App\Models\Order</span><span class="p">;</span>
+<a id="__codelineno-53-2" name="__codelineno-53-2" href="#__codelineno-53-2"></a><span class="k">use</span> <span class="nx">Illuminate\Database\Eloquent\Builder</span><span class="p">;</span>
+<a id="__codelineno-53-3" name="__codelineno-53-3" href="#__codelineno-53-3"></a>
+<a id="__codelineno-53-4" name="__codelineno-53-4" href="#__codelineno-53-4"></a><span class="nv">$orders</span> <span class="o">=</span> <span class="nx">Order</span><span class="o">::</span><span class="na">search</span><span class="p">(</span><span class="s1">&#39;Star Trek&#39;</span><span class="p">)</span>
+<a id="__codelineno-53-5" name="__codelineno-53-5" href="#__codelineno-53-5"></a>    <span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="nx">fn</span> <span class="p">(</span><span class="nx">Builder</span> <span class="nv">$query</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">with</span><span class="p">(</span><span class="s1">&#39;invoices&#39;</span><span class="p">))</span>
+<a id="__codelineno-53-6" name="__codelineno-53-6" href="#__codelineno-53-6"></a>    <span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+</code></pre></div>
+<p>このコールバックは、関連するモデルがすでにアプリケーションの検索エンジンから取得された後に呼び出されるため、<code>query</code>メソッドは結果の「フィルタリング」には使用しないでください。代わりに、<a href="#where-clauses">Scoutのwhere句</a>を使用する必要があります。</p>
+<p><a name="custom-engines"></a></p>
+<h2 id="_31">カスタムエンジン<a class="headerlink" href="#_31" title="Permanent link">&para;</a></h2>
+<p><a name="writing-the-engine"></a></p>
+<h4 id="_32">エンジンの作成<a class="headerlink" href="#_32" title="Permanent link">&para;</a></h4>
+<p>組み込みのScout検索エンジンのいずれもニーズに合わない場合、独自のカスタムエンジンを作成し、Scoutに登録することができます。エンジンは<code>Laravel\Scout\Engines\Engine</code>抽象クラスを拡張する必要があります。この抽象クラスには、カスタムエンジンが実装する必要のある8つのメソッドが含まれています。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a><span class="k">use</span> <span class="nx">Laravel\Scout\Builder</span><span class="p">;</span>
+<a id="__codelineno-54-2" name="__codelineno-54-2" href="#__codelineno-54-2"></a>
+<a id="__codelineno-54-3" name="__codelineno-54-3" href="#__codelineno-54-3"></a><span class="k">abstract</span> <span class="k">public</span> <span class="k">function</span> <span class="nf">update</span><span class="p">(</span><span class="nv">$models</span><span class="p">);</span>
+<a id="__codelineno-54-4" name="__codelineno-54-4" href="#__codelineno-54-4"></a><span class="k">abstract</span> <span class="k">public</span> <span class="k">function</span> <span class="nf">delete</span><span class="p">(</span><span class="nv">$models</span><span class="p">);</span>
+<a id="__codelineno-54-5" name="__codelineno-54-5" href="#__codelineno-54-5"></a><span class="k">abstract</span> <span class="k">public</span> <span class="k">function</span> <span class="nf">search</span><span class="p">(</span><span class="nx">Builder</span> <span class="nv">$builder</span><span class="p">);</span>
+<a id="__codelineno-54-6" name="__codelineno-54-6" href="#__codelineno-54-6"></a><span class="k">abstract</span> <span class="k">public</span> <span class="k">function</span> <span class="nf">paginate</span><span class="p">(</span><span class="nx">Builder</span> <span class="nv">$builder</span><span class="p">,</span> <span class="nv">$perPage</span><span class="p">,</span> <span class="nv">$page</span><span class="p">);</span>
+<a id="__codelineno-54-7" name="__codelineno-54-7" href="#__codelineno-54-7"></a><span class="k">abstract</span> <span class="k">public</span> <span class="k">function</span> <span class="nf">mapIds</span><span class="p">(</span><span class="nv">$results</span><span class="p">);</span>
+<a id="__codelineno-54-8" name="__codelineno-54-8" href="#__codelineno-54-8"></a><span class="k">abstract</span> <span class="k">public</span> <span class="k">function</span> <span class="nf">map</span><span class="p">(</span><span class="nx">Builder</span> <span class="nv">$builder</span><span class="p">,</span> <span class="nv">$results</span><span class="p">,</span> <span class="nv">$model</span><span class="p">);</span>
+<a id="__codelineno-54-9" name="__codelineno-54-9" href="#__codelineno-54-9"></a><span class="k">abstract</span> <span class="k">public</span> <span class="k">function</span> <span class="nf">getTotalCount</span><span class="p">(</span><span class="nv">$results</span><span class="p">);</span>
+<a id="__codelineno-54-10" name="__codelineno-54-10" href="#__codelineno-54-10"></a><span class="k">abstract</span> <span class="k">public</span> <span class="k">function</span> <span class="nf">flush</span><span class="p">(</span><span class="nv">$model</span><span class="p">);</span>
+</code></pre></div>
+<p><code>Laravel\Scout\Engines\AlgoliaEngine</code>クラスでこれらのメソッドの実装を確認すると役立つでしょう。このクラスは、独自のエンジンでこれらのメソッドを実装するための良い出発点を提供します。</p>
+<p><a name="registering-the-engine"></a></p>
+<h4 id="_33">エンジンの登録<a class="headerlink" href="#_33" title="Permanent link">&para;</a></h4>
+<p>カスタムエンジンを作成したら、Scoutエンジンマネージャの<code>extend</code>メソッドを使用してScoutに登録できます。Scoutのエンジンマネージャは、Laravelサービスコンテナから解決できます。<code>App\Providers\AppServiceProvider</code>クラスまたはアプリケーションで使用される他のサービスプロバイダの<code>boot</code>メソッドから<code>extend</code>メソッドを呼び出す必要があります。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a><span class="k">use</span> <span class="nx">App\ScoutExtensions\MySqlSearchEngine</span><span class="p">;</span>
+<a id="__codelineno-55-2" name="__codelineno-55-2" href="#__codelineno-55-2"></a><span class="k">use</span> <span class="nx">Laravel\Scout\EngineManager</span><span class="p">;</span>
+<a id="__codelineno-55-3" name="__codelineno-55-3" href="#__codelineno-55-3"></a>
+<a id="__codelineno-55-4" name="__codelineno-55-4" href="#__codelineno-55-4"></a><span class="sd">/**</span>
+<a id="__codelineno-55-5" name="__codelineno-55-5" href="#__codelineno-55-5"></a><span class="sd"> * 任意のアプリケーションサービスのブートストラップ</span>
+<a id="__codelineno-55-6" name="__codelineno-55-6" href="#__codelineno-55-6"></a><span class="sd"> */</span>
+<a id="__codelineno-55-7" name="__codelineno-55-7" href="#__codelineno-55-7"></a><span class="k">public</span> <span class="k">function</span> <span class="nf">boot</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<a id="__codelineno-55-8" name="__codelineno-55-8" href="#__codelineno-55-8"></a><span class="p">{</span>
+<a id="__codelineno-55-9" name="__codelineno-55-9" href="#__codelineno-55-9"></a>    <span class="nx">resolve</span><span class="p">(</span><span class="nx">EngineManager</span><span class="o">::</span><span class="na">class</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">extend</span><span class="p">(</span><span class="s1">&#39;mysql&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
+<a id="__codelineno-55-10" name="__codelineno-55-10" href="#__codelineno-55-10"></a>        <span class="k">return</span> <span class="k">new</span> <span class="nx">MySqlSearchEngine</span><span class="p">;</span>
+<a id="__codelineno-55-11" name="__codelineno-55-11" href="#__codelineno-55-11"></a>    <span class="p">});</span>
+<a id="__codelineno-55-12" name="__codelineno-55-12" href="#__codelineno-55-12"></a><span class="p">}</span>
+</code></pre></div>
+<p>エンジンを登録したら、アプリケーションの<code>config/scout.php</code>設定ファイルでデフォルトのScout<code>driver</code>として指定できます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a><span class="s1">&#39;driver&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;mysql&#39;</span><span class="p">,</span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+<nav class="md-footer-nav">
+    
+    
+</nav>
+
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": ".", "features": ["back-to-top", "navigation.expand", "navigation.tabs", "navigation.footer", "navigation.sections", "navigation.expand", "content.code.copy", "hide_repository_button", "content.code.annotate", "content.tabs.link", "toc.none", "content.action.edit"], "search": "assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="assets/javascripts/bundle.56dfad97.min.js"></script>
+      
+    
+  </body>
+</html>

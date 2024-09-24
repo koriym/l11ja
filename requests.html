@@ -1,0 +1,4628 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://github.com/koriym/laravel11-ja/requests.html">
+      
+      
+        <link rel="prev" href="controllers.html">
+      
+      
+        <link rel="next" href="responses.html">
+      
+      
+      <link rel="icon" href="assets/images/favicon_io/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.35">
+    
+    
+      
+        <title>リクエスト - L11JA</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.35f28582.min.css">
+      
+      
+
+
+    
+    
+
+    
+
+    
+      <link rel="stylesheet" href="assets/css/php.css">
+    
+      <link rel="stylesheet" href="assets/css/mkdocs_material_extra.css">
+    
+      <link rel="stylesheet" href="assets/css/extra.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-G60CEHXLQ1"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-G60CEHXLQ1",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-G60CEHXLQ1",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#http" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      <!-- Determine classes -->
+
+
+
+<!-- Header -->
+<header class="md-header" data-md-component="header">
+  <nav
+          class="md-header__inner md-grid"
+          aria-label="Header"
+  >
+
+    <!-- Link to home -->
+    <a
+            href="."
+            title="L11JA"
+            class="md-header__button md-logo"
+            aria-label="L11JA"
+            data-md-component="logo"
+    >
+      
+  <img src="assets/images/logo.png" alt="logo">
+
+    </a>
+
+    <!-- Button to open drawer -->
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+
+    <!-- Header title -->
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            <span style="font-family: 'Noto Sans'; font-size: 20px" >
+            L11JA
+            </span>
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            <span style="font-family: 'Noto Sans Batak'; font-size: 20px" >
+            
+              リクエスト
+            
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Color palette toggle -->
+    
+
+    <!-- User preference: color palette -->
+    
+    <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+
+    <!-- Site language selector -->
+    
+
+    <!-- Button to open search modal -->
+    
+    <label class="md-header__button md-icon" for="__search">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+    </label>
+
+    <!-- Search interface -->
+    <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    <!-- Repository information -->
+    
+    <div class="md-header__source">
+      
+
+<!--
+  Check whether the repository is hosted on one of the supported code hosting
+  platforms (GitHub, GitLab or Bitbucket) to show icon.
+-->
+
+
+  
+
+
+<!-- Repository containing source -->
+<a href="https://github.com/koriym/l11ja" title="source.link.title"
+    class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z" fill="#000"/></svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+    
+  </nav>
+
+  <!-- Navigation tabs (sticky) -->
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="releases.html" class="md-tabs__link">
+          
+  
+  プロローグ
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="installation.html" class="md-tabs__link">
+          
+  
+  はじめに
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="lifecycle.html" class="md-tabs__link">
+          
+  
+  アーキテクチャ
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="routing.html" class="md-tabs__link">
+          
+  
+  基本
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="artisan.html" class="md-tabs__link">
+          
+  
+  掘り下げる
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="authentication.html" class="md-tabs__link">
+          
+  
+  セキュリティ
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="database.html" class="md-tabs__link">
+          
+  
+  データベース
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="eloquent.html" class="md-tabs__link">
+          
+  
+  Eloquent ORM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="testing.html" class="md-tabs__link">
+          
+  
+  テスト
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="starter-kits.html" class="md-tabs__link">
+          
+  
+  パッケージ
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="L11JA" class="md-nav__button md-logo" aria-label="L11JA" data-md-component="logo">
+      
+  <img src="assets/images/logo.png" alt="logo">
+
+    </a>
+    L11JA
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+<!--
+  Check whether the repository is hosted on one of the supported code hosting
+  platforms (GitHub, GitLab or Bitbucket) to show icon.
+-->
+
+
+  
+
+
+<!-- Repository containing source -->
+<a href="https://github.com/koriym/l11ja" title="source.link.title"
+    class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z" fill="#000"/></svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    プロローグ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            プロローグ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="releases.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リリースノート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="upgrade.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    アップグレードガイド
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="contributions.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    貢献ガイド
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            はじめに
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="installation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    インストール
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="configuration.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    設定
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structure.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ディレクトリ構造
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="frontend.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    フロントエンド
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="starter-kits.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    スターターキット
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="deployment.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    デプロイ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    アーキテクチャ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            アーキテクチャ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="lifecycle.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リクエストライフサイクル
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="container.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    サービスコンテナ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="providers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    サービスプロバイダ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="facades.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ファサード
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    基本
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            基本
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="routing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ルーティング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="middleware.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ミドルウェア
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="csrf.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CSRF保護
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="controllers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コントローラ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    リクエスト
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="requests.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    リクエスト
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      はじめに
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      リクエストとのやり取り
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="リクエストとのやり取り">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      リクエストの取得
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="リクエストの取得">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      依存性注入とルートパラメータ
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      リクエストパスとメソッド
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="リクエストパスとメソッド">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      リクエストパスの取得
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      リクエストパス/ルートの検査
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#url" class="md-nav__link">
+    <span class="md-ellipsis">
+      リクエストURLの取得
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      リクエストホストの取得
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      リクエストメソッドの取得
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      リクエストヘッダ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      リクエストIPアドレス
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      コンテンツネゴシエーション
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#psr-7" class="md-nav__link">
+    <span class="md-ellipsis">
+      PSR-7リクエスト
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      入力
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="入力">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      入力の取得
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="入力の取得">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      すべての入力データの取得
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      入力値の取得
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      クエリ文字列からの入力取得
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json" class="md-nav__link">
+    <span class="md-ellipsis">
+      JSON入力値の取得
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      文字列化可能な入力値の取得
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      整数入力値の取得
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      ブール入力値の取得
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      日付入力値の取得
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      列挙型入力値の取得
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      動的プロパティによる入力の取得
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      入力データの一部の取得
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      入力の存在
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      追加入力のマージ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      古い入力
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="古い入力">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      セッションへの入力のフラッシュ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      入力を保存してからリダイレクト
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      古い入力の取得
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      クッキー
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="クッキー">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_31" class="md-nav__link">
+    <span class="md-ellipsis">
+      リクエストからクッキーを取得
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_32" class="md-nav__link">
+    <span class="md-ellipsis">
+      入力のトリミングと正規化
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="入力のトリミングと正規化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_33" class="md-nav__link">
+    <span class="md-ellipsis">
+      入力の正規化を無効にする
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_34" class="md-nav__link">
+    <span class="md-ellipsis">
+      ファイル
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ファイル">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_35" class="md-nav__link">
+    <span class="md-ellipsis">
+      アップロードされたファイルの取得
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="アップロードされたファイルの取得">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_36" class="md-nav__link">
+    <span class="md-ellipsis">
+      アップロードの成功を検証
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_37" class="md-nav__link">
+    <span class="md-ellipsis">
+      ファイルパスと拡張子
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_38" class="md-nav__link">
+    <span class="md-ellipsis">
+      その他のファイルメソッド
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_39" class="md-nav__link">
+    <span class="md-ellipsis">
+      アップロードされたファイルの保存
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_40" class="md-nav__link">
+    <span class="md-ellipsis">
+      信頼できるプロキシの設定
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="信頼できるプロキシの設定">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_41" class="md-nav__link">
+    <span class="md-ellipsis">
+      すべてのプロキシを信頼
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_42" class="md-nav__link">
+    <span class="md-ellipsis">
+      信頼できるホストの設定
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="responses.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    レスポンス
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="views.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ビュー
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="blade.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bladeテンプレート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="vite.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    アセットバンドル
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="urls.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    URL生成
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="session.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    セッション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="validation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    バリデーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="errors.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    エラー処理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="logging.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ログ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    掘り下げる
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            掘り下げる
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="artisan.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Artisanコンソール
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="broadcasting.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ブロードキャスティング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cache.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    キャッシュ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="collections.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コレクション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="concurrency.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    並行処理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="context.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コンテキスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="contracts.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コントラクト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="events.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    イベント
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="filesystem.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ファイルストレージ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="helpers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ヘルパー
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="http-client.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTTPクライアント
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="localization.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ローカライゼーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mail.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    メール
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="notifications.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    通知
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="packages.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    パッケージ開発
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="processes.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    プロセス
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="queues.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    キュー
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="rate-limiting.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    レート制限
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="strings.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    文字列
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="scheduling.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    タスクスケジューリング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    セキュリティ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            セキュリティ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="authentication.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    認証
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="authorization.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    認可
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="verification.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    メール確認
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="encryption.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    暗号化
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hashing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ハッシュ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="passwords.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    パスワードリセット
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    データベース
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            データベース
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="database.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="queries.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    クエリビルダ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pagination.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ページネーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="migrations.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    マイグレーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="seeding.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    シーディング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="redis.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Redis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Eloquent ORM
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Eloquent ORM
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-relationships.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リレーションシップ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-collections.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コレクション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-mutators.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ミューテータ / キャスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-resources.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    APIリソース
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-serialization.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    シリアライゼーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-factories.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ファクトリ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    テスト
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            テスト
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="testing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="http-tests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTTPテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="console-tests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コンソールテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="dusk.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ブラウザテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="database-testing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    データベース
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mocking.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    モック
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    パッケージ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            パッケージ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="starter-kits.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    スターターキット
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="billing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cashier (Stripe)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cashier-paddle.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cashier (Paddle)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="dusk.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ブラウザテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="envoy.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Envoy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fortify.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fortify
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="folio.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Folio
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="homestead.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Homestead
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="horizon.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Horizon
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mix.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mix
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="octane.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Octane
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="passport.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Passport
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pennant.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pennant
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pint.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pint
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="precognition.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Precognition
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="prompts.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prompts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pulse.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pulse
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reverb.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reverb
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sail.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sail
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sanctum.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sanctum
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="scout.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Scout
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="socialite.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Socialite
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="telescope.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Telescope
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="valet.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Valet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      はじめに
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      リクエストとのやり取り
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="リクエストとのやり取り">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      リクエストの取得
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="リクエストの取得">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      依存性注入とルートパラメータ
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      リクエストパスとメソッド
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="リクエストパスとメソッド">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      リクエストパスの取得
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      リクエストパス/ルートの検査
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#url" class="md-nav__link">
+    <span class="md-ellipsis">
+      リクエストURLの取得
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      リクエストホストの取得
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      リクエストメソッドの取得
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      リクエストヘッダ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      リクエストIPアドレス
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      コンテンツネゴシエーション
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#psr-7" class="md-nav__link">
+    <span class="md-ellipsis">
+      PSR-7リクエスト
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      入力
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="入力">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      入力の取得
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="入力の取得">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      すべての入力データの取得
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      入力値の取得
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      クエリ文字列からの入力取得
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json" class="md-nav__link">
+    <span class="md-ellipsis">
+      JSON入力値の取得
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      文字列化可能な入力値の取得
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      整数入力値の取得
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      ブール入力値の取得
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      日付入力値の取得
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      列挙型入力値の取得
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      動的プロパティによる入力の取得
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      入力データの一部の取得
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      入力の存在
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      追加入力のマージ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      古い入力
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="古い入力">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      セッションへの入力のフラッシュ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      入力を保存してからリダイレクト
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      古い入力の取得
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      クッキー
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="クッキー">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_31" class="md-nav__link">
+    <span class="md-ellipsis">
+      リクエストからクッキーを取得
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_32" class="md-nav__link">
+    <span class="md-ellipsis">
+      入力のトリミングと正規化
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="入力のトリミングと正規化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_33" class="md-nav__link">
+    <span class="md-ellipsis">
+      入力の正規化を無効にする
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_34" class="md-nav__link">
+    <span class="md-ellipsis">
+      ファイル
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ファイル">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_35" class="md-nav__link">
+    <span class="md-ellipsis">
+      アップロードされたファイルの取得
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="アップロードされたファイルの取得">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_36" class="md-nav__link">
+    <span class="md-ellipsis">
+      アップロードの成功を検証
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_37" class="md-nav__link">
+    <span class="md-ellipsis">
+      ファイルパスと拡張子
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_38" class="md-nav__link">
+    <span class="md-ellipsis">
+      その他のファイルメソッド
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_39" class="md-nav__link">
+    <span class="md-ellipsis">
+      アップロードされたファイルの保存
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_40" class="md-nav__link">
+    <span class="md-ellipsis">
+      信頼できるプロキシの設定
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="信頼できるプロキシの設定">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_41" class="md-nav__link">
+    <span class="md-ellipsis">
+      すべてのプロキシを信頼
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_42" class="md-nav__link">
+    <span class="md-ellipsis">
+      信頼できるホストの設定
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/koriym/l11ja/edit/master/docs/requests.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="http">HTTPリクエスト<a class="headerlink" href="#http" title="Permanent link">&para;</a></h1>
+<ul>
+<li><a href="#introduction">はじめに</a></li>
+<li><a href="#interacting-with-the-request">リクエストとのやり取り</a><ul>
+<li><a href="#accessing-the-request">リクエストの取得</a></li>
+<li><a href="#request-path-and-method">リクエストパスとメソッド</a></li>
+<li><a href="#request-headers">リクエストヘッダ</a></li>
+<li><a href="#request-ip-address">リクエストIPアドレス</a></li>
+<li><a href="#content-negotiation">コンテンツネゴシエーション</a></li>
+<li><a href="#psr7-requests">PSR-7リクエスト</a></li>
+</ul>
+</li>
+<li><a href="#input">入力</a><ul>
+<li><a href="#retrieving-input">入力の取得</a></li>
+<li><a href="#input-presence">入力の存在確認</a></li>
+<li><a href="#merging-additional-input">追加入力のマージ</a></li>
+<li><a href="#old-input">古い入力</a></li>
+<li><a href="#cookies">クッキー</a></li>
+<li><a href="#input-trimming-and-normalization">入力のトリミングと正規化</a></li>
+</ul>
+</li>
+<li><a href="#files">ファイル</a><ul>
+<li><a href="#retrieving-uploaded-files">アップロードされたファイルの取得</a></li>
+<li><a href="#storing-uploaded-files">アップロードされたファイルの保存</a></li>
+</ul>
+</li>
+<li><a href="#configuring-trusted-proxies">信頼できるプロキシの設定</a></li>
+<li><a href="#configuring-trusted-hosts">信頼できるホストの設定</a></li>
+</ul>
+<p><a name="introduction"></a></p>
+<h2 id="_1">はじめに<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>Laravelの<code>Illuminate\Http\Request</code>クラスは、アプリケーションが処理している現在のHTTPリクエストと、リクエストと共に送信された入力、クッキー、ファイルを取得するためのオブジェクト指向の方法を提供します。</p>
+<p><a name="interacting-with-the-request"></a></p>
+<h2 id="_2">リクエストとのやり取り<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p><a name="accessing-the-request"></a></p>
+<h3 id="_3">リクエストの取得<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>依存性注入を介して現在のHTTPリクエストのインスタンスを取得するには、ルートクロージャまたはコントローラメソッドに<code>Illuminate\Http\Request</code>クラスをタイプヒントする必要があります。受信リクエストインスタンスは、Laravelの<a href="container.html">サービスコンテナ</a>によって自動的に注入されます。</p>
+<div class="highlight"><pre><span></span><code><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Http\Controllers</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Illuminate\Http\RedirectResponse</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Http\Request</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">UserController</span> <span class="k">extends</span> <span class="nx">Controller</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * 新しいユーザーを保存します。</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">store</span><span class="p">(</span><span class="nx">Request</span> <span class="nv">$request</span><span class="p">)</span><span class="o">:</span> <span class="nx">RedirectResponse</span>
+    <span class="p">{</span>
+        <span class="nv">$name</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">input</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">);</span>
+
+        <span class="c1">// ユーザーを保存...</span>
+
+        <span class="k">return</span> <span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/users&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>前述のように、ルートクロージャに<code>Illuminate\Http\Request</code>クラスをタイプヒントすることもできます。サービスコンテナは、クロージャが実行されるときに自動的に受信リクエストを注入します。</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">Illuminate\Http\Request</span><span class="p">;</span>
+
+<span class="nx">Route</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Request</span> <span class="nv">$request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">});</span>
+</code></pre></div>
+<p><a name="dependency-injection-route-parameters"></a></p>
+<h4 id="_4">依存性注入とルートパラメータ<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
+<p>コントローラメソッドがルートパラメータからの入力も期待している場合は、他の依存関係の後にルートパラメータをリストする必要があります。たとえば、ルートが次のように定義されている場合：</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">App\Http\Controllers\UserController</span><span class="p">;</span>
+
+<span class="nx">Route</span><span class="o">::</span><span class="na">put</span><span class="p">(</span><span class="s1">&#39;/user/{id}&#39;</span><span class="p">,</span> <span class="p">[</span><span class="nx">UserController</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="s1">&#39;update&#39;</span><span class="p">]);</span>
+</code></pre></div>
+<p><code>Illuminate\Http\Request</code>をタイプヒントし、<code>id</code>ルートパラメータにアクセスするには、コントローラメソッドを次のように定義します：</p>
+<div class="highlight"><pre><span></span><code><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Http\Controllers</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Illuminate\Http\RedirectResponse</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Http\Request</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">UserController</span> <span class="k">extends</span> <span class="nx">Controller</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * 指定されたユーザーを更新します。</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">update</span><span class="p">(</span><span class="nx">Request</span> <span class="nv">$request</span><span class="p">,</span> <span class="nx">string</span> <span class="nv">$id</span><span class="p">)</span><span class="o">:</span> <span class="nx">RedirectResponse</span>
+    <span class="p">{</span>
+        <span class="c1">// ユーザーを更新...</span>
+
+        <span class="k">return</span> <span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/users&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><a name="request-path-and-method"></a></p>
+<h3 id="_5">リクエストパスとメソッド<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p><code>Illuminate\Http\Request</code>インスタンスは、受信HTTPリクエストを検査するためのさまざまなメソッドを提供し、<code>Symfony\Component\HttpFoundation\Request</code>クラスを拡張します。以下では、最も重要なメソッドのいくつかについて説明します。</p>
+<p><a name="retrieving-the-request-path"></a></p>
+<h4 id="_6">リクエストパスの取得<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h4>
+<p><code>path</code>メソッドは、リクエストのパス情報を返します。したがって、受信リクエストが<code>http://example.com/foo/bar</code>をターゲットにしている場合、<code>path</code>メソッドは<code>foo/bar</code>を返します：</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$uri</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">path</span><span class="p">();</span>
+</code></pre></div>
+<p><a name="inspecting-the-request-path"></a></p>
+<h4 id="_7">リクエストパス/ルートの検査<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h4>
+<p><code>is</code>メソッドを使用すると、受信リクエストパスが指定されたパターンと一致するかどうかを確認できます。このメソッドを使用する際には、ワイルドカードとして<code>*</code>文字を使用できます：</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="p">(</span><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">is</span><span class="p">(</span><span class="s1">&#39;admin/*&#39;</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>routeIs</code>メソッドを使用すると、受信リクエストが<a href="routing.html#named-routes">名前付きルート</a>と一致したかどうかを判断できます：</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="p">(</span><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">routeIs</span><span class="p">(</span><span class="s1">&#39;admin.*&#39;</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><a name="retrieving-the-request-url"></a></p>
+<h4 id="url">リクエストURLの取得<a class="headerlink" href="#url" title="Permanent link">&para;</a></h4>
+<p>受信リクエストの完全なURLを取得するには、<code>url</code>または<code>fullUrl</code>メソッドを使用できます。<code>url</code>メソッドはクエリ文字列なしでURLを返し、<code>fullUrl</code>メソッドはクエリ文字列を含みます：</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$url</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">url</span><span class="p">();</span>
+
+<span class="nv">$urlWithQueryString</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">fullUrl</span><span class="p">();</span>
+</code></pre></div>
+<p>現在のURLにクエリ文字列データを追加する場合は、<code>fullUrlWithQuery</code>メソッドを呼び出すことができます。このメソッドは、指定されたクエリ文字列変数の配列を現在のクエリ文字列とマージします：</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">fullUrlWithQuery</span><span class="p">([</span><span class="s1">&#39;type&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;phone&#39;</span><span class="p">]);</span>
+</code></pre></div>
+<p>指定されたクエリ文字列パラメータなしで現在のURLを取得する場合は、<code>fullUrlWithoutQuery</code>メソッドを使用できます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">fullUrlWithoutQuery</span><span class="p">([</span><span class="s1">&#39;type&#39;</span><span class="p">]);</span>
+</code></pre></div>
+<p><a name="retrieving-the-request-host"></a></p>
+<h4 id="_8">リクエストホストの取得<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h4>
+<p>受信リクエストの「ホスト」を取得するには、<code>host</code>、<code>httpHost</code>、および<code>schemeAndHttpHost</code>メソッドを使用できます：</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">host</span><span class="p">();</span>
+<span class="nv">$request</span><span class="o">-&gt;</span><span class="na">httpHost</span><span class="p">();</span>
+<span class="nv">$request</span><span class="o">-&gt;</span><span class="na">schemeAndHttpHost</span><span class="p">();</span>
+</code></pre></div>
+<p><a name="retrieving-the-request-method"></a></p>
+<h4 id="_9">リクエストメソッドの取得<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h4>
+<p><code>method</code>メソッドは、リクエストのHTTP動詞を返します。<code>isMethod</code>メソッドを使用して、HTTP動詞が指定された文字列と一致するかどうかを確認できます：</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$method</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">method</span><span class="p">();</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">isMethod</span><span class="p">(</span><span class="s1">&#39;post&#39;</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><a name="request-headers"></a></p>
+<h3 id="_10">リクエストヘッダ<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p><code>Illuminate\Http\Request</code>インスタンスからリクエストヘッダを取得するには、<code>header</code>メソッドを使用できます。リクエストにヘッダが存在しない場合、<code>null</code>が返されます。ただし、<code>header</code>メソッドは、リクエストにヘッダが存在しない場合に返されるオプションの2番目の引数を受け入れます：</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$value</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">header</span><span class="p">(</span><span class="s1">&#39;X-Header-Name&#39;</span><span class="p">);</span>
+
+<span class="nv">$value</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">header</span><span class="p">(</span><span class="s1">&#39;X-Header-Name&#39;</span><span class="p">,</span> <span class="s1">&#39;default&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><code>hasHeader</code>メソッドを使用して、リクエストに指定されたヘッダが含まれているかどうかを判断できます：</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="p">(</span><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">hasHeader</span><span class="p">(</span><span class="s1">&#39;X-Header-Name&#39;</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>便宜上、<code>bearerToken</code>メソッドを使用して、<code>Authorization</code>ヘッダからベアラートークンを取得できます。そのようなヘッダが存在しない場合、空の文字列が返されます：</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$token</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">bearerToken</span><span class="p">();</span>
+</code></pre></div>
+<p><a name="request-ip-address"></a></p>
+<h3 id="ip">リクエストIPアドレス<a class="headerlink" href="#ip" title="Permanent link">&para;</a></h3>
+<p><code>ip</code>メソッドを使用して、アプリケーションにリクエストを送信したクライアントのIPアドレスを取得できます：</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$ipAddress</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">ip</span><span class="p">();</span>
+</code></pre></div>
+<p>プロキシによって転送されたすべてのクライアントIPアドレスを含むIPアドレスの配列を取得する場合は、<code>ips</code>メソッドを使用できます。「元の」クライアントIPアドレスは配列の最後にあります：</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$ipAddresses</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">ips</span><span class="p">();</span>
+</code></pre></div>
+<p>一般に、IPアドレスは信頼できない、ユーザー制御の入力と見なされ、情報提供の目的でのみ使用されるべきです。</p>
+<p><a name="content-negotiation"></a></p>
+<h3 id="_11">コンテンツネゴシエーション<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<p>Laravelは、<code>Accept</code>ヘッダを介して受信リクエストの要求されたコンテンツタイプを検査するためのいくつかのメソッドを提供します。最初に、<code>getAcceptableContentTypes</code>メソッドは、リクエストによって受け入れられるすべてのコンテンツタイプを含む配列を返します：</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$contentTypes</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">getAcceptableContentTypes</span><span class="p">();</span>
+</code></pre></div>
+<p><code>accepts</code>メソッドは、コンテンツタイプの配列を受け入れ、リクエストによっていずれかのコンテンツタイプが受け入れられる場合に<code>true</code>を返します。それ以外の場合、<code>false</code>が返されます：</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="p">(</span><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">accepts</span><span class="p">([</span><span class="s1">&#39;text/html&#39;</span><span class="p">,</span> <span class="s1">&#39;application/json&#39;</span><span class="p">]))</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>prefers</code>メソッドを使用して、指定されたコンテンツタイプの配列の中で、リクエストによって最も好まれるコンテンツタイプを判断できます。提供されたコンテンツタイプのいずれもリクエストによって受け入れられない場合、<code>null</code>が返されます：</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$preferred</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">prefers</span><span class="p">([</span><span class="s1">&#39;text/html&#39;</span><span class="p">,</span> <span class="s1">&#39;application/json&#39;</span><span class="p">]);</span>
+</code></pre></div>
+<p>多くのアプリケーションはHTMLまたはJSONのみを提供するため、<code>expectsJson</code>メソッドを使用して、受信リクエストがJSONレスポンスを期待しているかどうかを迅速に判断できます：</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="p">(</span><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">expectsJson</span><span class="p">())</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><a name="psr7-requests"></a></p>
+<h3 id="psr-7">PSR-7リクエスト<a class="headerlink" href="#psr-7" title="Permanent link">&para;</a></h3>
+<p><a href="https://www.php-fig.org/psr/psr-7/">PSR-7標準</a>は、リクエストやレスポンスなどのHTTPメッセージのインターフェースを指定します。Laravelリクエストの代わりにPSR-7リクエストのインスタンスを取得したい場合は、最初にいくつかのライブラリをインストールする必要があります。Laravelは、<em>Symfony HTTP Message Bridge</em>コンポーネントを使用して、通常のLaravelリクエストとレスポンスをPSR-7互換の実装に変換します：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>composer<span class="w"> </span>require<span class="w"> </span>symfony/psr-http-message-bridge
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>composer<span class="w"> </span>require<span class="w"> </span>nyholm/psr7
+</code></pre></div>
+<p>これらのライブラリをインストールしたら、ルートクロージャまたはコントローラメソッドにリクエストインターフェースをタイプヒントすることで、PSR-7リクエストを取得できます：</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">Psr\Http\Message\ServerRequestInterface</span><span class="p">;</span>
+
+<span class="nx">Route</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">ServerRequestInterface</span> <span class="nv">$request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">});</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>ルートまたはコントローラからPSR-7レスポンスインスタンスを返すと、自動的にLaravelレスポンスインスタンスに変換され、フレームワークによって表示されます。</p>
+</div>
+<p><a name="input"></a></p>
+<h2 id="_12">入力<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<p><a name="retrieving-input"></a></p>
+<h3 id="_13">入力の取得<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<p><a name="retrieving-all-input-data"></a></p>
+<h4 id="_14">すべての入力データの取得<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h4>
+<p><code>all</code>メソッドを使用して、受信リクエストのすべての入力データを<code>array</code>として取得できます。このメソッドは、受信リクエストがHTMLフォームからのものであるか、XHRリクエストであるかに関係なく使用できます：</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$input</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">all</span><span class="p">();</span>
+</code></pre></div>
+<p><code>collect</code>メソッドを使用すると、受信リクエストのすべての入力データを<a href="collections.html">コレクション</a>として取得できます。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$input</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">collect</span><span class="p">();</span>
+</code></pre></div>
+<p><code>collect</code>メソッドを使用して、受信リクエストの入力のサブセットをコレクションとして取得することもできます。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">collect</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">each</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nx">string</span> <span class="nv">$user</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">});</span>
+</code></pre></div>
+<p><a name="retrieving-an-input-value"></a></p>
+<h4 id="_15">入力値の取得<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h4>
+<p>いくつかの簡単なメソッドを使用して、リクエストに使用されたHTTPメソッドを気にすることなく、<code>Illuminate\Http\Request</code>インスタンスからすべてのユーザー入力にアクセスできます。HTTPメソッドに関係なく、<code>input</code>メソッドを使用してユーザー入力を取得できます。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$name</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">input</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><code>input</code>メソッドの第2引数としてデフォルト値を渡すことができます。リクエストに要求された入力値が存在しない場合、この値が返されます。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$name</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">input</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;Sally&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p>配列入力を含むフォームを操作する場合、"ドット"記法を使用して配列にアクセスできます。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$name</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">input</span><span class="p">(</span><span class="s1">&#39;products.0.name&#39;</span><span class="p">);</span>
+
+<span class="nv">$names</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">input</span><span class="p">(</span><span class="s1">&#39;products.*.name&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p>引数なしで<code>input</code>メソッドを呼び出すことで、すべての入力値を連想配列として取得できます。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$input</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">input</span><span class="p">();</span>
+</code></pre></div>
+<p><a name="retrieving-input-from-the-query-string"></a></p>
+<h4 id="_16">クエリ文字列からの入力取得<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h4>
+<p><code>input</code>メソッドはクエリ文字列を含むリクエストペイロード全体から値を取得しますが、<code>query</code>メソッドはクエリ文字列からのみ値を取得します。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$name</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p>要求されたクエリ文字列の値が存在しない場合、このメソッドの第2引数が返されます。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$name</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;Helen&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p>引数なしで<code>query</code>メソッドを呼び出すことで、すべてのクエリ文字列の値を連想配列として取得できます。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$query</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">();</span>
+</code></pre></div>
+<p><a name="retrieving-json-input-values"></a></p>
+<h4 id="json">JSON入力値の取得<a class="headerlink" href="#json" title="Permanent link">&para;</a></h4>
+<p>アプリケーションにJSONリクエストを送信する場合、<code>Content-Type</code>ヘッダーが適切に<code>application/json</code>に設定されていれば、<code>input</code>メソッドを介してJSONデータにアクセスできます。JSON配列/オブジェクト内にネストされた値を取得するために、"ドット"記法を使用することもできます。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$name</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">input</span><span class="p">(</span><span class="s1">&#39;user.name&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="retrieving-stringable-input-values"></a></p>
+<h4 id="_17">文字列化可能な入力値の取得<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h4>
+<p>リクエストの入力データをプリミティブな<code>string</code>としてではなく、<code>string</code>メソッドを使用して<a href="strings.html"><code>Illuminate\Support\Stringable</code></a>のインスタンスとして取得することができます。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$name</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">string</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">trim</span><span class="p">();</span>
+</code></pre></div>
+<p><a name="retrieving-integer-input-values"></a></p>
+<h4 id="_18">整数入力値の取得<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h4>
+<p>入力値を整数として取得するには、<code>integer</code>メソッドを使用できます。このメソッドは入力値を整数にキャストしようとします。入力が存在しないかキャストに失敗した場合、指定したデフォルト値を返します。これはページネーションやその他の数値入力に特に便利です。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$perPage</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">integer</span><span class="p">(</span><span class="s1">&#39;per_page&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="retrieving-boolean-input-values"></a></p>
+<h4 id="_19">ブール入力値の取得<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h4>
+<p>チェックボックスのようなHTML要素を扱う場合、アプリケーションは実際には文字列である"真"の値を受け取ることがあります。例えば、"true"や"on"です。便宜上、<code>boolean</code>メソッドを使用してこれらの値をブール値として取得できます。<code>boolean</code>メソッドは、1、"1"、true、"true"、"on"、"yes"に対して<code>true</code>を返します。その他のすべての値は<code>false</code>を返します。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$archived</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">boolean</span><span class="p">(</span><span class="s1">&#39;archived&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="retrieving-date-input-values"></a></p>
+<h4 id="_20">日付入力値の取得<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h4>
+<p>便宜上、日付/時刻を含む入力値は、<code>date</code>メソッドを使用してCarbonインスタンスとして取得できます。リクエストに指定された名前の入力値が存在しない場合、<code>null</code>が返されます。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$birthday</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">date</span><span class="p">(</span><span class="s1">&#39;birthday&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><code>date</code>メソッドの第2引数と第3引数は、それぞれ日付のフォーマットとタイムゾーンを指定するために使用できます。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$elapsed</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">date</span><span class="p">(</span><span class="s1">&#39;elapsed&#39;</span><span class="p">,</span> <span class="s1">&#39;!H:i&#39;</span><span class="p">,</span> <span class="s1">&#39;Europe/Madrid&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p>入力値が存在するが無効なフォーマットの場合、<code>InvalidArgumentException</code>がスローされます。したがって、<code>date</code>メソッドを呼び出す前に入力を検証することをお勧めします。</p>
+<p><a name="retrieving-enum-input-values"></a></p>
+<h4 id="_21">列挙型入力値の取得<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h4>
+<p><a href="https://www.php.net/manual/en/language.types.enumerations.php">PHPの列挙型</a>に対応する入力値もリクエストから取得できます。リクエストに指定された名前の入力値が存在しないか、列挙型に入力値に一致するバッキング値がない場合、<code>null</code>が返されます。<code>enum</code>メソッドは、入力値の名前と列挙型クラスを第1引数と第2引数として受け取ります。</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">App\Enums\Status</span><span class="p">;</span>
+
+<span class="nv">$status</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">enum</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">,</span> <span class="nx">Status</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="retrieving-input-via-dynamic-properties"></a></p>
+<h4 id="_22">動的プロパティによる入力の取得<a class="headerlink" href="#_22" title="Permanent link">&para;</a></h4>
+<p><code>Illuminate\Http\Request</code>インスタンスの動的プロパティを使用してユーザー入力にアクセスすることもできます。例えば、アプリケーションのフォームに<code>name</code>フィールドが含まれている場合、次のようにフィールドの値にアクセスできます。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$name</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span>
+</code></pre></div>
+<p>動的プロパティを使用する場合、Laravelは最初にリクエストペイロード内でパラメータの値を探します。存在しない場合、Laravelはマッチしたルートのパラメータ内でフィールドを探します。</p>
+<p><a name="retrieving-a-portion-of-the-input-data"></a></p>
+<h4 id="_23">入力データの一部の取得<a class="headerlink" href="#_23" title="Permanent link">&para;</a></h4>
+<p>入力データのサブセットを取得する必要がある場合、<code>only</code>メソッドと<code>except</code>メソッドを使用できます。これらのメソッドは、単一の<code>array</code>または動的な引数リストを受け取ります。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$input</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">only</span><span class="p">([</span><span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;password&#39;</span><span class="p">]);</span>
+
+<span class="nv">$input</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">only</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;password&#39;</span><span class="p">);</span>
+
+<span class="nv">$input</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">except</span><span class="p">([</span><span class="s1">&#39;credit_card&#39;</span><span class="p">]);</span>
+
+<span class="nv">$input</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">except</span><span class="p">(</span><span class="s1">&#39;credit_card&#39;</span><span class="p">);</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><code>only</code>メソッドは要求したすべてのキー/値のペアを返しますが、リクエストに存在しないキー/値のペアは返しません。</p>
+</div>
+<p><a name="input-presence"></a></p>
+<h3 id="_24">入力の存在<a class="headerlink" href="#_24" title="Permanent link">&para;</a></h3>
+<p><code>has</code>メソッドを使用して、リクエストに値が存在するかどうかを判断できます。<code>has</code>メソッドは、値がリクエストに存在する場合に<code>true</code>を返します。</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="p">(</span><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">has</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>配列を指定すると、<code>has</code>メソッドは指定されたすべての値が存在するかどうかを判断します。</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="p">(</span><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">has</span><span class="p">([</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;email&#39;</span><span class="p">]))</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>hasAny</code>メソッドは、指定された値のいずれかが存在する場合に<code>true</code>を返します。</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="p">(</span><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">hasAny</span><span class="p">([</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;email&#39;</span><span class="p">]))</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>whenHas</code>メソッドは、リクエストに値が存在する場合に指定されたクロージャを実行します。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">whenHas</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">string</span> <span class="nv">$input</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">});</span>
+</code></pre></div>
+<p><code>whenHas</code>メソッドには、指定された値がリクエストに存在しない場合に実行される第2クロージャを渡すことができます。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">whenHas</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">string</span> <span class="nv">$input</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// &quot;name&quot;値が存在する...</span>
+<span class="p">},</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// &quot;name&quot;値が存在しない...</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>リクエストに値が存在し、空の文字列でないかどうかを判断したい場合は、<code>filled</code>メソッドを使用できます。</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="p">(</span><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">filled</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>リクエストに値が存在しないか、空の文字列であるかどうかを判断したい場合は、<code>isNotFilled</code>メソッドを使用できます。</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="p">(</span><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">isNotFilled</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>配列を指定すると、<code>isNotFilled</code>メソッドは指定されたすべての値が存在しないか空であるかどうかを判断します。</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="p">(</span><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">isNotFilled</span><span class="p">([</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;email&#39;</span><span class="p">]))</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>anyFilled</code>メソッドは、指定された値のいずれかが空の文字列でない場合に<code>true</code>を返します。</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="p">(</span><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">anyFilled</span><span class="p">([</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;email&#39;</span><span class="p">]))</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>whenFilled</code>メソッドは、リクエストに値が存在し、空の文字列でない場合に指定されたクロージャを実行します。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">whenFilled</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">string</span> <span class="nv">$input</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">});</span>
+</code></pre></div>
+<p><code>whenFilled</code>メソッドには、指定された値が"filled"でない場合に実行される第2クロージャを渡すことができます。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">whenFilled</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">string</span> <span class="nv">$input</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// &quot;name&quot;値がfilled...</span>
+<span class="p">},</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// &quot;name&quot;値がfilledでない...</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>リクエストに指定されたキーが存在しないかどうかを判断するには、<code>missing</code>メソッドと<code>whenMissing</code>メソッドを使用できます。</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="p">(</span><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">missing</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="nv">$request</span><span class="o">-&gt;</span><span class="na">whenMissing</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// &quot;name&quot;値が存在しない...</span>
+<span class="p">},</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// &quot;name&quot;値が存在する...</span>
+<span class="p">});</span>
+</code></pre></div>
+<p><a name="merging-additional-input"></a></p>
+<h3 id="_25">追加入力のマージ<a class="headerlink" href="#_25" title="Permanent link">&para;</a></h3>
+<p>リクエストの既存の入力データに手動で追加入力をマージする必要がある場合、<code>merge</code>メソッドを使用できます。指定された入力キーがリクエストに既に存在する場合、<code>merge</code>メソッドに提供されたデータによって上書きされます。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">merge</span><span class="p">([</span><span class="s1">&#39;votes&#39;</span> <span class="o">=&gt;</span> <span class="mi">0</span><span class="p">]);</span>
+</code></pre></div>
+<p><code>mergeIfMissing</code>メソッドは、対応するキーがリクエストの入力データ内にまだ存在しない場合に入力をリクエストにマージするために使用できます。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">mergeIfMissing</span><span class="p">([</span><span class="s1">&#39;votes&#39;</span> <span class="o">=&gt;</span> <span class="mi">0</span><span class="p">]);</span>
+</code></pre></div>
+<p><a name="old-input"></a></p>
+<h3 id="_26">古い入力<a class="headerlink" href="#_26" title="Permanent link">&para;</a></h3>
+<p>Laravelでは、次のリクエスト中に1つのリクエストからの入力を保持することができます。この機能は、検証エラーを検出した後にフォームを再入力する場合に特に便利です。ただし、Laravelの組み込みの<a href="validation.html">検証機能</a>を使用している場合、これらのセッション入力フラッシュメソッドを直接使用する必要がない可能性があります。Laravelの一部の組み込み検証機能は、自動的にこれらのメソッドを呼び出すためです。</p>
+<p><a name="flashing-input-to-the-session"></a></p>
+<h4 id="_27">セッションへの入力のフラッシュ<a class="headerlink" href="#_27" title="Permanent link">&para;</a></h4>
+<p>セッションに入力をフラッシュする方法については、Laravelのドキュメントを参照してください。</p>
+<p><code>Illuminate\Http\Request</code>クラスの<code>flash</code>メソッドは、現在の入力を<a href="session.html">セッション</a>に保存します。これにより、ユーザーが次にアプリケーションにリクエストを送信したときにそのデータが利用可能になります。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">flash</span><span class="p">();</span>
+</code></pre></div>
+<p>また、<code>flashOnly</code>と<code>flashExcept</code>メソッドを使用して、リクエストデータの一部をセッションに保存することもできます。これらのメソッドは、パスワードなどの機密情報をセッションから除外するのに便利です。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">flashOnly</span><span class="p">([</span><span class="s1">&#39;username&#39;</span><span class="p">,</span> <span class="s1">&#39;email&#39;</span><span class="p">]);</span>
+
+<span class="nv">$request</span><span class="o">-&gt;</span><span class="na">flashExcept</span><span class="p">(</span><span class="s1">&#39;password&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="flashing-input-then-redirecting"></a></p>
+<h4 id="_28">入力を保存してからリダイレクト<a class="headerlink" href="#_28" title="Permanent link">&para;</a></h4>
+<p>多くの場合、入力をセッションに保存してから前のページにリダイレクトすることがあります。<code>withInput</code>メソッドを使用して、リダイレクトに入力保存を簡単に連鎖させることができます。</p>
+<div class="highlight"><pre><span></span><code><span class="k">return</span> <span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/form&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">withInput</span><span class="p">();</span>
+
+<span class="k">return</span> <span class="nx">redirect</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">route</span><span class="p">(</span><span class="s1">&#39;user.create&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">withInput</span><span class="p">();</span>
+
+<span class="k">return</span> <span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/form&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">withInput</span><span class="p">(</span>
+    <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">except</span><span class="p">(</span><span class="s1">&#39;password&#39;</span><span class="p">)</span>
+<span class="p">);</span>
+</code></pre></div>
+<p><a name="retrieving-old-input"></a></p>
+<h4 id="_29">古い入力の取得<a class="headerlink" href="#_29" title="Permanent link">&para;</a></h4>
+<p>前回のリクエストから保存された入力を取得するには、<code>Illuminate\Http\Request</code>のインスタンスで<code>old</code>メソッドを呼び出します。<code>old</code>メソッドは、以前に保存された入力データを<a href="session.html">セッション</a>から取得します。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$username</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">old</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p>Laravelはまた、グローバルな<code>old</code>ヘルパーも提供しています。<a href="blade.html">Bladeテンプレート</a>内で古い入力を表示する場合、<code>old</code>ヘルパーを使用してフォームを再入力すると便利です。指定されたフィールドに古い入力が存在しない場合、<code>null</code>が返されます。</p>
+<div class="highlight"><pre><span></span><code><span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;username&quot;</span> <span class="nx">value</span><span class="o">=</span><span class="s2">&quot;{{ old(&#39;username&#39;) }}&quot;</span><span class="o">&gt;</span>
+</code></pre></div>
+<p><a name="cookies"></a></p>
+<h3 id="_30">クッキー<a class="headerlink" href="#_30" title="Permanent link">&para;</a></h3>
+<p><a name="retrieving-cookies-from-requests"></a></p>
+<h4 id="_31">リクエストからクッキーを取得<a class="headerlink" href="#_31" title="Permanent link">&para;</a></h4>
+<p>Laravelフレームワークによって作成されたすべてのクッキーは、認証コードで暗号化されて署名されています。つまり、クライアントによって変更された場合、無効と見なされます。リクエストからクッキー値を取得するには、<code>Illuminate\Http\Request</code>インスタンスの<code>cookie</code>メソッドを使用します。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$value</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">cookie</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="input-trimming-and-normalization"></a></p>
+<h2 id="_32">入力のトリミングと正規化<a class="headerlink" href="#_32" title="Permanent link">&para;</a></h2>
+<p>デフォルトでは、Laravelにはアプリケーションのグローバルミドルウェアスタックに<code>Illuminate\Foundation\Http\Middleware\TrimStrings</code>と<code>Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull</code>ミドルウェアが含まれています。これらのミドルウェアは、リクエストのすべての文字列入力フィールドを自動的にトリミングし、空の文字列フィールドを<code>null</code>に変換します。これにより、ルートやコントローラでこれらの正規化の問題を気にする必要がなくなります。</p>
+<h4 id="_33">入力の正規化を無効にする<a class="headerlink" href="#_33" title="Permanent link">&para;</a></h4>
+<p>すべてのリクエストに対してこの動作を無効にしたい場合は、アプリケーションのミドルウェアスタックから2つのミドルウェアを削除することができます。これは、アプリケーションの<code>bootstrap/app.php</code>ファイルで<code>$middleware-&gt;remove</code>メソッドを呼び出すことで行います。</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Foundation\Http\Middleware\TrimStrings</span><span class="p">;</span>
+
+<span class="o">-&gt;</span><span class="na">withMiddleware</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nx">Middleware</span> <span class="nv">$middleware</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$middleware</span><span class="o">-&gt;</span><span class="na">remove</span><span class="p">([</span>
+        <span class="nx">ConvertEmptyStringsToNull</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+        <span class="nx">TrimStrings</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+    <span class="p">]);</span>
+<span class="p">})</span>
+</code></pre></div>
+<p>アプリケーションへのリクエストのサブセットに対して文字列のトリミングと空の文字列の変換を無効にしたい場合は、アプリケーションの<code>bootstrap/app.php</code>ファイル内で<code>trimStrings</code>と<code>convertEmptyStringsToNull</code>ミドルウェアメソッドを使用できます。どちらのメソッドも、入力の正規化をスキップするかどうかを示す<code>true</code>または<code>false</code>を返すクロージャの配列を受け取ります。</p>
+<div class="highlight"><pre><span></span><code><span class="o">-&gt;</span><span class="na">withMiddleware</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nx">Middleware</span> <span class="nv">$middleware</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$middleware</span><span class="o">-&gt;</span><span class="na">convertEmptyStringsToNull</span><span class="p">(</span><span class="nx">except</span><span class="o">:</span> <span class="p">[</span>
+        <span class="nx">fn</span> <span class="p">(</span><span class="nx">Request</span> <span class="nv">$request</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">is</span><span class="p">(</span><span class="s1">&#39;admin/*&#39;</span><span class="p">),</span>
+    <span class="p">]);</span>
+
+    <span class="nv">$middleware</span><span class="o">-&gt;</span><span class="na">trimStrings</span><span class="p">(</span><span class="nx">except</span><span class="o">:</span> <span class="p">[</span>
+        <span class="nx">fn</span> <span class="p">(</span><span class="nx">Request</span> <span class="nv">$request</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">is</span><span class="p">(</span><span class="s1">&#39;admin/*&#39;</span><span class="p">),</span>
+    <span class="p">]);</span>
+<span class="p">})</span>
+</code></pre></div>
+<p><a name="files"></a></p>
+<h2 id="_34">ファイル<a class="headerlink" href="#_34" title="Permanent link">&para;</a></h2>
+<p><a name="retrieving-uploaded-files"></a></p>
+<h3 id="_35">アップロードされたファイルの取得<a class="headerlink" href="#_35" title="Permanent link">&para;</a></h3>
+<p><code>Illuminate\Http\Request</code>インスタンスからアップロードされたファイルを取得するには、<code>file</code>メソッドまたは動的プロパティを使用します。<code>file</code>メソッドは、PHPの<code>SplFileInfo</code>クラスを拡張し、ファイルと対話するためのさまざまなメソッドを提供する<code>Illuminate\Http\UploadedFile</code>クラスのインスタンスを返します。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$file</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">file</span><span class="p">(</span><span class="s1">&#39;photo&#39;</span><span class="p">);</span>
+
+<span class="nv">$file</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">photo</span><span class="p">;</span>
+</code></pre></div>
+<p><code>hasFile</code>メソッドを使用して、リクエストにファイルが存在するかどうかを確認できます。</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="p">(</span><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">hasFile</span><span class="p">(</span><span class="s1">&#39;photo&#39;</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><a name="validating-successful-uploads"></a></p>
+<h4 id="_36">アップロードの成功を検証<a class="headerlink" href="#_36" title="Permanent link">&para;</a></h4>
+<p>ファイルが存在するかどうかを確認するだけでなく、<code>isValid</code>メソッドを介してファイルのアップロードに問題がなかったかどうかを検証できます。</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="p">(</span><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">file</span><span class="p">(</span><span class="s1">&#39;photo&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">isValid</span><span class="p">())</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><a name="file-paths-extensions"></a></p>
+<h4 id="_37">ファイルパスと拡張子<a class="headerlink" href="#_37" title="Permanent link">&para;</a></h4>
+<p><code>UploadedFile</code>クラスには、ファイルの完全修飾パスとその拡張子にアクセスするためのメソッドも含まれています。<code>extension</code>メソッドは、ファイルの内容に基づいてファイルの拡張子を推測しようとします。この拡張子は、クライアントから提供された拡張子と異なる場合があります。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$path</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">photo</span><span class="o">-&gt;</span><span class="na">path</span><span class="p">();</span>
+
+<span class="nv">$extension</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">photo</span><span class="o">-&gt;</span><span class="na">extension</span><span class="p">();</span>
+</code></pre></div>
+<p><a name="other-file-methods"></a></p>
+<h4 id="_38">その他のファイルメソッド<a class="headerlink" href="#_38" title="Permanent link">&para;</a></h4>
+<p><code>UploadedFile</code>インスタンスには、他にもさまざまなメソッドが利用可能です。これらのメソッドに関する詳細情報については、<a href="https://github.com/symfony/symfony/blob/6.0/src/Symfony/Component/HttpFoundation/File/UploadedFile.php">クラスのAPIドキュメント</a>を確認してください。</p>
+<p><a name="storing-uploaded-files"></a></p>
+<h3 id="_39">アップロードされたファイルの保存<a class="headerlink" href="#_39" title="Permanent link">&para;</a></h3>
+<p>アップロードされたファイルを保存するには、通常、設定された<a href="filesystem.html">ファイルシステム</a>のいずれかを使用します。<code>UploadedFile</code>クラスには、アップロードされたファイルをディスクの1つに移動する<code>store</code>メソッドがあります。これは、ローカルファイルシステム上の場所やAmazon S3などのクラウドストレージ場所である可能性があります。</p>
+<p><code>store</code>メソッドは、ファイルシステムの設定されたルートディレクトリからの相対パスでファイルを保存する場所を受け取ります。このパスにはファイル名を含めるべきではありません。一意のIDが自動的に生成され、ファイル名として使用されます。</p>
+<p><code>store</code>メソッドは、ファイルを保存するために使用するディスクの名前を指定するためのオプションの2番目の引数も受け取ります。このメソッドは、ディスクのルートからの相対パスを返します。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$path</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">photo</span><span class="o">-&gt;</span><span class="na">store</span><span class="p">(</span><span class="s1">&#39;images&#39;</span><span class="p">);</span>
+
+<span class="nv">$path</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">photo</span><span class="o">-&gt;</span><span class="na">store</span><span class="p">(</span><span class="s1">&#39;images&#39;</span><span class="p">,</span> <span class="s1">&#39;s3&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p>自動生成されたファイル名を使用したくない場合は、<code>storeAs</code>メソッドを使用できます。このメソッドは、パス、ファイル名、ディスク名を引数として受け取ります。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$path</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">photo</span><span class="o">-&gt;</span><span class="na">storeAs</span><span class="p">(</span><span class="s1">&#39;images&#39;</span><span class="p">,</span> <span class="s1">&#39;filename.jpg&#39;</span><span class="p">);</span>
+
+<span class="nv">$path</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">photo</span><span class="o">-&gt;</span><span class="na">storeAs</span><span class="p">(</span><span class="s1">&#39;images&#39;</span><span class="p">,</span> <span class="s1">&#39;filename.jpg&#39;</span><span class="p">,</span> <span class="s1">&#39;s3&#39;</span><span class="p">);</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Laravelでのファイルストレージの詳細については、完全な<a href="filesystem.html">ファイルストレージドキュメント</a>を確認してください。</p>
+</div>
+<p><a name="configuring-trusted-proxies"></a></p>
+<h2 id="_40">信頼できるプロキシの設定<a class="headerlink" href="#_40" title="Permanent link">&para;</a></h2>
+<p>TLS / SSL証明書を終端するロードバランサーの背後でアプリケーションを実行している場合、<code>url</code>ヘルパーを使用するときにアプリケーションがHTTPSリンクを生成しないことに気付くかもしれません。通常、これはアプリケーションがロードバランサーからポート80でトラフィックを転送されており、安全なリンクを生成する必要があることを認識していないためです。</p>
+<p>これを解決するために、Laravelアプリケーションに含まれる<code>Illuminate\Http\Middleware\TrustProxies</code>ミドルウェアを有効にすることができます。これにより、アプリケーションが信頼するロードバランサーやプロキシをすばやくカスタマイズできます。信頼できるプロキシは、アプリケーションの<code>bootstrap/app.php</code>ファイルで<code>trustProxies</code>ミドルウェアメソッドを使用して指定する必要があります。</p>
+<div class="highlight"><pre><span></span><code><span class="o">-&gt;</span><span class="na">withMiddleware</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nx">Middleware</span> <span class="nv">$middleware</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$middleware</span><span class="o">-&gt;</span><span class="na">trustProxies</span><span class="p">(</span><span class="nx">at</span><span class="o">:</span> <span class="p">[</span>
+        <span class="s1">&#39;192.168.1.1&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;10.0.0.0/8&#39;</span><span class="p">,</span>
+    <span class="p">]);</span>
+<span class="p">})</span>
+</code></pre></div>
+<p>信頼できるプロキシを設定するだけでなく、信頼するプロキシヘッダーも設定できます。</p>
+<div class="highlight"><pre><span></span><code><span class="o">-&gt;</span><span class="na">withMiddleware</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nx">Middleware</span> <span class="nv">$middleware</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$middleware</span><span class="o">-&gt;</span><span class="na">trustProxies</span><span class="p">(</span><span class="nx">headers</span><span class="o">:</span> <span class="nx">Request</span><span class="o">::</span><span class="na">HEADER_X_FORWARDED_FOR</span> <span class="o">|</span>
+        <span class="nx">Request</span><span class="o">::</span><span class="na">HEADER_X_FORWARDED_HOST</span> <span class="o">|</span>
+        <span class="nx">Request</span><span class="o">::</span><span class="na">HEADER_X_FORWARDED_PORT</span> <span class="o">|</span>
+        <span class="nx">Request</span><span class="o">::</span><span class="na">HEADER_X_FORWARDED_PROTO</span> <span class="o">|</span>
+        <span class="nx">Request</span><span class="o">::</span><span class="na">HEADER_X_FORWARDED_AWS_ELB</span>
+    <span class="p">);</span>
+<span class="p">})</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>AWS Elastic Load Balancingを使用している場合、<code>headers</code>の値は<code>Request::HEADER_X_FORWARDED_AWS_ELB</code>である必要があります。ロードバランサーが<a href="https://www.rfc-editor.org/rfc/rfc7239#section-4">RFC 7239</a>の標準<code>Forwarded</code>ヘッダーを使用している場合、<code>headers</code>の値は<code>Request::HEADER_FORWARDED</code>である必要があります。<code>headers</code>の値で使用できる定数の詳細については、Symfonyの<a href="https://symfony.com/doc/7.0/deployment/proxies.html">信頼できるプロキシ</a>に関するドキュメントを確認してください。</p>
+</div>
+<p><a name="trusting-all-proxies"></a></p>
+<h4 id="_41">すべてのプロキシを信頼<a class="headerlink" href="#_41" title="Permanent link">&para;</a></h4>
+<p>Amazon AWSや他の「クラウド」ロードバランサープロバイダーを使用している場合、実際のバランサーのIPアドレスがわからない場合があります。この場合、<code>*</code>を使用してすべてのプロキシを信頼することができます。</p>
+<div class="highlight"><pre><span></span><code><span class="o">-&gt;</span><span class="na">withMiddleware</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nx">Middleware</span> <span class="nv">$middleware</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$middleware</span><span class="o">-&gt;</span><span class="na">trustProxies</span><span class="p">(</span><span class="nx">at</span><span class="o">:</span> <span class="s1">&#39;*&#39;</span><span class="p">);</span>
+<span class="p">})</span>
+</code></pre></div>
+<p><a name="configuring-trusted-hosts"></a></p>
+<h2 id="_42">信頼できるホストの設定<a class="headerlink" href="#_42" title="Permanent link">&para;</a></h2>
+<p>デフォルトでは、Laravelは受信するすべてのリクエストに応答し、HTTPリクエストの<code>Host</code>ヘッダーの内容に関係なく、アプリケーションへの絶対URLを生成する際に<code>Host</code>ヘッダーの値を使用します。</p>
+<p>通常、この動作は望ましいものですが、一部の環境では、アプリケーションが特定のホスト名のみに応答するように制限する必要がある場合があります。これを実現するために、Laravelには<code>Illuminate\Http\Middleware\TrustHosts</code>ミドルウェアが含まれています。このミドルウェアを有効にすると、アプリケーションが信頼するホストを指定できます。</p>
+<p><code>TrustHosts</code> ミドルウェアを有効にするには、アプリケーションの <code>bootstrap/app.php</code> ファイルで <code>trustHosts</code> ミドルウェアメソッドを呼び出す必要があります。 このメソッドの <code>at</code> 引数を使用して、アプリケーションが応答すべきホスト名を指定することができます。 その他の <code>Host</code> ヘッダーを含む受信リクエストは拒否されます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="o">-&gt;</span><span class="na">withMiddleware</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nx">Middleware</span> <span class="nv">$middleware</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="nv">$middleware</span><span class="o">-&gt;</span><span class="na">trustHosts</span><span class="p">(</span><span class="nx">at</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;laravel.test&#39;</span><span class="p">]);</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="p">})</span>
+</code></pre></div>
+<p>デフォルトでは、アプリケーションのURLのサブドメインからのリクエストも自動的に信頼されます。この動作を無効にしたい場合は、<code>subdomains</code>引数を使用できます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="o">-&gt;</span><span class="na">withMiddleware</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nx">Middleware</span> <span class="nv">$middleware</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="nv">$middleware</span><span class="o">-&gt;</span><span class="na">trustHosts</span><span class="p">(</span><span class="nx">at</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;laravel.test&#39;</span><span class="p">],</span> <span class="nx">subdomains</span><span class="o">:</span> <span class="k">false</span><span class="p">);</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="p">})</span>
+</code></pre></div>
+<p>信頼されるホストを決定するためにアプリケーションの設定ファイルやデータベースにアクセスする必要がある場合は、<code>at</code>引数にクロージャを提供できます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="o">-&gt;</span><span class="na">withMiddleware</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nx">Middleware</span> <span class="nv">$middleware</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="nv">$middleware</span><span class="o">-&gt;</span><span class="na">trustHosts</span><span class="p">(</span><span class="nx">at</span><span class="o">:</span> <span class="nx">fn</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="nx">config</span><span class="p">(</span><span class="s1">&#39;app.trusted_hosts&#39;</span><span class="p">));</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="p">})</span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+<nav class="md-footer-nav">
+    
+    
+</nav>
+
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": ".", "features": ["back-to-top", "navigation.expand", "navigation.tabs", "navigation.footer", "navigation.sections", "navigation.expand", "content.code.copy", "hide_repository_button", "content.code.annotate", "content.tabs.link", "toc.none", "content.action.edit"], "search": "assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="assets/javascripts/bundle.56dfad97.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,4362 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://github.com/koriym/laravel11-ja/valet.html">
+      
+      
+        <link rel="prev" href="telescope.html">
+      
+      
+      
+      <link rel="icon" href="assets/images/favicon_io/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.35">
+    
+    
+      
+        <title>Valet - L11JA</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.35f28582.min.css">
+      
+      
+
+
+    
+    
+
+    
+
+    
+      <link rel="stylesheet" href="assets/css/php.css">
+    
+      <link rel="stylesheet" href="assets/css/mkdocs_material_extra.css">
+    
+      <link rel="stylesheet" href="assets/css/extra.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-G60CEHXLQ1"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-G60CEHXLQ1",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-G60CEHXLQ1",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#laravel-valet" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      <!-- Determine classes -->
+
+
+
+<!-- Header -->
+<header class="md-header" data-md-component="header">
+  <nav
+          class="md-header__inner md-grid"
+          aria-label="Header"
+  >
+
+    <!-- Link to home -->
+    <a
+            href="."
+            title="L11JA"
+            class="md-header__button md-logo"
+            aria-label="L11JA"
+            data-md-component="logo"
+    >
+      
+  <img src="assets/images/logo.png" alt="logo">
+
+    </a>
+
+    <!-- Button to open drawer -->
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+
+    <!-- Header title -->
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            <span style="font-family: 'Noto Sans'; font-size: 20px" >
+            L11JA
+            </span>
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            <span style="font-family: 'Noto Sans Batak'; font-size: 20px" >
+            
+              Valet
+            
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Color palette toggle -->
+    
+
+    <!-- User preference: color palette -->
+    
+    <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+
+    <!-- Site language selector -->
+    
+
+    <!-- Button to open search modal -->
+    
+    <label class="md-header__button md-icon" for="__search">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+    </label>
+
+    <!-- Search interface -->
+    <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    <!-- Repository information -->
+    
+    <div class="md-header__source">
+      
+
+<!--
+  Check whether the repository is hosted on one of the supported code hosting
+  platforms (GitHub, GitLab or Bitbucket) to show icon.
+-->
+
+
+  
+
+
+<!-- Repository containing source -->
+<a href="https://github.com/koriym/l11ja" title="source.link.title"
+    class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z" fill="#000"/></svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+    
+  </nav>
+
+  <!-- Navigation tabs (sticky) -->
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="releases.html" class="md-tabs__link">
+          
+  
+  プロローグ
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="installation.html" class="md-tabs__link">
+          
+  
+  はじめに
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="lifecycle.html" class="md-tabs__link">
+          
+  
+  アーキテクチャ
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="routing.html" class="md-tabs__link">
+          
+  
+  基本
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="artisan.html" class="md-tabs__link">
+          
+  
+  掘り下げる
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="authentication.html" class="md-tabs__link">
+          
+  
+  セキュリティ
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="database.html" class="md-tabs__link">
+          
+  
+  データベース
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="eloquent.html" class="md-tabs__link">
+          
+  
+  Eloquent ORM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="testing.html" class="md-tabs__link">
+          
+  
+  テスト
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="starter-kits.html" class="md-tabs__link">
+          
+  
+  パッケージ
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="L11JA" class="md-nav__button md-logo" aria-label="L11JA" data-md-component="logo">
+      
+  <img src="assets/images/logo.png" alt="logo">
+
+    </a>
+    L11JA
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+<!--
+  Check whether the repository is hosted on one of the supported code hosting
+  platforms (GitHub, GitLab or Bitbucket) to show icon.
+-->
+
+
+  
+
+
+<!-- Repository containing source -->
+<a href="https://github.com/koriym/l11ja" title="source.link.title"
+    class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z" fill="#000"/></svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    プロローグ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            プロローグ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="releases.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リリースノート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="upgrade.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    アップグレードガイド
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="contributions.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    貢献ガイド
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            はじめに
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="installation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    インストール
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="configuration.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    設定
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structure.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ディレクトリ構造
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="frontend.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    フロントエンド
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="starter-kits.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    スターターキット
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="deployment.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    デプロイ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    アーキテクチャ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            アーキテクチャ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="lifecycle.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リクエストライフサイクル
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="container.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    サービスコンテナ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="providers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    サービスプロバイダ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="facades.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ファサード
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    基本
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            基本
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="routing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ルーティング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="middleware.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ミドルウェア
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="csrf.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CSRF保護
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="controllers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コントローラ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="requests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リクエスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="responses.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    レスポンス
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="views.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ビュー
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="blade.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bladeテンプレート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="vite.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    アセットバンドル
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="urls.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    URL生成
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="session.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    セッション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="validation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    バリデーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="errors.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    エラー処理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="logging.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ログ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    掘り下げる
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            掘り下げる
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="artisan.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Artisanコンソール
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="broadcasting.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ブロードキャスティング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cache.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    キャッシュ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="collections.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コレクション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="concurrency.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    並行処理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="context.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コンテキスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="contracts.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コントラクト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="events.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    イベント
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="filesystem.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ファイルストレージ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="helpers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ヘルパー
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="http-client.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTTPクライアント
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="localization.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ローカライゼーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mail.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    メール
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="notifications.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    通知
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="packages.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    パッケージ開発
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="processes.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    プロセス
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="queues.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    キュー
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="rate-limiting.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    レート制限
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="strings.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    文字列
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="scheduling.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    タスクスケジューリング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    セキュリティ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            セキュリティ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="authentication.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    認証
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="authorization.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    認可
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="verification.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    メール確認
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="encryption.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    暗号化
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hashing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ハッシュ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="passwords.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    パスワードリセット
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    データベース
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            データベース
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="database.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="queries.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    クエリビルダ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pagination.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ページネーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="migrations.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    マイグレーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="seeding.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    シーディング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="redis.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Redis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Eloquent ORM
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Eloquent ORM
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-relationships.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リレーションシップ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-collections.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コレクション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-mutators.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ミューテータ / キャスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-resources.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    APIリソース
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-serialization.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    シリアライゼーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-factories.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ファクトリ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    テスト
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            テスト
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="testing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="http-tests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTTPテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="console-tests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コンソールテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="dusk.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ブラウザテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="database-testing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    データベース
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mocking.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    モック
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    パッケージ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            パッケージ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="starter-kits.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    スターターキット
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="billing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cashier (Stripe)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cashier-paddle.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cashier (Paddle)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="dusk.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ブラウザテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="envoy.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Envoy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fortify.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fortify
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="folio.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Folio
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="homestead.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Homestead
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="horizon.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Horizon
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mix.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mix
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="octane.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Octane
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="passport.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Passport
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pennant.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pennant
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pint.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pint
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="precognition.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Precognition
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="prompts.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prompts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pulse.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pulse
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reverb.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reverb
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sail.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sail
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sanctum.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sanctum
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="scout.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Scout
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="socialite.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Socialite
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="telescope.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Telescope
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Valet
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="valet.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Valet
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      はじめに
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      インストール
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="インストール">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#php" class="md-nav__link">
+    <span class="md-ellipsis">
+      PHPバージョン
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      データベース
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      インストールのリセット
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#valet" class="md-nav__link">
+    <span class="md-ellipsis">
+      Valetのアップグレード
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Valetのアップグレード">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#valet-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Valet 4へのアップグレード
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      サイトの提供
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="サイトの提供">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-park" class="md-nav__link">
+    <span class="md-ellipsis">
+      The park コマンド
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-link" class="md-nav__link">
+    <span class="md-ellipsis">
+      The link コマンド
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tls" class="md-nav__link">
+    <span class="md-ellipsis">
+      TLSでサイトを保護する
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      デフォルトサイトの提供
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#php_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      サイトごとのPHPバージョン
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      サイトの共有
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="サイトの共有">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ngrok" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ngrok経由でのサイト共有
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expose" class="md-nav__link">
+    <span class="md-ellipsis">
+      Expose経由でのサイト共有
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      ローカルネットワーク上でのサイト共有
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      サイト固有の環境変数
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      サービスのプロキシ
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#valet_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      カスタムValetドライバ
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="カスタムValetドライバ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#serves" class="md-nav__link">
+    <span class="md-ellipsis">
+      servesメソッド
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#isstaticfile" class="md-nav__link">
+    <span class="md-ellipsis">
+      isStaticFileメソッド
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frontcontrollerpath" class="md-nav__link">
+    <span class="md-ellipsis">
+      frontControllerPathメソッド
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      ローカルドライバ
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#valet_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      その他のValetコマンド
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#valet_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Valetのディレクトリとファイル
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Valetのディレクトリとファイル">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configvalet" class="md-nav__link">
+    <span class="md-ellipsis">
+      ~/.config/valet
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configvaletdnsmasqd" class="md-nav__link">
+    <span class="md-ellipsis">
+      ~/.config/valet/dnsmasq.d/
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configvaletdrivers" class="md-nav__link">
+    <span class="md-ellipsis">
+      ~/.config/valet/Drivers/
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configvaletnginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      ~/.config/valet/Nginx/
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configvaletsites" class="md-nav__link">
+    <span class="md-ellipsis">
+      ~/.config/valet/Sites/
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configvaletconfigjson" class="md-nav__link">
+    <span class="md-ellipsis">
+      ~/.config/valet/config.json
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configvaletvaletsock" class="md-nav__link">
+    <span class="md-ellipsis">
+      ~/.config/valet/valet.sock
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configvaletlogfpm-phpwwwlog" class="md-nav__link">
+    <span class="md-ellipsis">
+      ~/.config/valet/Log/fpm-php.www.log
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configvaletlognginx-errorlog" class="md-nav__link">
+    <span class="md-ellipsis">
+      ~/.config/valet/Log/nginx-error.log
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usrlocalvarlogphp-fpmlog" class="md-nav__link">
+    <span class="md-ellipsis">
+      /usr/local/var/log/php-fpm.log
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usrlocalvarlognginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      /usr/local/var/log/nginx
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usrlocaletcphpxxconfd" class="md-nav__link">
+    <span class="md-ellipsis">
+      /usr/local/etc/php/X.X/conf.d
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usrlocaletcphpxxphp-fpmdvalet-fpmconf" class="md-nav__link">
+    <span class="md-ellipsis">
+      /usr/local/etc/php/X.X/php-fpm.d/valet-fpm.conf
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#composervendorlaravelvaletclistubssecurevaletconf" class="md-nav__link">
+    <span class="md-ellipsis">
+      ~/.composer/vendor/laravel/valet/cli/stubs/secure.valet.conf
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      ディスクアクセス
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      はじめに
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      インストール
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="インストール">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#php" class="md-nav__link">
+    <span class="md-ellipsis">
+      PHPバージョン
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      データベース
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      インストールのリセット
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#valet" class="md-nav__link">
+    <span class="md-ellipsis">
+      Valetのアップグレード
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Valetのアップグレード">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#valet-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Valet 4へのアップグレード
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      サイトの提供
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="サイトの提供">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-park" class="md-nav__link">
+    <span class="md-ellipsis">
+      The park コマンド
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-link" class="md-nav__link">
+    <span class="md-ellipsis">
+      The link コマンド
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tls" class="md-nav__link">
+    <span class="md-ellipsis">
+      TLSでサイトを保護する
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      デフォルトサイトの提供
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#php_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      サイトごとのPHPバージョン
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      サイトの共有
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="サイトの共有">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ngrok" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ngrok経由でのサイト共有
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expose" class="md-nav__link">
+    <span class="md-ellipsis">
+      Expose経由でのサイト共有
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      ローカルネットワーク上でのサイト共有
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      サイト固有の環境変数
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      サービスのプロキシ
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#valet_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      カスタムValetドライバ
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="カスタムValetドライバ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#serves" class="md-nav__link">
+    <span class="md-ellipsis">
+      servesメソッド
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#isstaticfile" class="md-nav__link">
+    <span class="md-ellipsis">
+      isStaticFileメソッド
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frontcontrollerpath" class="md-nav__link">
+    <span class="md-ellipsis">
+      frontControllerPathメソッド
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      ローカルドライバ
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#valet_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      その他のValetコマンド
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#valet_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Valetのディレクトリとファイル
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Valetのディレクトリとファイル">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configvalet" class="md-nav__link">
+    <span class="md-ellipsis">
+      ~/.config/valet
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configvaletdnsmasqd" class="md-nav__link">
+    <span class="md-ellipsis">
+      ~/.config/valet/dnsmasq.d/
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configvaletdrivers" class="md-nav__link">
+    <span class="md-ellipsis">
+      ~/.config/valet/Drivers/
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configvaletnginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      ~/.config/valet/Nginx/
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configvaletsites" class="md-nav__link">
+    <span class="md-ellipsis">
+      ~/.config/valet/Sites/
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configvaletconfigjson" class="md-nav__link">
+    <span class="md-ellipsis">
+      ~/.config/valet/config.json
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configvaletvaletsock" class="md-nav__link">
+    <span class="md-ellipsis">
+      ~/.config/valet/valet.sock
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configvaletlogfpm-phpwwwlog" class="md-nav__link">
+    <span class="md-ellipsis">
+      ~/.config/valet/Log/fpm-php.www.log
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configvaletlognginx-errorlog" class="md-nav__link">
+    <span class="md-ellipsis">
+      ~/.config/valet/Log/nginx-error.log
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usrlocalvarlogphp-fpmlog" class="md-nav__link">
+    <span class="md-ellipsis">
+      /usr/local/var/log/php-fpm.log
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usrlocalvarlognginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      /usr/local/var/log/nginx
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usrlocaletcphpxxconfd" class="md-nav__link">
+    <span class="md-ellipsis">
+      /usr/local/etc/php/X.X/conf.d
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#usrlocaletcphpxxphp-fpmdvalet-fpmconf" class="md-nav__link">
+    <span class="md-ellipsis">
+      /usr/local/etc/php/X.X/php-fpm.d/valet-fpm.conf
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#composervendorlaravelvaletclistubssecurevaletconf" class="md-nav__link">
+    <span class="md-ellipsis">
+      ~/.composer/vendor/laravel/valet/cli/stubs/secure.valet.conf
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      ディスクアクセス
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/koriym/l11ja/edit/master/docs/valet.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="laravel-valet">Laravel Valet<a class="headerlink" href="#laravel-valet" title="Permanent link">&para;</a></h1>
+<ul>
+<li><a href="#introduction">はじめに</a></li>
+<li><a href="#installation">インストール</a><ul>
+<li><a href="#upgrading-valet">Valetのアップグレード</a></li>
+</ul>
+</li>
+<li><a href="#serving-sites">サイトの提供</a><ul>
+<li><a href="#the-park-command">The "Park" コマンド</a></li>
+<li><a href="#the-link-command">The "Link" コマンド</a></li>
+<li><a href="#securing-sites">TLSでサイトを保護する</a></li>
+<li><a href="#serving-a-default-site">デフォルトサイトの提供</a></li>
+<li><a href="#per-site-php-versions">サイトごとのPHPバージョン</a></li>
+</ul>
+</li>
+<li><a href="#sharing-sites">サイトの共有</a><ul>
+<li><a href="#sharing-sites-on-your-local-network">ローカルネットワーク上でのサイト共有</a></li>
+</ul>
+</li>
+<li><a href="#site-specific-environment-variables">サイト固有の環境変数</a></li>
+<li><a href="#proxying-services">プロキシサービス</a></li>
+<li><a href="#custom-valet-drivers">カスタムValetドライバー</a><ul>
+<li><a href="#local-drivers">ローカルドライバー</a></li>
+</ul>
+</li>
+<li><a href="#other-valet-commands">その他のValetコマンド</a></li>
+<li><a href="#valet-directories-and-files">Valetのディレクトリとファイル</a><ul>
+<li><a href="#disk-access">ディスクアクセス</a></li>
+</ul>
+</li>
+</ul>
+<p><a name="introduction"></a></p>
+<h2 id="_1">はじめに<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>macOSやWindowsでLaravelアプリケーションを開発するためのさらに簡単な方法を探していますか？ <a href="https://herd.laravel.com">Laravel Herd</a>をチェックしてください。Herdには、Laravel開発を始めるために必要なすべてが含まれています。Valet、PHP、Composerなどが含まれています。</p>
+</div>
+<p><a href="https://github.com/laravel/valet">Laravel Valet</a>は、macOSミニマリストのための開発環境です。Laravel Valetは、マシンの起動時に常に<a href="https://www.nginx.com/">Nginx</a>をバックグラウンドで実行するようにMacを設定します。そして、<a href="https://en.wikipedia.org/wiki/Dnsmasq">DnsMasq</a>を使用して、<code>*.test</code>ドメインへのすべてのリクエストをローカルマシンにインストールされたサイトにプロキシします。</p>
+<p>言い換えれば、Valetは約7MBのRAMを使用する、非常に高速なLaravel開発環境です。Valetは<a href="sail.html">Sail</a>や<a href="homestead.html">Homestead</a>の完全な代替品ではありませんが、柔軟な基本機能を好む場合、極端な速度を好む場合、またはRAMが限られたマシンで作業している場合には、優れた代替手段を提供します。</p>
+<p>デフォルトで、Valetは以下を含むがこれに限定されないサポートを提供します：</p>
+<style>
+    #valet-support > ul {
+        column-count: 3; -moz-column-count: 3; -webkit-column-count: 3;
+        line-height: 1.9;
+    }
+</style>
+
+<div id="valet-support">
+<ul>
+<li><a href="https://laravel.com">Laravel</a></li>
+<li><a href="https://roots.io/bedrock/">Bedrock</a></li>
+<li><a href="https://cakephp.org">CakePHP 3</a></li>
+<li><a href="https://www.concretecms.com/">ConcreteCMS</a></li>
+<li><a href="https://contao.org/en/">Contao</a></li>
+<li><a href="https://craftcms.com">Craft</a></li>
+<li><a href="https://www.drupal.org/">Drupal</a></li>
+<li><a href="https://www.expressionengine.com/">ExpressionEngine</a></li>
+<li><a href="https://jigsaw.tighten.co">Jigsaw</a></li>
+<li><a href="https://www.joomla.org/">Joomla</a></li>
+<li><a href="https://github.com/themsaid/katana">Katana</a></li>
+<li><a href="https://getkirby.com/">Kirby</a></li>
+<li><a href="https://magento.com/">Magento</a></li>
+<li><a href="https://octobercms.com/">OctoberCMS</a></li>
+<li><a href="https://sculpin.io/">Sculpin</a></li>
+<li><a href="https://www.slimframework.com">Slim</a></li>
+<li><a href="https://statamic.com">Statamic</a></li>
+<li>静的HTML</li>
+<li><a href="https://symfony.com">Symfony</a></li>
+<li><a href="https://wordpress.org">WordPress</a></li>
+<li><a href="https://framework.zend.com">Zend</a></li>
+</ul>
+</div>
+<p>ただし、独自の<a href="#custom-valet-drivers">カスタムドライバー</a>を使用してValetを拡張することもできます。</p>
+<p><a name="installation"></a></p>
+<h2 id="_2">インストール<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>ValetはmacOSと<a href="https://brew.sh/">Homebrew</a>を必要とします。インストール前に、ApacheやNginxなどの他のプログラムがローカルマシンのポート80をバインドしていないことを確認してください。</p>
+</div>
+<p>まず、Homebrewを<code>update</code>コマンドを使用して最新の状態にする必要があります：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>brew<span class="w"> </span>update
+</code></pre></div>
+<p>次に、Homebrewを使用してPHPをインストールする必要があります：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>brew<span class="w"> </span>install<span class="w"> </span>php
+</code></pre></div>
+<p>PHPをインストールした後、<a href="https://getcomposer.org">Composerパッケージマネージャ</a>をインストールする準備が整います。さらに、<code>$HOME/.composer/vendor/bin</code>ディレクトリがシステムの"PATH"に含まれていることを確認する必要があります。Composerがインストールされたら、Laravel ValetをグローバルComposerパッケージとしてインストールできます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>composer<span class="w"> </span>global<span class="w"> </span>require<span class="w"> </span>laravel/valet
+</code></pre></div>
+<p>最後に、Valetの<code>install</code>コマンドを実行できます。これにより、ValetとDnsMasqが設定およびインストールされます。さらに、Valetが依存するデーモンがシステムの起動時に起動するように設定されます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>valet<span class="w"> </span>install
+</code></pre></div>
+<p>Valetがインストールされたら、ターミナルで<code>ping foobar.test</code>などのコマンドを使用して、任意の<code>*.test</code>ドメインにpingを打ってみてください。Valetが正しくインストールされていれば、このドメインは<code>127.0.0.1</code>で応答するはずです。</p>
+<p>Valetは、マシンの起動時に必要なサービスを自動的に開始します。</p>
+<p><a name="php-versions"></a></p>
+<h4 id="php">PHPバージョン<a class="headerlink" href="#php" title="Permanent link">&para;</a></h4>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>グローバルなPHPバージョンを変更する代わりに、<code>isolate</code> <a href="#per-site-php-versions">コマンド</a>を介してValetにサイトごとのPHPバージョンを使用するよう指示できます。</p>
+</div>
+<p>Valetでは、<code>valet use php@version</code>コマンドを使用してPHPバージョンを切り替えることができます。Valetは、まだインストールされていない場合、Homebrewを介して指定されたPHPバージョンをインストールします：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>valet<span class="w"> </span>use<span class="w"> </span>php@8.2
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>valet<span class="w"> </span>use<span class="w"> </span>php
+</code></pre></div>
+<p>プロジェクトのルートに<code>.valetrc</code>ファイルを作成することもできます。<code>.valetrc</code>ファイルには、サイトが使用するPHPバージョンを含める必要があります：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nv">php</span><span class="o">=</span>php@8.2
+</code></pre></div>
+<p>このファイルが作成されたら、単に<code>valet use</code>コマンドを実行するだけで、コマンドはファイルを読み取ってサイトの優先PHPバージョンを決定します。</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Valetは一度に1つのPHPバージョンのみを提供します。複数のPHPバージョンがインストールされている場合でも同様です。</p>
+</div>
+<p><a name="database"></a></p>
+<h4 id="_3">データベース<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
+<p>アプリケーションがデータベースを必要とする場合は、<a href="https://dbngin.com">DBngin</a>をチェックしてください。DBnginは、MySQL、PostgreSQL、Redisを含む無料のオールインワンデータベース管理ツールを提供します。DBnginがインストールされたら、<code>127.0.0.1</code>でデータベースに接続できます。ユーザー名は<code>root</code>、パスワードは空文字列を使用します。</p>
+<p><a name="resetting-your-installation"></a></p>
+<h4 id="_4">インストールのリセット<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
+<p>Valetのインストールが正しく実行されない場合、<code>composer global require laravel/valet</code>コマンドを実行してから<code>valet install</code>を実行すると、インストールをリセットし、さまざまな問題を解決できます。まれに、<code>valet uninstall --force</code>を実行してから<code>valet install</code>を実行することで、Valetを「ハードリセット」する必要があるかもしれません。</p>
+<p><a name="upgrading-valet"></a></p>
+<h3 id="valet">Valetのアップグレード<a class="headerlink" href="#valet" title="Permanent link">&para;</a></h3>
+<p>ターミナルで<code>composer global require laravel/valet</code>コマンドを実行することで、Valetのインストールをアップグレードできます。アップグレード後、<code>valet install</code>コマンドを実行して、必要に応じてValetが設定ファイルに追加のアップグレードを行うようにするのが良い習慣です。</p>
+<p><a name="upgrading-to-valet-4"></a></p>
+<h4 id="valet-4">Valet 4へのアップグレード<a class="headerlink" href="#valet-4" title="Permanent link">&para;</a></h4>
+<p>Valet 3からValet 4にアップグレードする場合は、以下の手順に従ってValetのインストールを適切にアップグレードしてください：</p>
+<div class="content-list">
+<ul>
+<li>サイトのPHPバージョンをカスタマイズするために<code>.valetphprc</code>ファイルを追加した場合、各<code>.valetphprc</code>ファイルの名前を<code>.valetrc</code>に変更してください。そして、<code>.valetrc</code>ファイルの既存の内容の前に<code>php=</code>を付けてください。</li>
+<li>カスタムドライバーを新しいドライバーシステムの名前空間、拡張子、タイプヒント、および戻り値のタイプヒントに一致するように更新してください。Valetの<a href="https://github.com/laravel/valet/blob/d7787c025e60abc24a5195dc7d4c5c6f2d984339/cli/stubs/SampleValetDriver.php">SampleValetDriver</a>を例として参照できます。</li>
+<li>PHP 7.1 - 7.4を使用してサイトを提供している場合、Valetが一部のスクリプトを実行するために使用するバージョン8.0以上のPHPをHomebrewを使用してインストールしていることを確認してください。これは、プライマリリンクされたバージョンではない場合でも、Valetがこのバージョンを使用することを意味します。</li>
+</ul>
+</div>
+<p><a name="serving-sites"></a></p>
+<h2 id="_5">サイトの提供<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>Valetがインストールされたら、Laravelアプリケーションの提供を開始する準備が整いました。Valetは、アプリケーションを提供するのに役立つ2つのコマンドを提供します：<code>park</code>と<code>link</code>。</p>
+<p><a name="the-park-command"></a></p>
+<h3 id="the-park">The <code>park</code> コマンド<a class="headerlink" href="#the-park" title="Permanent link">&para;</a></h3>
+<p><code>park</code>コマンドは、マシン上のディレクトリを登録します。このディレクトリに含まれるすべてのディレクトリは、<code>http://&lt;directory-name&gt;.test</code>でWebブラウザからアクセスできるようになります：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">cd</span><span class="w"> </span>~/Sites
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>valet<span class="w"> </span>park
+</code></pre></div>
+<p>それでおしまいです。これで、「パークされた」ディレクトリ内に作成したすべてのアプリケーションは、<code>http://&lt;directory-name&gt;.test</code>の規則を使用して自動的に提供されます。したがって、パークされたディレクトリに「laravel」という名前のディレクトリが含まれている場合、そのディレクトリ内のアプリケーションは<code>http://laravel.test</code>でアクセスできます。さらに、Valetはワイルドカードサブドメイン（<code>http://foo.laravel.test</code>）を使用してサイトにアクセスできるように自動的に許可します。</p>
+<p><a name="the-link-command"></a></p>
+<h3 id="the-link">The <code>link</code> コマンド<a class="headerlink" href="#the-link" title="Permanent link">&para;</a></h3>
+<p><code>link</code>コマンドは、Laravelアプリケーションを提供するためにも使用できます。このコマンドは、ディレクトリ全体ではなく、単一のサイトを提供する場合に便利です：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">cd</span><span class="w"> </span>~/Sites/laravel
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>valet<span class="w"> </span>link
+</code></pre></div>
+<p><code>link</code>コマンドを使用してValetにアプリケーションをリンクした後、アプリケーションにはディレクトリ名を使用してアクセスできます。したがって、上記の例でリンクされたサイトは<code>http://laravel.test</code>でアクセスできます。さらに、Valetはワイルドカードサブドメイン（<code>http://foo.laravel.test</code>）を使用してサイトにアクセスできるように自動的に許可します。</p>
+<p>アプリケーションを別のホスト名で提供したい場合は、<code>link</code>コマンドにホスト名を渡すことができます。たとえば、次のコマンドを実行して、アプリケーションを<code>http://application.test</code>で利用できるようにすることができます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nb">cd</span><span class="w"> </span>~/Sites/laravel
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>valet<span class="w"> </span>link<span class="w"> </span>application
+</code></pre></div>
+<p>もちろん、<code>link</code>コマンドを使用してサブドメインでアプリケーションを提供することもできます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>valet<span class="w"> </span>link<span class="w"> </span>api.application
+</code></pre></div>
+<p>リンクされたすべてのディレクトリのリストを表示するには、<code>links</code>コマンドを実行できます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>valet<span class="w"> </span>links
+</code></pre></div>
+<p>サイトのシンボリックリンクを破棄するには、<code>unlink</code>コマンドを使用できます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nb">cd</span><span class="w"> </span>~/Sites/laravel
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>valet<span class="w"> </span>unlink
+</code></pre></div>
+<p><a name="securing-sites"></a></p>
+<h3 id="tls">TLSでサイトを保護する<a class="headerlink" href="#tls" title="Permanent link">&para;</a></h3>
+<p>デフォルトで、ValetはHTTP経由でサイトを提供します。ただし、HTTP/2を使用して暗号化されたTLSでサイトを提供したい場合は、<code>secure</code>コマンドを使用できます。たとえば、サイトが<code>laravel.test</code>ドメインでValetによって提供されている場合、次のコマンドを実行してサイトを保護する必要があります：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>valet<span class="w"> </span>secure<span class="w"> </span>laravel
+</code></pre></div>
+<p>サイトを「非セキュア」にし、プレーンなHTTP経由でトラフィックを提供するように戻すには、<code>unsecure</code>コマンドを使用します。<code>secure</code>コマンドと同様に、このコマンドはセキュアにしたいホスト名を受け付けます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>valet<span class="w"> </span>unsecure<span class="w"> </span>laravel
+</code></pre></div>
+<p><a name="serving-a-default-site"></a></p>
+<h3 id="_6">デフォルトサイトの提供<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>未知の<code>test</code>ドメインにアクセスした際に<code>404</code>ではなく、「デフォルト」サイトを提供するようにValetを設定したい場合があります。これを実現するには、<code>~/.config/valet/config.json</code>設定ファイルに<code>default</code>オプションを追加し、デフォルトサイトとして提供するサイトのパスを指定します：</p>
+<div class="highlight"><pre><span></span><code><span class="s2">&quot;default&quot;</span><span class="o">:</span> <span class="s2">&quot;/Users/Sally/Sites/example-site&quot;</span><span class="p">,</span>
+</code></pre></div>
+<p><a name="per-site-php-versions"></a></p>
+<h3 id="php_1">サイトごとのPHPバージョン<a class="headerlink" href="#php_1" title="Permanent link">&para;</a></h3>
+<p>デフォルトでは、ValetはグローバルなPHPインストールを使用してサイトを提供します。しかし、複数のサイトで異なるPHPバージョンをサポートする必要がある場合、<code>isolate</code>コマンドを使用して特定のサイトが使用するPHPバージョンを指定できます。<code>isolate</code>コマンドは、現在の作業ディレクトリにあるサイトに対して指定されたPHPバージョンを使用するようにValetを設定します：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nb">cd</span><span class="w"> </span>~/Sites/example-site
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>valet<span class="w"> </span>isolate<span class="w"> </span>php@8.0
+</code></pre></div>
+<p>サイト名がそのディレクトリ名と一致しない場合、<code>--site</code>オプションを使用してサイト名を指定できます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>valet<span class="w"> </span>isolate<span class="w"> </span>php@8.0<span class="w"> </span>--site<span class="o">=</span><span class="s2">&quot;site-name&quot;</span>
+</code></pre></div>
+<p>便宜上、<code>valet php</code>、<code>valet composer</code>、<code>valet which-php</code>コマンドを使用して、サイトの設定されたPHPバージョンに基づいて適切なPHP CLIまたはツールへのプロキシコールを行うことができます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>valet<span class="w"> </span>php
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>valet<span class="w"> </span>composer
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>valet<span class="w"> </span>which-php
+</code></pre></div>
+<p><code>isolated</code>コマンドを実行して、すべての分離されたサイトとそのPHPバージョンのリストを表示できます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>valet<span class="w"> </span>isolated
+</code></pre></div>
+<p>サイトをValetのグローバルにインストールされたPHPバージョンに戻すには、サイトのルートディレクトリから<code>unisolate</code>コマンドを呼び出します：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>valet<span class="w"> </span>unisolate
+</code></pre></div>
+<p><a name="sharing-sites"></a></p>
+<h2 id="_7">サイトの共有<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>Valetには、ローカルサイトを世界と共有するためのコマンドが含まれており、モバイルデバイスでのサイトテストやチームメンバーやクライアントとの共有を簡単に行うことができます。</p>
+<p>デフォルトでは、Valetはサイトの共有をngrokまたはExpose経由でサポートしています。サイトを共有する前に、<code>share-tool</code>コマンドを使用してValetの設定を更新し、<code>ngrok</code>または<code>expose</code>を指定します：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>valet<span class="w"> </span>share-tool<span class="w"> </span>ngrok
+</code></pre></div>
+<p>ツールを選択し、Homebrew（ngrokの場合）またはComposer（Exposeの場合）経由でインストールしていない場合、Valetは自動的にインストールを促します。もちろん、両方のツールでは、サイトの共有を開始する前にngrokまたはExposeアカウントを認証する必要があります。</p>
+<p>サイトを共有するには、ターミナルでサイトのディレクトリに移動し、Valetの<code>share</code>コマンドを実行します。公開可能なURLがクリップボードにコピーされ、ブラウザに直接貼り付けるか、チームと共有する準備が整います：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="nb">cd</span><span class="w"> </span>~/Sites/laravel
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>valet<span class="w"> </span>share
+</code></pre></div>
+<p>サイトの共有を停止するには、<code>Control + C</code>を押します。</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>カスタムDNSサーバー（例：<code>1.1.1.1</code>）を使用している場合、ngrokの共有が正しく機能しないことがあります。この場合、Macのシステム設定を開き、ネットワーク設定に移動し、詳細設定を開き、DNSタブに移動して、<code>127.0.0.1</code>を最初のDNSサーバーとして追加してください。</p>
+</div>
+<p><a name="sharing-sites-via-ngrok"></a></p>
+<h4 id="ngrok">Ngrok経由でのサイト共有<a class="headerlink" href="#ngrok" title="Permanent link">&para;</a></h4>
+<p>ngrokを使用してサイトを共有するには、<a href="https://dashboard.ngrok.com/signup">ngrokアカウントを作成</a>し、<a href="https://dashboard.ngrok.com/get-started/your-authtoken">認証トークンを設定</a>する必要があります。認証トークンを取得したら、Valetの設定をそのトークンで更新できます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>valet<span class="w"> </span>set-ngrok-token<span class="w"> </span>YOUR_TOKEN_HERE
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>valet share --region=eu</code>のように、追加のngrokパラメータをshareコマンドに渡すことができます。詳細については、<a href="https://ngrok.com/docs">ngrokのドキュメント</a>を参照してください。</p>
+</div>
+<p><a name="sharing-sites-via-expose"></a></p>
+<h4 id="expose">Expose経由でのサイト共有<a class="headerlink" href="#expose" title="Permanent link">&para;</a></h4>
+<p>Exposeを使用してサイトを共有するには、<a href="https://expose.dev/register">Exposeアカウントを作成</a>し、<a href="https://expose.dev/docs/getting-started/getting-your-token">認証トークンを使用してExposeを認証</a>する必要があります。</p>
+<p>追加のコマンドラインパラメータについては、<a href="https://expose.dev/docs">Exposeのドキュメント</a>を参照してください。</p>
+<p><a name="sharing-sites-on-your-local-network"></a></p>
+<h3 id="_8">ローカルネットワーク上でのサイト共有<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>Valetは、デフォルトでは内部の<code>127.0.0.1</code>インターフェースへの着信トラフィックを制限するため、開発マシンがインターネットからのセキュリティリスクにさらされることはありません。</p>
+<p>ローカルネットワーク上の他のデバイスが、マシンのIPアドレス（例：<code>192.168.1.10/application.test</code>）を介してValetサイトにアクセスできるようにするには、そのサイトの適切なNginx設定ファイルを手動で編集して、<code>listen</code>ディレクティブの制限を削除する必要があります。ポート80と443の<code>listen</code>ディレクティブから<code>127.0.0.1:</code>プレフィックスを削除する必要があります。</p>
+<p>プロジェクトに対して<code>valet secure</code>を実行していない場合、すべての非HTTPSサイトのネットワークアクセスを開放するには、<code>/usr/local/etc/nginx/valet/valet.conf</code>ファイルを編集します。ただし、プロジェクトサイトをHTTPS経由で提供している場合（サイトに対して<code>valet secure</code>を実行している場合）、<code>~/.config/valet/Nginx/app-name.test</code>ファイルを編集する必要があります。</p>
+<p>Nginxの設定を更新したら、<code>valet restart</code>コマンドを実行して設定の変更を適用します。</p>
+<p><a name="site-specific-environment-variables"></a></p>
+<h2 id="_9">サイト固有の環境変数<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<p>他のフレームワークを使用する一部のアプリケーションは、サーバー環境変数に依存している場合がありますが、プロジェクト内でそれらの変数を設定する方法を提供していないことがあります。Valetでは、プロジェクトのルートに<code>.valet-env.php</code>ファイルを追加することで、サイト固有の環境変数を設定できます。このファイルは、配列を返す必要があり、配列内の各サイトに対してグローバルな<code>$_SERVER</code>配列に追加される環境変数のペアを指定します：</p>
+<div class="highlight"><pre><span></span><code><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">return</span> <span class="p">[</span>
+    <span class="c1">// Set $_SERVER[&#39;key&#39;] to &quot;value&quot; for the laravel.test site...</span>
+    <span class="s1">&#39;laravel&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;key&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;value&#39;</span><span class="p">,</span>
+    <span class="p">],</span>
+
+    <span class="c1">// Set $_SERVER[&#39;key&#39;] to &quot;value&quot; for all sites...</span>
+    <span class="s1">&#39;*&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;key&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;value&#39;</span><span class="p">,</span>
+    <span class="p">],</span>
+<span class="p">];</span>
+</code></pre></div>
+<p><a name="proxying-services"></a></p>
+<h2 id="_10">サービスのプロキシ<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<p>ValetとDockerが同時にポート80をバインドできないため、Valetを実行しながらDockerで別のサイトを実行する必要がある場合があります。これを解決するには、<code>proxy</code>コマンドを使用してプロキシを生成できます。例えば、<code>http://elasticsearch.test</code>から<code>http://127.0.0.1:9200</code>へのすべてのトラフィックをプロキシするには：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="c1"># HTTP経由でプロキシ...</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>valet<span class="w"> </span>proxy<span class="w"> </span>elasticsearch<span class="w"> </span>http://127.0.0.1:9200
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="c1"># TLS + HTTP/2経由でプロキシ...</span>
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>valet<span class="w"> </span>proxy<span class="w"> </span>elasticsearch<span class="w"> </span>http://127.0.0.1:9200<span class="w"> </span>--secure
+</code></pre></div>
+<p>プロキシを削除するには、<code>unproxy</code>コマンドを使用します：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>valet<span class="w"> </span>unproxy<span class="w"> </span>elasticsearch
+</code></pre></div>
+<p>プロキシされたすべてのサイト設定をリストするには、<code>proxies</code>コマンドを使用します：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>valet<span class="w"> </span>proxies
+</code></pre></div>
+<p><a name="custom-valet-drivers"></a></p>
+<h2 id="valet_1">カスタムValetドライバ<a class="headerlink" href="#valet_1" title="Permanent link">&para;</a></h2>
+<p>独自のValet「ドライバ」を作成して、ValetにネイティブでサポートされていないフレームワークやCMSで実行されているPHPアプリケーションを提供することができます。Valetをインストールすると、<code>~/.config/valet/Drivers</code>ディレクトリが作成され、その中に<code>SampleValetDriver.php</code>ファイルが含まれます。このファイルには、カスタムドライバの実装方法を示すサンプルドライバの実装が含まれています。ドライバを作成するには、<code>serves</code>、<code>isStaticFile</code>、<code>frontControllerPath</code>の3つのメソッドを実装する必要があります。</p>
+<p>これらの3つのメソッドは、<code>$sitePath</code>、<code>$siteName</code>、<code>$uri</code>の値を引数として受け取ります。<code>$sitePath</code>は、マシン上で提供されるサイトへの完全修飾パスです（例：<code>/Users/Lisa/Sites/my-project</code>）。<code>$siteName</code>は、ドメインの「ホスト」/「サイト名」部分です（<code>my-project</code>）。<code>$uri</code>は、着信リクエストのURIです（<code>/foo/bar</code>）。</p>
+<p>カスタムValetドライバを作成したら、<code>FrameworkValetDriver.php</code>の命名規則に従って<code>~/.config/valet/Drivers</code>ディレクトリに配置します。例えば、WordPress用のカスタムValetドライバを作成する場合、ファイル名は<code>WordPressValetDriver.php</code>とする必要があります。</p>
+<p>カスタムValetドライバが実装する必要のある各メソッドのサンプル実装を見てみましょう。</p>
+<p><a name="the-serves-method"></a></p>
+<h4 id="serves"><code>serves</code>メソッド<a class="headerlink" href="#serves" title="Permanent link">&para;</a></h4>
+<p><code>serves</code>メソッドは、ドライバが着信リクエストを処理する必要がある場合に<code>true</code>を返す必要があります。それ以外の場合、メソッドは<code>false</code>を返す必要があります。そのため、このメソッド内で、指定された<code>$sitePath</code>に試行しているプロジェクトのタイプが含まれているかどうかを判断する必要があります。</p>
+<p>例えば、<code>WordPressValetDriver</code>を作成するとします。<code>serves</code>メソッドは次のようになります：</p>
+<div class="highlight"><pre><span></span><code><span class="sd">/**</span>
+<span class="sd"> * Determine if the driver serves the request.</span>
+<span class="sd"> */</span>
+<span class="k">public</span> <span class="k">function</span> <span class="nf">serves</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$sitePath</span><span class="p">,</span> <span class="nx">string</span> <span class="nv">$siteName</span><span class="p">,</span> <span class="nx">string</span> <span class="nv">$uri</span><span class="p">)</span><span class="o">:</span> <span class="nx">bool</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="nb">is_dir</span><span class="p">(</span><span class="nv">$sitePath</span><span class="o">.</span><span class="s1">&#39;/wp-admin&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><a name="the-isstaticfile-method"></a></p>
+<h4 id="isstaticfile"><code>isStaticFile</code>メソッド<a class="headerlink" href="#isstaticfile" title="Permanent link">&para;</a></h4>
+<p><code>isStaticFile</code>メソッドは、着信リクエストが画像やスタイルシートなどの「静的」ファイルであるかどうかを判断する必要があります。静的ファイルである場合、メソッドはディスク上の静的ファイルへの完全修飾パスを返す必要があります。着信リクエストが静的ファイルでない場合、メソッドは<code>false</code>を返す必要があります：</p>
+<div class="highlight"><pre><span></span><code><span class="sd">/**</span>
+<span class="sd"> * Determine if the incoming request is for a static file.</span>
+<span class="sd"> *</span>
+<span class="sd"> * @return string|false</span>
+<span class="sd"> */</span>
+<span class="k">public</span> <span class="k">function</span> <span class="nf">isStaticFile</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$sitePath</span><span class="p">,</span> <span class="nx">string</span> <span class="nv">$siteName</span><span class="p">,</span> <span class="nx">string</span> <span class="nv">$uri</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">file_exists</span><span class="p">(</span><span class="nv">$staticFilePath</span> <span class="o">=</span> <span class="nv">$sitePath</span><span class="o">.</span><span class="s1">&#39;/public/&#39;</span><span class="o">.</span><span class="nv">$uri</span><span class="p">))</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$staticFilePath</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><code>isStaticFile</code>メソッドは、<code>serves</code>メソッドが着信リクエストに対して<code>true</code>を返し、リクエストURIが<code>/</code>でない場合にのみ呼び出されます。</p>
+</div>
+<p><a name="the-frontcontrollerpath-method"></a></p>
+<h4 id="frontcontrollerpath"><code>frontControllerPath</code>メソッド<a class="headerlink" href="#frontcontrollerpath" title="Permanent link">&para;</a></h4>
+<p><code>frontControllerPath</code>メソッドは、アプリケーションの「フロントコントローラ」への完全修飾パスを返す必要があります。通常は「index.php」ファイルです：</p>
+<div class="highlight"><pre><span></span><code><span class="sd">/**</span>
+<span class="sd"> * Get the fully resolved path to the application&#39;s front controller.</span>
+<span class="sd"> */</span>
+<span class="k">public</span> <span class="k">function</span> <span class="nf">frontControllerPath</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$sitePath</span><span class="p">,</span> <span class="nx">string</span> <span class="nv">$siteName</span><span class="p">,</span> <span class="nx">string</span> <span class="nv">$uri</span><span class="p">)</span><span class="o">:</span> <span class="nx">string</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$sitePath</span><span class="o">.</span><span class="s1">&#39;/public/index.php&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><a name="local-drivers"></a></p>
+<h3 id="_11">ローカルドライバ<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<p>単一のアプリケーションに対してカスタムValetドライバを定義したい場合は、アプリケーションのルートディレクトリに<code>LocalValetDriver.php</code>ファイルを作成します。カスタムドライバは、基本の<code>ValetDriver</code>クラスを拡張するか、<code>LaravelValetDriver</code>などの既存のアプリケーション固有のドライバを拡張することができます。</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">Valet\Drivers\LaravelValetDriver</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">LocalValetDriver</span> <span class="k">extends</span> <span class="nx">LaravelValetDriver</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * ドライバがリクエストを処理するかどうかを判断します。</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">serves</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$sitePath</span><span class="p">,</span> <span class="nx">string</span> <span class="nv">$siteName</span><span class="p">,</span> <span class="nx">string</span> <span class="nv">$uri</span><span class="p">)</span><span class="o">:</span> <span class="nx">bool</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * アプリケーションのフロントコントローラへの完全解決パスを取得します。</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">frontControllerPath</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$sitePath</span><span class="p">,</span> <span class="nx">string</span> <span class="nv">$siteName</span><span class="p">,</span> <span class="nx">string</span> <span class="nv">$uri</span><span class="p">)</span><span class="o">:</span> <span class="nx">string</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$sitePath</span><span class="o">.</span><span class="s1">&#39;/public_html/index.php&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><a name="other-valet-commands"></a></p>
+<h2 id="valet_2">その他のValetコマンド<a class="headerlink" href="#valet_2" title="Permanent link">&para;</a></h2>
+<div class="overflow-auto">
+<table>
+<thead>
+<tr>
+<th>コマンド</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>valet list</code></td>
+<td>すべてのValetコマンドのリストを表示します。</td>
+</tr>
+<tr>
+<td><code>valet diagnose</code></td>
+<td>Valetのデバッグに役立つ診断情報を出力します。</td>
+</tr>
+<tr>
+<td><code>valet directory-listing</code></td>
+<td>ディレクトリリスティングの動作を決定します。デフォルトは "off" で、ディレクトリに対して404ページを表示します。</td>
+</tr>
+<tr>
+<td><code>valet forget</code></td>
+<td>"parked" ディレクトリからこのコマンドを実行して、parkedディレクトリリストから削除します。</td>
+</tr>
+<tr>
+<td><code>valet log</code></td>
+<td>Valetのサービスによって書き込まれたログのリストを表示します。</td>
+</tr>
+<tr>
+<td><code>valet paths</code></td>
+<td>すべての "parked" パスを表示します。</td>
+</tr>
+<tr>
+<td><code>valet restart</code></td>
+<td>Valetデーモンを再起動します。</td>
+</tr>
+<tr>
+<td><code>valet start</code></td>
+<td>Valetデーモンを起動します。</td>
+</tr>
+<tr>
+<td><code>valet stop</code></td>
+<td>Valetデーモンを停止します。</td>
+</tr>
+<tr>
+<td><code>valet trust</code></td>
+<td>BrewとValetのsudoersファイルを追加して、パスワードを要求せずにValetコマンドを実行できるようにします。</td>
+</tr>
+<tr>
+<td><code>valet uninstall</code></td>
+<td>Valetをアンインストールします。手動でのアンインストール手順を表示します。<code>--force</code>オプションを渡すと、Valetのすべてのリソースを積極的に削除します。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><a name="valet-directories-and-files"></a></p>
+<h2 id="valet_3">Valetのディレクトリとファイル<a class="headerlink" href="#valet_3" title="Permanent link">&para;</a></h2>
+<p>Valet環境のトラブルシューティング中に、以下のディレクトリとファイル情報が役立つ場合があります。</p>
+<h4 id="configvalet"><code>~/.config/valet</code><a class="headerlink" href="#configvalet" title="Permanent link">&para;</a></h4>
+<p>Valetのすべての設定が含まれています。このディレクトリのバックアップを維持することをお勧めします。</p>
+<h4 id="configvaletdnsmasqd"><code>~/.config/valet/dnsmasq.d/</code><a class="headerlink" href="#configvaletdnsmasqd" title="Permanent link">&para;</a></h4>
+<p>このディレクトリには、DNSMasqの設定が含まれています。</p>
+<h4 id="configvaletdrivers"><code>~/.config/valet/Drivers/</code><a class="headerlink" href="#configvaletdrivers" title="Permanent link">&para;</a></h4>
+<p>このディレクトリには、Valetのドライバが含まれています。ドライバは、特定のフレームワーク/CMSがどのように提供されるかを決定します。</p>
+<h4 id="configvaletnginx"><code>~/.config/valet/Nginx/</code><a class="headerlink" href="#configvaletnginx" title="Permanent link">&para;</a></h4>
+<p>このディレクトリには、ValetのすべてのNginxサイト設定が含まれています。これらのファイルは、<code>install</code>および<code>secure</code>コマンドを実行すると再構築されます。</p>
+<h4 id="configvaletsites"><code>~/.config/valet/Sites/</code><a class="headerlink" href="#configvaletsites" title="Permanent link">&para;</a></h4>
+<p>このディレクトリには、<a href="#the-link-command">リンクされたプロジェクト</a>のすべてのシンボリックリンクが含まれています。</p>
+<h4 id="configvaletconfigjson"><code>~/.config/valet/config.json</code><a class="headerlink" href="#configvaletconfigjson" title="Permanent link">&para;</a></h4>
+<p>このファイルは、Valetのマスター設定ファイルです。</p>
+<h4 id="configvaletvaletsock"><code>~/.config/valet/valet.sock</code><a class="headerlink" href="#configvaletvaletsock" title="Permanent link">&para;</a></h4>
+<p>このファイルは、ValetのNginxインストールで使用されるPHP-FPMソケットです。PHPが正しく実行されている場合にのみ存在します。</p>
+<h4 id="configvaletlogfpm-phpwwwlog"><code>~/.config/valet/Log/fpm-php.www.log</code><a class="headerlink" href="#configvaletlogfpm-phpwwwlog" title="Permanent link">&para;</a></h4>
+<p>このファイルは、PHPエラーのユーザーログです。</p>
+<h4 id="configvaletlognginx-errorlog"><code>~/.config/valet/Log/nginx-error.log</code><a class="headerlink" href="#configvaletlognginx-errorlog" title="Permanent link">&para;</a></h4>
+<p>このファイルは、Nginxエラーのユーザーログです。</p>
+<h4 id="usrlocalvarlogphp-fpmlog"><code>/usr/local/var/log/php-fpm.log</code><a class="headerlink" href="#usrlocalvarlogphp-fpmlog" title="Permanent link">&para;</a></h4>
+<p>このファイルは、PHP-FPMエラーのシステムログです。</p>
+<h4 id="usrlocalvarlognginx"><code>/usr/local/var/log/nginx</code><a class="headerlink" href="#usrlocalvarlognginx" title="Permanent link">&para;</a></h4>
+<p>このディレクトリには、Nginxのアクセスログとエラーログが含まれています。</p>
+<h4 id="usrlocaletcphpxxconfd"><code>/usr/local/etc/php/X.X/conf.d</code><a class="headerlink" href="#usrlocaletcphpxxconfd" title="Permanent link">&para;</a></h4>
+<p>このディレクトリには、さまざまなPHP設定の<code>*.ini</code>ファイルが含まれています。</p>
+<h4 id="usrlocaletcphpxxphp-fpmdvalet-fpmconf"><code>/usr/local/etc/php/X.X/php-fpm.d/valet-fpm.conf</code><a class="headerlink" href="#usrlocaletcphpxxphp-fpmdvalet-fpmconf" title="Permanent link">&para;</a></h4>
+<p>このファイルは、PHP-FPMプール設定ファイルです。</p>
+<h4 id="composervendorlaravelvaletclistubssecurevaletconf"><code>~/.composer/vendor/laravel/valet/cli/stubs/secure.valet.conf</code><a class="headerlink" href="#composervendorlaravelvaletclistubssecurevaletconf" title="Permanent link">&para;</a></h4>
+<p>このファイルは、サイトのSSL証明書を構築するために使用されるデフォルトのNginx設定です。</p>
+<p><a name="disk-access"></a></p>
+<h3 id="_12">ディスクアクセス<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<p>macOS 10.14以降、<a href="https://manuals.info.apple.com/MANUALS/1000/MA1902/en_US/apple-platform-security-guide.pdf">一部のファイルとディレクトリへのアクセスはデフォルトで制限されています</a>。これらの制限には、デスクトップ、ドキュメント、ダウンロードディレクトリが含まれます。さらに、ネットワークボリュームとリムーバブルボリュームへのアクセスも制限されています。したがって、Valetはサイトフォルダがこれらの保護された場所の外にあることを推奨します。</p>
+<p>しかし、これらの場所からサイトを提供したい場合は、Nginxに「フルディスクアクセス」権限を与える必要があります。そうしないと、特に静的アセットの提供時に、サーバーエラーやその他の予期せぬ動作がNginxで発生する可能性があります。通常、macOSは自動的にこれらの場所へのフルアクセスをNginxに許可するようプロンプトを表示します。または、手動で<code>システム環境設定</code> &gt; <code>セキュリティとプライバシー</code> &gt; <code>プライバシー</code>から<code>フルディスクアクセス</code>を選択し、メインウィンドウペインで<code>nginx</code>のエントリを有効にすることもできます。</p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+<nav class="md-footer-nav">
+    
+    
+</nav>
+
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": ".", "features": ["back-to-top", "navigation.expand", "navigation.tabs", "navigation.footer", "navigation.sections", "navigation.expand", "content.code.copy", "hide_repository_button", "content.code.annotate", "content.tabs.link", "toc.none", "content.action.edit"], "search": "assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="assets/javascripts/bundle.56dfad97.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,4702 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://github.com/koriym/laravel11-ja/filesystem.html">
+      
+      
+        <link rel="prev" href="events.html">
+      
+      
+        <link rel="next" href="helpers.html">
+      
+      
+      <link rel="icon" href="assets/images/favicon_io/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.35">
+    
+    
+      
+        <title>ファイルストレージ - L11JA</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.35f28582.min.css">
+      
+      
+
+
+    
+    
+
+    
+
+    
+      <link rel="stylesheet" href="assets/css/php.css">
+    
+      <link rel="stylesheet" href="assets/css/mkdocs_material_extra.css">
+    
+      <link rel="stylesheet" href="assets/css/extra.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-G60CEHXLQ1"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-G60CEHXLQ1",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-G60CEHXLQ1",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      <!-- Determine classes -->
+
+
+
+<!-- Header -->
+<header class="md-header" data-md-component="header">
+  <nav
+          class="md-header__inner md-grid"
+          aria-label="Header"
+  >
+
+    <!-- Link to home -->
+    <a
+            href="."
+            title="L11JA"
+            class="md-header__button md-logo"
+            aria-label="L11JA"
+            data-md-component="logo"
+    >
+      
+  <img src="assets/images/logo.png" alt="logo">
+
+    </a>
+
+    <!-- Button to open drawer -->
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+
+    <!-- Header title -->
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            <span style="font-family: 'Noto Sans'; font-size: 20px" >
+            L11JA
+            </span>
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            <span style="font-family: 'Noto Sans Batak'; font-size: 20px" >
+            
+              ファイルストレージ
+            
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Color palette toggle -->
+    
+
+    <!-- User preference: color palette -->
+    
+    <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+
+    <!-- Site language selector -->
+    
+
+    <!-- Button to open search modal -->
+    
+    <label class="md-header__button md-icon" for="__search">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+    </label>
+
+    <!-- Search interface -->
+    <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    <!-- Repository information -->
+    
+    <div class="md-header__source">
+      
+
+<!--
+  Check whether the repository is hosted on one of the supported code hosting
+  platforms (GitHub, GitLab or Bitbucket) to show icon.
+-->
+
+
+  
+
+
+<!-- Repository containing source -->
+<a href="https://github.com/koriym/l11ja" title="source.link.title"
+    class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z" fill="#000"/></svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+    
+  </nav>
+
+  <!-- Navigation tabs (sticky) -->
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="releases.html" class="md-tabs__link">
+          
+  
+  プロローグ
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="installation.html" class="md-tabs__link">
+          
+  
+  はじめに
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="lifecycle.html" class="md-tabs__link">
+          
+  
+  アーキテクチャ
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="routing.html" class="md-tabs__link">
+          
+  
+  基本
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="artisan.html" class="md-tabs__link">
+          
+  
+  掘り下げる
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="authentication.html" class="md-tabs__link">
+          
+  
+  セキュリティ
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="database.html" class="md-tabs__link">
+          
+  
+  データベース
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="eloquent.html" class="md-tabs__link">
+          
+  
+  Eloquent ORM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="testing.html" class="md-tabs__link">
+          
+  
+  テスト
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="starter-kits.html" class="md-tabs__link">
+          
+  
+  パッケージ
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="L11JA" class="md-nav__button md-logo" aria-label="L11JA" data-md-component="logo">
+      
+  <img src="assets/images/logo.png" alt="logo">
+
+    </a>
+    L11JA
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+<!--
+  Check whether the repository is hosted on one of the supported code hosting
+  platforms (GitHub, GitLab or Bitbucket) to show icon.
+-->
+
+
+  
+
+
+<!-- Repository containing source -->
+<a href="https://github.com/koriym/l11ja" title="source.link.title"
+    class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z" fill="#000"/></svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    プロローグ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            プロローグ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="releases.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リリースノート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="upgrade.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    アップグレードガイド
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="contributions.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    貢献ガイド
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            はじめに
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="installation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    インストール
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="configuration.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    設定
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structure.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ディレクトリ構造
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="frontend.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    フロントエンド
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="starter-kits.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    スターターキット
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="deployment.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    デプロイ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    アーキテクチャ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            アーキテクチャ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="lifecycle.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リクエストライフサイクル
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="container.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    サービスコンテナ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="providers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    サービスプロバイダ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="facades.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ファサード
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    基本
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            基本
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="routing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ルーティング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="middleware.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ミドルウェア
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="csrf.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CSRF保護
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="controllers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コントローラ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="requests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リクエスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="responses.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    レスポンス
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="views.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ビュー
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="blade.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bladeテンプレート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="vite.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    アセットバンドル
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="urls.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    URL生成
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="session.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    セッション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="validation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    バリデーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="errors.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    エラー処理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="logging.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ログ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    掘り下げる
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            掘り下げる
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="artisan.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Artisanコンソール
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="broadcasting.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ブロードキャスティング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cache.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    キャッシュ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="collections.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コレクション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="concurrency.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    並行処理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="context.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コンテキスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="contracts.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コントラクト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="events.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    イベント
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    ファイルストレージ
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="filesystem.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    ファイルストレージ
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      はじめに
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      設定
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="設定">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      ローカルドライバ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      パブリックディスク
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      ドライバの前提条件
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ドライバの前提条件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s3" class="md-nav__link">
+    <span class="md-ellipsis">
+      S3ドライバの設定
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ftp" class="md-nav__link">
+    <span class="md-ellipsis">
+      FTPドライバの設定
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sftp" class="md-nav__link">
+    <span class="md-ellipsis">
+      SFTPドライバの設定
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      スコープ付きと読み取り専用のファイルシステム
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#amazon-s3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Amazon S3互換ファイルシステム
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Amazon S3互換ファイルシステム">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#minio" class="md-nav__link">
+    <span class="md-ellipsis">
+      MinIO
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      ディスクインスタンスの取得
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ディスクインスタンスの取得">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      オンデマンドディスク
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      ファイルの取得
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ファイルの取得">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      ファイルのダウンロード
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#url" class="md-nav__link">
+    <span class="md-ellipsis">
+      ファイルのURL
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ファイルのURL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#url_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      URLホストのカスタマイズ
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#url_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      一時的なURL
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="一時的なURL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#url_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      ローカル一時URLの有効化
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      S3リクエストパラメータ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#url_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      一時URLのカスタマイズ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#url_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      一時アップロードURL
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      ファイルメタデータ
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ファイルメタデータ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      ファイルパス
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      ファイルの保存
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ファイルの保存">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      書き込み失敗
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      ファイルへの先頭と末尾への追加
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      ファイルのコピーと移動
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      自動ストリーミング
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      ファイルアップロード
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ファイルアップロード">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      ファイル名の指定
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      ディスクの指定
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      その他のアップロードされたファイル情報
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      ファイルの可視性
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ファイルの可視性">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      ローカルファイルと可視性
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      ファイルの削除
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      ディレクトリ
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ディレクトリ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      ディレクトリ内のすべてのファイルを取得
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      ディレクトリ内のすべてのディレクトリを取得
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      ディレクトリの作成
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      ディレクトリの削除
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_31" class="md-nav__link">
+    <span class="md-ellipsis">
+      テスト
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_32" class="md-nav__link">
+    <span class="md-ellipsis">
+      カスタムファイルシステム
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="helpers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ヘルパー
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="http-client.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTTPクライアント
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="localization.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ローカライゼーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mail.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    メール
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="notifications.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    通知
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="packages.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    パッケージ開発
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="processes.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    プロセス
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="queues.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    キュー
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="rate-limiting.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    レート制限
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="strings.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    文字列
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="scheduling.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    タスクスケジューリング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    セキュリティ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            セキュリティ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="authentication.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    認証
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="authorization.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    認可
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="verification.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    メール確認
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="encryption.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    暗号化
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hashing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ハッシュ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="passwords.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    パスワードリセット
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    データベース
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            データベース
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="database.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="queries.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    クエリビルダ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pagination.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ページネーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="migrations.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    マイグレーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="seeding.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    シーディング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="redis.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Redis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Eloquent ORM
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Eloquent ORM
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-relationships.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リレーションシップ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-collections.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コレクション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-mutators.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ミューテータ / キャスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-resources.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    APIリソース
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-serialization.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    シリアライゼーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-factories.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ファクトリ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    テスト
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            テスト
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="testing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="http-tests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTTPテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="console-tests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コンソールテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="dusk.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ブラウザテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="database-testing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    データベース
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mocking.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    モック
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    パッケージ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            パッケージ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="starter-kits.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    スターターキット
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="billing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cashier (Stripe)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cashier-paddle.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cashier (Paddle)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="dusk.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ブラウザテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="envoy.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Envoy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fortify.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fortify
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="folio.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Folio
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="homestead.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Homestead
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="horizon.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Horizon
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mix.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mix
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="octane.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Octane
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="passport.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Passport
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pennant.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pennant
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pint.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pint
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="precognition.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Precognition
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="prompts.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prompts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pulse.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pulse
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reverb.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reverb
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sail.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sail
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sanctum.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sanctum
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="scout.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Scout
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="socialite.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Socialite
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="telescope.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Telescope
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="valet.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Valet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      はじめに
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      設定
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="設定">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      ローカルドライバ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      パブリックディスク
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      ドライバの前提条件
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ドライバの前提条件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s3" class="md-nav__link">
+    <span class="md-ellipsis">
+      S3ドライバの設定
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ftp" class="md-nav__link">
+    <span class="md-ellipsis">
+      FTPドライバの設定
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sftp" class="md-nav__link">
+    <span class="md-ellipsis">
+      SFTPドライバの設定
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      スコープ付きと読み取り専用のファイルシステム
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#amazon-s3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Amazon S3互換ファイルシステム
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Amazon S3互換ファイルシステム">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#minio" class="md-nav__link">
+    <span class="md-ellipsis">
+      MinIO
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      ディスクインスタンスの取得
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ディスクインスタンスの取得">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      オンデマンドディスク
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      ファイルの取得
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ファイルの取得">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      ファイルのダウンロード
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#url" class="md-nav__link">
+    <span class="md-ellipsis">
+      ファイルのURL
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ファイルのURL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#url_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      URLホストのカスタマイズ
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#url_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      一時的なURL
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="一時的なURL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#url_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      ローカル一時URLの有効化
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      S3リクエストパラメータ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#url_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      一時URLのカスタマイズ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#url_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      一時アップロードURL
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      ファイルメタデータ
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ファイルメタデータ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      ファイルパス
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      ファイルの保存
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ファイルの保存">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      書き込み失敗
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      ファイルへの先頭と末尾への追加
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      ファイルのコピーと移動
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      自動ストリーミング
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      ファイルアップロード
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ファイルアップロード">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      ファイル名の指定
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      ディスクの指定
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      その他のアップロードされたファイル情報
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      ファイルの可視性
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ファイルの可視性">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      ローカルファイルと可視性
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      ファイルの削除
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      ディレクトリ
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ディレクトリ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      ディレクトリ内のすべてのファイルを取得
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      ディレクトリ内のすべてのディレクトリを取得
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      ディレクトリの作成
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      ディレクトリの削除
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_31" class="md-nav__link">
+    <span class="md-ellipsis">
+      テスト
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_32" class="md-nav__link">
+    <span class="md-ellipsis">
+      カスタムファイルシステム
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/koriym/l11ja/edit/master/docs/filesystem.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="_1">ファイルストレージ<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<ul>
+<li><a href="#introduction">はじめに</a></li>
+<li><a href="#configuration">設定</a><ul>
+<li><a href="#the-local-driver">ローカルドライバ</a></li>
+<li><a href="#the-public-disk">パブリックディスク</a></li>
+<li><a href="#driver-prerequisites">ドライバの前提条件</a></li>
+<li><a href="#scoped-and-read-only-filesystems">スコープ付きと読み取り専用のファイルシステム</a></li>
+<li><a href="#amazon-s3-compatible-filesystems">Amazon S3互換ファイルシステム</a></li>
+</ul>
+</li>
+<li><a href="#obtaining-disk-instances">ディスクインスタンスの取得</a><ul>
+<li><a href="#on-demand-disks">オンデマンドディスク</a></li>
+</ul>
+</li>
+<li><a href="#retrieving-files">ファイルの取得</a><ul>
+<li><a href="#downloading-files">ファイルのダウンロード</a></li>
+<li><a href="#file-urls">ファイルのURL</a></li>
+<li><a href="#temporary-urls">一時的なURL</a></li>
+<li><a href="#file-metadata">ファイルのメタデータ</a></li>
+</ul>
+</li>
+<li><a href="#storing-files">ファイルの保存</a><ul>
+<li><a href="#prepending-appending-to-files">ファイルへの先頭と末尾の追加</a></li>
+<li><a href="#copying-moving-files">ファイルのコピーと移動</a></li>
+<li><a href="#automatic-streaming">自動ストリーミング</a></li>
+<li><a href="#file-uploads">ファイルのアップロード</a></li>
+<li><a href="#file-visibility">ファイルの可視性</a></li>
+</ul>
+</li>
+<li><a href="#deleting-files">ファイルの削除</a></li>
+<li><a href="#directories">ディレクトリ</a></li>
+<li><a href="#testing">テスト</a></li>
+<li><a href="#custom-filesystems">カスタムファイルシステム</a></li>
+</ul>
+<p><a name="introduction"></a></p>
+<h2 id="_2">はじめに<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>Laravelは、Frank de Jongeによる素晴らしい<a href="https://github.com/thephpleague/flysystem">Flysystem</a> PHPパッケージのおかげで、強力なファイルシステムの抽象化を提供しています。Laravel Flysystemの統合により、ローカルファイルシステム、SFTP、Amazon S3を操作するためのシンプルなドライバが提供されます。さらに良いことに、ローカルの開発マシンと本番サーバーの間でこれらのストレージオプションを切り替えるのは驚くほど簡単で、APIはどのシステムでも同じままです。</p>
+<p><a name="configuration"></a></p>
+<h2 id="_3">設定<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>Laravelのファイルシステムの設定ファイルは、<code>config/filesystems.php</code>にあります。このファイル内で、すべてのファイルシステムの「ディスク」を設定できます。各ディスクは、特定のストレージドライバとストレージ場所を表します。サポートされている各ドライバの設定例が設定ファイルに含まれているため、設定をストレージの好みと資格情報に反映するように変更できます。</p>
+<p><code>local</code>ドライバは、Laravelアプリケーションを実行しているサーバー上にローカルに保存されたファイルと対話し、<code>s3</code>ドライバはAmazonのS3クラウドストレージサービスに書き込むために使用されます。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>必要なだけ多くのディスクを設定でき、同じドライバを使用する複数のディスクを持つこともできます。</p>
+</div>
+<p><a name="the-local-driver"></a></p>
+<h3 id="_4">ローカルドライバ<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p><code>local</code>ドライバを使用する場合、すべてのファイル操作は<code>filesystems</code>設定ファイルで定義された<code>root</code>ディレクトリに対して相対的に行われます。デフォルトでは、この値は<code>storage/app</code>ディレクトリに設定されています。したがって、次のメソッドは<code>storage/app/example.txt</code>に書き込みます。</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Storage</span><span class="p">;</span>
+
+<span class="nx">Storage</span><span class="o">::</span><span class="na">disk</span><span class="p">(</span><span class="s1">&#39;local&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">put</span><span class="p">(</span><span class="s1">&#39;example.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;Contents&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="the-public-disk"></a></p>
+<h3 id="_5">パブリックディスク<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>アプリケーションの<code>filesystems</code>設定ファイルに含まれる<code>public</code>ディスクは、公開アクセス可能になるファイルを対象としています。デフォルトでは、<code>public</code>ディスクは<code>local</code>ドライバを使用し、そのファイルを<code>storage/app/public</code>に保存します。</p>
+<p>これらのファイルをWebからアクセス可能にするには、<code>public/storage</code>から<code>storage/app/public</code>へのシンボリックリンクを作成する必要があります。このフォルダの規則を使用すると、公開アクセス可能なファイルを1つのディレクトリにまとめることができ、<a href="https://envoyer.io">Envoyer</a>のようなゼロダウンタイムデプロイメントシステムを使用する際に簡単に共有できます。</p>
+<p>シンボリックリンクを作成するには、<code>storage:link</code> Artisanコマンドを使用できます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>storage:link
+</code></pre></div>
+<p>ファイルが保存され、シンボリックリンクが作成されたら、<code>asset</code>ヘルパーを使用してファイルへのURLを作成できます。</p>
+<div class="highlight"><pre><span></span><code><span class="k">echo</span> <span class="nx">asset</span><span class="p">(</span><span class="s1">&#39;storage/file.txt&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><code>filesystems</code>設定ファイルに追加のシンボリックリンクを設定できます。設定された各リンクは、<code>storage:link</code>コマンドを実行すると作成されます。</p>
+<div class="highlight"><pre><span></span><code><span class="s1">&#39;links&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="nx">public_path</span><span class="p">(</span><span class="s1">&#39;storage&#39;</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">storage_path</span><span class="p">(</span><span class="s1">&#39;app/public&#39;</span><span class="p">),</span>
+    <span class="nx">public_path</span><span class="p">(</span><span class="s1">&#39;images&#39;</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">storage_path</span><span class="p">(</span><span class="s1">&#39;app/images&#39;</span><span class="p">),</span>
+<span class="p">],</span>
+</code></pre></div>
+<p><code>storage:unlink</code>コマンドを使用して、設定されたシンボリックリンクを破棄できます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>storage:unlink
+</code></pre></div>
+<p><a name="driver-prerequisites"></a></p>
+<h3 id="_6">ドライバの前提条件<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p><a name="s3-driver-configuration"></a></p>
+<h4 id="s3">S3ドライバの設定<a class="headerlink" href="#s3" title="Permanent link">&para;</a></h4>
+<p>S3ドライバを使用する前に、Composerパッケージマネージャを介してFlysystem S3パッケージをインストールする必要があります。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>composer<span class="w"> </span>require<span class="w"> </span>league/flysystem-aws-s3-v3<span class="w"> </span><span class="s2">&quot;^3.0&quot;</span><span class="w"> </span>--with-all-dependencies
+</code></pre></div>
+<p>S3ディスク設定配列は、<code>config/filesystems.php</code>設定ファイルにあります。通常、S3情報と資格情報を以下の環境変数を使用して設定する必要があります。これらの環境変数は、<code>config/filesystems.php</code>設定ファイルによって参照されます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nx">AWS_ACCESS_KEY_ID</span><span class="o">=&lt;</span><span class="nx">your</span><span class="o">-</span><span class="nb">key</span><span class="o">-</span><span class="nx">id</span><span class="o">&gt;</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nx">AWS_SECRET_ACCESS_KEY</span><span class="o">=&lt;</span><span class="nx">your</span><span class="o">-</span><span class="nx">secret</span><span class="o">-</span><span class="nx">access</span><span class="o">-</span><span class="nb">key</span><span class="o">&gt;</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nx">AWS_DEFAULT_REGION</span><span class="o">=</span><span class="nx">us</span><span class="o">-</span><span class="nx">east</span><span class="o">-</span><span class="mi">1</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="nx">AWS_BUCKET</span><span class="o">=&lt;</span><span class="nx">your</span><span class="o">-</span><span class="nx">bucket</span><span class="o">-</span><span class="nx">name</span><span class="o">&gt;</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="nx">AWS_USE_PATH_STYLE_ENDPOINT</span><span class="o">=</span><span class="k">false</span>
+</code></pre></div>
+<p>便宜上、これらの環境変数はAWS CLIで使用される命名規則と一致しています。</p>
+<p><a name="ftp-driver-configuration"></a></p>
+<h4 id="ftp">FTPドライバの設定<a class="headerlink" href="#ftp" title="Permanent link">&para;</a></h4>
+<p>FTPドライバを使用する前に、Composerパッケージマネージャを介してFlysystem FTPパッケージをインストールする必要があります。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>composer<span class="w"> </span>require<span class="w"> </span>league/flysystem-ftp<span class="w"> </span><span class="s2">&quot;^3.0&quot;</span>
+</code></pre></div>
+<p>LaravelのFlysystem統合はFTPでもうまく機能しますが、フレームワークのデフォルトの<code>config/filesystems.php</code>設定ファイルにサンプル設定は含まれていません。FTPファイルシステムを設定する必要がある場合は、以下の設定例を使用できます。</p>
+<div class="highlight"><pre><span></span><code><span class="s1">&#39;ftp&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="s1">&#39;driver&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;ftp&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;host&#39;</span> <span class="o">=&gt;</span> <span class="nx">env</span><span class="p">(</span><span class="s1">&#39;FTP_HOST&#39;</span><span class="p">),</span>
+    <span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="nx">env</span><span class="p">(</span><span class="s1">&#39;FTP_USERNAME&#39;</span><span class="p">),</span>
+    <span class="s1">&#39;password&#39;</span> <span class="o">=&gt;</span> <span class="nx">env</span><span class="p">(</span><span class="s1">&#39;FTP_PASSWORD&#39;</span><span class="p">),</span>
+
+    <span class="c1">// Optional FTP Settings...</span>
+    <span class="c1">// &#39;port&#39; =&gt; env(&#39;FTP_PORT&#39;, 21),</span>
+    <span class="c1">// &#39;root&#39; =&gt; env(&#39;FTP_ROOT&#39;),</span>
+    <span class="c1">// &#39;passive&#39; =&gt; true,</span>
+    <span class="c1">// &#39;ssl&#39; =&gt; true,</span>
+    <span class="c1">// &#39;timeout&#39; =&gt; 30,</span>
+<span class="p">],</span>
+</code></pre></div>
+<p><a name="sftp-driver-configuration"></a></p>
+<h4 id="sftp">SFTPドライバの設定<a class="headerlink" href="#sftp" title="Permanent link">&para;</a></h4>
+<p>SFTPドライバを使用する前に、Composerパッケージマネージャを介してFlysystem SFTPパッケージをインストールする必要があります。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>composer<span class="w"> </span>require<span class="w"> </span>league/flysystem-sftp-v3<span class="w"> </span><span class="s2">&quot;^3.0&quot;</span>
+</code></pre></div>
+<p>LaravelのFlysystem統合はSFTPでもうまく機能しますが、フレームワークのデフォルトの<code>config/filesystems.php</code>設定ファイルにサンプル設定は含まれていません。SFTPファイルシステムを設定する必要がある場合は、以下の設定例を使用できます。</p>
+<div class="highlight"><pre><span></span><code><span class="s1">&#39;sftp&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="s1">&#39;driver&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;sftp&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;host&#39;</span> <span class="o">=&gt;</span> <span class="nx">env</span><span class="p">(</span><span class="s1">&#39;SFTP_HOST&#39;</span><span class="p">),</span>
+
+    <span class="c1">// Settings for basic authentication...</span>
+    <span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="nx">env</span><span class="p">(</span><span class="s1">&#39;SFTP_USERNAME&#39;</span><span class="p">),</span>
+    <span class="s1">&#39;password&#39;</span> <span class="o">=&gt;</span> <span class="nx">env</span><span class="p">(</span><span class="s1">&#39;SFTP_PASSWORD&#39;</span><span class="p">),</span>
+
+    <span class="c1">// Settings for SSH key based authentication with encryption password...</span>
+    <span class="s1">&#39;privateKey&#39;</span> <span class="o">=&gt;</span> <span class="nx">env</span><span class="p">(</span><span class="s1">&#39;SFTP_PRIVATE_KEY&#39;</span><span class="p">),</span>
+    <span class="s1">&#39;passphrase&#39;</span> <span class="o">=&gt;</span> <span class="nx">env</span><span class="p">(</span><span class="s1">&#39;SFTP_PASSPHRASE&#39;</span><span class="p">),</span>
+
+    <span class="c1">// Settings for file / directory permissions...</span>
+    <span class="s1">&#39;visibility&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;private&#39;</span><span class="p">,</span> <span class="c1">// `private` = 0600, `public` = 0644</span>
+    <span class="s1">&#39;directory_visibility&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;private&#39;</span><span class="p">,</span> <span class="c1">// `private` = 0700, `public` = 0755</span>
+
+    <span class="c1">// Optional SFTP Settings...</span>
+    <span class="c1">// &#39;hostFingerprint&#39; =&gt; env(&#39;SFTP_HOST_FINGERPRINT&#39;),</span>
+    <span class="c1">// &#39;maxTries&#39; =&gt; 4,</span>
+    <span class="c1">// &#39;passphrase&#39; =&gt; env(&#39;SFTP_PASSPHRASE&#39;),</span>
+    <span class="c1">// &#39;port&#39; =&gt; env(&#39;SFTP_PORT&#39;, 22),</span>
+    <span class="c1">// &#39;root&#39; =&gt; env(&#39;SFTP_ROOT&#39;, &#39;&#39;),</span>
+    <span class="c1">// &#39;timeout&#39; =&gt; 30,</span>
+    <span class="c1">// &#39;useAgent&#39; =&gt; true,</span>
+<span class="p">],</span>
+</code></pre></div>
+<p><a name="scoped-and-read-only-filesystems"></a></p>
+<h3 id="_7">スコープ付きと読み取り専用のファイルシステム<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>スコープ付きディスクを使用すると、すべてのパスが指定されたパスプレフィックスで自動的にプレフィックスされるファイルシステムを定義できます。スコープ付きファイルシステムディスクを作成する前に、Composerパッケージマネージャを介して追加のFlysystemパッケージをインストールする必要があります。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>composer<span class="w"> </span>require<span class="w"> </span>league/flysystem-path-prefixing<span class="w"> </span><span class="s2">&quot;^3.0&quot;</span>
+</code></pre></div>
+<p>既存のファイルシステムディスクのスコープ付きインスタンスを作成するには、<code>scoped</code>ドライバを使用するディスクを定義します。たとえば、既存の<code>s3</code>ディスクを特定のパスプレフィックスにスコープし、スコープ付きディスクを使用するすべてのファイル操作が指定されたプレフィックスを使用するようにすることができます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="s1">&#39;s3-videos&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    <span class="s1">&#39;driver&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;scoped&#39;</span><span class="p">,</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>    <span class="s1">&#39;disk&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;s3&#39;</span><span class="p">,</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>    <span class="s1">&#39;prefix&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;path/to/videos&#39;</span><span class="p">,</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="p">],</span>
+</code></pre></div>
+<p>「読み取り専用」ディスクを使用すると、書き込み操作を許可しないファイルシステムディスクを作成できます。<code>read-only</code>設定オプションを使用する前に、Composerパッケージマネージャを介して追加のFlysystemパッケージをインストールする必要があります。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>composer<span class="w"> </span>require<span class="w"> </span>league/flysystem-read-only<span class="w"> </span><span class="s2">&quot;^3.0&quot;</span>
+</code></pre></div>
+<p>次に、1つ以上のディスクの設定配列に<code>read-only</code>設定オプションを含めることができます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="s1">&#39;s3-videos&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>    <span class="s1">&#39;driver&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;s3&#39;</span><span class="p">,</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>    <span class="c1">// ...</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>    <span class="s1">&#39;read-only&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="p">],</span>
+</code></pre></div>
+<p><a name="amazon-s3-compatible-filesystems"></a></p>
+<h3 id="amazon-s3">Amazon S3互換ファイルシステム<a class="headerlink" href="#amazon-s3" title="Permanent link">&para;</a></h3>
+<p>デフォルトでは、アプリケーションの<code>filesystems</code>設定ファイルには<code>s3</code>ディスクのディスク設定が含まれています。このディスクを使用してAmazon S3と対話するだけでなく、<a href="https://github.com/minio/minio">MinIO</a>や<a href="https://www.digitalocean.com/products/spaces">DigitalOcean Spaces</a>などのS3互換ファイルストレージサービスと対話することもできます。</p>
+<p>通常、ディスクの資格情報を使用するサービスの資格情報に更新した後、<code>endpoint</code>設定オプションの値を更新するだけで済みます。このオプションの値は、通常、<code>AWS_ENDPOINT</code>環境変数を介して定義されます。</p>
+<div class="highlight"><pre><span></span><code><span class="s1">&#39;endpoint&#39;</span> <span class="o">=&gt;</span> <span class="nx">env</span><span class="p">(</span><span class="s1">&#39;AWS_ENDPOINT&#39;</span><span class="p">,</span> <span class="s1">&#39;https://minio:9000&#39;</span><span class="p">),</span>
+</code></pre></div>
+<p><a name="minio"></a></p>
+<h4 id="minio">MinIO<a class="headerlink" href="#minio" title="Permanent link">&para;</a></h4>
+<p>LaravelのFlysystem統合がMinIOを使用する際に適切なURLを生成するために、アプリケーションのローカルURLに一致し、URLパスにバケット名を含めるように<code>AWS_URL</code>環境変数を定義する必要があります。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="na">AWS_URL</span><span class="o">=</span><span class="s">http://localhost:9000/local</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><code>temporaryUrl</code>メソッドを使用して一時的なストレージURLを生成することは、<code>endpoint</code>がクライアントからアクセスできない場合、MinIOでは機能しない可能性があります。</p>
+</div>
+<p><a name="obtaining-disk-instances"></a></p>
+<h2 id="_8">ディスクインスタンスの取得<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<p><code>Storage</code>ファサードを使用して、設定されたディスクのいずれかを操作できます。例えば、ファサードの<code>put</code>メソッドを使用して、アバターをデフォルトディスクに保存できます。<code>Storage</code>ファサードで<code>disk</code>メソッドを最初に呼び出さずにメソッドを呼び出すと、そのメソッドは自動的にデフォルトディスクに渡されます。</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Storage</span><span class="p">;</span>
+
+<span class="nx">Storage</span><span class="o">::</span><span class="na">put</span><span class="p">(</span><span class="s1">&#39;avatars/1&#39;</span><span class="p">,</span> <span class="nv">$content</span><span class="p">);</span>
+</code></pre></div>
+<p>アプリケーションが複数のディスクとやり取りする場合、<code>Storage</code>ファサードの<code>disk</code>メソッドを使用して、特定のディスク上のファイルを操作できます。</p>
+<div class="highlight"><pre><span></span><code><span class="nx">Storage</span><span class="o">::</span><span class="na">disk</span><span class="p">(</span><span class="s1">&#39;s3&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">put</span><span class="p">(</span><span class="s1">&#39;avatars/1&#39;</span><span class="p">,</span> <span class="nv">$content</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="on-demand-disks"></a></p>
+<h3 id="_9">オンデマンドディスク<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p>アプリケーションの<code>filesystems</code>設定ファイルに実際に存在しない設定を使用して、実行時にディスクを作成したい場合があります。これを実現するには、設定配列を<code>Storage</code>ファサードの<code>build</code>メソッドに渡すことができます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Storage</span><span class="p">;</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="nv">$disk</span> <span class="o">=</span> <span class="nx">Storage</span><span class="o">::</span><span class="na">build</span><span class="p">([</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>    <span class="s1">&#39;driver&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;local&#39;</span><span class="p">,</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>    <span class="s1">&#39;root&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;/path/to/root&#39;</span><span class="p">,</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="p">]);</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="nv">$disk</span><span class="o">-&gt;</span><span class="na">put</span><span class="p">(</span><span class="s1">&#39;image.jpg&#39;</span><span class="p">,</span> <span class="nv">$content</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="retrieving-files"></a></p>
+<h2 id="_10">ファイルの取得<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<p><code>get</code>メソッドを使用して、ファイルの内容を取得できます。ファイルの生の文字列内容がメソッドによって返されます。すべてのファイルパスは、ディスクの「ルート」位置を基準に指定する必要があることに注意してください。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$contents</span> <span class="o">=</span> <span class="nx">Storage</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;file.jpg&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p>取得するファイルにJSONが含まれている場合、<code>json</code>メソッドを使用してファイルを取得し、その内容をデコードできます。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$orders</span> <span class="o">=</span> <span class="nx">Storage</span><span class="o">::</span><span class="na">json</span><span class="p">(</span><span class="s1">&#39;orders.json&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><code>exists</code>メソッドを使用して、ファイルがディスク上に存在するかどうかを判断できます。</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="p">(</span><span class="nx">Storage</span><span class="o">::</span><span class="na">disk</span><span class="p">(</span><span class="s1">&#39;s3&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">exists</span><span class="p">(</span><span class="s1">&#39;file.jpg&#39;</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>missing</code>メソッドを使用して、ファイルがディスク上に存在しないかどうかを判断できます。</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="p">(</span><span class="nx">Storage</span><span class="o">::</span><span class="na">disk</span><span class="p">(</span><span class="s1">&#39;s3&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">missing</span><span class="p">(</span><span class="s1">&#39;file.jpg&#39;</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><a name="downloading-files"></a></p>
+<h3 id="_11">ファイルのダウンロード<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<p><code>download</code>メソッドを使用して、指定されたパスのファイルをユーザーのブラウザにダウンロードさせるレスポンスを生成できます。<code>download</code>メソッドは、メソッドの第2引数としてファイル名を受け取り、ユーザーがファイルをダウンロードする際に表示されるファイル名を決定します。最後に、メソッドの第3引数としてHTTPヘッダの配列を渡すことができます。</p>
+<div class="highlight"><pre><span></span><code><span class="k">return</span> <span class="nx">Storage</span><span class="o">::</span><span class="na">download</span><span class="p">(</span><span class="s1">&#39;file.jpg&#39;</span><span class="p">);</span>
+
+<span class="k">return</span> <span class="nx">Storage</span><span class="o">::</span><span class="na">download</span><span class="p">(</span><span class="s1">&#39;file.jpg&#39;</span><span class="p">,</span> <span class="nv">$name</span><span class="p">,</span> <span class="nv">$headers</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="file-urls"></a></p>
+<h3 id="url">ファイルのURL<a class="headerlink" href="#url" title="Permanent link">&para;</a></h3>
+<p><code>url</code>メソッドを使用して、指定されたファイルのURLを取得できます。<code>local</code>ドライバを使用している場合、これは通常、指定されたパスの前に<code>/storage</code>を付けて、ファイルへの相対URLを返します。<code>s3</code>ドライバを使用している場合、完全修飾されたリモートURLが返されます。</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Storage</span><span class="p">;</span>
+
+<span class="nv">$url</span> <span class="o">=</span> <span class="nx">Storage</span><span class="o">::</span><span class="na">url</span><span class="p">(</span><span class="s1">&#39;file.jpg&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><code>local</code>ドライバを使用している場合、公開アクセス可能であるべきすべてのファイルは<code>storage/app/public</code>ディレクトリに配置する必要があります。さらに、<code>storage/app/public</code>ディレクトリを指す<code>public/storage</code>に<a href="#the-public-disk">シンボリックリンクを作成</a>する必要があります。</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><code>local</code>ドライバを使用している場合、<code>url</code>の戻り値はURLエンコードされません。このため、常に有効なURLを作成するファイル名を使用してファイルを保存することをお勧めします。</p>
+</div>
+<p><a name="url-host-customization"></a></p>
+<h4 id="url_1">URLホストのカスタマイズ<a class="headerlink" href="#url_1" title="Permanent link">&para;</a></h4>
+<p><code>Storage</code>ファサードを使用して生成されたURLのホストを変更したい場合は、ディスクの設定配列に<code>url</code>オプションを追加または変更できます。</p>
+<div class="highlight"><pre><span></span><code><span class="s1">&#39;public&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="s1">&#39;driver&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;local&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;root&#39;</span> <span class="o">=&gt;</span> <span class="nx">storage_path</span><span class="p">(</span><span class="s1">&#39;app/public&#39;</span><span class="p">),</span>
+    <span class="s1">&#39;url&#39;</span> <span class="o">=&gt;</span> <span class="nx">env</span><span class="p">(</span><span class="s1">&#39;APP_URL&#39;</span><span class="p">)</span><span class="o">.</span><span class="s1">&#39;/storage&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;visibility&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;public&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;throw&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">,</span>
+<span class="p">],</span>
+</code></pre></div>
+<p><a name="temporary-urls"></a></p>
+<h3 id="url_2">一時的なURL<a class="headerlink" href="#url_2" title="Permanent link">&para;</a></h3>
+<p><code>temporaryUrl</code>メソッドを使用して、<code>local</code>および<code>s3</code>ドライバを使用して保存されたファイルへの一時的なURLを作成できます。このメソッドは、パスとURLが期限切れになる時期を指定する<code>DateTime</code>インスタンスを受け取ります。</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Storage</span><span class="p">;</span>
+
+<span class="nv">$url</span> <span class="o">=</span> <span class="nx">Storage</span><span class="o">::</span><span class="na">temporaryUrl</span><span class="p">(</span>
+    <span class="s1">&#39;file.jpg&#39;</span><span class="p">,</span> <span class="nx">now</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">addMinutes</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="p">);</span>
+</code></pre></div>
+<p><a name="enabling-local-temporary-urls"></a></p>
+<h4 id="url_3">ローカル一時URLの有効化<a class="headerlink" href="#url_3" title="Permanent link">&para;</a></h4>
+<p>一時URLのサポートが<code>local</code>ドライバに導入される前にアプリケーションの開発を開始した場合、ローカル一時URLを有効にする必要があるかもしれません。そのためには、<code>config/filesystems.php</code>設定ファイル内の<code>local</code>ディスクの設定配列に<code>serve</code>オプションを追加します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="s1">&#39;local&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>    <span class="s1">&#39;driver&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;local&#39;</span><span class="p">,</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>    <span class="s1">&#39;root&#39;</span> <span class="o">=&gt;</span> <span class="nx">storage_path</span><span class="p">(</span><span class="s1">&#39;app/private&#39;</span><span class="p">),</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>    <span class="s1">&#39;serve&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span> <span class="c1">// [tl! add]</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>    <span class="s1">&#39;throw&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">,</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="p">],</span>
+</code></pre></div>
+<p><a name="s3-request-parameters"></a></p>
+<h4 id="s3_1">S3リクエストパラメータ<a class="headerlink" href="#s3_1" title="Permanent link">&para;</a></h4>
+<p>追加の<a href="https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectGET.html#RESTObjectGET-requests">S3リクエストパラメータ</a>を指定する必要がある場合、リクエストパラメータの配列を<code>temporaryUrl</code>メソッドの第3引数として渡すことができます。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$url</span> <span class="o">=</span> <span class="nx">Storage</span><span class="o">::</span><span class="na">temporaryUrl</span><span class="p">(</span>
+    <span class="s1">&#39;file.jpg&#39;</span><span class="p">,</span>
+    <span class="nx">now</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">addMinutes</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span>
+    <span class="p">[</span>
+        <span class="s1">&#39;ResponseContentType&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;application/octet-stream&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;ResponseContentDisposition&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;attachment; filename=file2.jpg&#39;</span><span class="p">,</span>
+    <span class="p">]</span>
+<span class="p">);</span>
+</code></pre></div>
+<p><a name="customizing-temporary-urls"></a></p>
+<h4 id="url_4">一時URLのカスタマイズ<a class="headerlink" href="#url_4" title="Permanent link">&para;</a></h4>
+<p>特定のストレージディスクの一時URLの作成方法をカスタマイズする必要がある場合、<code>buildTemporaryUrlsUsing</code>メソッドを使用できます。例えば、これは通常一時URLをサポートしないディスクを介して保存されたファイルをダウンロードできるコントローラがある場合に便利です。通常、このメソッドはサービスプロバイダの<code>boot</code>メソッドから呼び出す必要があります。</p>
+<div class="highlight"><pre><span></span><code><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Providers</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">DateTime</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Storage</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Support\Facades\URL</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Support\ServiceProvider</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">AppServiceProvider</span> <span class="k">extends</span> <span class="nx">ServiceProvider</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * Bootstrap any application services.</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">boot</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+    <span class="p">{</span>
+        <span class="nx">Storage</span><span class="o">::</span><span class="na">disk</span><span class="p">(</span><span class="s1">&#39;local&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">buildTemporaryUrlsUsing</span><span class="p">(</span>
+            <span class="k">function</span> <span class="p">(</span><span class="nx">string</span> <span class="nv">$path</span><span class="p">,</span> <span class="nx">DateTime</span> <span class="nv">$expiration</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$options</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="nx">URL</span><span class="o">::</span><span class="na">temporarySignedRoute</span><span class="p">(</span>
+                    <span class="s1">&#39;files.download&#39;</span><span class="p">,</span>
+                    <span class="nv">$expiration</span><span class="p">,</span>
+                    <span class="nb">array_merge</span><span class="p">(</span><span class="nv">$options</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;path&#39;</span> <span class="o">=&gt;</span> <span class="nv">$path</span><span class="p">])</span>
+                <span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><a name="temporary-upload-urls"></a></p>
+<h4 id="url_5">一時アップロードURL<a class="headerlink" href="#url_5" title="Permanent link">&para;</a></h4>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>一時アップロードURLの生成は、<code>s3</code>ドライバでのみサポートされています。</p>
+</div>
+<p>クライアントサイドアプリケーションから直接ファイルをアップロードするために使用できる一時URLを生成する必要がある場合、<code>temporaryUploadUrl</code>メソッドを使用できます。このメソッドは、URLが期限切れになる時期を指定する<code>DateTime</code>インスタンスとともにパスを受け取ります。<code>temporaryUploadUrl</code>メソッドは、アップロードURLとアップロードリクエストで含めるべきヘッダを分解可能な連想配列を返します。</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Storage</span><span class="p">;</span>
+
+<span class="p">[</span><span class="s1">&#39;url&#39;</span> <span class="o">=&gt;</span> <span class="nv">$url</span><span class="p">,</span> <span class="s1">&#39;headers&#39;</span> <span class="o">=&gt;</span> <span class="nv">$headers</span><span class="p">]</span> <span class="o">=</span> <span class="nx">Storage</span><span class="o">::</span><span class="na">temporaryUploadUrl</span><span class="p">(</span>
+    <span class="s1">&#39;file.jpg&#39;</span><span class="p">,</span> <span class="nx">now</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">addMinutes</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="p">);</span>
+</code></pre></div>
+<p>このメソッドは、クライアントサイドアプリケーションがAmazon S3などのクラウドストレージシステムに直接ファイルをアップロードする必要があるサーバーレス環境で主に役立ちます。</p>
+<p><a name="file-metadata"></a></p>
+<h3 id="_12">ファイルメタデータ<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<p>ファイルの読み書きに加えて、Laravelはファイル自体に関する情報も提供できます。例えば、<code>size</code>メソッドを使用して、ファイルのサイズをバイト単位で取得できます。</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Storage</span><span class="p">;</span>
+
+<span class="nv">$size</span> <span class="o">=</span> <span class="nx">Storage</span><span class="o">::</span><span class="na">size</span><span class="p">(</span><span class="s1">&#39;file.jpg&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><code>lastModified</code>メソッドは、ファイルが最後に変更されたUNIXタイムスタンプを返します。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$time</span> <span class="o">=</span> <span class="nx">Storage</span><span class="o">::</span><span class="na">lastModified</span><span class="p">(</span><span class="s1">&#39;file.jpg&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p>指定されたファイルのMIMEタイプは、<code>mimeType</code>メソッドを介して取得できます。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$mime</span> <span class="o">=</span> <span class="nx">Storage</span><span class="o">::</span><span class="na">mimeType</span><span class="p">(</span><span class="s1">&#39;file.jpg&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="file-paths"></a></p>
+<h4 id="_13">ファイルパス<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h4>
+<p><code>path</code>メソッドを使用して、指定されたファイルのパスを取得できます。<code>local</code>ドライバを使用している場合、これはファイルへの絶対パスを返します。<code>s3</code>ドライバを使用している場合、このメソッドはS3バケット内のファイルへの相対パスを返します。</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Storage</span><span class="p">;</span>
+
+<span class="nv">$path</span> <span class="o">=</span> <span class="nx">Storage</span><span class="o">::</span><span class="na">path</span><span class="p">(</span><span class="s1">&#39;file.jpg&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="storing-files"></a></p>
+<h2 id="_14">ファイルの保存<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<p><code>put</code>メソッドを使用して、ディスク上にファイルの内容を保存できます。また、PHPの<code>resource</code>を<code>put</code>メソッドに渡すこともでき、Flysystemの基礎となるストリームサポートを使用します。すべてのファイルパスは、ディスクに設定された「ルート」位置を基準に指定する必要があることに注意してください。</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Storage</span><span class="p">;</span>
+
+<span class="nx">Storage</span><span class="o">::</span><span class="na">put</span><span class="p">(</span><span class="s1">&#39;file.jpg&#39;</span><span class="p">,</span> <span class="nv">$contents</span><span class="p">);</span>
+
+<span class="nx">Storage</span><span class="o">::</span><span class="na">put</span><span class="p">(</span><span class="s1">&#39;file.jpg&#39;</span><span class="p">,</span> <span class="nv">$resource</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="failed-writes"></a></p>
+<h4 id="_15">書き込み失敗<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h4>
+<p><code>put</code>メソッド（または他の「書き込み」操作）がファイルをディスクに書き込めない場合、<code>false</code>が返されます。</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="nx">Storage</span><span class="o">::</span><span class="na">put</span><span class="p">(</span><span class="s1">&#39;file.jpg&#39;</span><span class="p">,</span> <span class="nv">$contents</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// ファイルをディスクに書き込めませんでした...</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>必要に応じて、ファイルシステムディスクの設定配列内で<code>throw</code>オプションを定義できます。このオプションが<code>true</code>として定義されている場合、<code>put</code>などの「書き込み」メソッドは、書き込み操作が失敗したときに<code>League\Flysystem\UnableToWriteFile</code>のインスタンスをスローします。</p>
+<div class="highlight"><pre><span></span><code><span class="s1">&#39;public&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="s1">&#39;driver&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;local&#39;</span><span class="p">,</span>
+    <span class="c1">// ...</span>
+    <span class="s1">&#39;throw&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
+<span class="p">],</span>
+</code></pre></div>
+<p><a name="prepending-appending-to-files"></a></p>
+<h3 id="_16">ファイルへの先頭と末尾への追加<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h3>
+<p><code>prepend</code>および<code>append</code>メソッドを使用すると、ファイルの先頭または末尾に書き込むことができます。</p>
+<div class="highlight"><pre><span></span><code><span class="nx">Storage</span><span class="o">::</span><span class="na">prepend</span><span class="p">(</span><span class="s1">&#39;file.log&#39;</span><span class="p">,</span> <span class="s1">&#39;Prepended Text&#39;</span><span class="p">);</span>
+
+<span class="nx">Storage</span><span class="o">::</span><span class="na">append</span><span class="p">(</span><span class="s1">&#39;file.log&#39;</span><span class="p">,</span> <span class="s1">&#39;Appended Text&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="copying-moving-files"></a></p>
+<h3 id="_17">ファイルのコピーと移動<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h3>
+<p><code>copy</code>メソッドは、既存のファイルをディスク上の新しい場所にコピーするために使用できます。一方、<code>move</code>メソッドは、既存のファイルの名前を変更したり、新しい場所に移動したりするために使用できます。</p>
+<div class="highlight"><pre><span></span><code><span class="nx">Storage</span><span class="o">::</span><span class="na">copy</span><span class="p">(</span><span class="s1">&#39;old/file.jpg&#39;</span><span class="p">,</span> <span class="s1">&#39;new/file.jpg&#39;</span><span class="p">);</span>
+
+<span class="nx">Storage</span><span class="o">::</span><span class="na">move</span><span class="p">(</span><span class="s1">&#39;old/file.jpg&#39;</span><span class="p">,</span> <span class="s1">&#39;new/file.jpg&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="automatic-streaming"></a></p>
+<h3 id="_18">自動ストリーミング<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h3>
+<p>ストレージへのファイルのストリーミングは、メモリ使用量を大幅に削減します。Laravelに指定されたファイルのストリーミングを自動的に管理させたい場合は、<code>putFile</code>または<code>putFileAs</code>メソッドを使用できます。このメソッドは、<code>Illuminate\Http\File</code>または<code>Illuminate\Http\UploadedFile</code>のインスタンスを受け取り、ファイルを目的の場所に自動的にストリーミングします。</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">Illuminate\Http\File</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Storage</span><span class="p">;</span>
+
+<span class="c1">// ファイル名に一意のIDを自動生成...</span>
+<span class="nv">$path</span> <span class="o">=</span> <span class="nx">Storage</span><span class="o">::</span><span class="na">putFile</span><span class="p">(</span><span class="s1">&#39;photos&#39;</span><span class="p">,</span> <span class="k">new</span> <span class="nx">File</span><span class="p">(</span><span class="s1">&#39;/path/to/photo&#39;</span><span class="p">));</span>
+
+<span class="c1">// ファイル名を手動で指定...</span>
+<span class="nv">$path</span> <span class="o">=</span> <span class="nx">Storage</span><span class="o">::</span><span class="na">putFileAs</span><span class="p">(</span><span class="s1">&#39;photos&#39;</span><span class="p">,</span> <span class="k">new</span> <span class="nx">File</span><span class="p">(</span><span class="s1">&#39;/path/to/photo&#39;</span><span class="p">),</span> <span class="s1">&#39;photo.jpg&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><code>putFile</code>メソッドについて、いくつか重要な点に注意してください。ファイル名ではなくディレクトリ名のみを指定したことに注意してください。デフォルトでは、<code>putFile</code>メソッドは一意のIDを生成してファイル名として使用します。ファイルの拡張子は、ファイルのMIMEタイプを調べて決定されます。ファイルへのパスは<code>putFile</code>メソッドによって返されるため、パス（生成されたファイル名を含む）をデータベースに保存できます。</p>
+<p><code>putFile</code>および<code>putFileAs</code>メソッドは、保存されたファイルの「可視性」を指定するための引数も受け取ります。これは、Amazon S3などのクラウドディスクにファイルを保存し、生成されたURLを介してファイルを公開したい場合に特に便利です。</p>
+<div class="highlight"><pre><span></span><code><span class="nx">Storage</span><span class="o">::</span><span class="na">putFile</span><span class="p">(</span><span class="s1">&#39;photos&#39;</span><span class="p">,</span> <span class="k">new</span> <span class="nx">File</span><span class="p">(</span><span class="s1">&#39;/path/to/photo&#39;</span><span class="p">),</span> <span class="s1">&#39;public&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="file-uploads"></a></p>
+<h3 id="_19">ファイルアップロード<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h3>
+<p>Webアプリケーションでファイルを保存する最も一般的なユースケースの1つは、写真やドキュメントなどのユーザーがアップロードしたファイルを保存することです。Laravelは、アップロードされたファイルインスタンスの<code>store</code>メソッドを使用して、アップロードされたファイルを保存するのが非常に簡単です。アップロードされたファイルを保存したいパスを指定して<code>store</code>メソッドを呼び出します。</p>
+<div class="highlight"><pre><span></span><code><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Http\Controllers</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">App\Http\Controllers\Controller</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Http\Request</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">UserAvatarController</span> <span class="k">extends</span> <span class="nx">Controller</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * ユーザーのアバターを更新する。</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">update</span><span class="p">(</span><span class="nx">Request</span> <span class="nv">$request</span><span class="p">)</span><span class="o">:</span> <span class="nx">string</span>
+    <span class="p">{</span>
+        <span class="nv">$path</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">file</span><span class="p">(</span><span class="s1">&#39;avatar&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">store</span><span class="p">(</span><span class="s1">&#39;avatars&#39;</span><span class="p">);</span>
+
+        <span class="k">return</span> <span class="nv">$path</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>この例について、いくつか重要な点に注意してください。ファイル名ではなくディレクトリ名のみを指定したことに注意してください。デフォルトでは、<code>store</code>メソッドは一意のIDを生成してファイル名として使用します。ファイルの拡張子は、ファイルのMIMEタイプを調べて決定されます。ファイルへのパスは<code>store</code>メソッドによって返されるため、パス（生成されたファイル名を含む）をデータベースに保存できます。</p>
+<p>また、<code>Storage</code>ファサードの<code>putFile</code>メソッドを呼び出して、上記の例と同じファイル保存操作を実行することもできます。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$path</span> <span class="o">=</span> <span class="nx">Storage</span><span class="o">::</span><span class="na">putFile</span><span class="p">(</span><span class="s1">&#39;avatars&#39;</span><span class="p">,</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">file</span><span class="p">(</span><span class="s1">&#39;avatar&#39;</span><span class="p">));</span>
+</code></pre></div>
+<p><a name="specifying-a-file-name"></a></p>
+<h4 id="_20">ファイル名の指定<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h4>
+<p>保存されたファイルに自動的にファイル名を割り当てたくない場合は、<code>storeAs</code>メソッドを使用できます。このメソッドは、パス、ファイル名、および（オプションの）ディスクを引数として受け取ります。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$path</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">file</span><span class="p">(</span><span class="s1">&#39;avatar&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">storeAs</span><span class="p">(</span>
+    <span class="s1">&#39;avatars&#39;</span><span class="p">,</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">user</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">id</span>
+<span class="p">);</span>
+</code></pre></div>
+<p>また、<code>Storage</code>ファサードの<code>putFileAs</code>メソッドを使用することもできます。これは、上記の例と同じファイル保存操作を実行します。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$path</span> <span class="o">=</span> <span class="nx">Storage</span><span class="o">::</span><span class="na">putFileAs</span><span class="p">(</span>
+    <span class="s1">&#39;avatars&#39;</span><span class="p">,</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">file</span><span class="p">(</span><span class="s1">&#39;avatar&#39;</span><span class="p">),</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">user</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">id</span>
+<span class="p">);</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>印刷不可能な文字と無効なユニコード文字は、ファイルパスから自動的に削除されます。したがって、Laravelのファイルストレージメソッドに渡す前に、ファイルパスをサニタイズすることをお勧めします。ファイルパスは、<code>League\Flysystem\WhitespacePathNormalizer::normalizePath</code>メソッドを使用して正規化されます。</p>
+</div>
+<p><a name="specifying-a-disk"></a></p>
+<h4 id="_21">ディスクの指定<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h4>
+<p>デフォルトでは、このアップロードされたファイルの<code>store</code>メソッドはデフォルトのディスクを使用します。別のディスクを指定したい場合は、ディスク名を<code>store</code>メソッドの第2引数として渡します。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$path</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">file</span><span class="p">(</span><span class="s1">&#39;avatar&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">store</span><span class="p">(</span>
+    <span class="s1">&#39;avatars/&#39;</span><span class="o">.</span><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">user</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">,</span> <span class="s1">&#39;s3&#39;</span>
+<span class="p">);</span>
+</code></pre></div>
+<p><code>storeAs</code>メソッドを使用する場合、ディスク名をメソッドの第3引数として渡すことができます。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$path</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">file</span><span class="p">(</span><span class="s1">&#39;avatar&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">storeAs</span><span class="p">(</span>
+    <span class="s1">&#39;avatars&#39;</span><span class="p">,</span>
+    <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">user</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">,</span>
+    <span class="s1">&#39;s3&#39;</span>
+<span class="p">);</span>
+</code></pre></div>
+<p><a name="other-uploaded-file-information"></a></p>
+<h4 id="_22">その他のアップロードされたファイル情報<a class="headerlink" href="#_22" title="Permanent link">&para;</a></h4>
+<p>アップロードされたファイルの元の名前と拡張子を取得したい場合は、<code>getClientOriginalName</code>および<code>getClientOriginalExtension</code>メソッドを使用できます。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$file</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">file</span><span class="p">(</span><span class="s1">&#39;avatar&#39;</span><span class="p">);</span>
+
+<span class="nv">$name</span> <span class="o">=</span> <span class="nv">$file</span><span class="o">-&gt;</span><span class="na">getClientOriginalName</span><span class="p">();</span>
+<span class="nv">$extension</span> <span class="o">=</span> <span class="nv">$file</span><span class="o">-&gt;</span><span class="na">getClientOriginalExtension</span><span class="p">();</span>
+</code></pre></div>
+<p>ただし、<code>getClientOriginalName</code>および<code>getClientOriginalExtension</code>メソッドは安全でないと見なされることに注意してください。ファイル名と拡張子は悪意のあるユーザーによって改ざんされる可能性があります。このため、通常は<code>hashName</code>および<code>extension</code>メソッドを使用して、指定されたファイルアップロードの名前と拡張子を取得することをお勧めします。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$file</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">file</span><span class="p">(</span><span class="s1">&#39;avatar&#39;</span><span class="p">);</span>
+
+<span class="nv">$name</span> <span class="o">=</span> <span class="nv">$file</span><span class="o">-&gt;</span><span class="na">hashName</span><span class="p">();</span> <span class="c1">// 一意でランダムな名前を生成...</span>
+<span class="nv">$extension</span> <span class="o">=</span> <span class="nv">$file</span><span class="o">-&gt;</span><span class="na">extension</span><span class="p">();</span> <span class="c1">// ファイルのMIMEタイプに基づいてファイルの拡張子を決定...</span>
+</code></pre></div>
+<p><a name="file-visibility"></a></p>
+<h3 id="_23">ファイルの可視性<a class="headerlink" href="#_23" title="Permanent link">&para;</a></h3>
+<p>LaravelのFlysystem統合では、「可視性」は複数のプラットフォーム間でのファイル権限の抽象化です。ファイルは<code>public</code>または<code>private</code>として宣言できます。ファイルが<code>public</code>と宣言されている場合、通常は他のユーザーがファイルにアクセスできることを示します。たとえば、S3ドライバーを使用する場合、<code>public</code>ファイルのURLを取得できます。</p>
+<p><code>put</code>メソッドを介してファイルを書き込む際に可視性を設定できます。</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Storage</span><span class="p">;</span>
+
+<span class="nx">Storage</span><span class="o">::</span><span class="na">put</span><span class="p">(</span><span class="s1">&#39;file.jpg&#39;</span><span class="p">,</span> <span class="nv">$contents</span><span class="p">,</span> <span class="s1">&#39;public&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p>ファイルがすでに保存されている場合、<code>getVisibility</code>および<code>setVisibility</code>メソッドを介してその可視性を取得および設定できます。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$visibility</span> <span class="o">=</span> <span class="nx">Storage</span><span class="o">::</span><span class="na">getVisibility</span><span class="p">(</span><span class="s1">&#39;file.jpg&#39;</span><span class="p">);</span>
+
+<span class="nx">Storage</span><span class="o">::</span><span class="na">setVisibility</span><span class="p">(</span><span class="s1">&#39;file.jpg&#39;</span><span class="p">,</span> <span class="s1">&#39;public&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p>アップロードされたファイルと対話する場合、<code>storePublicly</code>および<code>storePubliclyAs</code>メソッドを使用して、アップロードされたファイルを<code>public</code>可視性で保存できます。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$path</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">file</span><span class="p">(</span><span class="s1">&#39;avatar&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">storePublicly</span><span class="p">(</span><span class="s1">&#39;avatars&#39;</span><span class="p">,</span> <span class="s1">&#39;s3&#39;</span><span class="p">);</span>
+
+<span class="nv">$path</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">file</span><span class="p">(</span><span class="s1">&#39;avatar&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">storePubliclyAs</span><span class="p">(</span>
+    <span class="s1">&#39;avatars&#39;</span><span class="p">,</span>
+    <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">user</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">,</span>
+    <span class="s1">&#39;s3&#39;</span>
+<span class="p">);</span>
+</code></pre></div>
+<p><a name="local-files-and-visibility"></a></p>
+<h4 id="_24">ローカルファイルと可視性<a class="headerlink" href="#_24" title="Permanent link">&para;</a></h4>
+<p><code>local</code>ドライバーを使用する場合、<code>public</code> <a href="#file-visibility">可視性</a> はディレクトリに対して<code>0755</code>の権限、ファイルに対して<code>0644</code>の権限に変換されます。アプリケーションの<code>filesystems</code>設定ファイルで権限マッピングを変更できます。</p>
+<div class="highlight"><pre><span></span><code><span class="s1">&#39;local&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="s1">&#39;driver&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;local&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;root&#39;</span> <span class="o">=&gt;</span> <span class="nx">storage_path</span><span class="p">(</span><span class="s1">&#39;app&#39;</span><span class="p">),</span>
+    <span class="s1">&#39;permissions&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;file&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;public&#39;</span> <span class="o">=&gt;</span> <span class="mo">0644</span><span class="p">,</span>
+            <span class="s1">&#39;private&#39;</span> <span class="o">=&gt;</span> <span class="mo">0600</span><span class="p">,</span>
+        <span class="p">],</span>
+        <span class="s1">&#39;dir&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+            <span class="s1">&#39;public&#39;</span> <span class="o">=&gt;</span> <span class="mo">0755</span><span class="p">,</span>
+            <span class="s1">&#39;private&#39;</span> <span class="o">=&gt;</span> <span class="mo">0700</span><span class="p">,</span>
+        <span class="p">],</span>
+    <span class="p">],</span>
+    <span class="s1">&#39;throw&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">,</span>
+<span class="p">],</span>
+</code></pre></div>
+<p><a name="deleting-files"></a></p>
+<h2 id="_25">ファイルの削除<a class="headerlink" href="#_25" title="Permanent link">&para;</a></h2>
+<p><code>delete</code>メソッドは、削除する単一のファイル名またはファイルの配列を受け取ります。</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Storage</span><span class="p">;</span>
+
+<span class="nx">Storage</span><span class="o">::</span><span class="na">delete</span><span class="p">(</span><span class="s1">&#39;file.jpg&#39;</span><span class="p">);</span>
+
+<span class="nx">Storage</span><span class="o">::</span><span class="na">delete</span><span class="p">([</span><span class="s1">&#39;file.jpg&#39;</span><span class="p">,</span> <span class="s1">&#39;file2.jpg&#39;</span><span class="p">]);</span>
+</code></pre></div>
+<p>必要に応じて、ファイルを削除するディスクを指定できます。</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Storage</span><span class="p">;</span>
+
+<span class="nx">Storage</span><span class="o">::</span><span class="na">disk</span><span class="p">(</span><span class="s1">&#39;s3&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">(</span><span class="s1">&#39;path/file.jpg&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="directories"></a></p>
+<h2 id="_26">ディレクトリ<a class="headerlink" href="#_26" title="Permanent link">&para;</a></h2>
+<p><a name="get-all-files-within-a-directory"></a></p>
+<h4 id="_27">ディレクトリ内のすべてのファイルを取得<a class="headerlink" href="#_27" title="Permanent link">&para;</a></h4>
+<p><code>files</code>メソッドは、指定されたディレクトリ内のすべてのファイルの配列を返します。指定されたディレクトリ内のすべてのファイルとサブディレクトリ内のファイルのリストを取得したい場合は、<code>allFiles</code>メソッドを使用できます。</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Storage</span><span class="p">;</span>
+
+<span class="nv">$files</span> <span class="o">=</span> <span class="nx">Storage</span><span class="o">::</span><span class="na">files</span><span class="p">(</span><span class="nv">$directory</span><span class="p">);</span>
+
+<span class="nv">$files</span> <span class="o">=</span> <span class="nx">Storage</span><span class="o">::</span><span class="na">allFiles</span><span class="p">(</span><span class="nv">$directory</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="get-all-directories-within-a-directory"></a></p>
+<h4 id="_28">ディレクトリ内のすべてのディレクトリを取得<a class="headerlink" href="#_28" title="Permanent link">&para;</a></h4>
+<p><code>directories</code>メソッドは、指定されたディレクトリ内のすべてのディレクトリの配列を返します。さらに、<code>allDirectories</code>メソッドを使用して、指定されたディレクトリとそのすべてのサブディレクトリ内のすべてのディレクトリのリストを取得できます。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$directories</span> <span class="o">=</span> <span class="nx">Storage</span><span class="o">::</span><span class="na">directories</span><span class="p">(</span><span class="nv">$directory</span><span class="p">);</span>
+
+<span class="nv">$directories</span> <span class="o">=</span> <span class="nx">Storage</span><span class="o">::</span><span class="na">allDirectories</span><span class="p">(</span><span class="nv">$directory</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="create-a-directory"></a></p>
+<h4 id="_29">ディレクトリの作成<a class="headerlink" href="#_29" title="Permanent link">&para;</a></h4>
+<p><code>makeDirectory</code>メソッドは、指定されたディレクトリを作成し、必要なサブディレクトリを含みます。</p>
+<div class="highlight"><pre><span></span><code><span class="nx">Storage</span><span class="o">::</span><span class="na">makeDirectory</span><span class="p">(</span><span class="nv">$directory</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="delete-a-directory"></a></p>
+<h4 id="_30">ディレクトリの削除<a class="headerlink" href="#_30" title="Permanent link">&para;</a></h4>
+<p>最後に、<code>deleteDirectory</code>メソッドを使用して、ディレクトリとそのすべてのファイルを削除できます。</p>
+<div class="highlight"><pre><span></span><code><span class="nx">Storage</span><span class="o">::</span><span class="na">deleteDirectory</span><span class="p">(</span><span class="nv">$directory</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="testing"></a></p>
+<h2 id="_31">テスト<a class="headerlink" href="#_31" title="Permanent link">&para;</a></h2>
+<p><code>Storage</code>ファサードの<code>fake</code>メソッドを使用すると、簡単に偽のディスクを生成できます。これは、<code>Illuminate\Http\UploadedFile</code>クラスのファイル生成ユーティリティと組み合わせることで、ファイルアップロードのテストが大幅に簡素化されます。例えば：</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:1"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Pest</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block"></div>
+</div>
+</div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="o">&lt;?</span><span class="nx">php</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="k">use</span> <span class="nx">Illuminate\Http\UploadedFile</span><span class="p">;</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Storage</span><span class="p">;</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="nx">test</span><span class="p">(</span><span class="s1">&#39;アルバムをアップロードできる&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>    <span class="nx">Storage</span><span class="o">::</span><span class="na">fake</span><span class="p">(</span><span class="s1">&#39;photos&#39;</span><span class="p">);</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>    <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">json</span><span class="p">(</span><span class="s1">&#39;POST&#39;</span><span class="p">,</span> <span class="s1">&#39;/photos&#39;</span><span class="p">,</span> <span class="p">[</span>
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>        <span class="nx">UploadedFile</span><span class="o">::</span><span class="na">fake</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">image</span><span class="p">(</span><span class="s1">&#39;photo1.jpg&#39;</span><span class="p">),</span>
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>        <span class="nx">UploadedFile</span><span class="o">::</span><span class="na">fake</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">image</span><span class="p">(</span><span class="s1">&#39;photo2.jpg&#39;</span><span class="p">)</span>
+<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>    <span class="p">]);</span>
+<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>
+<a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a>    <span class="c1">// アップロードされたファイルのアサーション...</span>
+<a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a><span class="p">});</span>
+</code></pre></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:1"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">PHPUnit</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block"></div>
+</div>
+</div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="o">&lt;?</span><span class="nx">php</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="k">namespace</span> <span class="nx">Tests\Feature</span><span class="p">;</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="k">use</span> <span class="nx">Illuminate\Http\UploadedFile</span><span class="p">;</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Storage</span><span class="p">;</span>
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="k">use</span> <span class="nx">Tests\TestCase</span><span class="p">;</span>
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>
+<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="k">class</span> <span class="nc">ExampleTest</span> <span class="k">extends</span> <span class="nx">TestCase</span>
+<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="p">{</span>
+<a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">test_albums_can_be_uploaded</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a>    <span class="p">{</span>
+<a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a>        <span class="nx">Storage</span><span class="o">::</span><span class="na">fake</span><span class="p">(</span><span class="s1">&#39;photos&#39;</span><span class="p">);</span>
+<a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a>
+<a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a>        <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">json</span><span class="p">(</span><span class="s1">&#39;POST&#39;</span><span class="p">,</span> <span class="s1">&#39;/photos&#39;</span><span class="p">,</span> <span class="p">[</span>
+<a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a>            <span class="nx">UploadedFile</span><span class="o">::</span><span class="na">fake</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">image</span><span class="p">(</span><span class="s1">&#39;photo1.jpg&#39;</span><span class="p">),</span>
+<a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a>            <span class="nx">UploadedFile</span><span class="o">::</span><span class="na">fake</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">image</span><span class="p">(</span><span class="s1">&#39;photo2.jpg&#39;</span><span class="p">)</span>
+<a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a>        <span class="p">]);</span>
+<a id="__codelineno-14-19" name="__codelineno-14-19" href="#__codelineno-14-19"></a>
+<a id="__codelineno-14-20" name="__codelineno-14-20" href="#__codelineno-14-20"></a>        <span class="c1">// 1つ以上のファイルが保存されたことをアサート...</span>
+<a id="__codelineno-14-21" name="__codelineno-14-21" href="#__codelineno-14-21"></a>        <span class="nx">Storage</span><span class="o">::</span><span class="na">disk</span><span class="p">(</span><span class="s1">&#39;photos&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">assertExists</span><span class="p">(</span><span class="s1">&#39;photo1.jpg&#39;</span><span class="p">);</span>
+<a id="__codelineno-14-22" name="__codelineno-14-22" href="#__codelineno-14-22"></a>        <span class="nx">Storage</span><span class="o">::</span><span class="na">disk</span><span class="p">(</span><span class="s1">&#39;photos&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">assertExists</span><span class="p">([</span><span class="s1">&#39;photo1.jpg&#39;</span><span class="p">,</span> <span class="s1">&#39;photo2.jpg&#39;</span><span class="p">]);</span>
+<a id="__codelineno-14-23" name="__codelineno-14-23" href="#__codelineno-14-23"></a>
+<a id="__codelineno-14-24" name="__codelineno-14-24" href="#__codelineno-14-24"></a>        <span class="c1">// 1つ以上のファイルが保存されていないことをアサート...</span>
+<a id="__codelineno-14-25" name="__codelineno-14-25" href="#__codelineno-14-25"></a>        <span class="nx">Storage</span><span class="o">::</span><span class="na">disk</span><span class="p">(</span><span class="s1">&#39;photos&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">assertMissing</span><span class="p">(</span><span class="s1">&#39;missing.jpg&#39;</span><span class="p">);</span>
+<a id="__codelineno-14-26" name="__codelineno-14-26" href="#__codelineno-14-26"></a>        <span class="nx">Storage</span><span class="o">::</span><span class="na">disk</span><span class="p">(</span><span class="s1">&#39;photos&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">assertMissing</span><span class="p">([</span><span class="s1">&#39;missing.jpg&#39;</span><span class="p">,</span> <span class="s1">&#39;non-existing.jpg&#39;</span><span class="p">]);</span>
+<a id="__codelineno-14-27" name="__codelineno-14-27" href="#__codelineno-14-27"></a>
+<a id="__codelineno-14-28" name="__codelineno-14-28" href="#__codelineno-14-28"></a>        <span class="c1">// 指定されたディレクトリが空であることをアサート...</span>
+<a id="__codelineno-14-29" name="__codelineno-14-29" href="#__codelineno-14-29"></a>        <span class="nx">Storage</span><span class="o">::</span><span class="na">disk</span><span class="p">(</span><span class="s1">&#39;photos&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">assertDirectoryEmpty</span><span class="p">(</span><span class="s1">&#39;/wallpapers&#39;</span><span class="p">);</span>
+<a id="__codelineno-14-30" name="__codelineno-14-30" href="#__codelineno-14-30"></a>    <span class="p">}</span>
+<a id="__codelineno-14-31" name="__codelineno-14-31" href="#__codelineno-14-31"></a><span class="p">}</span>
+</code></pre></div>
+<p>デフォルトでは、<code>fake</code>メソッドは一時ディレクトリ内のすべてのファイルを削除します。これらのファイルを保持したい場合は、代わりに"persistentFake"メソッドを使用できます。ファイルアップロードのテストに関する詳細情報は、<a href="http-tests.html#testing-file-uploads">HTTPテストドキュメントのファイルアップロードに関する情報</a>を参照してください。</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><code>image</code>メソッドは<a href="https://www.php.net/manual/en/book.image.php">GD拡張機能</a>を必要とします。</p>
+</div>
+<p><a name="custom-filesystems"></a></p>
+<h2 id="_32">カスタムファイルシステム<a class="headerlink" href="#_32" title="Permanent link">&para;</a></h2>
+<p>LaravelのFlysystem統合は、いくつかの「ドライバ」をすぐにサポートしています。しかし、Flysystemはこれらに限定されず、他の多くのストレージシステム用のアダプタを持っています。Laravelアプリケーションでこれらの追加アダプタのいずれかを使用したい場合は、カスタムドライバを作成できます。</p>
+<p>カスタムファイルシステムを定義するには、Flysystemアダプタが必要です。コミュニティが管理するDropboxアダプタをプロジェクトに追加しましょう：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>composer<span class="w"> </span>require<span class="w"> </span>spatie/flysystem-dropbox
+</code></pre></div>
+<p>次に、アプリケーションの<a href="providers.html">サービスプロバイダ</a>の<code>boot</code>メソッド内でドライバを登録できます。これを行うには、<code>Storage</code>ファサードの<code>extend</code>メソッドを使用する必要があります：</p>
+<div class="highlight"><pre><span></span><code><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Providers</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Illuminate\Contracts\Foundation\Application</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Filesystem\FilesystemAdapter</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Storage</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Support\ServiceProvider</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">League\Flysystem\Filesystem</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Spatie\Dropbox\Client</span> <span class="k">as</span> <span class="nx">DropboxClient</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Spatie\FlysystemDropbox\DropboxAdapter</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">AppServiceProvider</span> <span class="k">extends</span> <span class="nx">ServiceProvider</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * 任意のアプリケーションサービスを登録します。</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">register</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+    <span class="p">{</span>
+        <span class="c1">// ...</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * 任意のアプリケーションサービスを起動します。</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">boot</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+    <span class="p">{</span>
+        <span class="nx">Storage</span><span class="o">::</span><span class="na">extend</span><span class="p">(</span><span class="s1">&#39;dropbox&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Application</span> <span class="nv">$app</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$config</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$adapter</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DropboxAdapter</span><span class="p">(</span><span class="k">new</span> <span class="nx">DropboxClient</span><span class="p">(</span>
+                <span class="nv">$config</span><span class="p">[</span><span class="s1">&#39;authorization_token&#39;</span><span class="p">]</span>
+            <span class="p">));</span>
+
+            <span class="k">return</span> <span class="k">new</span> <span class="nx">FilesystemAdapter</span><span class="p">(</span>
+                <span class="k">new</span> <span class="nx">Filesystem</span><span class="p">(</span><span class="nv">$adapter</span><span class="p">,</span> <span class="nv">$config</span><span class="p">),</span>
+                <span class="nv">$adapter</span><span class="p">,</span>
+                <span class="nv">$config</span>
+            <span class="p">);</span>
+        <span class="p">});</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>extend</code>メソッドの最初の引数はドライバの名前で、2番目の引数は<code>$app</code>と<code>$config</code>変数を受け取るクロージャです。クロージャは<code>Illuminate\Filesystem\FilesystemAdapter</code>のインスタンスを返す必要があります。<code>$config</code>変数には、指定されたディスクの<code>config/filesystems.php</code>で定義された値が含まれます。</p>
+<p>拡張機能のサービスプロバイダを作成して登録したら、<code>config/filesystems.php</code>設定ファイルで<code>dropbox</code>ドライバを使用できます。</p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+<nav class="md-footer-nav">
+    
+    
+</nav>
+
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": ".", "features": ["back-to-top", "navigation.expand", "navigation.tabs", "navigation.footer", "navigation.sections", "navigation.expand", "content.code.copy", "hide_repository_button", "content.code.annotate", "content.tabs.link", "toc.none", "content.action.edit"], "search": "assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="assets/javascripts/bundle.56dfad97.min.js"></script>
+      
+    
+  </body>
+</html>

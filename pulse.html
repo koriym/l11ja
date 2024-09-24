@@ -1,0 +1,4673 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://github.com/koriym/laravel11-ja/pulse.html">
+      
+      
+        <link rel="prev" href="prompts.html">
+      
+      
+        <link rel="next" href="reverb.html">
+      
+      
+      <link rel="icon" href="assets/images/favicon_io/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.35">
+    
+    
+      
+        <title>Pulse - L11JA</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.35f28582.min.css">
+      
+      
+
+
+    
+    
+
+    
+
+    
+      <link rel="stylesheet" href="assets/css/php.css">
+    
+      <link rel="stylesheet" href="assets/css/mkdocs_material_extra.css">
+    
+      <link rel="stylesheet" href="assets/css/extra.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-G60CEHXLQ1"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-G60CEHXLQ1",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-G60CEHXLQ1",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#laravel-pulse" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      <!-- Determine classes -->
+
+
+
+<!-- Header -->
+<header class="md-header" data-md-component="header">
+  <nav
+          class="md-header__inner md-grid"
+          aria-label="Header"
+  >
+
+    <!-- Link to home -->
+    <a
+            href="."
+            title="L11JA"
+            class="md-header__button md-logo"
+            aria-label="L11JA"
+            data-md-component="logo"
+    >
+      
+  <img src="assets/images/logo.png" alt="logo">
+
+    </a>
+
+    <!-- Button to open drawer -->
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+
+    <!-- Header title -->
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            <span style="font-family: 'Noto Sans'; font-size: 20px" >
+            L11JA
+            </span>
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            <span style="font-family: 'Noto Sans Batak'; font-size: 20px" >
+            
+              Pulse
+            
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Color palette toggle -->
+    
+
+    <!-- User preference: color palette -->
+    
+    <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+
+    <!-- Site language selector -->
+    
+
+    <!-- Button to open search modal -->
+    
+    <label class="md-header__button md-icon" for="__search">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+    </label>
+
+    <!-- Search interface -->
+    <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    <!-- Repository information -->
+    
+    <div class="md-header__source">
+      
+
+<!--
+  Check whether the repository is hosted on one of the supported code hosting
+  platforms (GitHub, GitLab or Bitbucket) to show icon.
+-->
+
+
+  
+
+
+<!-- Repository containing source -->
+<a href="https://github.com/koriym/l11ja" title="source.link.title"
+    class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z" fill="#000"/></svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+    
+  </nav>
+
+  <!-- Navigation tabs (sticky) -->
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="releases.html" class="md-tabs__link">
+          
+  
+  プロローグ
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="installation.html" class="md-tabs__link">
+          
+  
+  はじめに
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="lifecycle.html" class="md-tabs__link">
+          
+  
+  アーキテクチャ
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="routing.html" class="md-tabs__link">
+          
+  
+  基本
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="artisan.html" class="md-tabs__link">
+          
+  
+  掘り下げる
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="authentication.html" class="md-tabs__link">
+          
+  
+  セキュリティ
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="database.html" class="md-tabs__link">
+          
+  
+  データベース
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="eloquent.html" class="md-tabs__link">
+          
+  
+  Eloquent ORM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="testing.html" class="md-tabs__link">
+          
+  
+  テスト
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="starter-kits.html" class="md-tabs__link">
+          
+  
+  パッケージ
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="L11JA" class="md-nav__button md-logo" aria-label="L11JA" data-md-component="logo">
+      
+  <img src="assets/images/logo.png" alt="logo">
+
+    </a>
+    L11JA
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+<!--
+  Check whether the repository is hosted on one of the supported code hosting
+  platforms (GitHub, GitLab or Bitbucket) to show icon.
+-->
+
+
+  
+
+
+<!-- Repository containing source -->
+<a href="https://github.com/koriym/l11ja" title="source.link.title"
+    class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z" fill="#000"/></svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    プロローグ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            プロローグ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="releases.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リリースノート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="upgrade.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    アップグレードガイド
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="contributions.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    貢献ガイド
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            はじめに
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="installation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    インストール
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="configuration.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    設定
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structure.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ディレクトリ構造
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="frontend.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    フロントエンド
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="starter-kits.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    スターターキット
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="deployment.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    デプロイ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    アーキテクチャ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            アーキテクチャ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="lifecycle.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リクエストライフサイクル
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="container.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    サービスコンテナ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="providers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    サービスプロバイダ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="facades.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ファサード
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    基本
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            基本
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="routing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ルーティング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="middleware.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ミドルウェア
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="csrf.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CSRF保護
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="controllers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コントローラ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="requests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リクエスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="responses.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    レスポンス
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="views.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ビュー
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="blade.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bladeテンプレート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="vite.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    アセットバンドル
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="urls.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    URL生成
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="session.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    セッション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="validation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    バリデーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="errors.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    エラー処理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="logging.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ログ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    掘り下げる
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            掘り下げる
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="artisan.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Artisanコンソール
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="broadcasting.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ブロードキャスティング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cache.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    キャッシュ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="collections.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コレクション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="concurrency.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    並行処理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="context.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コンテキスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="contracts.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コントラクト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="events.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    イベント
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="filesystem.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ファイルストレージ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="helpers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ヘルパー
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="http-client.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTTPクライアント
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="localization.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ローカライゼーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mail.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    メール
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="notifications.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    通知
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="packages.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    パッケージ開発
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="processes.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    プロセス
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="queues.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    キュー
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="rate-limiting.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    レート制限
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="strings.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    文字列
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="scheduling.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    タスクスケジューリング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    セキュリティ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            セキュリティ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="authentication.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    認証
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="authorization.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    認可
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="verification.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    メール確認
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="encryption.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    暗号化
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hashing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ハッシュ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="passwords.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    パスワードリセット
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    データベース
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            データベース
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="database.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="queries.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    クエリビルダ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pagination.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ページネーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="migrations.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    マイグレーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="seeding.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    シーディング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="redis.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Redis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Eloquent ORM
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Eloquent ORM
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-relationships.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リレーションシップ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-collections.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コレクション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-mutators.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ミューテータ / キャスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-resources.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    APIリソース
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-serialization.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    シリアライゼーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-factories.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ファクトリ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    テスト
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            テスト
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="testing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="http-tests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTTPテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="console-tests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コンソールテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="dusk.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ブラウザテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="database-testing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    データベース
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mocking.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    モック
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    パッケージ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            パッケージ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="starter-kits.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    スターターキット
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="billing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cashier (Stripe)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cashier-paddle.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cashier (Paddle)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="dusk.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ブラウザテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="envoy.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Envoy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fortify.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fortify
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="folio.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Folio
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="homestead.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Homestead
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="horizon.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Horizon
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mix.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mix
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="octane.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Octane
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="passport.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Passport
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pennant.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pennant
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pint.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pint
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="precognition.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Precognition
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="prompts.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prompts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Pulse
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="pulse.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Pulse
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      はじめに
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      インストール
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="インストール">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      設定
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      ダッシュボード
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ダッシュボード">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      認可
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      カスタマイズ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      ユーザーの解決
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      カード
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="カード">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      サーバー
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      アプリケーション使用状況
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      例外
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      キュー
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      遅いリクエスト
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      遅いジョブ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      遅いクエリ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      遅い送信リクエスト
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      キャッシュ
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      エントリのキャプチャ
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="エントリのキャプチャ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      レコーダー
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="レコーダー">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      キャッシュインタラクション
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      例外
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      キュー
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      遅いジョブ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      遅い送信リクエスト
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      遅いクエリ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      遅いリクエスト
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      サーバー
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      ユーザージョブ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      ユーザーリクエスト
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      フィルタリング
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_31" class="md-nav__link">
+    <span class="md-ellipsis">
+      パフォーマンス
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="パフォーマンス">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_32" class="md-nav__link">
+    <span class="md-ellipsis">
+      別のデータベースの使用
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Redisによる取り込み
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_33" class="md-nav__link">
+    <span class="md-ellipsis">
+      サンプリング
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_34" class="md-nav__link">
+    <span class="md-ellipsis">
+      トリミング
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pulse" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pulse例外の処理
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_35" class="md-nav__link">
+    <span class="md-ellipsis">
+      カスタムカード
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="カスタムカード">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_36" class="md-nav__link">
+    <span class="md-ellipsis">
+      カードコンポーネント
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_37" class="md-nav__link">
+    <span class="md-ellipsis">
+      スタイリング
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="スタイリング">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#laravel-vite" class="md-nav__link">
+    <span class="md-ellipsis">
+      Laravel Vite統合
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#css" class="md-nav__link">
+    <span class="md-ellipsis">
+      CSSファイル
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tailwind-css" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tailwind CSS
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_38" class="md-nav__link">
+    <span class="md-ellipsis">
+      データのキャプチャと集計
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="データのキャプチャと集計">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_39" class="md-nav__link">
+    <span class="md-ellipsis">
+      エントリのキャプチャ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_40" class="md-nav__link">
+    <span class="md-ellipsis">
+      集計データの取得
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_41" class="md-nav__link">
+    <span class="md-ellipsis">
+      ユーザーの表示
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_42" class="md-nav__link">
+    <span class="md-ellipsis">
+      カスタムレコーダー
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reverb.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reverb
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sail.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sail
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sanctum.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sanctum
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="scout.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Scout
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="socialite.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Socialite
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="telescope.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Telescope
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="valet.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Valet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      はじめに
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      インストール
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="インストール">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      設定
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      ダッシュボード
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ダッシュボード">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      認可
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      カスタマイズ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      ユーザーの解決
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      カード
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="カード">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      サーバー
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      アプリケーション使用状況
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      例外
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      キュー
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      遅いリクエスト
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      遅いジョブ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      遅いクエリ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      遅い送信リクエスト
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      キャッシュ
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      エントリのキャプチャ
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="エントリのキャプチャ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      レコーダー
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="レコーダー">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      キャッシュインタラクション
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      例外
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      キュー
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      遅いジョブ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      遅い送信リクエスト
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      遅いクエリ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      遅いリクエスト
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      サーバー
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      ユーザージョブ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      ユーザーリクエスト
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      フィルタリング
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_31" class="md-nav__link">
+    <span class="md-ellipsis">
+      パフォーマンス
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="パフォーマンス">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_32" class="md-nav__link">
+    <span class="md-ellipsis">
+      別のデータベースの使用
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Redisによる取り込み
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_33" class="md-nav__link">
+    <span class="md-ellipsis">
+      サンプリング
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_34" class="md-nav__link">
+    <span class="md-ellipsis">
+      トリミング
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pulse" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pulse例外の処理
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_35" class="md-nav__link">
+    <span class="md-ellipsis">
+      カスタムカード
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="カスタムカード">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_36" class="md-nav__link">
+    <span class="md-ellipsis">
+      カードコンポーネント
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_37" class="md-nav__link">
+    <span class="md-ellipsis">
+      スタイリング
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="スタイリング">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#laravel-vite" class="md-nav__link">
+    <span class="md-ellipsis">
+      Laravel Vite統合
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#css" class="md-nav__link">
+    <span class="md-ellipsis">
+      CSSファイル
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tailwind-css" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tailwind CSS
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_38" class="md-nav__link">
+    <span class="md-ellipsis">
+      データのキャプチャと集計
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="データのキャプチャと集計">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_39" class="md-nav__link">
+    <span class="md-ellipsis">
+      エントリのキャプチャ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_40" class="md-nav__link">
+    <span class="md-ellipsis">
+      集計データの取得
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_41" class="md-nav__link">
+    <span class="md-ellipsis">
+      ユーザーの表示
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_42" class="md-nav__link">
+    <span class="md-ellipsis">
+      カスタムレコーダー
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/koriym/l11ja/edit/master/docs/pulse.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="laravel-pulse">Laravel Pulse<a class="headerlink" href="#laravel-pulse" title="Permanent link">&para;</a></h1>
+<ul>
+<li><a href="#introduction">はじめに</a></li>
+<li><a href="#installation">インストール</a><ul>
+<li><a href="#configuration">設定</a></li>
+</ul>
+</li>
+<li><a href="#dashboard">ダッシュボード</a><ul>
+<li><a href="#dashboard-authorization">認可</a></li>
+<li><a href="#dashboard-customization">カスタマイズ</a></li>
+<li><a href="#dashboard-resolving-users">ユーザーの解決</a></li>
+<li><a href="#dashboard-cards">カード</a></li>
+</ul>
+</li>
+<li><a href="#capturing-entries">エントリのキャプチャ</a><ul>
+<li><a href="#recorders">レコーダー</a></li>
+<li><a href="#filtering">フィルタリング</a></li>
+</ul>
+</li>
+<li><a href="#performance">パフォーマンス</a><ul>
+<li><a href="#using-a-different-database">別のデータベースの使用</a></li>
+<li><a href="#ingest">Redis インジェスト</a></li>
+<li><a href="#sampling">サンプリング</a></li>
+<li><a href="#trimming">トリミング</a></li>
+<li><a href="#pulse-exceptions">Pulse 例外の処理</a></li>
+</ul>
+</li>
+<li><a href="#custom-cards">カスタムカード</a><ul>
+<li><a href="#custom-card-components">カードコンポーネント</a></li>
+<li><a href="#custom-card-styling">スタイリング</a></li>
+<li><a href="#custom-card-data">データのキャプチャと集計</a></li>
+</ul>
+</li>
+</ul>
+<p><a name="introduction"></a></p>
+<h2 id="_1">はじめに<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p><a href="https://github.com/laravel/pulse">Laravel Pulse</a> は、アプリケーションのパフォーマンスと使用状況に関する一目でわかる洞察を提供します。Pulseを使用すると、遅いジョブやエンドポイントなどのボトルネックを追跡し、最もアクティブなユーザーを見つけることができます。</p>
+<p>個々のイベントの詳細なデバッグについては、<a href="telescope.html">Laravel Telescope</a>をチェックしてください。</p>
+<p><a name="installation"></a></p>
+<h2 id="_2">インストール<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Pulseのファーストパーティストレージ実装は現在、MySQL、MariaDB、またはPostgreSQLデータベースが必要です。異なるデータベースエンジンを使用している場合、Pulseデータ用に別のMySQL、MariaDB、またはPostgreSQLデータベースが必要になります。</p>
+</div>
+<p>Composerパッケージマネージャを使用してPulseをインストールできます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>composer<span class="w"> </span>require<span class="w"> </span>laravel/pulse
+</code></pre></div>
+<p>次に、<code>vendor:publish</code> Artisanコマンドを使用してPulseの設定ファイルとマイグレーションファイルを公開する必要があります：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>vendor:publish<span class="w"> </span>--provider<span class="o">=</span><span class="s2">&quot;Laravel\Pulse\PulseServiceProvider&quot;</span>
+</code></pre></div>
+<p>最後に、Pulseのデータを保存するために必要なテーブルを作成するために<code>migrate</code>コマンドを実行する必要があります：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>migrate
+</code></pre></div>
+<p>Pulseのデータベースマイグレーションが実行されたら、<code>/pulse</code>ルートを介してPulseダッシュボードにアクセスできます。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>アプリケーションのプライマリデータベースにPulseデータを保存したくない場合、<a href="#using-a-different-database">専用のデータベース接続を指定</a>できます。</p>
+</div>
+<p><a name="configuration"></a></p>
+<h3 id="_3">設定<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>Pulseの多くの設定オプションは、環境変数を使用して制御できます。利用可能なオプションを確認したり、新しいレコーダーを登録したり、高度なオプションを設定したりするには、<code>config/pulse.php</code>設定ファイルを公開できます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>vendor:publish<span class="w"> </span>--tag<span class="o">=</span>pulse-config
+</code></pre></div>
+<p><a name="dashboard"></a></p>
+<h2 id="_4">ダッシュボード<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p><a name="dashboard-authorization"></a></p>
+<h3 id="_5">認可<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>Pulseダッシュボードは<code>/pulse</code>ルートを介してアクセスできます。デフォルトでは、<code>local</code>環境でのみこのダッシュボードにアクセスできるため、本番環境では<code>'viewPulse'</code>認可ゲートをカスタマイズして認可を設定する必要があります。これは、アプリケーションの<code>app/Providers/AppServiceProvider.php</code>ファイル内で行うことができます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">use</span> <span class="nx">App\Models\User</span><span class="p">;</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Gate</span><span class="p">;</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="sd">/**</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="sd"> * 任意のアプリケーションサービスをブートストラップします。</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="sd"> */</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="k">public</span> <span class="k">function</span> <span class="nf">boot</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="p">{</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>    <span class="nx">Gate</span><span class="o">::</span><span class="na">define</span><span class="p">(</span><span class="s1">&#39;viewPulse&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">User</span> <span class="nv">$user</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>        <span class="k">return</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">isAdmin</span><span class="p">();</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>    <span class="p">});</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>    <span class="c1">// ...</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="p">}</span>
+</code></pre></div>
+<p><a name="dashboard-customization"></a></p>
+<h3 id="_6">カスタマイズ<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>Pulseダッシュボードのカードとレイアウトは、ダッシュボードビューを公開することで設定できます。ダッシュボードビューは<code>resources/views/vendor/pulse/dashboard.blade.php</code>に公開されます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>vendor:publish<span class="w"> </span>--tag<span class="o">=</span>pulse-dashboard
+</code></pre></div>
+<p>ダッシュボードは<a href="https://livewire.laravel.com/">Livewire</a>によって動作し、JavaScriptアセットを再構築することなくカードとレイアウトをカスタマイズできます。</p>
+<p>このファイル内で、<code>&lt;x-pulse&gt;</code>コンポーネントはダッシュボードをレンダリングし、カードのグリッドレイアウトを提供します。ダッシュボードを画面全体に広げたい場合は、コンポーネントに<code>full-width</code>プロパティを指定できます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="x">&lt;x-pulse full-width&gt;</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="x">    ...</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="x">&lt;/x-pulse&gt;</span>
+</code></pre></div>
+<p>デフォルトでは、<code>&lt;x-pulse&gt;</code>コンポーネントは12列のグリッドを作成しますが、<code>cols</code>プロパティを使用してこれをカスタマイズできます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="x">&lt;x-pulse cols=&quot;16&quot;&gt;</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="x">    ...</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="x">&lt;/x-pulse&gt;</span>
+</code></pre></div>
+<p>各カードは、スペースと位置を制御するために<code>cols</code>と<code>rows</code>プロパティを受け入れます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="x">&lt;livewire:pulse.usage cols=&quot;4&quot; rows=&quot;2&quot; /&gt;</span>
+</code></pre></div>
+<p>ほとんどのカードは、スクロールではなく全カードを表示するための<code>expand</code>プロパティも受け入れます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="x">&lt;livewire:pulse.slow-queries expand /&gt;</span>
+</code></pre></div>
+<p><a name="dashboard-resolving-users"></a></p>
+<h3 id="_7">ユーザーの解決<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>アプリケーション使用状況カードなど、ユーザーに関する情報を表示するカードの場合、PulseはユーザーのIDのみを記録します。ダッシュボードをレンダリングする際、Pulseはデフォルトの<code>Authenticatable</code>モデルから<code>name</code>と<code>email</code>フィールドを解決し、Gravatarウェブサービスを使用してアバターを表示します。</p>
+<p>アプリケーションの<code>App\Providers\AppServiceProvider</code>クラス内で<code>Pulse::user</code>メソッドを呼び出すことで、フィールドとアバターをカスタマイズできます。</p>
+<p><code>user</code>メソッドは、表示される<code>Authenticatable</code>モデルを受け取り、ユーザーの<code>name</code>、<code>extra</code>、<code>avatar</code>情報を含む配列を返すクロージャを受け入れます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">use</span> <span class="nx">Laravel\Pulse\Facades\Pulse</span><span class="p">;</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="sd">/**</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="sd"> * 任意のアプリケーションサービスをブートストラップします。</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="sd"> */</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="k">public</span> <span class="k">function</span> <span class="nf">boot</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="p">{</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>    <span class="nx">Pulse</span><span class="o">::</span><span class="na">user</span><span class="p">(</span><span class="nx">fn</span> <span class="p">(</span><span class="nv">$user</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">[</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>        <span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">,</span>
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>        <span class="s1">&#39;extra&#39;</span> <span class="o">=&gt;</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">email</span><span class="p">,</span>
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>        <span class="s1">&#39;avatar&#39;</span> <span class="o">=&gt;</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">avatar_url</span><span class="p">,</span>
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>    <span class="p">]);</span>
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>
+<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a>    <span class="c1">// ...</span>
+<a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a><span class="p">}</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>認証されたユーザーのキャプチャと取得方法を完全にカスタマイズするには、<code>Laravel\Pulse\Contracts\ResolvesUsers</code>契約を実装し、Laravelの<a href="container.html#binding-a-singleton">サービスコンテナ</a>にバインドします。</p>
+</div>
+<p><a name="dashboard-cards"></a></p>
+<h3 id="_8">カード<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p><a name="servers-card"></a></p>
+<h4 id="_9">サーバー<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h4>
+<p><code>&lt;livewire:pulse.servers /&gt;</code>カードは、<code>pulse:check</code>コマンドを実行しているすべてのサーバーのシステムリソース使用状況を表示します。システムリソースのレポートに関する詳細については、<a href="#servers-recorder">サーバーレコーダー</a>のドキュメントを参照してください。</p>
+<p>インフラストラクチャ内のサーバーを交換する場合、一定期間後に非アクティブなサーバーをPulseダッシュボードに表示しないようにすることができます。これは、<code>ignore-after</code>プロパティを使用して行うことができます。このプロパティは、非アクティブなサーバーをPulseダッシュボードから削除するまでの秒数を受け入れます。または、<code>1 hour</code>や<code>3 days and 1 hour</code>などの相対時間形式の文字列を指定することもできます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="x">&lt;livewire:pulse.servers ignore-after=&quot;3 hours&quot; /&gt;</span>
+</code></pre></div>
+<p><a name="application-usage-card"></a></p>
+<h4 id="_10">アプリケーション使用状況<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h4>
+<p><code>&lt;livewire:pulse.usage /&gt;</code>カードは、アプリケーションにリクエストを送信し、ジョブをディスパッチし、遅いリクエストを経験した上位10人のユーザーを表示します。</p>
+<p>すべての使用状況メトリクスを同時に画面に表示したい場合は、カードを複数回含めて<code>type</code>属性を指定できます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="x">&lt;livewire:pulse.usage type=&quot;requests&quot; /&gt;</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="x">&lt;livewire:pulse.usage type=&quot;slow_requests&quot; /&gt;</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="x">&lt;livewire:pulse.usage type=&quot;jobs&quot; /&gt;</span>
+</code></pre></div>
+<p>Pulseがユーザー情報を取得して表示する方法をカスタマイズする方法については、<a href="#dashboard-resolving-users">ユーザーの解決</a>のドキュメントを参照してください。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>アプリケーションが大量のリクエストを受け取るか、大量のジョブをディスパッチする場合、<a href="#sampling">サンプリング</a>を有効にすることをお勧めします。詳細については、<a href="#user-requests-recorder">ユーザーリクエストレコーダー</a>、<a href="#user-jobs-recorder">ユーザージョブレコーダー</a>、および<a href="#slow-jobs-recorder">遅いジョブレコーダー</a>のドキュメントを参照してください。</p>
+</div>
+<p><a name="exceptions-card"></a></p>
+<h4 id="_11">例外<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h4>
+<p><code>&lt;livewire:pulse.exceptions /&gt;</code>カードは、アプリケーションで発生した例外の頻度と最近性を表示します。デフォルトでは、例外は例外クラスと発生した場所に基づいてグループ化されます。詳細については、<a href="#exceptions-recorder">例外レコーダー</a>のドキュメントを参照してください。</p>
+<p><a name="queues-card"></a></p>
+<h4 id="_12">キュー<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h4>
+<p><code>&lt;livewire:pulse.queues /&gt;</code>カードは、アプリケーション内のキューのスループットを表示します。これには、キューに入れられたジョブ、処理中のジョブ、処理されたジョブ、リリースされたジョブ、失敗したジョブの数が含まれます。詳細については、<a href="#queues-recorder">キューレコーダー</a>のドキュメントを参照してください。</p>
+<p><a name="slow-requests-card"></a></p>
+<h4 id="_13">遅いリクエスト<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h4>
+<p><code>&lt;livewire:pulse.slow-requests /&gt;</code>カードは、設定されたしきい値（デフォルトでは1,000ms）を超えるアプリケーションへの受信リクエストを表示します。詳細については、<a href="#slow-requests-recorder">遅いリクエストレコーダー</a>のドキュメントを参照してください。</p>
+<p><a name="slow-jobs-card"></a></p>
+<h4 id="_14">遅いジョブ<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h4>
+<p><code>&lt;livewire:pulse.slow-jobs /&gt;</code>カードは、設定されたしきい値（デフォルトでは1,000ms）を超えるアプリケーション内のキューに入れられたジョブを表示します。詳細については、<a href="#slow-jobs-recorder">遅いジョブレコーダー</a>のドキュメントを参照してください。</p>
+<p><a name="slow-queries-card"></a></p>
+<h4 id="_15">遅いクエリ<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h4>
+<p><code>&lt;livewire:pulse.slow-queries /&gt;</code>カードは、設定されたしきい値（デフォルトでは1,000ms）を超えるアプリケーション内のデータベースクエリを表示します。</p>
+<p>デフォルトでは、遅いクエリはSQLクエリ（バインディングなし）と発生した場所に基づいてグループ化されますが、SQLクエリのみに基づいてグループ化する場合は、場所のキャプチャを選択しないこともできます。</p>
+<p>非常に大きなSQLクエリが構文ハイライトを受け取ることによるレンダリングパフォーマンスの問題が発生した場合、<code>without-highlighting</code>プロパティを追加することでハイライトを無効にできます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="x">&lt;livewire:pulse.slow-queries without-highlighting /&gt;</span>
+</code></pre></div>
+<p>詳細については、<a href="#slow-queries-recorder">遅いクエリレコーダー</a>のドキュメントを参照してください。</p>
+<p><a name="slow-outgoing-requests-card"></a></p>
+<h4 id="_16">遅い送信リクエスト<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h4>
+<p><code>&lt;livewire:pulse.slow-outgoing-requests /&gt;</code>カードは、Laravelの<a href="http-client.html">HTTPクライアント</a>を使用して行われた送信リクエストのうち、設定されたしきい値（デフォルトでは1,000ms）を超えるものを表示します。</p>
+<p>デフォルトでは、エントリは完全なURLでグループ化されます。ただし、正規表現を使用して類似の送信リクエストを正規化またはグループ化したい場合があります。詳細については、<a href="#slow-outgoing-requests-recorder">遅い送信リクエストレコーダー</a>のドキュメントを参照してください。</p>
+<p><a name="cache-card"></a></p>
+<h4 id="_17">キャッシュ<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h4>
+<p><code>&lt;livewire:pulse.cache /&gt;</code> カードは、アプリケーションのキャッシュヒットとミスの統計を、グローバルにおよび個々のキーごとに表示します。</p>
+<p>デフォルトでは、エントリはキーでグループ化されます。ただし、正規表現を使用して類似のキーを正規化またはグループ化したい場合があります。詳細については、<a href="#cache-interactions-recorder">キャッシュインタラクションレコーダー</a>のドキュメントを参照してください。</p>
+<p><a name="capturing-entries"></a></p>
+<h2 id="_18">エントリのキャプチャ<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h2>
+<p>ほとんどのPulseレコーダーは、Laravelによってディスパッチされるフレームワークイベントに基づいて自動的にエントリをキャプチャします。ただし、<a href="#servers-recorder">サーバーレコーダー</a>や一部のサードパーティカードは、情報を定期的にポーリングする必要があります。これらのカードを使用するには、すべての個々のアプリケーションサーバーで <code>pulse:check</code> デーモンを実行する必要があります：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nx">php</span> <span class="nx">artisan</span> <span class="nx">pulse</span><span class="o">:</span><span class="nx">check</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>pulse:check</code> プロセスをバックグラウンドで永続的に実行させるには、Supervisorなどのプロセスモニターを使用して、コマンドが停止しないようにする必要があります。</p>
+</div>
+<p><code>pulse:check</code> コマンドは長時間実行されるプロセスであるため、再起動しない限りコードベースの変更を認識しません。アプリケーションのデプロイプロセス中に <code>pulse:restart</code> コマンドを呼び出して、コマンドを適切に再起動する必要があります：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>pulse:restart
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Pulseは<a href="cache.html">キャッシュ</a>を使用して再起動シグナルを保存するため、この機能を使用する前に、アプリケーションに適切にキャッシュドライバーが設定されていることを確認する必要があります。</p>
+</div>
+<p><a name="recorders"></a></p>
+<h3 id="_19">レコーダー<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h3>
+<p>レコーダーは、アプリケーションからエントリをキャプチャし、Pulseデータベースに記録する役割を担います。レコーダーは、<a href="#configuration">Pulse設定ファイル</a>の <code>recorders</code> セクションで登録および設定されます。</p>
+<p><a name="cache-interactions-recorder"></a></p>
+<h4 id="_20">キャッシュインタラクション<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h4>
+<p><code>CacheInteractions</code> レコーダーは、アプリケーションで発生する<a href="cache.html">キャッシュ</a>のヒットとミスに関する情報をキャプチャし、<a href="#cache-card">キャッシュ</a>カードに表示します。</p>
+<p>オプションで、<a href="#sampling">サンプリングレート</a>と無視するキーパターンを調整できます。</p>
+<p>また、キーのグループ化を設定して、類似のキーを単一のエントリとしてグループ化することもできます。たとえば、同じタイプの情報をキャッシュするキーから一意のIDを削除したい場合があります。グループは、正規表現を使用してキーの一部を「検索して置換」することで設定されます。設定ファイルに例が含まれています：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="nx">Recorders\CacheInteractions</span><span class="o">::</span><span class="na">class</span> <span class="o">=&gt;</span> <span class="p">[</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>    <span class="c1">// ...</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>    <span class="s1">&#39;groups&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>        <span class="c1">// &#39;/:\d+/&#39; =&gt; &#39;:*&#39;,</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>    <span class="p">],</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="p">],</span>
+</code></pre></div>
+<p>最初に一致したパターンが使用されます。パターンが一致しない場合、キーはそのままキャプチャされます。</p>
+<p><a name="exceptions-recorder"></a></p>
+<h4 id="_21">例外<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h4>
+<p><code>Exceptions</code> レコーダーは、アプリケーションで発生する報告可能な例外に関する情報をキャプチャし、<a href="#exceptions-card">例外</a>カードに表示します。</p>
+<p>オプションで、<a href="#sampling">サンプリングレート</a>と無視する例外パターンを調整できます。また、例外が発生した場所をキャプチャするかどうかを設定することもできます。キャプチャされた場所はPulseダッシュボードに表示され、例外の発生元を追跡するのに役立ちます。ただし、同じ例外が複数の場所で発生した場合、それぞれの一意の場所ごとに複数回表示されます。</p>
+<p><a name="queues-recorder"></a></p>
+<h4 id="_22">キュー<a class="headerlink" href="#_22" title="Permanent link">&para;</a></h4>
+<p><code>Queues</code> レコーダーは、アプリケーションのキューに関する情報をキャプチャし、<a href="#queues-card">キュー</a>カードに表示します。</p>
+<p>オプションで、<a href="#sampling">サンプリングレート</a>と無視するジョブパターンを調整できます。</p>
+<p><a name="slow-jobs-recorder"></a></p>
+<h4 id="_23">遅いジョブ<a class="headerlink" href="#_23" title="Permanent link">&para;</a></h4>
+<p><code>SlowJobs</code> レコーダーは、アプリケーションで発生する遅いジョブに関する情報をキャプチャし、<a href="#slow-jobs-recorder">遅いジョブ</a>カードに表示します。</p>
+<p>オプションで、遅いジョブのしきい値、<a href="#sampling">サンプリングレート</a>、および無視するジョブパターンを調整できます。</p>
+<p>他のジョブよりも時間がかかることが予想されるジョブがある場合、ジョブごとのしきい値を設定できます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="nx">Recorders\SlowJobs</span><span class="o">::</span><span class="na">class</span> <span class="o">=&gt;</span> <span class="p">[</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>    <span class="c1">// ...</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>    <span class="s1">&#39;threshold&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>        <span class="s1">&#39;#^App\\Jobs\\GenerateYearlyReports$#&#39;</span> <span class="o">=&gt;</span> <span class="mi">5000</span><span class="p">,</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>        <span class="s1">&#39;default&#39;</span> <span class="o">=&gt;</span> <span class="nx">env</span><span class="p">(</span><span class="s1">&#39;PULSE_SLOW_JOBS_THRESHOLD&#39;</span><span class="p">,</span> <span class="mi">1000</span><span class="p">),</span>
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>    <span class="p">],</span>
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="p">],</span>
+</code></pre></div>
+<p>正規表現パターンがジョブのクラス名に一致しない場合、<code>'default'</code> 値が使用されます。</p>
+<p><a name="slow-outgoing-requests-recorder"></a></p>
+<h4 id="_24">遅い送信リクエスト<a class="headerlink" href="#_24" title="Permanent link">&para;</a></h4>
+<p><code>SlowOutgoingRequests</code> レコーダーは、Laravelの<a href="http-client.html">HTTPクライアント</a>を使用して行われた送信HTTPリクエストのうち、設定されたしきい値を超えるものに関する情報をキャプチャし、<a href="#slow-outgoing-requests-card">遅い送信リクエスト</a>カードに表示します。</p>
+<p>オプションで、遅い送信リクエストのしきい値、<a href="#sampling">サンプリングレート</a>、および無視するURLパターンを調整できます。</p>
+<p>他の送信リクエストよりも時間がかかることが予想されるリクエストがある場合、リクエストごとのしきい値を設定できます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="nx">Recorders\SlowOutgoingRequests</span><span class="o">::</span><span class="na">class</span> <span class="o">=&gt;</span> <span class="p">[</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>    <span class="c1">// ...</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>    <span class="s1">&#39;threshold&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>        <span class="s1">&#39;#backup.zip$#&#39;</span> <span class="o">=&gt;</span> <span class="mi">5000</span><span class="p">,</span>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>        <span class="s1">&#39;default&#39;</span> <span class="o">=&gt;</span> <span class="nx">env</span><span class="p">(</span><span class="s1">&#39;PULSE_SLOW_OUTGOING_REQUESTS_THRESHOLD&#39;</span><span class="p">,</span> <span class="mi">1000</span><span class="p">),</span>
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>    <span class="p">],</span>
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="p">],</span>
+</code></pre></div>
+<p>正規表現パターンがリクエストのURLに一致しない場合、<code>'default'</code> 値が使用されます。</p>
+<p>また、URLのグループ化を設定して、類似のURLを単一のエントリとしてグループ化することもできます。たとえば、URLパスから一意のIDを削除したり、ドメインのみでグループ化したりすることができます。グループは、正規表現を使用してURLの一部を「検索して置換」することで設定されます。設定ファイルにいくつかの例が含まれています：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nx">Recorders\SlowOutgoingRequests</span><span class="o">::</span><span class="na">class</span> <span class="o">=&gt;</span> <span class="p">[</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>    <span class="c1">// ...</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>    <span class="s1">&#39;groups&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>        <span class="c1">// &#39;#^https://api\.github\.com/repos/.*$#&#39; =&gt; &#39;api.github.com/repos/*&#39;,</span>
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>        <span class="c1">// &#39;#^https?://([^/]*).*$#&#39; =&gt; &#39;\1&#39;,</span>
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>        <span class="c1">// &#39;#/\d+#&#39; =&gt; &#39;/*&#39;,</span>
+<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>    <span class="p">],</span>
+<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="p">],</span>
+</code></pre></div>
+<p>最初に一致したパターンが使用されます。パターンが一致しない場合、URLはそのままキャプチャされます。</p>
+<p><a name="slow-queries-recorder"></a></p>
+<h4 id="_25">遅いクエリ<a class="headerlink" href="#_25" title="Permanent link">&para;</a></h4>
+<p><code>SlowQueries</code> レコーダーは、アプリケーション内の設定されたしきい値を超えるデータベースクエリに関する情報をキャプチャし、<a href="#slow-queries-card">遅いクエリ</a>カードに表示します。</p>
+<p>オプションで、遅いクエリのしきい値、<a href="#sampling">サンプリングレート</a>、および無視するクエリパターンを調整できます。また、クエリの場所をキャプチャするかどうかを設定することもできます。キャプチャされた場所はPulseダッシュボードに表示され、クエリの発生元を追跡するのに役立ちます。ただし、同じクエリが複数の場所で実行された場合、それぞれの一意の場所ごとに複数回表示されます。</p>
+<p>他のクエリよりも時間がかかることが予想されるクエリがある場合、クエリごとのしきい値を設定できます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="nx">Recorders\SlowQueries</span><span class="o">::</span><span class="na">class</span> <span class="o">=&gt;</span> <span class="p">[</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>    <span class="c1">// ...</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>    <span class="s1">&#39;threshold&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>        <span class="s1">&#39;#^insert into `yearly_reports`#&#39;</span> <span class="o">=&gt;</span> <span class="mi">5000</span><span class="p">,</span>
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>        <span class="s1">&#39;default&#39;</span> <span class="o">=&gt;</span> <span class="nx">env</span><span class="p">(</span><span class="s1">&#39;PULSE_SLOW_QUERIES_THRESHOLD&#39;</span><span class="p">,</span> <span class="mi">1000</span><span class="p">),</span>
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>    <span class="p">],</span>
+<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="p">],</span>
+</code></pre></div>
+<p>正規表現パターンがクエリのSQLに一致しない場合、<code>'default'</code> 値が使用されます。</p>
+<p><a name="slow-requests-recorder"></a></p>
+<h4 id="_26">遅いリクエスト<a class="headerlink" href="#_26" title="Permanent link">&para;</a></h4>
+<p><code>Requests</code> レコーダーは、アプリケーションに対して行われたリクエストに関する情報をキャプチャし、<a href="#slow-requests-card">遅いリクエスト</a>カードと<a href="#application-usage-card">アプリケーション使用状況</a>カードに表示します。</p>
+<p>オプションで、遅いルートのしきい値、<a href="#sampling">サンプリングレート</a>、および無視するパスを調整できます。</p>
+<p>他のリクエストよりも時間がかかることが予想されるリクエストがある場合、リクエストごとのしきい値を設定できます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="nx">Recorders\SlowRequests</span><span class="o">::</span><span class="na">class</span> <span class="o">=&gt;</span> <span class="p">[</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>    <span class="c1">// ...</span>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>    <span class="s1">&#39;threshold&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>        <span class="s1">&#39;#^/admin/#&#39;</span> <span class="o">=&gt;</span> <span class="mi">5000</span><span class="p">,</span>
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>        <span class="s1">&#39;default&#39;</span> <span class="o">=&gt;</span> <span class="nx">env</span><span class="p">(</span><span class="s1">&#39;PULSE_SLOW_REQUESTS_THRESHOLD&#39;</span><span class="p">,</span> <span class="mi">1000</span><span class="p">),</span>
+<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>    <span class="p">],</span>
+<a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a><span class="p">],</span>
+</code></pre></div>
+<p>正規表現パターンがリクエストのURLに一致しない場合、<code>'default'</code> 値が使用されます。</p>
+<p><a name="servers-recorder"></a></p>
+<h4 id="_27">サーバー<a class="headerlink" href="#_27" title="Permanent link">&para;</a></h4>
+<p><code>Servers</code> レコーダーは、アプリケーションを動かすサーバーのCPU、メモリ、ストレージの使用状況をキャプチャし、<a href="#servers-card">サーバー</a>カードに表示します。このレコーダーは、監視したい各サーバーで<a href="#capturing-entries"><code>pulse:check</code> コマンド</a>を実行する必要があります。</p>
+<p>各レポートサーバーには一意の名前が必要です。デフォルトでは、PulseはPHPの <code>gethostname</code> 関数によって返される値を使用します。これをカスタマイズしたい場合は、<code>PULSE_SERVER_NAME</code> 環境変数を設定できます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="x">PULSE_SERVER_NAME=load-balancer</span>
+</code></pre></div>
+<p>Pulse設定ファイルでは、監視するディレクトリをカスタマイズすることもできます。</p>
+<p><a name="user-jobs-recorder"></a></p>
+<h4 id="_28">ユーザージョブ<a class="headerlink" href="#_28" title="Permanent link">&para;</a></h4>
+<p><code>UserJobs</code> レコーダーは、アプリケーションでジョブをディスパッチするユーザーに関する情報をキャプチャし、<a href="#application-usage-card">アプリケーション使用状況</a>カードに表示します。</p>
+<p>オプションで、<a href="#sampling">サンプリングレート</a>と無視するジョブパターンを調整できます。</p>
+<p><a name="user-requests-recorder"></a></p>
+<h4 id="_29">ユーザーリクエスト<a class="headerlink" href="#_29" title="Permanent link">&para;</a></h4>
+<p><code>UserRequests</code> レコーダーは、アプリケーションにリクエストを行うユーザーに関する情報をキャプチャし、<a href="#application-usage-card">アプリケーション使用状況</a>カードに表示します。</p>
+<p>オプションで、<a href="#sampling">サンプリングレート</a>と無視するジョブパターンを調整できます。</p>
+<p><a name="filtering"></a></p>
+<h3 id="_30">フィルタリング<a class="headerlink" href="#_30" title="Permanent link">&para;</a></h3>
+<p>見てきたように、多くの<a href="#recorders">レコーダー</a>は、設定を通じて、リクエストのURLなどの値に基づいて受信エントリを「無視」する機能を提供しています。しかし、現在認証されているユーザーなど、他の要因に基づいてレコードをフィルタリングすることが有用な場合があります。これらのレコードをフィルタリングするには、クロージャをPulseの <code>filter</code> メソッドに渡すことができます。通常、<code>filter</code> メソッドはアプリケーションの <code>AppServiceProvider</code> の <code>boot</code> メソッド内で呼び出されるべきです：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Auth</span><span class="p">;</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="k">use</span> <span class="nx">Laravel\Pulse\Entry</span><span class="p">;</span>
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="k">use</span> <span class="nx">Laravel\Pulse\Facades\Pulse</span><span class="p">;</span>
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="k">use</span> <span class="nx">Laravel\Pulse\Value</span><span class="p">;</span>
+<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>
+<a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a><span class="c1">// ...</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="sd">/**</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="sd"> * Bootstrap any application services.</span>
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="sd"> */</span>
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="k">public</span> <span class="k">function</span> <span class="nf">boot</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="p">{</span>
+<a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>    <span class="nx">Pulse</span><span class="o">::</span><span class="na">filter</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nx">Entry</span><span class="o">|</span><span class="nx">Value</span> <span class="nv">$entry</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a>        <span class="k">return</span> <span class="nx">Auth</span><span class="o">::</span><span class="na">user</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">isNotAdmin</span><span class="p">();</span>
+<a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a>    <span class="p">});</span>
+<a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a>
+<a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a>    <span class="c1">// ...</span>
+<a id="__codelineno-24-11" name="__codelineno-24-11" href="#__codelineno-24-11"></a><span class="p">}</span>
+</code></pre></div>
+<p><a name="performance"></a></p>
+<h2 id="_31">パフォーマンス<a class="headerlink" href="#_31" title="Permanent link">&para;</a></h2>
+<p>Pulseは、既存のアプリケーションに組み込むために設計されており、追加のインフラストラクチャを必要としません。ただし、高トラフィックのアプリケーションの場合、Pulseがアプリケーションのパフォーマンスに与える影響を排除するためのいくつかの方法があります。</p>
+<p><a name="using-a-different-database"></a></p>
+<h3 id="_32">別のデータベースの使用<a class="headerlink" href="#_32" title="Permanent link">&para;</a></h3>
+<p>高トラフィックのアプリケーションでは、アプリケーションデータベースに影響を与えないように、Pulse用に専用のデータベース接続を使用することをお勧めします。</p>
+<p><code>PULSE_DB_CONNECTION</code>環境変数を設定することで、Pulseが使用する<a href="database.html#configuration">データベース接続</a>をカスタマイズできます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="x">PULSE_DB_CONNECTION=pulse</span>
+</code></pre></div>
+<p><a name="ingest"></a></p>
+<h3 id="redis">Redisによる取り込み<a class="headerlink" href="#redis" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Redisによる取り込みには、Redis 6.2以上と、アプリケーションの設定済みRedisクライアントドライバとして<code>phpredis</code>または<code>predis</code>が必要です。</p>
+</div>
+<p>デフォルトでは、PulseはHTTPレスポンスがクライアントに送信された後、またはジョブが処理された後に、<a href="#using-a-different-database">設定されたデータベース接続</a>に直接エントリを保存します。ただし、PulseのRedis取り込みドライバを使用して、エントリをRedisストリームに送信することができます。これは、<code>PULSE_INGEST_DRIVER</code>環境変数を設定することで有効にできます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="nx">PULSE_INGEST_DRIVER</span><span class="o">=</span><span class="nx">redis</span>
+</code></pre></div>
+<p>Pulseはデフォルトで<a href="redis.html#configuration">Redis接続</a>を使用しますが、<code>PULSE_REDIS_CONNECTION</code>環境変数を介してこれをカスタマイズできます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="nx">PULSE_REDIS_CONNECTION</span><span class="o">=</span><span class="nx">pulse</span>
+</code></pre></div>
+<p>Redis取り込みを使用する場合、ストリームを監視し、RedisからPulseのデータベーステーブルにエントリを移動するために、<code>pulse:work</code>コマンドを実行する必要があります。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="nx">php</span> <span class="nx">artisan</span> <span class="nx">pulse</span><span class="o">:</span><span class="nx">work</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>pulse:work</code>プロセスをバックグラウンドで永続的に実行させるには、Supervisorなどのプロセスモニタを使用して、Pulseワーカーが停止しないようにする必要があります。</p>
+</div>
+<p><code>pulse:work</code>コマンドは長時間実行されるプロセスであるため、再起動しない限りコードベースの変更を認識しません。アプリケーションのデプロイプロセス中に<code>pulse:restart</code>コマンドを呼び出して、コマンドを正常に再起動する必要があります：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>pulse:restart
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Pulseは再起動シグナルを保存するために<a href="cache.html">キャッシュ</a>を使用するため、この機能を使用する前に、アプリケーションに対してキャッシュドライバが適切に設定されていることを確認する必要があります。</p>
+</div>
+<p><a name="sampling"></a></p>
+<h3 id="_33">サンプリング<a class="headerlink" href="#_33" title="Permanent link">&para;</a></h3>
+<p>デフォルトでは、Pulseはアプリケーションで発生するすべての関連イベントをキャプチャします。高トラフィックのアプリケーションでは、特に長期間の場合、ダッシュボードで数百万のデータベース行を集計する必要があることになります。</p>
+<p>代わりに、特定のPulseデータレコーダーで「サンプリング」を有効にすることを選択できます。たとえば、<a href="#user-requests-recorder"><code>User Requests</code></a>レコーダーのサンプルレートを<code>0.1</code>に設定すると、アプリケーションへのリクエストの約10%のみが記録されます。ダッシュボードでは、値はスケールアップされ、近似値であることを示すために<code>~</code>が前に付けられます。</p>
+<p>一般に、特定のメトリックに対してより多くのエントリがあるほど、精度を大幅に犠牲にすることなくサンプルレートを安全に低く設定できます。</p>
+<p><a name="trimming"></a></p>
+<h3 id="_34">トリミング<a class="headerlink" href="#_34" title="Permanent link">&para;</a></h3>
+<p>Pulseは、ダッシュボードのウィンドウ外にあるエントリが保存されると、自動的にそれらをトリミングします。トリミングは、Pulseの<a href="#configuration">設定ファイル</a>でカスタマイズ可能な抽選システムを使用してデータを取り込む際に発生します。</p>
+<p><a name="pulse-exceptions"></a></p>
+<h3 id="pulse">Pulse例外の処理<a class="headerlink" href="#pulse" title="Permanent link">&para;</a></h3>
+<p>Pulseデータのキャプチャ中に例外が発生した場合、例えばストレージデータベースに接続できない場合、Pulseはアプリケーションに影響を与えないように静かに失敗します。</p>
+<p>これらの例外の処理方法をカスタマイズしたい場合は、<code>handleExceptionsUsing</code>メソッドにクロージャを提供できます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="k">use</span> <span class="nx">Laravel\Pulse\Facades\Pulse</span><span class="p">;</span>
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Log</span><span class="p">;</span>
+<a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a>
+<a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a><span class="nx">Pulse</span><span class="o">::</span><span class="na">handleExceptionsUsing</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a>    <span class="nx">Log</span><span class="o">::</span><span class="na">debug</span><span class="p">(</span><span class="s1">&#39;An exception happened in Pulse&#39;</span><span class="p">,</span> <span class="p">[</span>
+<a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a>        <span class="s1">&#39;message&#39;</span> <span class="o">=&gt;</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getMessage</span><span class="p">(),</span>
+<a id="__codelineno-30-7" name="__codelineno-30-7" href="#__codelineno-30-7"></a>        <span class="s1">&#39;stack&#39;</span> <span class="o">=&gt;</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">getTraceAsString</span><span class="p">(),</span>
+<a id="__codelineno-30-8" name="__codelineno-30-8" href="#__codelineno-30-8"></a>    <span class="p">]);</span>
+<a id="__codelineno-30-9" name="__codelineno-30-9" href="#__codelineno-30-9"></a><span class="p">});</span>
+</code></pre></div>
+<p><a name="custom-cards"></a></p>
+<h2 id="_35">カスタムカード<a class="headerlink" href="#_35" title="Permanent link">&para;</a></h2>
+<p>Pulseでは、アプリケーションの特定のニーズに関連するデータを表示するためのカスタムカードを構築できます。Pulseは<a href="https://livewire.laravel.com">Livewire</a>を使用しているため、最初のカスタムカードを構築する前に<a href="https://livewire.laravel.com/docs">そのドキュメント</a>を確認することをお勧めします。</p>
+<p><a name="custom-card-components"></a></p>
+<h3 id="_36">カードコンポーネント<a class="headerlink" href="#_36" title="Permanent link">&para;</a></h3>
+<p>Laravel Pulseでカスタムカードを作成するには、基本の<code>Card</code> Livewireコンポーネントを拡張し、対応するビューを定義することから始めます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="k">namespace</span> <span class="nx">App\Livewire\Pulse</span><span class="p">;</span>
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>
+<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="k">use</span> <span class="nx">Laravel\Pulse\Livewire\Card</span><span class="p">;</span>
+<a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a><span class="k">use</span> <span class="nx">Livewire\Attributes\Lazy</span><span class="p">;</span>
+<a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a>
+<a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a><span class="p">#[</span><span class="nd">Lazy</span><span class="p">]</span>
+<a id="__codelineno-31-7" name="__codelineno-31-7" href="#__codelineno-31-7"></a><span class="k">class</span> <span class="nc">TopSellers</span> <span class="k">extends</span> <span class="nx">Card</span>
+<a id="__codelineno-31-8" name="__codelineno-31-8" href="#__codelineno-31-8"></a><span class="p">{</span>
+<a id="__codelineno-31-9" name="__codelineno-31-9" href="#__codelineno-31-9"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">render</span><span class="p">()</span>
+<a id="__codelineno-31-10" name="__codelineno-31-10" href="#__codelineno-31-10"></a>    <span class="p">{</span>
+<a id="__codelineno-31-11" name="__codelineno-31-11" href="#__codelineno-31-11"></a>        <span class="k">return</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;livewire.pulse.top-sellers&#39;</span><span class="p">);</span>
+<a id="__codelineno-31-12" name="__codelineno-31-12" href="#__codelineno-31-12"></a>    <span class="p">}</span>
+<a id="__codelineno-31-13" name="__codelineno-31-13" href="#__codelineno-31-13"></a><span class="p">}</span>
+</code></pre></div>
+<p>Livewireの<a href="https://livewire.laravel.com/docs/lazy">遅延読み込み</a>機能を使用する場合、<code>Card</code>コンポーネントは自動的にプレースホルダを提供し、コンポーネントに渡される<code>cols</code>と<code>rows</code>属性を尊重します。</p>
+<p>Pulseカードの対応するビューを記述する際には、一貫した外観と操作性のためにPulseのBladeコンポーネントを活用できます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="x">&lt;x-pulse::card :cols=&quot;$cols&quot; :rows=&quot;$rows&quot; :class=&quot;$class&quot; wire:poll.5s=&quot;&quot;&gt;</span>
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="x">    &lt;x-pulse::card-header name=&quot;Top Sellers&quot;&gt;</span>
+<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="x">        &lt;x-slot:icon&gt;</span>
+<a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a><span class="x">            ...</span>
+<a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a><span class="x">        &lt;/x-slot:icon&gt;</span>
+<a id="__codelineno-32-6" name="__codelineno-32-6" href="#__codelineno-32-6"></a><span class="x">    &lt;/x-pulse::card-header&gt;</span>
+<a id="__codelineno-32-7" name="__codelineno-32-7" href="#__codelineno-32-7"></a>
+<a id="__codelineno-32-8" name="__codelineno-32-8" href="#__codelineno-32-8"></a><span class="x">    &lt;x-pulse::scroll :expand=&quot;$expand&quot;&gt;</span>
+<a id="__codelineno-32-9" name="__codelineno-32-9" href="#__codelineno-32-9"></a><span class="x">        ...</span>
+<a id="__codelineno-32-10" name="__codelineno-32-10" href="#__codelineno-32-10"></a><span class="x">    &lt;/x-pulse::scroll&gt;</span>
+<a id="__codelineno-32-11" name="__codelineno-32-11" href="#__codelineno-32-11"></a><span class="x">&lt;/x-pulse::card&gt;</span>
+</code></pre></div>
+<p><code>$cols</code>、<code>$rows</code>、<code>$class</code>、および<code>$expand</code>変数は、それぞれのBladeコンポーネントに渡される必要があります。これにより、ダッシュボードビューからカードのレイアウトをカスタマイズできます。また、カードを自動的に更新するために、ビューに<code>wire:poll.5s=""</code>属性を含めることもできます。</p>
+<p>Livewireコンポーネントとテンプレートを定義したら、カードを<a href="#dashboard-customization">ダッシュボードビュー</a>に含めることができます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="x">&lt;x-pulse&gt;</span>
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="x">    ...</span>
+<a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a>
+<a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a><span class="x">    &lt;livewire:pulse.top-sellers cols=&quot;4&quot; /&gt;</span>
+<a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a><span class="x">&lt;/x-pulse&gt;</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>カードがパッケージに含まれている場合、<code>Livewire::component</code>メソッドを使用してコンポーネントをLivewireに登録する必要があります。</p>
+</div>
+<p><a name="custom-card-styling"></a></p>
+<h3 id="_37">スタイリング<a class="headerlink" href="#_37" title="Permanent link">&para;</a></h3>
+<p>カードにPulseに含まれるクラスやコンポーネント以外の追加のスタイリングが必要な場合、カスタムCSSを含めるためのいくつかのオプションがあります。</p>
+<p><a name="custom-card-styling-vite"></a></p>
+<h4 id="laravel-vite">Laravel Vite統合<a class="headerlink" href="#laravel-vite" title="Permanent link">&para;</a></h4>
+<p>カスタムカードがアプリケーションのコードベース内にあり、Laravelの<a href="vite.html">Vite統合</a>を使用している場合、<code>vite.config.js</code>ファイルを更新して、カード用の専用CSSエントリポイントを含めることができます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="nx">laravel</span><span class="p">({</span>
+<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="w">    </span><span class="nx">input</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a><span class="w">        </span><span class="s1">&#39;resources/css/pulse/top-sellers.css&#39;</span><span class="p">,</span>
+<a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a><span class="w">        </span><span class="c1">// ...</span>
+<a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a><span class="w">    </span><span class="p">],</span>
+<a id="__codelineno-34-6" name="__codelineno-34-6" href="#__codelineno-34-6"></a><span class="p">}),</span>
+</code></pre></div>
+<p>その後、<a href="#dashboard-customization">ダッシュボードビュー</a>で<code>@vite</code> Bladeディレクティブを使用し、カードのCSSエントリポイントを指定できます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="x">&lt;x-pulse&gt;</span>
+<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="x">    @vite(&#39;resources/css/pulse/top-sellers.css&#39;)</span>
+<a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a>
+<a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a><span class="x">    ...</span>
+<a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a><span class="x">&lt;/x-pulse&gt;</span>
+</code></pre></div>
+<p><a name="custom-card-styling-css"></a></p>
+<h4 id="css">CSSファイル<a class="headerlink" href="#css" title="Permanent link">&para;</a></h4>
+<p>他のユースケース（Pulseカードがパッケージに含まれている場合を含む）では、Livewireコンポーネントに<code>css</code>メソッドを定義して、CSSファイルのファイルパスを返すことで、Pulseに追加のスタイルシートをロードするよう指示できます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="k">class</span> <span class="nc">TopSellers</span> <span class="k">extends</span> <span class="nx">Card</span>
+<a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a><span class="p">{</span>
+<a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a>    <span class="c1">// ...</span>
+<a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a>
+<a id="__codelineno-36-5" name="__codelineno-36-5" href="#__codelineno-36-5"></a>    <span class="k">protected</span> <span class="k">function</span> <span class="nf">css</span><span class="p">()</span>
+<a id="__codelineno-36-6" name="__codelineno-36-6" href="#__codelineno-36-6"></a>    <span class="p">{</span>
+<a id="__codelineno-36-7" name="__codelineno-36-7" href="#__codelineno-36-7"></a>        <span class="k">return</span> <span class="no">__DIR__</span><span class="o">.</span><span class="s1">&#39;/../../dist/top-sellers.css&#39;</span><span class="p">;</span>
+<a id="__codelineno-36-8" name="__codelineno-36-8" href="#__codelineno-36-8"></a>    <span class="p">}</span>
+<a id="__codelineno-36-9" name="__codelineno-36-9" href="#__codelineno-36-9"></a><span class="p">}</span>
+</code></pre></div>
+<p>このカードがダッシュボードに含まれる場合、Pulseは自動的にこのファイルの内容を<code>&lt;style&gt;</code>タグ内に含めるため、<code>public</code>ディレクトリに公開する必要はありません。</p>
+<p><a name="custom-card-styling-tailwind"></a></p>
+<h4 id="tailwind-css">Tailwind CSS<a class="headerlink" href="#tailwind-css" title="Permanent link">&para;</a></h4>
+<p>Tailwind CSSを使用する場合、不要なCSSの読み込みやPulseのTailwindクラスとの競合を避けるために、専用のTailwind設定ファイルを作成する必要があります：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="w">    </span><span class="nx">darkMode</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;class&#39;</span><span class="p">,</span>
+<a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a><span class="w">    </span><span class="nx">important</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;#top-sellers&#39;</span><span class="p">,</span>
+<a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a><span class="w">    </span><span class="nx">content</span><span class="o">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-37-5" name="__codelineno-37-5" href="#__codelineno-37-5"></a><span class="w">        </span><span class="s1">&#39;./resources/views/livewire/pulse/top-sellers.blade.php&#39;</span><span class="p">,</span>
+<a id="__codelineno-37-6" name="__codelineno-37-6" href="#__codelineno-37-6"></a><span class="w">    </span><span class="p">],</span>
+<a id="__codelineno-37-7" name="__codelineno-37-7" href="#__codelineno-37-7"></a><span class="w">    </span><span class="nx">corePlugins</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-37-8" name="__codelineno-37-8" href="#__codelineno-37-8"></a><span class="w">        </span><span class="nx">preflight</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<a id="__codelineno-37-9" name="__codelineno-37-9" href="#__codelineno-37-9"></a><span class="w">    </span><span class="p">},</span>
+<a id="__codelineno-37-10" name="__codelineno-37-10" href="#__codelineno-37-10"></a><span class="p">};</span>
+</code></pre></div>
+<p>その後、CSSエントリポイントで設定ファイルを指定できます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="p">@</span><span class="k">config</span><span class="w"> </span><span class="s2">&quot;../../tailwind.top-sellers.config.js&quot;</span><span class="p">;</span>
+<a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span class="p">@</span><span class="k">tailwind</span><span class="w"> </span><span class="nt">base</span><span class="p">;</span>
+<a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a><span class="p">@</span><span class="k">tailwind</span><span class="w"> </span><span class="nt">components</span><span class="p">;</span>
+<a id="__codelineno-38-4" name="__codelineno-38-4" href="#__codelineno-38-4"></a><span class="p">@</span><span class="k">tailwind</span><span class="w"> </span><span class="nt">utilities</span><span class="p">;</span>
+</code></pre></div>
+<p>また、Tailwindの<a href="https://tailwindcss.com/docs/configuration#selector-strategy"><code>important</code>セレクタ戦略</a>に渡されるセレクタに一致する<code>id</code>または<code>class</code>属性をカードのビューに含める必要があります：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="x">&lt;x-pulse::card id=&quot;top-sellers&quot; :cols=&quot;$cols&quot; :rows=&quot;$rows&quot; class=&quot;$class&quot;&gt;</span>
+<a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a><span class="x">    ...</span>
+<a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a><span class="x">&lt;/x-pulse::card&gt;</span>
+</code></pre></div>
+<p><a name="custom-card-data"></a></p>
+<h3 id="_38">データのキャプチャと集計<a class="headerlink" href="#_38" title="Permanent link">&para;</a></h3>
+<p>カスタムカードはどこからでもデータを取得して表示できますが、Pulseの強力で効率的なデータ記録と集計システムを活用したい場合があります。</p>
+<p><a name="custom-card-data-capture"></a></p>
+<h4 id="_39">エントリのキャプチャ<a class="headerlink" href="#_39" title="Permanent link">&para;</a></h4>
+<p>Pulseでは、<code>Pulse::record</code>メソッドを使用して「エントリ」を記録できます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="k">use</span> <span class="nx">Laravel\Pulse\Facades\Pulse</span><span class="p">;</span>
+<a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>
+<a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a><span class="nx">Pulse</span><span class="o">::</span><span class="na">record</span><span class="p">(</span><span class="s1">&#39;user_sale&#39;</span><span class="p">,</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">,</span> <span class="nv">$sale</span><span class="o">-&gt;</span><span class="na">amount</span><span class="p">)</span>
+<a id="__codelineno-40-4" name="__codelineno-40-4" href="#__codelineno-40-4"></a>    <span class="o">-&gt;</span><span class="na">sum</span><span class="p">()</span>
+<a id="__codelineno-40-5" name="__codelineno-40-5" href="#__codelineno-40-5"></a>    <span class="o">-&gt;</span><span class="na">count</span><span class="p">();</span>
+</code></pre></div>
+<p><code>record</code>メソッドに提供される最初の引数は、記録しているエントリの<code>type</code>であり、2番目の引数は集計データをグループ化する方法を決定する<code>key</code>です。ほとんどの集計メソッドでは、集計する<code>value</code>も指定する必要があります。上記の例では、集計される値は<code>$sale-&gt;amount</code>です。その後、Pulseが後で効率的に取得できるように、事前に集計された値を「バケット」にキャプチャするために、1つ以上の集計メソッド（<code>sum</code>など）を呼び出すことができます。</p>
+<p>利用可能な集計メソッドは以下の通りです：</p>
+<ul>
+<li><code>avg</code></li>
+<li><code>count</code></li>
+<li><code>max</code></li>
+<li><code>min</code></li>
+<li><code>sum</code></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>現在認証されているユーザーIDをキャプチャするカードパッケージを構築する場合、アプリケーションに対して行われた<a href="#dashboard-resolving-users">ユーザーリゾルバのカスタマイズ</a>を尊重する<code>Pulse::resolveAuthenticatedUserId()</code>メソッドを使用する必要があります。</p>
+</div>
+<p><a name="custom-card-data-retrieval"></a></p>
+<h4 id="_40">集計データの取得<a class="headerlink" href="#_40" title="Permanent link">&para;</a></h4>
+<p>Pulseの<code>Card</code> Livewireコンポーネントを拡張する際、ダッシュボードで表示されている期間の集計データを取得するために<code>aggregate</code>メソッドを使用できます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="k">class</span> <span class="nc">TopSellers</span> <span class="k">extends</span> <span class="nx">Card</span>
+<a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a><span class="p">{</span>
+<a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">render</span><span class="p">()</span>
+<a id="__codelineno-41-4" name="__codelineno-41-4" href="#__codelineno-41-4"></a>    <span class="p">{</span>
+<a id="__codelineno-41-5" name="__codelineno-41-5" href="#__codelineno-41-5"></a>        <span class="k">return</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;livewire.pulse.top-sellers&#39;</span><span class="p">,</span> <span class="p">[</span>
+<a id="__codelineno-41-6" name="__codelineno-41-6" href="#__codelineno-41-6"></a>            <span class="s1">&#39;topSellers&#39;</span> <span class="o">=&gt;</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">aggregate</span><span class="p">(</span><span class="s1">&#39;user_sale&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;sum&#39;</span><span class="p">,</span> <span class="s1">&#39;count&#39;</span><span class="p">])</span>
+<a id="__codelineno-41-7" name="__codelineno-41-7" href="#__codelineno-41-7"></a>        <span class="p">]);</span>
+<a id="__codelineno-41-8" name="__codelineno-41-8" href="#__codelineno-41-8"></a>    <span class="p">}</span>
+<a id="__codelineno-41-9" name="__codelineno-41-9" href="#__codelineno-41-9"></a><span class="p">}</span>
+</code></pre></div>
+<p><code>aggregate</code>メソッドはPHPの<code>stdClass</code>オブジェクトのコレクションを返します。各オブジェクトには、以前にキャプチャされた<code>key</code>プロパティと、要求された各集計のキーが含まれます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="o">@</span><span class="k">foreach</span> <span class="p">(</span><span class="nv">$topSellers</span> <span class="k">as</span> <span class="nv">$seller</span><span class="p">)</span>
+<a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a>    <span class="p">{{</span> <span class="nv">$seller</span><span class="o">-&gt;</span><span class="na">key</span> <span class="p">}}</span>
+<a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a>    <span class="p">{{</span> <span class="nv">$seller</span><span class="o">-&gt;</span><span class="na">sum</span> <span class="p">}}</span>
+<a id="__codelineno-42-4" name="__codelineno-42-4" href="#__codelineno-42-4"></a>    <span class="p">{{</span> <span class="nv">$seller</span><span class="o">-&gt;</span><span class="na">count</span> <span class="p">}}</span>
+<a id="__codelineno-42-5" name="__codelineno-42-5" href="#__codelineno-42-5"></a><span class="o">@</span><span class="k">endforeach</span>
+</code></pre></div>
+<p>Pulseは主に事前集計されたバケットからデータを取得します。したがって、指定された集計は<code>Pulse::record</code>メソッドを使用して事前にキャプチャされている必要があります。最も古いバケットは通常、期間の一部を外れているため、Pulseは最も古いエントリを集計してギャップを埋め、各ポーリングリクエストで期間全体を集計することなく、期間全体の正確な値を提供します。</p>
+<p>また、<code>aggregateTotal</code>メソッドを使用して、特定のタイプの合計値を取得することもできます。例えば、以下のメソッドはユーザーごとにグループ化するのではなく、すべてのユーザー売上の合計を取得します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="nv">$total</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">aggregateTotal</span><span class="p">(</span><span class="s1">&#39;user_sale&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="custom-card-displaying-users"></a></p>
+<h4 id="_41">ユーザーの表示<a class="headerlink" href="#_41" title="Permanent link">&para;</a></h4>
+<p>キーとしてユーザーIDを記録する集計を扱う場合、<code>Pulse::resolveUsers</code>メソッドを使用してキーをユーザーレコードに解決できます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="nv">$aggregates</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">aggregate</span><span class="p">(</span><span class="s1">&#39;user_sale&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;sum&#39;</span><span class="p">,</span> <span class="s1">&#39;count&#39;</span><span class="p">]);</span>
+<a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a>
+<a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a><span class="nv">$users</span> <span class="o">=</span> <span class="nx">Pulse</span><span class="o">::</span><span class="na">resolveUsers</span><span class="p">(</span><span class="nv">$aggregates</span><span class="o">-&gt;</span><span class="na">pluck</span><span class="p">(</span><span class="s1">&#39;key&#39;</span><span class="p">));</span>
+<a id="__codelineno-44-4" name="__codelineno-44-4" href="#__codelineno-44-4"></a>
+<a id="__codelineno-44-5" name="__codelineno-44-5" href="#__codelineno-44-5"></a><span class="k">return</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;livewire.pulse.top-sellers&#39;</span><span class="p">,</span> <span class="p">[</span>
+<a id="__codelineno-44-6" name="__codelineno-44-6" href="#__codelineno-44-6"></a>    <span class="s1">&#39;sellers&#39;</span> <span class="o">=&gt;</span> <span class="nv">$aggregates</span><span class="o">-&gt;</span><span class="na">map</span><span class="p">(</span><span class="nx">fn</span> <span class="p">(</span><span class="nv">$aggregate</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(</span><span class="nx">object</span><span class="p">)</span> <span class="p">[</span>
+<a id="__codelineno-44-7" name="__codelineno-44-7" href="#__codelineno-44-7"></a>        <span class="s1">&#39;user&#39;</span> <span class="o">=&gt;</span> <span class="nv">$users</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="nv">$aggregate</span><span class="o">-&gt;</span><span class="na">key</span><span class="p">),</span>
+<a id="__codelineno-44-8" name="__codelineno-44-8" href="#__codelineno-44-8"></a>        <span class="s1">&#39;sum&#39;</span> <span class="o">=&gt;</span> <span class="nv">$aggregate</span><span class="o">-&gt;</span><span class="na">sum</span><span class="p">,</span>
+<a id="__codelineno-44-9" name="__codelineno-44-9" href="#__codelineno-44-9"></a>        <span class="s1">&#39;count&#39;</span> <span class="o">=&gt;</span> <span class="nv">$aggregate</span><span class="o">-&gt;</span><span class="na">count</span><span class="p">,</span>
+<a id="__codelineno-44-10" name="__codelineno-44-10" href="#__codelineno-44-10"></a>    <span class="p">])</span>
+<a id="__codelineno-44-11" name="__codelineno-44-11" href="#__codelineno-44-11"></a><span class="p">]);</span>
+</code></pre></div>
+<p><code>find</code>メソッドは<code>name</code>、<code>extra</code>、<code>avatar</code>キーを含むオブジェクトを返します。これらのキーは、オプションで<code>&lt;x-pulse::user-card&gt;</code> Bladeコンポーネントに直接渡すことができます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="x">&lt;x-pulse::user-card :user=&quot;{{ $seller-&gt;user }}&quot; :stats=&quot;{{ $seller-&gt;sum }}&quot; /&gt;</span>
+</code></pre></div>
+<p><a name="custom-recorders"></a></p>
+<h4 id="_42">カスタムレコーダー<a class="headerlink" href="#_42" title="Permanent link">&para;</a></h4>
+<p>パッケージの作者は、ユーザーがデータのキャプチャを設定できるようにレコーダークラスを提供することを望むかもしれません。</p>
+<p>レコーダーは、アプリケーションの<code>config/pulse.php</code>設定ファイルの<code>recorders</code>セクションに登録されます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a><span class="p">[</span>
+<a id="__codelineno-46-2" name="__codelineno-46-2" href="#__codelineno-46-2"></a>    <span class="c1">// ...</span>
+<a id="__codelineno-46-3" name="__codelineno-46-3" href="#__codelineno-46-3"></a>    <span class="s1">&#39;recorders&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+<a id="__codelineno-46-4" name="__codelineno-46-4" href="#__codelineno-46-4"></a>        <span class="nx">Acme\Recorders\Deployments</span><span class="o">::</span><span class="na">class</span> <span class="o">=&gt;</span> <span class="p">[</span>
+<a id="__codelineno-46-5" name="__codelineno-46-5" href="#__codelineno-46-5"></a>            <span class="c1">// ...</span>
+<a id="__codelineno-46-6" name="__codelineno-46-6" href="#__codelineno-46-6"></a>        <span class="p">],</span>
+<a id="__codelineno-46-7" name="__codelineno-46-7" href="#__codelineno-46-7"></a>
+<a id="__codelineno-46-8" name="__codelineno-46-8" href="#__codelineno-46-8"></a>        <span class="c1">// ...</span>
+<a id="__codelineno-46-9" name="__codelineno-46-9" href="#__codelineno-46-9"></a>    <span class="p">],</span>
+<a id="__codelineno-46-10" name="__codelineno-46-10" href="#__codelineno-46-10"></a><span class="p">]</span>
+</code></pre></div>
+<p>レコーダーは<code>$listen</code>プロパティを指定することでイベントをリッスンできます。Pulseは自動的にリスナーを登録し、レコーダーの<code>record</code>メソッドを呼び出します：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="o">&lt;?</span><span class="nx">php</span>
+<a id="__codelineno-47-2" name="__codelineno-47-2" href="#__codelineno-47-2"></a>
+<a id="__codelineno-47-3" name="__codelineno-47-3" href="#__codelineno-47-3"></a><span class="k">namespace</span> <span class="nx">Acme\Recorders</span><span class="p">;</span>
+<a id="__codelineno-47-4" name="__codelineno-47-4" href="#__codelineno-47-4"></a>
+<a id="__codelineno-47-5" name="__codelineno-47-5" href="#__codelineno-47-5"></a><span class="k">use</span> <span class="nx">Acme\Events\Deployment</span><span class="p">;</span>
+<a id="__codelineno-47-6" name="__codelineno-47-6" href="#__codelineno-47-6"></a><span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Config</span><span class="p">;</span>
+<a id="__codelineno-47-7" name="__codelineno-47-7" href="#__codelineno-47-7"></a><span class="k">use</span> <span class="nx">Laravel\Pulse\Facades\Pulse</span><span class="p">;</span>
+<a id="__codelineno-47-8" name="__codelineno-47-8" href="#__codelineno-47-8"></a>
+<a id="__codelineno-47-9" name="__codelineno-47-9" href="#__codelineno-47-9"></a><span class="k">class</span> <span class="nc">Deployments</span>
+<a id="__codelineno-47-10" name="__codelineno-47-10" href="#__codelineno-47-10"></a><span class="p">{</span>
+<a id="__codelineno-47-11" name="__codelineno-47-11" href="#__codelineno-47-11"></a>    <span class="sd">/**</span>
+<a id="__codelineno-47-12" name="__codelineno-47-12" href="#__codelineno-47-12"></a><span class="sd">     * リッスンするイベント。</span>
+<a id="__codelineno-47-13" name="__codelineno-47-13" href="#__codelineno-47-13"></a><span class="sd">     *</span>
+<a id="__codelineno-47-14" name="__codelineno-47-14" href="#__codelineno-47-14"></a><span class="sd">     * @var array&lt;int, class-string&gt;</span>
+<a id="__codelineno-47-15" name="__codelineno-47-15" href="#__codelineno-47-15"></a><span class="sd">     */</span>
+<a id="__codelineno-47-16" name="__codelineno-47-16" href="#__codelineno-47-16"></a>    <span class="k">public</span> <span class="k">array</span> <span class="nv">$listen</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-47-17" name="__codelineno-47-17" href="#__codelineno-47-17"></a>        <span class="nx">Deployment</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+<a id="__codelineno-47-18" name="__codelineno-47-18" href="#__codelineno-47-18"></a>    <span class="p">];</span>
+<a id="__codelineno-47-19" name="__codelineno-47-19" href="#__codelineno-47-19"></a>
+<a id="__codelineno-47-20" name="__codelineno-47-20" href="#__codelineno-47-20"></a>    <span class="sd">/**</span>
+<a id="__codelineno-47-21" name="__codelineno-47-21" href="#__codelineno-47-21"></a><span class="sd">     * デプロイメントを記録する。</span>
+<a id="__codelineno-47-22" name="__codelineno-47-22" href="#__codelineno-47-22"></a><span class="sd">     */</span>
+<a id="__codelineno-47-23" name="__codelineno-47-23" href="#__codelineno-47-23"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">record</span><span class="p">(</span><span class="nx">Deployment</span> <span class="nv">$event</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
+<a id="__codelineno-47-24" name="__codelineno-47-24" href="#__codelineno-47-24"></a>    <span class="p">{</span>
+<a id="__codelineno-47-25" name="__codelineno-47-25" href="#__codelineno-47-25"></a>        <span class="nv">$config</span> <span class="o">=</span> <span class="nx">Config</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;pulse.recorders.&#39;</span><span class="o">.</span><span class="k">static</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+<a id="__codelineno-47-26" name="__codelineno-47-26" href="#__codelineno-47-26"></a>
+<a id="__codelineno-47-27" name="__codelineno-47-27" href="#__codelineno-47-27"></a>        <span class="nx">Pulse</span><span class="o">::</span><span class="na">record</span><span class="p">(</span>
+<a id="__codelineno-47-28" name="__codelineno-47-28" href="#__codelineno-47-28"></a>            <span class="c1">// ...</span>
+<a id="__codelineno-47-29" name="__codelineno-47-29" href="#__codelineno-47-29"></a>        <span class="p">);</span>
+<a id="__codelineno-47-30" name="__codelineno-47-30" href="#__codelineno-47-30"></a>    <span class="p">}</span>
+<a id="__codelineno-47-31" name="__codelineno-47-31" href="#__codelineno-47-31"></a><span class="p">}</span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+<nav class="md-footer-nav">
+    
+    
+</nav>
+
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": ".", "features": ["back-to-top", "navigation.expand", "navigation.tabs", "navigation.footer", "navigation.sections", "navigation.expand", "content.code.copy", "hide_repository_button", "content.code.annotate", "content.tabs.link", "toc.none", "content.action.edit"], "search": "assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="assets/javascripts/bundle.56dfad97.min.js"></script>
+      
+    
+  </body>
+</html>

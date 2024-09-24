@@ -1,0 +1,4663 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://github.com/koriym/laravel11-ja/upgrade.html">
+      
+      
+        <link rel="prev" href="releases.html">
+      
+      
+        <link rel="next" href="contributions.html">
+      
+      
+      <link rel="icon" href="assets/images/favicon_io/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.35">
+    
+    
+      
+        <title>アップグレードガイド - L11JA</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.35f28582.min.css">
+      
+      
+
+
+    
+    
+
+    
+
+    
+      <link rel="stylesheet" href="assets/css/php.css">
+    
+      <link rel="stylesheet" href="assets/css/mkdocs_material_extra.css">
+    
+      <link rel="stylesheet" href="assets/css/extra.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-G60CEHXLQ1"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-G60CEHXLQ1",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-G60CEHXLQ1",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      <!-- Determine classes -->
+
+
+
+<!-- Header -->
+<header class="md-header" data-md-component="header">
+  <nav
+          class="md-header__inner md-grid"
+          aria-label="Header"
+  >
+
+    <!-- Link to home -->
+    <a
+            href="."
+            title="L11JA"
+            class="md-header__button md-logo"
+            aria-label="L11JA"
+            data-md-component="logo"
+    >
+      
+  <img src="assets/images/logo.png" alt="logo">
+
+    </a>
+
+    <!-- Button to open drawer -->
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+
+    <!-- Header title -->
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            <span style="font-family: 'Noto Sans'; font-size: 20px" >
+            L11JA
+            </span>
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            <span style="font-family: 'Noto Sans Batak'; font-size: 20px" >
+            
+              アップグレードガイド
+            
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Color palette toggle -->
+    
+
+    <!-- User preference: color palette -->
+    
+    <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+
+    <!-- Site language selector -->
+    
+
+    <!-- Button to open search modal -->
+    
+    <label class="md-header__button md-icon" for="__search">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+    </label>
+
+    <!-- Search interface -->
+    <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    <!-- Repository information -->
+    
+    <div class="md-header__source">
+      
+
+<!--
+  Check whether the repository is hosted on one of the supported code hosting
+  platforms (GitHub, GitLab or Bitbucket) to show icon.
+-->
+
+
+  
+
+
+<!-- Repository containing source -->
+<a href="https://github.com/koriym/l11ja" title="source.link.title"
+    class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z" fill="#000"/></svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+    
+  </nav>
+
+  <!-- Navigation tabs (sticky) -->
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="releases.html" class="md-tabs__link">
+          
+  
+  プロローグ
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="installation.html" class="md-tabs__link">
+          
+  
+  はじめに
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="lifecycle.html" class="md-tabs__link">
+          
+  
+  アーキテクチャ
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="routing.html" class="md-tabs__link">
+          
+  
+  基本
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="artisan.html" class="md-tabs__link">
+          
+  
+  掘り下げる
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="authentication.html" class="md-tabs__link">
+          
+  
+  セキュリティ
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="database.html" class="md-tabs__link">
+          
+  
+  データベース
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="eloquent.html" class="md-tabs__link">
+          
+  
+  Eloquent ORM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="testing.html" class="md-tabs__link">
+          
+  
+  テスト
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="starter-kits.html" class="md-tabs__link">
+          
+  
+  パッケージ
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="L11JA" class="md-nav__button md-logo" aria-label="L11JA" data-md-component="logo">
+      
+  <img src="assets/images/logo.png" alt="logo">
+
+    </a>
+    L11JA
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+<!--
+  Check whether the repository is hosted on one of the supported code hosting
+  platforms (GitHub, GitLab or Bitbucket) to show icon.
+-->
+
+
+  
+
+
+<!-- Repository containing source -->
+<a href="https://github.com/koriym/l11ja" title="source.link.title"
+    class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z" fill="#000"/></svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    プロローグ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            プロローグ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="releases.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リリースノート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    アップグレードガイド
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="upgrade.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    アップグレードガイド
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      高影響の変更
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      中影響の変更
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      低影響の変更
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10x-110" class="md-nav__link">
+    <span class="md-ellipsis">
+      10.x から 11.0 へのアップグレード
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10.x から 11.0 へのアップグレード">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#15" class="md-nav__link">
+    <span class="md-ellipsis">
+      推定アップグレード時間: 15 分
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      依存関係の更新
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="依存関係の更新">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#php-820" class="md-nav__link">
+    <span class="md-ellipsis">
+      PHP 8.2.0 が必要
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#curl-7340" class="md-nav__link">
+    <span class="md-ellipsis">
+      curl 7.34.0 が必要
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#composer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Composer の依存関係
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      アプリケーション構造
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      認証
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="認証">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      パスワードの再ハッシュ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#userprovider" class="md-nav__link">
+    <span class="md-ellipsis">
+      UserProvider コントラクト
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authenticatable" class="md-nav__link">
+    <span class="md-ellipsis">
+      Authenticatable コントラクト
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authenticationexception" class="md-nav__link">
+    <span class="md-ellipsis">
+      AuthenticationException クラス
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      キャッシュ
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="キャッシュ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      キャッシュキープレフィックス
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      コレクション
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="コレクション">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enumerable" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enumerable コントラクト
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      データベース
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="データベース">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sqlite-3260" class="md-nav__link">
+    <span class="md-ellipsis">
+      SQLite 3.26.0+
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#eloquent-casts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Eloquent モデルの casts メソッド
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      カラムの変更
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      浮動小数点型
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mariadb" class="md-nav__link">
+    <span class="md-ellipsis">
+      専用のMariaDBドライバ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      空間型
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#doctrine-dbal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Doctrine DBALの削除
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      非推奨のスキーマメソッド
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getcolumntype" class="md-nav__link">
+    <span class="md-ellipsis">
+      スキーマビルダーのgetColumnType()メソッド
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      データベース接続インターフェース
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      日付
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="日付">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#carbon-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Carbon 3
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      メール
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="メール">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mailer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mailerコントラクト
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      パッケージ
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="パッケージ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      サービスプロバイダをアプリケーションに公開
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      キュー
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="キュー">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#batchrepository" class="md-nav__link">
+    <span class="md-ellipsis">
+      BatchRepositoryインターフェース
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      データベーストランザクション内の同期ジョブ
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      レートリミット
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="レートリミット">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      秒単位のレートリミット
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cashier-stripe" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cashier Stripe
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cashier Stripe">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cashier-stripe_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cashier Stripe の更新
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spark-stripe" class="md-nav__link">
+    <span class="md-ellipsis">
+      Spark (Stripe)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Spark (Stripe)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#spark-stripe_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Spark Stripe の更新
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#passport" class="md-nav__link">
+    <span class="md-ellipsis">
+      Passport
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Passport">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#passport_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Passport の更新
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sanctum" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sanctum
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sanctum">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sanctum_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sanctum の更新
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#telescope" class="md-nav__link">
+    <span class="md-ellipsis">
+      Telescope
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Telescope">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#telescope_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Telescope の更新
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spatie-once" class="md-nav__link">
+    <span class="md-ellipsis">
+      Spatie Once パッケージ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      その他
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="contributions.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    貢献ガイド
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            はじめに
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="installation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    インストール
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="configuration.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    設定
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structure.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ディレクトリ構造
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="frontend.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    フロントエンド
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="starter-kits.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    スターターキット
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="deployment.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    デプロイ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    アーキテクチャ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            アーキテクチャ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="lifecycle.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リクエストライフサイクル
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="container.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    サービスコンテナ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="providers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    サービスプロバイダ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="facades.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ファサード
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    基本
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            基本
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="routing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ルーティング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="middleware.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ミドルウェア
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="csrf.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CSRF保護
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="controllers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コントローラ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="requests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リクエスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="responses.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    レスポンス
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="views.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ビュー
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="blade.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bladeテンプレート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="vite.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    アセットバンドル
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="urls.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    URL生成
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="session.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    セッション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="validation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    バリデーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="errors.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    エラー処理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="logging.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ログ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    掘り下げる
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            掘り下げる
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="artisan.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Artisanコンソール
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="broadcasting.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ブロードキャスティング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cache.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    キャッシュ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="collections.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コレクション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="concurrency.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    並行処理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="context.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コンテキスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="contracts.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コントラクト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="events.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    イベント
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="filesystem.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ファイルストレージ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="helpers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ヘルパー
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="http-client.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTTPクライアント
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="localization.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ローカライゼーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mail.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    メール
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="notifications.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    通知
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="packages.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    パッケージ開発
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="processes.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    プロセス
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="queues.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    キュー
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="rate-limiting.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    レート制限
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="strings.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    文字列
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="scheduling.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    タスクスケジューリング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    セキュリティ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            セキュリティ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="authentication.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    認証
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="authorization.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    認可
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="verification.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    メール確認
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="encryption.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    暗号化
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hashing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ハッシュ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="passwords.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    パスワードリセット
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    データベース
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            データベース
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="database.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="queries.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    クエリビルダ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pagination.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ページネーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="migrations.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    マイグレーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="seeding.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    シーディング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="redis.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Redis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Eloquent ORM
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Eloquent ORM
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-relationships.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リレーションシップ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-collections.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コレクション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-mutators.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ミューテータ / キャスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-resources.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    APIリソース
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-serialization.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    シリアライゼーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-factories.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ファクトリ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    テスト
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            テスト
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="testing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="http-tests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTTPテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="console-tests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コンソールテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="dusk.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ブラウザテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="database-testing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    データベース
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mocking.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    モック
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    パッケージ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            パッケージ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="starter-kits.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    スターターキット
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="billing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cashier (Stripe)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cashier-paddle.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cashier (Paddle)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="dusk.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ブラウザテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="envoy.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Envoy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fortify.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fortify
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="folio.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Folio
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="homestead.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Homestead
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="horizon.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Horizon
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mix.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mix
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="octane.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Octane
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="passport.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Passport
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pennant.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pennant
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pint.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pint
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="precognition.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Precognition
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="prompts.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prompts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pulse.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pulse
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reverb.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reverb
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sail.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sail
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sanctum.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sanctum
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="scout.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Scout
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="socialite.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Socialite
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="telescope.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Telescope
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="valet.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Valet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      高影響の変更
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      中影響の変更
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      低影響の変更
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10x-110" class="md-nav__link">
+    <span class="md-ellipsis">
+      10.x から 11.0 へのアップグレード
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10.x から 11.0 へのアップグレード">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#15" class="md-nav__link">
+    <span class="md-ellipsis">
+      推定アップグレード時間: 15 分
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      依存関係の更新
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="依存関係の更新">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#php-820" class="md-nav__link">
+    <span class="md-ellipsis">
+      PHP 8.2.0 が必要
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#curl-7340" class="md-nav__link">
+    <span class="md-ellipsis">
+      curl 7.34.0 が必要
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#composer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Composer の依存関係
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      アプリケーション構造
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      認証
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="認証">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      パスワードの再ハッシュ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#userprovider" class="md-nav__link">
+    <span class="md-ellipsis">
+      UserProvider コントラクト
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authenticatable" class="md-nav__link">
+    <span class="md-ellipsis">
+      Authenticatable コントラクト
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authenticationexception" class="md-nav__link">
+    <span class="md-ellipsis">
+      AuthenticationException クラス
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      キャッシュ
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="キャッシュ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      キャッシュキープレフィックス
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      コレクション
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="コレクション">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enumerable" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enumerable コントラクト
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      データベース
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="データベース">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sqlite-3260" class="md-nav__link">
+    <span class="md-ellipsis">
+      SQLite 3.26.0+
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#eloquent-casts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Eloquent モデルの casts メソッド
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      カラムの変更
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      浮動小数点型
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mariadb" class="md-nav__link">
+    <span class="md-ellipsis">
+      専用のMariaDBドライバ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      空間型
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#doctrine-dbal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Doctrine DBALの削除
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      非推奨のスキーマメソッド
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getcolumntype" class="md-nav__link">
+    <span class="md-ellipsis">
+      スキーマビルダーのgetColumnType()メソッド
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      データベース接続インターフェース
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      日付
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="日付">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#carbon-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Carbon 3
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      メール
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="メール">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mailer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mailerコントラクト
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      パッケージ
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="パッケージ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      サービスプロバイダをアプリケーションに公開
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      キュー
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="キュー">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#batchrepository" class="md-nav__link">
+    <span class="md-ellipsis">
+      BatchRepositoryインターフェース
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      データベーストランザクション内の同期ジョブ
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      レートリミット
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="レートリミット">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      秒単位のレートリミット
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cashier-stripe" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cashier Stripe
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cashier Stripe">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cashier-stripe_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cashier Stripe の更新
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spark-stripe" class="md-nav__link">
+    <span class="md-ellipsis">
+      Spark (Stripe)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Spark (Stripe)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#spark-stripe_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Spark Stripe の更新
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#passport" class="md-nav__link">
+    <span class="md-ellipsis">
+      Passport
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Passport">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#passport_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Passport の更新
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sanctum" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sanctum
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sanctum">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sanctum_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sanctum の更新
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#telescope" class="md-nav__link">
+    <span class="md-ellipsis">
+      Telescope
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Telescope">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#telescope_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Telescope の更新
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spatie-once" class="md-nav__link">
+    <span class="md-ellipsis">
+      Spatie Once パッケージ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      その他
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/koriym/l11ja/edit/master/docs/upgrade.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="_1">アップグレードガイド<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<ul>
+<li><a href="#upgrade-11.0">10.x から 11.0 へのアップグレード</a></li>
+</ul>
+<p><a name="high-impact-changes"></a></p>
+<h2 id="_2">高影響の変更<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<div class="content-list">
+<ul>
+<li><a href="#updating-dependencies">依存関係の更新</a></li>
+<li><a href="#application-structure">アプリケーション構造</a></li>
+<li><a href="#floating-point-types">浮動小数点型</a></li>
+<li><a href="#modifying-columns">カラムの変更</a></li>
+<li><a href="#sqlite-minimum-version">SQLite の最低バージョン</a></li>
+<li><a href="#updating-sanctum">Sanctum の更新</a></li>
+</ul>
+</div>
+<p><a name="medium-impact-changes"></a></p>
+<h2 id="_3">中影響の変更<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<div class="content-list">
+<ul>
+<li><a href="#carbon-3">Carbon 3</a></li>
+<li><a href="#password-rehashing">パスワードの再ハッシュ</a></li>
+<li><a href="#per-second-rate-limiting">秒単位のレート制限</a></li>
+<li><a href="#spatie-once-package">Spatie Once パッケージ</a></li>
+</ul>
+</div>
+<p><a name="low-impact-changes"></a></p>
+<h2 id="_4">低影響の変更<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<div class="content-list">
+<ul>
+<li><a href="#doctrine-dbal-removal">Doctrine DBAL の削除</a></li>
+<li><a href="#eloquent-model-casts-method">Eloquent モデルの <code>casts</code> メソッド</a></li>
+<li><a href="#spatial-types">空間型</a></li>
+<li><a href="#the-enumerable-contract"><code>Enumerable</code> コントラクト</a></li>
+<li><a href="#the-user-provider-contract"><code>UserProvider</code> コントラクト</a></li>
+<li><a href="#the-authenticatable-contract"><code>Authenticatable</code> コントラクト</a></li>
+</ul>
+</div>
+<p><a name="upgrade-11.0"></a></p>
+<h2 id="10x-110">10.x から 11.0 へのアップグレード<a class="headerlink" href="#10x-110" title="Permanent link">&para;</a></h2>
+<p><a name="estimated-upgrade-time-??-minutes"></a></p>
+<h4 id="15">推定アップグレード時間: 15 分<a class="headerlink" href="#15" title="Permanent link">&para;</a></h4>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>可能な限りすべての破壊的変更を文書化しようとしています。これらの破壊的変更の一部は、フレームワークのあまり知られていない部分にあるため、これらの変更の一部が実際にアプリケーションに影響を与える可能性があります。時間を節約したいですか？ <a href="https://laravelshift.com/">Laravel Shift</a> を使用して、アプリケーションのアップグレードを自動化することができます。</p>
+</div>
+<p><a name="updating-dependencies"></a></p>
+<h3 id="_5">依存関係の更新<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p><strong>影響の可能性: 高</strong></p>
+<h4 id="php-820">PHP 8.2.0 が必要<a class="headerlink" href="#php-820" title="Permanent link">&para;</a></h4>
+<p>Laravel は現在、PHP 8.2.0 以上を必要とします。</p>
+<h4 id="curl-7340">curl 7.34.0 が必要<a class="headerlink" href="#curl-7340" title="Permanent link">&para;</a></h4>
+<p>Laravel の HTTP クライアントは現在、curl 7.34.0 以上を必要とします。</p>
+<h4 id="composer">Composer の依存関係<a class="headerlink" href="#composer" title="Permanent link">&para;</a></h4>
+<p>アプリケーションの <code>composer.json</code> ファイルで以下の依存関係を更新する必要があります:</p>
+<div class="content-list">
+<ul>
+<li><code>laravel/framework</code> を <code>^11.0</code> に</li>
+<li><code>nunomaduro/collision</code> を <code>^8.1</code> に</li>
+<li><code>laravel/breeze</code> を <code>^2.0</code> に (インストールされている場合)</li>
+<li><code>laravel/cashier</code> を <code>^15.0</code> に (インストールされている場合)</li>
+<li><code>laravel/dusk</code> を <code>^8.0</code> に (インストールされている場合)</li>
+<li><code>laravel/jetstream</code> を <code>^5.0</code> に (インストールされている場合)</li>
+<li><code>laravel/octane</code> を <code>^2.3</code> に (インストールされている場合)</li>
+<li><code>laravel/passport</code> を <code>^12.0</code> に (インストールされている場合)</li>
+<li><code>laravel/sanctum</code> を <code>^4.0</code> に (インストールされている場合)</li>
+<li><code>laravel/scout</code> を <code>^10.0</code> に (インストールされている場合)</li>
+<li><code>laravel/spark-stripe</code> を <code>^5.0</code> に (インストールされている場合)</li>
+<li><code>laravel/telescope</code> を <code>^5.0</code> に (インストールされている場合)</li>
+<li><code>livewire/livewire</code> を <code>^3.4</code> に (インストールされている場合)</li>
+<li><code>inertiajs/inertia-laravel</code> を <code>^1.0</code> に (インストールされている場合)</li>
+</ul>
+</div>
+<p>アプリケーションが Laravel Cashier Stripe、Passport、Sanctum、Spark Stripe、または Telescope を使用している場合、それらのマイグレーションをアプリケーションに公開する必要があります。Cashier Stripe、Passport、Sanctum、Spark Stripe、および Telescope は、独自のマイグレーションディレクトリからマイグレーションを自動的に読み込まなくなりました。したがって、以下のコマンドを実行して、それらのマイグレーションをアプリケーションに公開する必要があります:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>vendor:publish<span class="w"> </span>--tag<span class="o">=</span>cashier-migrations
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>php<span class="w"> </span>artisan<span class="w"> </span>vendor:publish<span class="w"> </span>--tag<span class="o">=</span>passport-migrations
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>php<span class="w"> </span>artisan<span class="w"> </span>vendor:publish<span class="w"> </span>--tag<span class="o">=</span>sanctum-migrations
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>php<span class="w"> </span>artisan<span class="w"> </span>vendor:publish<span class="w"> </span>--tag<span class="o">=</span>spark-migrations
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>php<span class="w"> </span>artisan<span class="w"> </span>vendor:publish<span class="w"> </span>--tag<span class="o">=</span>telescope-migrations
+</code></pre></div>
+<p>さらに、これらの各パッケージのアップグレードガイドを確認して、追加の破壊的変更に注意する必要があります:</p>
+<ul>
+<li><a href="#cashier-stripe">Laravel Cashier Stripe</a></li>
+<li><a href="#passport">Laravel Passport</a></li>
+<li><a href="#sanctum">Laravel Sanctum</a></li>
+<li><a href="#spark-stripe">Laravel Spark Stripe</a></li>
+<li><a href="#telescope">Laravel Telescope</a></li>
+</ul>
+<p>Laravel インストーラを手動でインストールしている場合、Composer を介してインストーラを更新する必要があります:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>composer<span class="w"> </span>global<span class="w"> </span>require<span class="w"> </span>laravel/installer:^5.6
+</code></pre></div>
+<p>最後に、以前にアプリケーションに追加した <code>doctrine/dbal</code> Composer 依存関係を削除することができます。Laravel はもはやこのパッケージに依存していません。</p>
+<p><a name="application-structure"></a></p>
+<h3 id="_6">アプリケーション構造<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>Laravel 11 は、デフォルトのアプリケーション構造を新しくし、デフォルトのファイルが少なくなりました。具体的には、新しい Laravel アプリケーションには、サービスプロバイダ、ミドルウェア、および設定ファイルが少なくなりました。</p>
+<p>ただし、Laravel 10 から Laravel 11 にアップグレードするアプリケーションがアプリケーション構造を移行しようとすることは<strong>推奨しません</strong>。Laravel 11 は、Laravel 10 のアプリケーション構造もサポートするように慎重に調整されています。</p>
+<p><a name="authentication"></a></p>
+<h3 id="_7">認証<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p><a name="password-rehashing"></a></p>
+<h4 id="_8">パスワードの再ハッシュ<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h4>
+<p>Laravel 11 は、ハッシュアルゴリズムの「作業係数」がパスワードが最後にハッシュされてから更新された場合、認証中にユーザーのパスワードを自動的に再ハッシュします。</p>
+<p>通常、これはアプリケーションに影響を与えないはずです。ただし、この動作を無効にするには、アプリケーションの <code>config/hashing.php</code> 設定ファイルに <code>rehash_on_login</code> オプションを追加します:</p>
+<div class="highlight"><pre><span></span><code><span class="s1">&#39;rehash_on_login&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">,</span>
+</code></pre></div>
+<p><a name="the-user-provider-contract"></a></p>
+<h4 id="userprovider"><code>UserProvider</code> コントラクト<a class="headerlink" href="#userprovider" title="Permanent link">&para;</a></h4>
+<p><strong>影響の可能性: 低</strong></p>
+<p><code>Illuminate\Contracts\Auth\UserProvider</code> コントラクトに新しい <code>rehashPasswordIfRequired</code> メソッドが追加されました。このメソッドは、アプリケーションのハッシュアルゴリズムの作業係数が変更された場合に、ユーザーのパスワードを再ハッシュしてストレージに保存する役割を果たします。</p>
+<p>アプリケーションまたはパッケージがこのインターフェースを実装するクラスを定義している場合、新しい <code>rehashPasswordIfRequired</code> メソッドを実装に追加する必要があります。参照実装は <code>Illuminate\Auth\EloquentUserProvider</code> クラス内にあります:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">public</span> <span class="k">function</span> <span class="nf">rehashPasswordIfRequired</span><span class="p">(</span><span class="nx">Authenticatable</span> <span class="nv">$user</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$credentials</span><span class="p">,</span> <span class="nx">bool</span> <span class="nv">$force</span> <span class="o">=</span> <span class="k">false</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="the-authenticatable-contract"></a></p>
+<h4 id="authenticatable"><code>Authenticatable</code> コントラクト<a class="headerlink" href="#authenticatable" title="Permanent link">&para;</a></h4>
+<p><strong>影響の可能性: 低</strong></p>
+<p><code>Illuminate\Contracts\Auth\Authenticatable</code> コントラクトに新しい <code>getAuthPasswordName</code> メソッドが追加されました。このメソッドは、認証可能なエンティティのパスワードカラムの名前を返す役割を果たします。</p>
+<p>アプリケーションまたはパッケージがこのインターフェースを実装するクラスを定義している場合、新しい <code>getAuthPasswordName</code> メソッドを実装に追加する必要があります:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">public</span> <span class="k">function</span> <span class="nf">getAuthPasswordName</span><span class="p">()</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="p">{</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="k">return</span> <span class="s1">&#39;password&#39;</span><span class="p">;</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="p">}</span>
+</code></pre></div>
+<p>Laravel に含まれるデフォルトの <code>User</code> モデルは、このメソッドが <code>Illuminate\Auth\Authenticatable</code> トレイトに含まれているため、自動的にこのメソッドを受け取ります。</p>
+<p><a name="the-authentication-exception-class"></a></p>
+<h4 id="authenticationexception"><code>AuthenticationException</code> クラス<a class="headerlink" href="#authenticationexception" title="Permanent link">&para;</a></h4>
+<p><strong>影響の可能性: 非常に低</strong></p>
+<p><code>Illuminate\Auth\AuthenticationException</code> クラスの <code>redirectTo</code> メソッドは、最初の引数として <code>Illuminate\Http\Request</code> インスタンスを必要とするようになりました。この例外を手動でキャッチして <code>redirectTo</code> メソッドを呼び出している場合、コードをそれに応じて更新する必要があります:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">if</span> <span class="p">(</span><span class="nv">$e</span> <span class="nx">instanceof</span> <span class="nx">AuthenticationException</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="nv">$path</span> <span class="o">=</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="na">redirectTo</span><span class="p">(</span><span class="nv">$request</span><span class="p">);</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="p">}</span>
+</code></pre></div>
+<p><a name="cache"></a></p>
+<h3 id="_9">キャッシュ<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p><a name="cache-key-prefixes"></a></p>
+<h4 id="_10">キャッシュキープレフィックス<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h4>
+<p><strong>影響の可能性: 非常に低</strong></p>
+<p>以前は、DynamoDB、Memcached、または Redis キャッシュストアにキャッシュキープレフィックスが定義されている場合、Laravel はプレフィックスに <code>:</code> を追加していました。Laravel 11 では、キャッシュキープレフィックスに <code>:</code> サフィックスが付きません。以前のプレフィックス動作を維持したい場合は、キャッシュキープレフィックスに手動で <code>:</code> サフィックスを追加できます。</p>
+<p><a name="collections"></a></p>
+<h3 id="_11">コレクション<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<p><a name="the-enumerable-contract"></a></p>
+<h4 id="enumerable"><code>Enumerable</code> コントラクト<a class="headerlink" href="#enumerable" title="Permanent link">&para;</a></h4>
+<p><strong>影響の可能性: 低</strong></p>
+<p><code>Illuminate\Support\Enumerable</code> コントラクトの <code>dump</code> メソッドが、可変長引数 <code>...$args</code> を受け入れるように更新されました。このインターフェースを実装している場合、実装をそれに応じて更新する必要があります:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">public</span> <span class="k">function</span> <span class="nf">dump</span><span class="p">(</span><span class="o">...</span><span class="nv">$args</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="database"></a></p>
+<h3 id="_12">データベース<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<p><a name="sqlite-minimum-version"></a></p>
+<h4 id="sqlite-3260">SQLite 3.26.0+<a class="headerlink" href="#sqlite-3260" title="Permanent link">&para;</a></h4>
+<p><strong>影響の可能性: 高</strong></p>
+<p>アプリケーションが SQLite データベースを利用している場合、SQLite 3.26.0 以上が必要です。</p>
+<p><a name="eloquent-model-casts-method"></a></p>
+<h4 id="eloquent-casts">Eloquent モデルの <code>casts</code> メソッド<a class="headerlink" href="#eloquent-casts" title="Permanent link">&para;</a></h4>
+<p><strong>影響の可能性: 低</strong></p>
+<p>ベースの Eloquent モデルクラスは、属性キャストの定義をサポートするために <code>casts</code> メソッドを定義するようになりました。アプリケーションのモデルの1つが <code>casts</code> リレーションを定義している場合、ベースの Eloquent モデルクラスに存在する <code>casts</code> メソッドと競合する可能性があります。</p>
+<p><a name="modifying-columns"></a></p>
+<h4 id="_13">カラムの変更<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h4>
+<p><strong>影響の可能性: 高</strong></p>
+<p>カラムを変更する場合、変更後のカラム定義に保持したいすべての修飾子を明示的に含める必要があります。欠落している属性は削除されます。たとえば、<code>unsigned</code>、<code>default</code>、および <code>comment</code> 属性を保持するには、カラムを変更する際に各修飾子を明示的に呼び出す必要があります。以前のマイグレーションによってそれらの属性がカラムに割り当てられていた場合でも同様です。</p>
+<p>たとえば、<code>votes</code> カラムを <code>unsigned</code>、<code>default</code>、および <code>comment</code> 属性で作成するマイグレーションがあるとします:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nx">Schema</span><span class="o">::</span><span class="na">create</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Blueprint</span> <span class="nv">$table</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">integer</span><span class="p">(</span><span class="s1">&#39;votes&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">unsigned</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">default</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">(</span><span class="s1">&#39;The vote count&#39;</span><span class="p">);</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="p">});</span>
+</code></pre></div>
+<p>後で、カラムを <code>nullable</code> にも変更するマイグレーションを作成します:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nx">Schema</span><span class="o">::</span><span class="na">table</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Blueprint</span> <span class="nv">$table</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">integer</span><span class="p">(</span><span class="s1">&#39;votes&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">nullable</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">change</span><span class="p">();</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="p">});</span>
+</code></pre></div>
+<p>Laravel 10 では、このマイグレーションはカラムに <code>unsigned</code>、<code>default</code>、および <code>comment</code> 属性を保持します。しかし、Laravel 11 では、マイグレーションに以前に定義されたすべての属性も含める必要があります。そうしないと、それらは削除されます:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nx">Schema</span><span class="o">::</span><span class="na">table</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Blueprint</span> <span class="nv">$table</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">integer</span><span class="p">(</span><span class="s1">&#39;votes&#39;</span><span class="p">)</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>        <span class="o">-&gt;</span><span class="na">unsigned</span><span class="p">()</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>        <span class="o">-&gt;</span><span class="na">default</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>        <span class="o">-&gt;</span><span class="na">comment</span><span class="p">(</span><span class="s1">&#39;The vote count&#39;</span><span class="p">)</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>        <span class="o">-&gt;</span><span class="na">nullable</span><span class="p">()</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>        <span class="o">-&gt;</span><span class="na">change</span><span class="p">();</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="p">});</span>
+</code></pre></div>
+<p><code>change</code>メソッドは、カラムのインデックスを変更しません。したがって、カラムを変更する際にインデックスを明示的に追加または削除するために、インデックス修飾子を使用することができます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1">// インデックスを追加...</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">bigIncrements</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">primary</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">change</span><span class="p">();</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="c1">// インデックスを削除...</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">char</span><span class="p">(</span><span class="s1">&#39;postal_code&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">unique</span><span class="p">(</span><span class="k">false</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">change</span><span class="p">();</span>
+</code></pre></div>
+<p>カラムの既存の属性を保持するために、アプリケーション内のすべての既存の「change」マイグレーションを更新したくない場合は、単に<a href="migrations.html#squashing-migrations">マイグレーションを圧縮</a>することができます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>schema:dump
+</code></pre></div>
+<p>マイグレーションが圧縮されると、Laravelはアプリケーションのスキーマファイルを使用してデータベースを「マイグレート」し、その後に保留中のマイグレーションを実行します。</p>
+<p><a name="floating-point-types"></a></p>
+<h4 id="_14">浮動小数点型<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h4>
+<p><strong>影響の可能性: 高</strong></p>
+<p><code>double</code>および<code>float</code>マイグレーションカラムタイプは、すべてのデータベースで一貫性を持つように書き直されました。</p>
+<p><code>double</code>カラムタイプは、合計桁数と小数点以下の桁数（小数点以下の桁数）なしで<code>DOUBLE</code>相当のカラムを作成します。これは標準のSQL構文です。したがって、<code>$total</code>と<code>$places</code>の引数を削除することができます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">double</span><span class="p">(</span><span class="s1">&#39;amount&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><code>float</code>カラムタイプは、合計桁数と小数点以下の桁数（小数点以下の桁数）なしで<code>FLOAT</code>相当のカラムを作成しますが、ストレージサイズを4バイトの単精度カラムまたは8バイトの倍精度カラムとして決定するためのオプションの<code>$precision</code>指定があります。したがって、<code>$total</code>と<code>$places</code>の引数を削除し、データベースのドキュメントに従って希望する値としてオプションの<code>$precision</code>を指定することができます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">float</span><span class="p">(</span><span class="s1">&#39;amount&#39;</span><span class="p">,</span> <span class="nx">precision</span><span class="o">:</span> <span class="mi">53</span><span class="p">);</span>
+</code></pre></div>
+<p><code>unsignedDecimal</code>、<code>unsignedDouble</code>、および<code>unsignedFloat</code>メソッドは削除されました。これらのカラムタイプの符号なし修飾子はMySQLによって非推奨となり、他のデータベースシステムでは標準化されていませんでした。ただし、これらのカラムタイプに対して非推奨の符号なし属性を引き続き使用したい場合は、カラム定義に<code>unsigned</code>メソッドを連鎖させることができます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">decimal</span><span class="p">(</span><span class="s1">&#39;amount&#39;</span><span class="p">,</span> <span class="nx">total</span><span class="o">:</span> <span class="mi">8</span><span class="p">,</span> <span class="nx">places</span><span class="o">:</span> <span class="mi">2</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">unsigned</span><span class="p">();</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">double</span><span class="p">(</span><span class="s1">&#39;amount&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">unsigned</span><span class="p">();</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">float</span><span class="p">(</span><span class="s1">&#39;amount&#39;</span><span class="p">,</span> <span class="nx">precision</span><span class="o">:</span> <span class="mi">53</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">unsigned</span><span class="p">();</span>
+</code></pre></div>
+<p><a name="dedicated-mariadb-driver"></a></p>
+<h4 id="mariadb">専用のMariaDBドライバ<a class="headerlink" href="#mariadb" title="Permanent link">&para;</a></h4>
+<p><strong>影響の可能性: 非常に低</strong></p>
+<p>MariaDBデータベースに接続する際に常にMySQLドライバを使用する代わりに、Laravel 11はMariaDB用の専用データベースドライバを追加しました。</p>
+<p>アプリケーションがMariaDBデータベースに接続している場合、接続設定を新しい<code>mariadb</code>ドライバに更新して、将来のMariaDB固有の機能を利用することができます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="s1">&#39;driver&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;mariadb&#39;</span><span class="p">,</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="s1">&#39;url&#39;</span> <span class="o">=&gt;</span> <span class="nx">env</span><span class="p">(</span><span class="s1">&#39;DB_URL&#39;</span><span class="p">),</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="s1">&#39;host&#39;</span> <span class="o">=&gt;</span> <span class="nx">env</span><span class="p">(</span><span class="s1">&#39;DB_HOST&#39;</span><span class="p">,</span> <span class="s1">&#39;127.0.0.1&#39;</span><span class="p">),</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="s1">&#39;port&#39;</span> <span class="o">=&gt;</span> <span class="nx">env</span><span class="p">(</span><span class="s1">&#39;DB_PORT&#39;</span><span class="p">,</span> <span class="s1">&#39;3306&#39;</span><span class="p">),</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="c1">// ...</span>
+</code></pre></div>
+<p>現在、新しいMariaDBドライバは現在のMySQLドライバと同様に動作しますが、1つの例外があります。<code>uuid</code>スキーマビルダーメソッドは、<code>char(36)</code>カラムの代わりにネイティブのUUIDカラムを作成します。</p>
+<p>既存のマイグレーションが<code>uuid</code>スキーマビルダーメソッドを使用しており、新しい<code>mariadb</code>データベースドライバを使用することを選択した場合、<code>uuid</code>メソッドの呼び出しを<code>char</code>に更新して、破壊的な変更や予期しない動作を避ける必要があります。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nx">Schema</span><span class="o">::</span><span class="na">table</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Blueprint</span> <span class="nv">$table</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">char</span><span class="p">(</span><span class="s1">&#39;uuid&#39;</span><span class="p">,</span> <span class="mi">36</span><span class="p">);</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>    <span class="c1">// ...</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="p">});</span>
+</code></pre></div>
+<p><a name="spatial-types"></a></p>
+<h4 id="_15">空間型<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h4>
+<p><strong>影響の可能性: 低</strong></p>
+<p>データベースマイグレーションの空間カラムタイプは、すべてのデータベースで一貫性を持つように書き直されました。したがって、マイグレーションから<code>point</code>、<code>lineString</code>、<code>polygon</code>、<code>geometryCollection</code>、<code>multiPoint</code>、<code>multiLineString</code>、<code>multiPolygon</code>、および<code>multiPolygonZ</code>メソッドを削除し、代わりに<code>geometry</code>または<code>geography</code>メソッドを使用することができます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">geometry</span><span class="p">(</span><span class="s1">&#39;shapes&#39;</span><span class="p">);</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">geography</span><span class="p">(</span><span class="s1">&#39;coordinates&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p>MySQL、MariaDB、およびPostgreSQLでカラムに格納される値のタイプまたは空間参照システム識別子を明示的に制限するために、メソッドに<code>subtype</code>と<code>srid</code>を渡すことができます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">geometry</span><span class="p">(</span><span class="s1">&#39;dimension&#39;</span><span class="p">,</span> <span class="nx">subtype</span><span class="o">:</span> <span class="s1">&#39;polygon&#39;</span><span class="p">,</span> <span class="nx">srid</span><span class="o">:</span> <span class="mi">0</span><span class="p">);</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">geography</span><span class="p">(</span><span class="s1">&#39;latitude&#39;</span><span class="p">,</span> <span class="nx">subtype</span><span class="o">:</span> <span class="s1">&#39;point&#39;</span><span class="p">,</span> <span class="nx">srid</span><span class="o">:</span> <span class="mi">4326</span><span class="p">);</span>
+</code></pre></div>
+<p>PostgreSQL文法の<code>isGeometry</code>および<code>projection</code>カラム修飾子は、それに応じて削除されました。</p>
+<p><a name="doctrine-dbal-removal"></a></p>
+<h4 id="doctrine-dbal">Doctrine DBALの削除<a class="headerlink" href="#doctrine-dbal" title="Permanent link">&para;</a></h4>
+<p><strong>影響の可能性: 低</strong></p>
+<p>以下のDoctrine DBAL関連のクラスとメソッドが削除されました。Laravelはもはやこのパッケージに依存せず、以前はカスタムタイプを必要としたさまざまなカラムタイプの適切な作成と変更のために、カスタムDoctrinesタイプの登録は不要になりました。</p>
+<div class="content-list">
+<ul>
+<li><code>Illuminate\Database\Schema\Builder::$alwaysUsesNativeSchemaOperationsIfPossible</code>クラスプロパティ</li>
+<li><code>Illuminate\Database\Schema\Builder::useNativeSchemaOperationsIfPossible()</code>メソッド</li>
+<li><code>Illuminate\Database\Connection::usingNativeSchemaOperations()</code>メソッド</li>
+<li><code>Illuminate\Database\Connection::isDoctrineAvailable()</code>メソッド</li>
+<li><code>Illuminate\Database\Connection::getDoctrineConnection()</code>メソッド</li>
+<li><code>Illuminate\Database\Connection::getDoctrineSchemaManager()</code>メソッド</li>
+<li><code>Illuminate\Database\Connection::getDoctrineColumn()</code>メソッド</li>
+<li><code>Illuminate\Database\Connection::registerDoctrineType()</code>メソッド</li>
+<li><code>Illuminate\Database\DatabaseManager::registerDoctrineType()</code>メソッド</li>
+<li><code>Illuminate\Database\PDO</code>ディレクトリ</li>
+<li><code>Illuminate\Database\DBAL\TimestampType</code>クラス</li>
+<li><code>Illuminate\Database\Schema\Grammars\ChangeColumn</code>クラス</li>
+<li><code>Illuminate\Database\Schema\Grammars\RenameColumn</code>クラス</li>
+<li><code>Illuminate\Database\Schema\Grammars\Grammar::getDoctrineTableDiff()</code>メソッド</li>
+</ul>
+</div>
+<p>さらに、アプリケーションの<code>database</code>設定ファイルで<code>dbal.types</code>を介してカスタムDoctrineタイプを登録することは不要になりました。</p>
+<p>以前にDoctrine DBALを使用してデータベースとその関連テーブルを検査していた場合、代わりにLaravelの新しいネイティブスキーマメソッド（<code>Schema::getTables()</code>、<code>Schema::getColumns()</code>、<code>Schema::getIndexes()</code>、<code>Schema::getForeignKeys()</code>など）を使用することができます。</p>
+<p><a name="deprecated-schema-methods"></a></p>
+<h4 id="_16">非推奨のスキーマメソッド<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h4>
+<p><strong>影響の可能性: 非常に低</strong></p>
+<p>非推奨のDoctrineベースの<code>Schema::getAllTables()</code>、<code>Schema::getAllViews()</code>、および<code>Schema::getAllTypes()</code>メソッドは、新しいLaravelネイティブの<code>Schema::getTables()</code>、<code>Schema::getViews()</code>、および<code>Schema::getTypes()</code>メソッドに置き換えられ、削除されました。</p>
+<p>PostgreSQLおよびSQL Serverを使用する場合、新しいスキーマメソッドは3つの部分からなる参照（例：<code>database.schema.table</code>）を受け入れません。したがって、代わりに<code>connection()</code>を使用してデータベースを宣言する必要があります。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="nx">Schema</span><span class="o">::</span><span class="na">connection</span><span class="p">(</span><span class="s1">&#39;database&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">hasTable</span><span class="p">(</span><span class="s1">&#39;schema.table&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="get-column-types"></a></p>
+<h4 id="getcolumntype">スキーマビルダーの<code>getColumnType()</code>メソッド<a class="headerlink" href="#getcolumntype" title="Permanent link">&para;</a></h4>
+<p><strong>影響の可能性: 非常に低</strong></p>
+<p><code>Schema::getColumnType()</code>メソッドは、Doctrine DBAL相当のタイプではなく、指定されたカラムの実際のタイプを常に返すようになりました。</p>
+<p><a name="database-connection-interface"></a></p>
+<h4 id="_17">データベース接続インターフェース<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h4>
+<p><strong>影響の可能性: 非常に低</strong></p>
+<p><code>Illuminate\Database\ConnectionInterface</code>インターフェースに新しい<code>scalar</code>メソッドが追加されました。このインターフェースの独自の実装を定義している場合、<code>scalar</code>メソッドを実装に追加する必要があります。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">public</span> <span class="k">function</span> <span class="nf">scalar</span><span class="p">(</span><span class="nv">$query</span><span class="p">,</span> <span class="nv">$bindings</span> <span class="o">=</span> <span class="p">[],</span> <span class="nv">$useReadPdo</span> <span class="o">=</span> <span class="k">true</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="dates"></a></p>
+<h3 id="_18">日付<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h3>
+<p><a name="carbon-3"></a></p>
+<h4 id="carbon-3">Carbon 3<a class="headerlink" href="#carbon-3" title="Permanent link">&para;</a></h4>
+<p><strong>影響の可能性: 中</strong></p>
+<p>Laravel 11はCarbon 2とCarbon 3の両方をサポートしています。CarbonはLaravelとエコシステム全体のパッケージで広く使用されている日付操作ライブラリです。Carbon 3にアップグレードする場合、<code>diffIn*</code>メソッドが浮動小数点数を返し、時間の方向を示すために負の値を返す可能性があることに注意してください。これはCarbon 2からの大きな変更です。これらの変更やその他の変更を処理する方法については、Carbonの<a href="https://github.com/briannesbitt/Carbon/releases/tag/3.0.0">変更ログ</a>を確認してください。</p>
+<p><a name="mail"></a></p>
+<h3 id="_19">メール<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h3>
+<p><a name="the-mailer-contract"></a></p>
+<h4 id="mailer"><code>Mailer</code>コントラクト<a class="headerlink" href="#mailer" title="Permanent link">&para;</a></h4>
+<p><strong>影響の可能性: 非常に低</strong></p>
+<p><code>Illuminate\Contracts\Mail\Mailer</code>コントラクトに新しい<code>sendNow</code>メソッドが追加されました。アプリケーションまたはパッケージがこのコントラクトを手動で実装している場合、新しい<code>sendNow</code>メソッドを実装に追加する必要があります。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">public</span> <span class="k">function</span> <span class="nf">sendNow</span><span class="p">(</span><span class="nv">$mailable</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$data</span> <span class="o">=</span> <span class="p">[],</span> <span class="nv">$callback</span> <span class="o">=</span> <span class="k">null</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="packages"></a></p>
+<h3 id="_20">パッケージ<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h3>
+<p><a name="publishing-service-providers"></a></p>
+<h4 id="_21">サービスプロバイダをアプリケーションに公開<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h4>
+<p><strong>影響の可能性: 非常に低</strong></p>
+<p>アプリケーションの<code>app/Providers</code>ディレクトリにサービスプロバイダを手動で公開し、アプリケーションの<code>config/app.php</code>設定ファイルを手動で変更してサービスプロバイダを登録するLaravelパッケージを作成した場合、パッケージを更新して新しい<code>ServiceProvider::addProviderToBootstrapFile</code>メソッドを使用する必要があります。</p>
+<p><code>addProviderToBootstrapFile</code>メソッドは、公開したサービスプロバイダをアプリケーションの<code>bootstrap/providers.php</code>ファイルに自動的に追加します。これは、<code>providers</code>配列が新しいLaravel 11アプリケーションの<code>config/app.php</code>設定ファイルに存在しないためです。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="k">use</span> <span class="nx">Illuminate\Support\ServiceProvider</span><span class="p">;</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="nx">ServiceProvider</span><span class="o">::</span><span class="na">addProviderToBootstrapFile</span><span class="p">(</span><span class="nx">Provider</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="queues"></a></p>
+<h3 id="_22">キュー<a class="headerlink" href="#_22" title="Permanent link">&para;</a></h3>
+<p><a name="the-batch-repository-interface"></a></p>
+<h4 id="batchrepository"><code>BatchRepository</code>インターフェース<a class="headerlink" href="#batchrepository" title="Permanent link">&para;</a></h4>
+<p><strong>影響の可能性: 非常に低</strong></p>
+<p><code>Illuminate\Bus\BatchRepository</code>インターフェースに新しい<code>rollBack</code>メソッドが追加されました。このインターフェースを独自のパッケージまたはアプリケーション内で実装している場合、このメソッドを実装に追加する必要があります。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="k">public</span> <span class="k">function</span> <span class="nf">rollBack</span><span class="p">();</span>
+</code></pre></div>
+<p><a name="synchronous-jobs-in-database-transactions"></a></p>
+<h4 id="_23">データベーストランザクション内の同期ジョブ<a class="headerlink" href="#_23" title="Permanent link">&para;</a></h4>
+<p><strong>影響の可能性: 非常に低</strong></p>
+<p>以前は、同期ジョブ（<code>sync</code> キュードライバーを使用するジョブ）は、キュー接続の <code>after_commit</code> 設定オプションが <code>true</code> に設定されているか、ジョブで <code>afterCommit</code> メソッドが呼び出されているかに関係なく、即座に実行されていました。</p>
+<p>Laravel 11 では、同期キュージョブはキュー接続の「コミット後」設定やジョブに従うようになりました。</p>
+<p><a name="rate-limiting"></a></p>
+<h3 id="_24">レートリミット<a class="headerlink" href="#_24" title="Permanent link">&para;</a></h3>
+<p><a name="per-second-rate-limiting"></a></p>
+<h4 id="_25">秒単位のレートリミット<a class="headerlink" href="#_25" title="Permanent link">&para;</a></h4>
+<p><strong>影響の可能性: 中</strong></p>
+<p>Laravel 11 は、分単位の粒度に制限される代わりに、秒単位のレートリミットをサポートします。この変更に関連する潜在的な破壊的変更について、注意する必要があります。</p>
+<p><code>GlobalLimit</code> クラスのコンストラクタは、分ではなく秒を受け入れるようになりました。このクラスは文書化されておらず、通常はアプリケーションで使用されません：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="k">new</span> <span class="nx">GlobalLimit</span><span class="p">(</span><span class="nv">$attempts</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="mi">60</span><span class="p">);</span>
+</code></pre></div>
+<p><code>Limit</code> クラスのコンストラクタも、分ではなく秒を受け入れるようになりました。このクラスの文書化された使用法はすべて、<code>Limit::perMinute</code> や <code>Limit::perSecond</code> などの静的コンストラクタに制限されています。ただし、このクラスを手動でインスタンス化している場合は、アプリケーションを更新して、クラスのコンストラクタに秒を提供するようにしてください：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="k">new</span> <span class="nx">Limit</span><span class="p">(</span><span class="nv">$key</span><span class="p">,</span> <span class="nv">$attempts</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="mi">60</span><span class="p">);</span>
+</code></pre></div>
+<p><code>Limit</code> クラスの <code>decayMinutes</code> プロパティは <code>decaySeconds</code> に名前が変更され、分ではなく秒を含むようになりました。</p>
+<p><code>Illuminate\Queue\Middleware\ThrottlesExceptions</code> および <code>Illuminate\Queue\Middleware\ThrottlesExceptionsWithRedis</code> クラスのコンストラクタは、分ではなく秒を受け入れるようになりました：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="k">new</span> <span class="nx">ThrottlesExceptions</span><span class="p">(</span><span class="nv">$attempts</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="mi">60</span><span class="p">);</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="k">new</span> <span class="nx">ThrottlesExceptionsWithRedis</span><span class="p">(</span><span class="nv">$attempts</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="mi">60</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="cashier-stripe"></a></p>
+<h3 id="cashier-stripe">Cashier Stripe<a class="headerlink" href="#cashier-stripe" title="Permanent link">&para;</a></h3>
+<p><a name="updating-cashier-stripe"></a></p>
+<h4 id="cashier-stripe_1">Cashier Stripe の更新<a class="headerlink" href="#cashier-stripe_1" title="Permanent link">&para;</a></h4>
+<p><strong>影響の可能性: 高</strong></p>
+<p>Laravel 11 は Cashier Stripe 14.x をサポートしなくなりました。したがって、アプリケーションの Laravel Cashier Stripe 依存関係を <code>composer.json</code> ファイル内で <code>^15.0</code> に更新する必要があります。</p>
+<p>Cashier Stripe 15.0 は、独自のマイグレーションディレクトリからマイグレーションを自動的にロードしなくなりました。代わりに、以下のコマンドを実行して、Cashier Stripe のマイグレーションをアプリケーションに公開する必要があります：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>vendor:publish<span class="w"> </span>--tag<span class="o">=</span>cashier-migrations
+</code></pre></div>
+<p>追加の破壊的変更については、完全な <a href="https://github.com/laravel/cashier-stripe/blob/15.x/UPGRADE.md">Cashier Stripe アップグレードガイド</a> を確認してください。</p>
+<p><a name="spark-stripe"></a></p>
+<h3 id="spark-stripe">Spark (Stripe)<a class="headerlink" href="#spark-stripe" title="Permanent link">&para;</a></h3>
+<p><a name="updating-spark-stripe"></a></p>
+<h4 id="spark-stripe_1">Spark Stripe の更新<a class="headerlink" href="#spark-stripe_1" title="Permanent link">&para;</a></h4>
+<p><strong>影響の可能性: 高</strong></p>
+<p>Laravel 11 は Laravel Spark Stripe 4.x をサポートしなくなりました。したがって、アプリケーションの Laravel Spark Stripe 依存関係を <code>composer.json</code> ファイル内で <code>^5.0</code> に更新する必要があります。</p>
+<p>Spark Stripe 5.0 は、独自のマイグレーションディレクトリからマイグレーションを自動的にロードしなくなりました。代わりに、以下のコマンドを実行して、Spark Stripe のマイグレーションをアプリケーションに公開する必要があります：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>vendor:publish<span class="w"> </span>--tag<span class="o">=</span>spark-migrations
+</code></pre></div>
+<p>追加の破壊的変更については、完全な <a href="https://spark.laravel.com/docs/spark-stripe/upgrade.html">Spark Stripe アップグレードガイド</a> を確認してください。</p>
+<p><a name="passport"></a></p>
+<h3 id="passport">Passport<a class="headerlink" href="#passport" title="Permanent link">&para;</a></h3>
+<p><a name="updating-telescope"></a></p>
+<h4 id="passport_1">Passport の更新<a class="headerlink" href="#passport_1" title="Permanent link">&para;</a></h4>
+<p><strong>影響の可能性: 高</strong></p>
+<p>Laravel 11 は Laravel Passport 11.x をサポートしなくなりました。したがって、アプリケーションの Laravel Passport 依存関係を <code>composer.json</code> ファイル内で <code>^12.0</code> に更新する必要があります。</p>
+<p>Passport 12.0 は、独自のマイグレーションディレクトリからマイグレーションを自動的にロードしなくなりました。代わりに、以下のコマンドを実行して、Passport のマイグレーションをアプリケーションに公開する必要があります：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>vendor:publish<span class="w"> </span>--tag<span class="o">=</span>passport-migrations
+</code></pre></div>
+<p>さらに、パスワード付与タイプはデフォルトで無効になっています。アプリケーションの <code>AppServiceProvider</code> の <code>boot</code> メソッドで <code>enablePasswordGrant</code> メソッドを呼び出すことで有効にできます：</p>
+<div class="highlight"><pre><span></span><code><span class="k">public</span> <span class="k">function</span> <span class="nf">boot</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<span class="p">{</span>
+    <span class="nx">Passport</span><span class="o">::</span><span class="na">enablePasswordGrant</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><a name="sanctum"></a></p>
+<h3 id="sanctum">Sanctum<a class="headerlink" href="#sanctum" title="Permanent link">&para;</a></h3>
+<p><a name="updating-sanctum"></a></p>
+<h4 id="sanctum_1">Sanctum の更新<a class="headerlink" href="#sanctum_1" title="Permanent link">&para;</a></h4>
+<p><strong>影響の可能性: 高</strong></p>
+<p>Laravel 11 は Laravel Sanctum 3.x をサポートしなくなりました。したがって、アプリケーションの Laravel Sanctum 依存関係を <code>composer.json</code> ファイル内で <code>^4.0</code> に更新する必要があります。</p>
+<p>Sanctum 4.0 は、独自のマイグレーションディレクトリからマイグレーションを自動的にロードしなくなりました。代わりに、以下のコマンドを実行して、Sanctum のマイグレーションをアプリケーションに公開する必要があります：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>vendor:publish<span class="w"> </span>--tag<span class="o">=</span>sanctum-migrations
+</code></pre></div>
+<p>次に、アプリケーションの <code>config/sanctum.php</code> 設定ファイルで、<code>authenticate_session</code>、<code>encrypt_cookies</code>、および <code>validate_csrf_token</code> ミドルウェアへの参照を以下のように更新する必要があります：</p>
+<div class="highlight"><pre><span></span><code><span class="s1">&#39;middleware&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="s1">&#39;authenticate_session&#39;</span> <span class="o">=&gt;</span> <span class="nx">Laravel\Sanctum\Http\Middleware\AuthenticateSession</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+    <span class="s1">&#39;encrypt_cookies&#39;</span> <span class="o">=&gt;</span> <span class="nx">Illuminate\Cookie\Middleware\EncryptCookies</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+    <span class="s1">&#39;validate_csrf_token&#39;</span> <span class="o">=&gt;</span> <span class="nx">Illuminate\Foundation\Http\Middleware\ValidateCsrfToken</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+<span class="p">],</span>
+</code></pre></div>
+<p><a name="telescope"></a></p>
+<h3 id="telescope">Telescope<a class="headerlink" href="#telescope" title="Permanent link">&para;</a></h3>
+<p><a name="updating-telescope"></a></p>
+<h4 id="telescope_1">Telescope の更新<a class="headerlink" href="#telescope_1" title="Permanent link">&para;</a></h4>
+<p><strong>影響の可能性: 高</strong></p>
+<p>Laravel 11 は Laravel Telescope 4.x をサポートしなくなりました。したがって、アプリケーションの Laravel Telescope 依存関係を <code>composer.json</code> ファイル内で <code>^5.0</code> に更新する必要があります。</p>
+<p>Telescope 5.0 は、独自のマイグレーションディレクトリからマイグレーションを自動的にロードしなくなりました。代わりに、以下のコマンドを実行して、Telescope のマイグレーションをアプリケーションに公開する必要があります：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>vendor:publish<span class="w"> </span>--tag<span class="o">=</span>telescope-migrations
+</code></pre></div>
+<p><a name="spatie-once-package"></a></p>
+<h3 id="spatie-once">Spatie Once パッケージ<a class="headerlink" href="#spatie-once" title="Permanent link">&para;</a></h3>
+<p><strong>影響の可能性: 中</strong></p>
+<p>Laravel 11 は、指定されたクロージャが一度だけ実行されることを保証する独自の <a href="helpers.html#method-once"><code>once</code> 関数</a> を提供するようになりました。したがって、アプリケーションが <code>spatie/once</code> パッケージに依存している場合、競合を避けるために、アプリケーションの <code>composer.json</code> ファイルから削除する必要があります。</p>
+<p><a name="miscellaneous"></a></p>
+<h3 id="_26">その他<a class="headerlink" href="#_26" title="Permanent link">&para;</a></h3>
+<p>また、<code>laravel/laravel</code> <a href="https://github.com/laravel/laravel">GitHub リポジトリ</a> の変更も確認することをお勧めします。これらの変更の多くは必須ではありませんが、アプリケーションとこれらのファイルを同期させたい場合があります。このアップグレードガイドでは一部の変更がカバーされますが、設定ファイルやコメントの変更などはカバーされません。<a href="https://github.com/laravel/laravel/compare/10.x...11.x">GitHub 比較ツール</a> を使用して簡単に変更を確認し、どの更新が重要かを選択できます。</p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+<nav class="md-footer-nav">
+    
+    
+</nav>
+
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": ".", "features": ["back-to-top", "navigation.expand", "navigation.tabs", "navigation.footer", "navigation.sections", "navigation.expand", "content.code.copy", "hide_repository_button", "content.code.annotate", "content.tabs.link", "toc.none", "content.action.edit"], "search": "assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="assets/javascripts/bundle.56dfad97.min.js"></script>
+      
+    
+  </body>
+</html>

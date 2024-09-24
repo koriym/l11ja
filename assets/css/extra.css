@@ -1,0 +1,396 @@
+/* フォントの読み込み */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Serif:wght@400;700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap');
+
+:root {
+    /* フォント */
+    /*--font-family-sans-serif: "-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"";*/
+    --font-family-sans-serif: "Fira Sans", "Source Sans Pro", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+    --font-family-mono: "Fira Mono", "Source Code Pro", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    --font-family-logo:  "National", "Helvetica", Arial;
+    --font-family-logo1: Roboto Serif, -apple-system, "system-ui", Helvetica, Arial, sans-serif;
+
+
+    /* カラー */
+    --dark-grey-color: #333;
+    --dark-blue-color: #4F5B93;
+    --medium-blue-color: #7A86B8;
+    --light-blue-color: #E2E4EF;
+    --dark-magenta-color: #793862;
+    --medium-magenta-color: #AE508D;
+    --note-border-color: #d1d0d0;
+    --title-header-color: #f2f2f2;
+    --base-background-color: #f2f2f2;
+    --content-background-color: #F2F2F2;
+    --md-code-background-color: #FFFFFF;
+    --link-color: #346699;
+    --nav-color: gray;
+    --pear-color: #4e9a06;
+    --php-color: #7a86b8;
+    --bear-color: #efac3b;
+    --php1-color: #7a86b8;
+    --php1-color: rgba(111, 163, 241, 0.81);
+
+
+
+
+    /* その他 */
+    --header-height: 48px;
+}
+
+/* 全体のスタイリング */
+body {
+    font-family: var(--font-family-sans-serif);
+    color: var(--dark-grey-color);
+    background-color: var(--base-background-color);
+    -webkit-font-smoothing: subpixel-antialiased;
+}
+
+/* docs/assets/css/extra.css */
+
+
+.md-header-nav__title {
+}
+/* MkDocsのヘッダースタイリング */
+.md-header {
+    background-color: var(--title-header-color);
+    height: var(--header-height);
+    background-image: none !important;
+}
+
+.md-header__title {
+    color: var(--dark-grey-color);
+}
+
+/* コンテンツのスタイリング */
+.md-content h1,
+.md-content h2 {
+    color: var(--dark-magenta-color);
+    border-bottom: 1px solid var(--medium-blue-color);
+    padding-bottom: 10px;
+}
+
+.md-content h3,
+.md-content h4,
+.md-content h5,
+.md-content h6 {
+    color: var(--dark-magenta-color);
+}
+
+blockquote {
+    background-color: var(--note-border-color);
+}
+
+.md-typeset .admonition.notice, .md-typeset details.notice {
+    border-color: var(--note-border-color);
+}
+
+/* コードのスタイリング */
+.md-typeset code {
+    background-color: var(--md-code-background-color);
+    border-radius: 0.1rem;
+    font-size: 14px;
+    border: 1px solid var(--light-blue-color);
+}
+
+.md-typeset code:not(pre code) {
+    color: var(--dark-blue-color);
+    padding: 0.1em 0.4em;
+}
+
+.md-typeset pre {
+    background-color: var(--md-code-background-color);
+}
+
+/* リンクのスタイリング */
+.md-content a {
+    color: var(--link-color);
+    text-decoration: underline;
+}
+
+.md-content a:hover {
+    color: var(--dark-magenta-color);
+}
+
+.md-nav__link {
+    text-decoration: none;
+}
+
+/* テーブルのスタイリング */
+table {
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid var(--light-blue-color);
+    padding: 8px;
+}
+
+th {
+    background-color: var(--light-blue-color);
+}
+
+/* ボタンのスタイリング */
+.md-typeset .md-button {
+    background-color: var(--medium-blue-color);
+}
+
+.md-typeset .md-button:hover {
+    background-color: var(--dark-blue-color);
+}
+
+/* 左メニュー（ナビゲーション）と本文の境界線 */
+.md-sidebar--primary {
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.md-content {
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.06);
+}
+
+/* モバイル表示の調整 */
+@media screen and (max-width: 76.1875em) {
+    .md-sidebar--primary {
+        border-right: none;
+    }
+    .md-nav--primary .md-nav__title[for="__drawer"] {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    .md-content {
+        box-shadow: none;
+    }
+}
+
+/* Smooth scrolling for the entire page */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Smooth scrolling for code blocks */
+pre {
+    scroll-behavior: smooth;
+}
+
+
+/* ナビゲーションタブのリンク（デフォルト状態） */
+.md-tabs__link {
+    color: #ffffff;               /* デフォルト時のフォント色（やや薄い白） */
+    padding: 5px 20px;            /* 上下の余白を小さくしてテキストを上に */
+    text-align: center;           /* テキストを中央揃え */
+    text-transform: none;         /* テキストの大文字変換を無効に */
+    background-color: transparent; /* デフォルトで背景は透明 */
+    line-height: 0.5;
+    transition: background-color 0.3s ease, color 0.3s ease; /* スムーズな背景と文字色の変更 */
+}
+
+/* ホバー時のスタイル */
+.md-tabs__link:hover {
+    color: white;
+}
+
+/* タブが選択されている時のスタイル */
+.md-tabs__link--active {
+    color: white;
+}
+
+/* 右メニュー（TOC）を非表示にする */
+.md-sidebar--secondary {
+    display: none !important; /* 右メニュー（TOC）を非表示に */
+}
+
+/* コンテンツエリアの最大幅を設定 */
+.md-content {
+    max-width: 1000px !important; /* 最大幅を設定 */
+    margin-left: 0px !important; /* 左側のメニューとの間隔を調整して左寄せに */
+    margin-right: auto !important; /* 右側の余白を自動にして左寄せ */
+}
+
+.md-header__button.md-logo {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.md-header__button.md-logo img {
+    height:    38px;
+    width: auto;
+}
+
+/* ナビゲーションタブ全体の調整 */
+.md-tabs {
+    background-color: var(--nav-color);
+    padding: 0 0.2rem; /* タブコンテナの左右パディングを調整 */
+}
+
+/* ナビゲーションタブのリンク（デフォルト状態） */
+.md-tabs__link {
+    color: #ffffff;
+    padding: 13px 10px 11px; /* 上部のパディングを少し減らし、下部を少し増やす */
+    text-align: center;
+    text-transform: none;
+    background-color: transparent;
+    line-height: 1;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin: 0;
+    font-size: 0.7rem;
+    display: flex;
+    align-items: center; /* 中央揃えに戻す */
+    height: 100%;
+}
+
+.md-tabs {
+    padding: 0 0.2rem; /* 上下のパディングを削除し、左右のみ維持 */
+    height: 48px; /* タブコンテナの高さを明示的に設定 */
+}
+
+.md-tabs__link {
+}
+
+/* タブアイテムの調整 */
+.md-tabs__item {
+    margin: 0; /* マージンを0に設定 */
+    padding: 0; /* パディングを0に設定 */
+}
+
+/* ホバー時のスタイル */
+.md-tabs__link:hover {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.1); /* ホバー時に軽い背景色を追加 */
+}
+
+/* タブが選択されている時のスタイル */
+.md-tabs__link--active {
+    color: white;
+    font-weight: bold; /* アクティブなタブを太字に */
+    border-bottom: 2px solid white; /* アクティブなタブに下線を追加 */
+}
+
+/* タブリストの調整 */
+.md-tabs__list {
+    display: flex;
+    justify-content: flex-start; /* タブを左寄せに */
+    align-items: center;
+    height: 100%;
+}
+
+/* GitHub風のインラインコードスタイリング */
+.md-typeset code:not(pre code) {
+    padding: 0.2em 0.4em;
+    margin: 0;
+    font-size: 85%;
+    background-color: rgba(175,184,193,0.2);
+    border-radius: 6px;
+    font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;
+    color: #24292f;
+}
+
+/* ダークモード対応 */
+[data-md-color-scheme="slate"] .md-typeset code:not(pre code) {
+    background-color: rgba(110,118,129,0.4);
+    color: #c9d1d9;
+}
+
+/* 左メニューのスタイリング */
+.md-nav {
+    color: #000000 !important;
+}
+
+/*!* 左メニューのトップ見出しのスタイリング *!*/
+/*.md-nav__title {*/
+/*    color: #ffffff !important;*/
+/*    padding: 1rem;*/
+/*    font-weight: bold;*/
+/*    font-size: 1rem;*/
+/*    line-height: 1.5;*/
+/*    margin-bottom: 1rem;*/
+/*}*/
+
+/*!* ダークモード対応 *!*/
+/*[data-md-color-scheme="slate"] {*/
+/*    .md-nav {*/
+/*        color: #ffffff !important;*/
+/*    }*/
+
+/*    .md-nav__title {*/
+/*        background-color: var(--dark-blue-color);*/
+/*        color: #ffffff !important;*/
+/*    }*/
+/*}*/
+
+/* すべてのナビゲーションリンクの背景色を削除 */
+.md-nav__link {
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+/*!* ダークモード対応 *!*/
+/*[data-md-color-scheme="slate"] .md-nav__link {*/
+/*    background: transparent !important;*/
+/*    box-shadow: none !important;*/
+/*}*/
+
+/*!* サイドバー全体（上部を含む）の背景色調整 *!*/
+/*.md-sidebar--primary {*/
+/*    background-color: #e8e8e8;*/
+/*}*/
+
+/*!* サイドバーの外枠を含む全体の背景色調整 *!*/
+/*.md-sidebar--primary,*/
+/*.md-sidebar--primary .md-sidebar__scrollwrap,*/
+/*.md-nav--primary,*/
+/*.md-nav--primary .md-nav__inner,*/
+/*.md-nav--primary .md-nav__title {*/
+/*    background-color: #e8e8e8;*/
+/*}*/
+
+/*!* ダークモード対応 *!*/
+/*[data-md-color-scheme="slate"] {*/
+/*    .md-content {*/
+/*        background-color: #1e1e1e; !* ダークモードではより暗い色 *!*/
+/*    }*/
+/*    .md-sidebar--primary {*/
+/*        background-color: #252525; !* ダークモードではさらに暗い色 *!*/
+/*    }*/
+/*}*/
+
+.md-typeset .admonition.warning, .md-typeset details.warning,
+.md-typeset .admonition.note {
+    background-color: whitesmoke; /* 優しいグレーの背景色 */
+    box-shadow: none !important; /* 影をなくす */
+    border-color: var(--note-border-color);
+}
+
+.admonition.note .admonition-title {
+    margin-bottom: 8px;
+    font-size: 15px;
+}
+
+.md-header__title {
+    font-family: var(--font-family-logo);
+}
+
+span.md-ellipsis span {
+    font-family: var(--font-family-logo) !important;
+    font-weight: normal;
+}
+
+.md-header__source {
+    display: none;
+}
+
+/* サイトアイコンを常に表示 */
+.md-logo {
+    display: inline-block !important;
+}
+
+.md-nav__source {
+    background-color: var(--title-header-color);
+}

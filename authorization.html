@@ -1,0 +1,4557 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://github.com/koriym/laravel11-ja/authorization.html">
+      
+      
+        <link rel="prev" href="authentication.html">
+      
+      
+        <link rel="next" href="verification.html">
+      
+      
+      <link rel="icon" href="assets/images/favicon_io/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.35">
+    
+    
+      
+        <title>認可 - L11JA</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.35f28582.min.css">
+      
+      
+
+
+    
+    
+
+    
+
+    
+      <link rel="stylesheet" href="assets/css/php.css">
+    
+      <link rel="stylesheet" href="assets/css/mkdocs_material_extra.css">
+    
+      <link rel="stylesheet" href="assets/css/extra.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-G60CEHXLQ1"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-G60CEHXLQ1",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-G60CEHXLQ1",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      <!-- Determine classes -->
+
+
+
+<!-- Header -->
+<header class="md-header" data-md-component="header">
+  <nav
+          class="md-header__inner md-grid"
+          aria-label="Header"
+  >
+
+    <!-- Link to home -->
+    <a
+            href="."
+            title="L11JA"
+            class="md-header__button md-logo"
+            aria-label="L11JA"
+            data-md-component="logo"
+    >
+      
+  <img src="assets/images/logo.png" alt="logo">
+
+    </a>
+
+    <!-- Button to open drawer -->
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+
+    <!-- Header title -->
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            <span style="font-family: 'Noto Sans'; font-size: 20px" >
+            L11JA
+            </span>
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            <span style="font-family: 'Noto Sans Batak'; font-size: 20px" >
+            
+              認可
+            
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Color palette toggle -->
+    
+
+    <!-- User preference: color palette -->
+    
+    <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+
+    <!-- Site language selector -->
+    
+
+    <!-- Button to open search modal -->
+    
+    <label class="md-header__button md-icon" for="__search">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+    </label>
+
+    <!-- Search interface -->
+    <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    <!-- Repository information -->
+    
+    <div class="md-header__source">
+      
+
+<!--
+  Check whether the repository is hosted on one of the supported code hosting
+  platforms (GitHub, GitLab or Bitbucket) to show icon.
+-->
+
+
+  
+
+
+<!-- Repository containing source -->
+<a href="https://github.com/koriym/l11ja" title="source.link.title"
+    class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z" fill="#000"/></svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+    
+  </nav>
+
+  <!-- Navigation tabs (sticky) -->
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="releases.html" class="md-tabs__link">
+          
+  
+  プロローグ
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="installation.html" class="md-tabs__link">
+          
+  
+  はじめに
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="lifecycle.html" class="md-tabs__link">
+          
+  
+  アーキテクチャ
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="routing.html" class="md-tabs__link">
+          
+  
+  基本
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="artisan.html" class="md-tabs__link">
+          
+  
+  掘り下げる
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="authentication.html" class="md-tabs__link">
+          
+  
+  セキュリティ
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="database.html" class="md-tabs__link">
+          
+  
+  データベース
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="eloquent.html" class="md-tabs__link">
+          
+  
+  Eloquent ORM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="testing.html" class="md-tabs__link">
+          
+  
+  テスト
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="starter-kits.html" class="md-tabs__link">
+          
+  
+  パッケージ
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="L11JA" class="md-nav__button md-logo" aria-label="L11JA" data-md-component="logo">
+      
+  <img src="assets/images/logo.png" alt="logo">
+
+    </a>
+    L11JA
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+<!--
+  Check whether the repository is hosted on one of the supported code hosting
+  platforms (GitHub, GitLab or Bitbucket) to show icon.
+-->
+
+
+  
+
+
+<!-- Repository containing source -->
+<a href="https://github.com/koriym/l11ja" title="source.link.title"
+    class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z" fill="#000"/></svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    プロローグ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            プロローグ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="releases.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リリースノート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="upgrade.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    アップグレードガイド
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="contributions.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    貢献ガイド
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            はじめに
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="installation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    インストール
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="configuration.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    設定
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structure.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ディレクトリ構造
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="frontend.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    フロントエンド
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="starter-kits.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    スターターキット
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="deployment.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    デプロイ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    アーキテクチャ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            アーキテクチャ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="lifecycle.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リクエストライフサイクル
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="container.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    サービスコンテナ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="providers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    サービスプロバイダ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="facades.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ファサード
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    基本
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            基本
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="routing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ルーティング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="middleware.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ミドルウェア
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="csrf.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CSRF保護
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="controllers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コントローラ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="requests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リクエスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="responses.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    レスポンス
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="views.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ビュー
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="blade.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bladeテンプレート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="vite.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    アセットバンドル
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="urls.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    URL生成
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="session.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    セッション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="validation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    バリデーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="errors.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    エラー処理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="logging.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ログ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    掘り下げる
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            掘り下げる
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="artisan.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Artisanコンソール
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="broadcasting.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ブロードキャスティング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cache.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    キャッシュ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="collections.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コレクション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="concurrency.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    並行処理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="context.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コンテキスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="contracts.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コントラクト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="events.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    イベント
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="filesystem.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ファイルストレージ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="helpers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ヘルパー
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="http-client.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTTPクライアント
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="localization.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ローカライゼーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mail.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    メール
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="notifications.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    通知
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="packages.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    パッケージ開発
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="processes.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    プロセス
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="queues.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    キュー
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="rate-limiting.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    レート制限
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="strings.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    文字列
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="scheduling.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    タスクスケジューリング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    セキュリティ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            セキュリティ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="authentication.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    認証
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    認可
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="authorization.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    認可
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      はじめに
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      ゲート
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ゲート">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      ゲートの記述
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      アクションの認可
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="アクションの認可">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      認可または例外のスロー
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      追加のコンテキストの提供
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      ゲートのレスポンス
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ゲートのレスポンス">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#http" class="md-nav__link">
+    <span class="md-ellipsis">
+      HTTPレスポンスステータスのカスタマイズ
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      ゲートチェックのインターセプト
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      インライン認可
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      ポリシーの作成
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ポリシーの作成">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      ポリシーの生成
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      ポリシーの登録
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ポリシーの登録">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      ポリシーの自動検出
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      手動でのポリシー登録
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      ポリシーの記述
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ポリシーの記述">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      ポリシーメソッド
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      ポリシーのレスポンス
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ポリシーのレスポンス">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#http_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      HTTPレスポンスステータスのカスタマイズ
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      モデルを持たないメソッド
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      ゲストユーザー
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      ポリシーフィルター
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      ポリシーを使用したアクションの認可
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ポリシーを使用したアクションの認可">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      ユーザーモデル経由
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ユーザーモデル経由">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      モデルを必要としないアクション
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gateファサード経由
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Gateファサード経由">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      モデルを必要としないアクション
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      ミドルウェア経由
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ミドルウェア経由">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      モデルを必要としないアクション
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#blade" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bladeテンプレート経由
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bladeテンプレート経由">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      モデルを必要としないアクション
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      追加のコンテキストを提供する
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inertia" class="md-nav__link">
+    <span class="md-ellipsis">
+      認可とInertia
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="verification.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    メール確認
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="encryption.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    暗号化
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hashing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ハッシュ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="passwords.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    パスワードリセット
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    データベース
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            データベース
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="database.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="queries.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    クエリビルダ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pagination.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ページネーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="migrations.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    マイグレーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="seeding.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    シーディング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="redis.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Redis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Eloquent ORM
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Eloquent ORM
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-relationships.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リレーションシップ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-collections.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コレクション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-mutators.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ミューテータ / キャスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-resources.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    APIリソース
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-serialization.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    シリアライゼーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-factories.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ファクトリ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    テスト
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            テスト
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="testing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="http-tests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTTPテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="console-tests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コンソールテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="dusk.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ブラウザテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="database-testing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    データベース
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mocking.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    モック
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    パッケージ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            パッケージ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="starter-kits.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    スターターキット
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="billing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cashier (Stripe)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cashier-paddle.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cashier (Paddle)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="dusk.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ブラウザテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="envoy.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Envoy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fortify.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fortify
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="folio.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Folio
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="homestead.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Homestead
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="horizon.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Horizon
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mix.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mix
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="octane.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Octane
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="passport.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Passport
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pennant.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pennant
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pint.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pint
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="precognition.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Precognition
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="prompts.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prompts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pulse.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pulse
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reverb.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reverb
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sail.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sail
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sanctum.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sanctum
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="scout.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Scout
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="socialite.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Socialite
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="telescope.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Telescope
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="valet.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Valet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      はじめに
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      ゲート
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ゲート">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      ゲートの記述
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      アクションの認可
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="アクションの認可">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      認可または例外のスロー
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      追加のコンテキストの提供
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      ゲートのレスポンス
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ゲートのレスポンス">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#http" class="md-nav__link">
+    <span class="md-ellipsis">
+      HTTPレスポンスステータスのカスタマイズ
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      ゲートチェックのインターセプト
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      インライン認可
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      ポリシーの作成
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ポリシーの作成">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      ポリシーの生成
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      ポリシーの登録
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ポリシーの登録">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      ポリシーの自動検出
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      手動でのポリシー登録
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      ポリシーの記述
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ポリシーの記述">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      ポリシーメソッド
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      ポリシーのレスポンス
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ポリシーのレスポンス">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#http_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      HTTPレスポンスステータスのカスタマイズ
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      モデルを持たないメソッド
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      ゲストユーザー
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      ポリシーフィルター
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      ポリシーを使用したアクションの認可
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ポリシーを使用したアクションの認可">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      ユーザーモデル経由
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ユーザーモデル経由">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      モデルを必要としないアクション
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gateファサード経由
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Gateファサード経由">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      モデルを必要としないアクション
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      ミドルウェア経由
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ミドルウェア経由">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      モデルを必要としないアクション
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#blade" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bladeテンプレート経由
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bladeテンプレート経由">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      モデルを必要としないアクション
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      追加のコンテキストを提供する
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inertia" class="md-nav__link">
+    <span class="md-ellipsis">
+      認可とInertia
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/koriym/l11ja/edit/master/docs/authorization.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="_1">認可<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<ul>
+<li><a href="#introduction">はじめに</a></li>
+<li><a href="#gates">ゲート</a><ul>
+<li><a href="#writing-gates">ゲートの記述</a></li>
+<li><a href="#authorizing-actions-via-gates">アクションの認可</a></li>
+<li><a href="#gate-responses">ゲートのレスポンス</a></li>
+<li><a href="#intercepting-gate-checks">ゲートチェックのインターセプト</a></li>
+<li><a href="#inline-authorization">インライン認可</a></li>
+</ul>
+</li>
+<li><a href="#creating-policies">ポリシーの作成</a><ul>
+<li><a href="#generating-policies">ポリシーの生成</a></li>
+<li><a href="#registering-policies">ポリシーの登録</a></li>
+</ul>
+</li>
+<li><a href="#writing-policies">ポリシーの記述</a><ul>
+<li><a href="#policy-methods">ポリシーメソッド</a></li>
+<li><a href="#policy-responses">ポリシーのレスポンス</a></li>
+<li><a href="#methods-without-models">モデルなしのメソッド</a></li>
+<li><a href="#guest-users">ゲストユーザー</a></li>
+<li><a href="#policy-filters">ポリシーフィルター</a></li>
+</ul>
+</li>
+<li><a href="#authorizing-actions-using-policies">ポリシーを使用したアクションの認可</a><ul>
+<li><a href="#via-the-user-model">Userモデル経由</a></li>
+<li><a href="#via-the-gate-facade">Gateファサード経由</a></li>
+<li><a href="#via-middleware">ミドルウェア経由</a></li>
+<li><a href="#via-blade-templates">Bladeテンプレート経由</a></li>
+<li><a href="#supplying-additional-context">追加のコンテキストの提供</a></li>
+</ul>
+</li>
+<li><a href="#authorization-and-inertia">認可とInertia</a></li>
+</ul>
+<p><a name="introduction"></a></p>
+<h2 id="_2">はじめに<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>Laravelは、組み込みの<a href="authentication.html">認証</a>サービスに加えて、特定のリソースに対するユーザーアクションを認可する簡単な方法も提供します。例えば、ユーザーが認証されていても、アプリケーションが管理する特定のEloquentモデルやデータベースレコードを更新または削除する権限がない場合があります。Laravelの認可機能は、この種の認可チェックを管理するための簡単で整理された方法を提供します。</p>
+<p>Laravelは、アクションを認可するための主な2つの方法を提供しています：<a href="#gates">ゲート</a>と<a href="#creating-policies">ポリシー</a>です。ゲートとポリシーは、ルートとコントローラーのようなものだと考えてください。ゲートは、クロージャベースのシンプルな認可アプローチを提供し、ポリシーは、特定のモデルやリソースに関するロジックをグループ化します。このドキュメントでは、まずゲートを説明し、次にポリシーを説明します。</p>
+<p>アプリケーションを構築する際に、ゲートのみを使用するか、ポリシーのみを使用するかを選択する必要はありません。ほとんどのアプリケーションは、ゲートとポリシーの混合を含む可能性があり、それは完全に問題ありません！ゲートは、モデルやリソースに関連しないアクション（例えば、管理者ダッシュボードの表示）に最も適しています。対照的に、特定のモデルやリソースに対するアクションを認可したい場合は、ポリシーを使用する必要があります。</p>
+<p><a name="gates"></a></p>
+<h2 id="_3">ゲート<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p><a name="writing-gates"></a></p>
+<h3 id="_4">ゲートの記述<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>ゲートは、Laravelの認可機能の基本を学ぶのに最適な方法です。ただし、堅牢なLaravelアプリケーションを構築する際には、認可ルールを整理するために<a href="#creating-policies">ポリシー</a>の使用を検討する必要があります。</p>
+</div>
+<p>ゲートは、ユーザーが特定のアクションを実行する権限があるかどうかを判断するクロージャです。通常、ゲートは<code>Gate</code>ファサードを使用して、<code>App\Providers\AppServiceProvider</code>クラスの<code>boot</code>メソッド内で定義されます。ゲートは常にユーザーインスタンスを最初の引数として受け取り、関連するEloquentモデルなどの追加の引数をオプションで受け取ることができます。</p>
+<p>この例では、特定の<code>App\Models\Post</code>モデルを更新できるかどうかを判断するゲートを定義します。ゲートは、ユーザーの<code>id</code>を投稿を作成したユーザーの<code>user_id</code>と比較することでこれを実現します：</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">App\Models\Post</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">App\Models\User</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Gate</span><span class="p">;</span>
+
+<span class="sd">/**</span>
+<span class="sd"> * 任意のアプリケーションサービスのブートストラップ</span>
+<span class="sd"> */</span>
+<span class="k">public</span> <span class="k">function</span> <span class="nf">boot</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<span class="p">{</span>
+    <span class="nx">Gate</span><span class="o">::</span><span class="na">define</span><span class="p">(</span><span class="s1">&#39;update-post&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">User</span> <span class="nv">$user</span><span class="p">,</span> <span class="nx">Post</span> <span class="nv">$post</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">id</span> <span class="o">===</span> <span class="nv">$post</span><span class="o">-&gt;</span><span class="na">user_id</span><span class="p">;</span>
+    <span class="p">});</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>コントローラーのように、ゲートはクラスコールバックの配列を使用して定義することもできます：</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">App\Policies\PostPolicy</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Gate</span><span class="p">;</span>
+
+<span class="sd">/**</span>
+<span class="sd"> * 任意のアプリケーションサービスのブートストラップ</span>
+<span class="sd"> */</span>
+<span class="k">public</span> <span class="k">function</span> <span class="nf">boot</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<span class="p">{</span>
+    <span class="nx">Gate</span><span class="o">::</span><span class="na">define</span><span class="p">(</span><span class="s1">&#39;update-post&#39;</span><span class="p">,</span> <span class="p">[</span><span class="nx">PostPolicy</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="s1">&#39;update&#39;</span><span class="p">]);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><a name="authorizing-actions-via-gates"></a></p>
+<h3 id="_5">アクションの認可<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>ゲートを使用してアクションを認可するには、<code>Gate</code>ファサードによって提供される<code>allows</code>または<code>denies</code>メソッドを使用する必要があります。現在認証されているユーザーをこれらのメソッドに渡す必要はありません。Laravelは自動的にユーザーをゲートクロージャに渡します。認可が必要なアクションを実行する前に、アプリケーションのコントローラー内でゲートの認可メソッドを呼び出すのが一般的です：</p>
+<div class="highlight"><pre><span></span><code><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Http\Controllers</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">App\Http\Controllers\Controller</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">App\Models\Post</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Http\RedirectResponse</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Http\Request</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Gate</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">PostController</span> <span class="k">extends</span> <span class="nx">Controller</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * 指定された投稿を更新します。</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">update</span><span class="p">(</span><span class="nx">Request</span> <span class="nv">$request</span><span class="p">,</span> <span class="nx">Post</span> <span class="nv">$post</span><span class="p">)</span><span class="o">:</span> <span class="nx">RedirectResponse</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="nx">Gate</span><span class="o">::</span><span class="na">allows</span><span class="p">(</span><span class="s1">&#39;update-post&#39;</span><span class="p">,</span> <span class="nv">$post</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nx">abort</span><span class="p">(</span><span class="mi">403</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="c1">// 投稿を更新...</span>
+
+        <span class="k">return</span> <span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/posts&#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>現在認証されているユーザー以外のユーザーがアクションを実行する権限があるかどうかを判断したい場合は、<code>Gate</code>ファサードの<code>forUser</code>メソッドを使用できます：</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="p">(</span><span class="nx">Gate</span><span class="o">::</span><span class="na">forUser</span><span class="p">(</span><span class="nv">$user</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">allows</span><span class="p">(</span><span class="s1">&#39;update-post&#39;</span><span class="p">,</span> <span class="nv">$post</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// ユーザーは投稿を更新できます...</span>
+<span class="p">}</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nx">Gate</span><span class="o">::</span><span class="na">forUser</span><span class="p">(</span><span class="nv">$user</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">denies</span><span class="p">(</span><span class="s1">&#39;update-post&#39;</span><span class="p">,</span> <span class="nv">$post</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// ユーザーは投稿を更新できません...</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>any</code>または<code>none</code>メソッドを使用して、一度に複数のアクションを認可することもできます：</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="p">(</span><span class="nx">Gate</span><span class="o">::</span><span class="na">any</span><span class="p">([</span><span class="s1">&#39;update-post&#39;</span><span class="p">,</span> <span class="s1">&#39;delete-post&#39;</span><span class="p">],</span> <span class="nv">$post</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// ユーザーは投稿を更新または削除できます...</span>
+<span class="p">}</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nx">Gate</span><span class="o">::</span><span class="na">none</span><span class="p">([</span><span class="s1">&#39;update-post&#39;</span><span class="p">,</span> <span class="s1">&#39;delete-post&#39;</span><span class="p">],</span> <span class="nv">$post</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// ユーザーは投稿を更新または削除できません...</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><a name="authorizing-or-throwing-exceptions"></a></p>
+<h4 id="_6">認可または例外のスロー<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h4>
+<p>アクションを認可しようとして、ユーザーが指定されたアクションを実行できない場合に自動的に<code>Illuminate\Auth\Access\AuthorizationException</code>をスローしたい場合は、<code>Gate</code>ファサードの<code>authorize</code>メソッドを使用できます。<code>AuthorizationException</code>のインスタンスは、Laravelによって自動的に403 HTTPレスポンスに変換されます：</p>
+<div class="highlight"><pre><span></span><code><span class="nx">Gate</span><span class="o">::</span><span class="na">authorize</span><span class="p">(</span><span class="s1">&#39;update-post&#39;</span><span class="p">,</span> <span class="nv">$post</span><span class="p">);</span>
+
+<span class="c1">// アクションは認可されました...</span>
+</code></pre></div>
+<p><a name="gates-supplying-additional-context"></a></p>
+<h4 id="_7">追加のコンテキストの提供<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h4>
+<p>アクションを認可するためのゲートメソッド（<code>allows</code>、<code>denies</code>、<code>check</code>、<code>any</code>、<code>none</code>、<code>authorize</code>、<code>can</code>、<code>cannot</code>）と認可<a href="#via-blade-templates">Bladeディレクティブ</a>（<code>@can</code>、<code>@cannot</code>、<code>@canany</code>）は、配列を2番目の引数として受け取ることができます。これらの配列要素はゲートクロージャにパラメーターとして渡され、認可決定を行う際の追加のコンテキストとして使用できます：</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">App\Models\Category</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">App\Models\User</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Gate</span><span class="p">;</span>
+
+<span class="nx">Gate</span><span class="o">::</span><span class="na">define</span><span class="p">(</span><span class="s1">&#39;create-post&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">User</span> <span class="nv">$user</span><span class="p">,</span> <span class="nx">Category</span> <span class="nv">$category</span><span class="p">,</span> <span class="nx">bool</span> <span class="nv">$pinned</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">canPublishToGroup</span><span class="p">(</span><span class="nv">$category</span><span class="o">-&gt;</span><span class="na">group</span><span class="p">))</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">elseif</span> <span class="p">(</span><span class="nv">$pinned</span> <span class="o">&amp;&amp;</span> <span class="o">!</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">canPinPosts</span><span class="p">())</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+<span class="p">});</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nx">Gate</span><span class="o">::</span><span class="na">check</span><span class="p">(</span><span class="s1">&#39;create-post&#39;</span><span class="p">,</span> <span class="p">[</span><span class="nv">$category</span><span class="p">,</span> <span class="nv">$pinned</span><span class="p">]))</span> <span class="p">{</span>
+    <span class="c1">// ユーザーは投稿を作成できます...</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><a name="gate-responses"></a></p>
+<h3 id="_8">ゲートのレスポンス<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>これまで、ゲートが単純なブール値を返す例を見てきました。しかし、場合によっては、より詳細なレスポンスを返したい場合があります。そのためには、ゲートから<code>Illuminate\Auth\Access\Response</code>を返すことができます：</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">App\Models\User</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Auth\Access\Response</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Gate</span><span class="p">;</span>
+
+<span class="nx">Gate</span><span class="o">::</span><span class="na">define</span><span class="p">(</span><span class="s1">&#39;edit-settings&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">User</span> <span class="nv">$user</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">isAdmin</span>
+                <span class="o">?</span> <span class="nx">Response</span><span class="o">::</span><span class="na">allow</span><span class="p">()</span>
+                <span class="o">:</span> <span class="nx">Response</span><span class="o">::</span><span class="na">deny</span><span class="p">(</span><span class="s1">&#39;You must be an administrator.&#39;</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>ゲートから認可レスポンスを返しても、<code>Gate::allows</code>メソッドは依然として単純なブール値を返します。ただし、<code>Gate::inspect</code>メソッドを使用して、ゲートから返された完全な認可レスポンスを取得することができます：</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$response</span> <span class="o">=</span> <span class="nx">Gate</span><span class="o">::</span><span class="na">inspect</span><span class="p">(</span><span class="s1">&#39;edit-settings&#39;</span><span class="p">);</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nv">$response</span><span class="o">-&gt;</span><span class="na">allowed</span><span class="p">())</span> <span class="p">{</span>
+    <span class="c1">// アクションは認可されました...</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">message</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>Gate::authorize</code>メソッドを使用すると、アクションが認可されない場合に<code>AuthorizationException</code>をスローし、認可レスポンスによって提供されたエラーメッセージがHTTPレスポンスに伝播されます：</p>
+<div class="highlight"><pre><span></span><code><span class="nx">Gate</span><span class="o">::</span><span class="na">authorize</span><span class="p">(</span><span class="s1">&#39;edit-settings&#39;</span><span class="p">);</span>
+
+<span class="c1">// アクションは認可されました...</span>
+</code></pre></div>
+<p><a name="customizing-gate-response-status"></a></p>
+<h4 id="http">HTTPレスポンスステータスのカスタマイズ<a class="headerlink" href="#http" title="Permanent link">&para;</a></h4>
+<p>ゲートによってアクションが拒否された場合、<code>403</code> HTTPレスポンスが返されます。ただし、失敗した認可チェックに対して別のHTTPステータスコードを返すと便利な場合があります。<code>Illuminate\Auth\Access\Response</code>クラスの<code>denyWithStatus</code>静的コンストラクタを使用して、HTTPステータスコードをカスタマイズできます：</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">App\Models\User</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Auth\Access\Response</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Gate</span><span class="p">;</span>
+
+<span class="nx">Gate</span><span class="o">::</span><span class="na">define</span><span class="p">(</span><span class="s1">&#39;edit-settings&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">User</span> <span class="nv">$user</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">isAdmin</span>
+                <span class="o">?</span> <span class="nx">Response</span><span class="o">::</span><span class="na">allow</span><span class="p">()</span>
+                <span class="o">:</span> <span class="nx">Response</span><span class="o">::</span><span class="na">denyWithStatus</span><span class="p">(</span><span class="mi">404</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>Webアプリケーションでリソースを非表示にするために<code>404</code>レスポンスが一般的であるため、便宜上<code>denyAsNotFound</code>メソッドが提供されています：</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">App\Models\User</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Auth\Access\Response</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Gate</span><span class="p">;</span>
+
+<span class="nx">Gate</span><span class="o">::</span><span class="na">define</span><span class="p">(</span><span class="s1">&#39;edit-settings&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">User</span> <span class="nv">$user</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">isAdmin</span>
+                <span class="o">?</span> <span class="nx">Response</span><span class="o">::</span><span class="na">allow</span><span class="p">()</span>
+                <span class="o">:</span> <span class="nx">Response</span><span class="o">::</span><span class="na">denyAsNotFound</span><span class="p">();</span>
+<span class="p">});</span>
+</code></pre></div>
+<p><a name="intercepting-gate-checks"></a></p>
+<h3 id="_9">ゲートチェックのインターセプト<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p>特定のユーザーに対して常に特定のアクションを許可または拒否したい場合があります。このために、ゲートチェックをインターセプトするための<code>before</code>メソッドを使用できます。このメソッドは、他のすべての認可チェックの前に実行されます：</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Gate</span><span class="p">;</span>
+
+<span class="nx">Gate</span><span class="o">::</span><span class="na">before</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nv">$user</span><span class="p">,</span> <span class="nv">$ability</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$user</span><span class="o">-&gt;</span><span class="na">isAdministrator</span><span class="p">())</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div>
+<p><code>before</code>クロージャが<code>null</code>以外の結果を返す場合、その結果はチェックの結果として扱われます。</p>
+<p>ゲートチェックの後に実行される<code>after</code>メソッドを定義することもできます：</p>
+<div class="highlight"><pre><span></span><code><span class="nx">Gate</span><span class="o">::</span><span class="na">after</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nv">$user</span><span class="p">,</span> <span class="nv">$ability</span><span class="p">,</span> <span class="nv">$result</span><span class="p">,</span> <span class="nv">$arguments</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$user</span><span class="o">-&gt;</span><span class="na">isAdministrator</span><span class="p">())</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div>
+<p><code>before</code>メソッドと同様に、<code>after</code>クロージャが<code>null</code>以外の結果を返す場合、その結果はチェックの結果として扱われます。</p>
+<p>場合によっては、特定のユーザーにすべての権限を付与したいことがあります。すべての他の認可チェックの前に実行されるクロージャを定義するために、<code>before</code>メソッドを使用できます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">use</span> <span class="nx">App\Models\User</span><span class="p">;</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Gate</span><span class="p">;</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nx">Gate</span><span class="o">::</span><span class="na">before</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nx">User</span> <span class="nv">$user</span><span class="p">,</span> <span class="nx">string</span> <span class="nv">$ability</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="k">if</span> <span class="p">(</span><span class="nv">$user</span><span class="o">-&gt;</span><span class="na">isAdministrator</span><span class="p">())</span> <span class="p">{</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="p">}</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="p">});</span>
+</code></pre></div>
+<p><code>before</code>クロージャがnull以外の結果を返す場合、その結果は認可チェックの結果と見なされます。</p>
+<p>すべての他の認可チェックの後に実行されるクロージャを定義するために、<code>after</code>メソッドを使用できます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">use</span> <span class="nx">App\Models\User</span><span class="p">;</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nx">Gate</span><span class="o">::</span><span class="na">after</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nx">User</span> <span class="nv">$user</span><span class="p">,</span> <span class="nx">string</span> <span class="nv">$ability</span><span class="p">,</span> <span class="nx">bool</span><span class="o">|</span><span class="k">null</span> <span class="nv">$result</span><span class="p">,</span> <span class="nx">mixed</span> <span class="nv">$arguments</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="k">if</span> <span class="p">(</span><span class="nv">$user</span><span class="o">-&gt;</span><span class="na">isAdministrator</span><span class="p">())</span> <span class="p">{</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>        <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="p">}</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="p">});</span>
+</code></pre></div>
+<p><code>before</code>メソッドと同様に、<code>after</code>クロージャがnull以外の結果を返す場合、その結果は認可チェックの結果と見なされます。</p>
+<p><a name="inline-authorization"></a></p>
+<h3 id="_10">インライン認可<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p>時には、現在認証されているユーザーが特定のアクションを実行する権限があるかどうかを、専用のゲートを書かずに判断したいことがあります。Laravelでは、<code>Gate::allowIf</code>と<code>Gate::denyIf</code>メソッドを介して、この種の「インライン」認可チェックを実行できます。インライン認可は、定義された<a href="#intercepting-gate-checks">"before"または"after"の認可フック</a>を実行しません。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">use</span> <span class="nx">App\Models\User</span><span class="p">;</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Gate</span><span class="p">;</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="nx">Gate</span><span class="o">::</span><span class="na">allowIf</span><span class="p">(</span><span class="nx">fn</span> <span class="p">(</span><span class="nx">User</span> <span class="nv">$user</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">isAdministrator</span><span class="p">());</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="nx">Gate</span><span class="o">::</span><span class="na">denyIf</span><span class="p">(</span><span class="nx">fn</span> <span class="p">(</span><span class="nx">User</span> <span class="nv">$user</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">banned</span><span class="p">());</span>
+</code></pre></div>
+<p>アクションが認可されていない場合、または現在認証されているユーザーがいない場合、Laravelは自動的に<code>Illuminate\Auth\Access\AuthorizationException</code>例外をスローします。<code>AuthorizationException</code>のインスタンスは、Laravelの例外ハンドラによって自動的に403 HTTPレスポンスに変換されます。</p>
+<p><a name="creating-policies"></a></p>
+<h2 id="_11">ポリシーの作成<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<p><a name="generating-policies"></a></p>
+<h3 id="_12">ポリシーの生成<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<p>ポリシーは、特定のモデルまたはリソースに関する認可ロジックを整理するクラスです。例えば、アプリケーションがブログである場合、<code>App\Models\Post</code>モデルと、ユーザーが投稿の作成や更新などのアクションを認可するための対応する<code>App\Policies\PostPolicy</code>があるかもしれません。</p>
+<p><code>make:policy</code> Artisanコマンドを使用してポリシーを生成できます。生成されたポリシーは<code>app/Policies</code>ディレクトリに配置されます。このディレクトリがアプリケーションに存在しない場合、Laravelはそれを作成します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>make:policy<span class="w"> </span>PostPolicy
+</code></pre></div>
+<p><code>make:policy</code>コマンドは空のポリシークラスを生成します。リソースの表示、作成、更新、削除に関連するポリシーメソッドの例を含むクラスを生成したい場合、コマンドを実行する際に<code>--model</code>オプションを指定できます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>make:policy<span class="w"> </span>PostPolicy<span class="w"> </span>--model<span class="o">=</span>Post
+</code></pre></div>
+<p><a name="registering-policies"></a></p>
+<h3 id="_13">ポリシーの登録<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<p><a name="policy-discovery"></a></p>
+<h4 id="_14">ポリシーの自動検出<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h4>
+<p>デフォルトでは、Laravelはモデルとポリシーが標準のLaravel命名規則に従っている限り、ポリシーを自動的に検出します。具体的には、ポリシーはモデルを含むディレクトリと同じかそれ以上の階層にある<code>Policies</code>ディレクトリに配置する必要があります。例えば、モデルは<code>app/Models</code>ディレクトリに配置され、ポリシーは<code>app/Policies</code>ディレクトリに配置されます。この場合、Laravelはまず<code>app/Models/Policies</code>でポリシーを探し、次に<code>app/Policies</code>で探します。さらに、ポリシー名はモデル名と一致し、<code>Policy</code>サフィックスを持つ必要があります。したがって、<code>User</code>モデルは<code>UserPolicy</code>ポリシークラスに対応します。</p>
+<p>独自のポリシー検出ロジックを定義したい場合、<code>Gate::guessPolicyNamesUsing</code>メソッドを使用してカスタムポリシー検出コールバックを登録できます。通常、このメソッドはアプリケーションの<code>AppServiceProvider</code>の<code>boot</code>メソッドから呼び出す必要があります。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Gate</span><span class="p">;</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nx">Gate</span><span class="o">::</span><span class="na">guessPolicyNamesUsing</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nx">string</span> <span class="nv">$modelClass</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    <span class="c1">// 指定されたモデルのポリシークラス名を返す...</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="p">});</span>
+</code></pre></div>
+<p><a name="manually-registering-policies"></a></p>
+<h4 id="_15">手動でのポリシー登録<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h4>
+<p><code>Gate</code>ファサードを使用して、アプリケーションの<code>AppServiceProvider</code>の<code>boot</code>メソッド内でポリシーとそれに対応するモデルを手動で登録できます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">use</span> <span class="nx">App\Models\Order</span><span class="p">;</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">use</span> <span class="nx">App\Policies\OrderPolicy</span><span class="p">;</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Gate</span><span class="p">;</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="sd">/**</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="sd"> * Bootstrap any application services.</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="sd"> */</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="k">public</span> <span class="k">function</span> <span class="nf">boot</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="p">{</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>    <span class="nx">Gate</span><span class="o">::</span><span class="na">policy</span><span class="p">(</span><span class="nx">Order</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="nx">OrderPolicy</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="p">}</span>
+</code></pre></div>
+<p><a name="writing-policies"></a></p>
+<h2 id="_16">ポリシーの記述<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h2>
+<p><a name="policy-methods"></a></p>
+<h3 id="_17">ポリシーメソッド<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h3>
+<p>ポリシークラスが登録されたら、それぞれのアクションに対してメソッドを追加できます。例えば、<code>PostPolicy</code>に<code>update</code>メソッドを定義し、指定された<code>App\Models\User</code>が指定された<code>App\Models\Post</code>インスタンスを更新できるかどうかを判断します。</p>
+<p><code>update</code>メソッドは<code>User</code>と<code>Post</code>インスタンスを引数として受け取り、ユーザーが指定された<code>Post</code>を更新する権限があるかどうかを示す<code>true</code>または<code>false</code>を返す必要があります。したがって、この例では、ユーザーの<code>id</code>が投稿の<code>user_id</code>と一致するかどうかを確認します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="o">&lt;?</span><span class="nx">php</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="k">namespace</span> <span class="nx">App\Policies</span><span class="p">;</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="k">use</span> <span class="nx">App\Models\Post</span><span class="p">;</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="k">use</span> <span class="nx">App\Models\User</span><span class="p">;</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="k">class</span> <span class="nc">PostPolicy</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="p">{</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>    <span class="sd">/**</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="sd">     * Determine if the given post can be updated by the user.</span>
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="sd">     */</span>
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">update</span><span class="p">(</span><span class="nx">User</span> <span class="nv">$user</span><span class="p">,</span> <span class="nx">Post</span> <span class="nv">$post</span><span class="p">)</span><span class="o">:</span> <span class="nx">bool</span>
+<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>    <span class="p">{</span>
+<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>        <span class="k">return</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">id</span> <span class="o">===</span> <span class="nv">$post</span><span class="o">-&gt;</span><span class="na">user_id</span><span class="p">;</span>
+<a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>    <span class="p">}</span>
+<a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a><span class="p">}</span>
+</code></pre></div>
+<p>必要に応じて、ポリシーに追加のメソッドを定義できます。例えば、<code>view</code>や<code>delete</code>メソッドを定義して、さまざまな<code>Post</code>関連のアクションを認可することができますが、ポリシーメソッドには好きな名前を付けることができます。</p>
+<p>Artisanコンソールで<code>--model</code>オプションを使用してポリシーを生成した場合、それには<code>viewAny</code>、<code>view</code>、<code>create</code>、<code>update</code>、<code>delete</code>、<code>restore</code>、および<code>forceDelete</code>アクションのメソッドが既に含まれています。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>すべてのポリシーはLaravelの<a href="container.html">サービスコンテナ</a>を介して解決されるため、ポリシーのコンストラクタで必要な依存関係をタイプヒントすることで、自動的に注入されます。</p>
+</div>
+<p><a name="policy-responses"></a></p>
+<h3 id="_18">ポリシーのレスポンス<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h3>
+<p>これまで、単純なブール値を返すポリシーメソッドのみを検討してきました。しかし、時にはより詳細なレスポンスを返したい場合があります。そのためには、ポリシーメソッドから<code>Illuminate\Auth\Access\Response</code>インスタンスを返すことができます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">use</span> <span class="nx">App\Models\Post</span><span class="p">;</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="k">use</span> <span class="nx">App\Models\User</span><span class="p">;</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="k">use</span> <span class="nx">Illuminate\Auth\Access\Response</span><span class="p">;</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="sd">/**</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="sd"> * Determine if the given post can be updated by the user.</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="sd"> */</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="k">public</span> <span class="k">function</span> <span class="nf">update</span><span class="p">(</span><span class="nx">User</span> <span class="nv">$user</span><span class="p">,</span> <span class="nx">Post</span> <span class="nv">$post</span><span class="p">)</span><span class="o">:</span> <span class="nx">Response</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="p">{</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>    <span class="k">return</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">id</span> <span class="o">===</span> <span class="nv">$post</span><span class="o">-&gt;</span><span class="na">user_id</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>                <span class="o">?</span> <span class="nx">Response</span><span class="o">::</span><span class="na">allow</span><span class="p">()</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>                <span class="o">:</span> <span class="nx">Response</span><span class="o">::</span><span class="na">deny</span><span class="p">(</span><span class="s1">&#39;You do not own this post.&#39;</span><span class="p">);</span>
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="p">}</span>
+</code></pre></div>
+<p>ポリシーから認可レスポンスを返す場合、<code>Gate::allows</code>メソッドは依然として単純なブール値を返しますが、<code>Gate::inspect</code>メソッドを使用して、ゲートから返される完全な認可レスポンスを取得できます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Gate</span><span class="p">;</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="nv">$response</span> <span class="o">=</span> <span class="nx">Gate</span><span class="o">::</span><span class="na">inspect</span><span class="p">(</span><span class="s1">&#39;update&#39;</span><span class="p">,</span> <span class="nv">$post</span><span class="p">);</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="k">if</span> <span class="p">(</span><span class="nv">$response</span><span class="o">-&gt;</span><span class="na">allowed</span><span class="p">())</span> <span class="p">{</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>    <span class="c1">// The action is authorized...</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>    <span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">message</span><span class="p">();</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="p">}</span>
+</code></pre></div>
+<p><code>Gate::authorize</code>メソッドを使用する場合、アクションが認可されていない場合に<code>AuthorizationException</code>をスローし、認可レスポンスによって提供されるエラーメッセージはHTTPレスポンスに伝播されます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nx">Gate</span><span class="o">::</span><span class="na">authorize</span><span class="p">(</span><span class="s1">&#39;update&#39;</span><span class="p">,</span> <span class="nv">$post</span><span class="p">);</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="c1">// The action is authorized...</span>
+</code></pre></div>
+<p><a name="customizing-policy-response-status"></a></p>
+<h4 id="http_1">HTTPレスポンスステータスのカスタマイズ<a class="headerlink" href="#http_1" title="Permanent link">&para;</a></h4>
+<p>ポリシーメソッドによってアクションが拒否された場合、<code>403</code> HTTPレスポンスが返されますが、時には別のHTTPステータスコードを返すと便利な場合があります。<code>Illuminate\Auth\Access\Response</code>クラスの<code>denyWithStatus</code>静的コンストラクタを使用して、失敗した認可チェックに対して返されるHTTPステータスコードをカスタマイズできます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">use</span> <span class="nx">App\Models\Post</span><span class="p">;</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="k">use</span> <span class="nx">App\Models\User</span><span class="p">;</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="k">use</span> <span class="nx">Illuminate\Auth\Access\Response</span><span class="p">;</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="sd">/**</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="sd"> * Determine if the given post can be updated by the user.</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="sd"> */</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="k">public</span> <span class="k">function</span> <span class="nf">update</span><span class="p">(</span><span class="nx">User</span> <span class="nv">$user</span><span class="p">,</span> <span class="nx">Post</span> <span class="nv">$post</span><span class="p">)</span><span class="o">:</span> <span class="nx">Response</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="p">{</span>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>    <span class="k">return</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">id</span> <span class="o">===</span> <span class="nv">$post</span><span class="o">-&gt;</span><span class="na">user_id</span>
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>                <span class="o">?</span> <span class="nx">Response</span><span class="o">::</span><span class="na">allow</span><span class="p">()</span>
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>                <span class="o">:</span> <span class="nx">Response</span><span class="o">::</span><span class="na">denyWithStatus</span><span class="p">(</span><span class="mi">404</span><span class="p">);</span>
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a><span class="p">}</span>
+</code></pre></div>
+<p>Webアプリケーションでリソースを<code>404</code>レスポンスで隠すのが一般的なパターンであるため、便宜上<code>denyAsNotFound</code>メソッドが提供されています。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">use</span> <span class="nx">App\Models\Post</span><span class="p">;</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="k">use</span> <span class="nx">App\Models\User</span><span class="p">;</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="k">use</span> <span class="nx">Illuminate\Auth\Access\Response</span><span class="p">;</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="sd">/**</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="sd"> * Determine if the given post can be updated by the user.</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="sd"> */</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="k">public</span> <span class="k">function</span> <span class="nf">update</span><span class="p">(</span><span class="nx">User</span> <span class="nv">$user</span><span class="p">,</span> <span class="nx">Post</span> <span class="nv">$post</span><span class="p">)</span><span class="o">:</span> <span class="nx">Response</span>
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="p">{</span>
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>    <span class="k">return</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">id</span> <span class="o">===</span> <span class="nv">$post</span><span class="o">-&gt;</span><span class="na">user_id</span>
+<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>                <span class="o">?</span> <span class="nx">Response</span><span class="o">::</span><span class="na">allow</span><span class="p">()</span>
+<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>                <span class="o">:</span> <span class="nx">Response</span><span class="o">::</span><span class="na">denyAsNotFound</span><span class="p">();</span>
+<a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a><span class="p">}</span>
+</code></pre></div>
+<p><a name="methods-without-models"></a></p>
+<h3 id="_19">モデルを持たないメソッド<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h3>
+<p>一部のポリシーメソッドは、現在認証されているユーザーのインスタンスのみを受け取ります。この状況は、<code>create</code>アクションを認可する場合に最も一般的です。例えば、ブログを作成している場合、ユーザーが投稿を作成する権限があるかどうかを判断したい場合があります。このような状況では、ポリシーメソッドはユーザーインスタンスのみを受け取る必要があります。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="sd">/**</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="sd"> * Determine if the given user can create posts.</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="sd"> */</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="k">public</span> <span class="k">function</span> <span class="nf">create</span><span class="p">(</span><span class="nx">User</span> <span class="nv">$user</span><span class="p">)</span><span class="o">:</span> <span class="nx">bool</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="p">{</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>    <span class="k">return</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">role</span> <span class="o">==</span> <span class="s1">&#39;writer&#39;</span><span class="p">;</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="p">}</span>
+</code></pre></div>
+<p><a name="guest-users"></a></p>
+<h3 id="_20">ゲストユーザー<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h3>
+<p>デフォルトでは、すべてのゲートとポリシーは、受信したHTTPリクエストが認証されたユーザーによって開始されていない場合、自動的に<code>false</code>を返します。しかし、ユーザー引数の定義に「オプション」のタイプヒントを宣言するか、<code>null</code>のデフォルト値を提供することで、これらの認可チェックをゲートとポリシーに通過させることができます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="o">&lt;?</span><span class="nx">php</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="k">namespace</span> <span class="nx">App\Policies</span><span class="p">;</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="k">use</span> <span class="nx">App\Models\Post</span><span class="p">;</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="k">use</span> <span class="nx">App\Models\User</span><span class="p">;</span>
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="k">class</span> <span class="nc">PostPolicy</span>
+<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="p">{</span>
+<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>    <span class="sd">/**</span>
+<a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a><span class="sd">     * 指定された投稿がユーザーによって更新できるかどうかを判定します。</span>
+<a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a><span class="sd">     */</span>
+<a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">update</span><span class="p">(</span><span class="o">?</span><span class="nx">User</span> <span class="nv">$user</span><span class="p">,</span> <span class="nx">Post</span> <span class="nv">$post</span><span class="p">)</span><span class="o">:</span> <span class="nx">bool</span>
+<a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a>    <span class="p">{</span>
+<a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a>        <span class="k">return</span> <span class="nv">$user</span><span class="o">?-&gt;</span><span class="na">id</span> <span class="o">===</span> <span class="nv">$post</span><span class="o">-&gt;</span><span class="na">user_id</span><span class="p">;</span>
+<a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a>    <span class="p">}</span>
+<a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a><span class="p">}</span>
+</code></pre></div>
+<p><a name="policy-filters"></a></p>
+<h3 id="_21">ポリシーフィルター<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h3>
+<p>特定のユーザーに対して、特定のポリシー内のすべてのアクションを認可したい場合があります。これを実現するには、ポリシーに<code>before</code>メソッドを定義します。<code>before</code>メソッドは、ポリシー内の他のメソッドよりも前に実行され、意図したポリシーメソッドが実際に呼び出される前にアクションを認可する機会を与えます。この機能は、アプリケーションの管理者がすべてのアクションを実行できるように認可するために最も一般的に使用されます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">use</span> <span class="nx">App\Models\User</span><span class="p">;</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="sd">/**</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="sd"> * 事前認可チェックを実行します。</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="sd"> */</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="k">public</span> <span class="k">function</span> <span class="nf">before</span><span class="p">(</span><span class="nx">User</span> <span class="nv">$user</span><span class="p">,</span> <span class="nx">string</span> <span class="nv">$ability</span><span class="p">)</span><span class="o">:</span> <span class="nx">bool</span><span class="o">|</span><span class="k">null</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="p">{</span>
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>    <span class="k">if</span> <span class="p">(</span><span class="nv">$user</span><span class="o">-&gt;</span><span class="na">isAdministrator</span><span class="p">())</span> <span class="p">{</span>
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>        <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>    <span class="p">}</span>
+<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>
+<a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>    <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
+<a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a><span class="p">}</span>
+</code></pre></div>
+<p>特定のタイプのユーザーに対してすべての認可チェックを拒否したい場合は、<code>before</code>メソッドから<code>false</code>を返すことができます。<code>null</code>が返された場合、認可チェックはポリシーメソッドに渡されます。</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>ポリシークラスに、チェックされる能力の名前と一致する名前のメソッドが含まれていない場合、ポリシークラスの<code>before</code>メソッドは呼び出されません。</p>
+</div>
+<p><a name="authorizing-actions-using-policies"></a></p>
+<h2 id="_22">ポリシーを使用したアクションの認可<a class="headerlink" href="#_22" title="Permanent link">&para;</a></h2>
+<p><a name="via-the-user-model"></a></p>
+<h3 id="_23">ユーザーモデル経由<a class="headerlink" href="#_23" title="Permanent link">&para;</a></h3>
+<p>Laravelアプリケーションに含まれる<code>App\Models\User</code>モデルには、アクションを認可するための2つの便利なメソッドが含まれています：<code>can</code>と<code>cannot</code>です。<code>can</code>と<code>cannot</code>メソッドは、認可したいアクションの名前と関連するモデルを受け取ります。例えば、ユーザーが特定の<code>App\Models\Post</code>モデルを更新する権限があるかどうかを判定します。通常、これはコントローラメソッド内で行われます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="o">&lt;?</span><span class="nx">php</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="k">namespace</span> <span class="nx">App\Http\Controllers</span><span class="p">;</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="k">use</span> <span class="nx">App\Http\Controllers\Controller</span><span class="p">;</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="k">use</span> <span class="nx">App\Models\Post</span><span class="p">;</span>
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="k">use</span> <span class="nx">Illuminate\Http\RedirectResponse</span><span class="p">;</span>
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="k">use</span> <span class="nx">Illuminate\Http\Request</span><span class="p">;</span>
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>
+<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="k">class</span> <span class="nc">PostController</span> <span class="k">extends</span> <span class="nx">Controller</span>
+<a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a><span class="p">{</span>
+<a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a>    <span class="sd">/**</span>
+<a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a><span class="sd">     * 指定された投稿を更新します。</span>
+<a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a><span class="sd">     */</span>
+<a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">update</span><span class="p">(</span><span class="nx">Request</span> <span class="nv">$request</span><span class="p">,</span> <span class="nx">Post</span> <span class="nv">$post</span><span class="p">)</span><span class="o">:</span> <span class="nx">RedirectResponse</span>
+<a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a>    <span class="p">{</span>
+<a id="__codelineno-16-17" name="__codelineno-16-17" href="#__codelineno-16-17"></a>        <span class="k">if</span> <span class="p">(</span><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">user</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">cannot</span><span class="p">(</span><span class="s1">&#39;update&#39;</span><span class="p">,</span> <span class="nv">$post</span><span class="p">))</span> <span class="p">{</span>
+<a id="__codelineno-16-18" name="__codelineno-16-18" href="#__codelineno-16-18"></a>            <span class="nx">abort</span><span class="p">(</span><span class="mi">403</span><span class="p">);</span>
+<a id="__codelineno-16-19" name="__codelineno-16-19" href="#__codelineno-16-19"></a>        <span class="p">}</span>
+<a id="__codelineno-16-20" name="__codelineno-16-20" href="#__codelineno-16-20"></a>
+<a id="__codelineno-16-21" name="__codelineno-16-21" href="#__codelineno-16-21"></a>        <span class="c1">// 投稿を更新...</span>
+<a id="__codelineno-16-22" name="__codelineno-16-22" href="#__codelineno-16-22"></a>
+<a id="__codelineno-16-23" name="__codelineno-16-23" href="#__codelineno-16-23"></a>        <span class="k">return</span> <span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/posts&#39;</span><span class="p">);</span>
+<a id="__codelineno-16-24" name="__codelineno-16-24" href="#__codelineno-16-24"></a>    <span class="p">}</span>
+<a id="__codelineno-16-25" name="__codelineno-16-25" href="#__codelineno-16-25"></a><span class="p">}</span>
+</code></pre></div>
+<p>指定されたモデルに対して<a href="#registering-policies">ポリシーが登録されている</a>場合、<code>can</code>メソッドは自動的に適切なポリシーを呼び出し、ブール値の結果を返します。モデルに対してポリシーが登録されていない場合、<code>can</code>メソッドは指定されたアクション名に一致するクロージャベースのゲートを呼び出そうとします。</p>
+<p><a name="user-model-actions-that-dont-require-models"></a></p>
+<h4 id="_24">モデルを必要としないアクション<a class="headerlink" href="#_24" title="Permanent link">&para;</a></h4>
+<p><code>create</code>のようなポリシーメソッドは、モデルインスタンスを必要としない場合があります。このような状況では、<code>can</code>メソッドにクラス名を渡すことができます。クラス名は、アクションを認可する際に使用するポリシーを決定するために使用されます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="o">&lt;?</span><span class="nx">php</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="k">namespace</span> <span class="nx">App\Http\Controllers</span><span class="p">;</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="k">use</span> <span class="nx">App\Http\Controllers\Controller</span><span class="p">;</span>
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="k">use</span> <span class="nx">App\Models\Post</span><span class="p">;</span>
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="k">use</span> <span class="nx">Illuminate\Http\RedirectResponse</span><span class="p">;</span>
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="k">use</span> <span class="nx">Illuminate\Http\Request</span><span class="p">;</span>
+<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>
+<a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="k">class</span> <span class="nc">PostController</span> <span class="k">extends</span> <span class="nx">Controller</span>
+<a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a><span class="p">{</span>
+<a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a>    <span class="sd">/**</span>
+<a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a><span class="sd">     * 投稿を作成します。</span>
+<a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a><span class="sd">     */</span>
+<a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">store</span><span class="p">(</span><span class="nx">Request</span> <span class="nv">$request</span><span class="p">)</span><span class="o">:</span> <span class="nx">RedirectResponse</span>
+<a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a>    <span class="p">{</span>
+<a id="__codelineno-17-17" name="__codelineno-17-17" href="#__codelineno-17-17"></a>        <span class="k">if</span> <span class="p">(</span><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">user</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">cannot</span><span class="p">(</span><span class="s1">&#39;create&#39;</span><span class="p">,</span> <span class="nx">Post</span><span class="o">::</span><span class="na">class</span><span class="p">))</span> <span class="p">{</span>
+<a id="__codelineno-17-18" name="__codelineno-17-18" href="#__codelineno-17-18"></a>            <span class="nx">abort</span><span class="p">(</span><span class="mi">403</span><span class="p">);</span>
+<a id="__codelineno-17-19" name="__codelineno-17-19" href="#__codelineno-17-19"></a>        <span class="p">}</span>
+<a id="__codelineno-17-20" name="__codelineno-17-20" href="#__codelineno-17-20"></a>
+<a id="__codelineno-17-21" name="__codelineno-17-21" href="#__codelineno-17-21"></a>        <span class="c1">// 投稿を作成...</span>
+<a id="__codelineno-17-22" name="__codelineno-17-22" href="#__codelineno-17-22"></a>
+<a id="__codelineno-17-23" name="__codelineno-17-23" href="#__codelineno-17-23"></a>        <span class="k">return</span> <span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/posts&#39;</span><span class="p">);</span>
+<a id="__codelineno-17-24" name="__codelineno-17-24" href="#__codelineno-17-24"></a>    <span class="p">}</span>
+<a id="__codelineno-17-25" name="__codelineno-17-25" href="#__codelineno-17-25"></a><span class="p">}</span>
+</code></pre></div>
+<p><a name="via-the-gate-facade"></a></p>
+<h3 id="gate"><code>Gate</code>ファサード経由<a class="headerlink" href="#gate" title="Permanent link">&para;</a></h3>
+<p><code>App\Models\User</code>モデルに提供される便利なメソッドに加えて、<code>Gate</code>ファサードの<code>authorize</code>メソッドを介してアクションを認可することもできます。</p>
+<p><code>can</code>メソッドと同様に、このメソッドは認可したいアクションの名前と関連するモデルを受け取ります。アクションが認可されていない場合、<code>authorize</code>メソッドは<code>Illuminate\Auth\Access\AuthorizationException</code>例外をスローします。この例外は、Laravelの例外ハンドラによって自動的に403ステータスコードのHTTPレスポンスに変換されます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="o">&lt;?</span><span class="nx">php</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="k">namespace</span> <span class="nx">App\Http\Controllers</span><span class="p">;</span>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="k">use</span> <span class="nx">App\Http\Controllers\Controller</span><span class="p">;</span>
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="k">use</span> <span class="nx">App\Models\Post</span><span class="p">;</span>
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="k">use</span> <span class="nx">Illuminate\Http\RedirectResponse</span><span class="p">;</span>
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="k">use</span> <span class="nx">Illuminate\Http\Request</span><span class="p">;</span>
+<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a><span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Gate</span><span class="p">;</span>
+<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>
+<a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a><span class="k">class</span> <span class="nc">PostController</span> <span class="k">extends</span> <span class="nx">Controller</span>
+<a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a><span class="p">{</span>
+<a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a>    <span class="sd">/**</span>
+<a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a><span class="sd">     * 指定されたブログ投稿を更新します。</span>
+<a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a><span class="sd">     *</span>
+<a id="__codelineno-18-16" name="__codelineno-18-16" href="#__codelineno-18-16"></a><span class="sd">     * @throws \Illuminate\Auth\Access\AuthorizationException</span>
+<a id="__codelineno-18-17" name="__codelineno-18-17" href="#__codelineno-18-17"></a><span class="sd">     */</span>
+<a id="__codelineno-18-18" name="__codelineno-18-18" href="#__codelineno-18-18"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">update</span><span class="p">(</span><span class="nx">Request</span> <span class="nv">$request</span><span class="p">,</span> <span class="nx">Post</span> <span class="nv">$post</span><span class="p">)</span><span class="o">:</span> <span class="nx">RedirectResponse</span>
+<a id="__codelineno-18-19" name="__codelineno-18-19" href="#__codelineno-18-19"></a>    <span class="p">{</span>
+<a id="__codelineno-18-20" name="__codelineno-18-20" href="#__codelineno-18-20"></a>        <span class="nx">Gate</span><span class="o">::</span><span class="na">authorize</span><span class="p">(</span><span class="s1">&#39;update&#39;</span><span class="p">,</span> <span class="nv">$post</span><span class="p">);</span>
+<a id="__codelineno-18-21" name="__codelineno-18-21" href="#__codelineno-18-21"></a>
+<a id="__codelineno-18-22" name="__codelineno-18-22" href="#__codelineno-18-22"></a>        <span class="c1">// 現在のユーザーはブログ投稿を更新できます...</span>
+<a id="__codelineno-18-23" name="__codelineno-18-23" href="#__codelineno-18-23"></a>
+<a id="__codelineno-18-24" name="__codelineno-18-24" href="#__codelineno-18-24"></a>        <span class="k">return</span> <span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/posts&#39;</span><span class="p">);</span>
+<a id="__codelineno-18-25" name="__codelineno-18-25" href="#__codelineno-18-25"></a>    <span class="p">}</span>
+<a id="__codelineno-18-26" name="__codelineno-18-26" href="#__codelineno-18-26"></a><span class="p">}</span>
+</code></pre></div>
+<p><a name="controller-actions-that-dont-require-models"></a></p>
+<h4 id="_25">モデルを必要としないアクション<a class="headerlink" href="#_25" title="Permanent link">&para;</a></h4>
+<p>前述のように、<code>create</code>のようなポリシーメソッドはモデルインスタンスを必要としない場合があります。このような状況では、クラス名を<code>authorize</code>メソッドに渡す必要があります。クラス名は、アクションを認可する際に使用するポリシーを決定するために使用されます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">use</span> <span class="nx">App\Models\Post</span><span class="p">;</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="k">use</span> <span class="nx">Illuminate\Http\RedirectResponse</span><span class="p">;</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="k">use</span> <span class="nx">Illuminate\Http\Request</span><span class="p">;</span>
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Gate</span><span class="p">;</span>
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="sd">/**</span>
+<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="sd"> * 新しいブログ投稿を作成します。</span>
+<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="sd"> *</span>
+<a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a><span class="sd"> * @throws \Illuminate\Auth\Access\AuthorizationException</span>
+<a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a><span class="sd"> */</span>
+<a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a><span class="k">public</span> <span class="k">function</span> <span class="nf">create</span><span class="p">(</span><span class="nx">Request</span> <span class="nv">$request</span><span class="p">)</span><span class="o">:</span> <span class="nx">RedirectResponse</span>
+<a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a><span class="p">{</span>
+<a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a>    <span class="nx">Gate</span><span class="o">::</span><span class="na">authorize</span><span class="p">(</span><span class="s1">&#39;create&#39;</span><span class="p">,</span> <span class="nx">Post</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+<a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a>
+<a id="__codelineno-19-15" name="__codelineno-19-15" href="#__codelineno-19-15"></a>    <span class="c1">// 現在のユーザーはブログ投稿を作成できます...</span>
+<a id="__codelineno-19-16" name="__codelineno-19-16" href="#__codelineno-19-16"></a>
+<a id="__codelineno-19-17" name="__codelineno-19-17" href="#__codelineno-19-17"></a>    <span class="k">return</span> <span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/posts&#39;</span><span class="p">);</span>
+<a id="__codelineno-19-18" name="__codelineno-19-18" href="#__codelineno-19-18"></a><span class="p">}</span>
+</code></pre></div>
+<p><a name="via-middleware"></a></p>
+<h3 id="_26">ミドルウェア経由<a class="headerlink" href="#_26" title="Permanent link">&para;</a></h3>
+<p>Laravelには、受信リクエストがルートやコントローラに到達する前にアクションを認可できるミドルウェアが含まれています。デフォルトでは、<code>Illuminate\Auth\Middleware\Authorize</code>ミドルウェアは、<code>can</code><a href="middleware.html#middleware-aliases">ミドルウェアエイリアス</a>を使用してルートにアタッチできます。これは、Laravelによって自動的に登録されます。ユーザーが投稿を更新できるかどうかを認可するために<code>can</code>ミドルウェアを使用する例を見てみましょう。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">use</span> <span class="nx">App\Models\Post</span><span class="p">;</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="nx">Route</span><span class="o">::</span><span class="na">put</span><span class="p">(</span><span class="s1">&#39;/post/{post}&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Post</span> <span class="nv">$post</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>    <span class="c1">// 現在のユーザーは投稿を更新できます...</span>
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="p">})</span><span class="o">-&gt;</span><span class="na">middleware</span><span class="p">(</span><span class="s1">&#39;can:update,post&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p>この例では、<code>can</code>ミドルウェアに2つの引数を渡しています。最初の引数は認可したいアクションの名前で、2番目の引数はルートパラメータで、ポリシーメソッドに渡したいものです。この場合、<a href="routing.html#implicit-binding">暗黙のモデルバインディング</a>を使用しているため、<code>App\Models\Post</code>モデルがポリシーメソッドに渡されます。ユーザーが指定されたアクションを実行する権限がない場合、ミドルウェアによって403ステータスコードのHTTPレスポンスが返されます。</p>
+<p>便宜上、<code>can</code>メソッドを使用してルートに<code>can</code>ミドルウェアをアタッチすることもできます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="k">use</span> <span class="nx">App\Models\Post</span><span class="p">;</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="nx">Route</span><span class="o">::</span><span class="na">put</span><span class="p">(</span><span class="s1">&#39;/post/{post}&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Post</span> <span class="nv">$post</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>    <span class="c1">// 現在のユーザーは投稿を更新できます...</span>
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="p">})</span><span class="o">-&gt;</span><span class="na">can</span><span class="p">(</span><span class="s1">&#39;update&#39;</span><span class="p">,</span> <span class="s1">&#39;post&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="middleware-actions-that-dont-require-models"></a></p>
+<h4 id="_27">モデルを必要としないアクション<a class="headerlink" href="#_27" title="Permanent link">&para;</a></h4>
+<p>繰り返しになりますが、<code>create</code>のようなポリシーメソッドはモデルインスタンスを必要としない場合があります。このような状況では、ミドルウェアにクラス名を渡すことができます。クラス名は、アクションを認可する際に使用するポリシーを決定するために使用されます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="nx">Route</span><span class="o">::</span><span class="na">post</span><span class="p">(</span><span class="s1">&#39;/post&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>    <span class="c1">// 現在のユーザーは投稿を作成できます...</span>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="p">})</span><span class="o">-&gt;</span><span class="na">middleware</span><span class="p">(</span><span class="s1">&#39;can:create,App\Models\Post&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p>文字列のミドルウェア定義内で完全なクラス名を指定することは、扱いにくい場合があります。そのため、<code>can</code>メソッドを使用してルートに<code>can</code>ミドルウェアをアタッチすることを選択できます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="k">use</span> <span class="nx">App\Models\Post</span><span class="p">;</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="nx">Route</span><span class="o">::</span><span class="na">post</span><span class="p">(</span><span class="s1">&#39;/post&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>    <span class="c1">// 現在のユーザーは投稿を作成できます...</span>
+<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="p">})</span><span class="o">-&gt;</span><span class="na">can</span><span class="p">(</span><span class="s1">&#39;create&#39;</span><span class="p">,</span> <span class="nx">Post</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="via-blade-templates"></a></p>
+<h3 id="blade">Bladeテンプレート経由<a class="headerlink" href="#blade" title="Permanent link">&para;</a></h3>
+<p>Bladeテンプレートを書いているとき、特定のアクションを実行する権限がある場合にのみページの一部を表示したい場合があります。例えば、ユーザーが実際に投稿を更新できる場合にのみ、ブログ投稿の更新フォームを表示したい場合があります。このような状況では、<code>@can</code>と<code>@cannot</code>ディレクティブを使用できます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="x">@can(&#39;update&#39;, $post)</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="x">    &lt;!-- 現在のユーザーは投稿を更新できます... --&gt;</span>
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="x">@elsecan(&#39;create&#39;, App\Models\Post::class)</span>
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="x">    &lt;!-- 現在のユーザーは新しい投稿を作成できます... --&gt;</span>
+<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="x">@else</span>
+<a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a><span class="x">    &lt;!-- ... --&gt;</span>
+<a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a><span class="x">@endcan</span>
+<a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a>
+<a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a><span class="x">@cannot(&#39;update&#39;, $post)</span>
+<a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a><span class="x">    &lt;!-- 現在のユーザーは投稿を更新できません... --&gt;</span>
+<a id="__codelineno-24-11" name="__codelineno-24-11" href="#__codelineno-24-11"></a><span class="x">@elsecannot(&#39;create&#39;, App\Models\Post::class)</span>
+<a id="__codelineno-24-12" name="__codelineno-24-12" href="#__codelineno-24-12"></a><span class="x">    &lt;!-- 現在のユーザーは新しい投稿を作成できません... --&gt;</span>
+<a id="__codelineno-24-13" name="__codelineno-24-13" href="#__codelineno-24-13"></a><span class="x">@endcannot</span>
+</code></pre></div>
+<p>これらのディレクティブは、<code>@if</code>と<code>@unless</code>ステートメントを書くための便利なショートカットです。上記の<code>@can</code>と<code>@cannot</code>ステートメントは、以下のステートメントと同等です。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="x">@if (Auth::user()-&gt;can(&#39;update&#39;, $post))</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="x">    &lt;!-- 現在のユーザーは投稿を更新できます... --&gt;</span>
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="x">@endif</span>
+<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>
+<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a><span class="x">@unless (Auth::user()-&gt;can(&#39;update&#39;, $post))</span>
+<a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a><span class="x">    &lt;!-- 現在のユーザーは投稿を更新できません... --&gt;</span>
+<a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a><span class="x">@endunless</span>
+</code></pre></div>
+<p>また、ユーザーが指定されたアクションの配列から任意のアクションを実行する権限があるかどうかを判定することもできます。これを実現するには、<code>@canany</code>ディレクティブを使用します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="x">@canany([&#39;update&#39;, &#39;view&#39;, &#39;delete&#39;], $post)</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="x">    &lt;!-- 現在のユーザーは投稿を更新、表示、または削除できます... --&gt;</span>
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="x">@elsecanany([&#39;create&#39;], \App\Models\Post::class)</span>
+<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="x">    &lt;!-- 現在のユーザーは新しい投稿を作成できます... --&gt;</span>
+<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a><span class="x">@endcanany</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="x">@canany([&#39;update&#39;, &#39;view&#39;, &#39;delete&#39;], $post)</span>
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="x">    &lt;!-- 現在のユーザーは投稿を更新、閲覧、または削除できます... --&gt;</span>
+<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="x">@elsecanany([&#39;create&#39;], \App\Models\Post::class)</span>
+<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="x">    &lt;!-- 現在のユーザーは投稿を作成できます... --&gt;</span>
+<a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a><span class="x">@endcanany</span>
+</code></pre></div>
+<p><a name="blade-actions-that-dont-require-models"></a></p>
+<h4 id="_28">モデルを必要としないアクション<a class="headerlink" href="#_28" title="Permanent link">&para;</a></h4>
+<p>他のほとんどの認可メソッドと同様に、アクションがモデルインスタンスを必要としない場合は、<code>@can</code> および <code>@cannot</code> ディレクティブにクラス名を渡すことができます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="x">@can(&#39;create&#39;, App\Models\Post::class)</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="x">    &lt;!-- 現在のユーザーは投稿を作成できます... --&gt;</span>
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="x">@endcan</span>
+<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a>
+<a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="x">@cannot(&#39;create&#39;, App\Models\Post::class)</span>
+<a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a><span class="x">    &lt;!-- 現在のユーザーは投稿を作成できません... --&gt;</span>
+<a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a><span class="x">@endcannot</span>
+</code></pre></div>
+<p><a name="supplying-additional-context"></a></p>
+<h3 id="_29">追加のコンテキストを提供する<a class="headerlink" href="#_29" title="Permanent link">&para;</a></h3>
+<p>ポリシーを使用してアクションを認可する場合、さまざまな認可関数やヘルパーに2番目の引数として配列を渡すことができます。配列の最初の要素は呼び出すべきポリシーを決定するために使用され、残りの配列要素はポリシーメソッドにパラメーターとして渡され、認可決定を行う際の追加のコンテキストとして使用できます。例えば、以下の <code>PostPolicy</code> メソッド定義には追加の <code>$category</code> パラメータが含まれています。</p>
+<div class="highlight"><pre><span></span><code><span class="sd">/**</span>
+<span class="sd"> * 指定された投稿をユーザーが更新できるかどうかを判定します。</span>
+<span class="sd"> */</span>
+<span class="k">public</span> <span class="k">function</span> <span class="nf">update</span><span class="p">(</span><span class="nx">User</span> <span class="nv">$user</span><span class="p">,</span> <span class="nx">Post</span> <span class="nv">$post</span><span class="p">,</span> <span class="nx">int</span> <span class="nv">$category</span><span class="p">)</span><span class="o">:</span> <span class="nx">bool</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">id</span> <span class="o">===</span> <span class="nv">$post</span><span class="o">-&gt;</span><span class="na">user_id</span> <span class="o">&amp;&amp;</span>
+           <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">canUpdateCategory</span><span class="p">(</span><span class="nv">$category</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>認証されたユーザーが特定の投稿を更新できるかどうかを判断しようとする場合、このポリシーメソッドを次のように呼び出すことができます。</p>
+<div class="highlight"><pre><span></span><code><span class="sd">/**</span>
+<span class="sd"> * 指定されたブログ投稿を更新します。</span>
+<span class="sd"> *</span>
+<span class="sd"> * @throws \Illuminate\Auth\Access\AuthorizationException</span>
+<span class="sd"> */</span>
+<span class="k">public</span> <span class="k">function</span> <span class="nf">update</span><span class="p">(</span><span class="nx">Request</span> <span class="nv">$request</span><span class="p">,</span> <span class="nx">Post</span> <span class="nv">$post</span><span class="p">)</span><span class="o">:</span> <span class="nx">RedirectResponse</span>
+<span class="p">{</span>
+    <span class="nx">Gate</span><span class="o">::</span><span class="na">authorize</span><span class="p">(</span><span class="s1">&#39;update&#39;</span><span class="p">,</span> <span class="p">[</span><span class="nv">$post</span><span class="p">,</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">category</span><span class="p">]);</span>
+
+    <span class="c1">// 現在のユーザーはブログ投稿を更新できます...</span>
+
+    <span class="k">return</span> <span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/posts&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><a name="authorization-and-inertia"></a></p>
+<h2 id="inertia">認可とInertia<a class="headerlink" href="#inertia" title="Permanent link">&para;</a></h2>
+<p>認可は常にサーバー側で処理される必要がありますが、アプリケーションのUIを適切にレンダリングするためにフロントエンドアプリケーションに認可データを提供することが便利な場合がよくあります。Laravelは、Inertiaを使用したフロントエンドに認可情報を公開するための必須の規約を定義していません。</p>
+<p>ただし、LaravelのInertiaベースの<a href="starter-kits.html">スターターキット</a>の1つを使用している場合、アプリケーションにはすでに <code>HandleInertiaRequests</code> ミドルウェアが含まれています。このミドルウェアの <code>share</code> メソッド内で、アプリケーション内のすべてのInertiaページに提供される共有データを返すことができます。この共有データは、ユーザーの認可情報を定義するための便利な場所として機能します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="o">&lt;?</span><span class="nx">php</span>
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="k">namespace</span> <span class="nx">App\Http\Middleware</span><span class="p">;</span>
+<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a>
+<a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a><span class="k">use</span> <span class="nx">App\Models\Post</span><span class="p">;</span>
+<a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a><span class="k">use</span> <span class="nx">Illuminate\Http\Request</span><span class="p">;</span>
+<a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a><span class="k">use</span> <span class="nx">Inertia\Middleware</span><span class="p">;</span>
+<a id="__codelineno-29-8" name="__codelineno-29-8" href="#__codelineno-29-8"></a>
+<a id="__codelineno-29-9" name="__codelineno-29-9" href="#__codelineno-29-9"></a><span class="k">class</span> <span class="nc">HandleInertiaRequests</span> <span class="k">extends</span> <span class="nx">Middleware</span>
+<a id="__codelineno-29-10" name="__codelineno-29-10" href="#__codelineno-29-10"></a><span class="p">{</span>
+<a id="__codelineno-29-11" name="__codelineno-29-11" href="#__codelineno-29-11"></a>    <span class="c1">// ...</span>
+<a id="__codelineno-29-12" name="__codelineno-29-12" href="#__codelineno-29-12"></a>
+<a id="__codelineno-29-13" name="__codelineno-29-13" href="#__codelineno-29-13"></a>    <span class="sd">/**</span>
+<a id="__codelineno-29-14" name="__codelineno-29-14" href="#__codelineno-29-14"></a><span class="sd">     * デフォルトで共有されるプロパティを定義します。</span>
+<a id="__codelineno-29-15" name="__codelineno-29-15" href="#__codelineno-29-15"></a><span class="sd">     *</span>
+<a id="__codelineno-29-16" name="__codelineno-29-16" href="#__codelineno-29-16"></a><span class="sd">     * @return array&lt;string, mixed&gt;</span>
+<a id="__codelineno-29-17" name="__codelineno-29-17" href="#__codelineno-29-17"></a><span class="sd">     */</span>
+<a id="__codelineno-29-18" name="__codelineno-29-18" href="#__codelineno-29-18"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">share</span><span class="p">(</span><span class="nx">Request</span> <span class="nv">$request</span><span class="p">)</span>
+<a id="__codelineno-29-19" name="__codelineno-29-19" href="#__codelineno-29-19"></a>    <span class="p">{</span>
+<a id="__codelineno-29-20" name="__codelineno-29-20" href="#__codelineno-29-20"></a>        <span class="k">return</span> <span class="p">[</span>
+<a id="__codelineno-29-21" name="__codelineno-29-21" href="#__codelineno-29-21"></a>            <span class="o">...</span><span class="k">parent</span><span class="o">::</span><span class="na">share</span><span class="p">(</span><span class="nv">$request</span><span class="p">),</span>
+<a id="__codelineno-29-22" name="__codelineno-29-22" href="#__codelineno-29-22"></a>            <span class="s1">&#39;auth&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+<a id="__codelineno-29-23" name="__codelineno-29-23" href="#__codelineno-29-23"></a>                <span class="s1">&#39;user&#39;</span> <span class="o">=&gt;</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">user</span><span class="p">(),</span>
+<a id="__codelineno-29-24" name="__codelineno-29-24" href="#__codelineno-29-24"></a>                <span class="s1">&#39;permissions&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+<a id="__codelineno-29-25" name="__codelineno-29-25" href="#__codelineno-29-25"></a>                    <span class="s1">&#39;post&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+<a id="__codelineno-29-26" name="__codelineno-29-26" href="#__codelineno-29-26"></a>                        <span class="s1">&#39;create&#39;</span> <span class="o">=&gt;</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">user</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">can</span><span class="p">(</span><span class="s1">&#39;create&#39;</span><span class="p">,</span> <span class="nx">Post</span><span class="o">::</span><span class="na">class</span><span class="p">),</span>
+<a id="__codelineno-29-27" name="__codelineno-29-27" href="#__codelineno-29-27"></a>                    <span class="p">],</span>
+<a id="__codelineno-29-28" name="__codelineno-29-28" href="#__codelineno-29-28"></a>                <span class="p">],</span>
+<a id="__codelineno-29-29" name="__codelineno-29-29" href="#__codelineno-29-29"></a>            <span class="p">],</span>
+<a id="__codelineno-29-30" name="__codelineno-29-30" href="#__codelineno-29-30"></a>        <span class="p">];</span>
+<a id="__codelineno-29-31" name="__codelineno-29-31" href="#__codelineno-29-31"></a>    <span class="p">}</span>
+<a id="__codelineno-29-32" name="__codelineno-29-32" href="#__codelineno-29-32"></a><span class="p">}</span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+<nav class="md-footer-nav">
+    
+    
+</nav>
+
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": ".", "features": ["back-to-top", "navigation.expand", "navigation.tabs", "navigation.footer", "navigation.sections", "navigation.expand", "content.code.copy", "hide_repository_button", "content.code.annotate", "content.tabs.link", "toc.none", "content.action.edit"], "search": "assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="assets/javascripts/bundle.56dfad97.min.js"></script>
+      
+    
+  </body>
+</html>

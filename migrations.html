@@ -1,0 +1,4514 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://github.com/koriym/laravel11-ja/migrations.html">
+      
+      
+        <link rel="prev" href="pagination.html">
+      
+      
+        <link rel="next" href="seeding.html">
+      
+      
+      <link rel="icon" href="assets/images/favicon_io/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.35">
+    
+    
+      
+        <title>マイグレーション - L11JA</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.35f28582.min.css">
+      
+      
+
+
+    
+    
+
+    
+
+    
+      <link rel="stylesheet" href="assets/css/php.css">
+    
+      <link rel="stylesheet" href="assets/css/mkdocs_material_extra.css">
+    
+      <link rel="stylesheet" href="assets/css/extra.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-G60CEHXLQ1"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-G60CEHXLQ1",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-G60CEHXLQ1",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      <!-- Determine classes -->
+
+
+
+<!-- Header -->
+<header class="md-header" data-md-component="header">
+  <nav
+          class="md-header__inner md-grid"
+          aria-label="Header"
+  >
+
+    <!-- Link to home -->
+    <a
+            href="."
+            title="L11JA"
+            class="md-header__button md-logo"
+            aria-label="L11JA"
+            data-md-component="logo"
+    >
+      
+  <img src="assets/images/logo.png" alt="logo">
+
+    </a>
+
+    <!-- Button to open drawer -->
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+
+    <!-- Header title -->
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            <span style="font-family: 'Noto Sans'; font-size: 20px" >
+            L11JA
+            </span>
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            <span style="font-family: 'Noto Sans Batak'; font-size: 20px" >
+            
+              マイグレーション
+            
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Color palette toggle -->
+    
+
+    <!-- User preference: color palette -->
+    
+    <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+
+    <!-- Site language selector -->
+    
+
+    <!-- Button to open search modal -->
+    
+    <label class="md-header__button md-icon" for="__search">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+    </label>
+
+    <!-- Search interface -->
+    <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    <!-- Repository information -->
+    
+    <div class="md-header__source">
+      
+
+<!--
+  Check whether the repository is hosted on one of the supported code hosting
+  platforms (GitHub, GitLab or Bitbucket) to show icon.
+-->
+
+
+  
+
+
+<!-- Repository containing source -->
+<a href="https://github.com/koriym/l11ja" title="source.link.title"
+    class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z" fill="#000"/></svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+    
+  </nav>
+
+  <!-- Navigation tabs (sticky) -->
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="releases.html" class="md-tabs__link">
+          
+  
+  プロローグ
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="installation.html" class="md-tabs__link">
+          
+  
+  はじめに
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="lifecycle.html" class="md-tabs__link">
+          
+  
+  アーキテクチャ
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="routing.html" class="md-tabs__link">
+          
+  
+  基本
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="artisan.html" class="md-tabs__link">
+          
+  
+  掘り下げる
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="authentication.html" class="md-tabs__link">
+          
+  
+  セキュリティ
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="database.html" class="md-tabs__link">
+          
+  
+  データベース
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="eloquent.html" class="md-tabs__link">
+          
+  
+  Eloquent ORM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="testing.html" class="md-tabs__link">
+          
+  
+  テスト
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="starter-kits.html" class="md-tabs__link">
+          
+  
+  パッケージ
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="L11JA" class="md-nav__button md-logo" aria-label="L11JA" data-md-component="logo">
+      
+  <img src="assets/images/logo.png" alt="logo">
+
+    </a>
+    L11JA
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+<!--
+  Check whether the repository is hosted on one of the supported code hosting
+  platforms (GitHub, GitLab or Bitbucket) to show icon.
+-->
+
+
+  
+
+
+<!-- Repository containing source -->
+<a href="https://github.com/koriym/l11ja" title="source.link.title"
+    class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z" fill="#000"/></svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    プロローグ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            プロローグ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="releases.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リリースノート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="upgrade.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    アップグレードガイド
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="contributions.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    貢献ガイド
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            はじめに
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="installation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    インストール
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="configuration.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    設定
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structure.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ディレクトリ構造
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="frontend.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    フロントエンド
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="starter-kits.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    スターターキット
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="deployment.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    デプロイ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    アーキテクチャ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            アーキテクチャ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="lifecycle.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リクエストライフサイクル
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="container.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    サービスコンテナ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="providers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    サービスプロバイダ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="facades.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ファサード
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    基本
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            基本
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="routing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ルーティング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="middleware.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ミドルウェア
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="csrf.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CSRF保護
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="controllers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コントローラ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="requests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リクエスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="responses.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    レスポンス
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="views.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ビュー
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="blade.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bladeテンプレート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="vite.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    アセットバンドル
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="urls.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    URL生成
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="session.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    セッション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="validation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    バリデーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="errors.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    エラー処理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="logging.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ログ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    掘り下げる
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            掘り下げる
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="artisan.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Artisanコンソール
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="broadcasting.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ブロードキャスティング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cache.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    キャッシュ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="collections.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コレクション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="concurrency.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    並行処理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="context.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コンテキスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="contracts.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コントラクト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="events.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    イベント
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="filesystem.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ファイルストレージ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="helpers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ヘルパー
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="http-client.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTTPクライアント
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="localization.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ローカライゼーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mail.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    メール
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="notifications.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    通知
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="packages.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    パッケージ開発
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="processes.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    プロセス
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="queues.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    キュー
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="rate-limiting.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    レート制限
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="strings.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    文字列
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="scheduling.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    タスクスケジューリング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    セキュリティ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            セキュリティ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="authentication.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    認証
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="authorization.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    認可
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="verification.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    メール確認
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="encryption.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    暗号化
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hashing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ハッシュ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="passwords.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    パスワードリセット
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    データベース
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            データベース
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="database.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="queries.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    クエリビルダ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pagination.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ページネーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    マイグレーション
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="migrations.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    マイグレーション
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      はじめに
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      マイグレーションの生成
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="マイグレーションの生成">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      マイグレーションの圧縮
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      マイグレーションの構造
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="マイグレーションの構造">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      マイグレーション接続の設定
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      マイグレーションの実行
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="マイグレーションの実行">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      マイグレーション実行の分離
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      本番環境でのマイグレーションの強制実行
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      マイグレーションのロールバック
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="マイグレーションのロールバック">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      単一のコマンドでのロールバックとマイグレーション
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="seeding.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    シーディング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="redis.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Redis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Eloquent ORM
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Eloquent ORM
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-relationships.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リレーションシップ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-collections.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コレクション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-mutators.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ミューテータ / キャスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-resources.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    APIリソース
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-serialization.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    シリアライゼーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-factories.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ファクトリ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    テスト
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            テスト
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="testing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="http-tests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTTPテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="console-tests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コンソールテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="dusk.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ブラウザテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="database-testing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    データベース
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mocking.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    モック
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    パッケージ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            パッケージ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="starter-kits.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    スターターキット
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="billing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cashier (Stripe)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cashier-paddle.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cashier (Paddle)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="dusk.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ブラウザテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="envoy.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Envoy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fortify.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fortify
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="folio.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Folio
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="homestead.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Homestead
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="horizon.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Horizon
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mix.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mix
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="octane.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Octane
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="passport.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Passport
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pennant.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pennant
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pint.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pint
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="precognition.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Precognition
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="prompts.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prompts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pulse.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pulse
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reverb.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reverb
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sail.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sail
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sanctum.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sanctum
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="scout.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Scout
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="socialite.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Socialite
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="telescope.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Telescope
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="valet.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Valet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      はじめに
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      マイグレーションの生成
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="マイグレーションの生成">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      マイグレーションの圧縮
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      マイグレーションの構造
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="マイグレーションの構造">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      マイグレーション接続の設定
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      マイグレーションの実行
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="マイグレーションの実行">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      マイグレーション実行の分離
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      本番環境でのマイグレーションの強制実行
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      マイグレーションのロールバック
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="マイグレーションのロールバック">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      単一のコマンドでのロールバックとマイグレーション
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/koriym/l11ja/edit/master/docs/migrations.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="_1">データベース: マイグレーション<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<ul>
+<li><a href="#introduction">はじめに</a></li>
+<li><a href="#generating-migrations">マイグレーションの生成</a><ul>
+<li><a href="#squashing-migrations">マイグレーションの圧縮</a></li>
+</ul>
+</li>
+<li><a href="#migration-structure">マイグレーションの構造</a></li>
+<li><a href="#running-migrations">マイグレーションの実行</a><ul>
+<li><a href="#rolling-back-migrations">マイグレーションのロールバック</a></li>
+</ul>
+</li>
+<li><a href="#tables">テーブル</a><ul>
+<li><a href="#creating-tables">テーブルの作成</a></li>
+<li><a href="#updating-tables">テーブルの更新</a></li>
+<li><a href="#renaming-and-dropping-tables">テーブルのリネームと削除</a></li>
+</ul>
+</li>
+<li><a href="#columns">カラム</a><ul>
+<li><a href="#creating-columns">カラムの作成</a></li>
+<li><a href="#available-column-types">利用可能なカラムタイプ</a></li>
+<li><a href="#column-modifiers">カラム修飾子</a></li>
+<li><a href="#modifying-columns">カラムの変更</a></li>
+<li><a href="#renaming-columns">カラムのリネーム</a></li>
+<li><a href="#dropping-columns">カラムの削除</a></li>
+</ul>
+</li>
+<li><a href="#indexes">インデックス</a><ul>
+<li><a href="#creating-indexes">インデックスの作成</a></li>
+<li><a href="#renaming-indexes">インデックスのリネーム</a></li>
+<li><a href="#dropping-indexes">インデックスの削除</a></li>
+<li><a href="#foreign-key-constraints">外部キー制約</a></li>
+</ul>
+</li>
+<li><a href="#events">イベント</a></li>
+</ul>
+<p><a name="introduction"></a></p>
+<h2 id="_2">はじめに<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>マイグレーションはデータベースのバージョン管理のようなもので、チームがアプリケーションのデータベーススキーマ定義を共有し、変更を加えることを可能にします。ソース管理から変更を取り込んだ後、チームメイトに手動でローカルデータベーススキーマにカラムを追加するように伝える必要があったことがあるなら、データベースマイグレーションが解決する問題に直面したことになります。</p>
+<p>Laravelの<code>Schema</code> <a href="facades.html">ファサード</a>は、Laravelがサポートするすべてのデータベースシステムに対して、テーブルの作成と操作をデータベースに依存しない形で提供します。通常、マイグレーションはこのファサードを使用して、データベーステーブルとカラムを作成および変更します。</p>
+<p><a name="generating-migrations"></a></p>
+<h2 id="_3">マイグレーションの生成<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>データベースマイグレーションを生成するには、<code>make:migration</code> <a href="artisan.html">Artisanコマンド</a>を使用します。新しいマイグレーションは<code>database/migrations</code>ディレクトリに配置されます。各マイグレーションファイル名にはタイムスタンプが含まれており、Laravelはこれを使用してマイグレーションの順序を決定します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>make:migration<span class="w"> </span>create_flights_table
+</code></pre></div>
+<p>Laravelはマイグレーション名を使用して、テーブル名とマイグレーションが新しいテーブルを作成するかどうかを推測しようとします。Laravelがマイグレーション名からテーブル名を推測できる場合、Laravelは生成されたマイグレーションファイルに指定されたテーブルを事前に入力します。それ以外の場合は、マイグレーションファイルでテーブルを手動で指定するだけです。</p>
+<p>生成されたマイグレーションのカスタムパスを指定したい場合は、<code>make:migration</code>コマンドを実行する際に<code>--path</code>オプションを使用できます。指定されたパスは、アプリケーションのベースパスからの相対パスである必要があります。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>マイグレーションスタブは、<a href="artisan.html#stub-customization">スタブの公開</a>を使用してカスタマイズできます。</p>
+</div>
+<p><a name="squashing-migrations"></a></p>
+<h3 id="_4">マイグレーションの圧縮<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>アプリケーションを構築するにつれて、時間の経過とともにマイグレーションが増えていく可能性があります。これにより、<code>database/migrations</code>ディレクトリが数百のマイグレーションで肥大化する可能性があります。必要に応じて、マイグレーションを1つのSQLファイルに「圧縮」することができます。開始するには、<code>schema:dump</code>コマンドを実行します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>schema:dump
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="c1"># 現在のデータベーススキーマをダンプし、既存のすべてのマイグレーションを削除する...</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>php<span class="w"> </span>artisan<span class="w"> </span>schema:dump<span class="w"> </span>--prune
+</code></pre></div>
+<p>このコマンドを実行すると、Laravelはアプリケーションの<code>database/schema</code>ディレクトリに「スキーマ」ファイルを書き込みます。スキーマファイルの名前は、データベース接続に対応します。これで、データベースをマイグレーションしようとしても、他のマイグレーションが実行されていない場合、Laravelは最初に使用しているデータベース接続のスキーマファイル内のSQL文を実行します。スキーマファイルのSQL文が実行された後、Laravelはスキーマダンプの一部ではなかった残りのマイグレーションを実行します。</p>
+<p>アプリケーションのテストが、ローカル開発中に通常使用するものとは異なるデータベース接続を使用している場合、そのデータベース接続を使用してスキーマファイルをダンプしていることを確認する必要があります。これにより、テストがデータベースを構築できるようになります。ローカル開発中に通常使用するデータベース接続をダンプした後に、これを行うことをお勧めします。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>schema:dump
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>php<span class="w"> </span>artisan<span class="w"> </span>schema:dump<span class="w"> </span>--database<span class="o">=</span>testing<span class="w"> </span>--prune
+</code></pre></div>
+<p>データベーススキーマファイルをソース管理にコミットして、チームの他の新しい開発者がアプリケーションの初期データベース構造をすばやく作成できるようにする必要があります。</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>マイグレーションの圧縮は、MariaDB、MySQL、PostgreSQL、およびSQLiteデータベースでのみ利用可能であり、データベースのコマンドラインクライアントを利用します。</p>
+</div>
+<p><a name="migration-structure"></a></p>
+<h2 id="_5">マイグレーションの構造<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>マイグレーションクラスには、<code>up</code>と<code>down</code>の2つのメソッドが含まれています。<code>up</code>メソッドは、データベースに新しいテーブル、カラム、またはインデックスを追加するために使用され、<code>down</code>メソッドは<code>up</code>メソッドによって実行された操作を元に戻す必要があります。</p>
+<p>これらのメソッドの両方で、Laravelのスキーマビルダを使用して、テーブルの作成と変更を表現的に行うことができます。<code>Schema</code>ビルダで利用可能なすべてのメソッドについては、<a href="#creating-tables">そのドキュメント</a>を参照してください。例えば、次のマイグレーションは<code>flights</code>テーブルを作成します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="o">&lt;?</span><span class="nx">php</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">use</span> <span class="nx">Illuminate\Database\Migrations\Migration</span><span class="p">;</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="k">use</span> <span class="nx">Illuminate\Database\Schema\Blueprint</span><span class="p">;</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Schema</span><span class="p">;</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="k">return</span> <span class="k">new</span> <span class="k">class</span> <span class="k">extends</span> <span class="nx">Migration</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="p">{</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>    <span class="sd">/**</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="sd">     * マイグレーションを実行する。</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="sd">     */</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">up</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>    <span class="p">{</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>        <span class="nx">Schema</span><span class="o">::</span><span class="na">create</span><span class="p">(</span><span class="s1">&#39;flights&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Blueprint</span> <span class="nv">$table</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">();</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">string</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">);</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">string</span><span class="p">(</span><span class="s1">&#39;airline&#39;</span><span class="p">);</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">timestamps</span><span class="p">();</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>        <span class="p">});</span>
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>    <span class="p">}</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>    <span class="sd">/**</span>
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="sd">     * マイグレーションを元に戻す。</span>
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="sd">     */</span>
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">down</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>    <span class="p">{</span>
+<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>        <span class="nx">Schema</span><span class="o">::</span><span class="na">drop</span><span class="p">(</span><span class="s1">&#39;flights&#39;</span><span class="p">);</span>
+<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>    <span class="p">}</span>
+<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a><span class="p">};</span>
+</code></pre></div>
+<p><a name="setting-the-migration-connection"></a></p>
+<h4 id="_6">マイグレーション接続の設定<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h4>
+<p>マイグレーションがアプリケーションのデフォルトのデータベース接続以外のデータベース接続と対話する場合、マイグレーションの<code>$connection</code>プロパティを設定する必要があります。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="sd">/**</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="sd"> * マイグレーションで使用するデータベース接続。</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="sd"> *</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="sd"> * @var string</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="sd"> */</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="k">protected</span> <span class="nv">$connection</span> <span class="o">=</span> <span class="s1">&#39;pgsql&#39;</span><span class="p">;</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="sd">/**</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="sd"> * マイグレーションを実行する。</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="sd"> */</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="k">public</span> <span class="k">function</span> <span class="nf">up</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="p">{</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>    <span class="c1">// ...</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="p">}</span>
+</code></pre></div>
+<p><a name="running-migrations"></a></p>
+<h2 id="_7">マイグレーションの実行<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>保留中のすべてのマイグレーションを実行するには、<code>migrate</code> Artisanコマンドを実行します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>migrate
+</code></pre></div>
+<p>これまでに実行されたマイグレーションを確認したい場合は、<code>migrate:status</code> Artisanコマンドを使用できます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>migrate:status
+</code></pre></div>
+<p>マイグレーションが実行されるSQL文を実際に実行せずに確認したい場合は、<code>migrate</code>コマンドに<code>--pretend</code>フラグを指定できます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>migrate<span class="w"> </span>--pretend
+</code></pre></div>
+<h4 id="_8">マイグレーション実行の分離<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h4>
+<p>アプリケーションを複数のサーバーにデプロイし、デプロイプロセスの一部としてマイグレーションを実行する場合、2つのサーバーが同時にデータベースをマイグレーションしようとしないようにする必要があります。これを回避するには、<code>migrate</code>コマンドを呼び出す際に<code>isolated</code>オプションを使用できます。</p>
+<p><code>isolated</code>オプションが提供されると、Laravelはアプリケーションのキャッシュドライバを使用してアトミックロックを取得し、マイグレーションの実行を試みる前に保持します。そのロックが保持されている間に<code>migrate</code>コマンドを実行しようとする他のすべての試みは実行されません。ただし、コマンドは成功した終了ステータスコードで終了します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>migrate<span class="w"> </span>--isolated
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>この機能を利用するには、アプリケーションが<code>memcached</code>、<code>redis</code>、<code>dynamodb</code>、<code>database</code>、<code>file</code>、または<code>array</code>キャッシュドライバをアプリケーションのデフォルトキャッシュドライバとして使用する必要があります。さらに、すべてのサーバーが同じ中央キャッシュサーバーと通信する必要があります。</p>
+</div>
+<p><a name="forcing-migrations-to-run-in-production"></a></p>
+<h4 id="_9">本番環境でのマイグレーションの強制実行<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h4>
+<p>一部のマイグレーション操作は破壊的であり、データを失う可能性があります。本番データベースに対してこれらのコマンドを実行することを保護するために、コマンドの実行前に確認を求められます。確認なしでコマンドを強制実行するには、<code>--force</code>フラグを使用します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>migrate<span class="w"> </span>--force
+</code></pre></div>
+<p><a name="rolling-back-migrations"></a></p>
+<h3 id="_10">マイグレーションのロールバック<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p>最新のマイグレーション操作をロールバックするには、<code>rollback</code> Artisanコマンドを使用できます。このコマンドは、最後の「バッチ」のマイグレーションをロールバックします。これには複数のマイグレーションファイルが含まれる場合があります。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>migrate:rollback
+</code></pre></div>
+<p><code>rollback</code>コマンドに<code>step</code>オプションを指定することで、限られた数のマイグレーションをロールバックできます。例えば、次のコマンドは最後の5つのマイグレーションをロールバックします。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>migrate:rollback<span class="w"> </span>--step<span class="o">=</span><span class="m">5</span>
+</code></pre></div>
+<p><code>rollback</code>コマンドに<code>batch</code>オプションを指定することで、特定の「バッチ」のマイグレーションをロールバックできます。<code>batch</code>オプションは、アプリケーションの<code>migrations</code>データベーステーブル内のバッチ値に対応します。例えば、次のコマンドはバッチ3のすべてのマイグレーションをロールバックします。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>migrate:rollback<span class="w"> </span>--batch<span class="o">=</span><span class="m">3</span>
+</code></pre></div>
+<p>マイグレーションが実行されるSQL文を実際に実行せずに確認したい場合は、<code>migrate:rollback</code>コマンドに<code>--pretend</code>フラグを指定できます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>migrate:rollback<span class="w"> </span>--pretend
+</code></pre></div>
+<p><code>migrate:reset</code>コマンドは、アプリケーションのすべてのマイグレーションをロールバックします。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>migrate:reset
+</code></pre></div>
+<p><a name="roll-back-migrate-using-a-single-command"></a></p>
+<h4 id="_11">単一のコマンドでのロールバックとマイグレーション<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h4>
+<p><code>migrate:refresh</code>コマンドは、すべてのマイグレーションをロールバックし、<code>migrate</code>コマンドを実行します。このコマンドは、データベース全体を効果的に再作成します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>migrate:refresh
+</code></pre></div>
+<h1 id="_12">データベースをリフレッシュし、すべてのデータベースシードを実行する...<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h1>
+<p>php artisan migrate:refresh --seed
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="sb">`refresh`</span><span class="nx">コマンドに</span><span class="sb">`step`</span><span class="nx">オプションを指定することで、限られた数のマイグレーションのみをロールバックして再マイグレーションすることができます。例えば、以下のコマンドは最後の5つのマイグレーションをロールバックして再マイグレーションします：</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="sb">``</span><span class="err">`</span><span class="nx">shell</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="nx">php</span> <span class="nx">artisan</span> <span class="nx">migrate</span><span class="o">:</span><span class="nx">refresh</span> <span class="o">--</span><span class="nx">step</span><span class="o">=</span><span class="mi">5</span>
+</code></pre></div></p>
+<p><a name="drop-all-tables-migrate"></a></p>
+<h4 id="_13">すべてのテーブルを削除してマイグレーションを実行<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h4>
+<p><code>migrate:fresh</code>コマンドは、データベースからすべてのテーブルを削除し、その後<code>migrate</code>コマンドを実行します：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>migrate:fresh
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>php<span class="w"> </span>artisan<span class="w"> </span>migrate:fresh<span class="w"> </span>--seed
+</code></pre></div>
+<p>デフォルトでは、<code>migrate:fresh</code>コマンドはデフォルトのデータベース接続からテーブルを削除します。ただし、<code>--database</code>オプションを使用して、マイグレーションするデータベース接続を指定できます。データベース接続名は、アプリケーションの<code>database</code><a href="configuration.html">設定ファイル</a>で定義された接続に対応する必要があります：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>migrate:fresh<span class="w"> </span>--database<span class="o">=</span>admin
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><code>migrate:fresh</code>コマンドは、プレフィックスに関係なくすべてのデータベーステーブルを削除します。このコマンドは、他のアプリケーションと共有されているデータベースで開発する際には注意して使用してください。</p>
+</div>
+<p><a name="tables"></a></p>
+<h2 id="_14">テーブル<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<p><a name="creating-tables"></a></p>
+<h3 id="_15">テーブルの作成<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
+<p>新しいデータベーステーブルを作成するには、<code>Schema</code>ファサードの<code>create</code>メソッドを使用します。<code>create</code>メソッドは2つの引数を受け取ります：最初の引数はテーブルの名前で、2番目の引数は新しいテーブルを定義するために使用できる<code>Blueprint</code>オブジェクトを受け取るクロージャです：</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">Illuminate\Database\Schema\Blueprint</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Schema</span><span class="p">;</span>
+
+<span class="nx">Schema</span><span class="o">::</span><span class="na">create</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Blueprint</span> <span class="nv">$table</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">();</span>
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">string</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">);</span>
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">string</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">);</span>
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">timestamps</span><span class="p">();</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>テーブルを作成する際に、スキーマビルダーの<a href="#creating-columns">カラムメソッド</a>を使用してテーブルのカラムを定義できます。</p>
+<p><a name="determining-table-column-existence"></a></p>
+<h4 id="_16">テーブル/カラムの存在確認<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h4>
+<p><code>hasTable</code>、<code>hasColumn</code>、<code>hasIndex</code>メソッドを使用して、テーブル、カラム、またはインデックスの存在を確認できます：</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="p">(</span><span class="nx">Schema</span><span class="o">::</span><span class="na">hasTable</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// &quot;users&quot; テーブルが存在する...</span>
+<span class="p">}</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nx">Schema</span><span class="o">::</span><span class="na">hasColumn</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="s1">&#39;email&#39;</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// &quot;users&quot; テーブルが存在し、&quot;email&quot; カラムを持つ...</span>
+<span class="p">}</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nx">Schema</span><span class="o">::</span><span class="na">hasIndex</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;email&#39;</span><span class="p">],</span> <span class="s1">&#39;unique&#39;</span><span class="p">))</span> <span class="p">{</span>
+    <span class="c1">// &quot;users&quot; テーブルが存在し、&quot;email&quot; カラムに一意のインデックスがある...</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><a name="database-connection-table-options"></a></p>
+<h4 id="_17">データベース接続とテーブルオプション<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h4>
+<p>アプリケーションのデフォルト接続以外のデータベース接続でスキーマ操作を実行したい場合は、<code>connection</code>メソッドを使用します：</p>
+<div class="highlight"><pre><span></span><code><span class="nx">Schema</span><span class="o">::</span><span class="na">connection</span><span class="p">(</span><span class="s1">&#39;sqlite&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">create</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Blueprint</span> <span class="nv">$table</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">();</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>さらに、テーブル作成の他の側面を定義するために、いくつかの他のプロパティとメソッドを使用できます。<code>engine</code>プロパティは、MariaDBまたはMySQLを使用する際にテーブルのストレージエンジンを指定するために使用できます：</p>
+<div class="highlight"><pre><span></span><code><span class="nx">Schema</span><span class="o">::</span><span class="na">create</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Blueprint</span> <span class="nv">$table</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">engine</span><span class="p">(</span><span class="s1">&#39;InnoDB&#39;</span><span class="p">);</span>
+
+    <span class="c1">// ...</span>
+<span class="p">});</span>
+</code></pre></div>
+<p><code>charset</code>と<code>collation</code>プロパティは、MariaDBまたはMySQLを使用する際に作成されるテーブルの文字セットと照合順序を指定するために使用できます：</p>
+<div class="highlight"><pre><span></span><code><span class="nx">Schema</span><span class="o">::</span><span class="na">create</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Blueprint</span> <span class="nv">$table</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">charset</span><span class="p">(</span><span class="s1">&#39;utf8mb4&#39;</span><span class="p">);</span>
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">collation</span><span class="p">(</span><span class="s1">&#39;utf8mb4_unicode_ci&#39;</span><span class="p">);</span>
+
+    <span class="c1">// ...</span>
+<span class="p">});</span>
+</code></pre></div>
+<p><code>temporary</code>メソッドは、テーブルが「一時的」であることを示すために使用できます。一時テーブルは現在の接続のデータベースセッションにのみ表示され、接続が閉じられると自動的に削除されます：</p>
+<div class="highlight"><pre><span></span><code><span class="nx">Schema</span><span class="o">::</span><span class="na">create</span><span class="p">(</span><span class="s1">&#39;calculations&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Blueprint</span> <span class="nv">$table</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">temporary</span><span class="p">();</span>
+
+    <span class="c1">// ...</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>データベーステーブルに「コメント」を追加したい場合は、テーブルインスタンスの<code>comment</code>メソッドを呼び出すことができます。テーブルコメントは現在、MariaDB、MySQL、およびPostgreSQLでのみサポートされています：</p>
+<div class="highlight"><pre><span></span><code><span class="nx">Schema</span><span class="o">::</span><span class="na">create</span><span class="p">(</span><span class="s1">&#39;calculations&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Blueprint</span> <span class="nv">$table</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">(</span><span class="s1">&#39;Business calculations&#39;</span><span class="p">);</span>
+
+    <span class="c1">// ...</span>
+<span class="p">});</span>
+</code></pre></div>
+<p><a name="updating-tables"></a></p>
+<h3 id="_18">テーブルの更新<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h3>
+<p><code>Schema</code>ファサードの<code>table</code>メソッドは、既存のテーブルを更新するために使用できます。<code>create</code>メソッドと同様に、<code>table</code>メソッドは2つの引数を受け取ります：テーブルの名前と、テーブルにカラムやインデックスを追加するために使用できる<code>Blueprint</code>インスタンスを受け取るクロージャです：</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">Illuminate\Database\Schema\Blueprint</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Schema</span><span class="p">;</span>
+
+<span class="nx">Schema</span><span class="o">::</span><span class="na">table</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Blueprint</span> <span class="nv">$table</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">integer</span><span class="p">(</span><span class="s1">&#39;votes&#39;</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>
+<p><a name="renaming-and-dropping-tables"></a></p>
+<h3 id="_19">テーブルのリネーム/削除<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h3>
+<p>既存のデータベーステーブルの名前を変更するには、<code>rename</code>メソッドを使用します：</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Schema</span><span class="p">;</span>
+
+<span class="nx">Schema</span><span class="o">::</span><span class="na">rename</span><span class="p">(</span><span class="nv">$from</span><span class="p">,</span> <span class="nv">$to</span><span class="p">);</span>
+</code></pre></div>
+<p>既存のテーブルを削除するには、<code>drop</code>または<code>dropIfExists</code>メソッドを使用できます：</p>
+<div class="highlight"><pre><span></span><code><span class="nx">Schema</span><span class="o">::</span><span class="na">drop</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">);</span>
+
+<span class="nx">Schema</span><span class="o">::</span><span class="na">dropIfExists</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="renaming-tables-with-foreign-keys"></a></p>
+<h4 id="_20">外部キーを持つテーブルのリネーム<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h4>
+<p>テーブルの名前を変更する前に、テーブル上の外部キー制約がマイグレーションファイル内で明示的な名前を持っていることを確認してください。そうでない場合、外部キー制約名は古いテーブル名を参照することになります。</p>
+<p><a name="columns"></a></p>
+<h2 id="_21">カラム<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h2>
+<p><a name="creating-columns"></a></p>
+<h3 id="_22">カラムの作成<a class="headerlink" href="#_22" title="Permanent link">&para;</a></h3>
+<p><code>Schema</code>ファサードの<code>table</code>メソッドは、既存のテーブルを更新するために使用できます。<code>create</code>メソッドと同様に、<code>table</code>メソッドは2つの引数を受け取ります：テーブルの名前と、テーブルにカラムを追加するために使用できる<code>Illuminate\Database\Schema\Blueprint</code>インスタンスを受け取るクロージャです：</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">Illuminate\Database\Schema\Blueprint</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Schema</span><span class="p">;</span>
+
+<span class="nx">Schema</span><span class="o">::</span><span class="na">table</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Blueprint</span> <span class="nv">$table</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">integer</span><span class="p">(</span><span class="s1">&#39;votes&#39;</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>
+<p><a name="available-column-types"></a></p>
+<h3 id="_23">利用可能なカラムタイプ<a class="headerlink" href="#_23" title="Permanent link">&para;</a></h3>
+<p>スキーマビルダーブループリントは、データベーステーブルに追加できるさまざまなタイプのカラムに対応するさまざまなメソッドを提供します。以下の表に、利用可能な各メソッドを示します：</p>
+<style>
+    .collection-method-list > p {
+        columns: 10.8em 3; -moz-columns: 10.8em 3; -webkit-columns: 10.8em 3;
+    }
+
+    .collection-method-list a {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .collection-method code {
+        font-size: 14px;
+    }
+
+    .collection-method:not(.first-collection-method) {
+        margin-top: 50px;
+    }
+</style>
+
+<div class="collection-method-list">
+<p><a href="#column-method-bigIncrements">bigIncrements</a>
+<a href="#column-method-bigInteger">bigInteger</a>
+<a href="#column-method-binary">binary</a>
+<a href="#column-method-boolean">boolean</a>
+<a href="#column-method-char">char</a>
+<a href="#column-method-dateTimeTz">dateTimeTz</a>
+<a href="#column-method-dateTime">dateTime</a>
+<a href="#column-method-date">date</a>
+<a href="#column-method-decimal">decimal</a>
+<a href="#column-method-double">double</a>
+<a href="#column-method-enum">enum</a>
+<a href="#column-method-float">float</a>
+<a href="#column-method-foreignId">foreignId</a>
+<a href="#column-method-foreignIdFor">foreignIdFor</a>
+<a href="#column-method-foreignUlid">foreignUlid</a>
+<a href="#column-method-foreignUuid">foreignUuid</a>
+<a href="#column-method-geography">geography</a>
+<a href="#column-method-geometry">geometry</a>
+<a href="#column-method-id">id</a>
+<a href="#column-method-increments">increments</a>
+<a href="#column-method-integer">integer</a>
+<a href="#column-method-ipAddress">ipAddress</a>
+<a href="#column-method-json">json</a>
+<a href="#column-method-jsonb">jsonb</a>
+<a href="#column-method-longText">longText</a>
+<a href="#column-method-macAddress">macAddress</a>
+<a href="#column-method-mediumIncrements">mediumIncrements</a>
+<a href="#column-method-mediumInteger">mediumInteger</a>
+<a href="#column-method-mediumText">mediumText</a>
+<a href="#column-method-morphs">morphs</a>
+<a href="#column-method-nullableMorphs">nullableMorphs</a>
+<a href="#column-method-nullableTimestamps">nullableTimestamps</a>
+<a href="#column-method-nullableUlidMorphs">nullableUlidMorphs</a>
+<a href="#column-method-nullableUuidMorphs">nullableUuidMorphs</a>
+<a href="#column-method-rememberToken">rememberToken</a>
+<a href="#column-method-set">set</a>
+<a href="#column-method-smallIncrements">smallIncrements</a>
+<a href="#column-method-smallInteger">smallInteger</a>
+<a href="#column-method-softDeletesTz">softDeletesTz</a>
+<a href="#column-method-softDeletes">softDeletes</a>
+<a href="#column-method-string">string</a>
+<a href="#column-method-text">text</a>
+<a href="#column-method-timeTz">timeTz</a>
+<a href="#column-method-time">time</a>
+<a href="#column-method-timestampTz">timestampTz</a>
+<a href="#column-method-timestamp">timestamp</a>
+<a href="#column-method-timestampsTz">timestampsTz</a>
+<a href="#column-method-timestamps">timestamps</a>
+<a href="#column-method-tinyIncrements">tinyIncrements</a>
+<a href="#column-method-tinyInteger">tinyInteger</a>
+<a href="#column-method-tinyText">tinyText</a>
+<a href="#column-method-unsignedBigInteger">unsignedBigInteger</a>
+<a href="#column-method-unsignedInteger">unsignedInteger</a>
+<a href="#column-method-unsignedMediumInteger">unsignedMediumInteger</a>
+<a href="#column-method-unsignedSmallInteger">unsignedSmallInteger</a>
+<a href="#column-method-unsignedTinyInteger">unsignedTinyInteger</a>
+<a href="#column-method-ulidMorphs">ulidMorphs</a>
+<a href="#column-method-uuidMorphs">uuidMorphs</a>
+<a href="#column-method-ulid">ulid</a>
+<a href="#column-method-uuid">uuid</a>
+<a href="#column-method-year">year</a></p>
+</div>
+<p><a name="column-method-bigIncrements"></a></p>
+<h4 class="collection-method first-collection-method" id="bigincrements"><code>bigIncrements()</code><a class="headerlink" href="#bigincrements" title="Permanent link">&para;</a></h4>
+<p><code>bigIncrements</code>メソッドは、自動増分する<code>UNSIGNED BIGINT</code>（主キー）相当のカラムを作成します：</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">bigIncrements</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="column-method-bigInteger"></a></p>
+<h4 class="collection-method" id="biginteger"><code>bigInteger()</code><a class="headerlink" href="#biginteger" title="Permanent link">&para;</a></h4>
+<p><code>bigInteger</code>メソッドは、<code>BIGINT</code>相当のカラムを作成します：</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">bigInteger</span><span class="p">(</span><span class="s1">&#39;votes&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="column-method-binary"></a></p>
+<h4 class="collection-method" id="binary"><code>binary()</code><a class="headerlink" href="#binary" title="Permanent link">&para;</a></h4>
+<p><code>binary</code>メソッドは、<code>BLOB</code>相当のカラムを作成します：</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">binary</span><span class="p">(</span><span class="s1">&#39;photo&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p>MySQL、MariaDB、またはSQL Serverを使用する場合、<code>length</code>と<code>fixed</code>引数を渡して、<code>VARBINARY</code>または<code>BINARY</code>相当のカラムを作成できます：</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">binary</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="nx">length</span><span class="o">:</span> <span class="mi">16</span><span class="p">);</span> <span class="c1">// VARBINARY(16)</span>
+
+<span class="nv">$table</span><span class="o">-&gt;</span><span class="na">binary</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="nx">length</span><span class="o">:</span> <span class="mi">16</span><span class="p">,</span> <span class="nx">fixed</span><span class="o">:</span> <span class="k">true</span><span class="p">);</span> <span class="c1">// BINARY(16)</span>
+</code></pre></div>
+<p><a name="column-method-boolean"></a></p>
+<h4 class="collection-method" id="boolean"><code>boolean()</code><a class="headerlink" href="#boolean" title="Permanent link">&para;</a></h4>
+<p><code>boolean</code>メソッドは、<code>BOOLEAN</code>相当のカラムを作成します。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">boolean</span><span class="p">(</span><span class="s1">&#39;confirmed&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="column-method-char"></a></p>
+<h4 class="collection-method" id="char"><code>char()</code><a class="headerlink" href="#char" title="Permanent link">&para;</a></h4>
+<p><code>char</code>メソッドは、指定された長さの<code>CHAR</code>相当のカラムを作成します。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">char</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="nx">length</span><span class="o">:</span> <span class="mi">100</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="column-method-dateTimeTz"></a></p>
+<h4 class="collection-method" id="datetimetz"><code>dateTimeTz()</code><a class="headerlink" href="#datetimetz" title="Permanent link">&para;</a></h4>
+<p><code>dateTimeTz</code>メソッドは、オプションの小数秒精度を持つ<code>DATETIME</code>（タイムゾーン付き）相当のカラムを作成します。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">dateTimeTz</span><span class="p">(</span><span class="s1">&#39;created_at&#39;</span><span class="p">,</span> <span class="nx">precision</span><span class="o">:</span> <span class="mi">0</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="column-method-dateTime"></a></p>
+<h4 class="collection-method" id="datetime"><code>dateTime()</code><a class="headerlink" href="#datetime" title="Permanent link">&para;</a></h4>
+<p><code>dateTime</code>メソッドは、オプションの小数秒精度を持つ<code>DATETIME</code>相当のカラムを作成します。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">dateTime</span><span class="p">(</span><span class="s1">&#39;created_at&#39;</span><span class="p">,</span> <span class="nx">precision</span><span class="o">:</span> <span class="mi">0</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="column-method-date"></a></p>
+<h4 class="collection-method" id="date"><code>date()</code><a class="headerlink" href="#date" title="Permanent link">&para;</a></h4>
+<p><code>date</code>メソッドは、<code>DATE</code>相当のカラムを作成します。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">date</span><span class="p">(</span><span class="s1">&#39;created_at&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="column-method-decimal"></a></p>
+<h4 class="collection-method" id="decimal"><code>decimal()</code><a class="headerlink" href="#decimal" title="Permanent link">&para;</a></h4>
+<p><code>decimal</code>メソッドは、指定された精度（全体の桁数）とスケール（小数点以下の桁数）を持つ<code>DECIMAL</code>相当のカラムを作成します。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">decimal</span><span class="p">(</span><span class="s1">&#39;amount&#39;</span><span class="p">,</span> <span class="nx">total</span><span class="o">:</span> <span class="mi">8</span><span class="p">,</span> <span class="nx">places</span><span class="o">:</span> <span class="mi">2</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="column-method-double"></a></p>
+<h4 class="collection-method" id="double"><code>double()</code><a class="headerlink" href="#double" title="Permanent link">&para;</a></h4>
+<p><code>double</code>メソッドは、<code>DOUBLE</code>相当のカラムを作成します。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">double</span><span class="p">(</span><span class="s1">&#39;amount&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="column-method-enum"></a></p>
+<h4 class="collection-method" id="enum"><code>enum()</code><a class="headerlink" href="#enum" title="Permanent link">&para;</a></h4>
+<p><code>enum</code>メソッドは、指定された有効な値を持つ<code>ENUM</code>相当のカラムを作成します。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">enum</span><span class="p">(</span><span class="s1">&#39;difficulty&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;easy&#39;</span><span class="p">,</span> <span class="s1">&#39;hard&#39;</span><span class="p">]);</span>
+</code></pre></div>
+<p><a name="column-method-float"></a></p>
+<h4 class="collection-method" id="float"><code>float()</code><a class="headerlink" href="#float" title="Permanent link">&para;</a></h4>
+<p><code>float</code>メソッドは、指定された精度を持つ<code>FLOAT</code>相当のカラムを作成します。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">float</span><span class="p">(</span><span class="s1">&#39;amount&#39;</span><span class="p">,</span> <span class="nx">precision</span><span class="o">:</span> <span class="mi">53</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="column-method-foreignId"></a></p>
+<h4 class="collection-method" id="foreignid"><code>foreignId()</code><a class="headerlink" href="#foreignid" title="Permanent link">&para;</a></h4>
+<p><code>foreignId</code>メソッドは、<code>UNSIGNED BIGINT</code>相当のカラムを作成します。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">foreignId</span><span class="p">(</span><span class="s1">&#39;user_id&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="column-method-foreignIdFor"></a></p>
+<h4 class="collection-method" id="foreignidfor"><code>foreignIdFor()</code><a class="headerlink" href="#foreignidfor" title="Permanent link">&para;</a></h4>
+<p><code>foreignIdFor</code>メソッドは、指定されたモデルクラスに対して<code>{column}_id</code>相当のカラムを追加します。カラムの型は、モデルのキータイプに応じて<code>UNSIGNED BIGINT</code>、<code>CHAR(36)</code>、または<code>CHAR(26)</code>になります。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">foreignIdFor</span><span class="p">(</span><span class="nx">User</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="column-method-foreignUlid"></a></p>
+<h4 class="collection-method" id="foreignulid"><code>foreignUlid()</code><a class="headerlink" href="#foreignulid" title="Permanent link">&para;</a></h4>
+<p><code>foreignUlid</code>メソッドは、<code>ULID</code>相当のカラムを作成します。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">foreignUlid</span><span class="p">(</span><span class="s1">&#39;user_id&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="column-method-foreignUuid"></a></p>
+<h4 class="collection-method" id="foreignuuid"><code>foreignUuid()</code><a class="headerlink" href="#foreignuuid" title="Permanent link">&para;</a></h4>
+<p><code>foreignUuid</code>メソッドは、<code>UUID</code>相当のカラムを作成します。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">foreignUuid</span><span class="p">(</span><span class="s1">&#39;user_id&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="column-method-geography"></a></p>
+<h4 class="collection-method" id="geography"><code>geography()</code><a class="headerlink" href="#geography" title="Permanent link">&para;</a></h4>
+<p><code>geography</code>メソッドは、指定された空間タイプとSRID（空間参照系識別子）を持つ<code>GEOGRAPHY</code>相当のカラムを作成します。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">geography</span><span class="p">(</span><span class="s1">&#39;coordinates&#39;</span><span class="p">,</span> <span class="nx">subtype</span><span class="o">:</span> <span class="s1">&#39;point&#39;</span><span class="p">,</span> <span class="nx">srid</span><span class="o">:</span> <span class="mi">4326</span><span class="p">);</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>空間タイプのサポートは、データベースドライバに依存します。詳細については、データベースのドキュメントを参照してください。アプリケーションがPostgreSQLデータベースを使用している場合、<code>geography</code>メソッドを使用する前に<a href="https://postgis.net">PostGIS</a>拡張機能をインストールする必要があります。</p>
+</div>
+<p><a name="column-method-geometry"></a></p>
+<h4 class="collection-method" id="geometry"><code>geometry()</code><a class="headerlink" href="#geometry" title="Permanent link">&para;</a></h4>
+<p><code>geometry</code>メソッドは、指定された空間タイプとSRID（空間参照系識別子）を持つ<code>GEOMETRY</code>相当のカラムを作成します。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">geometry</span><span class="p">(</span><span class="s1">&#39;positions&#39;</span><span class="p">,</span> <span class="nx">subtype</span><span class="o">:</span> <span class="s1">&#39;point&#39;</span><span class="p">,</span> <span class="nx">srid</span><span class="o">:</span> <span class="mi">0</span><span class="p">);</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>空間タイプのサポートは、データベースドライバに依存します。詳細については、データベースのドキュメントを参照してください。アプリケーションがPostgreSQLデータベースを使用している場合、<code>geometry</code>メソッドを使用する前に<a href="https://postgis.net">PostGIS</a>拡張機能をインストールする必要があります。</p>
+</div>
+<p><a name="column-method-id"></a></p>
+<h4 class="collection-method" id="id"><code>id()</code><a class="headerlink" href="#id" title="Permanent link">&para;</a></h4>
+<p><code>id</code>メソッドは、<code>bigIncrements</code>メソッドのエイリアスです。デフォルトでは、<code>id</code>カラムを作成しますが、カラムに別の名前を付けたい場合はカラム名を渡すことができます。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">();</span>
+</code></pre></div>
+<p><a name="column-method-increments"></a></p>
+<h4 class="collection-method" id="increments"><code>increments()</code><a class="headerlink" href="#increments" title="Permanent link">&para;</a></h4>
+<p><code>increments</code>メソッドは、自動増分する<code>UNSIGNED INTEGER</code>相当のカラムを主キーとして作成します。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">increments</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="column-method-integer"></a></p>
+<h4 class="collection-method" id="integer"><code>integer()</code><a class="headerlink" href="#integer" title="Permanent link">&para;</a></h4>
+<p><code>integer</code>メソッドは、<code>INTEGER</code>相当のカラムを作成します。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">integer</span><span class="p">(</span><span class="s1">&#39;votes&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="column-method-ipAddress"></a></p>
+<h4 class="collection-method" id="ipaddress"><code>ipAddress()</code><a class="headerlink" href="#ipaddress" title="Permanent link">&para;</a></h4>
+<p><code>ipAddress</code>メソッドは、<code>VARCHAR</code>相当のカラムを作成します。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">ipAddress</span><span class="p">(</span><span class="s1">&#39;visitor&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p>PostgreSQLを使用する場合、<code>INET</code>カラムが作成されます。</p>
+<p><a name="column-method-json"></a></p>
+<h4 class="collection-method" id="json"><code>json()</code><a class="headerlink" href="#json" title="Permanent link">&para;</a></h4>
+<p><code>json</code>メソッドは、<code>JSON</code>相当のカラムを作成します。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">json</span><span class="p">(</span><span class="s1">&#39;options&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="column-method-jsonb"></a></p>
+<h4 class="collection-method" id="jsonb"><code>jsonb()</code><a class="headerlink" href="#jsonb" title="Permanent link">&para;</a></h4>
+<p><code>jsonb</code>メソッドは、<code>JSONB</code>相当のカラムを作成します。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">jsonb</span><span class="p">(</span><span class="s1">&#39;options&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="column-method-longText"></a></p>
+<h4 class="collection-method" id="longtext"><code>longText()</code><a class="headerlink" href="#longtext" title="Permanent link">&para;</a></h4>
+<p><code>longText</code>メソッドは、<code>LONGTEXT</code>相当のカラムを作成します。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">longText</span><span class="p">(</span><span class="s1">&#39;description&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p>MySQLまたはMariaDBを使用する場合、<code>binary</code>文字セットをカラムに適用して<code>LONGBLOB</code>相当のカラムを作成できます。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">longText</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">charset</span><span class="p">(</span><span class="s1">&#39;binary&#39;</span><span class="p">);</span> <span class="c1">// LONGBLOB</span>
+</code></pre></div>
+<p><a name="column-method-macAddress"></a></p>
+<h4 class="collection-method" id="macaddress"><code>macAddress()</code><a class="headerlink" href="#macaddress" title="Permanent link">&para;</a></h4>
+<p><code>macAddress</code>メソッドは、MACアドレスを保持することを意図したカラムを作成します。PostgreSQLなどの一部のデータベースシステムには、このタイプのデータに対して専用のカラムタイプがあります。他のデータベースシステムでは、文字列相当のカラムが使用されます。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">macAddress</span><span class="p">(</span><span class="s1">&#39;device&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="column-method-mediumIncrements"></a></p>
+<h4 class="collection-method" id="mediumincrements"><code>mediumIncrements()</code><a class="headerlink" href="#mediumincrements" title="Permanent link">&para;</a></h4>
+<p><code>mediumIncrements</code>メソッドは、自動増分する<code>UNSIGNED MEDIUMINT</code>相当のカラムを主キーとして作成します。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">mediumIncrements</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="column-method-mediumInteger"></a></p>
+<h4 class="collection-method" id="mediuminteger"><code>mediumInteger()</code><a class="headerlink" href="#mediuminteger" title="Permanent link">&para;</a></h4>
+<p><code>mediumInteger</code>メソッドは、<code>MEDIUMINT</code>相当のカラムを作成します。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">mediumInteger</span><span class="p">(</span><span class="s1">&#39;votes&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="column-method-mediumText"></a></p>
+<h4 class="collection-method" id="mediumtext"><code>mediumText()</code><a class="headerlink" href="#mediumtext" title="Permanent link">&para;</a></h4>
+<p><code>mediumText</code>メソッドは、<code>MEDIUMTEXT</code>相当のカラムを作成します。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">mediumText</span><span class="p">(</span><span class="s1">&#39;description&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p>MySQLまたはMariaDBを使用する場合、<code>binary</code>文字セットをカラムに適用して<code>MEDIUMBLOB</code>相当のカラムを作成できます。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">mediumText</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">charset</span><span class="p">(</span><span class="s1">&#39;binary&#39;</span><span class="p">);</span> <span class="c1">// MEDIUMBLOB</span>
+</code></pre></div>
+<p><a name="column-method-morphs"></a></p>
+<h4 class="collection-method" id="morphs"><code>morphs()</code><a class="headerlink" href="#morphs" title="Permanent link">&para;</a></h4>
+<p><code>morphs</code>メソッドは、<code>{column}_id</code>相当のカラムと<code>{column}_type</code>の<code>VARCHAR</code>相当のカラムを追加する便利なメソッドです。<code>{column}_id</code>のカラムタイプは、モデルのキータイプに応じて<code>UNSIGNED BIGINT</code>、<code>CHAR(36)</code>、または<code>CHAR(26)</code>になります。</p>
+<p>このメソッドは、ポリモーフィックな<a href="eloquent-relationships.html">Eloquentリレーション</a>に必要なカラムを定義する際に使用されます。以下の例では、<code>taggable_id</code>と<code>taggable_type</code>カラムが作成されます。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">morphs</span><span class="p">(</span><span class="s1">&#39;taggable&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="column-method-nullableTimestamps"></a></p>
+<h4 class="collection-method" id="nullabletimestamps"><code>nullableTimestamps()</code><a class="headerlink" href="#nullabletimestamps" title="Permanent link">&para;</a></h4>
+<p><code>nullableTimestamps</code>メソッドは、<a href="#column-method-timestamps">timestamps</a>メソッドのエイリアスです。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">nullableTimestamps</span><span class="p">(</span><span class="nx">precision</span><span class="o">:</span> <span class="mi">0</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="column-method-nullableMorphs"></a></p>
+<h4 class="collection-method" id="nullablemorphs"><code>nullableMorphs()</code><a class="headerlink" href="#nullablemorphs" title="Permanent link">&para;</a></h4>
+<p>このメソッドは、<a href="#column-method-morphs">morphs</a>メソッドと似ていますが、作成されるカラムは「nullable」になります。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">nullableMorphs</span><span class="p">(</span><span class="s1">&#39;taggable&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="column-method-nullableUlidMorphs"></a></p>
+<h4 class="collection-method" id="nullableulidmorphs"><code>nullableUlidMorphs()</code><a class="headerlink" href="#nullableulidmorphs" title="Permanent link">&para;</a></h4>
+<p>このメソッドは、<a href="#column-method-ulidMorphs">ulidMorphs</a>メソッドと似ていますが、作成されるカラムは「nullable」になります。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">nullableUlidMorphs</span><span class="p">(</span><span class="s1">&#39;taggable&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="column-method-nullableUuidMorphs"></a></p>
+<h4 class="collection-method" id="nullableuuidmorphs"><code>nullableUuidMorphs()</code><a class="headerlink" href="#nullableuuidmorphs" title="Permanent link">&para;</a></h4>
+<p>このメソッドは、<a href="#column-method-uuidMorphs">uuidMorphs</a>メソッドと似ていますが、作成されるカラムは「nullable」になります。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">nullableUuidMorphs</span><span class="p">(</span><span class="s1">&#39;taggable&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="column-method-rememberToken"></a></p>
+<h4 class="collection-method" id="remembertoken"><code>rememberToken()</code><a class="headerlink" href="#remembertoken" title="Permanent link">&para;</a></h4>
+<p><code>rememberToken</code>メソッドは、現在の「remember me」<a href="authentication.html#remembering-users">認証トークン</a>を保存することを意図した、nullableの<code>VARCHAR(100)</code>相当のカラムを作成します。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">rememberToken</span><span class="p">();</span>
+</code></pre></div>
+<p><a name="column-method-set"></a></p>
+<h4 class="collection-method" id="set"><code>set()</code><a class="headerlink" href="#set" title="Permanent link">&para;</a></h4>
+<p><code>set</code>メソッドは、指定された有効な値のリストを持つ<code>SET</code>相当のカラムを作成します。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="s1">&#39;flavors&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;strawberry&#39;</span><span class="p">,</span> <span class="s1">&#39;vanilla&#39;</span><span class="p">]);</span>
+</code></pre></div>
+<p><a name="column-method-smallIncrements"></a></p>
+<h4 class="collection-method" id="smallincrements"><code>smallIncrements()</code><a class="headerlink" href="#smallincrements" title="Permanent link">&para;</a></h4>
+<p><code>smallIncrements</code>メソッドは、自動増分する<code>UNSIGNED SMALLINT</code>相当のカラムを主キーとして作成します。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">smallIncrements</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="column-method-smallInteger"></a></p>
+<h4 class="collection-method" id="smallinteger"><code>smallInteger()</code><a class="headerlink" href="#smallinteger" title="Permanent link">&para;</a></h4>
+<p><code>smallInteger</code>メソッドは、<code>SMALLINT</code>相当のカラムを作成します。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">smallInteger</span><span class="p">(</span><span class="s1">&#39;votes&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="column-method-softDeletesTz"></a></p>
+<h4 class="collection-method" id="softdeletestz"><code>softDeletesTz()</code><a class="headerlink" href="#softdeletestz" title="Permanent link">&para;</a></h4>
+<p><code>softDeletesTz</code>メソッドは、nullableの<code>deleted_at</code>の<code>TIMESTAMP</code>（タイムゾーン付き）相当のカラムを、オプションの小数秒精度で追加します。このカラムは、Eloquentの「ソフトデリート」機能に必要な<code>deleted_at</code>タイムスタンプを保存することを意図しています。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">softDeletesTz</span><span class="p">(</span><span class="s1">&#39;deleted_at&#39;</span><span class="p">,</span> <span class="nx">precision</span><span class="o">:</span> <span class="mi">0</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="column-method-softDeletes"></a></p>
+<h4 class="collection-method" id="softdeletes"><code>softDeletes()</code><a class="headerlink" href="#softdeletes" title="Permanent link">&para;</a></h4>
+<p><code>softDeletes</code>メソッドは、nullableの<code>deleted_at</code>の<code>TIMESTAMP</code>相当のカラムを、オプションの小数秒精度で追加します。このカラムは、Eloquentの「ソフトデリート」機能に必要な<code>deleted_at</code>タイムスタンプを保存することを意図しています。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">softDeletes</span><span class="p">(</span><span class="s1">&#39;deleted_at&#39;</span><span class="p">,</span> <span class="nx">precision</span><span class="o">:</span> <span class="mi">0</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="column-method-string"></a></p>
+<h4 class="collection-method" id="string"><code>string()</code><a class="headerlink" href="#string" title="Permanent link">&para;</a></h4>
+<p><code>string</code>メソッドは、指定された長さの<code>VARCHAR</code>相当のカラムを作成します。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">string</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="nx">length</span><span class="o">:</span> <span class="mi">100</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="column-method-text"></a></p>
+<h4 class="collection-method" id="text"><code>text()</code><a class="headerlink" href="#text" title="Permanent link">&para;</a></h4>
+<p><code>text</code>メソッドは、<code>TEXT</code>相当のカラムを作成します。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">text</span><span class="p">(</span><span class="s1">&#39;description&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p>MySQLまたはMariaDBを使用する場合、カラムに<code>binary</code>文字セットを適用して、<code>BLOB</code>相当のカラムを作成できます。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">text</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">charset</span><span class="p">(</span><span class="s1">&#39;binary&#39;</span><span class="p">);</span> <span class="c1">// BLOB</span>
+</code></pre></div>
+<p><a name="column-method-timeTz"></a></p>
+<h4 class="collection-method" id="timetz"><code>timeTz()</code><a class="headerlink" href="#timetz" title="Permanent link">&para;</a></h4>
+<p><code>timeTz</code>メソッドは、オプションの小数点以下の秒精度を持つ<code>TIME</code>（タイムゾーン付き）相当のカラムを作成します。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">timeTz</span><span class="p">(</span><span class="s1">&#39;sunrise&#39;</span><span class="p">,</span> <span class="nx">precision</span><span class="o">:</span> <span class="mi">0</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="column-method-time"></a></p>
+<h4 class="collection-method" id="time"><code>time()</code><a class="headerlink" href="#time" title="Permanent link">&para;</a></h4>
+<p><code>time</code>メソッドは、オプションの小数点以下の秒精度を持つ<code>TIME</code>相当のカラムを作成します。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">time</span><span class="p">(</span><span class="s1">&#39;sunrise&#39;</span><span class="p">,</span> <span class="nx">precision</span><span class="o">:</span> <span class="mi">0</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="column-method-timestampTz"></a></p>
+<h4 class="collection-method" id="timestamptz"><code>timestampTz()</code><a class="headerlink" href="#timestamptz" title="Permanent link">&para;</a></h4>
+<p><code>timestampTz</code>メソッドは、オプションの小数点以下の秒精度を持つ<code>TIMESTAMP</code>（タイムゾーン付き）相当のカラムを作成します。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">timestampTz</span><span class="p">(</span><span class="s1">&#39;added_at&#39;</span><span class="p">,</span> <span class="nx">precision</span><span class="o">:</span> <span class="mi">0</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="column-method-timestamp"></a></p>
+<h4 class="collection-method" id="timestamp"><code>timestamp()</code><a class="headerlink" href="#timestamp" title="Permanent link">&para;</a></h4>
+<p><code>timestamp</code>メソッドは、オプションの小数点以下の秒精度を持つ<code>TIMESTAMP</code>相当のカラムを作成します。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">timestamp</span><span class="p">(</span><span class="s1">&#39;added_at&#39;</span><span class="p">,</span> <span class="nx">precision</span><span class="o">:</span> <span class="mi">0</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="column-method-timestampsTz"></a></p>
+<h4 class="collection-method" id="timestampstz"><code>timestampsTz()</code><a class="headerlink" href="#timestampstz" title="Permanent link">&para;</a></h4>
+<p><code>timestampsTz</code>メソッドは、オプションの小数点以下の秒精度を持つ<code>created_at</code>と<code>updated_at</code> <code>TIMESTAMP</code>（タイムゾーン付き）相当のカラムを作成します。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">timestampsTz</span><span class="p">(</span><span class="nx">precision</span><span class="o">:</span> <span class="mi">0</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="column-method-timestamps"></a></p>
+<h4 class="collection-method" id="timestamps"><code>timestamps()</code><a class="headerlink" href="#timestamps" title="Permanent link">&para;</a></h4>
+<p><code>timestamps</code>メソッドは、オプションの小数点以下の秒精度を持つ<code>created_at</code>と<code>updated_at</code> <code>TIMESTAMP</code>相当のカラムを作成します。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">timestamps</span><span class="p">(</span><span class="nx">precision</span><span class="o">:</span> <span class="mi">0</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="column-method-tinyIncrements"></a></p>
+<h4 class="collection-method" id="tinyincrements"><code>tinyIncrements()</code><a class="headerlink" href="#tinyincrements" title="Permanent link">&para;</a></h4>
+<p><code>tinyIncrements</code>メソッドは、主キーとして自動インクリメントする<code>UNSIGNED TINYINT</code>相当のカラムを作成します。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">tinyIncrements</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="column-method-tinyInteger"></a></p>
+<h4 class="collection-method" id="tinyinteger"><code>tinyInteger()</code><a class="headerlink" href="#tinyinteger" title="Permanent link">&para;</a></h4>
+<p><code>tinyInteger</code>メソッドは、<code>TINYINT</code>相当のカラムを作成します。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">tinyInteger</span><span class="p">(</span><span class="s1">&#39;votes&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="column-method-tinyText"></a></p>
+<h4 class="collection-method" id="tinytext"><code>tinyText()</code><a class="headerlink" href="#tinytext" title="Permanent link">&para;</a></h4>
+<p><code>tinyText</code>メソッドは、<code>TINYTEXT</code>相当のカラムを作成します。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">tinyText</span><span class="p">(</span><span class="s1">&#39;notes&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p>MySQLまたはMariaDBを使用する場合、カラムに<code>binary</code>文字セットを適用して、<code>TINYBLOB</code>相当のカラムを作成できます。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">tinyText</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">charset</span><span class="p">(</span><span class="s1">&#39;binary&#39;</span><span class="p">);</span> <span class="c1">// TINYBLOB</span>
+</code></pre></div>
+<p><a name="column-method-unsignedBigInteger"></a></p>
+<h4 class="collection-method" id="unsignedbiginteger"><code>unsignedBigInteger()</code><a class="headerlink" href="#unsignedbiginteger" title="Permanent link">&para;</a></h4>
+<p><code>unsignedBigInteger</code>メソッドは、<code>UNSIGNED BIGINT</code>相当のカラムを作成します。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">unsignedBigInteger</span><span class="p">(</span><span class="s1">&#39;votes&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="column-method-unsignedInteger"></a></p>
+<h4 class="collection-method" id="unsignedinteger"><code>unsignedInteger()</code><a class="headerlink" href="#unsignedinteger" title="Permanent link">&para;</a></h4>
+<p><code>unsignedInteger</code>メソッドは、<code>UNSIGNED INTEGER</code>相当のカラムを作成します。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">unsignedInteger</span><span class="p">(</span><span class="s1">&#39;votes&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="column-method-unsignedMediumInteger"></a></p>
+<h4 class="collection-method" id="unsignedmediuminteger"><code>unsignedMediumInteger()</code><a class="headerlink" href="#unsignedmediuminteger" title="Permanent link">&para;</a></h4>
+<p><code>unsignedMediumInteger</code>メソッドは、<code>UNSIGNED MEDIUMINT</code>相当のカラムを作成します。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">unsignedMediumInteger</span><span class="p">(</span><span class="s1">&#39;votes&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="column-method-unsignedSmallInteger"></a></p>
+<h4 class="collection-method" id="unsignedsmallinteger"><code>unsignedSmallInteger()</code><a class="headerlink" href="#unsignedsmallinteger" title="Permanent link">&para;</a></h4>
+<p><code>unsignedSmallInteger</code>メソッドは、<code>UNSIGNED SMALLINT</code>相当のカラムを作成します。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">unsignedSmallInteger</span><span class="p">(</span><span class="s1">&#39;votes&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="column-method-unsignedTinyInteger"></a></p>
+<h4 class="collection-method" id="unsignedtinyinteger"><code>unsignedTinyInteger()</code><a class="headerlink" href="#unsignedtinyinteger" title="Permanent link">&para;</a></h4>
+<p><code>unsignedTinyInteger</code>メソッドは、<code>UNSIGNED TINYINT</code>相当のカラムを作成します。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">unsignedTinyInteger</span><span class="p">(</span><span class="s1">&#39;votes&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="column-method-ulidMorphs"></a></p>
+<h4 class="collection-method" id="ulidmorphs"><code>ulidMorphs()</code><a class="headerlink" href="#ulidmorphs" title="Permanent link">&para;</a></h4>
+<p><code>ulidMorphs</code>メソッドは、<code>{column}_id</code> <code>CHAR(26)</code>相当のカラムと<code>{column}_type</code> <code>VARCHAR</code>相当のカラムを追加する便利なメソッドです。</p>
+<p>このメソッドは、ULID識別子を使用するポリモーフィックな<a href="eloquent-relationships.html">Eloquentリレーション</a>に必要なカラムを定義するために使用されます。以下の例では、<code>taggable_id</code>と<code>taggable_type</code>カラムが作成されます。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">ulidMorphs</span><span class="p">(</span><span class="s1">&#39;taggable&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="column-method-uuidMorphs"></a></p>
+<h4 class="collection-method" id="uuidmorphs"><code>uuidMorphs()</code><a class="headerlink" href="#uuidmorphs" title="Permanent link">&para;</a></h4>
+<p><code>uuidMorphs</code>メソッドは、<code>{column}_id</code> <code>CHAR(36)</code>相当のカラムと<code>{column}_type</code> <code>VARCHAR</code>相当のカラムを追加する便利なメソッドです。</p>
+<p>このメソッドは、UUID識別子を使用するポリモーフィックな<a href="eloquent-relationships.html">Eloquentリレーション</a>に必要なカラムを定義するために使用されます。以下の例では、<code>taggable_id</code>と<code>taggable_type</code>カラムが作成されます。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">uuidMorphs</span><span class="p">(</span><span class="s1">&#39;taggable&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="column-method-ulid"></a></p>
+<h4 class="collection-method" id="ulid"><code>ulid()</code><a class="headerlink" href="#ulid" title="Permanent link">&para;</a></h4>
+<p><code>ulid</code>メソッドは、<code>ULID</code>相当のカラムを作成します。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">ulid</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="column-method-uuid"></a></p>
+<h4 class="collection-method" id="uuid"><code>uuid()</code><a class="headerlink" href="#uuid" title="Permanent link">&para;</a></h4>
+<p><code>uuid</code>メソッドは、<code>UUID</code>相当のカラムを作成します。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">uuid</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="column-method-year"></a></p>
+<h4 class="collection-method" id="year"><code>year()</code><a class="headerlink" href="#year" title="Permanent link">&para;</a></h4>
+<p><code>year</code>メソッドは、<code>YEAR</code>相当のカラムを作成します。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">year</span><span class="p">(</span><span class="s1">&#39;birth_year&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="column-modifiers"></a></p>
+<h3 id="_24">カラム修飾子<a class="headerlink" href="#_24" title="Permanent link">&para;</a></h3>
+<p>上記のカラムタイプに加えて、データベーステーブルにカラムを追加する際に使用できるいくつかのカラム「修飾子」があります。例えば、カラムを「NULL許容」にするには、<code>nullable</code>メソッドを使用できます。</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">Illuminate\Database\Schema\Blueprint</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Schema</span><span class="p">;</span>
+
+<span class="nx">Schema</span><span class="o">::</span><span class="na">table</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Blueprint</span> <span class="nv">$table</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">string</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">nullable</span><span class="p">();</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>以下の表に、利用可能なすべてのカラム修飾子を示します。このリストには、<a href="#creating-indexes">インデックス修飾子</a>は含まれていません。</p>
+<div class="overflow-auto">
+<table>
+<thead>
+<tr>
+<th>修飾子</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-&gt;after('column')</code></td>
+<td>カラムを別のカラムの「後」に配置する（MariaDB / MySQL）。</td>
+</tr>
+<tr>
+<td><code>-&gt;autoIncrement()</code></td>
+<td><code>INTEGER</code>カラムを自動インクリメント（主キー）に設定する。</td>
+</tr>
+<tr>
+<td><code>-&gt;charset('utf8mb4')</code></td>
+<td>カラムの文字セットを指定する（MariaDB / MySQL）。</td>
+</tr>
+<tr>
+<td><code>-&gt;collation('utf8mb4_unicode_ci')</code></td>
+<td>カラムの照合順序を指定する。</td>
+</tr>
+<tr>
+<td><code>-&gt;comment('my comment')</code></td>
+<td>カラムにコメントを追加する（MariaDB / MySQL / PostgreSQL）。</td>
+</tr>
+<tr>
+<td><code>-&gt;default($value)</code></td>
+<td>カラムの「デフォルト」値を指定する。</td>
+</tr>
+<tr>
+<td><code>-&gt;first()</code></td>
+<td>カラムをテーブルの「最初」に配置する（MariaDB / MySQL）。</td>
+</tr>
+<tr>
+<td><code>-&gt;from($integer)</code></td>
+<td>自動インクリメントフィールドの開始値を設定する（MariaDB / MySQL / PostgreSQL）。</td>
+</tr>
+<tr>
+<td><code>-&gt;invisible()</code></td>
+<td>カラムを<code>SELECT *</code>クエリで「不可視」にする（MariaDB / MySQL）。</td>
+</tr>
+<tr>
+<td><code>-&gt;nullable($value = true)</code></td>
+<td>カラムに<code>NULL</code>値を挿入できるようにする。</td>
+</tr>
+<tr>
+<td><code>-&gt;storedAs($expression)</code></td>
+<td>保存された生成カラムを作成する（MariaDB / MySQL / PostgreSQL / SQLite）。</td>
+</tr>
+<tr>
+<td><code>-&gt;unsigned()</code></td>
+<td><code>INTEGER</code>カラムを<code>UNSIGNED</code>に設定する（MariaDB / MySQL）。</td>
+</tr>
+<tr>
+<td><code>-&gt;useCurrent()</code></td>
+<td><code>TIMESTAMP</code>カラムが<code>CURRENT_TIMESTAMP</code>をデフォルト値として使用するように設定する。</td>
+</tr>
+<tr>
+<td><code>-&gt;useCurrentOnUpdate()</code></td>
+<td><code>TIMESTAMP</code>カラムがレコードが更新されたときに<code>CURRENT_TIMESTAMP</code>を使用するように設定する（MariaDB / MySQL）。</td>
+</tr>
+<tr>
+<td><code>-&gt;virtualAs($expression)</code></td>
+<td>仮想生成カラムを作成する（MariaDB / MySQL / SQLite）。</td>
+</tr>
+<tr>
+<td><code>-&gt;generatedAs($expression)</code></td>
+<td>指定されたシーケンスオプションを持つIDカラムを作成する（PostgreSQL）。</td>
+</tr>
+<tr>
+<td><code>-&gt;always()</code></td>
+<td>IDカラムのシーケンス値と入力の優先順位を定義する（PostgreSQL）。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><a name="default-expressions"></a></p>
+<h4 id="_25">デフォルト式<a class="headerlink" href="#_25" title="Permanent link">&para;</a></h4>
+<p><code>default</code>修飾子は、値または<code>Illuminate\Database\Query\Expression</code>インスタンスを受け入れます。<code>Expression</code>インスタンスを使用すると、Laravelが値を引用符で囲むのを防ぎ、データベース固有の関数を使用できるようになります。これは、特にJSONカラムにデフォルト値を割り当てる必要がある場合に特に便利です。</p>
+<div class="highlight"><pre><span></span><code><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Schema</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Database\Schema\Blueprint</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Database\Query\Expression</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Database\Migrations\Migration</span><span class="p">;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">return</span> <span class="k">new</span> <span class="k">class</span> <span class="k">extends</span> <span class="nx">Migration</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="p">{</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>    <span class="sd">/**</span>
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="sd">     * マイグレーションを実行する。</span>
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="sd">     */</span>
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">up</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>    <span class="p">{</span>
+<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>        <span class="nx">Schema</span><span class="o">::</span><span class="na">create</span><span class="p">(</span><span class="s1">&#39;flights&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Blueprint</span> <span class="nv">$table</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">();</span>
+<a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">json</span><span class="p">(</span><span class="s1">&#39;movies&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">default</span><span class="p">(</span><span class="k">new</span> <span class="nx">Expression</span><span class="p">(</span><span class="s1">&#39;(JSON_ARRAY())&#39;</span><span class="p">));</span>
+<a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a>            <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">timestamps</span><span class="p">();</span>
+<a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a>        <span class="p">});</span>
+<a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a>    <span class="p">}</span>
+<a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a><span class="p">};</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>デフォルト式のサポートは、データベースドライバ、データベースのバージョン、およびフィールドタイプに依存します。データベースのドキュメントを参照してください。</p>
+</div>
+<p><a name="column-order"></a></p>
+<h4 id="_26">カラムの順序<a class="headerlink" href="#_26" title="Permanent link">&para;</a></h4>
+<p>MariaDBまたはMySQLデータベースを使用する場合、スキーマ内の既存のカラムの後にカラムを追加するために<code>after</code>メソッドを使用できます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">after</span><span class="p">(</span><span class="s1">&#39;password&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Blueprint</span> <span class="nv">$table</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">string</span><span class="p">(</span><span class="s1">&#39;address_line1&#39;</span><span class="p">);</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">string</span><span class="p">(</span><span class="s1">&#39;address_line2&#39;</span><span class="p">);</span>
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">string</span><span class="p">(</span><span class="s1">&#39;city&#39;</span><span class="p">);</span>
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="p">});</span>
+</code></pre></div>
+<p><a name="modifying-columns"></a></p>
+<h3 id="_27">カラムの変更<a class="headerlink" href="#_27" title="Permanent link">&para;</a></h3>
+<p><code>change</code>メソッドを使用すると、既存のカラムのタイプと属性を変更できます。例えば、<code>string</code>カラムのサイズを増やしたい場合があります。<code>change</code>メソッドを実際に見るために、<code>name</code>カラムのサイズを25から50に増やしてみましょう。これを行うには、カラムの新しい状態を定義してから<code>change</code>メソッドを呼び出します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="nx">Schema</span><span class="o">::</span><span class="na">table</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Blueprint</span> <span class="nv">$table</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">string</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">change</span><span class="p">();</span>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="p">});</span>
+</code></pre></div>
+<p>カラムを変更する際には、カラム定義に保持したいすべての修飾子を明示的に含める必要があります。欠落している属性は削除されます。例えば、<code>unsigned</code>、<code>default</code>、および<code>comment</code>属性を保持するには、カラムを変更する際に各修飾子を明示的に呼び出す必要があります。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="nx">Schema</span><span class="o">::</span><span class="na">table</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Blueprint</span> <span class="nv">$table</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">integer</span><span class="p">(</span><span class="s1">&#39;votes&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">unsigned</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">default</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">comment</span><span class="p">(</span><span class="s1">&#39;my comment&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">change</span><span class="p">();</span>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="p">});</span>
+</code></pre></div>
+<p><code>change</code>メソッドはカラムのインデックスを変更しません。したがって、カラムを変更する際にインデックス修飾子を使用して明示的にインデックスを追加または削除することができます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="c1">// インデックスを追加...</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">bigIncrements</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">primary</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">change</span><span class="p">();</span>
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="c1">// インデックスを削除...</span>
+<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">char</span><span class="p">(</span><span class="s1">&#39;postal_code&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">unique</span><span class="p">(</span><span class="k">false</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">change</span><span class="p">();</span>
+</code></pre></div>
+<p><a name="renaming-columns"></a></p>
+<h3 id="_28">カラムの名前変更<a class="headerlink" href="#_28" title="Permanent link">&para;</a></h3>
+<p>カラムの名前を変更するには、スキーマビルダーが提供する<code>renameColumn</code>メソッドを使用できます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="nx">Schema</span><span class="o">::</span><span class="na">table</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Blueprint</span> <span class="nv">$table</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">renameColumn</span><span class="p">(</span><span class="s1">&#39;from&#39;</span><span class="p">,</span> <span class="s1">&#39;to&#39;</span><span class="p">);</span>
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="p">});</span>
+</code></pre></div>
+<p><a name="dropping-columns"></a></p>
+<h3 id="_29">カラムの削除<a class="headerlink" href="#_29" title="Permanent link">&para;</a></h3>
+<p>カラムを削除するには、スキーマビルダーの<code>dropColumn</code>メソッドを使用できます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="nx">Schema</span><span class="o">::</span><span class="na">table</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Blueprint</span> <span class="nv">$table</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">dropColumn</span><span class="p">(</span><span class="s1">&#39;votes&#39;</span><span class="p">);</span>
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="p">});</span>
+</code></pre></div>
+<p><code>dropColumn</code>メソッドにカラム名の配列を渡すことで、テーブルから複数のカラムを削除できます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="nx">Schema</span><span class="o">::</span><span class="na">table</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Blueprint</span> <span class="nv">$table</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">dropColumn</span><span class="p">([</span><span class="s1">&#39;votes&#39;</span><span class="p">,</span> <span class="s1">&#39;avatar&#39;</span><span class="p">,</span> <span class="s1">&#39;location&#39;</span><span class="p">]);</span>
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="p">});</span>
+</code></pre></div>
+<p><a name="available-command-aliases"></a></p>
+<h4 id="_30">利用可能なコマンドエイリアス<a class="headerlink" href="#_30" title="Permanent link">&para;</a></h4>
+<p>Laravelは、一般的なタイプのカラムを削除するための便利なメソッドをいくつか提供しています。以下の表に各メソッドが記載されています。</p>
+<div class="overflow-auto">
+<table>
+<thead>
+<tr>
+<th>コマンド</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$table-&gt;dropMorphs('morphable');</code></td>
+<td><code>morphable_id</code>と<code>morphable_type</code>カラムを削除。</td>
+</tr>
+<tr>
+<td><code>$table-&gt;dropRememberToken();</code></td>
+<td><code>remember_token</code>カラムを削除。</td>
+</tr>
+<tr>
+<td><code>$table-&gt;dropSoftDeletes();</code></td>
+<td><code>deleted_at</code>カラムを削除。</td>
+</tr>
+<tr>
+<td><code>$table-&gt;dropSoftDeletesTz();</code></td>
+<td><code>dropSoftDeletes()</code>メソッドのエイリアス。</td>
+</tr>
+<tr>
+<td><code>$table-&gt;dropTimestamps();</code></td>
+<td><code>created_at</code>と<code>updated_at</code>カラムを削除。</td>
+</tr>
+<tr>
+<td><code>$table-&gt;dropTimestampsTz();</code></td>
+<td><code>dropTimestamps()</code>メソッドのエイリアス。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><a name="indexes"></a></p>
+<h2 id="_31">インデックス<a class="headerlink" href="#_31" title="Permanent link">&para;</a></h2>
+<p><a name="creating-indexes"></a></p>
+<h3 id="_32">インデックスの作成<a class="headerlink" href="#_32" title="Permanent link">&para;</a></h3>
+<p>Laravelのスキーマビルダーは、いくつかのタイプのインデックスをサポートしています。以下の例では、新しい<code>email</code>カラムを作成し、その値が一意であることを指定しています。インデックスを作成するために、カラム定義に<code>unique</code>メソッドをチェーンできます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="k">use</span> <span class="nx">Illuminate\Database\Schema\Blueprint</span><span class="p">;</span>
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Schema</span><span class="p">;</span>
+<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>
+<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="nx">Schema</span><span class="o">::</span><span class="na">table</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Blueprint</span> <span class="nv">$table</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a>    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">string</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">unique</span><span class="p">();</span>
+<a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a><span class="p">});</span>
+</code></pre></div>
+<p>または、カラムを定義した後にインデックスを作成することもできます。そのためには、スキーマビルダーブループリントの<code>unique</code>メソッドを呼び出す必要があります。このメソッドは、一意のインデックスを受け取るカラムの名前を受け取ります。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">unique</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p>インデックスメソッドにカラムの配列を渡すことで、複合（または複合）インデックスを作成できます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">index</span><span class="p">([</span><span class="s1">&#39;account_id&#39;</span><span class="p">,</span> <span class="s1">&#39;created_at&#39;</span><span class="p">]);</span>
+</code></pre></div>
+<p>インデックスを作成する際、Laravelは自動的にテーブル名、カラム名、およびインデックスタイプに基づいてインデックス名を生成しますが、メソッドの2番目の引数を渡してインデックス名を自分で指定することもできます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">unique</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">,</span> <span class="s1">&#39;unique_email&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="available-index-types"></a></p>
+<h4 id="_33">利用可能なインデックスタイプ<a class="headerlink" href="#_33" title="Permanent link">&para;</a></h4>
+<p>Laravelのスキーマビルダーブループリントクラスは、Laravelがサポートする各タイプのインデックスを作成するためのメソッドを提供しています。各インデックスメソッドは、インデックスの名前を指定するためのオプションの2番目の引数を受け取ります。省略した場合、名前はテーブル名、カラム名、およびインデックスタイプから派生します。以下の表に、利用可能な各インデックスメソッドが記載されています。</p>
+<div class="overflow-auto">
+<table>
+<thead>
+<tr>
+<th>コマンド</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$table-&gt;primary('id');</code></td>
+<td>主キーを追加。</td>
+</tr>
+<tr>
+<td><code>$table-&gt;primary(['id', 'parent_id']);</code></td>
+<td>複合キーを追加。</td>
+</tr>
+<tr>
+<td><code>$table-&gt;unique('email');</code></td>
+<td>一意のインデックスを追加。</td>
+</tr>
+<tr>
+<td><code>$table-&gt;index('state');</code></td>
+<td>インデックスを追加。</td>
+</tr>
+<tr>
+<td><code>$table-&gt;fullText('body');</code></td>
+<td>全文インデックスを追加（MariaDB / MySQL / PostgreSQL）。</td>
+</tr>
+<tr>
+<td><code>$table-&gt;fullText('body')-&gt;language('english');</code></td>
+<td>指定された言語の全文インデックスを追加（PostgreSQL）。</td>
+</tr>
+<tr>
+<td><code>$table-&gt;spatialIndex('location');</code></td>
+<td>空間インデックスを追加（SQLite以外）。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><a name="renaming-indexes"></a></p>
+<h3 id="_34">インデックスの名前変更<a class="headerlink" href="#_34" title="Permanent link">&para;</a></h3>
+<p>インデックスの名前を変更するには、スキーマビルダーブループリントが提供する<code>renameIndex</code>メソッドを使用できます。このメソッドは、現在のインデックス名を最初の引数として、希望する名前を2番目の引数として受け取ります。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">renameIndex</span><span class="p">(</span><span class="s1">&#39;from&#39;</span><span class="p">,</span> <span class="s1">&#39;to&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p><a name="dropping-indexes"></a></p>
+<h3 id="_35">インデックスの削除<a class="headerlink" href="#_35" title="Permanent link">&para;</a></h3>
+<p>インデックスを削除するには、インデックスの名前を指定する必要があります。デフォルトでは、Laravelは自動的にテーブル名、インデックスされたカラムの名前、およびインデックスタイプに基づいてインデックス名を割り当てます。以下にいくつかの例を示します。</p>
+<div class="overflow-auto">
+<table>
+<thead>
+<tr>
+<th>コマンド</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$table-&gt;dropPrimary('users_id_primary');</code></td>
+<td>"users"テーブルから主キーを削除。</td>
+</tr>
+<tr>
+<td><code>$table-&gt;dropUnique('users_email_unique');</code></td>
+<td>"users"テーブルから一意のインデックスを削除。</td>
+</tr>
+<tr>
+<td><code>$table-&gt;dropIndex('geo_state_index');</code></td>
+<td>"geo"テーブルから基本インデックスを削除。</td>
+</tr>
+<tr>
+<td><code>$table-&gt;dropFullText('posts_body_fulltext');</code></td>
+<td>"posts"テーブルから全文インデックスを削除。</td>
+</tr>
+<tr>
+<td><code>$table-&gt;dropSpatialIndex('geo_location_spatialindex');</code></td>
+<td>"geo"テーブルから空間インデックスを削除（SQLite以外）。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>インデックスを削除するメソッドにカラムの配列を渡すと、テーブル名、カラム、およびインデックスタイプに基づいて従来のインデックス名が生成されます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="nx">Schema</span><span class="o">::</span><span class="na">table</span><span class="p">(</span><span class="s1">&#39;geo&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Blueprint</span> <span class="nv">$table</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">dropIndex</span><span class="p">([</span><span class="s1">&#39;state&#39;</span><span class="p">]);</span> <span class="c1">// &#39;geo_state_index&#39;インデックスを削除</span>
+<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="p">});</span>
+</code></pre></div>
+<p><a name="foreign-key-constraints"></a></p>
+<h3 id="_36">外部キー制約<a class="headerlink" href="#_36" title="Permanent link">&para;</a></h3>
+<p>Laravelは、データベースレベルで参照整合性を強制するために使用される外部キー制約の作成もサポートしています。例えば、<code>posts</code>テーブルに<code>user_id</code>カラムを定義し、<code>users</code>テーブルの<code>id</code>カラムを参照します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="k">use</span> <span class="nx">Illuminate\Database\Schema\Blueprint</span><span class="p">;</span>
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Schema</span><span class="p">;</span>
+<a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a>
+<a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a><span class="nx">Schema</span><span class="o">::</span><span class="na">table</span><span class="p">(</span><span class="s1">&#39;posts&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Blueprint</span> <span class="nv">$table</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a>    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">unsignedBigInteger</span><span class="p">(</span><span class="s1">&#39;user_id&#39;</span><span class="p">);</span>
+<a id="__codelineno-33-6" name="__codelineno-33-6" href="#__codelineno-33-6"></a>
+<a id="__codelineno-33-7" name="__codelineno-33-7" href="#__codelineno-33-7"></a>    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">foreign</span><span class="p">(</span><span class="s1">&#39;user_id&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">references</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">on</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">);</span>
+<a id="__codelineno-33-8" name="__codelineno-33-8" href="#__codelineno-33-8"></a><span class="p">});</span>
+</code></pre></div>
+<p>この構文はかなり冗長であるため、Laravelは規約を使用して開発者エクスペリエンスを向上させる追加の簡潔なメソッドを提供しています。<code>foreignId</code>メソッドを使用してカラムを作成する場合、上記の例は次のように書き換えることができます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="nx">Schema</span><span class="o">::</span><span class="na">table</span><span class="p">(</span><span class="s1">&#39;posts&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Blueprint</span> <span class="nv">$table</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">foreignId</span><span class="p">(</span><span class="s1">&#39;user_id&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">constrained</span><span class="p">();</span>
+<a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a><span class="p">});</span>
+</code></pre></div>
+<p><code>foreignId</code>メソッドは<code>UNSIGNED BIGINT</code>相当のカラムを作成し、<code>constrained</code>メソッドは規約を使用して参照されるテーブルとカラムを決定します。テーブル名がLaravelの規約に一致しない場合は、<code>constrained</code>メソッドに手動で指定することができます。さらに、生成されるインデックスに割り当てるべき名前を指定することもできます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="nx">Schema</span><span class="o">::</span><span class="na">table</span><span class="p">(</span><span class="s1">&#39;posts&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Blueprint</span> <span class="nv">$table</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>    <span class="nv">$table</span><span class="o">-&gt;</span><span class="na">foreignId</span><span class="p">(</span><span class="s1">&#39;user_id&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">constrained</span><span class="p">(</span>
+<a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a>        <span class="nx">table</span><span class="o">:</span> <span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="nx">indexName</span><span class="o">:</span> <span class="s1">&#39;posts_user_id&#39;</span>
+<a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a>    <span class="p">);</span>
+<a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a><span class="p">});</span>
+</code></pre></div>
+<p>"on delete" および "on update" プロパティの制約に対して、希望するアクションを指定することもできます:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">foreignId</span><span class="p">(</span><span class="s1">&#39;user_id&#39;</span><span class="p">)</span>
+<a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>      <span class="o">-&gt;</span><span class="na">constrained</span><span class="p">()</span>
+<a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a>      <span class="o">-&gt;</span><span class="na">onUpdate</span><span class="p">(</span><span class="s1">&#39;cascade&#39;</span><span class="p">)</span>
+<a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a>      <span class="o">-&gt;</span><span class="na">onDelete</span><span class="p">(</span><span class="s1">&#39;cascade&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p>これらのアクションに対して、代替的で表現力豊かな構文も提供されています:</p>
+<div class="overflow-auto">
+<table>
+<thead>
+<tr>
+<th>メソッド</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$table-&gt;cascadeOnUpdate();</code></td>
+<td>更新時にカスケードする。</td>
+</tr>
+<tr>
+<td><code>$table-&gt;restrictOnUpdate();</code></td>
+<td>更新時に制限する。</td>
+</tr>
+<tr>
+<td><code>$table-&gt;noActionOnUpdate();</code></td>
+<td>更新時に何もしない。</td>
+</tr>
+<tr>
+<td><code>$table-&gt;cascadeOnDelete();</code></td>
+<td>削除時にカスケードする。</td>
+</tr>
+<tr>
+<td><code>$table-&gt;restrictOnDelete();</code></td>
+<td>削除時に制限する。</td>
+</tr>
+<tr>
+<td><code>$table-&gt;nullOnDelete();</code></td>
+<td>削除時に外部キーの値をnullに設定する。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>追加の<a href="#column-modifiers">カラム修飾子</a>は、<code>constrained</code>メソッドの前に呼び出す必要があります:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">foreignId</span><span class="p">(</span><span class="s1">&#39;user_id&#39;</span><span class="p">)</span>
+<a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a>      <span class="o">-&gt;</span><span class="na">nullable</span><span class="p">()</span>
+<a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a>      <span class="o">-&gt;</span><span class="na">constrained</span><span class="p">();</span>
+</code></pre></div>
+<p><a name="dropping-foreign-keys"></a></p>
+<h4 id="_37">外部キーの削除<a class="headerlink" href="#_37" title="Permanent link">&para;</a></h4>
+<p>外部キーを削除するには、<code>dropForeign</code>メソッドを使用し、削除する外部キー制約の名前を引数として渡します。外部キー制約はインデックスと同じ命名規則を使用します。つまり、外部キー制約名はテーブル名と制約内のカラム名に基づき、その後に "_foreign" サフィックスが付きます:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">dropForeign</span><span class="p">(</span><span class="s1">&#39;posts_user_id_foreign&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p>または、外部キーを保持するカラム名を含む配列を<code>dropForeign</code>メソッドに渡すこともできます。配列はLaravelの制約命名規則を使用して外部キー制約名に変換されます:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="nv">$table</span><span class="o">-&gt;</span><span class="na">dropForeign</span><span class="p">([</span><span class="s1">&#39;user_id&#39;</span><span class="p">]);</span>
+</code></pre></div>
+<p><a name="toggling-foreign-key-constraints"></a></p>
+<h4 id="_38">外部キー制約の切り替え<a class="headerlink" href="#_38" title="Permanent link">&para;</a></h4>
+<p>マイグレーション内で外部キー制約を有効または無効にするには、以下のメソッドを使用します:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="nx">Schema</span><span class="o">::</span><span class="na">enableForeignKeyConstraints</span><span class="p">();</span>
+<a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>
+<a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a><span class="nx">Schema</span><span class="o">::</span><span class="na">disableForeignKeyConstraints</span><span class="p">();</span>
+<a id="__codelineno-40-4" name="__codelineno-40-4" href="#__codelineno-40-4"></a>
+<a id="__codelineno-40-5" name="__codelineno-40-5" href="#__codelineno-40-5"></a><span class="nx">Schema</span><span class="o">::</span><span class="na">withoutForeignKeyConstraints</span><span class="p">(</span><span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
+<a id="__codelineno-40-6" name="__codelineno-40-6" href="#__codelineno-40-6"></a>    <span class="c1">// このクロージャ内では制約が無効になります...</span>
+<a id="__codelineno-40-7" name="__codelineno-40-7" href="#__codelineno-40-7"></a><span class="p">});</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>SQLiteはデフォルトで外部キー制約を無効にしています。SQLiteを使用する場合、マイグレーションで外部キーを作成しようとする前に、データベース設定で<a href="database.html#configuration">外部キーのサポートを有効にする</a>ようにしてください。</p>
+</div>
+<p><a name="events"></a></p>
+<h2 id="_39">イベント<a class="headerlink" href="#_39" title="Permanent link">&para;</a></h2>
+<p>便宜上、各マイグレーション操作は<a href="events.html">イベント</a>を発行します。以下のすべてのイベントは、基本クラス<code>Illuminate\Database\Events\MigrationEvent</code>を拡張しています:</p>
+<div class="overflow-auto">
+<table>
+<thead>
+<tr>
+<th>クラス</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Illuminate\Database\Events\MigrationsStarted</code></td>
+<td>マイグレーションのバッチが実行されようとしています。</td>
+</tr>
+<tr>
+<td><code>Illuminate\Database\Events\MigrationsEnded</code></td>
+<td>マイグレーションのバッチが実行を終了しました。</td>
+</tr>
+<tr>
+<td><code>Illuminate\Database\Events\MigrationStarted</code></td>
+<td>単一のマイグレーションが実行されようとしています。</td>
+</tr>
+<tr>
+<td><code>Illuminate\Database\Events\MigrationEnded</code></td>
+<td>単一のマイグレーションが実行を終了しました。</td>
+</tr>
+<tr>
+<td><code>Illuminate\Database\Events\NoPendingMigrations</code></td>
+<td>マイグレーションコマンドが保留中のマイグレーションを見つけませんでした。</td>
+</tr>
+<tr>
+<td><code>Illuminate\Database\Events\SchemaDumped</code></td>
+<td>データベーススキーマのダンプが完了しました。</td>
+</tr>
+<tr>
+<td><code>Illuminate\Database\Events\SchemaLoaded</code></td>
+<td>既存のデータベーススキーマのダンプが読み込まれました。</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+<nav class="md-footer-nav">
+    
+    
+</nav>
+
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": ".", "features": ["back-to-top", "navigation.expand", "navigation.tabs", "navigation.footer", "navigation.sections", "navigation.expand", "content.code.copy", "hide_repository_button", "content.code.annotate", "content.tabs.link", "toc.none", "content.action.edit"], "search": "assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="assets/javascripts/bundle.56dfad97.min.js"></script>
+      
+    
+  </body>
+</html>

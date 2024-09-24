@@ -1,0 +1,4293 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://github.com/koriym/laravel11-ja/logging.html">
+      
+      
+        <link rel="prev" href="errors.html">
+      
+      
+        <link rel="next" href="artisan.html">
+      
+      
+      <link rel="icon" href="assets/images/favicon_io/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.35">
+    
+    
+      
+        <title>ログ - L11JA</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.35f28582.min.css">
+      
+      
+
+
+    
+    
+
+    
+
+    
+      <link rel="stylesheet" href="assets/css/php.css">
+    
+      <link rel="stylesheet" href="assets/css/mkdocs_material_extra.css">
+    
+      <link rel="stylesheet" href="assets/css/extra.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-G60CEHXLQ1"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-G60CEHXLQ1",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-G60CEHXLQ1",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      <!-- Determine classes -->
+
+
+
+<!-- Header -->
+<header class="md-header" data-md-component="header">
+  <nav
+          class="md-header__inner md-grid"
+          aria-label="Header"
+  >
+
+    <!-- Link to home -->
+    <a
+            href="."
+            title="L11JA"
+            class="md-header__button md-logo"
+            aria-label="L11JA"
+            data-md-component="logo"
+    >
+      
+  <img src="assets/images/logo.png" alt="logo">
+
+    </a>
+
+    <!-- Button to open drawer -->
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+
+    <!-- Header title -->
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            <span style="font-family: 'Noto Sans'; font-size: 20px" >
+            L11JA
+            </span>
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            <span style="font-family: 'Noto Sans Batak'; font-size: 20px" >
+            
+              ログ
+            
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Color palette toggle -->
+    
+
+    <!-- User preference: color palette -->
+    
+    <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+
+    <!-- Site language selector -->
+    
+
+    <!-- Button to open search modal -->
+    
+    <label class="md-header__button md-icon" for="__search">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+    </label>
+
+    <!-- Search interface -->
+    <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    <!-- Repository information -->
+    
+    <div class="md-header__source">
+      
+
+<!--
+  Check whether the repository is hosted on one of the supported code hosting
+  platforms (GitHub, GitLab or Bitbucket) to show icon.
+-->
+
+
+  
+
+
+<!-- Repository containing source -->
+<a href="https://github.com/koriym/l11ja" title="source.link.title"
+    class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z" fill="#000"/></svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+    
+  </nav>
+
+  <!-- Navigation tabs (sticky) -->
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="releases.html" class="md-tabs__link">
+          
+  
+  プロローグ
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="installation.html" class="md-tabs__link">
+          
+  
+  はじめに
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="lifecycle.html" class="md-tabs__link">
+          
+  
+  アーキテクチャ
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="routing.html" class="md-tabs__link">
+          
+  
+  基本
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="artisan.html" class="md-tabs__link">
+          
+  
+  掘り下げる
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="authentication.html" class="md-tabs__link">
+          
+  
+  セキュリティ
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="database.html" class="md-tabs__link">
+          
+  
+  データベース
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="eloquent.html" class="md-tabs__link">
+          
+  
+  Eloquent ORM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="testing.html" class="md-tabs__link">
+          
+  
+  テスト
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="starter-kits.html" class="md-tabs__link">
+          
+  
+  パッケージ
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="L11JA" class="md-nav__button md-logo" aria-label="L11JA" data-md-component="logo">
+      
+  <img src="assets/images/logo.png" alt="logo">
+
+    </a>
+    L11JA
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+<!--
+  Check whether the repository is hosted on one of the supported code hosting
+  platforms (GitHub, GitLab or Bitbucket) to show icon.
+-->
+
+
+  
+
+
+<!-- Repository containing source -->
+<a href="https://github.com/koriym/l11ja" title="source.link.title"
+    class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z" fill="#000"/></svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    プロローグ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            プロローグ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="releases.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リリースノート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="upgrade.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    アップグレードガイド
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="contributions.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    貢献ガイド
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            はじめに
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="installation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    インストール
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="configuration.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    設定
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structure.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ディレクトリ構造
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="frontend.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    フロントエンド
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="starter-kits.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    スターターキット
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="deployment.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    デプロイ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    アーキテクチャ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            アーキテクチャ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="lifecycle.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リクエストライフサイクル
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="container.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    サービスコンテナ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="providers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    サービスプロバイダ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="facades.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ファサード
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    基本
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            基本
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="routing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ルーティング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="middleware.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ミドルウェア
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="csrf.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CSRF保護
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="controllers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コントローラ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="requests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リクエスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="responses.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    レスポンス
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="views.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ビュー
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="blade.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bladeテンプレート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="vite.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    アセットバンドル
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="urls.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    URL生成
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="session.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    セッション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="validation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    バリデーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="errors.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    エラー処理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    ログ
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="logging.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    ログ
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      はじめに
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      設定
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="設定">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      利用可能なチャンネルドライバ
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="利用可能なチャンネルドライバ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      チャンネル名の設定
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      チャンネルの前提条件
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="チャンネルの前提条件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#singledaily" class="md-nav__link">
+    <span class="md-ellipsis">
+      SingleおよびDailyチャンネルの設定
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#papertrail" class="md-nav__link">
+    <span class="md-ellipsis">
+      Papertrailチャンネルの設定
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#slack" class="md-nav__link">
+    <span class="md-ellipsis">
+      Slackチャンネルの設定
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      非推奨警告のロギング
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      ログスタックの構築
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ログスタックの構築">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      ログレベル
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      ログメッセージの書き込み
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ログメッセージの書き込み">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      コンテキスト情報
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      特定のチャンネルへの書き込み
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="特定のチャンネルへの書き込み">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      オンデマンドチャンネル
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monolog" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monologチャンネルのカスタマイズ
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Monologチャンネルのカスタマイズ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#monolog_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      チャンネルのMonologのカスタマイズ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#monolog_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monologハンドラチャンネルの作成
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Monologハンドラチャンネルの作成">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#monolog_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monologフォーマッタ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#monolog_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monologプロセッサ
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      ファクトリを介したカスタムチャンネルの作成
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pail" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pailを使用したログメッセージのテイル
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pailを使用したログメッセージのテイル">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      インストール
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用方法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      ログのフィルタリング
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ログのフィルタリング">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-filter" class="md-nav__link">
+    <span class="md-ellipsis">
+      --filter
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-message" class="md-nav__link">
+    <span class="md-ellipsis">
+      --message
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-level" class="md-nav__link">
+    <span class="md-ellipsis">
+      --level
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      --user
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    掘り下げる
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            掘り下げる
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="artisan.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Artisanコンソール
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="broadcasting.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ブロードキャスティング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cache.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    キャッシュ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="collections.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コレクション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="concurrency.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    並行処理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="context.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コンテキスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="contracts.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コントラクト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="events.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    イベント
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="filesystem.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ファイルストレージ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="helpers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ヘルパー
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="http-client.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTTPクライアント
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="localization.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ローカライゼーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mail.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    メール
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="notifications.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    通知
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="packages.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    パッケージ開発
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="processes.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    プロセス
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="queues.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    キュー
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="rate-limiting.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    レート制限
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="strings.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    文字列
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="scheduling.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    タスクスケジューリング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    セキュリティ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            セキュリティ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="authentication.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    認証
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="authorization.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    認可
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="verification.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    メール確認
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="encryption.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    暗号化
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hashing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ハッシュ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="passwords.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    パスワードリセット
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    データベース
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            データベース
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="database.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="queries.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    クエリビルダ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pagination.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ページネーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="migrations.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    マイグレーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="seeding.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    シーディング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="redis.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Redis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Eloquent ORM
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Eloquent ORM
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-relationships.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リレーションシップ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-collections.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コレクション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-mutators.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ミューテータ / キャスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-resources.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    APIリソース
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-serialization.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    シリアライゼーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-factories.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ファクトリ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    テスト
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            テスト
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="testing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="http-tests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTTPテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="console-tests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コンソールテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="dusk.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ブラウザテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="database-testing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    データベース
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mocking.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    モック
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    パッケージ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            パッケージ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="starter-kits.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    スターターキット
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="billing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cashier (Stripe)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cashier-paddle.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cashier (Paddle)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="dusk.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ブラウザテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="envoy.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Envoy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fortify.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fortify
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="folio.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Folio
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="homestead.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Homestead
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="horizon.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Horizon
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mix.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mix
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="octane.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Octane
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="passport.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Passport
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pennant.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pennant
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pint.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pint
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="precognition.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Precognition
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="prompts.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prompts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pulse.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pulse
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reverb.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reverb
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sail.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sail
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sanctum.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sanctum
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="scout.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Scout
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="socialite.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Socialite
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="telescope.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Telescope
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="valet.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Valet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      はじめに
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      設定
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="設定">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      利用可能なチャンネルドライバ
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="利用可能なチャンネルドライバ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      チャンネル名の設定
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      チャンネルの前提条件
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="チャンネルの前提条件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#singledaily" class="md-nav__link">
+    <span class="md-ellipsis">
+      SingleおよびDailyチャンネルの設定
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#papertrail" class="md-nav__link">
+    <span class="md-ellipsis">
+      Papertrailチャンネルの設定
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#slack" class="md-nav__link">
+    <span class="md-ellipsis">
+      Slackチャンネルの設定
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      非推奨警告のロギング
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      ログスタックの構築
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ログスタックの構築">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      ログレベル
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      ログメッセージの書き込み
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ログメッセージの書き込み">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      コンテキスト情報
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      特定のチャンネルへの書き込み
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="特定のチャンネルへの書き込み">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      オンデマンドチャンネル
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monolog" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monologチャンネルのカスタマイズ
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Monologチャンネルのカスタマイズ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#monolog_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      チャンネルのMonologのカスタマイズ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#monolog_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monologハンドラチャンネルの作成
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Monologハンドラチャンネルの作成">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#monolog_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monologフォーマッタ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#monolog_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monologプロセッサ
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      ファクトリを介したカスタムチャンネルの作成
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pail" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pailを使用したログメッセージのテイル
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pailを使用したログメッセージのテイル">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      インストール
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用方法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      ログのフィルタリング
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ログのフィルタリング">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-filter" class="md-nav__link">
+    <span class="md-ellipsis">
+      --filter
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-message" class="md-nav__link">
+    <span class="md-ellipsis">
+      --message
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-level" class="md-nav__link">
+    <span class="md-ellipsis">
+      --level
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      --user
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/koriym/l11ja/edit/master/docs/logging.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="_1">ロギング<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<ul>
+<li><a href="#introduction">はじめに</a></li>
+<li><a href="#configuration">設定</a><ul>
+<li><a href="#available-channel-drivers">利用可能なチャンネルドライバ</a></li>
+<li><a href="#channel-prerequisites">チャンネルの前提条件</a></li>
+<li><a href="#logging-deprecation-warnings">非推奨警告のロギング</a></li>
+</ul>
+</li>
+<li><a href="#building-log-stacks">ログスタックの構築</a></li>
+<li><a href="#writing-log-messages">ログメッセージの書き込み</a><ul>
+<li><a href="#contextual-information">コンテキスト情報</a></li>
+<li><a href="#writing-to-specific-channels">特定のチャンネルへの書き込み</a></li>
+</ul>
+</li>
+<li><a href="#monolog-channel-customization">Monologチャンネルのカスタマイズ</a><ul>
+<li><a href="#customizing-monolog-for-channels">チャンネル用のMonologのカスタマイズ</a></li>
+<li><a href="#creating-monolog-handler-channels">Monologハンドラチャンネルの作成</a></li>
+<li><a href="#creating-custom-channels-via-factories">ファクトリを介したカスタムチャンネルの作成</a></li>
+</ul>
+</li>
+<li><a href="#tailing-log-messages-using-pail">Pailを使用したログメッセージの追跡</a><ul>
+<li><a href="#pail-installation">インストール</a></li>
+<li><a href="#pail-usage">使用方法</a></li>
+<li><a href="#pail-filtering-logs">ログのフィルタリング</a></li>
+</ul>
+</li>
+</ul>
+<p><a name="introduction"></a></p>
+<h2 id="_2">はじめに<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>アプリケーション内で何が起こっているかを詳しく知るために、Laravelはファイル、システムエラーログ、さらにはSlackにメッセージをログとして記録し、チーム全体に通知することができる堅牢なロギングサービスを提供しています。</p>
+<p>Laravelのロギングは「チャンネル」に基づいています。各チャンネルは、ログ情報を書き込む特定の方法を表します。例えば、<code>single</code>チャンネルは単一のログファイルにログを書き込み、<code>slack</code>チャンネルはログメッセージをSlackに送信します。ログメッセージは、その重大度に基づいて複数のチャンネルに書き込むことができます。</p>
+<p>内部的には、Laravelは<a href="https://github.com/Seldaek/monolog">Monolog</a>ライブラリを利用しており、さまざまな強力なログハンドラをサポートしています。Laravelはこれらのハンドラを簡単に設定できるようにし、アプリケーションのログ処理をカスタマイズするためにそれらを組み合わせることができます。</p>
+<p><a name="configuration"></a></p>
+<h2 id="_3">設定<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>アプリケーションのロギング動作を制御するすべての設定オプションは、<code>config/logging.php</code>設定ファイルに収められています。このファイルでは、アプリケーションのログチャンネルを設定できるため、利用可能な各チャンネルとそのオプションを確認してください。以下では、いくつかの一般的なオプションを紹介します。</p>
+<p>デフォルトでは、Laravelはログメッセージを記録する際に<code>stack</code>チャンネルを使用します。<code>stack</code>チャンネルは、複数のログチャンネルを単一のチャンネルに集約するために使用されます。スタックの構築について詳しくは、<a href="#building-log-stacks">以下のドキュメント</a>を参照してください。</p>
+<p><a name="available-channel-drivers"></a></p>
+<h3 id="_4">利用可能なチャンネルドライバ<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>各ログチャンネルは「ドライバ」によって動作します。ドライバは、ログメッセージが実際にどのように記録されるかを決定します。以下のログチャンネルドライバは、すべてのLaravelアプリケーションで利用可能です。これらのドライバのほとんどは、アプリケーションの<code>config/logging.php</code>設定ファイルに既に存在しているため、このファイルを確認して内容に慣れることをお勧めします。</p>
+<div class="overflow-auto">
+<table>
+<thead>
+<tr>
+<th>名前</th>
+<th>説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>custom</code></td>
+<td>指定されたファクトリを呼び出してチャンネルを作成するドライバ。</td>
+</tr>
+<tr>
+<td><code>daily</code></td>
+<td>日次でローテーションする<code>RotatingFileHandler</code>ベースのMonologドライバ。</td>
+</tr>
+<tr>
+<td><code>errorlog</code></td>
+<td><code>ErrorLogHandler</code>ベースのMonologドライバ。</td>
+</tr>
+<tr>
+<td><code>monolog</code></td>
+<td>サポートされている任意のMonologハンドラを使用できるMonologファクトリドライバ。</td>
+</tr>
+<tr>
+<td><code>papertrail</code></td>
+<td><code>SyslogUdpHandler</code>ベースのMonologドライバ。</td>
+</tr>
+<tr>
+<td><code>single</code></td>
+<td>単一のファイルまたはパスベースのロガーチャンネル（<code>StreamHandler</code>）。</td>
+</tr>
+<tr>
+<td><code>slack</code></td>
+<td><code>SlackWebhookHandler</code>ベースのMonologドライバ。</td>
+</tr>
+<tr>
+<td><code>stack</code></td>
+<td>「マルチチャンネル」チャンネルを作成するためのラッパー。</td>
+</tr>
+<tr>
+<td><code>syslog</code></td>
+<td><code>SyslogHandler</code>ベースのMonologドライバ。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><a href="#monolog-channel-customization">高度なチャンネルカスタマイズ</a>のドキュメントを参照して、<code>monolog</code>および<code>custom</code>ドライバの詳細を学んでください。</p>
+</div>
+<p><a name="configuring-the-channel-name"></a></p>
+<h4 id="_5">チャンネル名の設定<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
+<p>デフォルトでは、Monologは現在の環境に一致する「チャンネル名」（例：<code>production</code>または<code>local</code>）でインスタンス化されます。この値を変更するには、チャンネルの設定に<code>name</code>オプションを追加できます。</p>
+<div class="highlight"><pre><span></span><code><span class="s1">&#39;stack&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="s1">&#39;driver&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;stack&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;channel-name&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;channels&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;single&#39;</span><span class="p">,</span> <span class="s1">&#39;slack&#39;</span><span class="p">],</span>
+<span class="p">],</span>
+</code></pre></div>
+<p><a name="channel-prerequisites"></a></p>
+<h3 id="_6">チャンネルの前提条件<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p><a name="configuring-the-single-and-daily-channels"></a></p>
+<h4 id="singledaily">SingleおよびDailyチャンネルの設定<a class="headerlink" href="#singledaily" title="Permanent link">&para;</a></h4>
+<p><code>single</code>および<code>daily</code>チャンネルには、3つのオプションの設定オプションがあります：<code>bubble</code>、<code>permission</code>、および<code>locking</code>。</p>
+<div class="overflow-auto">
+<table>
+<thead>
+<tr>
+<th>名前</th>
+<th>説明</th>
+<th>デフォルト</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>bubble</code></td>
+<td>メッセージが処理された後、他のチャンネルにバブルアップするかどうかを示します。</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>locking</code></td>
+<td>ログファイルに書き込む前にロックを試みます。</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>permission</code></td>
+<td>ログファイルのパーミッション。</td>
+<td><code>0644</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>さらに、<code>daily</code>チャンネルの保持ポリシーは、<code>LOG_DAILY_DAYS</code>環境変数または<code>days</code>設定オプションを介して設定できます。</p>
+<div class="overflow-auto">
+<table>
+<thead>
+<tr>
+<th>名前</th>
+<th>説明</th>
+<th>デフォルト</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>days</code></td>
+<td>日次ログファイルを保持する日数。</td>
+<td><code>7</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><a name="configuring-the-papertrail-channel"></a></p>
+<h4 id="papertrail">Papertrailチャンネルの設定<a class="headerlink" href="#papertrail" title="Permanent link">&para;</a></h4>
+<p><code>papertrail</code>チャンネルには、<code>host</code>および<code>port</code>設定オプションが必要です。これらは、<code>PAPERTRAIL_URL</code>および<code>PAPERTRAIL_PORT</code>環境変数を介して定義できます。これらの値は、<a href="https://help.papertrailapp.com/kb/configuration/configuring-centralized-logging-from-php-apps/#send-events-from-php-app">Papertrail</a>から取得できます。</p>
+<p><a name="configuring-the-slack-channel"></a></p>
+<h4 id="slack">Slackチャンネルの設定<a class="headerlink" href="#slack" title="Permanent link">&para;</a></h4>
+<p><code>slack</code>チャンネルには、<code>url</code>設定オプションが必要です。この値は、<code>LOG_SLACK_WEBHOOK_URL</code>環境変数を介して定義できます。このURLは、Slackチーム用に設定した<a href="https://slack.com/apps/A0F7XDUAZ-incoming-webhooks">インカミングウェブフック</a>のURLと一致する必要があります。</p>
+<p>デフォルトでは、Slackは<code>critical</code>レベル以上のログのみを受信します。ただし、これは<code>LOG_LEVEL</code>環境変数を使用するか、Slackログチャンネルの設定配列内の<code>level</code>設定オプションを変更することで調整できます。</p>
+<p><a name="logging-deprecation-warnings"></a></p>
+<h3 id="_7">非推奨警告のロギング<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>PHP、Laravel、およびその他のライブラリは、その機能の一部が非推奨になり、将来のバージョンで削除されることをユーザーに通知することがよくあります。これらの非推奨警告をログに記録したい場合は、<code>LOG_DEPRECATIONS_CHANNEL</code>環境変数を使用して、またはアプリケーションの<code>config/logging.php</code>設定ファイル内で、優先する<code>deprecations</code>ログチャンネルを指定できます。</p>
+<div class="highlight"><pre><span></span><code><span class="s1">&#39;deprecations&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="s1">&#39;channel&#39;</span> <span class="o">=&gt;</span> <span class="nx">env</span><span class="p">(</span><span class="s1">&#39;LOG_DEPRECATIONS_CHANNEL&#39;</span><span class="p">,</span> <span class="s1">&#39;null&#39;</span><span class="p">),</span>
+    <span class="s1">&#39;trace&#39;</span> <span class="o">=&gt;</span> <span class="nx">env</span><span class="p">(</span><span class="s1">&#39;LOG_DEPRECATIONS_TRACE&#39;</span><span class="p">,</span> <span class="k">false</span><span class="p">),</span>
+<span class="p">],</span>
+
+<span class="s1">&#39;channels&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="c1">// ...</span>
+<span class="p">]</span>
+</code></pre></div>
+<p>または、<code>deprecations</code>という名前のログチャンネルを定義することもできます。この名前のログチャンネルが存在する場合、非推奨警告のログに常に使用されます。</p>
+<div class="highlight"><pre><span></span><code><span class="s1">&#39;channels&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="s1">&#39;deprecations&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;driver&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;single&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;path&#39;</span> <span class="o">=&gt;</span> <span class="nx">storage_path</span><span class="p">(</span><span class="s1">&#39;logs/php-deprecation-warnings.log&#39;</span><span class="p">),</span>
+    <span class="p">],</span>
+<span class="p">],</span>
+</code></pre></div>
+<p><a name="building-log-stacks"></a></p>
+<h2 id="_8">ログスタックの構築<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<p>前述のように、<code>stack</code>ドライバを使用すると、複数のチャンネルを単一のログチャンネルに結合できます。ログスタックの使用方法を説明するために、本番アプリケーションで見られる設定例を見てみましょう。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="s1">&#39;channels&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="s1">&#39;stack&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>        <span class="s1">&#39;driver&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;stack&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>        <span class="s1">&#39;channels&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;syslog&#39;</span><span class="p">,</span> <span class="s1">&#39;slack&#39;</span><span class="p">],</span> <span class="c1">// [tl! add]</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>        <span class="s1">&#39;ignore_exceptions&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">,</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="p">],</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="s1">&#39;syslog&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>        <span class="s1">&#39;driver&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;syslog&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>        <span class="s1">&#39;level&#39;</span> <span class="o">=&gt;</span> <span class="nx">env</span><span class="p">(</span><span class="s1">&#39;LOG_LEVEL&#39;</span><span class="p">,</span> <span class="s1">&#39;debug&#39;</span><span class="p">),</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>        <span class="s1">&#39;facility&#39;</span> <span class="o">=&gt;</span> <span class="nx">env</span><span class="p">(</span><span class="s1">&#39;LOG_SYSLOG_FACILITY&#39;</span><span class="p">,</span> <span class="nx">LOG_USER</span><span class="p">),</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>        <span class="s1">&#39;replace_placeholders&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="p">],</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="s1">&#39;slack&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>        <span class="s1">&#39;driver&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;slack&#39;</span><span class="p">,</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>        <span class="s1">&#39;url&#39;</span> <span class="o">=&gt;</span> <span class="nx">env</span><span class="p">(</span><span class="s1">&#39;LOG_SLACK_WEBHOOK_URL&#39;</span><span class="p">),</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>        <span class="s1">&#39;username&#39;</span> <span class="o">=&gt;</span> <span class="nx">env</span><span class="p">(</span><span class="s1">&#39;LOG_SLACK_USERNAME&#39;</span><span class="p">,</span> <span class="s1">&#39;Laravel Log&#39;</span><span class="p">),</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>        <span class="s1">&#39;emoji&#39;</span> <span class="o">=&gt;</span> <span class="nx">env</span><span class="p">(</span><span class="s1">&#39;LOG_SLACK_EMOJI&#39;</span><span class="p">,</span> <span class="s1">&#39;:boom:&#39;</span><span class="p">),</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>        <span class="s1">&#39;level&#39;</span> <span class="o">=&gt;</span> <span class="nx">env</span><span class="p">(</span><span class="s1">&#39;LOG_LEVEL&#39;</span><span class="p">,</span> <span class="s1">&#39;critical&#39;</span><span class="p">),</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>        <span class="s1">&#39;replace_placeholders&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    <span class="p">],</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="p">],</span>
+</code></pre></div>
+<p>この設定を詳しく見てみましょう。まず、<code>stack</code>チャンネルが<code>channels</code>オプションを介して他の2つのチャンネル（<code>syslog</code>と<code>slack</code>）を集約していることに注目してください。したがって、ログメッセージを記録する際に、これらの両方のチャンネルがメッセージをログに記録する機会を持ちます。ただし、以下で見るように、これらのチャンネルが実際にメッセージをログに記録するかどうかは、メッセージの重大度/「レベル」によって決まる場合があります。</p>
+<p><a name="log-levels"></a></p>
+<h4 id="_9">ログレベル<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h4>
+<p>上記の例の<code>syslog</code>および<code>slack</code>チャンネル設定にある<code>level</code>設定オプションに注意してください。このオプションは、メッセージがチャンネルによってログに記録されるために必要な最小「レベル」を決定します。Laravelのロギングサービスを提供するMonologは、<a href="https://tools.ietf.org/html/rfc5424">RFC 5424仕様</a>で定義されたすべてのログレベルを提供します。重大度の降順で、これらのログレベルは次のとおりです：<strong>emergency</strong>、<strong>alert</strong>、<strong>critical</strong>、<strong>error</strong>、<strong>warning</strong>、<strong>notice</strong>、<strong>info</strong>、および<strong>debug</strong>。</p>
+<p>したがって、<code>debug</code>メソッドを使用してメッセージをログに記録すると想像してください：</p>
+<div class="highlight"><pre><span></span><code><span class="nx">Log</span><span class="o">::</span><span class="na">debug</span><span class="p">(</span><span class="s1">&#39;An informational message.&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p>与えられた設定に基づき、<code>syslog</code>チャンネルはメッセージをシステムログに書き込みます。しかし、エラーメッセージが<code>critical</code>以上でないため、Slackには送信されません。しかし、<code>emergency</code>メッセージをログに記録する場合、<code>emergency</code>レベルは両方のチャンネルの最小レベルのしきい値を超えているため、システムログとSlackの両方に送信されます：</p>
+<div class="highlight"><pre><span></span><code><span class="nx">Log</span><span class="o">::</span><span class="na">emergency</span><span class="p">(</span><span class="s1">&#39;The system is down!&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="writing-log-messages"></a></p>
+<h2 id="_10">ログメッセージの書き込み<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<p><code>Log</code> <a href="facades.html">ファサード</a>を使用して、ログに情報を書き込むことができます。前述のように、ロガーは<a href="https://tools.ietf.org/html/rfc5424">RFC 5424仕様</a>で定義された8つのロギングレベルを提供します：<strong>emergency</strong>、<strong>alert</strong>、<strong>critical</strong>、<strong>error</strong>、<strong>warning</strong>、<strong>notice</strong>、<strong>info</strong>、<strong>debug</strong>：</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Log</span><span class="p">;</span>
+
+<span class="nx">Log</span><span class="o">::</span><span class="na">emergency</span><span class="p">(</span><span class="nv">$message</span><span class="p">);</span>
+<span class="nx">Log</span><span class="o">::</span><span class="na">alert</span><span class="p">(</span><span class="nv">$message</span><span class="p">);</span>
+<span class="nx">Log</span><span class="o">::</span><span class="na">critical</span><span class="p">(</span><span class="nv">$message</span><span class="p">);</span>
+<span class="nx">Log</span><span class="o">::</span><span class="na">error</span><span class="p">(</span><span class="nv">$message</span><span class="p">);</span>
+<span class="nx">Log</span><span class="o">::</span><span class="na">warning</span><span class="p">(</span><span class="nv">$message</span><span class="p">);</span>
+<span class="nx">Log</span><span class="o">::</span><span class="na">notice</span><span class="p">(</span><span class="nv">$message</span><span class="p">);</span>
+<span class="nx">Log</span><span class="o">::</span><span class="na">info</span><span class="p">(</span><span class="nv">$message</span><span class="p">);</span>
+<span class="nx">Log</span><span class="o">::</span><span class="na">debug</span><span class="p">(</span><span class="nv">$message</span><span class="p">);</span>
+</code></pre></div>
+<p>これらのメソッドのいずれかを呼び出して、対応するレベルのメッセージをログに記録できます。デフォルトでは、メッセージは<code>logging</code>設定ファイルで設定されたデフォルトのログチャンネルに書き込まれます：</p>
+<div class="highlight"><pre><span></span><code><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Http\Controllers</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">App\Http\Controllers\Controller</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">App\Models\User</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Log</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\View\View</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">UserController</span> <span class="k">extends</span> <span class="nx">Controller</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * 指定されたユーザーのプロフィールを表示します。</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">show</span><span class="p">(</span><span class="nx">string</span> <span class="nv">$id</span><span class="p">)</span><span class="o">:</span> <span class="nx">View</span>
+    <span class="p">{</span>
+        <span class="nx">Log</span><span class="o">::</span><span class="na">info</span><span class="p">(</span><span class="s1">&#39;Showing the user profile for user: {id}&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="nv">$id</span><span class="p">]);</span>
+
+        <span class="k">return</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;user.profile&#39;</span><span class="p">,</span> <span class="p">[</span>
+            <span class="s1">&#39;user&#39;</span> <span class="o">=&gt;</span> <span class="nx">User</span><span class="o">::</span><span class="na">findOrFail</span><span class="p">(</span><span class="nv">$id</span><span class="p">)</span>
+        <span class="p">]);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><a name="contextual-information"></a></p>
+<h3 id="_11">コンテキスト情報<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<p>コンテキストデータの配列をログメソッドに渡すことができます。このコンテキストデータはフォーマットされ、ログメッセージとともに表示されます：</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Log</span><span class="p">;</span>
+
+<span class="nx">Log</span><span class="o">::</span><span class="na">info</span><span class="p">(</span><span class="s1">&#39;User {id} failed to login.&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">]);</span>
+</code></pre></div>
+<p>特定のチャンネルで後続のすべてのログエントリに含まれるべきコンテキスト情報を指定したい場合があります。たとえば、アプリケーションへの各受信リクエストに関連付けられたリクエストIDをログに記録したい場合があります。これを実現するには、<code>Log</code>ファサードの<code>withContext</code>メソッドを呼び出すことができます：</p>
+<div class="highlight"><pre><span></span><code><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Http\Middleware</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Closure</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Http\Request</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Log</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Support\Str</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Symfony\Component\HttpFoundation\Response</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">AssignRequestId</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * 受信リクエストを処理します。</span>
+<span class="sd">     *</span>
+<span class="sd">     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">handle</span><span class="p">(</span><span class="nx">Request</span> <span class="nv">$request</span><span class="p">,</span> <span class="nx">Closure</span> <span class="nv">$next</span><span class="p">)</span><span class="o">:</span> <span class="nx">Response</span>
+    <span class="p">{</span>
+        <span class="nv">$requestId</span> <span class="o">=</span> <span class="p">(</span><span class="nx">string</span><span class="p">)</span> <span class="nx">Str</span><span class="o">::</span><span class="na">uuid</span><span class="p">();</span>
+
+        <span class="nx">Log</span><span class="o">::</span><span class="na">withContext</span><span class="p">([</span>
+            <span class="s1">&#39;request-id&#39;</span> <span class="o">=&gt;</span> <span class="nv">$requestId</span>
+        <span class="p">]);</span>
+
+        <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$next</span><span class="p">(</span><span class="nv">$request</span><span class="p">);</span>
+
+        <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">headers</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="s1">&#39;Request-Id&#39;</span><span class="p">,</span> <span class="nv">$requestId</span><span class="p">);</span>
+
+        <span class="k">return</span> <span class="nv">$response</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>すべてのログチャンネル間でコンテキスト情報を共有したい場合は、<code>Log::shareContext()</code>メソッドを呼び出すことができます。このメソッドは、コンテキスト情報をすべての作成されたチャンネルと、後で作成されるチャンネルに提供します：</p>
+<div class="highlight"><pre><span></span><code><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Http\Middleware</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Closure</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Http\Request</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Log</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Support\Str</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Symfony\Component\HttpFoundation\Response</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">AssignRequestId</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * 受信リクエストを処理します。</span>
+<span class="sd">     *</span>
+<span class="sd">     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">handle</span><span class="p">(</span><span class="nx">Request</span> <span class="nv">$request</span><span class="p">,</span> <span class="nx">Closure</span> <span class="nv">$next</span><span class="p">)</span><span class="o">:</span> <span class="nx">Response</span>
+    <span class="p">{</span>
+        <span class="nv">$requestId</span> <span class="o">=</span> <span class="p">(</span><span class="nx">string</span><span class="p">)</span> <span class="nx">Str</span><span class="o">::</span><span class="na">uuid</span><span class="p">();</span>
+
+        <span class="nx">Log</span><span class="o">::</span><span class="na">shareContext</span><span class="p">([</span>
+            <span class="s1">&#39;request-id&#39;</span> <span class="o">=&gt;</span> <span class="nv">$requestId</span>
+        <span class="p">]);</span>
+
+        <span class="c1">// ...</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>キューに入れられたジョブを処理する際にログコンテキストを共有する必要がある場合は、<a href="queues.html#job-middleware">ジョブミドルウェア</a>を利用できます。</p>
+</div>
+<p><a name="writing-to-specific-channels"></a></p>
+<h3 id="_12">特定のチャンネルへの書き込み<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<p>アプリケーションのデフォルトチャンネル以外のチャンネルにメッセージをログに記録したい場合があります。<code>Log</code>ファサードの<code>channel</code>メソッドを使用して、設定ファイルで定義された任意のチャンネルを取得し、ログに記録できます：</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Log</span><span class="p">;</span>
+
+<span class="nx">Log</span><span class="o">::</span><span class="na">channel</span><span class="p">(</span><span class="s1">&#39;slack&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">info</span><span class="p">(</span><span class="s1">&#39;Something happened!&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p>複数のチャンネルで構成されるオンデマンドのログスタックを作成したい場合は、<code>stack</code>メソッドを使用できます：</p>
+<div class="highlight"><pre><span></span><code><span class="nx">Log</span><span class="o">::</span><span class="na">stack</span><span class="p">([</span><span class="s1">&#39;single&#39;</span><span class="p">,</span> <span class="s1">&#39;slack&#39;</span><span class="p">])</span><span class="o">-&gt;</span><span class="na">info</span><span class="p">(</span><span class="s1">&#39;Something happened!&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="on-demand-channels"></a></p>
+<h4 id="_13">オンデマンドチャンネル<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h4>
+<p>アプリケーションの<code>logging</code>設定ファイルに設定が存在しない状態で、実行時に設定を提供してオンデマンドチャンネルを作成することも可能です。これを実現するには、設定配列を<code>Log</code>ファサードの<code>build</code>メソッドに渡します：</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Log</span><span class="p">;</span>
+
+<span class="nx">Log</span><span class="o">::</span><span class="na">build</span><span class="p">([</span>
+  <span class="s1">&#39;driver&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;single&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;path&#39;</span> <span class="o">=&gt;</span> <span class="nx">storage_path</span><span class="p">(</span><span class="s1">&#39;logs/custom.log&#39;</span><span class="p">),</span>
+<span class="p">])</span><span class="o">-&gt;</span><span class="na">info</span><span class="p">(</span><span class="s1">&#39;Something happened!&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p>オンデマンドチャンネルをオンデマンドログスタックに含めたい場合もあります。これは、オンデマンドチャンネルインスタンスを<code>stack</code>メソッドに渡される配列に含めることで実現できます：</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Log</span><span class="p">;</span>
+
+<span class="nv">$channel</span> <span class="o">=</span> <span class="nx">Log</span><span class="o">::</span><span class="na">build</span><span class="p">([</span>
+  <span class="s1">&#39;driver&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;single&#39;</span><span class="p">,</span>
+  <span class="s1">&#39;path&#39;</span> <span class="o">=&gt;</span> <span class="nx">storage_path</span><span class="p">(</span><span class="s1">&#39;logs/custom.log&#39;</span><span class="p">),</span>
+<span class="p">]);</span>
+
+<span class="nx">Log</span><span class="o">::</span><span class="na">stack</span><span class="p">([</span><span class="s1">&#39;slack&#39;</span><span class="p">,</span> <span class="nv">$channel</span><span class="p">])</span><span class="o">-&gt;</span><span class="na">info</span><span class="p">(</span><span class="s1">&#39;Something happened!&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p><a name="monolog-channel-customization"></a></p>
+<h2 id="monolog">Monologチャンネルのカスタマイズ<a class="headerlink" href="#monolog" title="Permanent link">&para;</a></h2>
+<p><a name="customizing-monolog-for-channels"></a></p>
+<h3 id="monolog_1">チャンネルのMonologのカスタマイズ<a class="headerlink" href="#monolog_1" title="Permanent link">&para;</a></h3>
+<p>既存のチャンネルに対してMonologの設定を完全に制御したい場合があります。たとえば、Laravelの組み込み<code>single</code>チャンネルに対してカスタムのMonolog <code>FormatterInterface</code>実装を設定したい場合です。</p>
+<p>まず、チャンネルの設定に<code>tap</code>配列を定義します。<code>tap</code>配列には、Monologインスタンスの作成後にカスタマイズ（または「タップ」）する機会を持つクラスのリストを含める必要があります。これらのクラスを配置する標準的な場所はありませんので、アプリケーション内にこれらのクラスを含むディレクトリを自由に作成できます：</p>
+<div class="highlight"><pre><span></span><code><span class="s1">&#39;single&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="s1">&#39;driver&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;single&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;tap&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="nx">App\Logging\CustomizeFormatter</span><span class="o">::</span><span class="na">class</span><span class="p">],</span>
+    <span class="s1">&#39;path&#39;</span> <span class="o">=&gt;</span> <span class="nx">storage_path</span><span class="p">(</span><span class="s1">&#39;logs/laravel.log&#39;</span><span class="p">),</span>
+    <span class="s1">&#39;level&#39;</span> <span class="o">=&gt;</span> <span class="nx">env</span><span class="p">(</span><span class="s1">&#39;LOG_LEVEL&#39;</span><span class="p">,</span> <span class="s1">&#39;debug&#39;</span><span class="p">),</span>
+    <span class="s1">&#39;replace_placeholders&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">,</span>
+<span class="p">],</span>
+</code></pre></div>
+<p>チャンネルの<code>tap</code>オプションを設定したら、Monologインスタンスをカスタマイズするクラスを定義する準備が整いました。このクラスには、<code>Illuminate\Log\Logger</code>インスタンスを受け取る<code>__invoke</code>メソッドが1つ必要です。<code>Illuminate\Log\Logger</code>インスタンスは、基礎となるMonologインスタンスへのすべてのメソッド呼び出しをプロキシします：</p>
+<div class="highlight"><pre><span></span><code><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Logging</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Illuminate\Log\Logger</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Monolog\Formatter\LineFormatter</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">CustomizeFormatter</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * 指定されたロガーインスタンスをカスタマイズします。</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__invoke</span><span class="p">(</span><span class="nx">Logger</span> <span class="nv">$logger</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
+    <span class="p">{</span>
+        <span class="k">foreach</span> <span class="p">(</span><span class="nv">$logger</span><span class="o">-&gt;</span><span class="na">getHandlers</span><span class="p">()</span> <span class="k">as</span> <span class="nv">$handler</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$handler</span><span class="o">-&gt;</span><span class="na">setFormatter</span><span class="p">(</span><span class="k">new</span> <span class="nx">LineFormatter</span><span class="p">(</span>
+                <span class="s1">&#39;[%datetime%] %channel%.%level_name%: %message% %context% %extra%&#39;</span>
+            <span class="p">));</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>すべての「tap」クラスは<a href="container.html">サービスコンテナ</a>によって解決されるため、必要なコンストラクタ依存関係は自動的に注入されます。</p>
+</div>
+<p><a name="creating-monolog-handler-channels"></a></p>
+<h3 id="monolog_2">Monologハンドラチャンネルの作成<a class="headerlink" href="#monolog_2" title="Permanent link">&para;</a></h3>
+<p>Monologにはさまざまな<a href="https://github.com/Seldaek/monolog/tree/main/src/Monolog/Handler">利用可能なハンドラ</a>があり、Laravelにはそれぞれに対応する組み込みチャンネルが含まれていません。特定のMonologハンドラのインスタンスであるカスタムチャンネルを作成したい場合があります。これらのチャンネルは、<code>monolog</code>ドライバを使用して簡単に作成できます。</p>
+<p><code>monolog</code>ドライバを使用する場合、<code>handler</code>設定オプションを使用して、どのハンドラがインスタンス化されるかを指定します。必要に応じて、ハンドラが必要とするコンストラクタパラメータは、<code>with</code>設定オプションを使用して指定できます：</p>
+<div class="highlight"><pre><span></span><code><span class="s1">&#39;logentries&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="s1">&#39;driver&#39;</span>  <span class="o">=&gt;</span> <span class="s1">&#39;monolog&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;handler&#39;</span> <span class="o">=&gt;</span> <span class="nx">Monolog\Handler\SyslogUdpHandler</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+    <span class="s1">&#39;with&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;host&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;my.logentries.internal.datahubhost.company.com&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;port&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;10000&#39;</span><span class="p">,</span>
+    <span class="p">],</span>
+<span class="p">],</span>
+</code></pre></div>
+<p><a name="monolog-formatters"></a></p>
+<h4 id="monolog_3">Monologフォーマッタ<a class="headerlink" href="#monolog_3" title="Permanent link">&para;</a></h4>
+<p><code>monolog</code>ドライバを使用する場合、Monologの<code>LineFormatter</code>がデフォルトのフォーマッタとして使用されます。ただし、<code>formatter</code>および<code>formatter_with</code>設定オプションを使用して、ハンドラに渡すフォーマッタのタイプをカスタマイズできます：</p>
+<div class="highlight"><pre><span></span><code><span class="s1">&#39;browser&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="s1">&#39;driver&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;monolog&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;handler&#39;</span> <span class="o">=&gt;</span> <span class="nx">Monolog\Handler\BrowserConsoleHandler</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+    <span class="s1">&#39;formatter&#39;</span> <span class="o">=&gt;</span> <span class="nx">Monolog\Formatter\HtmlFormatter</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+    <span class="s1">&#39;formatter_with&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;dateFormat&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Y-m-d&#39;</span><span class="p">,</span>
+    <span class="p">],</span>
+<span class="p">],</span>
+</code></pre></div>
+<p>Monologハンドラが独自のフォーマッタを提供できる場合、<code>formatter</code>設定オプションの値を<code>default</code>に設定できます：</p>
+<div class="highlight"><pre><span></span><code><span class="s1">&#39;newrelic&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="s1">&#39;driver&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;monolog&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;handler&#39;</span> <span class="o">=&gt;</span> <span class="nx">Monolog\Handler\NewRelicHandler</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+    <span class="s1">&#39;formatter&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;default&#39;</span><span class="p">,</span>
+<span class="p">],</span>
+</code></pre></div>
+<p><a name="monolog-processors"></a></p>
+<h4 id="monolog_4">Monologプロセッサ<a class="headerlink" href="#monolog_4" title="Permanent link">&para;</a></h4>
+<p>Monologは、ログに記録する前にメッセージを処理することもできます。独自のプロセッサを作成するか、Monologが提供する<a href="https://github.com/Seldaek/monolog/tree/main/src/Monolog/Processor">既存のプロセッサ</a>を使用できます。</p>
+<p><code>monolog</code>ドライバのプロセッサをカスタマイズしたい場合は、チャンネルの設定に<code>processors</code>設定値を追加してください。</p>
+<div class="highlight"><pre><span></span><code> <span class="s1">&#39;memory&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+     <span class="s1">&#39;driver&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;monolog&#39;</span><span class="p">,</span>
+     <span class="s1">&#39;handler&#39;</span> <span class="o">=&gt;</span> <span class="nx">Monolog\Handler\StreamHandler</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+     <span class="s1">&#39;with&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+         <span class="s1">&#39;stream&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;php://stderr&#39;</span><span class="p">,</span>
+     <span class="p">],</span>
+     <span class="s1">&#39;processors&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+         <span class="c1">// シンプルな構文...</span>
+         <span class="nx">Monolog\Processor\MemoryUsageProcessor</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+
+         <span class="c1">// オプション付き...</span>
+         <span class="p">[</span>
+            <span class="s1">&#39;processor&#39;</span> <span class="o">=&gt;</span> <span class="nx">Monolog\Processor\PsrLogMessageProcessor</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+            <span class="s1">&#39;with&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">&#39;removeUsedContextFields&#39;</span> <span class="o">=&gt;</span> <span class="k">true</span><span class="p">],</span>
+        <span class="p">],</span>
+     <span class="p">],</span>
+ <span class="p">],</span>
+</code></pre></div>
+<p><a name="creating-custom-channels-via-factories"></a></p>
+<h3 id="_14">ファクトリを介したカスタムチャンネルの作成<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<p>Monologのインスタンス化と設定を完全に制御できる完全にカスタムなチャンネルを定義したい場合は、<code>config/logging.php</code>設定ファイルで<code>custom</code>ドライバタイプを指定できます。設定には、Monologインスタンスを作成するために呼び出されるファクトリクラスの名前を含む<code>via</code>オプションを含める必要があります。</p>
+<div class="highlight"><pre><span></span><code><span class="s1">&#39;channels&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+    <span class="s1">&#39;example-custom-channel&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+        <span class="s1">&#39;driver&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;custom&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;via&#39;</span> <span class="o">=&gt;</span> <span class="nx">App\Logging\CreateCustomLogger</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+    <span class="p">],</span>
+<span class="p">],</span>
+</code></pre></div>
+<p><code>custom</code>ドライバチャンネルを設定したら、Monologインスタンスを作成するクラスを定義する準備が整いました。このクラスには、Monologロガーインスタンスを返す必要がある単一の<code>__invoke</code>メソッドが必要です。このメソッドは、チャンネル設定配列を唯一の引数として受け取ります。</p>
+<div class="highlight"><pre><span></span><code><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Logging</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Monolog\Logger</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">CreateCustomLogger</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * カスタムMonologインスタンスを作成する。</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__invoke</span><span class="p">(</span><span class="k">array</span> <span class="nv">$config</span><span class="p">)</span><span class="o">:</span> <span class="nx">Logger</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nx">Logger</span><span class="p">(</span><span class="cm">/* ... */</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><a name="tailing-log-messages-using-pail"></a></p>
+<h2 id="pail">Pailを使用したログメッセージのテイル<a class="headerlink" href="#pail" title="Permanent link">&para;</a></h2>
+<p>アプリケーションのログをリアルタイムでテイルする必要がある場合があります。例えば、問題のデバッグや、特定の種類のエラーのアプリケーションログの監視などです。</p>
+<p>Laravel Pailは、コマンドラインから直接Laravelアプリケーションのログファイルに簡単にアクセスできるようにするパッケージです。標準の<code>tail</code>コマンドとは異なり、PailはSentryやFlareを含む任意のログドライバで動作するように設計されています。さらに、Pailは、探しているものをすばやく見つけるのに役立つ一連の便利なフィルタを提供します。</p>
+<p><img src="https://laravel.com/img/docs/pail-example.png"></p>
+<p><a name="pail-installation"></a></p>
+<h3 id="_15">インストール<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Laravel Pailには<a href="https://php.net/releases/">PHP 8.2+</a>と<a href="https://www.php.net/manual/en/book.pcntl.php">PCNTL</a>拡張機能が必要です。</p>
+</div>
+<p>始めるには、Composerパッケージマネージャを使用してPailをプロジェクトにインストールします。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>composer<span class="w"> </span>require<span class="w"> </span>laravel/pail
+</code></pre></div>
+<p><a name="pail-usage"></a></p>
+<h3 id="_16">使用方法<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h3>
+<p>ログのテイルを開始するには、<code>pail</code>コマンドを実行します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>pail
+</code></pre></div>
+<p>出力の冗長性を上げ、切り捨て（…）を避けるには、<code>-v</code>オプションを使用します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>pail<span class="w"> </span>-v
+</code></pre></div>
+<p>最大の冗長性と例外スタックトレースを表示するには、<code>-vv</code>オプションを使用します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>pail<span class="w"> </span>-vv
+</code></pre></div>
+<p>ログのテイルを停止するには、いつでも<code>Ctrl+C</code>を押します。</p>
+<p><a name="pail-filtering-logs"></a></p>
+<h3 id="_17">ログのフィルタリング<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h3>
+<p><a name="pail-filtering-logs-filter-option"></a></p>
+<h4 id="-filter"><code>--filter</code><a class="headerlink" href="#-filter" title="Permanent link">&para;</a></h4>
+<p>ログをタイプ、ファイル、メッセージ、スタックトレースの内容でフィルタリングするには、<code>--filter</code>オプションを使用します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>pail<span class="w"> </span>--filter<span class="o">=</span><span class="s2">&quot;QueryException&quot;</span>
+</code></pre></div>
+<p><a name="pail-filtering-logs-message-option"></a></p>
+<h4 id="-message"><code>--message</code><a class="headerlink" href="#-message" title="Permanent link">&para;</a></h4>
+<p>ログをメッセージのみでフィルタリングするには、<code>--message</code>オプションを使用します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>pail<span class="w"> </span>--message<span class="o">=</span><span class="s2">&quot;User created&quot;</span>
+</code></pre></div>
+<p><a name="pail-filtering-logs-level-option"></a></p>
+<h4 id="-level"><code>--level</code><a class="headerlink" href="#-level" title="Permanent link">&para;</a></h4>
+<p>ログを<a href="#log-levels">ログレベル</a>でフィルタリングするには、<code>--level</code>オプションを使用します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>pail<span class="w"> </span>--level<span class="o">=</span>error
+</code></pre></div>
+<p><a name="pail-filtering-logs-user-option"></a></p>
+<h4 id="-user"><code>--user</code><a class="headerlink" href="#-user" title="Permanent link">&para;</a></h4>
+<p>特定のユーザーが認証されている間に書き込まれたログのみを表示するには、ユーザーのIDを<code>--user</code>オプションに指定します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>pail<span class="w"> </span>--user<span class="o">=</span><span class="m">1</span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+<nav class="md-footer-nav">
+    
+    
+</nav>
+
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": ".", "features": ["back-to-top", "navigation.expand", "navigation.tabs", "navigation.footer", "navigation.sections", "navigation.expand", "content.code.copy", "hide_repository_button", "content.code.annotate", "content.tabs.link", "toc.none", "content.action.edit"], "search": "assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="assets/javascripts/bundle.56dfad97.min.js"></script>
+      
+    
+  </body>
+</html>

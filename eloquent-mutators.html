@@ -1,0 +1,4470 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://github.com/koriym/laravel11-ja/eloquent-mutators.html">
+      
+      
+        <link rel="prev" href="eloquent-collections.html">
+      
+      
+        <link rel="next" href="eloquent-resources.html">
+      
+      
+      <link rel="icon" href="assets/images/favicon_io/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.35">
+    
+    
+      
+        <title>ミューテータ / キャスト - L11JA</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.35f28582.min.css">
+      
+      
+
+
+    
+    
+
+    
+
+    
+      <link rel="stylesheet" href="assets/css/php.css">
+    
+      <link rel="stylesheet" href="assets/css/mkdocs_material_extra.css">
+    
+      <link rel="stylesheet" href="assets/css/extra.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-G60CEHXLQ1"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-G60CEHXLQ1",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-G60CEHXLQ1",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#eloquent" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      <!-- Determine classes -->
+
+
+
+<!-- Header -->
+<header class="md-header" data-md-component="header">
+  <nav
+          class="md-header__inner md-grid"
+          aria-label="Header"
+  >
+
+    <!-- Link to home -->
+    <a
+            href="."
+            title="L11JA"
+            class="md-header__button md-logo"
+            aria-label="L11JA"
+            data-md-component="logo"
+    >
+      
+  <img src="assets/images/logo.png" alt="logo">
+
+    </a>
+
+    <!-- Button to open drawer -->
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+
+    <!-- Header title -->
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            <span style="font-family: 'Noto Sans'; font-size: 20px" >
+            L11JA
+            </span>
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            <span style="font-family: 'Noto Sans Batak'; font-size: 20px" >
+            
+              ミューテータ / キャスト
+            
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Color palette toggle -->
+    
+
+    <!-- User preference: color palette -->
+    
+    <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+
+    <!-- Site language selector -->
+    
+
+    <!-- Button to open search modal -->
+    
+    <label class="md-header__button md-icon" for="__search">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+    </label>
+
+    <!-- Search interface -->
+    <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    <!-- Repository information -->
+    
+    <div class="md-header__source">
+      
+
+<!--
+  Check whether the repository is hosted on one of the supported code hosting
+  platforms (GitHub, GitLab or Bitbucket) to show icon.
+-->
+
+
+  
+
+
+<!-- Repository containing source -->
+<a href="https://github.com/koriym/l11ja" title="source.link.title"
+    class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z" fill="#000"/></svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+    
+  </nav>
+
+  <!-- Navigation tabs (sticky) -->
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="releases.html" class="md-tabs__link">
+          
+  
+  プロローグ
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="installation.html" class="md-tabs__link">
+          
+  
+  はじめに
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="lifecycle.html" class="md-tabs__link">
+          
+  
+  アーキテクチャ
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="routing.html" class="md-tabs__link">
+          
+  
+  基本
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="artisan.html" class="md-tabs__link">
+          
+  
+  掘り下げる
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="authentication.html" class="md-tabs__link">
+          
+  
+  セキュリティ
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="database.html" class="md-tabs__link">
+          
+  
+  データベース
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="eloquent.html" class="md-tabs__link">
+          
+  
+  Eloquent ORM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="testing.html" class="md-tabs__link">
+          
+  
+  テスト
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="starter-kits.html" class="md-tabs__link">
+          
+  
+  パッケージ
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="L11JA" class="md-nav__button md-logo" aria-label="L11JA" data-md-component="logo">
+      
+  <img src="assets/images/logo.png" alt="logo">
+
+    </a>
+    L11JA
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+<!--
+  Check whether the repository is hosted on one of the supported code hosting
+  platforms (GitHub, GitLab or Bitbucket) to show icon.
+-->
+
+
+  
+
+
+<!-- Repository containing source -->
+<a href="https://github.com/koriym/l11ja" title="source.link.title"
+    class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z" fill="#000"/></svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    プロローグ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            プロローグ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="releases.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リリースノート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="upgrade.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    アップグレードガイド
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="contributions.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    貢献ガイド
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            はじめに
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="installation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    インストール
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="configuration.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    設定
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structure.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ディレクトリ構造
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="frontend.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    フロントエンド
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="starter-kits.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    スターターキット
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="deployment.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    デプロイ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    アーキテクチャ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            アーキテクチャ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="lifecycle.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リクエストライフサイクル
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="container.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    サービスコンテナ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="providers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    サービスプロバイダ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="facades.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ファサード
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    基本
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            基本
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="routing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ルーティング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="middleware.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ミドルウェア
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="csrf.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CSRF保護
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="controllers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コントローラ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="requests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リクエスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="responses.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    レスポンス
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="views.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ビュー
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="blade.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bladeテンプレート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="vite.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    アセットバンドル
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="urls.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    URL生成
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="session.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    セッション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="validation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    バリデーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="errors.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    エラー処理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="logging.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ログ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    掘り下げる
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            掘り下げる
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="artisan.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Artisanコンソール
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="broadcasting.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ブロードキャスティング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cache.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    キャッシュ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="collections.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コレクション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="concurrency.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    並行処理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="context.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コンテキスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="contracts.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コントラクト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="events.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    イベント
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="filesystem.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ファイルストレージ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="helpers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ヘルパー
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="http-client.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTTPクライアント
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="localization.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ローカライゼーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mail.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    メール
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="notifications.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    通知
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="packages.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    パッケージ開発
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="processes.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    プロセス
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="queues.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    キュー
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="rate-limiting.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    レート制限
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="strings.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    文字列
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="scheduling.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    タスクスケジューリング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    セキュリティ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            セキュリティ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="authentication.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    認証
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="authorization.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    認可
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="verification.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    メール確認
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="encryption.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    暗号化
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hashing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ハッシュ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="passwords.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    パスワードリセット
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    データベース
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            データベース
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="database.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="queries.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    クエリビルダ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pagination.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ページネーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="migrations.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    マイグレーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="seeding.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    シーディング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="redis.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Redis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Eloquent ORM
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Eloquent ORM
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-relationships.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リレーションシップ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-collections.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コレクション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    ミューテータ / キャスト
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="eloquent-mutators.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    ミューテータ / キャスト
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      はじめに
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      アクセサとミューテータ
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="アクセサとミューテータ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      アクセサの定義
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="アクセサの定義">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      複数の属性から値オブジェクトを構築する
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      アクセサのキャッシュ
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      ミューテータの定義
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ミューテータの定義">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      複数の属性を変更する
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      属性キャスト
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="属性キャスト">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stringable" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stringable キャスト
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json" class="md-nav__link">
+    <span class="md-ellipsis">
+      配列とJSONのキャスト
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="配列とJSONのキャスト">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      配列オブジェクトとコレクションのキャスト
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      日付のキャスト
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="日付のキャスト">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      日付のキャスト、シリアライズ、およびタイムゾーン
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enum" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enumのキャスト
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Enumのキャスト">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enum_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enumの配列のキャスト
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      暗号化されたキャスト
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="暗号化されたキャスト">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      キーのローテーション
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      クエリ時のキャスト
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      カスタムキャスト
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="カスタムキャスト">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      値オブジェクトのキャスト
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="値オブジェクトのキャスト">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      値オブジェクトのキャッシュ
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      配列 / JSON シリアライズ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      インバウンドキャスト
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      キャストパラメータ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#castables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Castables
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Castables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#castables_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Castables と匿名キャストクラス
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-resources.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    APIリソース
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-serialization.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    シリアライゼーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-factories.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ファクトリ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    テスト
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            テスト
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="testing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="http-tests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTTPテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="console-tests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コンソールテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="dusk.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ブラウザテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="database-testing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    データベース
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mocking.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    モック
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    パッケージ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            パッケージ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="starter-kits.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    スターターキット
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="billing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cashier (Stripe)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cashier-paddle.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cashier (Paddle)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="dusk.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ブラウザテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="envoy.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Envoy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fortify.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fortify
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="folio.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Folio
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="homestead.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Homestead
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="horizon.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Horizon
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mix.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mix
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="octane.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Octane
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="passport.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Passport
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pennant.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pennant
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pint.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pint
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="precognition.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Precognition
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="prompts.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prompts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pulse.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pulse
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reverb.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reverb
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sail.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sail
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sanctum.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sanctum
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="scout.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Scout
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="socialite.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Socialite
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="telescope.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Telescope
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="valet.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Valet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      はじめに
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      アクセサとミューテータ
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="アクセサとミューテータ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      アクセサの定義
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="アクセサの定義">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      複数の属性から値オブジェクトを構築する
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      アクセサのキャッシュ
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      ミューテータの定義
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ミューテータの定義">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      複数の属性を変更する
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      属性キャスト
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="属性キャスト">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stringable" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stringable キャスト
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json" class="md-nav__link">
+    <span class="md-ellipsis">
+      配列とJSONのキャスト
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="配列とJSONのキャスト">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      配列オブジェクトとコレクションのキャスト
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      日付のキャスト
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="日付のキャスト">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      日付のキャスト、シリアライズ、およびタイムゾーン
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enum" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enumのキャスト
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Enumのキャスト">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enum_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enumの配列のキャスト
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      暗号化されたキャスト
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="暗号化されたキャスト">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      キーのローテーション
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      クエリ時のキャスト
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      カスタムキャスト
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="カスタムキャスト">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      値オブジェクトのキャスト
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="値オブジェクトのキャスト">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      値オブジェクトのキャッシュ
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      配列 / JSON シリアライズ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      インバウンドキャスト
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      キャストパラメータ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#castables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Castables
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Castables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#castables_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Castables と匿名キャストクラス
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/koriym/l11ja/edit/master/docs/eloquent-mutators.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="eloquent">Eloquent: ミューテータとキャスト<a class="headerlink" href="#eloquent" title="Permanent link">&para;</a></h1>
+<ul>
+<li><a href="#introduction">はじめに</a></li>
+<li><a href="#accessors-and-mutators">アクセサとミューテータ</a><ul>
+<li><a href="#defining-an-accessor">アクセサの定義</a></li>
+<li><a href="#defining-a-mutator">ミューテータの定義</a></li>
+</ul>
+</li>
+<li><a href="#attribute-casting">属性キャスト</a><ul>
+<li><a href="#array-and-json-casting">配列とJSONのキャスト</a></li>
+<li><a href="#date-casting">日付のキャスト</a></li>
+<li><a href="#enum-casting">Enumのキャスト</a></li>
+<li><a href="#encrypted-casting">暗号化のキャスト</a></li>
+<li><a href="#query-time-casting">クエリ時のキャスト</a></li>
+</ul>
+</li>
+<li><a href="#custom-casts">カスタムキャスト</a><ul>
+<li><a href="#value-object-casting">値オブジェクトのキャスト</a></li>
+<li><a href="#array-json-serialization">配列 / JSON シリアライズ</a></li>
+<li><a href="#inbound-casting">インバウンドキャスト</a></li>
+<li><a href="#cast-parameters">キャストパラメータ</a></li>
+<li><a href="#castables">キャスト可能</a></li>
+</ul>
+</li>
+</ul>
+<p><a name="introduction"></a></p>
+<h2 id="_1">はじめに<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>アクセサ、ミューテータ、および属性キャストを使用すると、Eloquentモデルインスタンスで属性値を取得または設定する際に、それらを変換できます。例えば、データベースに保存される際に<a href="encryption.html">Laravelの暗号化機能</a>を使用して値を暗号化し、Eloquentモデルでアクセスする際に自動的に復号化することができます。または、データベースに保存されているJSON文字列を、Eloquentモデル経由でアクセスする際に配列に変換することもできます。</p>
+<p><a name="accessors-and-mutators"></a></p>
+<h2 id="_2">アクセサとミューテータ<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p><a name="defining-an-accessor"></a></p>
+<h3 id="_3">アクセサの定義<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>アクセサは、Eloquent属性値がアクセスされる際にその値を変換します。アクセサを定義するには、モデル上に保護されたメソッドを作成して、アクセス可能な属性を表します。このメソッド名は、該当する場合、実際の基礎となるモデル属性/データベースカラムの「キャメルケース」表現に対応する必要があります。</p>
+<p>この例では、<code>first_name</code>属性のアクセサを定義します。アクセサは、<code>first_name</code>属性の値を取得しようとする際にEloquentによって自動的に呼び出されます。すべての属性アクセサ/ミューテータメソッドは、<code>Illuminate\Database\Eloquent\Casts\Attribute</code>の戻り値の型ヒントを宣言する必要があります。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="o">&lt;?</span><span class="nx">php</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">namespace</span> <span class="nx">App\Models</span><span class="p">;</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">use</span> <span class="nx">Illuminate\Database\Eloquent\Casts\Attribute</span><span class="p">;</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="k">use</span> <span class="nx">Illuminate\Database\Eloquent\Model</span><span class="p">;</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="k">class</span> <span class="nc">User</span> <span class="k">extends</span> <span class="nx">Model</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="p">{</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="sd">/**</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="sd">     * ユーザーのファーストネームを取得します。</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="sd">     */</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="k">protected</span> <span class="k">function</span> <span class="nf">firstName</span><span class="p">()</span><span class="o">:</span> <span class="nx">Attribute</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="p">{</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>        <span class="k">return</span> <span class="nx">Attribute</span><span class="o">::</span><span class="na">make</span><span class="p">(</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>            <span class="nx">get</span><span class="o">:</span> <span class="nx">fn</span> <span class="p">(</span><span class="nx">string</span> <span class="nv">$value</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nb">ucfirst</span><span class="p">(</span><span class="nv">$value</span><span class="p">),</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>        <span class="p">);</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    <span class="p">}</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="p">}</span>
+</code></pre></div>
+<p>すべてのアクセサメソッドは、属性のアクセス方法と、オプションで変更方法を定義する<code>Attribute</code>インスタンスを返します。この例では、属性のアクセス方法のみを定義しています。そのために、<code>Attribute</code>クラスのコンストラクタに<code>get</code>引数を渡します。</p>
+<p>ご覧のように、カラムの元の値がアクセサに渡され、値を操作して返すことができます。アクセサの値にアクセスするには、モデルインスタンスの<code>first_name</code>属性に単純にアクセスします。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">use</span> <span class="nx">App\Models\User</span><span class="p">;</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nv">$user</span> <span class="o">=</span> <span class="nx">User</span><span class="o">::</span><span class="na">find</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="nv">$firstName</span> <span class="o">=</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">first_name</span><span class="p">;</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>これらの計算された値をモデルの配列/JSON表現に追加したい場合は、<a href="eloquent-serialization.html#appending-values-to-json">それらを追加する必要があります</a>。</p>
+</div>
+<p><a name="building-value-objects-from-multiple-attributes"></a></p>
+<h4 id="_4">複数の属性から値オブジェクトを構築する<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
+<p>時には、アクセサが複数のモデル属性を1つの「値オブジェクト」に変換する必要があるかもしれません。そのためには、<code>get</code>クロージャが2番目の引数として<code>$attributes</code>を受け取ることができます。これは、クロージャに自動的に提供され、モデルの現在のすべての属性の配列を含みます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">use</span> <span class="nx">App\Support\Address</span><span class="p">;</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">use</span> <span class="nx">Illuminate\Database\Eloquent\Casts\Attribute</span><span class="p">;</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="sd">/**</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="sd"> * ユーザーの住所とやり取りします。</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="sd"> */</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="k">protected</span> <span class="k">function</span> <span class="nf">address</span><span class="p">()</span><span class="o">:</span> <span class="nx">Attribute</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="p">{</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="k">return</span> <span class="nx">Attribute</span><span class="o">::</span><span class="na">make</span><span class="p">(</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>        <span class="nx">get</span><span class="o">:</span> <span class="nx">fn</span> <span class="p">(</span><span class="nx">mixed</span> <span class="nv">$value</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$attributes</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">Address</span><span class="p">(</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>            <span class="nv">$attributes</span><span class="p">[</span><span class="s1">&#39;address_line_one&#39;</span><span class="p">],</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>            <span class="nv">$attributes</span><span class="p">[</span><span class="s1">&#39;address_line_two&#39;</span><span class="p">],</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>        <span class="p">),</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>    <span class="p">);</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="p">}</span>
+</code></pre></div>
+<p><a name="accessor-caching"></a></p>
+<h4 id="_5">アクセサのキャッシュ<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
+<p>アクセサから値オブジェクトを返す場合、値オブジェクトに加えられた変更は、モデルが保存される前に自動的にモデルに同期されます。これは、Eloquentがアクセサによって返されたインスタンスを保持し、アクセサが呼び出されるたびに同じインスタンスを返すことができるためです。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">use</span> <span class="nx">App\Models\User</span><span class="p">;</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nv">$user</span> <span class="o">=</span> <span class="nx">User</span><span class="o">::</span><span class="na">find</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="nv">$user</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">lineOne</span> <span class="o">=</span> <span class="s1">&#39;Updated Address Line 1 Value&#39;</span><span class="p">;</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="nv">$user</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">lineTwo</span> <span class="o">=</span> <span class="s1">&#39;Updated Address Line 2 Value&#39;</span><span class="p">;</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="nv">$user</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">();</span>
+</code></pre></div>
+<p>ただし、特に計算量が多い場合、文字列やブール値などのプリミティブ値のキャッシュを有効にしたい場合があります。これを実現するには、アクセサを定義する際に<code>shouldCache</code>メソッドを呼び出すことができます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">protected</span> <span class="k">function</span> <span class="nf">hash</span><span class="p">()</span><span class="o">:</span> <span class="nx">Attribute</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="p">{</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="k">return</span> <span class="nx">Attribute</span><span class="o">::</span><span class="na">make</span><span class="p">(</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>        <span class="nx">get</span><span class="o">:</span> <span class="nx">fn</span> <span class="p">(</span><span class="nx">string</span> <span class="nv">$value</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">bcrypt</span><span class="p">(</span><span class="nb">gzuncompress</span><span class="p">(</span><span class="nv">$value</span><span class="p">)),</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    <span class="p">)</span><span class="o">-&gt;</span><span class="na">shouldCache</span><span class="p">();</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="p">}</span>
+</code></pre></div>
+<p>属性のオブジェクトキャッシュ動作を無効にしたい場合は、属性を定義する際に<code>withoutObjectCaching</code>メソッドを呼び出すことができます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="sd">/**</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="sd"> * ユーザーの住所とやり取りします。</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="sd"> */</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="k">protected</span> <span class="k">function</span> <span class="nf">address</span><span class="p">()</span><span class="o">:</span> <span class="nx">Attribute</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="p">{</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>    <span class="k">return</span> <span class="nx">Attribute</span><span class="o">::</span><span class="na">make</span><span class="p">(</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>        <span class="nx">get</span><span class="o">:</span> <span class="nx">fn</span> <span class="p">(</span><span class="nx">mixed</span> <span class="nv">$value</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$attributes</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">Address</span><span class="p">(</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>            <span class="nv">$attributes</span><span class="p">[</span><span class="s1">&#39;address_line_one&#39;</span><span class="p">],</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>            <span class="nv">$attributes</span><span class="p">[</span><span class="s1">&#39;address_line_two&#39;</span><span class="p">],</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>        <span class="p">),</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>    <span class="p">)</span><span class="o">-&gt;</span><span class="na">withoutObjectCaching</span><span class="p">();</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="p">}</span>
+</code></pre></div>
+<p><a name="defining-a-mutator"></a></p>
+<h3 id="_6">ミューテータの定義<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>ミューテータは、Eloquent属性値が設定される際にその値を変換します。ミューテータを定義するには、属性を定義する際に<code>set</code>引数を提供することができます。<code>first_name</code>属性のミューテータを定義しましょう。このミューテータは、モデルの<code>first_name</code>属性の値を設定しようとする際に自動的に呼び出されます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="o">&lt;?</span><span class="nx">php</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="k">namespace</span> <span class="nx">App\Models</span><span class="p">;</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="k">use</span> <span class="nx">Illuminate\Database\Eloquent\Casts\Attribute</span><span class="p">;</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="k">use</span> <span class="nx">Illuminate\Database\Eloquent\Model</span><span class="p">;</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="k">class</span> <span class="nc">User</span> <span class="k">extends</span> <span class="nx">Model</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="p">{</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>    <span class="sd">/**</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="sd">     * ユーザーのファーストネームとやり取りします。</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="sd">     */</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>    <span class="k">protected</span> <span class="k">function</span> <span class="nf">firstName</span><span class="p">()</span><span class="o">:</span> <span class="nx">Attribute</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>    <span class="p">{</span>
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>        <span class="k">return</span> <span class="nx">Attribute</span><span class="o">::</span><span class="na">make</span><span class="p">(</span>
+<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>            <span class="nx">get</span><span class="o">:</span> <span class="nx">fn</span> <span class="p">(</span><span class="nx">string</span> <span class="nv">$value</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nb">ucfirst</span><span class="p">(</span><span class="nv">$value</span><span class="p">),</span>
+<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>            <span class="nx">set</span><span class="o">:</span> <span class="nx">fn</span> <span class="p">(</span><span class="nx">string</span> <span class="nv">$value</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nb">strtolower</span><span class="p">(</span><span class="nv">$value</span><span class="p">),</span>
+<a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a>        <span class="p">);</span>
+<a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>    <span class="p">}</span>
+<a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a><span class="p">}</span>
+</code></pre></div>
+<p>ミューテータクロージャは、属性に設定される値を受け取り、値を操作して返すことができます。ミューテータを使用するには、Eloquentモデルの<code>first_name</code>属性を設定するだけです。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">use</span> <span class="nx">App\Models\User</span><span class="p">;</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="nv">$user</span> <span class="o">=</span> <span class="nx">User</span><span class="o">::</span><span class="na">find</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="nv">$user</span><span class="o">-&gt;</span><span class="na">first_name</span> <span class="o">=</span> <span class="s1">&#39;Sally&#39;</span><span class="p">;</span>
+</code></pre></div>
+<p>この例では、<code>set</code>コールバックは値<code>Sally</code>で呼び出されます。ミューテータは名前に<code>strtolower</code>関数を適用し、その結果の値をモデルの内部<code>$attributes</code>配列に設定します。</p>
+<p><a name="mutating-multiple-attributes"></a></p>
+<h4 id="_7">複数の属性を変更する<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h4>
+<p>時には、ミューテータが基礎となるモデルに複数の属性を設定する必要があるかもしれません。そのためには、<code>set</code>クロージャから配列を返すことができます。配列の各キーは、モデルに関連付けられた基礎となる属性/データベースカラムに対応する必要があります。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">use</span> <span class="nx">App\Support\Address</span><span class="p">;</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="k">use</span> <span class="nx">Illuminate\Database\Eloquent\Casts\Attribute</span><span class="p">;</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="sd">/**</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="sd"> * ユーザーの住所とやり取りします。</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="sd"> */</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="k">protected</span> <span class="k">function</span> <span class="nf">address</span><span class="p">()</span><span class="o">:</span> <span class="nx">Attribute</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="p">{</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>    <span class="k">return</span> <span class="nx">Attribute</span><span class="o">::</span><span class="na">make</span><span class="p">(</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>        <span class="nx">get</span><span class="o">:</span> <span class="nx">fn</span> <span class="p">(</span><span class="nx">mixed</span> <span class="nv">$value</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$attributes</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">Address</span><span class="p">(</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>            <span class="nv">$attributes</span><span class="p">[</span><span class="s1">&#39;address_line_one&#39;</span><span class="p">],</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>            <span class="nv">$attributes</span><span class="p">[</span><span class="s1">&#39;address_line_two&#39;</span><span class="p">],</span>
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>        <span class="p">),</span>
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>        <span class="nx">set</span><span class="o">:</span> <span class="nx">fn</span> <span class="p">(</span><span class="nx">Address</span> <span class="nv">$value</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">[</span>
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>            <span class="s1">&#39;address_line_one&#39;</span> <span class="o">=&gt;</span> <span class="nv">$value</span><span class="o">-&gt;</span><span class="na">lineOne</span><span class="p">,</span>
+<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>            <span class="s1">&#39;address_line_two&#39;</span> <span class="o">=&gt;</span> <span class="nv">$value</span><span class="o">-&gt;</span><span class="na">lineTwo</span><span class="p">,</span>
+<a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>        <span class="p">],</span>
+<a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a>    <span class="p">);</span>
+<a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a><span class="p">}</span>
+</code></pre></div>
+<p><a name="attribute-casting"></a></p>
+<h2 id="_8">属性キャスト<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<p>属性キャストは、アクセサやミューテータと同様の機能を提供しますが、モデルに追加のメソッドを定義する必要はありません。代わりに、モデルの<code>casts</code>メソッドは、属性を一般的なデータ型に変換する便利な方法を提供します。</p>
+<p><code>casts</code>メソッドは、キーがキャストされる属性の名前で、値がカラムをキャストしたい型である配列を返す必要があります。サポートされているキャスト型は以下の通りです。</p>
+<div class="content-list">
+<ul>
+<li><code>array</code></li>
+<li><code>AsStringable::class</code></li>
+<li><code>boolean</code></li>
+<li><code>collection</code></li>
+<li><code>date</code></li>
+<li><code>datetime</code></li>
+<li><code>immutable_date</code></li>
+<li><code>immutable_datetime</code></li>
+<li><code>decimal:&lt;precision&gt;</code></li>
+<li><code>double</code></li>
+<li><code>encrypted</code></li>
+<li><code>encrypted:array</code></li>
+<li><code>encrypted:collection</code></li>
+<li><code>encrypted:object</code></li>
+<li><code>float</code></li>
+<li><code>hashed</code></li>
+<li><code>integer</code></li>
+<li><code>object</code></li>
+<li><code>real</code></li>
+<li><code>string</code></li>
+<li><code>timestamp</code></li>
+</ul>
+</div>
+<p>属性キャストを実演するために、データベースに整数(<code>0</code>または<code>1</code>)として保存されている<code>is_admin</code>属性をブール値にキャストしましょう。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="o">&lt;?</span><span class="nx">php</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="k">namespace</span> <span class="nx">App\Models</span><span class="p">;</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="k">use</span> <span class="nx">Illuminate\Database\Eloquent\Model</span><span class="p">;</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="k">class</span> <span class="nc">User</span> <span class="k">extends</span> <span class="nx">Model</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="p">{</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>    <span class="sd">/**</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="sd">     * キャストする必要がある属性を取得します。</span>
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="sd">     *</span>
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="sd">     * @return array&lt;string, string&gt;</span>
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="sd">     */</span>
+<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>    <span class="k">protected</span> <span class="k">function</span> <span class="nf">casts</span><span class="p">()</span><span class="o">:</span> <span class="k">array</span>
+<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>    <span class="p">{</span>
+<a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a>        <span class="k">return</span> <span class="p">[</span>
+<a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a>            <span class="s1">&#39;is_admin&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;boolean&#39;</span><span class="p">,</span>
+<a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a>        <span class="p">];</span>
+<a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a>    <span class="p">}</span>
+<a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a><span class="p">}</span>
+</code></pre></div>
+<p>キャストを定義した後、<code>is_admin</code>属性は常にブール値にキャストされます。基礎となる値がデータベースに整数として保存されていてもです。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nv">$user</span> <span class="o">=</span> <span class="nx">App\Models\User</span><span class="o">::</span><span class="na">find</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="k">if</span> <span class="p">(</span><span class="nv">$user</span><span class="o">-&gt;</span><span class="na">is_admin</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>    <span class="c1">// ...</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="p">}</span>
+</code></pre></div>
+<p>実行時に新しい一時的なキャストを追加する必要がある場合は、<code>mergeCasts</code>メソッドを使用できます。これらのキャスト定義は、モデルに既に定義されているキャストに追加されます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nv">$user</span><span class="o">-&gt;</span><span class="na">mergeCasts</span><span class="p">([</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>    <span class="s1">&#39;is_admin&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;integer&#39;</span><span class="p">,</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>    <span class="s1">&#39;options&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;object&#39;</span><span class="p">,</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="p">]);</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><code>null</code>の属性はキャストされません。また、リレーションと同じ名前のキャスト（または属性）を定義したり、モデルの主キーにキャストを割り当てたりしないでください。</p>
+</div>
+<p><a name="stringable-casting"></a></p>
+<h4 id="stringable">Stringable キャスト<a class="headerlink" href="#stringable" title="Permanent link">&para;</a></h4>
+<p>モデル属性を<a href="strings.html#fluent-strings-method-list">流れるような <code>Illuminate\Support\Stringable</code> オブジェクト</a>にキャストするために、<code>Illuminate\Database\Eloquent\Casts\AsStringable</code> キャストクラスを使用できます。</p>
+<div class="highlight"><pre><span></span><code><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Models</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Illuminate\Database\Eloquent\Casts\AsStringable</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Database\Eloquent\Model</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">User</span> <span class="k">extends</span> <span class="nx">Model</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * キャストする必要がある属性を取得します。</span>
+<span class="sd">     *</span>
+<span class="sd">     * @return array&lt;string, string&gt;</span>
+<span class="sd">     */</span>
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">casts</span><span class="p">()</span><span class="o">:</span> <span class="k">array</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="s1">&#39;directory&#39;</span> <span class="o">=&gt;</span> <span class="nx">AsStringable</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+        <span class="p">];</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><a name="array-and-json-casting"></a></p>
+<h3 id="json">配列とJSONのキャスト<a class="headerlink" href="#json" title="Permanent link">&para;</a></h3>
+<p><code>array</code> キャストは、シリアライズされたJSONとして保存される列を扱う際に特に便利です。例えば、データベースにシリアライズされたJSONを含む <code>JSON</code> または <code>TEXT</code> フィールドタイプがある場合、その属性に <code>array</code> キャストを追加すると、Eloquentモデルでアクセスしたときに属性が自動的にPHP配列にデシリアライズされます。</p>
+<div class="highlight"><pre><span></span><code><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Models</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Illuminate\Database\Eloquent\Model</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">User</span> <span class="k">extends</span> <span class="nx">Model</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * キャストする必要がある属性を取得します。</span>
+<span class="sd">     *</span>
+<span class="sd">     * @return array&lt;string, string&gt;</span>
+<span class="sd">     */</span>
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">casts</span><span class="p">()</span><span class="o">:</span> <span class="k">array</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="s1">&#39;options&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;array&#39;</span><span class="p">,</span>
+        <span class="p">];</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>キャストが定義されると、<code>options</code> 属性にアクセスすると、自動的にJSONからPHP配列にデシリアライズされます。<code>options</code> 属性の値を設定すると、指定された配列は自動的にJSONにシリアライズされて保存されます。</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">App\Models\User</span><span class="p">;</span>
+
+<span class="nv">$user</span> <span class="o">=</span> <span class="nx">User</span><span class="o">::</span><span class="na">find</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="nv">$options</span> <span class="o">=</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">options</span><span class="p">;</span>
+
+<span class="nv">$options</span><span class="p">[</span><span class="s1">&#39;key&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;value&#39;</span><span class="p">;</span>
+
+<span class="nv">$user</span><span class="o">-&gt;</span><span class="na">options</span> <span class="o">=</span> <span class="nv">$options</span><span class="p">;</span>
+
+<span class="nv">$user</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">();</span>
+</code></pre></div>
+<p>より簡潔な構文でJSON属性の単一フィールドを更新するには、<a href="eloquent.html#mass-assignment-json-columns">属性を一括割り当て可能に</a>し、<code>update</code> メソッドを呼び出す際に <code>-&gt;</code> 演算子を使用できます。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$user</span> <span class="o">=</span> <span class="nx">User</span><span class="o">::</span><span class="na">find</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="nv">$user</span><span class="o">-&gt;</span><span class="na">update</span><span class="p">([</span><span class="s1">&#39;options-&gt;key&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;value&#39;</span><span class="p">]);</span>
+</code></pre></div>
+<p><a name="array-object-and-collection-casting"></a></p>
+<h4 id="_9">配列オブジェクトとコレクションのキャスト<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h4>
+<p>標準の <code>array</code> キャストは多くのアプリケーションで十分ですが、いくつかの欠点があります。<code>array</code> キャストはプリミティブ型を返すため、配列のオフセットを直接変更することはできません。例えば、次のコードはPHPエラーをトリガーします。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$user</span> <span class="o">=</span> <span class="nx">User</span><span class="o">::</span><span class="na">find</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="nv">$user</span><span class="o">-&gt;</span><span class="na">options</span><span class="p">[</span><span class="s1">&#39;key&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$value</span><span class="p">;</span>
+</code></pre></div>
+<p>これを解決するために、LaravelはJSON属性を <a href="https://www.php.net/manual/en/class.arrayobject.php">ArrayObject</a> クラスにキャストする <code>AsArrayObject</code> キャストを提供します。この機能はLaravelの<a href="#custom-casts">カスタムキャスト</a>実装を使用して実現され、Laravelは変更されたオブジェクトをインテリジェントにキャッシュおよび変換し、個々のオフセットを変更してもPHPエラーが発生しないようにします。<code>AsArrayObject</code> キャストを使用するには、単に属性に割り当てます。</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">Illuminate\Database\Eloquent\Casts\AsArrayObject</span><span class="p">;</span>
+
+<span class="sd">/**</span>
+<span class="sd"> * キャストする必要がある属性を取得します。</span>
+<span class="sd"> *</span>
+<span class="sd"> * @return array&lt;string, string&gt;</span>
+<span class="sd"> */</span>
+<span class="k">protected</span> <span class="k">function</span> <span class="nf">casts</span><span class="p">()</span><span class="o">:</span> <span class="k">array</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="p">[</span>
+        <span class="s1">&#39;options&#39;</span> <span class="o">=&gt;</span> <span class="nx">AsArrayObject</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+    <span class="p">];</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>同様に、LaravelはJSON属性をLaravel <a href="collections.html">Collection</a> インスタンスにキャストする <code>AsCollection</code> キャストを提供します。</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">Illuminate\Database\Eloquent\Casts\AsCollection</span><span class="p">;</span>
+
+<span class="sd">/**</span>
+<span class="sd"> * キャストする必要がある属性を取得します。</span>
+<span class="sd"> *</span>
+<span class="sd"> * @return array&lt;string, string&gt;</span>
+<span class="sd"> */</span>
+<span class="k">protected</span> <span class="k">function</span> <span class="nf">casts</span><span class="p">()</span><span class="o">:</span> <span class="k">array</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="p">[</span>
+        <span class="s1">&#39;options&#39;</span> <span class="o">=&gt;</span> <span class="nx">AsCollection</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+    <span class="p">];</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Laravelの基本コレクションクラスの代わりにカスタムコレクションクラスをインスタンス化する場合は、キャスト引数としてコレクションクラス名を指定できます。</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">App\Collections\OptionCollection</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Database\Eloquent\Casts\AsCollection</span><span class="p">;</span>
+
+<span class="sd">/**</span>
+<span class="sd"> * キャストする必要がある属性を取得します。</span>
+<span class="sd"> *</span>
+<span class="sd"> * @return array&lt;string, string&gt;</span>
+<span class="sd"> */</span>
+<span class="k">protected</span> <span class="k">function</span> <span class="nf">casts</span><span class="p">()</span><span class="o">:</span> <span class="k">array</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="p">[</span>
+        <span class="s1">&#39;options&#39;</span> <span class="o">=&gt;</span> <span class="nx">AsCollection</span><span class="o">::</span><span class="na">using</span><span class="p">(</span><span class="nx">OptionCollection</span><span class="o">::</span><span class="na">class</span><span class="p">),</span>
+    <span class="p">];</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><a name="date-casting"></a></p>
+<h3 id="_10">日付のキャスト<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p>デフォルトでは、Eloquentは <code>created_at</code> および <code>updated_at</code> 列を <a href="https://github.com/briannesbitt/Carbon">Carbon</a> インスタンスにキャストします。これはPHPの <code>DateTime</code> クラスを拡張し、さまざまな便利なメソッドを提供します。モデルの <code>casts</code> メソッド内で追加の日付キャストを定義することで、追加の日付属性をキャストできます。通常、日付は <code>datetime</code> または <code>immutable_datetime</code> キャストタイプを使用してキャストする必要があります。</p>
+<p><code>date</code> または <code>datetime</code> キャストを定義する際に、日付のフォーマットを指定することもできます。このフォーマットは、<a href="eloquent-serialization.html">モデルが配列またはJSONにシリアライズされる</a>際に使用されます。</p>
+<div class="highlight"><pre><span></span><code><span class="sd">/**</span>
+<span class="sd"> * キャストする必要がある属性を取得します。</span>
+<span class="sd"> *</span>
+<span class="sd"> * @return array&lt;string, string&gt;</span>
+<span class="sd"> */</span>
+<span class="k">protected</span> <span class="k">function</span> <span class="nf">casts</span><span class="p">()</span><span class="o">:</span> <span class="k">array</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="p">[</span>
+        <span class="s1">&#39;created_at&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;datetime:Y-m-d&#39;</span><span class="p">,</span>
+    <span class="p">];</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>列が日付としてキャストされる場合、対応するモデル属性の値をUNIXタイムスタンプ、日付文字列（<code>Y-m-d</code>）、日時文字列、または <code>DateTime</code> / <code>Carbon</code> インスタンスに設定できます。日付の値は正しく変換され、データベースに保存されます。</p>
+<p>モデルのすべての日付のデフォルトのシリアライズフォーマットをカスタマイズするには、モデルに <code>serializeDate</code> メソッドを定義します。このメソッドは、データベースに日付が格納される方法には影響しません。</p>
+<div class="highlight"><pre><span></span><code><span class="sd">/**</span>
+<span class="sd"> * 配列 / JSON シリアライズ用に日付を準備します。</span>
+<span class="sd"> */</span>
+<span class="k">protected</span> <span class="k">function</span> <span class="nf">serializeDate</span><span class="p">(</span><span class="nx">DateTimeInterface</span> <span class="nv">$date</span><span class="p">)</span><span class="o">:</span> <span class="nx">string</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="nv">$date</span><span class="o">-&gt;</span><span class="na">format</span><span class="p">(</span><span class="s1">&#39;Y-m-d&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>データベース内にモデルの日付を実際に格納する際に使用するフォーマットを指定するには、モデルに <code>$dateFormat</code> プロパティを定義する必要があります。</p>
+<div class="highlight"><pre><span></span><code><span class="sd">/**</span>
+<span class="sd"> * モデルの日付列のストレージフォーマット。</span>
+<span class="sd"> *</span>
+<span class="sd"> * @var string</span>
+<span class="sd"> */</span>
+<span class="k">protected</span> <span class="nv">$dateFormat</span> <span class="o">=</span> <span class="s1">&#39;U&#39;</span><span class="p">;</span>
+</code></pre></div>
+<p><a name="date-casting-and-timezones"></a></p>
+<h4 id="_11">日付のキャスト、シリアライズ、およびタイムゾーン<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h4>
+<p>デフォルトでは、<code>date</code> および <code>datetime</code> キャストは、アプリケーションの <code>timezone</code> 設定オプションで指定されたタイムゾーンに関係なく、UTC ISO-8601 日付文字列（<code>YYYY-MM-DDTHH:MM:SS.uuuuuuZ</code>）に日付をシリアライズします。このシリアライズフォーマットを常に使用し、アプリケーションのタイムゾーンをデフォルトの <code>UTC</code> 値から変更せずにUTCタイムゾーンに日付を保存することを強くお勧めします。アプリケーション全体でUTCタイムゾーンを一貫して使用することで、PHPおよびJavaScriptで記述された他の日付操作ライブラリとの最大限の相互運用性が得られます。</p>
+<p><code>date</code> または <code>datetime</code> キャストにカスタムフォーマットが適用されている場合（例：<code>datetime:Y-m-d H:i:s</code>）、日付のシリアライズ中にCarbonインスタンスの内部タイムゾーンが使用されます。通常、これはアプリケーションの <code>timezone</code> 設定オプションで指定されたタイムゾーンになります。ただし、<code>created_at</code> や <code>updated_at</code> などの <code>timestamp</code> 列はこの動作から除外され、アプリケーションのタイムゾーン設定に関係なく常にUTCでフォーマットされることに注意してください。</p>
+<p><a name="enum-casting"></a></p>
+<h3 id="enum">Enumのキャスト<a class="headerlink" href="#enum" title="Permanent link">&para;</a></h3>
+<p>Eloquentでは、属性値をPHPの <a href="https://www.php.net/manual/en/language.enumerations.backed.php">Enums</a> にキャストすることもできます。これを行うには、モデルの <code>casts</code> メソッドでキャストしたい属性とEnumを指定します。</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">App\Enums\ServerStatus</span><span class="p">;</span>
+
+<span class="sd">/**</span>
+<span class="sd"> * キャストする必要がある属性を取得します。</span>
+<span class="sd"> *</span>
+<span class="sd"> * @return array&lt;string, string&gt;</span>
+<span class="sd"> */</span>
+<span class="k">protected</span> <span class="k">function</span> <span class="nf">casts</span><span class="p">()</span><span class="o">:</span> <span class="k">array</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="p">[</span>
+        <span class="s1">&#39;status&#39;</span> <span class="o">=&gt;</span> <span class="nx">ServerStatus</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+    <span class="p">];</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>モデルにキャストを定義すると、指定された属性は自動的にEnumとの間でキャストされます。</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="p">(</span><span class="nv">$server</span><span class="o">-&gt;</span><span class="na">status</span> <span class="o">==</span> <span class="nx">ServerStatus</span><span class="o">::</span><span class="na">Provisioned</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$server</span><span class="o">-&gt;</span><span class="na">status</span> <span class="o">=</span> <span class="nx">ServerStatus</span><span class="o">::</span><span class="na">Ready</span><span class="p">;</span>
+
+    <span class="nv">$server</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><a name="casting-arrays-of-enums"></a></p>
+<h4 id="enum_1">Enumの配列のキャスト<a class="headerlink" href="#enum_1" title="Permanent link">&para;</a></h4>
+<p>モデルが単一の列にEnum値の配列を保存する必要がある場合があります。これを行うには、Laravelが提供する <code>AsEnumArrayObject</code> または <code>AsEnumCollection</code> キャストを利用できます。</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">App\Enums\ServerStatus</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Database\Eloquent\Casts\AsEnumCollection</span><span class="p">;</span>
+
+<span class="sd">/**</span>
+<span class="sd"> * キャストする必要がある属性を取得します。</span>
+<span class="sd"> *</span>
+<span class="sd"> * @return array&lt;string, string&gt;</span>
+<span class="sd"> */</span>
+<span class="k">protected</span> <span class="k">function</span> <span class="nf">casts</span><span class="p">()</span><span class="o">:</span> <span class="k">array</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="p">[</span>
+        <span class="s1">&#39;statuses&#39;</span> <span class="o">=&gt;</span> <span class="nx">AsEnumCollection</span><span class="o">::</span><span class="na">of</span><span class="p">(</span><span class="nx">ServerStatus</span><span class="o">::</span><span class="na">class</span><span class="p">),</span>
+    <span class="p">];</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><a name="encrypted-casting"></a></p>
+<h3 id="_12">暗号化されたキャスト<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<p><code>encrypted</code> キャストは、Laravelの組み込みの<a href="encryption.html">暗号化</a>機能を使用してモデルの属性値を暗号化します。さらに、<code>encrypted:array</code>、<code>encrypted:collection</code>、<code>encrypted:object</code>、<code>AsEncryptedArrayObject</code>、および <code>AsEncryptedCollection</code> キャストは、対応する非暗号化のキャストと同様に動作します。ただし、予想通り、基になる値はデータベースに保存される際に暗号化されます。</p>
+<p>暗号化されたテキストの最終的な長さは予測不可能であり、プレーンテキストの対応物よりも長くなるため、関連するデータベース列が <code>TEXT</code> 型以上であることを確認してください。また、値がデータベースで暗号化されているため、暗号化された属性値をクエリまたは検索することはできません。</p>
+<p><a name="key-rotation"></a></p>
+<h4 id="_13">キーのローテーション<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h4>
+<p>Laravelは、アプリケーションの<code>app</code>設定ファイルで指定された<code>key</code>設定値を使用して文字列を暗号化します。通常、この値は<code>APP_KEY</code>環境変数の値に対応します。アプリケーションの暗号化キーをローテーションする必要がある場合は、新しいキーを使用して暗号化された属性を手動で再暗号化する必要があります。</p>
+<p><a name="query-time-casting"></a></p>
+<h3 id="_14">クエリ時のキャスト<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<p>テーブルから生の値を選択する場合など、クエリの実行中にキャストを適用する必要がある場合があります。例えば、次のクエリを考えてみましょう。</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">App\Models\Post</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">App\Models\User</span><span class="p">;</span>
+
+<span class="nv">$users</span> <span class="o">=</span> <span class="nx">User</span><span class="o">::</span><span class="na">select</span><span class="p">([</span>
+    <span class="s1">&#39;users.*&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;last_posted_at&#39;</span> <span class="o">=&gt;</span> <span class="nx">Post</span><span class="o">::</span><span class="na">selectRaw</span><span class="p">(</span><span class="s1">&#39;MAX(created_at)&#39;</span><span class="p">)</span>
+            <span class="o">-&gt;</span><span class="na">whereColumn</span><span class="p">(</span><span class="s1">&#39;user_id&#39;</span><span class="p">,</span> <span class="s1">&#39;users.id&#39;</span><span class="p">)</span>
+<span class="p">])</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+</code></pre></div>
+<p>このクエリの結果の<code>last_posted_at</code>属性は単純な文字列になります。クエリの実行時にこの属性に<code>datetime</code>キャストを適用できれば素晴らしいでしょう。幸いなことに、<code>withCasts</code>メソッドを使用してこれを実現できます。</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$users</span> <span class="o">=</span> <span class="nx">User</span><span class="o">::</span><span class="na">select</span><span class="p">([</span>
+    <span class="s1">&#39;users.*&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;last_posted_at&#39;</span> <span class="o">=&gt;</span> <span class="nx">Post</span><span class="o">::</span><span class="na">selectRaw</span><span class="p">(</span><span class="s1">&#39;MAX(created_at)&#39;</span><span class="p">)</span>
+            <span class="o">-&gt;</span><span class="na">whereColumn</span><span class="p">(</span><span class="s1">&#39;user_id&#39;</span><span class="p">,</span> <span class="s1">&#39;users.id&#39;</span><span class="p">)</span>
+<span class="p">])</span><span class="o">-&gt;</span><span class="na">withCasts</span><span class="p">([</span>
+    <span class="s1">&#39;last_posted_at&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;datetime&#39;</span>
+<span class="p">])</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
+</code></pre></div>
+<p><a name="custom-casts"></a></p>
+<h2 id="_15">カスタムキャスト<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h2>
+<p>Laravelには、さまざまな組み込みの便利なキャストタイプがありますが、独自のキャストタイプを定義する必要がある場合もあります。キャストを作成するには、<code>make:cast</code> Artisanコマンドを実行します。新しいキャストクラスは<code>app/Casts</code>ディレクトリに配置されます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>make:cast<span class="w"> </span>Json
+</code></pre></div>
+<p>すべてのカスタムキャストクラスは<code>CastsAttributes</code>インターフェースを実装します。このインターフェースを実装するクラスは、<code>get</code>メソッドと<code>set</code>メソッドを定義する必要があります。<code>get</code>メソッドはデータベースからの生の値をキャストされた値に変換する役割を持ち、<code>set</code>メソッドはキャストされた値をデータベースに保存できる生の値に変換する必要があります。例として、組み込みの<code>json</code>キャストタイプをカスタムキャストタイプとして再実装します。</p>
+<div class="highlight"><pre><span></span><code><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Casts</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Illuminate\Contracts\Database\Eloquent\CastsAttributes</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Database\Eloquent\Model</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Json</span> <span class="k">implements</span> <span class="nx">CastsAttributes</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * 指定された値をキャストします。</span>
+<span class="sd">     *</span>
+<span class="sd">     * @param  array&lt;string, mixed&gt;  $attributes</span>
+<span class="sd">     * @return array&lt;string, mixed&gt;</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">get</span><span class="p">(</span><span class="nx">Model</span> <span class="nv">$model</span><span class="p">,</span> <span class="nx">string</span> <span class="nv">$key</span><span class="p">,</span> <span class="nx">mixed</span> <span class="nv">$value</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$attributes</span><span class="p">)</span><span class="o">:</span> <span class="k">array</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$value</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * 指定された値を保存用に準備します。</span>
+<span class="sd">     *</span>
+<span class="sd">     * @param  array&lt;string, mixed&gt;  $attributes</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">set</span><span class="p">(</span><span class="nx">Model</span> <span class="nv">$model</span><span class="p">,</span> <span class="nx">string</span> <span class="nv">$key</span><span class="p">,</span> <span class="nx">mixed</span> <span class="nv">$value</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$attributes</span><span class="p">)</span><span class="o">:</span> <span class="nx">string</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nb">json_encode</span><span class="p">(</span><span class="nv">$value</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>カスタムキャストタイプを定義したら、クラス名を使用してモデル属性にアタッチできます。</p>
+<div class="highlight"><pre><span></span><code><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Models</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">App\Casts\Json</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Database\Eloquent\Model</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">User</span> <span class="k">extends</span> <span class="nx">Model</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * キャストする必要がある属性を取得します。</span>
+<span class="sd">     *</span>
+<span class="sd">     * @return array&lt;string, string&gt;</span>
+<span class="sd">     */</span>
+    <span class="k">protected</span> <span class="k">function</span> <span class="nf">casts</span><span class="p">()</span><span class="o">:</span> <span class="k">array</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="s1">&#39;options&#39;</span> <span class="o">=&gt;</span> <span class="nx">Json</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+        <span class="p">];</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><a name="value-object-casting"></a></p>
+<h3 id="_16">値オブジェクトのキャスト<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h3>
+<p>値をプリミティブ型にキャストするだけでなく、値をオブジェクトにキャストすることもできます。カスタムキャストを使用して値をオブジェクトにキャストすることは、プリミティブ型にキャストすることと非常によく似ていますが、<code>set</code>メソッドはキー/値のペアの配列を返す必要があります。これは、モデルに設定される生の保存可能な値に使用されます。</p>
+<p>例として、複数のモデル値を1つの<code>Address</code>値オブジェクトにキャストするカスタムキャストクラスを定義します。<code>Address</code>値オブジェクトには<code>lineOne</code>と<code>lineTwo</code>という2つのパブリックプロパティがあると仮定します。</p>
+<div class="highlight"><pre><span></span><code><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Casts</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">App\ValueObjects\Address</span> <span class="k">as</span> <span class="nx">AddressValueObject</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Contracts\Database\Eloquent\CastsAttributes</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Database\Eloquent\Model</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">InvalidArgumentException</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Address</span> <span class="k">implements</span> <span class="nx">CastsAttributes</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * 指定された値をキャストします。</span>
+<span class="sd">     *</span>
+<span class="sd">     * @param  array&lt;string, mixed&gt;  $attributes</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">get</span><span class="p">(</span><span class="nx">Model</span> <span class="nv">$model</span><span class="p">,</span> <span class="nx">string</span> <span class="nv">$key</span><span class="p">,</span> <span class="nx">mixed</span> <span class="nv">$value</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$attributes</span><span class="p">)</span><span class="o">:</span> <span class="nx">AddressValueObject</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nx">AddressValueObject</span><span class="p">(</span>
+            <span class="nv">$attributes</span><span class="p">[</span><span class="s1">&#39;address_line_one&#39;</span><span class="p">],</span>
+            <span class="nv">$attributes</span><span class="p">[</span><span class="s1">&#39;address_line_two&#39;</span><span class="p">]</span>
+        <span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * 指定された値を保存用に準備します。</span>
+<span class="sd">     *</span>
+<span class="sd">     * @param  array&lt;string, mixed&gt;  $attributes</span>
+<span class="sd">     * @return array&lt;string, string&gt;</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">set</span><span class="p">(</span><span class="nx">Model</span> <span class="nv">$model</span><span class="p">,</span> <span class="nx">string</span> <span class="nv">$key</span><span class="p">,</span> <span class="nx">mixed</span> <span class="nv">$value</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$attributes</span><span class="p">)</span><span class="o">:</span> <span class="k">array</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span> <span class="nv">$value</span> <span class="nx">instanceof</span> <span class="nx">AddressValueObject</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nx">InvalidArgumentException</span><span class="p">(</span><span class="s1">&#39;The given value is not an Address instance.&#39;</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="s1">&#39;address_line_one&#39;</span> <span class="o">=&gt;</span> <span class="nv">$value</span><span class="o">-&gt;</span><span class="na">lineOne</span><span class="p">,</span>
+            <span class="s1">&#39;address_line_two&#39;</span> <span class="o">=&gt;</span> <span class="nv">$value</span><span class="o">-&gt;</span><span class="na">lineTwo</span><span class="p">,</span>
+        <span class="p">];</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>値オブジェクトにキャストする場合、値オブジェクトに加えられた変更は、モデルが保存される前に自動的にモデルに同期されます。</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">App\Models\User</span><span class="p">;</span>
+
+<span class="nv">$user</span> <span class="o">=</span> <span class="nx">User</span><span class="o">::</span><span class="na">find</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="nv">$user</span><span class="o">-&gt;</span><span class="na">address</span><span class="o">-&gt;</span><span class="na">lineOne</span> <span class="o">=</span> <span class="s1">&#39;Updated Address Value&#39;</span><span class="p">;</span>
+
+<span class="nv">$user</span><span class="o">-&gt;</span><span class="na">save</span><span class="p">();</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>EloquentモデルをJSONまたは配列にシリアライズする予定がある場合、値オブジェクトに<code>Illuminate\Contracts\Support\Arrayable</code>と<code>JsonSerializable</code>インターフェースを実装する必要があります。</p>
+</div>
+<p><a name="value-object-caching"></a></p>
+<h4 id="_17">値オブジェクトのキャッシュ<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h4>
+<p>値オブジェクトにキャストされた属性が解決されると、Eloquentによってキャッシュされます。したがって、属性が再度アクセスされると、同じオブジェクトインスタンスが返されます。</p>
+<p>カスタムキャストクラスのオブジェクトキャッシュ動作を無効にしたい場合は、カスタムキャストクラスにパブリックな<code>withoutObjectCaching</code>プロパティを宣言できます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">class</span> <span class="nc">Address</span> <span class="k">implements</span> <span class="nx">CastsAttributes</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="p">{</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>    <span class="k">public</span> <span class="nx">bool</span> <span class="nv">$withoutObjectCaching</span> <span class="o">=</span> <span class="k">true</span><span class="p">;</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>    <span class="c1">// ...</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="p">}</span>
+</code></pre></div>
+<p><a name="array-json-serialization"></a></p>
+<h3 id="json_1">配列 / JSON シリアライズ<a class="headerlink" href="#json_1" title="Permanent link">&para;</a></h3>
+<p>Eloquentモデルが<code>toArray</code>および<code>toJson</code>メソッドを使用して配列またはJSONに変換される場合、カスタムキャスト値オブジェクトは通常、<code>Illuminate\Contracts\Support\Arrayable</code>と<code>JsonSerializable</code>インターフェースを実装している限りシリアライズされます。ただし、サードパーティライブラリが提供する値オブジェクトを使用している場合、これらのインターフェースをオブジェクトに追加する権限がない場合があります。</p>
+<p>したがって、カスタムキャストクラスが値オブジェクトのシリアライズを担当するように指定できます。そのためには、カスタムキャストクラスが<code>Illuminate\Contracts\Database\Eloquent\SerializesCastableAttributes</code>インターフェースを実装する必要があります。このインターフェースは、クラスに<code>serialize</code>メソッドを含むことを要求し、このメソッドは値オブジェクトのシリアライズされた形式を返す必要があります。</p>
+<div class="highlight"><pre><span></span><code><span class="sd">/**</span>
+<span class="sd"> * 値のシリアライズされた表現を取得します。</span>
+<span class="sd"> *</span>
+<span class="sd"> * @param  array&lt;string, mixed&gt;  $attributes</span>
+<span class="sd"> */</span>
+<span class="k">public</span> <span class="k">function</span> <span class="nf">serialize</span><span class="p">(</span><span class="nx">Model</span> <span class="nv">$model</span><span class="p">,</span> <span class="nx">string</span> <span class="nv">$key</span><span class="p">,</span> <span class="nx">mixed</span> <span class="nv">$value</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$attributes</span><span class="p">)</span><span class="o">:</span> <span class="nx">string</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span><span class="nx">string</span><span class="p">)</span> <span class="nv">$value</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><a name="inbound-casting"></a></p>
+<h3 id="_18">インバウンドキャスト<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h3>
+<p>モデルに設定されている値のみを変換し、属性がモデルから取得されるときに操作を実行しないカスタムキャストクラスを作成する必要がある場合があります。</p>
+<p>インバウンドのみのカスタムキャストは、<code>CastsInboundAttributes</code>インターフェースを実装する必要があります。これは、<code>set</code>メソッドのみを定義する必要があります。<code>make:cast</code> Artisanコマンドは、<code>--inbound</code>オプションを使用してインバウンドのみのキャストクラスを生成できます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>make:cast<span class="w"> </span>Hash<span class="w"> </span>--inbound
+</code></pre></div>
+<p>インバウンドのみのキャストの古典的な例は、「ハッシュ」キャストです。例えば、指定されたアルゴリズムを介してインバウンド値をハッシュするキャストを定義できます。</p>
+<div class="highlight"><pre><span></span><code><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\Casts</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Illuminate\Contracts\Database\Eloquent\CastsInboundAttributes</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Database\Eloquent\Model</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Hash</span> <span class="k">implements</span> <span class="nx">CastsInboundAttributes</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * 新しいキャストクラスインスタンスを作成します。</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span>
+        <span class="k">protected</span> <span class="nx">string</span><span class="o">|</span><span class="k">null</span> <span class="nv">$algorithm</span> <span class="o">=</span> <span class="k">null</span><span class="p">,</span>
+    <span class="p">)</span> <span class="p">{}</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * 指定された値を保存用に準備します。</span>
+<span class="sd">     *</span>
+<span class="sd">     * @param  array&lt;string, mixed&gt;  $attributes</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">set</span><span class="p">(</span><span class="nx">Model</span> <span class="nv">$model</span><span class="p">,</span> <span class="nx">string</span> <span class="nv">$key</span><span class="p">,</span> <span class="nx">mixed</span> <span class="nv">$value</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$attributes</span><span class="p">)</span><span class="o">:</span> <span class="nx">string</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nb">is_null</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">algorithm</span><span class="p">)</span>
+                    <span class="o">?</span> <span class="nx">bcrypt</span><span class="p">(</span><span class="nv">$value</span><span class="p">)</span>
+                    <span class="o">:</span> <span class="nb">hash</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">algorithm</span><span class="p">,</span> <span class="nv">$value</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><a name="cast-parameters"></a></p>
+<h3 id="_19">キャストパラメータ<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h3>
+<p>モデルにカスタムキャストをアタッチする際に、クラス名を<code>:</code>文字で区切り、複数のパラメータをカンマで区切ることでキャストパラメータを指定できます。パラメータはキャストクラスのコンストラクタに渡されます。</p>
+<div class="highlight"><pre><span></span><code><span class="sd">/**</span>
+<span class="sd"> * キャストする必要がある属性を取得します。</span>
+<span class="sd"> *</span>
+<span class="sd"> * @return array&lt;string, string&gt;</span>
+<span class="sd"> */</span>
+<span class="k">protected</span> <span class="k">function</span> <span class="nf">casts</span><span class="p">()</span><span class="o">:</span> <span class="k">array</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="p">[</span>
+        <span class="s1">&#39;secret&#39;</span> <span class="o">=&gt;</span> <span class="nx">Hash</span><span class="o">::</span><span class="na">class</span><span class="o">.</span><span class="s1">&#39;:sha256&#39;</span><span class="p">,</span>
+    <span class="p">];</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><a name="castables"></a></p>
+<h3 id="castables">Castables<a class="headerlink" href="#castables" title="Permanent link">&para;</a></h3>
+<p>アプリケーションの値オブジェクトが独自のカスタムキャストクラスを定義できるようにしたい場合があります。カスタムキャストクラスをモデルにアタッチする代わりに、<code>Illuminate\Contracts\Database\Eloquent\Castable</code>インターフェースを実装する値オブジェクトクラスをアタッチすることもできます。</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">App\ValueObjects\Address</span><span class="p">;</span>
+
+<span class="k">protected</span> <span class="k">function</span> <span class="nf">casts</span><span class="p">()</span><span class="o">:</span> <span class="k">array</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="p">[</span>
+        <span class="s1">&#39;address&#39;</span> <span class="o">=&gt;</span> <span class="nx">Address</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+    <span class="p">];</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>Castable</code> インターフェースを実装するオブジェクトは、<code>Castable</code> クラスとの間でキャストを行うためのカスタムキャスタークラスのクラス名を返す <code>castUsing</code> メソッドを定義する必要があります。</p>
+<div class="highlight"><pre><span></span><code><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\ValueObjects</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Illuminate\Contracts\Database\Eloquent\Castable</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">App\Casts\Address</span> <span class="k">as</span> <span class="nx">AddressCast</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Address</span> <span class="k">implements</span> <span class="nx">Castable</span>
+<span class="p">{</span>
+    <span class="sd">/**</span>
+<span class="sd">     * このキャスト対象との間でキャストする際に使用するキャスタークラスの名前を取得します。</span>
+<span class="sd">     *</span>
+<span class="sd">     * @param  array&lt;string, mixed&gt;  $arguments</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">castUsing</span><span class="p">(</span><span class="k">array</span> <span class="nv">$arguments</span><span class="p">)</span><span class="o">:</span> <span class="nx">string</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">AddressCast</span><span class="o">::</span><span class="na">class</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>Castable</code> クラスを使用する場合でも、<code>casts</code> メソッドの定義で引数を提供することができます。引数は <code>castUsing</code> メソッドに渡されます。</p>
+<div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">App\ValueObjects\Address</span><span class="p">;</span>
+
+<span class="k">protected</span> <span class="k">function</span> <span class="nf">casts</span><span class="p">()</span><span class="o">:</span> <span class="k">array</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="p">[</span>
+        <span class="s1">&#39;address&#39;</span> <span class="o">=&gt;</span> <span class="nx">Address</span><span class="o">::</span><span class="na">class</span><span class="o">.</span><span class="s1">&#39;:argument&#39;</span><span class="p">,</span>
+    <span class="p">];</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><a name="anonymous-cast-classes"></a></p>
+<h4 id="castables_1">Castables と匿名キャストクラス<a class="headerlink" href="#castables_1" title="Permanent link">&para;</a></h4>
+<p>"castables" を PHP の <a href="https://www.php.net/manual/en/language.oop5.anonymous.php">匿名クラス</a> と組み合わせることで、値オブジェクトとそのキャストロジックを単一の castable オブジェクトとして定義できます。これを実現するには、値オブジェクトの <code>castUsing</code> メソッドから匿名クラスを返します。匿名クラスは <code>CastsAttributes</code> インターフェースを実装する必要があります。</p>
+<div class="highlight"><pre><span></span><code><span class="o">&lt;?</span><span class="nx">php</span>
+
+<span class="k">namespace</span> <span class="nx">App\ValueObjects</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Illuminate\Contracts\Database\Eloquent\Castable</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">Illuminate\Contracts\Database\Eloquent\CastsAttributes</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Address</span> <span class="k">implements</span> <span class="nx">Castable</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+
+    <span class="sd">/**</span>
+<span class="sd">     * このキャスト対象との間でキャストする際に使用するキャスタークラスを取得します。</span>
+<span class="sd">     *</span>
+<span class="sd">     * @param  array&lt;string, mixed&gt;  $arguments</span>
+<span class="sd">     */</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">castUsing</span><span class="p">(</span><span class="k">array</span> <span class="nv">$arguments</span><span class="p">)</span><span class="o">:</span> <span class="nx">CastsAttributes</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="k">class</span> <span class="k">implements</span> <span class="nx">CastsAttributes</span>
+        <span class="p">{</span>
+            <span class="k">public</span> <span class="k">function</span> <span class="nf">get</span><span class="p">(</span><span class="nx">Model</span> <span class="nv">$model</span><span class="p">,</span> <span class="nx">string</span> <span class="nv">$key</span><span class="p">,</span> <span class="nx">mixed</span> <span class="nv">$value</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$attributes</span><span class="p">)</span><span class="o">:</span> <span class="nx">Address</span>
+            <span class="p">{</span>
+                <span class="k">return</span> <span class="k">new</span> <span class="nx">Address</span><span class="p">(</span>
+                    <span class="nv">$attributes</span><span class="p">[</span><span class="s1">&#39;address_line_one&#39;</span><span class="p">],</span>
+                    <span class="nv">$attributes</span><span class="p">[</span><span class="s1">&#39;address_line_two&#39;</span><span class="p">]</span>
+                <span class="p">);</span>
+            <span class="p">}</span>
+
+            <span class="k">public</span> <span class="k">function</span> <span class="nf">set</span><span class="p">(</span><span class="nx">Model</span> <span class="nv">$model</span><span class="p">,</span> <span class="nx">string</span> <span class="nv">$key</span><span class="p">,</span> <span class="nx">mixed</span> <span class="nv">$value</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$attributes</span><span class="p">)</span><span class="o">:</span> <span class="k">array</span>
+            <span class="p">{</span>
+                <span class="k">return</span> <span class="p">[</span>
+                    <span class="s1">&#39;address_line_one&#39;</span> <span class="o">=&gt;</span> <span class="nv">$value</span><span class="o">-&gt;</span><span class="na">lineOne</span><span class="p">,</span>
+                    <span class="s1">&#39;address_line_two&#39;</span> <span class="o">=&gt;</span> <span class="nv">$value</span><span class="o">-&gt;</span><span class="na">lineTwo</span><span class="p">,</span>
+                <span class="p">];</span>
+            <span class="p">}</span>
+        <span class="p">};</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+<nav class="md-footer-nav">
+    
+    
+</nav>
+
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": ".", "features": ["back-to-top", "navigation.expand", "navigation.tabs", "navigation.footer", "navigation.sections", "navigation.expand", "content.code.copy", "hide_repository_button", "content.code.annotate", "content.tabs.link", "toc.none", "content.action.edit"], "search": "assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="assets/javascripts/bundle.56dfad97.min.js"></script>
+      
+    
+  </body>
+</html>

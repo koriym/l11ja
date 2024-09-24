@@ -1,0 +1,4263 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://github.com/koriym/laravel11-ja/fortify.html">
+      
+      
+        <link rel="prev" href="envoy.html">
+      
+      
+        <link rel="next" href="folio.html">
+      
+      
+      <link rel="icon" href="assets/images/favicon_io/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.35">
+    
+    
+      
+        <title>Fortify - L11JA</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.35f28582.min.css">
+      
+      
+
+
+    
+    
+
+    
+
+    
+      <link rel="stylesheet" href="assets/css/php.css">
+    
+      <link rel="stylesheet" href="assets/css/mkdocs_material_extra.css">
+    
+      <link rel="stylesheet" href="assets/css/extra.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-G60CEHXLQ1"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-G60CEHXLQ1",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-G60CEHXLQ1",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#laravel-fortify" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      <!-- Determine classes -->
+
+
+
+<!-- Header -->
+<header class="md-header" data-md-component="header">
+  <nav
+          class="md-header__inner md-grid"
+          aria-label="Header"
+  >
+
+    <!-- Link to home -->
+    <a
+            href="."
+            title="L11JA"
+            class="md-header__button md-logo"
+            aria-label="L11JA"
+            data-md-component="logo"
+    >
+      
+  <img src="assets/images/logo.png" alt="logo">
+
+    </a>
+
+    <!-- Button to open drawer -->
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+
+    <!-- Header title -->
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            <span style="font-family: 'Noto Sans'; font-size: 20px" >
+            L11JA
+            </span>
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            <span style="font-family: 'Noto Sans Batak'; font-size: 20px" >
+            
+              Fortify
+            
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Color palette toggle -->
+    
+
+    <!-- User preference: color palette -->
+    
+    <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+
+    <!-- Site language selector -->
+    
+
+    <!-- Button to open search modal -->
+    
+    <label class="md-header__button md-icon" for="__search">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+    </label>
+
+    <!-- Search interface -->
+    <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    <!-- Repository information -->
+    
+    <div class="md-header__source">
+      
+
+<!--
+  Check whether the repository is hosted on one of the supported code hosting
+  platforms (GitHub, GitLab or Bitbucket) to show icon.
+-->
+
+
+  
+
+
+<!-- Repository containing source -->
+<a href="https://github.com/koriym/l11ja" title="source.link.title"
+    class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z" fill="#000"/></svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+    
+  </nav>
+
+  <!-- Navigation tabs (sticky) -->
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="releases.html" class="md-tabs__link">
+          
+  
+  プロローグ
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="installation.html" class="md-tabs__link">
+          
+  
+  はじめに
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="lifecycle.html" class="md-tabs__link">
+          
+  
+  アーキテクチャ
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="routing.html" class="md-tabs__link">
+          
+  
+  基本
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="artisan.html" class="md-tabs__link">
+          
+  
+  掘り下げる
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="authentication.html" class="md-tabs__link">
+          
+  
+  セキュリティ
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="database.html" class="md-tabs__link">
+          
+  
+  データベース
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="eloquent.html" class="md-tabs__link">
+          
+  
+  Eloquent ORM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="testing.html" class="md-tabs__link">
+          
+  
+  テスト
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="starter-kits.html" class="md-tabs__link">
+          
+  
+  パッケージ
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="L11JA" class="md-nav__button md-logo" aria-label="L11JA" data-md-component="logo">
+      
+  <img src="assets/images/logo.png" alt="logo">
+
+    </a>
+    L11JA
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+<!--
+  Check whether the repository is hosted on one of the supported code hosting
+  platforms (GitHub, GitLab or Bitbucket) to show icon.
+-->
+
+
+  
+
+
+<!-- Repository containing source -->
+<a href="https://github.com/koriym/l11ja" title="source.link.title"
+    class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z" fill="#000"/></svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    プロローグ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            プロローグ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="releases.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リリースノート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="upgrade.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    アップグレードガイド
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="contributions.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    貢献ガイド
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            はじめに
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="installation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    インストール
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="configuration.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    設定
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structure.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ディレクトリ構造
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="frontend.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    フロントエンド
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="starter-kits.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    スターターキット
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="deployment.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    デプロイ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    アーキテクチャ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            アーキテクチャ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="lifecycle.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リクエストライフサイクル
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="container.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    サービスコンテナ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="providers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    サービスプロバイダ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="facades.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ファサード
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    基本
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            基本
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="routing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ルーティング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="middleware.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ミドルウェア
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="csrf.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CSRF保護
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="controllers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コントローラ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="requests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リクエスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="responses.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    レスポンス
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="views.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ビュー
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="blade.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bladeテンプレート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="vite.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    アセットバンドル
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="urls.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    URL生成
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="session.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    セッション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="validation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    バリデーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="errors.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    エラー処理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="logging.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ログ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    掘り下げる
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            掘り下げる
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="artisan.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Artisanコンソール
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="broadcasting.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ブロードキャスティング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cache.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    キャッシュ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="collections.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コレクション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="concurrency.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    並行処理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="context.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コンテキスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="contracts.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コントラクト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="events.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    イベント
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="filesystem.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ファイルストレージ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="helpers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ヘルパー
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="http-client.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTTPクライアント
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="localization.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ローカライゼーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mail.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    メール
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="notifications.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    通知
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="packages.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    パッケージ開発
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="processes.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    プロセス
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="queues.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    キュー
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="rate-limiting.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    レート制限
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="strings.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    文字列
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="scheduling.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    タスクスケジューリング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    セキュリティ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            セキュリティ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="authentication.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    認証
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="authorization.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    認可
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="verification.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    メール確認
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="encryption.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    暗号化
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hashing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ハッシュ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="passwords.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    パスワードリセット
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    データベース
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            データベース
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="database.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="queries.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    クエリビルダ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pagination.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ページネーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="migrations.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    マイグレーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="seeding.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    シーディング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="redis.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Redis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Eloquent ORM
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Eloquent ORM
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-relationships.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リレーションシップ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-collections.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コレクション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-mutators.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ミューテータ / キャスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-resources.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    APIリソース
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-serialization.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    シリアライゼーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-factories.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ファクトリ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    テスト
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            テスト
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="testing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="http-tests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTTPテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="console-tests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コンソールテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="dusk.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ブラウザテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="database-testing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    データベース
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mocking.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    モック
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    パッケージ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            パッケージ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="starter-kits.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    スターターキット
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="billing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cashier (Stripe)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cashier-paddle.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cashier (Paddle)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="dusk.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ブラウザテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="envoy.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Envoy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Fortify
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="fortify.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Fortify
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      はじめに
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="はじめに">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fortify" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fortifyとは？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fortify_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fortifyをいつ使うべきか？
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fortifyをいつ使うべきか？">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#laravel-fortifylaravel-sanctum" class="md-nav__link">
+    <span class="md-ellipsis">
+      Laravel FortifyとLaravel Sanctum
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      インストール
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="インストール">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fortify_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fortifyの機能
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      ビューの無効化
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ビューの無効化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      ビューの無効化とパスワードリセット
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      認証
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="認証">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      ユーザー認証のカスタマイズ
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ユーザー認証のカスタマイズ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      認証ガード
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      認証パイプラインのカスタマイズ
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="認証パイプラインのカスタマイズ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      認証のスロットリング
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      リダイレクトのカスタマイズ
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      二要素認証
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="二要素認証">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      二要素認証の確認
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      リカバリーコードの表示
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      二要素認証による認証
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      二要素認証の無効化
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      登録
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="登録">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      登録のカスタマイズ
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      パスワードリセット
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="パスワードリセット">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      パスワードリセットリンクのリクエスト
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="パスワードリセットリンクのリクエスト">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      パスワードリセットリンクリクエストのレスポンスの処理
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      パスワードのリセット
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="パスワードのリセット">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      パスワードリセットレスポンスの処理
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      パスワードリセットのカスタマイズ
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      メール検証
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="メール検証">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      メール検証リンクの再送信
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      ルートの保護
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      パスワード確認
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="folio.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Folio
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="homestead.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Homestead
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="horizon.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Horizon
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mix.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mix
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="octane.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Octane
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="passport.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Passport
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pennant.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pennant
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pint.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pint
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="precognition.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Precognition
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="prompts.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prompts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pulse.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pulse
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reverb.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reverb
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sail.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sail
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sanctum.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sanctum
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="scout.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Scout
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="socialite.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Socialite
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="telescope.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Telescope
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="valet.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Valet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      はじめに
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="はじめに">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fortify" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fortifyとは？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fortify_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fortifyをいつ使うべきか？
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fortifyをいつ使うべきか？">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#laravel-fortifylaravel-sanctum" class="md-nav__link">
+    <span class="md-ellipsis">
+      Laravel FortifyとLaravel Sanctum
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      インストール
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="インストール">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fortify_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fortifyの機能
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      ビューの無効化
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ビューの無効化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      ビューの無効化とパスワードリセット
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      認証
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="認証">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      ユーザー認証のカスタマイズ
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ユーザー認証のカスタマイズ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      認証ガード
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      認証パイプラインのカスタマイズ
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="認証パイプラインのカスタマイズ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      認証のスロットリング
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      リダイレクトのカスタマイズ
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      二要素認証
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="二要素認証">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      二要素認証の確認
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      リカバリーコードの表示
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      二要素認証による認証
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      二要素認証の無効化
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      登録
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="登録">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      登録のカスタマイズ
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      パスワードリセット
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="パスワードリセット">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      パスワードリセットリンクのリクエスト
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="パスワードリセットリンクのリクエスト">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      パスワードリセットリンクリクエストのレスポンスの処理
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      パスワードのリセット
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="パスワードのリセット">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      パスワードリセットレスポンスの処理
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      パスワードリセットのカスタマイズ
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      メール検証
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="メール検証">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      メール検証リンクの再送信
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      ルートの保護
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      パスワード確認
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/koriym/l11ja/edit/master/docs/fortify.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="laravel-fortify">Laravel Fortify<a class="headerlink" href="#laravel-fortify" title="Permanent link">&para;</a></h1>
+<ul>
+<li><a href="#introduction">はじめに</a><ul>
+<li><a href="#what-is-fortify">Fortifyとは？</a></li>
+<li><a href="#when-should-i-use-fortify">Fortifyをいつ使うべきか？</a></li>
+</ul>
+</li>
+<li><a href="#installation">インストール</a><ul>
+<li><a href="#fortify-features">Fortifyの機能</a></li>
+<li><a href="#disabling-views">ビューの無効化</a></li>
+</ul>
+</li>
+<li><a href="#authentication">認証</a><ul>
+<li><a href="#customizing-user-authentication">ユーザー認証のカスタマイズ</a></li>
+<li><a href="#customizing-the-authentication-pipeline">認証パイプラインのカスタマイズ</a></li>
+<li><a href="#customizing-authentication-redirects">リダイレクトのカスタマイズ</a></li>
+</ul>
+</li>
+<li><a href="#two-factor-authentication">二要素認証</a><ul>
+<li><a href="#enabling-two-factor-authentication">二要素認証の有効化</a></li>
+<li><a href="#authenticating-with-two-factor-authentication">二要素認証による認証</a></li>
+<li><a href="#disabling-two-factor-authentication">二要素認証の無効化</a></li>
+</ul>
+</li>
+<li><a href="#registration">登録</a><ul>
+<li><a href="#customizing-registration">登録のカスタマイズ</a></li>
+</ul>
+</li>
+<li><a href="#password-reset">パスワードリセット</a><ul>
+<li><a href="#requesting-a-password-reset-link">パスワードリセットリンクのリクエスト</a></li>
+<li><a href="#resetting-the-password">パスワードのリセット</a></li>
+<li><a href="#customizing-password-resets">パスワードリセットのカスタマイズ</a></li>
+</ul>
+</li>
+<li><a href="#email-verification">メール確認</a><ul>
+<li><a href="#protecting-routes">ルートの保護</a></li>
+</ul>
+</li>
+<li><a href="#password-confirmation">パスワード確認</a></li>
+</ul>
+<p><a name="introduction"></a></p>
+<h2 id="_1">はじめに<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p><a href="https://github.com/laravel/fortify">Laravel Fortify</a>は、Laravelのフロントエンドに依存しない認証バックエンドの実装です。Fortifyは、ログイン、登録、パスワードリセット、メール確認など、Laravelのすべての認証機能を実装するために必要なルートとコントローラを登録します。Fortifyをインストールした後、<code>route:list</code> Artisanコマンドを実行して、Fortifyが登録したルートを確認できます。</p>
+<p>Fortifyは独自のユーザーインターフェースを提供しないため、登録したルートにリクエストを送信する独自のユーザーインターフェースと組み合わせて使用することを想定しています。このドキュメントの残りの部分では、これらのルートにリクエストを送信する方法について詳しく説明します。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>覚えておいてください、FortifyはLaravelの認証機能の実装をスタートさせるためのパッケージです。<strong>必ずしも使用する必要はありません。</strong> <a href="authentication.html">認証</a>、<a href="passwords.html">パスワードリセット</a>、<a href="verification.html">メール確認</a>のドキュメントに従って、Laravelの認証サービスを手動で操作することも常に自由です。</p>
+</div>
+<p><a name="what-is-fortify"></a></p>
+<h3 id="fortify">Fortifyとは？<a class="headerlink" href="#fortify" title="Permanent link">&para;</a></h3>
+<p>前述のように、Laravel Fortifyは、Laravelのフロントエンドに依存しない認証バックエンドの実装です。Fortifyは、ログイン、登録、パスワードリセット、メール確認など、Laravelのすべての認証機能を実装するために必要なルートとコントローラを登録します。</p>
+<p><strong>Laravelの認証機能を使用するためにFortifyを使用する必要はありません。</strong> <a href="authentication.html">認証</a>、<a href="passwords.html">パスワードリセット</a>、<a href="verification.html">メール確認</a>のドキュメントに従って、Laravelの認証サービスを手動で操作することも常に自由です。</p>
+<p>Laravelを初めて使用する場合は、Laravel Fortifyを使用する前に、<a href="starter-kits.html">Laravel Breeze</a>アプリケーションスターターキットを試してみることをお勧めします。Laravel Breezeは、<a href="https://tailwindcss.com">Tailwind CSS</a>で構築されたユーザーインターフェースを含む、アプリケーションの認証スキャフォールディングを提供します。Fortifyとは異なり、Breezeはルートとコントローラを直接アプリケーションに公開します。これにより、Laravel Fortifyを使用してこれらの機能を実装する前に、Laravelの認証機能を研究し、慣れることができます。</p>
+<p>Laravel Fortifyは、基本的にLaravel Breezeのルートとコントローラをユーザーインターフェースを含まないパッケージとして提供します。これにより、特定のフロントエンドの意見に縛られることなく、アプリケーションの認証層のバックエンド実装を迅速にスキャフォールディングできます。</p>
+<p><a name="when-should-i-use-fortify"></a></p>
+<h3 id="fortify_1">Fortifyをいつ使うべきか？<a class="headerlink" href="#fortify_1" title="Permanent link">&para;</a></h3>
+<p>Laravel Fortifyをいつ使用するか疑問に思うかもしれません。まず、Laravelの<a href="starter-kits.html">アプリケーションスターターキット</a>のいずれかを使用している場合、Laravel Fortifyをインストールする必要はありません。すべてのLaravelアプリケーションスターターキットは、すでに完全な認証実装を提供しています。</p>
+<p>アプリケーションスターターキットを使用しておらず、アプリケーションに認証機能が必要な場合、2つの選択肢があります。アプリケーションの認証機能を手動で実装するか、Laravel Fortifyを使用してこれらの機能のバックエンド実装を提供するかです。</p>
+<p>Fortifyをインストールすることを選択した場合、ユーザーインターフェースは、このドキュメントに詳述されているFortifyの認証ルートにリクエストを送信して、ユーザーを認証および登録します。</p>
+<p>代わりにLaravelの認証サービスを手動で操作することを選択した場合、<a href="authentication.html">認証</a>、<a href="passwords.html">パスワードリセット</a>、<a href="verification.html">メール確認</a>のドキュメントに従って行うことができます。</p>
+<p><a name="laravel-fortify-and-laravel-sanctum"></a></p>
+<h4 id="laravel-fortifylaravel-sanctum">Laravel FortifyとLaravel Sanctum<a class="headerlink" href="#laravel-fortifylaravel-sanctum" title="Permanent link">&para;</a></h4>
+<p>一部の開発者は、<a href="sanctum.html">Laravel Sanctum</a>とLaravel Fortifyの違いについて混乱することがあります。2つのパッケージは2つの異なるが関連する問題を解決するため、Laravel FortifyとLaravel Sanctumは相互に排他的でも競合するパッケージでもありません。</p>
+<p>Laravel Sanctumは、APIトークンの管理と、セッションクッキーまたはトークンを使用した既存ユーザーの認証にのみ関心があります。Sanctumは、ユーザー登録、パスワードリセットなどを処理するルートを提供しません。</p>
+<p>APIを提供するアプリケーションや、シングルページアプリケーションのバックエンドとして機能するアプリケーションの認証層を手動で構築しようとしている場合、Laravel Fortify（ユーザー登録、パスワードリセットなど）とLaravel Sanctum（APIトークン管理、セッション認証）の両方を利用することが完全に可能です。</p>
+<p><a name="installation"></a></p>
+<h2 id="_2">インストール<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>まず、Composerパッケージマネージャを使用してFortifyをインストールします。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>composer<span class="w"> </span>require<span class="w"> </span>laravel/fortify
+</code></pre></div>
+<p>次に、<code>fortify:install</code> Artisanコマンドを使用してFortifyのリソースを公開します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>fortify:install
+</code></pre></div>
+<p>このコマンドは、Fortifyのアクションを<code>app/Actions</code>ディレクトリに公開します。このディレクトリは存在しない場合に作成されます。さらに、<code>FortifyServiceProvider</code>、設定ファイル、および必要なすべてのデータベースマイグレーションが公開されます。</p>
+<p>次に、データベースをマイグレートする必要があります。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>migrate
+</code></pre></div>
+<p><a name="fortify-features"></a></p>
+<h3 id="fortify_2">Fortifyの機能<a class="headerlink" href="#fortify_2" title="Permanent link">&para;</a></h3>
+<p><code>fortify</code>設定ファイルには、<code>features</code>設定配列が含まれています。この配列は、デフォルトでFortifyが公開するバックエンドルート/機能を定義します。<a href="https://jetstream.laravel.com">Laravel Jetstream</a>と組み合わせてFortifyを使用していない場合、ほとんどのLaravelアプリケーションによって提供される基本的な認証機能のみを有効にすることをお勧めします。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="s1">&#39;features&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="nx">Features</span><span class="o">::</span><span class="na">registration</span><span class="p">(),</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="nx">Features</span><span class="o">::</span><span class="na">resetPasswords</span><span class="p">(),</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="nx">Features</span><span class="o">::</span><span class="na">emailVerification</span><span class="p">(),</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="p">],</span>
+</code></pre></div>
+<p><a name="disabling-views"></a></p>
+<h3 id="_3">ビューの無効化<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>デフォルトでは、Fortifyはログイン画面や登録画面などのビューを返すことを意図したルートを定義します。ただし、JavaScript駆動のシングルページアプリケーションを構築している場合、これらのルートは必要ないかもしれません。そのため、アプリケーションの<code>config/fortify.php</code>設定ファイル内の<code>views</code>設定値を<code>false</code>に設定することで、これらのルートを完全に無効にできます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="s1">&#39;views&#39;</span> <span class="o">=&gt;</span> <span class="k">false</span><span class="p">,</span>
+</code></pre></div>
+<p><a name="disabling-views-and-password-reset"></a></p>
+<h4 id="_4">ビューの無効化とパスワードリセット<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
+<p>Fortifyのビューを無効にし、アプリケーションのパスワードリセット機能を実装する場合でも、アプリケーションの「パスワードリセット」ビューを表示するために<code>password.reset</code>という名前のルートを定義する必要があります。これは、Laravelの<code>Illuminate\Auth\Notifications\ResetPassword</code>通知が<code>password.reset</code>という名前のルートを介してパスワードリセットURLを生成するために必要です。</p>
+<p><a name="authentication"></a></p>
+<h2 id="_5">認証<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>まず、Fortifyに「ログイン」ビューを返す方法を指示する必要があります。Fortifyはヘッドレス認証ライブラリであることを思い出してください。Laravelの認証機能のフロントエンド実装がすでに完了している場合は、<a href="starter-kits.html">アプリケーションスターターキット</a>を使用することをお勧めします。</p>
+<p>すべての認証ビューのレンダリングロジックは、<code>Laravel\Fortify\Fortify</code>クラスを介して利用可能な適切なメソッドを使用してカスタマイズできます。通常、このメソッドはアプリケーションの<code>App\Providers\FortifyServiceProvider</code>クラスの<code>boot</code>メソッドから呼び出す必要があります。Fortifyは、このビューを返す<code>/login</code>ルートの定義を処理します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">use</span> <span class="nx">Laravel\Fortify\Fortify</span><span class="p">;</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="sd">/**</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="sd"> * 任意のアプリケーションサービスのブートストラップ</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="sd"> */</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="k">public</span> <span class="k">function</span> <span class="nf">boot</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="p">{</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>    <span class="nx">Fortify</span><span class="o">::</span><span class="na">loginView</span><span class="p">(</span><span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>        <span class="k">return</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;auth.login&#39;</span><span class="p">);</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>    <span class="p">});</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>    <span class="c1">// ...</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="p">}</span>
+</code></pre></div>
+<p>ログインテンプレートには、<code>/login</code>にPOSTリクエストを送信するフォームを含める必要があります。<code>/login</code>エンドポイントは、文字列の<code>email</code> / <code>username</code>と<code>password</code>を期待します。メール/ユーザー名フィールドの名前は、<code>config/fortify.php</code>設定ファイル内の<code>username</code>値と一致する必要があります。さらに、ユーザーが「ログイン状態を維持」機能を使用したいことを示すために、ブール値の<code>remember</code>フィールドを提供できます。</p>
+<p>ログイン試行が成功した場合、Fortifyはアプリケーションの<code>fortify</code>設定ファイル内の<code>home</code>設定オプションで設定されたURIにリダイレクトします。ログインリクエストがXHRリクエストであった場合、200 HTTPレスポンスが返されます。</p>
+<p>リクエストが成功しなかった場合、ユーザーはログイン画面にリダイレクトされ、バリデーションエラーは共有された<code>$errors</code> <a href="validation.html#quick-displaying-the-validation-errors">Bladeテンプレート変数</a>を通じて利用可能になります。または、XHRリクエストの場合、バリデーションエラーは422 HTTPレスポンスとともに返されます。</p>
+<p><a name="customizing-user-authentication"></a></p>
+<h3 id="_6">ユーザー認証のカスタマイズ<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>Fortifyは、提供された資格情報とアプリケーションに設定された認証ガードに基づいて、自動的にユーザーを取得して認証します。しかし、ログイン資格情報の認証方法とユーザーの取得方法を完全にカスタマイズしたい場合があります。幸いなことに、Fortifyは<code>Fortify::authenticateUsing</code>メソッドを使用してこれを簡単に実現できます。</p>
+<p>このメソッドは、受信したHTTPリクエストを受け取るクロージャを受け取ります。このクロージャは、リクエストに添付されたログイン資格情報を検証し、関連するユーザーインスタンスを返す責任があります。資格情報が無効であるか、ユーザーが見つからない場合、クロージャは<code>null</code>または<code>false</code>を返すべきです。通常、このメソッドは<code>FortifyServiceProvider</code>の<code>boot</code>メソッドから呼び出すべきです。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">use</span> <span class="nx">App\Models\User</span><span class="p">;</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">use</span> <span class="nx">Illuminate\Http\Request</span><span class="p">;</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Hash</span><span class="p">;</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="k">use</span> <span class="nx">Laravel\Fortify\Fortify</span><span class="p">;</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="sd">/**</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="sd"> * Bootstrap any application services.</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="sd"> */</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="k">public</span> <span class="k">function</span> <span class="nf">boot</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="p">{</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>    <span class="nx">Fortify</span><span class="o">::</span><span class="na">authenticateUsing</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nx">Request</span> <span class="nv">$request</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>        <span class="nv">$user</span> <span class="o">=</span> <span class="nx">User</span><span class="o">::</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">,</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">email</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">first</span><span class="p">();</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>        <span class="k">if</span> <span class="p">(</span><span class="nv">$user</span> <span class="o">&amp;&amp;</span>
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>            <span class="nx">Hash</span><span class="o">::</span><span class="na">check</span><span class="p">(</span><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">password</span><span class="p">,</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">password</span><span class="p">))</span> <span class="p">{</span>
+<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>            <span class="k">return</span> <span class="nv">$user</span><span class="p">;</span>
+<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>        <span class="p">}</span>
+<a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a>    <span class="p">});</span>
+<a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>
+<a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a>    <span class="c1">// ...</span>
+<a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a><span class="p">}</span>
+</code></pre></div>
+<p><a name="authentication-guard"></a></p>
+<h4 id="_7">認証ガード<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h4>
+<p>アプリケーションの<code>fortify</code>設定ファイル内でFortifyが使用する認証ガードをカスタマイズできます。ただし、設定されたガードが<code>Illuminate\Contracts\Auth\StatefulGuard</code>の実装であることを確認する必要があります。Laravel Fortifyを使用してSPAを認証しようとしている場合、Laravelのデフォルトの<code>web</code>ガードを<a href="https://laravel.com/docs/sanctum">Laravel Sanctum</a>と組み合わせて使用する必要があります。</p>
+<p><a name="customizing-the-authentication-pipeline"></a></p>
+<h3 id="_8">認証パイプラインのカスタマイズ<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>Laravel Fortifyは、呼び出し可能なクラスのパイプラインを通じてログインリクエストを認証します。必要に応じて、ログインリクエストがパイプされるカスタムパイプラインを定義できます。各クラスは、受信した<code>Illuminate\Http\Request</code>インスタンスと、<a href="middleware.html">ミドルウェア</a>のように、リクエストをパイプライン内の次のクラスに渡すために呼び出される<code>$next</code>変数を受け取る<code>__invoke</code>メソッドを持つ必要があります。</p>
+<p>カスタムパイプラインを定義するには、<code>Fortify::authenticateThrough</code>メソッドを使用できます。このメソッドは、ログインリクエストをパイプするクラスの配列を返すクロージャを受け取ります。通常、このメソッドは<code>App\Providers\FortifyServiceProvider</code>クラスの<code>boot</code>メソッドから呼び出すべきです。</p>
+<p>以下の例には、独自の変更を加える際の出発点として使用できるデフォルトのパイプライン定義が含まれています。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">use</span> <span class="nx">Laravel\Fortify\Actions\AttemptToAuthenticate</span><span class="p">;</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="k">use</span> <span class="nx">Laravel\Fortify\Actions\CanonicalizeUsername</span><span class="p">;</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="k">use</span> <span class="nx">Laravel\Fortify\Actions\EnsureLoginIsNotThrottled</span><span class="p">;</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="k">use</span> <span class="nx">Laravel\Fortify\Actions\PrepareAuthenticatedSession</span><span class="p">;</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="k">use</span> <span class="nx">Laravel\Fortify\Actions\RedirectIfTwoFactorAuthenticatable</span><span class="p">;</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="k">use</span> <span class="nx">Laravel\Fortify\Features</span><span class="p">;</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="k">use</span> <span class="nx">Laravel\Fortify\Fortify</span><span class="p">;</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="k">use</span> <span class="nx">Illuminate\Http\Request</span><span class="p">;</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="nx">Fortify</span><span class="o">::</span><span class="na">authenticateThrough</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nx">Request</span> <span class="nv">$request</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>    <span class="k">return</span> <span class="nb">array_filter</span><span class="p">([</span>
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>            <span class="nx">config</span><span class="p">(</span><span class="s1">&#39;fortify.limiters.login&#39;</span><span class="p">)</span> <span class="o">?</span> <span class="k">null</span> <span class="o">:</span> <span class="nx">EnsureLoginIsNotThrottled</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>            <span class="nx">config</span><span class="p">(</span><span class="s1">&#39;fortify.lowercase_usernames&#39;</span><span class="p">)</span> <span class="o">?</span> <span class="nx">CanonicalizeUsername</span><span class="o">::</span><span class="na">class</span> <span class="o">:</span> <span class="k">null</span><span class="p">,</span>
+<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>            <span class="nx">Features</span><span class="o">::</span><span class="na">enabled</span><span class="p">(</span><span class="nx">Features</span><span class="o">::</span><span class="na">twoFactorAuthentication</span><span class="p">())</span> <span class="o">?</span> <span class="nx">RedirectIfTwoFactorAuthenticatable</span><span class="o">::</span><span class="na">class</span> <span class="o">:</span> <span class="k">null</span><span class="p">,</span>
+<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>            <span class="nx">AttemptToAuthenticate</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+<a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>            <span class="nx">PrepareAuthenticatedSession</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
+<a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a>    <span class="p">]);</span>
+<a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a><span class="p">});</span>
+</code></pre></div>
+<h4 id="_9">認証のスロットリング<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h4>
+<p>デフォルトでは、Fortifyは<code>EnsureLoginIsNotThrottled</code>ミドルウェアを使用して認証試行をスロットリングします。このミドルウェアは、ユーザー名とIPアドレスの組み合わせに固有の試行をスロットリングします。</p>
+<p>一部のアプリケーションでは、IPアドレスのみでスロットリングするなど、認証試行のスロットリング方法を変更する必要がある場合があります。したがって、Fortifyは<code>fortify.limiters.login</code>設定オプションを介して独自の<a href="routing.html#rate-limiting">レートリミッタ</a>を指定できます。もちろん、この設定オプションはアプリケーションの<code>config/fortify.php</code>設定ファイルにあります。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>スロットリング、<a href="fortify.html#two-factor-authentication">二要素認証</a>、および外部のWebアプリケーションファイアウォール（WAF）を組み合わせて使用することで、正当なアプリケーションユーザーに対して最も堅牢な防御が提供されます。</p>
+</div>
+<p><a name="customizing-authentication-redirects"></a></p>
+<h3 id="_10">リダイレクトのカスタマイズ<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p>ログイン試行が成功した場合、Fortifyはアプリケーションの<code>fortify</code>設定ファイル内の<code>home</code>設定オプションで設定されたURIにリダイレクトします。ログインリクエストがXHRリクエストであった場合、200 HTTPレスポンスが返されます。ユーザーがアプリケーションからログアウトした後、ユーザーは<code>/</code> URIにリダイレクトされます。</p>
+<p>この動作を高度にカスタマイズする必要がある場合、<code>LoginResponse</code>および<code>LogoutResponse</code>契約の実装をLaravelの<a href="container.html">サービスコンテナ</a>にバインドできます。通常、これはアプリケーションの<code>App\Providers\FortifyServiceProvider</code>クラスの<code>register</code>メソッド内で行うべきです。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">use</span> <span class="nx">Laravel\Fortify\Contracts\LogoutResponse</span><span class="p">;</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="sd">/**</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="sd"> * Register any application services.</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="sd"> */</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="k">public</span> <span class="k">function</span> <span class="nf">register</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="p">{</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">app</span><span class="o">-&gt;</span><span class="na">instance</span><span class="p">(</span><span class="nx">LogoutResponse</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="k">new</span> <span class="k">class</span> <span class="k">implements</span> <span class="nx">LogoutResponse</span> <span class="p">{</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>        <span class="k">public</span> <span class="k">function</span> <span class="nf">toResponse</span><span class="p">(</span><span class="nv">$request</span><span class="p">)</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>        <span class="p">{</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>            <span class="k">return</span> <span class="nx">redirect</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">);</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>        <span class="p">}</span>
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>    <span class="p">});</span>
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="p">}</span>
+</code></pre></div>
+<p><a name="two-factor-authentication"></a></p>
+<h2 id="_11">二要素認証<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<p>Fortifyの二要素認証機能が有効になっている場合、ユーザーは認証プロセス中に6桁の数値トークンを入力する必要があります。このトークンは、Google AuthenticatorなどのTOTP互換のモバイル認証アプリケーションを使用して取得できる時間ベースのワンタイムパスワード（TOTP）を使用して生成されます。</p>
+<p>始める前に、まずアプリケーションの<code>App\Models\User</code>モデルが<code>Laravel\Fortify\TwoFactorAuthenticatable</code>トレイトを使用していることを確認する必要があります。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="o">&lt;?</span><span class="nx">php</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="k">namespace</span> <span class="nx">App\Models</span><span class="p">;</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="k">use</span> <span class="nx">Illuminate\Foundation\Auth\User</span> <span class="k">as</span> <span class="nx">Authenticatable</span><span class="p">;</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="k">use</span> <span class="nx">Illuminate\Notifications\Notifiable</span><span class="p">;</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="k">use</span> <span class="nx">Laravel\Fortify\TwoFactorAuthenticatable</span><span class="p">;</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="k">class</span> <span class="nc">User</span> <span class="k">extends</span> <span class="nx">Authenticatable</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="p">{</span>
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>    <span class="k">use</span> <span class="nx">Notifiable</span><span class="p">,</span> <span class="nx">TwoFactorAuthenticatable</span><span class="p">;</span>
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="p">}</span>
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a> <span class="sb">```</span>
+<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>
+<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="sb">次に、ユーザーが二要素認証設定を管理できる画面をアプリケーション内に構築する必要があります。この画面では、ユーザーが二要素認証を有効または無効にしたり、二要素認証のリカバリーコードを再生成したりできるようにする必要があります。</span>
+<a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a>
+<a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a><span class="sb">&gt; デフォルトでは、`</span><span class="nx">fortify</span><span class="sb">`設定ファイルの`</span><span class="nx">features</span><span class="sb">`配列は、二要素認証設定の変更前にパスワードの確認を要求するようにFortifyの二要素認証設定を指示します。したがって、アプリケーションは続行する前にFortifyの[パスワード確認](#password-confirmation)機能を実装する必要があります。</span>
+<a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a>
+<a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a><span class="sb">&lt;a name=&quot;enabling-two-factor-authentication&quot;&gt;&lt;/a&gt;</span>
+<a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a><span class="sb">### 二要素認証の有効化</span>
+<a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a>
+<a id="__codelineno-9-22" name="__codelineno-9-22" href="#__codelineno-9-22"></a><span class="sb">二要素認証の有効化を開始するには、アプリケーションはFortifyによって定義された`</span><span class="o">/</span><span class="nx">user</span><span class="o">/</span><span class="nx">two</span><span class="o">-</span><span class="nx">factor</span><span class="o">-</span><span class="nx">authentication</span><span class="sb">`エンドポイントにPOSTリクエストを行う必要があります。リクエストが成功した場合、ユーザーは前のURLにリダイレクトされ、`</span><span class="nx">status</span><span class="sb">`セッション変数が`</span><span class="nx">two</span><span class="o">-</span><span class="nx">factor</span><span class="o">-</span><span class="nx">authentication</span><span class="o">-</span><span class="nx">enabled</span><span class="sb">`に設定されます。この`</span><span class="nx">status</span><span class="sb">`セッション変数をテンプレート内で検出して、適切な成功メッセージを表示できます。リクエストがXHRリクエストであった場合、`</span><span class="mi">200</span><span class="sb">` HTTPレスポンスが返されます。</span>
+<a id="__codelineno-9-23" name="__codelineno-9-23" href="#__codelineno-9-23"></a>
+<a id="__codelineno-9-24" name="__codelineno-9-24" href="#__codelineno-9-24"></a><span class="sb">二要素認証を有効にすることを選択した後、ユーザーはまだ二要素認証設定を「確認」する必要があります。そのため、「成功」メッセージには、二要素認証の確認がまだ必要であることをユーザーに通知する必要があります。</span>
+<a id="__codelineno-9-25" name="__codelineno-9-25" href="#__codelineno-9-25"></a>
+<a id="__codelineno-9-26" name="__codelineno-9-26" href="#__codelineno-9-26"></a><span class="sb">```</span><span class="nx">html</span>
+<a id="__codelineno-9-27" name="__codelineno-9-27" href="#__codelineno-9-27"></a><span class="o">@</span><span class="k">if</span> <span class="p">(</span><span class="nx">session</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;two-factor-authentication-enabled&#39;</span><span class="p">)</span>
+<a id="__codelineno-9-28" name="__codelineno-9-28" href="#__codelineno-9-28"></a>    <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">class</span><span class="o">=</span><span class="s2">&quot;mb-4 font-medium text-sm&quot;</span><span class="o">&gt;</span>
+<a id="__codelineno-9-29" name="__codelineno-9-29" href="#__codelineno-9-29"></a>        <span class="nx">二要素認証の設定を完了してください。</span>
+<a id="__codelineno-9-30" name="__codelineno-9-30" href="#__codelineno-9-30"></a>    <span class="o">&lt;/</span><span class="nx">div</span><span class="o">&gt;</span>
+<a id="__codelineno-9-31" name="__codelineno-9-31" href="#__codelineno-9-31"></a><span class="o">@</span><span class="k">endif</span>
+</code></pre></div>
+<p>次に、ユーザーが認証アプリケーションにスキャンするための二要素認証QRコードを表示する必要があります。Bladeを使用してアプリケーションのフロントエンドをレンダリングしている場合、ユーザーインスタンスで利用可能な<code>twoFactorQrCodeSvg</code>メソッドを使用してQRコードSVGを取得できます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nv">$request</span><span class="o">-&gt;</span><span class="na">user</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">twoFactorQrCodeSvg</span><span class="p">();</span>
+</code></pre></div>
+<p>JavaScriptを使用したフロントエンドを構築している場合、<code>/user/two-factor-qr-code</code>エンドポイントにXHR GETリクエストを行って、ユーザーの二要素認証QRコードを取得できます。このエンドポイントは、<code>svg</code>キーを含むJSONオブジェクトを返します。</p>
+<p><a name="confirming-two-factor-authentication"></a></p>
+<h4 id="_12">二要素認証の確認<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h4>
+<p>ユーザーの二要素認証QRコードを表示するだけでなく、ユーザーが有効な認証コードを入力して二要素認証設定を「確認」できるテキスト入力を提供する必要があります。このコードは、Fortifyによって定義された<code>/user/confirmed-two-factor-authentication</code>エンドポイントにPOSTリクエストを介してLaravelアプリケーションに提供される必要があります。</p>
+<p>リクエストが成功した場合、ユーザーは前のURLにリダイレクトされ、<code>status</code>セッション変数が<code>two-factor-authentication-confirmed</code>に設定されます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>@if (session(&#39;status&#39;) == &#39;two-factor-authentication-confirmed&#39;)
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;mb-4 font-medium text-sm&quot;</span><span class="p">&gt;</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>        二要素認証が確認され、正常に有効化されました。
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>@endif
+</code></pre></div>
+<p>二要素認証確認エンドポイントへのリクエストがXHRリクエストを介して行われた場合、<code>200</code> HTTPレスポンスが返されます。</p>
+<p><a name="displaying-the-recovery-codes"></a></p>
+<h4 id="_13">リカバリーコードの表示<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h4>
+<p>ユーザーの二要素リカバリーコードも表示する必要があります。これらのリカバリーコードにより、ユーザーはモバイルデバイスにアクセスできなくなった場合でも認証できます。Bladeを使用してアプリケーションのフロントエンドをレンダリングしている場合、認証済みユーザーインスタンスを介してリカバリーコードにアクセスできます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="p">(</span><span class="k">array</span><span class="p">)</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">user</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">recoveryCodes</span><span class="p">()</span>
+</code></pre></div>
+<p>JavaScriptを使用したフロントエンドを構築している場合、<code>/user/two-factor-recovery-codes</code>エンドポイントにXHR GETリクエストを行うことができます。このエンドポイントは、ユーザーのリカバリーコードを含むJSON配列を返します。</p>
+<p>ユーザーのリカバリーコードを再生成するには、アプリケーションは<code>/user/two-factor-recovery-codes</code>エンドポイントにPOSTリクエストを行う必要があります。</p>
+<p><a name="authenticating-with-two-factor-authentication"></a></p>
+<h3 id="_14">二要素認証による認証<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<p>認証プロセス中、Fortifyは自動的にユーザーをアプリケーションの二要素認証チャレンジ画面にリダイレクトします。ただし、アプリケーションがXHRログインリクエストを行っている場合、認証試行が成功した後に返されるJSONレスポンスには、<code>two_factor</code>ブール値プロパティを持つJSONオブジェクトが含まれます。この値を調べて、アプリケーションの二要素認証チャレンジ画面にリダイレクトする必要があるかどうかを判断する必要があります。</p>
+<p>二要素認証機能の実装を開始するには、Fortifyに二要素認証チャレンジビューを返す方法を指示する必要があります。Fortifyのすべての認証ビューのレンダリングロジックは、<code>Laravel\Fortify\Fortify</code>クラスを介して利用可能な適切なメソッドを使用してカスタマイズできます。通常、このメソッドはアプリケーションの<code>App\Providers\FortifyServiceProvider</code>クラスの<code>boot</code>メソッドから呼び出す必要があります。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">use</span> <span class="nx">Laravel\Fortify\Fortify</span><span class="p">;</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="sd">/**</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="sd"> * Bootstrap any application services.</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="sd"> */</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="k">public</span> <span class="k">function</span> <span class="nf">boot</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="p">{</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>    <span class="nx">Fortify</span><span class="o">::</span><span class="na">twoFactorChallengeView</span><span class="p">(</span><span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>        <span class="k">return</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;auth.two-factor-challenge&#39;</span><span class="p">);</span>
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>    <span class="p">});</span>
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>
+<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>    <span class="c1">// ...</span>
+<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a><span class="p">}</span>
+</code></pre></div>
+<p>Fortifyは、このビューを返す<code>/two-factor-challenge</code>ルートを定義します。<code>two-factor-challenge</code>テンプレートには、<code>/two-factor-challenge</code>エンドポイントにPOSTリクエストを行うフォームを含める必要があります。<code>/two-factor-challenge</code>アクションは、有効なTOTPトークンを含む<code>code</code>フィールドまたはユーザーのリカバリーコードの1つを含む<code>recovery_code</code>フィールドを期待します。</p>
+<p>ログイン試行が成功した場合、Fortifyはユーザーをアプリケーションの<code>fortify</code>設定ファイル内の<code>home</code>設定オプションを介して設定されたURIにリダイレクトします。ログインリクエストがXHRリクエストであった場合、<code>204</code> HTTPレスポンスが返されます。</p>
+<p>リクエストが成功しなかった場合、ユーザーは二要素認証チャレンジ画面にリダイレクトされ、検証エラーは共有された<code>$errors</code> <a href="validation.html#quick-displaying-the-validation-errors">Bladeテンプレート変数</a>を介して利用できます。または、XHRリクエストの場合、検証エラーは<code>422</code> HTTPレスポンスとともに返されます。</p>
+<p><a name="disabling-two-factor-authentication"></a></p>
+<h3 id="_15">二要素認証の無効化<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
+<p>二要素認証を無効にするには、アプリケーションは<code>/user/two-factor-authentication</code>エンドポイントにDELETEリクエストを行う必要があります。Fortifyの二要素認証エンドポイントは、呼び出される前に<a href="#password-confirmation">パスワード確認</a>を必要とすることを忘れないでください。</p>
+<p><a name="registration"></a></p>
+<h2 id="_16">登録<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h2>
+<p>アプリケーションの登録機能の実装を開始するには、Fortifyに「登録」ビューを返す方法を指示する必要があります。Fortifyはヘッドレス認証ライブラリであることを忘れないでください。Laravelの認証機能のフロントエンド実装がすでに完了している場合は、<a href="starter-kits.html">アプリケーションスターターキット</a>を使用する必要があります。</p>
+<p>Fortifyのすべてのビューのレンダリングロジックは、<code>Laravel\Fortify\Fortify</code>クラスを介して利用可能な適切なメソッドを使用してカスタマイズできます。通常、このメソッドは<code>App\Providers\FortifyServiceProvider</code>クラスの<code>boot</code>メソッドから呼び出す必要があります。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">use</span> <span class="nx">Laravel\Fortify\Fortify</span><span class="p">;</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="sd">/**</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="sd"> * Bootstrap any application services.</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="sd"> */</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="k">public</span> <span class="k">function</span> <span class="nf">boot</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="p">{</span>
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>    <span class="nx">Fortify</span><span class="o">::</span><span class="na">registerView</span><span class="p">(</span><span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
+<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>        <span class="k">return</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;auth.register&#39;</span><span class="p">);</span>
+<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>    <span class="p">});</span>
+<a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>
+<a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a>    <span class="c1">// ...</span>
+<a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a><span class="p">}</span>
+</code></pre></div>
+<p>Fortifyは、このビューを返す<code>/register</code>ルートを定義します。<code>register</code>テンプレートには、Fortifyによって定義された<code>/register</code>エンドポイントにPOSTリクエストを行うフォームを含める必要があります。</p>
+<p><code>/register</code>エンドポイントは、文字列の<code>name</code>、文字列のメールアドレス/ユーザー名、<code>password</code>、および<code>password_confirmation</code>フィールドを期待します。メール/ユーザー名フィールドの名前は、アプリケーションの<code>fortify</code>設定ファイル内で定義された<code>username</code>設定値と一致する必要があります。</p>
+<p>登録試行が成功した場合、Fortifyはユーザーをアプリケーションの<code>fortify</code>設定ファイル内の<code>home</code>設定オプションを介して設定されたURIにリダイレクトします。リクエストがXHRリクエストであった場合、<code>201</code> HTTPレスポンスが返されます。</p>
+<p>リクエストが成功しなかった場合、ユーザーは登録画面にリダイレクトされ、検証エラーは共有された<code>$errors</code> <a href="validation.html#quick-displaying-the-validation-errors">Bladeテンプレート変数</a>を介して利用できます。または、XHRリクエストの場合、検証エラーは<code>422</code> HTTPレスポンスとともに返されます。</p>
+<p><a name="customizing-registration"></a></p>
+<h3 id="_17">登録のカスタマイズ<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h3>
+<p>ユーザーの検証と作成プロセスは、Laravel Fortifyをインストールしたときに生成された<code>App\Actions\Fortify\CreateNewUser</code>アクションを変更することでカスタマイズできます。</p>
+<p><a name="password-reset"></a></p>
+<h2 id="_18">パスワードリセット<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h2>
+<p><a name="requesting-a-password-reset-link"></a></p>
+<h3 id="_19">パスワードリセットリンクのリクエスト<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h3>
+<p>アプリケーションのパスワードリセット機能の実装を開始するには、Fortifyに「パスワードを忘れた」ビューを返す方法を指示する必要があります。Fortifyはヘッドレス認証ライブラリであることを忘れないでください。Laravelの認証機能のフロントエンド実装がすでに完了している場合は、<a href="starter-kits.html">アプリケーションスターターキット</a>を使用する必要があります。</p>
+<p>Fortifyのすべてのビューのレンダリングロジックは、<code>Laravel\Fortify\Fortify</code>クラスを介して利用可能な適切なメソッドを使用してカスタマイズできます。通常、このメソッドはアプリケーションの<code>App\Providers\FortifyServiceProvider</code>クラスの<code>boot</code>メソッドから呼び出す必要があります。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">use</span> <span class="nx">Laravel\Fortify\Fortify</span><span class="p">;</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="sd">/**</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="sd"> * Bootstrap any application services.</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="sd"> */</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="k">public</span> <span class="k">function</span> <span class="nf">boot</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="p">{</span>
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>    <span class="nx">Fortify</span><span class="o">::</span><span class="na">requestPasswordResetLinkView</span><span class="p">(</span><span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>        <span class="k">return</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;auth.forgot-password&#39;</span><span class="p">);</span>
+<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>    <span class="p">});</span>
+<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>
+<a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>    <span class="c1">// ...</span>
+<a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a><span class="p">}</span>
+</code></pre></div>
+<p>Fortifyは、このビューを返す<code>/forgot-password</code>エンドポイントを定義します。<code>forgot-password</code>テンプレートには、<code>/forgot-password</code>エンドポイントにPOSTリクエストを行うフォームを含める必要があります。</p>
+<p><code>/forgot-password</code>エンドポイントは、文字列の<code>email</code>フィールドを期待します。このフィールド/データベースカラムの名前は、アプリケーションの<code>fortify</code>設定ファイル内で定義された<code>email</code>設定値と一致する必要があります。</p>
+<p><a name="handling-the-password-reset-link-request-response"></a></p>
+<h4 id="_20">パスワードリセットリンクリクエストのレスポンスの処理<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h4>
+<p>パスワードリセットリンクのリクエストが成功した場合、Fortifyはユーザーを<code>/forgot-password</code>エンドポイントにリダイレクトし、ユーザーにパスワードをリセットするための安全なリンクをメールで送信します。リクエストがXHRリクエストであった場合、<code>200</code> HTTPレスポンスが返されます。</p>
+<p>リクエストが成功した後に<code>/forgot-password</code>エンドポイントにリダイレクトされた後、<code>status</code>セッション変数を使用してパスワードリセットリンクリクエストの試行のステータスを表示できます。</p>
+<p><code>$status</code>セッション変数の値は、アプリケーションの<code>passwords</code> <a href="localization.html">言語ファイル</a>内で定義された翻訳文字列の1つと一致します。この値をカスタマイズしたい場合、Laravelの言語ファイルを公開していない場合は、<code>lang:publish</code> Artisanコマンドを介して公開できます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>@if (session(&#39;status&#39;))
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;mb-4 font-medium text-sm text-green-600&quot;</span><span class="p">&gt;</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>        {{ session(&#39;status&#39;) }}
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>@endif
+</code></pre></div>
+<p>リクエストが成功しなかった場合、ユーザーはパスワードリセットリンクリクエスト画面にリダイレクトされ、検証エラーは共有された<code>$errors</code> <a href="validation.html#quick-displaying-the-validation-errors">Bladeテンプレート変数</a>を介して利用できます。または、XHRリクエストの場合、検証エラーは<code>422</code> HTTPレスポンスとともに返されます。</p>
+<p><a name="resetting-the-password"></a></p>
+<h3 id="_21">パスワードのリセット<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h3>
+<p>アプリケーションのパスワードリセット機能の実装を完了するには、Fortifyに「パスワードリセット」ビューを返す方法を指示する必要があります。</p>
+<p>Fortifyのすべてのビューのレンダリングロジックは、<code>Laravel\Fortify\Fortify</code>クラスを介して利用可能な適切なメソッドを使用してカスタマイズできます。通常、このメソッドはアプリケーションの<code>App\Providers\FortifyServiceProvider</code>クラスの<code>boot</code>メソッドから呼び出す必要があります。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">use</span> <span class="nx">Laravel\Fortify\Fortify</span><span class="p">;</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="k">use</span> <span class="nx">Illuminate\Http\Request</span><span class="p">;</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="sd">/**</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="sd"> * Bootstrap any application services.</span>
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="sd"> */</span>
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="k">public</span> <span class="k">function</span> <span class="nf">boot</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="p">{</span>
+<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>    <span class="nx">Fortify</span><span class="o">::</span><span class="na">resetPasswordView</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nx">Request</span> <span class="nv">$request</span><span class="p">)</span> <span class="p">{</span>
+<a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a>        <span class="k">return</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;auth.reset-password&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;request&#39;</span> <span class="o">=&gt;</span> <span class="nv">$request</span><span class="p">]);</span>
+<a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a>    <span class="p">});</span>
+<a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a>
+<a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a>    <span class="c1">// ...</span>
+<a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a><span class="p">}</span>
+</code></pre></div>
+<p>Fortify は、このビューを表示するためのルートを定義する役割を担います。<code>reset-password</code> テンプレートには、<code>/reset-password</code> への POST リクエストを行うフォームを含める必要があります。</p>
+<p><code>/reset-password</code> エンドポイントは、文字列 <code>email</code> フィールド、<code>password</code> フィールド、<code>password_confirmation</code> フィールド、および <code>request()-&gt;route('token')</code> の値を含む <code>token</code> という名前の非表示フィールドを期待しています。「email」フィールド/データベースカラムの名前は、アプリケーションの <code>fortify</code> 設定ファイル内で定義された <code>email</code> 設定値と一致する必要があります。</p>
+<p><a name="handling-the-password-reset-response"></a></p>
+<h4 id="_22">パスワードリセットレスポンスの処理<a class="headerlink" href="#_22" title="Permanent link">&para;</a></h4>
+<p>パスワードリセットリクエストが成功した場合、Fortify はユーザーが新しいパスワードでログインできるように、<code>/login</code> ルートにリダイレクトします。さらに、<code>status</code> セッション変数が設定され、ログイン画面でリセットの成功ステータスを表示できるようになります。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="x">@if (session(&#39;status&#39;))</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="x">    &lt;div class=&quot;mb-4 font-medium text-sm text-green-600&quot;&gt;</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="x">        {{ session(&#39;status&#39;) }}</span>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="x">    &lt;/div&gt;</span>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="x">@endif</span>
+</code></pre></div>
+<p>リクエストが XHR リクエストだった場合、200 HTTP レスポンスが返されます。</p>
+<p>リクエストが成功しなかった場合、ユーザーはパスワードリセット画面にリダイレクトされ、バリデーションエラーは共有された <code>$errors</code> <a href="validation.html#quick-displaying-the-validation-errors">Blade テンプレート変数</a>を介して利用できます。または、XHR リクエストの場合、バリデーションエラーは 422 HTTP レスポンスとともに返されます。</p>
+<p><a name="customizing-password-resets"></a></p>
+<h3 id="_23">パスワードリセットのカスタマイズ<a class="headerlink" href="#_23" title="Permanent link">&para;</a></h3>
+<p>パスワードリセットプロセスは、Laravel Fortify をインストールしたときに生成された <code>App\Actions\ResetUserPassword</code> アクションを変更することでカスタマイズできます。</p>
+<p><a name="email-verification"></a></p>
+<h2 id="_24">メール検証<a class="headerlink" href="#_24" title="Permanent link">&para;</a></h2>
+<p>登録後、ユーザーがアプリケーションにアクセスし続ける前にメールアドレスを検証することを希望する場合があります。まず、<code>fortify</code> 設定ファイルの <code>features</code> 配列で <code>emailVerification</code> 機能が有効になっていることを確認してください。次に、<code>App\Models\User</code> クラスが <code>Illuminate\Contracts\Auth\MustVerifyEmail</code> インターフェースを実装していることを確認してください。</p>
+<p>これらの2つのセットアップ手順が完了すると、新しく登録されたユーザーには、メールアドレスの所有権を検証するためのメールが送信されます。ただし、ユーザーにメール内の検証リンクをクリックするように指示するメール検証画面を Fortify に表示させる方法を教える必要があります。</p>
+<p>Fortify のすべてのビューのレンダリングロジックは、<code>Laravel\Fortify\Fortify</code> クラスを介して利用可能な適切なメソッドを使用してカスタマイズできます。通常、このメソッドはアプリケーションの <code>App\Providers\FortifyServiceProvider</code> クラスの <code>boot</code> メソッドから呼び出す必要があります。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">use</span> <span class="nx">Laravel\Fortify\Fortify</span><span class="p">;</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="sd">/**</span>
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="sd"> * Bootstrap any application services.</span>
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="sd"> */</span>
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="k">public</span> <span class="k">function</span> <span class="nf">boot</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="p">{</span>
+<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>    <span class="nx">Fortify</span><span class="o">::</span><span class="na">verifyEmailView</span><span class="p">(</span><span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
+<a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>        <span class="k">return</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;auth.verify-email&#39;</span><span class="p">);</span>
+<a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>    <span class="p">});</span>
+<a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a>
+<a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a>    <span class="c1">// ...</span>
+<a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a><span class="p">}</span>
+</code></pre></div>
+<p>Fortify は、ユーザーが Laravel の組み込み <code>verified</code> ミドルウェアによって <code>/email/verify</code> エンドポイントにリダイレクトされたときに、このビューを表示するルートを定義します。</p>
+<p><code>verify-email</code> テンプレートには、ユーザーにメールアドレスに送信されたメール検証リンクをクリックするように指示する情報メッセージを含める必要があります。</p>
+<p><a name="resending-email-verification-links"></a></p>
+<h4 id="_25">メール検証リンクの再送信<a class="headerlink" href="#_25" title="Permanent link">&para;</a></h4>
+<p>必要に応じて、アプリケーションの <code>verify-email</code> テンプレートにボタンを追加して、<code>/email/verification-notification</code> エンドポイントへの POST リクエストをトリガーすることができます。このエンドポイントがリクエストを受け取ると、新しい検証メールリンクがユーザーにメールで送信され、ユーザーが前のリンクを誤って削除または紛失した場合に新しい検証リンクを取得できるようになります。</p>
+<p>検証リンクのメール再送信リクエストが成功した場合、Fortify はユーザーを <code>/email/verify</code> エンドポイントにリダイレクトし、<code>status</code> セッション変数を設定して、操作が成功したことをユーザーに通知する情報メッセージを表示できるようにします。リクエストが XHR リクエストだった場合、202 HTTP レスポンスが返されます。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="x">@if (session(&#39;status&#39;) == &#39;verification-link-sent&#39;)</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="x">    &lt;div class=&quot;mb-4 font-medium text-sm text-green-600&quot;&gt;</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="x">        A new email verification link has been emailed to you!</span>
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="x">    &lt;/div&gt;</span>
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="x">@endif</span>
+</code></pre></div>
+<p><a name="protecting-routes"></a></p>
+<h3 id="_26">ルートの保護<a class="headerlink" href="#_26" title="Permanent link">&para;</a></h3>
+<p>ユーザーがメールアドレスを検証していることを要求するルートまたはルートグループを指定するには、Laravel の組み込み <code>verified</code> ミドルウェアをルートにアタッチする必要があります。<code>verified</code> ミドルウェアのエイリアスは、Laravel によって自動的に登録され、<code>Illuminate\Auth\Middleware\EnsureEmailIsVerified</code> ミドルウェアのエイリアスとして機能します。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="nx">Route</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;/dashboard&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>    <span class="c1">// ...</span>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="p">})</span><span class="o">-&gt;</span><span class="na">middleware</span><span class="p">([</span><span class="s1">&#39;verified&#39;</span><span class="p">]);</span>
+</code></pre></div>
+<p><a name="password-confirmation"></a></p>
+<h2 id="_27">パスワード確認<a class="headerlink" href="#_27" title="Permanent link">&para;</a></h2>
+<p>アプリケーションを構築する際、アクションを実行する前にユーザーがパスワードを確認する必要がある場合があります。通常、これらのルートは Laravel の組み込み <code>password.confirm</code> ミドルウェアによって保護されます。</p>
+<p>パスワード確認機能の実装を開始するには、Fortify にアプリケーションの「パスワード確認」ビューを返す方法を指示する必要があります。Fortify はヘッドレス認証ライブラリであることを忘れないでください。Laravel の認証機能のフロントエンド実装が既に完了している場合は、<a href="starter-kits.html">アプリケーションスターターキット</a>を使用する必要があります。</p>
+<p>Fortify のすべてのビューのレンダリングロジックは、<code>Laravel\Fortify\Fortify</code> クラスを介して利用可能な適切なメソッドを使用してカスタマイズできます。通常、このメソッドはアプリケーションの <code>App\Providers\FortifyServiceProvider</code> クラスの <code>boot</code> メソッドから呼び出す必要があります。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="k">use</span> <span class="nx">Laravel\Fortify\Fortify</span><span class="p">;</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="sd">/**</span>
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="sd"> * Bootstrap any application services.</span>
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="sd"> */</span>
+<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="k">public</span> <span class="k">function</span> <span class="nf">boot</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
+<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a><span class="p">{</span>
+<a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>    <span class="nx">Fortify</span><span class="o">::</span><span class="na">confirmPasswordView</span><span class="p">(</span><span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
+<a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a>        <span class="k">return</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;auth.confirm-password&#39;</span><span class="p">);</span>
+<a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a>    <span class="p">});</span>
+<a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a>
+<a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a>    <span class="c1">// ...</span>
+<a id="__codelineno-22-13" name="__codelineno-22-13" href="#__codelineno-22-13"></a><span class="p">}</span>
+</code></pre></div>
+<p>Fortify は、このビューを返す <code>/user/confirm-password</code> エンドポイントを定義します。<code>confirm-password</code> テンプレートには、<code>/user/confirm-password</code> エンドポイントへの POST リクエストを行うフォームを含める必要があります。<code>/user/confirm-password</code> エンドポイントは、ユーザーの現在のパスワードを含む <code>password</code> フィールドを期待しています。</p>
+<p>パスワードがユーザーの現在のパスワードと一致する場合、Fortify はユーザーをアクセスしようとしていたルートにリダイレクトします。リクエストが XHR リクエストだった場合、201 HTTP レスポンスが返されます。</p>
+<p>リクエストが成功しなかった場合、ユーザーはパスワード確認画面にリダイレクトされ、バリデーションエラーは共有された <code>$errors</code> Blade テンプレート変数を介して利用できます。または、XHR リクエストの場合、バリデーションエラーは 422 HTTP レスポンスとともに返されます。</p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+<nav class="md-footer-nav">
+    
+    
+</nav>
+
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": ".", "features": ["back-to-top", "navigation.expand", "navigation.tabs", "navigation.footer", "navigation.sections", "navigation.expand", "content.code.copy", "hide_repository_button", "content.code.annotate", "content.tabs.link", "toc.none", "content.action.edit"], "search": "assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="assets/javascripts/bundle.56dfad97.min.js"></script>
+      
+    
+  </body>
+</html>

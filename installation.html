@@ -1,0 +1,4132 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://github.com/koriym/laravel11-ja/installation.html">
+      
+      
+        <link rel="prev" href="contributions.html">
+      
+      
+        <link rel="next" href="configuration.html">
+      
+      
+      <link rel="icon" href="assets/images/favicon_io/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.35">
+    
+    
+      
+        <title>インストール - L11JA</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.35f28582.min.css">
+      
+      
+
+
+    
+    
+
+    
+
+    
+      <link rel="stylesheet" href="assets/css/php.css">
+    
+      <link rel="stylesheet" href="assets/css/mkdocs_material_extra.css">
+    
+      <link rel="stylesheet" href="assets/css/extra.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-G60CEHXLQ1"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-G60CEHXLQ1",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-G60CEHXLQ1",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      <!-- Determine classes -->
+
+
+
+<!-- Header -->
+<header class="md-header" data-md-component="header">
+  <nav
+          class="md-header__inner md-grid"
+          aria-label="Header"
+  >
+
+    <!-- Link to home -->
+    <a
+            href="."
+            title="L11JA"
+            class="md-header__button md-logo"
+            aria-label="L11JA"
+            data-md-component="logo"
+    >
+      
+  <img src="assets/images/logo.png" alt="logo">
+
+    </a>
+
+    <!-- Button to open drawer -->
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+
+    <!-- Header title -->
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            <span style="font-family: 'Noto Sans'; font-size: 20px" >
+            L11JA
+            </span>
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            <span style="font-family: 'Noto Sans Batak'; font-size: 20px" >
+            
+              インストール
+            
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Color palette toggle -->
+    
+
+    <!-- User preference: color palette -->
+    
+    <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+
+    <!-- Site language selector -->
+    
+
+    <!-- Button to open search modal -->
+    
+    <label class="md-header__button md-icon" for="__search">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+    </label>
+
+    <!-- Search interface -->
+    <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    <!-- Repository information -->
+    
+    <div class="md-header__source">
+      
+
+<!--
+  Check whether the repository is hosted on one of the supported code hosting
+  platforms (GitHub, GitLab or Bitbucket) to show icon.
+-->
+
+
+  
+
+
+<!-- Repository containing source -->
+<a href="https://github.com/koriym/l11ja" title="source.link.title"
+    class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z" fill="#000"/></svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+    
+  </nav>
+
+  <!-- Navigation tabs (sticky) -->
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="releases.html" class="md-tabs__link">
+          
+  
+  プロローグ
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="installation.html" class="md-tabs__link">
+          
+  
+  はじめに
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="lifecycle.html" class="md-tabs__link">
+          
+  
+  アーキテクチャ
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="routing.html" class="md-tabs__link">
+          
+  
+  基本
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="artisan.html" class="md-tabs__link">
+          
+  
+  掘り下げる
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="authentication.html" class="md-tabs__link">
+          
+  
+  セキュリティ
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="database.html" class="md-tabs__link">
+          
+  
+  データベース
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="eloquent.html" class="md-tabs__link">
+          
+  
+  Eloquent ORM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="testing.html" class="md-tabs__link">
+          
+  
+  テスト
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="starter-kits.html" class="md-tabs__link">
+          
+  
+  パッケージ
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="L11JA" class="md-nav__button md-logo" aria-label="L11JA" data-md-component="logo">
+      
+  <img src="assets/images/logo.png" alt="logo">
+
+    </a>
+    L11JA
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+<!--
+  Check whether the repository is hosted on one of the supported code hosting
+  platforms (GitHub, GitLab or Bitbucket) to show icon.
+-->
+
+
+  
+
+
+<!-- Repository containing source -->
+<a href="https://github.com/koriym/l11ja" title="source.link.title"
+    class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg width="24" height="24" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z" fill="#000"/></svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    プロローグ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            プロローグ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="releases.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リリースノート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="upgrade.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    アップグレードガイド
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="contributions.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    貢献ガイド
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            はじめに
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    インストール
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="installation.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    インストール
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#laravel" class="md-nav__link">
+    <span class="md-ellipsis">
+      Laravelについて
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Laravelについて">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#laravel_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      なぜLaravelなのか？
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="なぜLaravelなのか？">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      プログレッシブフレームワーク
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      スケーラブルなフレームワーク
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      コミュニティフレームワーク
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#laravel_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Laravelプロジェクトの作成
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      初期設定
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="初期設定">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      環境ベースの設定
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      データベースとマイグレーション
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      ディレクトリ設定
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#herd" class="md-nav__link">
+    <span class="md-ellipsis">
+      Herdを使用したローカルインストール
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Herdを使用したローカルインストール">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#macosherd" class="md-nav__link">
+    <span class="md-ellipsis">
+      macOSでのHerd
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#windowsherd" class="md-nav__link">
+    <span class="md-ellipsis">
+      WindowsでのHerd
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#saildocker" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sailを使用したDockerインストール
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sailを使用したDockerインストール">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#macossail" class="md-nav__link">
+    <span class="md-ellipsis">
+      macOSでのSail
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#windowssail" class="md-nav__link">
+    <span class="md-ellipsis">
+      WindowsでのSail
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linuxsail" class="md-nav__link">
+    <span class="md-ellipsis">
+      LinuxでのSail
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sail" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sailサービスの選択
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ide" class="md-nav__link">
+    <span class="md-ellipsis">
+      IDEサポート
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      次のステップ
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="次のステップ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#laravel_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Laravel、フルスタックフレームワーク
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#laravelapi" class="md-nav__link">
+    <span class="md-ellipsis">
+      Laravel、APIバックエンド
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#windowsherd_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      WindowsでのHerd
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dockersail" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dockerを使用したインストール（Sailを使用）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dockerを使用したインストール（Sailを使用）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#macossail_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      macOSでのSail
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#windowssail_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      WindowsでのSail
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="WindowsでのSail">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wsl2" class="md-nav__link">
+    <span class="md-ellipsis">
+      WSL2内での開発
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linuxsail_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      LinuxでのSail
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sail_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sailサービスの選択
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ide_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      IDEサポート
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      次のステップ
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="次のステップ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#laravel_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Laravelをフルスタックフレームワークとして使用する
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#laravelapi_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      LaravelをAPIバックエンドとして使用する
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="configuration.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    設定
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="structure.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ディレクトリ構造
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="frontend.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    フロントエンド
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="starter-kits.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    スターターキット
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="deployment.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    デプロイ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    アーキテクチャ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            アーキテクチャ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="lifecycle.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リクエストライフサイクル
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="container.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    サービスコンテナ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="providers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    サービスプロバイダ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="facades.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ファサード
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    基本
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            基本
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="routing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ルーティング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="middleware.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ミドルウェア
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="csrf.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CSRF保護
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="controllers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コントローラ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="requests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リクエスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="responses.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    レスポンス
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="views.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ビュー
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="blade.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bladeテンプレート
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="vite.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    アセットバンドル
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="urls.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    URL生成
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="session.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    セッション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="validation.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    バリデーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="errors.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    エラー処理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="logging.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ログ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    掘り下げる
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            掘り下げる
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="artisan.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Artisanコンソール
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="broadcasting.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ブロードキャスティング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cache.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    キャッシュ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="collections.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コレクション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="concurrency.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    並行処理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="context.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コンテキスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="contracts.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コントラクト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="events.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    イベント
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="filesystem.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ファイルストレージ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="helpers.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ヘルパー
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="http-client.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTTPクライアント
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="localization.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ローカライゼーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mail.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    メール
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="notifications.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    通知
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="packages.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    パッケージ開発
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="processes.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    プロセス
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="queues.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    キュー
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="rate-limiting.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    レート制限
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="strings.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    文字列
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="scheduling.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    タスクスケジューリング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    セキュリティ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            セキュリティ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="authentication.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    認証
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="authorization.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    認可
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="verification.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    メール確認
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="encryption.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    暗号化
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hashing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ハッシュ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="passwords.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    パスワードリセット
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    データベース
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            データベース
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="database.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="queries.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    クエリビルダ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pagination.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ページネーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="migrations.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    マイグレーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="seeding.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    シーディング
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="redis.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Redis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Eloquent ORM
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Eloquent ORM
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-relationships.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    リレーションシップ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-collections.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コレクション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-mutators.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ミューテータ / キャスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-resources.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    APIリソース
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-serialization.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    シリアライゼーション
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eloquent-factories.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ファクトリ
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    テスト
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            テスト
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="testing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    はじめに
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="http-tests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HTTPテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="console-tests.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    コンソールテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="dusk.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ブラウザテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="database-testing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    データベース
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mocking.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    モック
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    パッケージ
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            パッケージ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="starter-kits.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    スターターキット
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="billing.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cashier (Stripe)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cashier-paddle.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cashier (Paddle)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="dusk.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ブラウザテスト
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="envoy.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Envoy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fortify.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fortify
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="folio.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Folio
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="homestead.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Homestead
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="horizon.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Horizon
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mix.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mix
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="octane.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Octane
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="passport.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Passport
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pennant.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pennant
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pint.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pint
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="precognition.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Precognition
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="prompts.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Prompts
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pulse.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pulse
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reverb.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reverb
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sail.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sail
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sanctum.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sanctum
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="scout.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Scout
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="socialite.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Socialite
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="telescope.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Telescope
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="valet.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Valet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#laravel" class="md-nav__link">
+    <span class="md-ellipsis">
+      Laravelについて
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Laravelについて">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#laravel_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      なぜLaravelなのか？
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="なぜLaravelなのか？">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      プログレッシブフレームワーク
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      スケーラブルなフレームワーク
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      コミュニティフレームワーク
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#laravel_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Laravelプロジェクトの作成
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      初期設定
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="初期設定">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      環境ベースの設定
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      データベースとマイグレーション
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      ディレクトリ設定
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#herd" class="md-nav__link">
+    <span class="md-ellipsis">
+      Herdを使用したローカルインストール
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Herdを使用したローカルインストール">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#macosherd" class="md-nav__link">
+    <span class="md-ellipsis">
+      macOSでのHerd
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#windowsherd" class="md-nav__link">
+    <span class="md-ellipsis">
+      WindowsでのHerd
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#saildocker" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sailを使用したDockerインストール
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sailを使用したDockerインストール">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#macossail" class="md-nav__link">
+    <span class="md-ellipsis">
+      macOSでのSail
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#windowssail" class="md-nav__link">
+    <span class="md-ellipsis">
+      WindowsでのSail
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linuxsail" class="md-nav__link">
+    <span class="md-ellipsis">
+      LinuxでのSail
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sail" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sailサービスの選択
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ide" class="md-nav__link">
+    <span class="md-ellipsis">
+      IDEサポート
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      次のステップ
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="次のステップ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#laravel_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Laravel、フルスタックフレームワーク
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#laravelapi" class="md-nav__link">
+    <span class="md-ellipsis">
+      Laravel、APIバックエンド
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#windowsherd_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      WindowsでのHerd
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dockersail" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dockerを使用したインストール（Sailを使用）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dockerを使用したインストール（Sailを使用）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#macossail_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      macOSでのSail
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#windowssail_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      WindowsでのSail
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="WindowsでのSail">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wsl2" class="md-nav__link">
+    <span class="md-ellipsis">
+      WSL2内での開発
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#linuxsail_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      LinuxでのSail
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sail_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sailサービスの選択
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ide_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      IDEサポート
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      次のステップ
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="次のステップ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#laravel_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Laravelをフルスタックフレームワークとして使用する
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#laravelapi_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      LaravelをAPIバックエンドとして使用する
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/koriym/l11ja/edit/master/docs/installation.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+
+
+<h1 id="_1">インストール<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<ul>
+<li><a href="#meet-laravel">Laravelについて</a><ul>
+<li><a href="#why-laravel">なぜLaravelなのか？</a></li>
+</ul>
+</li>
+<li><a href="#creating-a-laravel-project">Laravelプロジェクトの作成</a></li>
+<li><a href="#initial-configuration">初期設定</a><ul>
+<li><a href="#environment-based-configuration">環境ベースの設定</a></li>
+<li><a href="#databases-and-migrations">データベースとマイグレーション</a></li>
+<li><a href="#directory-configuration">ディレクトリ設定</a></li>
+</ul>
+</li>
+<li><a href="#local-installation-using-herd">Herdを使用したローカルインストール</a><ul>
+<li><a href="#herd-on-macos">macOSでのHerd</a></li>
+<li><a href="#herd-on-windows">WindowsでのHerd</a></li>
+</ul>
+</li>
+<li><a href="#docker-installation-using-sail">Sailを使用したDockerインストール</a><ul>
+<li><a href="#sail-on-macos">macOSでのSail</a></li>
+<li><a href="#sail-on-windows">WindowsでのSail</a></li>
+<li><a href="#sail-on-linux">LinuxでのSail</a></li>
+<li><a href="#choosing-your-sail-services">Sailサービスの選択</a></li>
+</ul>
+</li>
+<li><a href="#ide-support">IDEサポート</a></li>
+<li><a href="#next-steps">次のステップ</a><ul>
+<li><a href="#laravel-the-fullstack-framework">Laravel、フルスタックフレームワーク</a></li>
+<li><a href="#laravel-the-api-backend">Laravel、APIバックエンド</a></li>
+</ul>
+</li>
+</ul>
+<p><a name="meet-laravel"></a></p>
+<h2 id="laravel">Laravelについて<a class="headerlink" href="#laravel" title="Permanent link">&para;</a></h2>
+<p>Laravelは、表現力豊かでエレガントな構文を持つWebアプリケーションフレームワークです。Webフレームワークは、アプリケーションを作成するための構造と出発点を提供し、詳細を気にせずに素晴らしいものを作成することに集中できるようにします。</p>
+<p>Laravelは、驚くべき開発者体験を提供すると同時に、徹底的な依存性注入、表現力豊かなデータベース抽象化レイヤー、キューとスケジュールされたジョブ、ユニットテストと統合テストなどの強力な機能を提供することを目指しています。</p>
+<p>PHPのWebフレームワークを初めて使用する方でも、何年もの経験を持つ方でも、Laravelはあなたと共に成長するフレームワークです。Web開発者としての最初の一歩を踏み出すのを手助けしたり、専門知識を次のレベルに引き上げるのを支援します。あなたが何を作るかを見るのが楽しみです。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Laravelを初めて使う方は、<a href="https://bootcamp.laravel.com">Laravel Bootcamp</a>をチェックしてください。フレームワークのハンズオンツアーを通じて、初めてのLaravelアプリケーションを構築する過程を一緒に進めます。</p>
+</div>
+<p><a name="why-laravel"></a></p>
+<h3 id="laravel_1">なぜLaravelなのか？<a class="headerlink" href="#laravel_1" title="Permanent link">&para;</a></h3>
+<p>Webアプリケーションを構築する際には、さまざまなツールやフレームワークが利用可能です。しかし、私たちはLaravelが現代のフルスタックWebアプリケーションを構築するための最良の選択肢であると考えています。</p>
+<h4 id="_2">プログレッシブフレームワーク<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h4>
+<p>Laravelを「プログレッシブ」フレームワークと呼ぶことがあります。つまり、Laravelはあなたと共に成長します。Web開発の最初の一歩を踏み出す場合、Laravelの膨大なドキュメント、ガイド、<a href="https://laracasts.com">ビデオチュートリアル</a>が、圧倒されることなく学習をサポートします。</p>
+<p>シニア開発者であれば、Laravelは<a href="container.html">依存性注入</a>、<a href="testing.html">ユニットテスト</a>、<a href="queues.html">キュー</a>、<a href="broadcasting.html">リアルタイムイベント</a>などの強力なツールを提供します。Laravelは、プロフェッショナルなWebアプリケーションを構築するために微調整されており、企業のワークロードに対応できる準備が整っています。</p>
+<h4 id="_3">スケーラブルなフレームワーク<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
+<p>Laravelは非常にスケーラブルです。PHPのスケーリングに適した性質と、Laravelの組み込みサポートであるRedisのような高速で分散型のキャッシュシステムのおかげで、Laravelでの水平スケーリングは簡単です。実際、Laravelアプリケーションは月に何億ものリクエストを簡単に処理できるようにスケーリングされています。</p>
+<p>極端なスケーリングが必要ですか？<a href="https://vapor.laravel.com">Laravel Vapor</a>のようなプラットフォームでは、AWSの最新のサーバーレステクノロジーを使用して、ほぼ無制限のスケールでLaravelアプリケーションを実行できます。</p>
+<h4 id="_4">コミュニティフレームワーク<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
+<p>Laravelは、PHPエコシステムの最高のパッケージを組み合わせて、最も堅牢で開発者に優しいフレームワークを提供します。さらに、世界中から何千人もの才能ある開発者が<a href="https://github.com/laravel/framework">フレームワークに貢献</a>しています。誰もがLaravelの貢献者になるかもしれません。</p>
+<p><a name="creating-a-laravel-project"></a></p>
+<h2 id="laravel_2">Laravelプロジェクトの作成<a class="headerlink" href="#laravel_2" title="Permanent link">&para;</a></h2>
+<p>最初のLaravelプロジェクトを作成する前に、ローカルマシンにPHPと<a href="https://getcomposer.org">Composer</a>がインストールされていることを確認してください。macOSまたはWindowsで開発している場合、PHP、Composer、Node、NPMは<a href="#local-installation-using-herd">Laravel Herd</a>を介して数分でインストールできます。</p>
+<p>PHPとComposerをインストールした後、Composerの<code>create-project</code>コマンドを使用して新しいLaravelプロジェクトを作成できます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="x">composer create-project laravel/laravel example-app</span>
+</code></pre></div>
+<p>または、<a href="https://github.com/laravel/installer">Laravelインストーラー</a>をComposerを介してグローバルにインストールすることで、新しいLaravelプロジェクトを作成できます。Laravelインストーラーを使用すると、新しいアプリケーションを作成する際に、好みのテストフレームワーク、データベース、スターターキットを選択できます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="x">composer global require laravel/installer</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="x">laravel new example-app</span>
+</code></pre></div>
+<p>プロジェクトが作成されたら、Laravel Artisanの<code>serve</code>コマンドを使用してLaravelのローカル開発サーバーを起動します：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="x">cd example-app</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="x">php artisan serve</span>
+</code></pre></div>
+<p>Artisan開発サーバーを起動したら、アプリケーションはWebブラウザで<a href="http://localhost:8000">http://localhost:8000</a>からアクセスできます。次に、<a href="#next-steps">Laravelエコシステムの次のステップに進む</a>準備が整いました。もちろん、<a href="#databases-and-migrations">データベースの設定</a>も行いたいかもしれません。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Laravelアプリケーションの開発を始める際に先を急ぎたい場合は、<a href="starter-kits.html">スターターキット</a>のいずれかを使用することを検討してください。Laravelのスターターキットは、新しいLaravelアプリケーションのためのバックエンドとフロントエンドの認証スキャフォールディングを提供します。</p>
+</div>
+<p><a name="initial-configuration"></a></p>
+<h2 id="_5">初期設定<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>Laravelフレームワークのすべての設定ファイルは、<code>config</code>ディレクトリに保存されています。各オプションにはドキュメントがあるので、ファイルを見て、利用可能なオプションに慣れ親しんでください。</p>
+<p>Laravelは、ほとんど追加の設定を必要としません。自由に開発を始めることができます！ただし、<code>config/app.php</code>ファイルとそのドキュメントを確認することをお勧めします。アプリケーションに応じて変更したい<code>timezone</code>や<code>locale</code>などのオプションが含まれています。</p>
+<p><a name="environment-based-configuration"></a></p>
+<h3 id="_6">環境ベースの設定<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>Laravelの多くの設定オプションの値は、アプリケーションがローカルマシンで実行されているか、本番Webサーバーで実行されているかによって異なる場合があります。そのため、多くの重要な設定値は、アプリケーションのルートに存在する<code>.env</code>ファイルを使用して定義されます。</p>
+<p><code>.env</code>ファイルは、アプリケーションのソース管理にコミットしないでください。アプリケーションを使用する各開発者/サーバーは、異なる環境設定を必要とする可能性があるためです。さらに、侵入者がソース管理リポジトリにアクセスした場合、機密の認証情報が公開されるリスクがあります。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>.env</code>ファイルと環境ベースの設定についての詳細は、完全な<a href="configuration.html#environment-configuration">設定ドキュメント</a>を確認してください。</p>
+</div>
+<p><a name="databases-and-migrations"></a></p>
+<h3 id="_7">データベースとマイグレーション<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>Laravelアプリケーションを作成したので、おそらくデータベースにデータを保存したいと思うでしょう。デフォルトでは、アプリケーションの<code>.env</code>設定ファイルは、LaravelがSQLiteデータベースと対話することを指定しています。</p>
+<p>プロジェクトの作成中に、Laravelは<code>database/database.sqlite</code>ファイルを作成し、アプリケーションのデータベーステーブルを作成するために必要なマイグレーションを実行しました。</p>
+<p>MySQLやPostgreSQLなどの別のデータベースドライバを使用する場合は、<code>.env</code>設定ファイルを更新して適切なデータベースを使用するようにします。たとえば、MySQLを使用する場合は、<code>.env</code>設定ファイルの<code>DB_*</code>変数を次のように更新します：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="na">DB_CONNECTION</span><span class="o">=</span><span class="s">mysql</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="na">DB_HOST</span><span class="o">=</span><span class="s">127.0.0.1</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="na">DB_PORT</span><span class="o">=</span><span class="s">3306</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="na">DB_DATABASE</span><span class="o">=</span><span class="s">laravel</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="na">DB_USERNAME</span><span class="o">=</span><span class="s">root</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="na">DB_PASSWORD</span><span class="o">=</span>
+</code></pre></div>
+<p>SQLite以外のデータベースを使用する場合は、データベースを作成し、アプリケーションの<a href="migrations.html">データベースマイグレーション</a>を実行する必要があります：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>migrate
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>macOSまたはWindowsで開発しており、MySQL、PostgreSQL、またはRedisをローカルにインストールする必要がある場合は、<a href="https://herd.laravel.com/#plans">Herd Pro</a>の使用を検討してください。</p>
+</div>
+<p><a name="directory-configuration"></a></p>
+<h3 id="_8">ディレクトリ設定<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>Laravelは、Webサーバー用に設定された「Webディレクトリ」のルートから常に提供されるべきです。Laravelアプリケーションを「Webディレクトリ」のサブディレクトリから提供しようとしないでください。そうすると、アプリケーション内に存在する機密ファイルが公開される可能性があります。</p>
+<p><a name="local-installation-using-herd"></a></p>
+<h2 id="herd">Herdを使用したローカルインストール<a class="headerlink" href="#herd" title="Permanent link">&para;</a></h2>
+<p><a href="https://herd.laravel.com">Laravel Herd</a>は、macOSとWindows用の超高速なネイティブLaravelおよびPHP開発環境です。Herdには、Laravel開発を始めるために必要なすべてが含まれています。PHPとNginxを含む。</p>
+<p>Herdをインストールしたら、Laravelでの開発を始める準備が整います。Herdには、<code>php</code>、<code>composer</code>、<code>laravel</code>、<code>expose</code>、<code>node</code>、<code>npm</code>、<code>nvm</code>のコマンドラインツールが含まれています。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><a href="https://herd.laravel.com/#plans">Herd Pro</a>は、Herdをさらに強力な機能で拡張します。例えば、ローカルのMySQL、Postgres、Redisデータベースの作成と管理、ローカルメールの表示、ログの監視などが可能です。</p>
+</div>
+<p><a name="herd-on-macos"></a></p>
+<h3 id="macosherd">macOSでのHerd<a class="headerlink" href="#macosherd" title="Permanent link">&para;</a></h3>
+<p>macOSで開発している場合、<a href="https://herd.laravel.com">HerdのWebサイト</a>からHerdインストーラーをダウンロードできます。インストーラーは、最新バージョンのPHPを自動的にダウンロードし、Macを常に<a href="https://www.nginx.com/">Nginx</a>をバックグラウンドで実行するように設定します。</p>
+<p>macOS用のHerdは、「パークされた」ディレクトリをサポートするために<a href="https://en.wikipedia.org/wiki/Dnsmasq">dnsmasq</a>を使用します。パークされたディレクトリ内のLaravelアプリケーションは、自動的にHerdによって提供されます。デフォルトでは、Herdは<code>~/Herd</code>にパークされたディレクトリを作成し、このディレクトリ内のLaravelアプリケーションには、ディレクトリ名を使用して<code>.test</code>ドメインでアクセスできます。</p>
+<p><a name="herd-on-windows"></a></p>
+<h3 id="windowsherd">WindowsでのHerd<a class="headerlink" href="#windowsherd" title="Permanent link">&para;</a></h3>
+<p>Windowsで開発している場合、<a href="https://herd.laravel.com">HerdのWebサイト</a>からHerdインストーラーをダウンロードできます。インストーラーは、最新バージョンのPHPを自動的にダウンロードし、Windowsを常に<a href="https://www.nginx.com/">Nginx</a>をバックグラウンドで実行するように設定します。</p>
+<p>Windows用のHerdは、「パークされた」ディレクトリをサポートするために<a href="https://en.wikipedia.org/wiki/Dnsmasq">dnsmasq</a>を使用します。パークされたディレクトリ内のLaravelアプリケーションは、自動的にHerdによって提供されます。デフォルトでは、Herdは<code>~/Herd</code>にパークされたディレクトリを作成し、このディレクトリ内のLaravelアプリケーションには、ディレクトリ名を使用して<code>.test</code>ドメインでアクセスできます。</p>
+<p><a name="docker-installation-using-sail"></a></p>
+<h2 id="saildocker">Sailを使用したDockerインストール<a class="headerlink" href="#saildocker" title="Permanent link">&para;</a></h2>
+<p><a href="https://laravel.com/docs/sail">Laravel Sail</a>は、LaravelのデフォルトのDocker開発環境です。Sailは、Dockerを使用してLaravelアプリケーションを開発するための簡単な方法を提供します。</p>
+<p>Sailを使用してLaravelプロジェクトを作成するには、Composerの<code>create-project</code>コマンドを使用します：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="x">composer create-project laravel/laravel example-app</span>
+</code></pre></div>
+<p>プロジェクトが作成されたら、Sailを起動します：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="x">cd example-app</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="x">./vendor/bin/sail up</span>
+</code></pre></div>
+<p>Sailを起動したら、アプリケーションはWebブラウザで<a href="http://localhost">http://localhost</a>からアクセスできます。次に、<a href="#next-steps">Laravelエコシステムの次のステップに進む</a>準備が整いました。もちろん、<a href="#databases-and-migrations">データベースの設定</a>も行いたいかもしれません。</p>
+<p><a name="sail-on-macos"></a></p>
+<h3 id="macossail">macOSでのSail<a class="headerlink" href="#macossail" title="Permanent link">&para;</a></h3>
+<p>macOSで開発している場合、<a href="https://www.docker.com/products/docker-desktop">Docker Desktop</a>をインストールする必要があります。Docker Desktopをインストールしたら、Sailを使用してLaravelプロジェクトを作成できます。</p>
+<p><a name="sail-on-windows"></a></p>
+<h3 id="windowssail">WindowsでのSail<a class="headerlink" href="#windowssail" title="Permanent link">&para;</a></h3>
+<p>Windowsで開発している場合、<a href="https://www.docker.com/products/docker-desktop">Docker Desktop</a>をインストールする必要があります。Docker Desktopをインストールしたら、Sailを使用してLaravelプロジェクトを作成できます。</p>
+<p><a name="sail-on-linux"></a></p>
+<h3 id="linuxsail">LinuxでのSail<a class="headerlink" href="#linuxsail" title="Permanent link">&para;</a></h3>
+<p>Linuxで開発している場合、<a href="https://www.docker.com/products/docker-desktop">Docker</a>をインストールする必要があります。Dockerをインストールしたら、Sailを使用してLaravelプロジェクトを作成できます。</p>
+<p><a name="choosing-your-sail-services"></a></p>
+<h3 id="sail">Sailサービスの選択<a class="headerlink" href="#sail" title="Permanent link">&para;</a></h3>
+<p>Sailを使用してLaravelプロジェクトを作成する際に、使用するサービスを選択できます。デフォルトでは、SailはMySQL、Redis、Memcached、MeiliSearch、MailHog、およびNodeを使用します。</p>
+<p>サービスを選択するには、<code>create-project</code>コマンドに<code>--services</code>オプションを追加します：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="x">composer create-project laravel/laravel example-app --services=mysql,redis</span>
+</code></pre></div>
+<p><a name="ide-support"></a></p>
+<h2 id="ide">IDEサポート<a class="headerlink" href="#ide" title="Permanent link">&para;</a></h2>
+<p>Laravelは、<a href="https://code.visualstudio.com/">VS Code</a>や<a href="https://www.jetbrains.com/phpstorm/">PHPStorm</a>などの一般的なIDEをサポートしています。Laravelアプリケーションを開発する際に、これらのIDEを使用することを強くお勧めします。</p>
+<p><a name="next-steps"></a></p>
+<h2 id="_9">次のステップ<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<p>Laravelアプリケーションの開発を始めたら、次のステップに進む準備が整いました。</p>
+<p><a name="laravel-the-fullstack-framework"></a></p>
+<h3 id="laravel_3">Laravel、フルスタックフレームワーク<a class="headerlink" href="#laravel_3" title="Permanent link">&para;</a></h3>
+<p>Laravelは、フルスタックフレームワークとして使用できます。Laravelを使用して、バックエンドとフロントエンドの両方を開発できます。Laravelは、バックエンドの開発に必要なすべてのツールを提供し、フロントエンドの開発に必要なツールも提供します。</p>
+<p><a name="laravel-the-api-backend"></a></p>
+<h3 id="laravelapi">Laravel、APIバックエンド<a class="headerlink" href="#laravelapi" title="Permanent link">&para;</a></h3>
+<p>Laravelは、APIバックエンドとして使用できます。Laravelを使用して、フロントエンドアプリケーションのAPIバックエンドを開発できます。Laravelは、APIバックエンドの開発に必要なすべてのツールを提供します。</p>
+<p>Herdをインストールした後、新しいLaravelプロジェクトを作成する最も速い方法は、HerdにバンドルされているLaravel CLIを使用することです。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="x">cd ~/Herd</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="x">laravel new my-app</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="x">cd my-app</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="x">herd open</span>
+</code></pre></div>
+<p>もちろん、パークされたディレクトリやその他のPHP設定は、システムトレイのHerdメニューから開くことができるHerdのUIを介していつでも管理できます。</p>
+<p>Herdの詳細については、<a href="https://herd.laravel.com/docs">Herdのドキュメント</a>を確認してください。</p>
+<p><a name="herd-on-windows"></a></p>
+<h3 id="windowsherd_1">WindowsでのHerd<a class="headerlink" href="#windowsherd_1" title="Permanent link">&para;</a></h3>
+<p>Windows用のインストーラーは、<a href="https://herd.laravel.com/windows">Herdのウェブサイト</a>からダウンロードできます。インストールが完了したら、Herdを起動してオンボーディングプロセスを完了し、初めてHerdのUIにアクセスできます。</p>
+<p>HerdのUIには、Herdのシステムトレイアイコンを左クリックすることでアクセスできます。右クリックすると、毎日必要なすべてのツールにアクセスできるクイックメニューが開きます。</p>
+<p>インストール中に、Herdはホームディレクトリに<code>%USERPROFILE%\Herd</code>に「パークされた」ディレクトリを作成します。パークされたディレクトリ内のLaravelアプリケーションは自動的にHerdによって提供され、このディレクトリ内の任意のLaravelアプリケーションには、そのディレクトリ名を使用して<code>.test</code>ドメインでアクセスできます。</p>
+<p>Herdをインストールした後、新しいLaravelプロジェクトを作成する最も速い方法は、HerdにバンドルされているLaravel CLIを使用することです。始めるには、Powershellを開いて次のコマンドを実行してください：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="x">cd ~\Herd</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="x">laravel new my-app</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="x">cd my-app</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="x">herd open</span>
+</code></pre></div>
+<p>Herdの詳細については、<a href="https://herd.laravel.com/docs/windows">Windows用のHerdドキュメント</a>を確認してください。</p>
+<p><a name="docker-installation-using-sail"></a></p>
+<h2 id="dockersail">Dockerを使用したインストール（Sailを使用）<a class="headerlink" href="#dockersail" title="Permanent link">&para;</a></h2>
+<p>お好みのオペレーティングシステムに関係なく、Laravelをできるだけ簡単に始められるようにしたいと考えています。そのため、ローカルマシンでLaravelプロジェクトを開発して実行するためのさまざまなオプションが用意されています。後でこれらのオプションを探求することもできますが、Laravelは<a href="sail.html">Sail</a>を提供しており、これはLaravelプロジェクトを<a href="https://www.docker.com">Docker</a>を使用して実行するための組み込みのソリューションです。</p>
+<p>Dockerは、アプリケーションやサービスを小さく軽量な「コンテナ」で実行するためのツールで、ローカルマシンにインストールされたソフトウェアや設定に干渉しません。つまり、ローカルマシンにWebサーバーやデータベースなどの複雑な開発ツールを設定する心配はありません。始めるには、<a href="https://www.docker.com/products/docker-desktop">Docker Desktop</a>をインストールするだけです。</p>
+<p>Laravel Sailは、LaravelのデフォルトのDocker設定と対話するための軽量なコマンドラインインターフェースです。Sailは、Dockerの経験がなくてもPHP、MySQL、Redisを使用してLaravelアプリケーションを構築するための素晴らしい出発点を提供します。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>すでにDockerの専門家ですか？心配はいりません！Sailのすべては、Laravelに含まれる<code>docker-compose.yml</code>ファイルを使用してカスタマイズできます。</p>
+</div>
+<p><a name="sail-on-macos"></a></p>
+<h3 id="macossail_1">macOSでのSail<a class="headerlink" href="#macossail_1" title="Permanent link">&para;</a></h3>
+<p>Macで開発していて、<a href="https://www.docker.com/products/docker-desktop">Docker Desktop</a>がすでにインストールされている場合、シンプルなターミナルコマンドを使用して新しいLaravelプロジェクトを作成できます。たとえば、"example-app"という名前のディレクトリに新しいLaravelアプリケーションを作成するには、ターミナルで次のコマンドを実行します：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>curl<span class="w"> </span>-s<span class="w"> </span><span class="s2">&quot;https://laravel.build/example-app&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>bash
+</code></pre></div>
+<p>もちろん、このURLの"example-app"は好きなものに変更できますが、アプリケーション名には英数字、ダッシュ、アンダースコアのみを含めるようにしてください。Laravelアプリケーションのディレクトリは、コマンドを実行したディレクトリ内に作成されます。</p>
+<p>Sailのインストールには、Sailのアプリケーションコンテナがローカルマシン上で構築される間、数分かかる場合があります。</p>
+<p>プロジェクトが作成されたら、アプリケーションディレクトリに移動し、Laravel Sailを起動できます。Laravel Sailは、LaravelのデフォルトのDocker設定と対話するためのシンプルなコマンドラインインターフェースを提供します：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nb">cd</span><span class="w"> </span>example-app
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>./vendor/bin/sail<span class="w"> </span>up
+</code></pre></div>
+<p>アプリケーションのDockerコンテナが起動したら、アプリケーションの<a href="migrations.html">データベースマイグレーション</a>を実行する必要があります：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>./vendor/bin/sail<span class="w"> </span>artisan<span class="w"> </span>migrate
+</code></pre></div>
+<p>最後に、アプリケーションにはWebブラウザでhttp://localhostにアクセスできます。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Laravel Sailの詳細を学び続けるには、その<a href="sail.html">完全なドキュメント</a>を確認してください。</p>
+</div>
+<p><a name="sail-on-windows"></a></p>
+<h3 id="windowssail_1">WindowsでのSail<a class="headerlink" href="#windowssail_1" title="Permanent link">&para;</a></h3>
+<p>Windowsマシンで新しいLaravelアプリケーションを作成する前に、<a href="https://www.docker.com/products/docker-desktop">Docker Desktop</a>をインストールしてください。次に、Windows Subsystem for Linux 2 (WSL2)がインストールされ、有効になっていることを確認してください。WSLは、Windows 10上でLinuxバイナリ実行ファイルをネイティブに実行できるようにします。WSL2のインストールと有効化方法については、Microsoftの<a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10">開発者環境ドキュメント</a>に記載されています。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>WSL2をインストールして有効にした後、Docker Desktopが<a href="https://docs.docker.com/docker-for-windows/wsl/">WSL2バックエンドを使用するように設定されている</a>ことを確認してください。</p>
+</div>
+<p>次に、最初のLaravelプロジェクトを作成する準備が整いました。<a href="https://www.microsoft.com/en-us/p/windows-terminal/9n0dx20hk701?rtc=1&amp;activetab=pivot:overviewtab">Windows Terminal</a>を起動し、WSL2 Linuxオペレーティングシステムの新しいターミナルセッションを開始します。次に、シンプルなターミナルコマンドを使用して新しいLaravelプロジェクトを作成できます。たとえば、"example-app"という名前のディレクトリに新しいLaravelアプリケーションを作成するには、ターミナルで次のコマンドを実行します：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>curl<span class="w"> </span>-s<span class="w"> </span>https://laravel.build/example-app<span class="w"> </span><span class="p">|</span><span class="w"> </span>bash
+</code></pre></div>
+<p>もちろん、このURLの"example-app"は好きなものに変更できますが、アプリケーション名には英数字、ダッシュ、アンダースコアのみを含めるようにしてください。Laravelアプリケーションのディレクトリは、コマンドを実行したディレクトリ内に作成されます。</p>
+<p>Sailのインストールには、Sailのアプリケーションコンテナがローカルマシン上で構築される間、数分かかる場合があります。</p>
+<p>プロジェクトが作成されたら、アプリケーションディレクトリに移動し、Laravel Sailを起動できます。Laravel Sailは、LaravelのデフォルトのDocker設定と対話するためのシンプルなコマンドラインインターフェースを提供します：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nb">cd</span><span class="w"> </span>example-app
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>./vendor/bin/sail<span class="w"> </span>up
+</code></pre></div>
+<p>アプリケーションのDockerコンテナが起動したら、アプリケーションの<a href="migrations.html">データベースマイグレーション</a>を実行する必要があります：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>./vendor/bin/sail<span class="w"> </span>artisan<span class="w"> </span>migrate
+</code></pre></div>
+<p>最後に、アプリケーションにはWebブラウザでhttp://localhostにアクセスできます。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Laravel Sailの詳細を学び続けるには、その<a href="sail.html">完全なドキュメント</a>を確認してください。</p>
+</div>
+<h4 id="wsl2">WSL2内での開発<a class="headerlink" href="#wsl2" title="Permanent link">&para;</a></h4>
+<p>もちろん、WSL2インストール内に作成されたLaravelアプリケーションファイルを変更できる必要があります。これを実現するために、Microsoftの<a href="https://code.visualstudio.com">Visual Studio Code</a>エディタと、<a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack">Remote Development</a>用の公式拡張機能を使用することをお勧めします。</p>
+<p>これらのツールがインストールされたら、Windows Terminalを使用してアプリケーションのルートディレクトリから<code>code .</code>コマンドを実行することで、任意のLaravelプロジェクトを開くことができます。</p>
+<p><a name="sail-on-linux"></a></p>
+<h3 id="linuxsail_1">LinuxでのSail<a class="headerlink" href="#linuxsail_1" title="Permanent link">&para;</a></h3>
+<p>Linuxで開発していて、<a href="https://docs.docker.com/compose/install/">Docker Compose</a>がすでにインストールされている場合、シンプルなターミナルコマンドを使用して新しいLaravelプロジェクトを作成できます。</p>
+<p>まず、Docker Desktop for Linuxを使用している場合、次のコマンドを実行してください。Docker Desktop for Linuxを使用していない場合は、このステップをスキップできます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>docker<span class="w"> </span>context<span class="w"> </span>use<span class="w"> </span>default
+</code></pre></div>
+<p>次に、"example-app"という名前のディレクトリに新しいLaravelアプリケーションを作成するには、ターミナルで次のコマンドを実行します：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>curl<span class="w"> </span>-s<span class="w"> </span>https://laravel.build/example-app<span class="w"> </span><span class="p">|</span><span class="w"> </span>bash
+</code></pre></div>
+<p>もちろん、このURLの"example-app"は好きなものに変更できますが、アプリケーション名には英数字、ダッシュ、アンダースコアのみを含めるようにしてください。Laravelアプリケーションのディレクトリは、コマンドを実行したディレクトリ内に作成されます。</p>
+<p>Sailのインストールには、Sailのアプリケーションコンテナがローカルマシン上で構築される間、数分かかる場合があります。</p>
+<p>プロジェクトが作成されたら、アプリケーションディレクトリに移動し、Laravel Sailを起動できます。Laravel Sailは、LaravelのデフォルトのDocker設定と対話するためのシンプルなコマンドラインインターフェースを提供します：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="nb">cd</span><span class="w"> </span>example-app
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>./vendor/bin/sail<span class="w"> </span>up
+</code></pre></div>
+<p>アプリケーションのDockerコンテナが起動したら、アプリケーションの<a href="migrations.html">データベースマイグレーション</a>を実行する必要があります：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>./vendor/bin/sail<span class="w"> </span>artisan<span class="w"> </span>migrate
+</code></pre></div>
+<p>最後に、アプリケーションにはWebブラウザでhttp://localhostにアクセスできます。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Laravel Sailの詳細を学び続けるには、その<a href="sail.html">完全なドキュメント</a>を確認してください。</p>
+</div>
+<p><a name="choosing-your-sail-services"></a></p>
+<h3 id="sail_1">Sailサービスの選択<a class="headerlink" href="#sail_1" title="Permanent link">&para;</a></h3>
+<p>新しいLaravelアプリケーションをSailを介して作成する際、<code>with</code>クエリ文字列変数を使用して、新しいアプリケーションの<code>docker-compose.yml</code>ファイルに設定するサービスを選択できます。利用可能なサービスには、<code>mysql</code>、<code>pgsql</code>、<code>mariadb</code>、<code>redis</code>、<code>memcached</code>、<code>meilisearch</code>、<code>typesense</code>、<code>minio</code>、<code>selenium</code>、<code>mailpit</code>が含まれます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>curl<span class="w"> </span>-s<span class="w"> </span><span class="s2">&quot;https://laravel.build/example-app?with=mysql,redis&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>bash
+</code></pre></div>
+<p>設定するサービスを指定しない場合、<code>mysql</code>、<code>redis</code>、<code>meilisearch</code>、<code>mailpit</code>、<code>selenium</code>のデフォルトスタックが設定されます。</p>
+<p><code>devcontainer</code>パラメータをURLに追加することで、デフォルトの<a href="sail.html#using-devcontainers">Devcontainer</a>をインストールするようにSailに指示できます：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>curl<span class="w"> </span>-s<span class="w"> </span><span class="s2">&quot;https://laravel.build/example-app?with=mysql,redis&amp;devcontainer&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>bash
+</code></pre></div>
+<p><a name="ide-support"></a></p>
+<h2 id="ide_1">IDEサポート<a class="headerlink" href="#ide_1" title="Permanent link">&para;</a></h2>
+<p>Laravelアプリケーションの開発には、お好きなコードエディタを自由にお使いいただけますが、<a href="https://www.jetbrains.com/phpstorm/laravel/">PhpStorm</a>はLaravelとそのエコシステムに対して広範なサポートを提供しており、<a href="https://www.jetbrains.com/help/phpstorm/using-laravel-pint.html">Laravel Pint</a>も含まれています。</p>
+<p>さらに、コミュニティがメンテナンスしている<a href="https://laravel-idea.com/">Laravel Idea</a>のPhpStormプラグインは、コード生成、Eloquent構文の補完、バリデーションルールの補完など、さまざまな便利なIDE拡張機能を提供しています。</p>
+<p><a name="next-steps"></a></p>
+<h2 id="_10">次のステップ<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<p>これでLaravelプロジェクトを作成できましたが、次に何を学ぶべきか迷っているかもしれません。まず、Laravelの動作を理解するために、以下のドキュメントを読むことを強くお勧めします。</p>
+<div class="content-list">
+<ul>
+<li><a href="lifecycle.html">リクエストライフサイクル</a></li>
+<li><a href="configuration.html">設定</a></li>
+<li><a href="structure.html">ディレクトリ構造</a></li>
+<li><a href="frontend.html">フロントエンド</a></li>
+<li><a href="container.html">サービスコンテナ</a></li>
+<li><a href="facades.html">ファサード</a></li>
+</ul>
+</div>
+<p>Laravelをどのように使うかによっても、次のステップは変わってきます。Laravelにはさまざまな使い方がありますが、以下ではフレームワークの主な2つの使用例を紹介します。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Laravel初心者ですか？<a href="https://bootcamp.laravel.com">Laravel Bootcamp</a>で、フレームワークのハンズオンツアーを体験しながら、初めてのLaravelアプリケーションを構築する方法を学ぶことができます。</p>
+</div>
+<p><a name="laravel-the-fullstack-framework"></a></p>
+<h3 id="laravel_4">Laravelをフルスタックフレームワークとして使用する<a class="headerlink" href="#laravel_4" title="Permanent link">&para;</a></h3>
+<p>Laravelはフルスタックフレームワークとして機能します。「フルスタック」フレームワークとは、Laravelを使用してアプリケーションへのリクエストをルーティングし、<a href="blade.html">Bladeテンプレート</a>または<a href="https://inertiajs.com">Inertia</a>のようなシングルページアプリケーションのハイブリッド技術を介してフロントエンドをレンダリングすることを意味します。これはLaravelを使用する最も一般的な方法であり、私たちの意見では、Laravelを使用する最も生産的な方法です。</p>
+<p>この方法でLaravelを使用する場合、<a href="frontend.html">フロントエンド開発</a>、<a href="routing.html">ルーティング</a>、<a href="views.html">ビュー</a>、または<a href="eloquent.html">Eloquent ORM</a>に関するドキュメントをチェックしてみてください。さらに、<a href="https://livewire.laravel.com">Livewire</a>や<a href="https://inertiajs.com">Inertia</a>のようなコミュニティパッケージに興味があるかもしれません。これらのパッケージを使用すると、Laravelをフルスタックフレームワークとして使用しながら、シングルページJavaScriptアプリケーションが提供する多くのUIの利点を享受できます。</p>
+<p>Laravelをフルスタックフレームワークとして使用する場合、アプリケーションのCSSとJavaScriptを<a href="vite.html">Vite</a>を使用してコンパイルする方法を学ぶことも強くお勧めします。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>アプリケーションの構築を早めに開始したい場合は、公式の<a href="starter-kits.html">アプリケーションスターターキット</a>のいずれかをチェックしてください。</p>
+</div>
+<p><a name="laravel-the-api-backend"></a></p>
+<h3 id="laravelapi_1">LaravelをAPIバックエンドとして使用する<a class="headerlink" href="#laravelapi_1" title="Permanent link">&para;</a></h3>
+<p>Laravelは、JavaScriptのシングルページアプリケーションやモバイルアプリケーションのAPIバックエンドとしても機能します。例えば、Laravelを<a href="https://nextjs.org">Next.js</a>アプリケーションのAPIバックエンドとして使用することができます。このコンテキストでは、Laravelを使用してアプリケーションの<a href="sanctum.html">認証</a>とデータの保存/取得を提供し、キューやメール、通知などのLaravelの強力なサービスを活用することができます。</p>
+<p>この方法でLaravelを使用する場合、<a href="routing.html">ルーティング</a>、<a href="sanctum.html">Laravel Sanctum</a>、および<a href="eloquent.html">Eloquent ORM</a>に関するドキュメントをチェックしてみてください。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>LaravelバックエンドとNext.jsフロントエンドのスキャフォールディングを早めに開始したいですか？Laravel Breezeは<a href="starter-kits.html#breeze-and-next">APIスタック</a>と<a href="https://github.com/laravel/breeze-next">Next.jsフロントエンド実装</a>を提供しており、数分で開始できます。</p>
+</div>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+<nav class="md-footer-nav">
+    
+    
+</nav>
+
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": ".", "features": ["back-to-top", "navigation.expand", "navigation.tabs", "navigation.footer", "navigation.sections", "navigation.expand", "content.code.copy", "hide_repository_button", "content.code.annotate", "content.tabs.link", "toc.none", "content.action.edit"], "search": "assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="assets/javascripts/bundle.56dfad97.min.js"></script>
+      
+    
+  </body>
+</html>
