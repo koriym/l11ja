@@ -17,44 +17,45 @@ Laravelは、データベース駆動のアプリケーションを簡単にテ�
 さらに進む前に、各テスト後にデータベースをリセットする方法について説明しましょう。これにより、前のテストのデータが後続のテストに干渉しないようになります。Laravelに含まれる`Illuminate\Foundation\Testing\RefreshDatabase`トレイトが、これを処理します。テストクラスでトレイトを使用するだけです：
 
 ===  "Pest"
-```php
-<?php
-
-use Illuminate\Foundation\Testing\RefreshDatabase;
-
-uses(RefreshDatabase::class);
-
-test('basic example', function () {
-    $response = $this->get('/');
-
-    // ...
-});
-```
+    ```php
+    <?php
+    
+    use Illuminate\Foundation\Testing\RefreshDatabase;
+    
+    uses(RefreshDatabase::class);
+    
+    test('basic example', function () {
+        $response = $this->get('/');
+    
+        // ...
+    });
+    ```
 
 ===  "PHPUnit"
-```php
-<?php
 
-namespace Tests\Feature;
-
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
-
-class ExampleTest extends TestCase
-{
-    use RefreshDatabase;
-
-    /**
-     * 基本的な機能テストの例。
-     */
-    public function test_basic_example(): void
+    ```php
+    <?php
+    
+    namespace Tests\Feature;
+    
+    use Illuminate\Foundation\Testing\RefreshDatabase;
+    use Tests\TestCase;
+    
+    class ExampleTest extends TestCase
     {
-        $response = $this->get('/');
-
-        // ...
+        use RefreshDatabase;
+    
+        /**
+         * 基本的な機能テストの例。
+         */
+        public function test_basic_example(): void
+        {
+            $response = $this->get('/');
+    
+            // ...
+        }
     }
-}
-```
+    ```
 
 `Illuminate\Foundation\Testing\RefreshDatabase`トレイトは、スキーマが最新の場合、データベースをマイグレートしません。代わりに、データベーストランザクション内でテストを実行するだけです。したがって、このトレイトを使用しないテストケースによってデータベースに追加されたレコードは、データベースに残る可能性があります。
 
@@ -68,27 +69,29 @@ class ExampleTest extends TestCase
 モデルファクトリの作成と使用方法について詳しくは、完全な[モデルファクトリのドキュメント](eloquent-factories.md)を参照してください。モデルファクトリを定義したら、テスト内でファクトリを使用してモデルを作成できます：
 
 ===  "Pest"
-```php
-use App\Models\User;
 
-test('models can be instantiated', function () {
-    $user = User::factory()->create();
-
-    // ...
-});
-```
+    ```php
+    use App\Models\User;
+    
+    test('models can be instantiated', function () {
+        $user = User::factory()->create();
+    
+        // ...
+    });
+    ```
 
 ===  "PHPUnit"
-```php
-use App\Models\User;
 
-public function test_models_can_be_instantiated(): void
-{
-    $user = User::factory()->create();
-
-    // ...
-}
-```
+    ```php
+    use App\Models\User;
+    
+    public function test_models_can_be_instantiated(): void
+    {
+        $user = User::factory()->create();
+    
+        // ...
+    }
+    ```
 
 <a name="running-seeders"></a>
 ## シーダーの実行
