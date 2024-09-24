@@ -99,70 +99,72 @@ Laravelは、データベース駆動のアプリケーションを簡単にテ�
 機能テスト中に[データベースシーダー](seeding.md)を使用してデータベースをデータで埋めたい場合は、`seed`メソッドを呼び出すことができます。デフォルトでは、`seed`メソッドは`DatabaseSeeder`を実行し、これにより他のすべてのシーダーが実行されます。または、特定のシーダークラス名を`seed`メソッドに渡すこともできます：
 
 ===  "Pest"
-```php
-<?php
 
-use Database\Seeders\OrderStatusSeeder;
-use Database\Seeders\TransactionStatusSeeder;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-
-uses(RefreshDatabase::class);
-
-test('orders can be created', function () {
-    // DatabaseSeederを実行...
-    $this->seed();
-
-    // 特定のシーダーを実行...
-    $this->seed(OrderStatusSeeder::class);
-
-    // ...
-
-    // 特定のシーダーの配列を実行...
-    $this->seed([
-        OrderStatusSeeder::class,
-        TransactionStatusSeeder::class,
-        // ...
-    ]);
-});
-```
-
-===  "PHPUnit"
-```php
-<?php
-
-namespace Tests\Feature;
-
-use Database\Seeders\OrderStatusSeeder;
-use Database\Seeders\TransactionStatusSeeder;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
-
-class ExampleTest extends TestCase
-{
-    use RefreshDatabase;
-
-    /**
-     * 新しい注文の作成テスト。
-     */
-    public function test_orders_can_be_created(): void
-    {
+    ```php
+    <?php
+    
+    use Database\Seeders\OrderStatusSeeder;
+    use Database\Seeders\TransactionStatusSeeder;
+    use Illuminate\Foundation\Testing\RefreshDatabase;
+    
+    uses(RefreshDatabase::class);
+    
+    test('orders can be created', function () {
         // DatabaseSeederを実行...
         $this->seed();
-
+    
         // 特定のシーダーを実行...
         $this->seed(OrderStatusSeeder::class);
-
+    
         // ...
-
+    
         // 特定のシーダーの配列を実行...
         $this->seed([
             OrderStatusSeeder::class,
             TransactionStatusSeeder::class,
             // ...
         ]);
+    });
+    ```
+
+===  "PHPUnit"
+
+    ```php
+    <?php
+    
+    namespace Tests\Feature;
+    
+    use Database\Seeders\OrderStatusSeeder;
+    use Database\Seeders\TransactionStatusSeeder;
+    use Illuminate\Foundation\Testing\RefreshDatabase;
+    use Tests\TestCase;
+    
+    class ExampleTest extends TestCase
+    {
+        use RefreshDatabase;
+    
+        /**
+         * 新しい注文の作成テスト。
+         */
+        public function test_orders_can_be_created(): void
+        {
+            // DatabaseSeederを実行...
+            $this->seed();
+    
+            // 特定のシーダーを実行...
+            $this->seed(OrderStatusSeeder::class);
+    
+            // ...
+    
+            // 特定のシーダーの配列を実行...
+            $this->seed([
+                OrderStatusSeeder::class,
+                TransactionStatusSeeder::class,
+                // ...
+            ]);
+        }
     }
-}
-```
+    ```
 
 または、`RefreshDatabase`トレイトを使用する各テストの前に、Laravelにデータベースを自動的にシードするように指示できます。これは、ベーステストクラスに`$seed`プロパティを定義することで実現できます：
 
