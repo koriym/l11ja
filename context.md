@@ -1,26 +1,32 @@
-# Context
+# コンテキスト
 
-- [Introduction](#introduction)
-    - [How it Works](#how-it-works)
-- [Capturing Context](#capturing-context)
-    - [Stacks](#stacks)
-- [Retrieving Context](#retrieving-context)
-    - [Determining Item Existence](#determining-item-existence)
-- [Removing Context](#removing-context)
-- [Hidden Context](#hidden-context)
-- [Events](#events)
-    - [Dehydrating](#dehydrating)
-    - [Hydrated](#hydrated)
+- [はじめに](#introduction)
+    - [仕組み](#how-it-works)
+- [コンテキストのキャプチャ](#capturing-context)
+    - [スタック](#stacks)
+- [コンテキストの取得](#retrieving-context)
+    - [アイテムの存在確認](#determining-item-existence)
+- [コンテキストの削除](#removing-context)
+- [隠しコンテキスト](#hidden-context)
+- [イベント](#events)
+    - [デハイドレート（シリアル化）
+](#dehydrating)
+    - [ハイドレート(復元）
+](#hydrated)
 
 <a name="introduction"></a>
-## Introduction
+## はじめに
 
-Laravel's "context" capabilities enable you to capture, retrieve, and share information throughout requests, jobs, and commands executing within your application. This captured information is also included in logs written by your application, giving you deeper insight into the surrounding code execution history that occurred before a log entry was written and allowing you to trace execution flows throughout a distributed system.
+Laravelの「コンテキスト」機能は、アプリケーション全体で情報を効率的に管理するための強力なツールです。この機能を使用すると、リクエスト、ジョブ、およびコマンドの実行全体で情報をキャプチャ、取得、共有することができます。
+
+キャプチャされた情報は、アプリケーションのログにも自動的に含まれます。
+
+これにより、ログエントリが書き込まれる前の周囲のコード実行履歴について、より深い洞察を得ることができます。 さらに、この機能は分散システム全体での実行フローのトレースを可能にします。これは、複雑なアプリケーションのデバッグや性能分析に非常に有用です。
 
 <a name="how-it-works"></a>
-### How it Works
+### 仕組み
 
-The best way to understand Laravel's context capabilities is to see it in action using  the built-in logging features. To get started, you may [add information to the context](#capturing-context) using the `Context` facade. In this example, we will use a [middleware](/docs/{{version}}/middleware) to add the request URL and a unique trace ID to the context on every incoming request:
+Laravelのコンテキスト機能を理解する最良の方法は、組み込みのロギング機能を使用して実際に動作を見ることです。まず、`Context`ファサードを使用して[コンテキストに情報を追加](#capturing-context)することができます。この例では、[ミドルウェア](middleware.md)を使用して、すべての受信リクエストに対してリクエストURLと一意のトレースIDをコンテキストに追加します。
 
 ```php
 <?php
@@ -36,7 +42,7 @@ use Symfony\Component\HttpFoundation\Response;
 class AddContext
 {
     /**
-     * Handle an incoming request.
+     * 受信リクエストを処理します。
      */
     public function handle(Request $request, Closure $next): Response
     {
@@ -48,30 +54,31 @@ class AddContext
 }
 ```
 
-Information added to the context is automatically appended as metadata to any [log entries](/docs/{{version}}/logging) that are written throughout the request. Appending context as metadata allows information passed to individual log entries to be differentiated from the information shared via `Context`. For example, imagine we write the following log entry:
+コンテキストに追加された情報は、リクエスト全体で書き込まれるすべての[ログエントリ](logging.md)にメタデータとして自動的に追加されます。コンテキストをメタデータとして追加することで、個々のログエントリに渡される情報を`Context`を介して共有される情報と区別することができます。例えば、次のようなログエントリを書き込むとします。
 
 ```php
-Log::info('User authenticated.', ['auth_id' => Auth::id()]);
+Log::info('ユーザーが認証されました。', ['auth_id' => Auth::id()]);
 ```
 
-The written log will contain the `auth_id` passed to the log entry, but it will also contain the context's `url` and `trace_id` as metadata:
+書き込まれたログには、ログエントリに渡された`auth_id`が含まれますが、コンテキストの`url`と`trace_id`もメタデータとして含まれます。
 
 ```
-User authenticated. {"auth_id":27} {"url":"https://example.com/login","trace_id":"e04e1a11-e75c-4db3-b5b5-cfef4ef56697"}
+ユーザーが認証されました。 {"auth_id":27} {"url":"https://example.com/login","trace_id":"e04e1a11-e75c-4db3-b5b5-cfef4ef56697"}
 ```
 
-Information added to the context is also made available to jobs dispatched to the queue. For example, imagine we dispatch a `ProcessPodcast` job to the queue after adding some information to the context:
+コンテキストに追加された情報は、キューにディスパッチされるジョブでも利用可能です。例えば、コンテキストにいくつかの情報を追加した後に`ProcessPodcast`ジョブをキューにディスパッチするとします。
 
 ```php
-// In our middleware...
+// ミドルウェア内で...
 Context::add('url', $request->url());
 Context::add('trace_id', Str::uuid()->toString());
 
-// In our controller...
+// コントローラ内で...
 ProcessPodcast::dispatch($podcast);
 ```
 
-When the job is dispatched, any information currently stored in the context is captured and shared with the job. The captured information is then hydrated back into the current context while the job is executing. So, if our job's handle method was to write to the log:
+ジョブがディスパッチされると、現在コンテキストに保存されているすべての情報がキャプチャされ、ジョブと共有されます。キャプチャされた情報は、ジョブの実行中に現在のコンテキストに再びハイドレート(復元）
+されます。したがって、ジョブのhandleメソッドがログに書き込む場合。
 
 ```php
 class ProcessPodcast implements ShouldQueue
@@ -81,11 +88,11 @@ class ProcessPodcast implements ShouldQueue
     // ...
 
     /**
-     * Execute the job.
+     * ジョブを実行します。
      */
     public function handle(): void
     {
-        Log::info('Processing podcast.', [
+        Log::info('ポッドキャストを処理しています。', [
             'podcast_id' => $this->podcast->id,
         ]);
 
@@ -94,18 +101,18 @@ class ProcessPodcast implements ShouldQueue
 }
 ```
 
-The resulting log entry would contain the information that was added to the context during the request that originally dispatched the job:
+結果のログエントリには、ジョブを最初にディスパッチしたリクエスト中にコンテキストに追加された情報が含まれます。
 
 ```
-Processing podcast. {"podcast_id":95} {"url":"https://example.com/login","trace_id":"e04e1a11-e75c-4db3-b5b5-cfef4ef56697"}
+ポッドキャストを処理しています。 {"podcast_id":95} {"url":"https://example.com/login","trace_id":"e04e1a11-e75c-4db3-b5b5-cfef4ef56697"}
 ```
 
-Although we have focused on the built-in logging related features of Laravel's context, the following documentation will illustrate how context allows you to share information across the HTTP request / queued job boundary and even how to add [hidden context data](#hidden-context) that is not written with log entries.
+Laravelのコンテキストの組み込みロギング関連機能に焦点を当てましたが、以下のドキュメントでは、コンテキストがHTTPリクエスト/キューされたジョブの境界を越えて情報を共有する方法、さらには[隠しコンテキストデータ](#hidden-context)を追加する方法について説明します。
 
 <a name="capturing-context"></a>
-## Capturing Context
+## コンテキストのキャプチャ
 
-You may store information in the current context using the `Context` facade's `add` method:
+`Context`ファサードの`add`メソッドを使用して、現在のコンテキストに情報を保存できます。
 
 ```php
 use Illuminate\Support\Facades\Context;
@@ -113,7 +120,7 @@ use Illuminate\Support\Facades\Context;
 Context::add('key', 'value');
 ```
 
-To add multiple items at once, you may pass an associative array to the `add` method:
+一度に複数のアイテムを追加するには、連想配列を`add`メソッドに渡すことができます。
 
 ```php
 Context::add([
@@ -122,7 +129,7 @@ Context::add([
 ]);
 ```
 
-The `add` method will override any existing value that shares the same key. If you only wish to add information to the context if the key does not already exist, you may use the `addIf` method:
+`add`メソッドは、同じキーを持つ既存の値を上書きします。キーがまだ存在しない場合にのみ情報をコンテキストに追加したい場合は、`addIf`メソッドを使用できます。
 
 ```php
 Context::add('key', 'first');
@@ -137,9 +144,9 @@ Context::get('key');
 ```
 
 <a name="conditional-context"></a>
-#### Conditional Context
+#### 条件付きコンテキスト
 
-The `when` method may be used to add data to the context based on a given condition. The first closure provided to the `when` method will be invoked if the given condition evaluates to `true`, while the second closure will be invoked if the condition evaluates to `false`:
+`when`メソッドを使用して、特定の条件に基づいてコンテキストにデータを追加できます。`when`メソッドに提供された最初のクロージャは、指定された条件が`true`と評価された場合に呼び出され、2番目のクロージャは条件が`false`と評価された場合に呼び出されます。
 
 ```php
 use Illuminate\Support\Facades\Auth;
@@ -153,9 +160,9 @@ Context::when(
 ```
 
 <a name="stacks"></a>
-### Stacks
+### スタック
 
-Context offers the ability to create "stacks", which are lists of data stored in the order that they were added. You can add information to a stack by invoking the `push` method:
+コンテキストは、「スタック」を作成する機能を提供します。スタックは、追加された順序でデータを保存するリストです。`push`メソッドを呼び出してスタックに情報を追加できます。
 
 ```php
 use Illuminate\Support\Facades\Context;
@@ -172,7 +179,7 @@ Context::get('breadcrumbs');
 // ]
 ```
 
-Stacks can be useful to capture historical information about a request, such as events that are happening throughout your application. For example, you could create an event listener to push to a stack every time a query is executed, capturing the query SQL and duration as a tuple:
+スタックは、アプリケーション全体で発生しているイベントなど、リクエストに関する履歴情報をキャプチャするのに便利です。例えば、クエリが実行されるたびにイベントリスナーを作成してスタックにプッシュし、クエリSQLと期間をタプルとしてキャプチャすることができます。
 
 ```php
 use Illuminate\Support\Facades\Context;
@@ -183,7 +190,7 @@ DB::listen(function ($event) {
 });
 ```
 
-You may determine if a value is in a stack using the `stackContains` and `hiddenStackContains` methods:
+`stackContains`および`hiddenStackContains`メソッドを使用して、スタック内に値が存在するかどうかを判断できます。
 
 ```php
 if (Context::stackContains('breadcrumbs', 'first_value')) {
@@ -195,7 +202,7 @@ if (Context::hiddenStackContains('secrets', 'first_value')) {
 }
 ```
 
-The `stackContains` and `hiddenStackContains` methods also accept a closure as their second argument, allowing more control over the value comparison operation:
+`stackContains`および`hiddenStackContains`メソッドは、2番目の引数としてクロージャも受け入れ、値の比較操作をより細かく制御できます。
 
 ```php
 use Illuminate\Support\Facades\Context;
@@ -207,9 +214,9 @@ return Context::stackContains('breadcrumbs', function ($value) {
 ```
 
 <a name="retrieving-context"></a>
-## Retrieving Context
+## コンテキストの取得
 
-You may retrieve information from the context using the `Context` facade's `get` method:
+`Context`ファサードの`get`メソッドを使用して、コンテキストから情報を取得できます。
 
 ```php
 use Illuminate\Support\Facades\Context;
@@ -217,28 +224,28 @@ use Illuminate\Support\Facades\Context;
 $value = Context::get('key');
 ```
 
-The `only` method may be used to retrieve a subset of the information in the context:
+`only`メソッドを使用して、コンテキスト内の情報のサブセットを取得できます。
 
 ```php
 $data = Context::only(['first_key', 'second_key']);
 ```
 
-The `pull` method may be used to retrieve information from the context and immediately remove it from the context:
+`pull`メソッドを使用して、コンテキストから情報を取得し、すぐにコンテキストから削除できます。
 
 ```php
 $value = Context::pull('key');
 ```
 
-If you would like to retrieve all of the information stored in the context, you may invoke the `all` method:
+コンテキストに保存されているすべての情報を取得したい場合は、`all`メソッドを呼び出すことができます。
 
 ```php
 $data = Context::all();
 ```
 
 <a name="determining-item-existence"></a>
-### Determining Item Existence
+### アイテムの存在確認
 
-You may use the `has` method to determine if the context has any value stored for the given key:
+`has`メソッドを使用して、コンテキストに指定されたキーの値が保存されているかどうかを判断できます。
 
 ```php
 use Illuminate\Support\Facades\Context;
@@ -248,7 +255,7 @@ if (Context::has('key')) {
 }
 ```
 
-The `has` method will return `true` regardless of the value stored. So, for example, a key with a `null` value will be considered present:
+`has`メソッドは、保存されている値に関係なく`true`を返します。したがって、例えば、`null`値を持つキーは存在すると見なされます。
 
 ```php
 Context::add('key', null);
@@ -258,9 +265,9 @@ Context::has('key');
 ```
 
 <a name="removing-context"></a>
-## Removing Context
+## コンテキストの削除
 
-The `forget` method may be used to remove a key and its value from the current context:
+`forget`メソッドを使用して、現在のコンテキストからキーとその値を削除できます。
 
 ```php
 use Illuminate\Support\Facades\Context;
@@ -274,16 +281,16 @@ Context::all();
 // ['second_key' => 2]
 ```
 
-You may forget several keys at once by providing an array to the `forget` method:
+`forget`メソッドに配列を提供することで、一度に複数のキーを忘れることができます。
 
 ```php
 Context::forget(['first_key', 'second_key']);
 ```
 
 <a name="hidden-context"></a>
-## Hidden Context
+## 隠しコンテキスト
 
-Context offers the ability to store "hidden" data. This hidden information is not appended to logs, and is not accessible via the data retrieval methods documented above. Context provides a different set of methods to interact with hidden context information:
+コンテキストは、「隠し」データを保存する機能を提供します。この隠し情報はログに追加されず、上記のデータ取得メソッドではアクセスできません。コンテキストは、隠しコンテキスト情報と対話するための別のメソッドセットを提供します。
 
 ```php
 use Illuminate\Support\Facades\Context;
@@ -297,7 +304,7 @@ Context::get('key');
 // null
 ```
 
-The "hidden" methods mirror the functionality of the non-hidden methods documented above:
+「隠し」メソッドは、上記で文書化された非隠しメソッドの機能を反映しています。
 
 ```php
 Context::addHidden(/* ... */);
@@ -312,18 +319,28 @@ Context::forgetHidden(/* ... */);
 ```
 
 <a name="events"></a>
-## Events
+## イベント
 
-Context dispatches two events that allow you to hook into the hydration and dehydration process of the context.
+コンテキストは、コンテキストのハイドレート(復元）
+とデハイドレート（シリアル化）
+プロセスにフックするための2つのイベントをディスパッチします。
 
-To illustrate how these events may be used, imagine that in a middleware of your application you set the `app.locale` configuration value based on the incoming HTTP request's `Accept-Language` header. Context's events allow you to capture this value during the request and restore it on the queue, ensuring notifications sent on the queue have the correct `app.locale` value. We can use context's events and [hidden](#hidden-context) data to achieve this, which the following documentation will illustrate.
+- [デハイドレート（シリアル化）
+](#dehydrating)
+- [ハイドレート(復元）
+](#hydrated)
+
+これらのイベントがどのように使用されるかを説明するために、アプリケーションのミドルウェアで、受信したHTTPリクエストの`Accept-Language`ヘッダに基づいて`app.locale`設定値を設定すると想像してみてください。コンテキストのイベントを使用すると、この値をリクエスト中にキャプチャし、キュー上で復元することができ、キュー上で送信される通知が正しい`app.locale`値を持つようになります。コンテキストのイベントと[隠し](#hidden-context)データを使用してこれを実現する方法を、以下のドキュメントで説明します。
 
 <a name="dehydrating"></a>
-### Dehydrating
+### デハイドレート（シリアル化）
+（Dehydrating）
 
-Whenever a job is dispatched to the queue the data in the context is "dehydrated" and captured alongside the job's payload. The `Context::dehydrating` method allows you to register a closure that will be invoked during the dehydration process. Within this closure, you may make changes to the data that will be shared with the queued job.
+ジョブがキューにディスパッチ（実行）されるたびに、コンテキスト内のデータは「デハイドレート（シリアル化）
+」され、ジョブのペイロードとともにキャプチャされます。`Context::dehydrating`メソッドを使用すると、デハイドレート（シリアル化）
+プロセス中に呼び出されるクロージャを登録できます。このクロージャ内で、キューに入れられたジョブと共有されるデータに変更を加えることができます。
 
-Typically, you should register `dehydrating` callbacks within the `boot` method of your application's `AppServiceProvider` class:
+通常、`dehydrating`コールバックは、アプリケーションの`AppServiceProvider`クラスの`boot`メソッド内で登録する必要があります。
 
 ```php
 use Illuminate\Log\Context\Repository;
@@ -341,15 +358,18 @@ public function boot(): void
 }
 ```
 
-> [!NOTE]  
-> You should not use the `Context` facade within the `dehydrating` callback, as that will change the context of the current process. Ensure you only make changes to the repository passed to the callback.
+> NOTE:  
+> `dehydrating`コールバック内で`Context`ファサードを使用しないでください。それは現在のプロセスのコンテキストを変更するためです。コールバックに渡されたリポジトリにのみ変更を加えるようにしてください。
 
 <a name="hydrated"></a>
-### Hydrated
+### ハイドレート(復元）
+（Hydrated）
 
-Whenever a queued job begins executing on the queue, any context that was shared with the job will be "hydrated" back into the current context. The `Context::hydrated` method allows you to register a closure that will be invoked during the hydration process.
+キュー上でジョブの実行が開始されるたびに、ジョブと共有されたコンテキストは現在のコンテキストに「ハイドレート(復元）
+」されます。`Context::hydrated`メソッドを使用すると、ハイドレート(復元）
+プロセス中に呼び出されるクロージャを登録できます。
 
-Typically, you should register `hydrated` callbacks within the `boot` method of your application's `AppServiceProvider` class:
+通常、`hydrated`コールバックは、アプリケーションの`AppServiceProvider`クラスの`boot`メソッド内で登録する必要があります。
 
 ```php
 use Illuminate\Log\Context\Repository;
@@ -369,5 +389,6 @@ public function boot(): void
 }
 ```
 
-> [!NOTE]  
-> You should not use the `Context` facade within the `hydrated` callback and instead ensure you only make changes to the repository passed to the callback.
+> NOTE:  
+> `hydrated`コールバック内で`Context`ファサードを使用しないでください。代わりに、コールバックに渡されたリポジトリにのみ変更を加えるようにしてください。
+

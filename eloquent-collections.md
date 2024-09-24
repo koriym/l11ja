@@ -1,15 +1,15 @@
-# Eloquent: Collections
+# Eloquent: コレクション
 
-- [Introduction](#introduction)
-- [Available Methods](#available-methods)
-- [Custom Collections](#custom-collections)
+- [イントロダクション](#introduction)
+- [利用可能なメソッド](#available-methods)
+- [カスタムコレクション](#custom-collections)
 
 <a name="introduction"></a>
-## Introduction
+## イントロダクション
 
-All Eloquent methods that return more than one model result will return instances of the `Illuminate\Database\Eloquent\Collection` class, including results retrieved via the `get` method or accessed via a relationship. The Eloquent collection object extends Laravel's [base collection](/docs/{{version}}/collections), so it naturally inherits dozens of methods used to fluently work with the underlying array of Eloquent models. Be sure to review the Laravel collection documentation to learn all about these helpful methods!
+Eloquentのメソッドで複数のモデルを返すものは、`get`メソッドを介して取得した結果やリレーションを介してアクセスした結果を含め、`Illuminate\Database\Eloquent\Collection`クラスのインスタンスを返します。Eloquentコレクションオブジェクトは、Laravelの[基本コレクション](collections.md)を拡張しているため、Eloquentモデルの基になる配列を流暢に操作するために使用される数十のメソッドを自然に継承しています。これらの便利なメソッドについては、Laravelコレクションのドキュメントを必ず確認してください！
 
-All collections also serve as iterators, allowing you to loop over them as if they were simple PHP arrays:
+すべてのコレクションはイテレータとしても機能し、単純なPHP配列のようにループ処理できます：
 
     use App\Models\User;
 
@@ -19,7 +19,7 @@ All collections also serve as iterators, allowing you to loop over them as if th
         echo $user->name;
     }
 
-However, as previously mentioned, collections are much more powerful than arrays and expose a variety of map / reduce operations that may be chained using an intuitive interface. For example, we may remove all inactive models and then gather the first name for each remaining user:
+しかし、前述のように、コレクションは配列よりもはるかに強力で、直感的なインターフェースを使用して連鎖させることができるさまざまなmap/reduce操作を公開しています。例えば、非アクティブなモデルをすべて削除し、残りのユーザーの名前を収集することができます：
 
     $names = User::all()->reject(function (User $user) {
         return $user->active === false;
@@ -28,16 +28,16 @@ However, as previously mentioned, collections are much more powerful than arrays
     });
 
 <a name="eloquent-collection-conversion"></a>
-#### Eloquent Collection Conversion
+#### Eloquentコレクションの変換
 
-While most Eloquent collection methods return a new instance of an Eloquent collection, the `collapse`, `flatten`, `flip`, `keys`, `pluck`, and `zip` methods return a [base collection](/docs/{{version}}/collections) instance. Likewise, if a `map` operation returns a collection that does not contain any Eloquent models, it will be converted to a base collection instance.
+ほとんどのEloquentコレクションメソッドは、新しいEloquentコレクションのインスタンスを返しますが、`collapse`、`flatten`、`flip`、`keys`、`pluck`、`zip`メソッドは[基本コレクション](collections.md)のインスタンスを返します。同様に、`map`操作がEloquentモデルを含まないコレクションを返す場合、それは基本コレクションインスタンスに変換されます。
 
 <a name="available-methods"></a>
-## Available Methods
+## 利用可能なメソッド
 
-All Eloquent collections extend the base [Laravel collection](/docs/{{version}}/collections#available-methods) object; therefore, they inherit all of the powerful methods provided by the base collection class.
+すべてのEloquentコレクションは、基本の[Laravelコレクション](collections.md#available-methods)オブジェクトを拡張しています。したがって、基本コレクションクラスによって提供されるすべての強力なメソッドを継承しています。
 
-In addition, the `Illuminate\Database\Eloquent\Collection` class provides a superset of methods to aid with managing your model collections. Most methods return `Illuminate\Database\Eloquent\Collection` instances; however, some methods, like `modelKeys`, return an `Illuminate\Support\Collection` instance.
+さらに、`Illuminate\Database\Eloquent\Collection`クラスは、モデルコレクションを管理するのに役立つメソッドのスーパーセットを提供します。ほとんどのメソッドは`Illuminate\Database\Eloquent\Collection`インスタンスを返しますが、`modelKeys`のような一部のメソッドは`Illuminate\Support\Collection`インスタンスを返します。
 
 <style>
     .collection-method-list > p {
@@ -86,7 +86,7 @@ In addition, the `Illuminate\Database\Eloquent\Collection` class provides a supe
 <a name="method-append"></a>
 #### `append($attributes)` {.collection-method .first-collection-method}
 
-The `append` method may be used to indicate that an attribute should be [appended](/docs/{{version}}/eloquent-serialization#appending-values-to-json) for every model in the collection. This method accepts an array of attributes or a single attribute:
+`append`メソッドは、コレクション内のすべてのモデルに対して[追加](eloquent-serialization.md#appending-values-to-json)する属性を指定するために使用できます。このメソッドは、属性の配列または単一の属性を受け入れます：
 
     $users->append('team');
 
@@ -95,7 +95,7 @@ The `append` method may be used to indicate that an attribute should be [appende
 <a name="method-contains"></a>
 #### `contains($key, $operator = null, $value = null)` {.collection-method}
 
-The `contains` method may be used to determine if a given model instance is contained by the collection. This method accepts a primary key or a model instance:
+`contains`メソッドは、指定されたモデルインスタンスがコレクションに含まれているかどうかを判断するために使用できます。このメソッドは、主キーまたはモデルインスタンスを受け入れます：
 
     $users->contains(1);
 
@@ -104,7 +104,7 @@ The `contains` method may be used to determine if a given model instance is cont
 <a name="method-diff"></a>
 #### `diff($items)` {.collection-method}
 
-The `diff` method returns all of the models that are not present in the given collection:
+`diff`メソッドは、指定されたコレクションに存在しないすべてのモデルを返します：
 
     use App\Models\User;
 
@@ -113,14 +113,14 @@ The `diff` method returns all of the models that are not present in the given co
 <a name="method-except"></a>
 #### `except($keys)` {.collection-method}
 
-The `except` method returns all of the models that do not have the given primary keys:
+`except`メソッドは、指定された主キーを持たないすべてのモデルを返します：
 
     $users = $users->except([1, 2, 3]);
 
 <a name="method-find"></a>
 #### `find($key)` {.collection-method}
 
-The `find` method returns the model that has a primary key matching the given key. If `$key` is a model instance, `find` will attempt to return a model matching the primary key. If `$key` is an array of keys, `find` will return all models which have a primary key in the given array:
+`find`メソッドは、指定されたキーに一致する主キーを持つモデルを返します。`$key`がモデルインスタンスの場合、`find`は主キーに一致するモデルを返そうとします。`$key`がキーの配列の場合、`find`は指定された配列内の主キーを持つすべてのモデルを返します：
 
     $users = User::all();
 
@@ -129,7 +129,7 @@ The `find` method returns the model that has a primary key matching the given ke
 <a name="method-find-or-fail"></a>
 #### `findOrFail($key)` {.collection-method}
 
-The `findOrFail` method returns the model that has a primary key matching the given key or throws an `Illuminate\Database\Eloquent\ModelNotFoundException` exception if no matching model can be found in the collection:
+`findOrFail`メソッドは、指定されたキーに一致する主キーを持つモデルを返すか、一致するモデルがコレクション内に見つからない場合は`Illuminate\Database\Eloquent\ModelNotFoundException`例外をスローします：
 
     $users = User::all();
 
@@ -138,7 +138,7 @@ The `findOrFail` method returns the model that has a primary key matching the gi
 <a name="method-fresh"></a>
 #### `fresh($with = [])` {.collection-method}
 
-The `fresh` method retrieves a fresh instance of each model in the collection from the database. In addition, any specified relationships will be eager loaded:
+`fresh`メソッドは、コレクション内の各モデルの新しいインスタンスをデータベースから取得します。さらに、指定されたリレーションは積極的に読み込まれます：
 
     $users = $users->fresh();
 
@@ -147,7 +147,7 @@ The `fresh` method retrieves a fresh instance of each model in the collection fr
 <a name="method-intersect"></a>
 #### `intersect($items)` {.collection-method}
 
-The `intersect` method returns all of the models that are also present in the given collection:
+`intersect`メソッドは、指定されたコレクションにも存在するすべてのモデルを返します：
 
     use App\Models\User;
 
@@ -156,7 +156,7 @@ The `intersect` method returns all of the models that are also present in the gi
 <a name="method-load"></a>
 #### `load($relations)` {.collection-method}
 
-The `load` method eager loads the given relationships for all models in the collection:
+`load`メソッドは、コレクション内のすべてのモデルに対して指定されたリレーションを積極的に読み込みます：
 
     $users->load(['comments', 'posts']);
 
@@ -167,7 +167,7 @@ The `load` method eager loads the given relationships for all models in the coll
 <a name="method-loadMissing"></a>
 #### `loadMissing($relations)` {.collection-method}
 
-The `loadMissing` method eager loads the given relationships for all models in the collection if the relationships are not already loaded:
+`loadMissing`メソッドは、リレーションがまだ読み込まれていない場合に、コレクション内のすべてのモデルに対して指定されたリレーションを積極的に読み込みます：
 
     $users->loadMissing(['comments', 'posts']);
 
@@ -178,7 +178,7 @@ The `loadMissing` method eager loads the given relationships for all models in t
 <a name="method-modelKeys"></a>
 #### `modelKeys()` {.collection-method}
 
-The `modelKeys` method returns the primary keys for all models in the collection:
+`modelKeys`メソッドは、コレクション内のすべてのモデルの主キーを返します：
 
     $users->modelKeys();
 
@@ -187,42 +187,42 @@ The `modelKeys` method returns the primary keys for all models in the collection
 <a name="method-makeVisible"></a>
 #### `makeVisible($attributes)` {.collection-method}
 
-The `makeVisible` method [makes attributes visible](/docs/{{version}}/eloquent-serialization#hiding-attributes-from-json) that are typically "hidden" on each model in the collection:
+`makeVisible`メソッドは、コレクション内の各モデルで通常「非表示」になっている属性を[表示](eloquent-serialization.md#hiding-attributes-from-json)にします：
 
     $users = $users->makeVisible(['address', 'phone_number']);
 
 <a name="method-makeHidden"></a>
 #### `makeHidden($attributes)` {.collection-method}
 
-The `makeHidden` method [hides attributes](/docs/{{version}}/eloquent-serialization#hiding-attributes-from-json) that are typically "visible" on each model in the collection:
+`makeHidden`メソッドは、コレクション内の各モデルで通常「表示」になっている属性を[非表示](eloquent-serialization.md#hiding-attributes-from-json)にします：
 
     $users = $users->makeHidden(['address', 'phone_number']);
 
 <a name="method-only"></a>
 #### `only($keys)` {.collection-method}
 
-The `only` method returns all of the models that have the given primary keys:
+`only`メソッドは、指定された主キーを持つすべてのモデルを返します：
 
     $users = $users->only([1, 2, 3]);
 
 <a name="method-setVisible"></a>
 #### `setVisible($attributes)` {.collection-method}
 
-The `setVisible` method [temporarily overrides](/docs/{{version}}/eloquent-serialization#temporarily-modifying-attribute-visibility) all of the visible attributes on each model in the collection:
+`setVisible`メソッドは、コレクション内の各モデルの表示属性を[一時的に上書き](eloquent-serialization.md#temporarily-modifying-attribute-visibility)します：
 
     $users = $users->setVisible(['id', 'name']);
 
 <a name="method-setHidden"></a>
 #### `setHidden($attributes)` {.collection-method}
 
-The `setHidden` method [temporarily overrides](/docs/{{version}}/eloquent-serialization#temporarily-modifying-attribute-visibility) all of the hidden attributes on each model in the collection:
+`setHidden`メソッドは、コレクション内の各モデルの非表示属性を[一時的に上書き](eloquent-serialization.md#temporarily-modifying-attribute-visibility)します：
 
     $users = $users->setHidden(['email', 'password', 'remember_token']);
 
 <a name="method-toquery"></a>
 #### `toQuery()` {.collection-method}
 
-The `toQuery` method returns an Eloquent query builder instance containing a `whereIn` constraint on the collection model's primary keys:
+`toQuery`メソッドは、コレクションモデルの主キーに`whereIn`制約を含むEloquentクエリビルダインスタンスを返します：
 
     use App\Models\User;
 
@@ -235,14 +235,14 @@ The `toQuery` method returns an Eloquent query builder instance containing a `wh
 <a name="method-unique"></a>
 #### `unique($key = null, $strict = false)` {.collection-method}
 
-The `unique` method returns all of the unique models in the collection. Any models with the same primary key as another model in the collection are removed:
+`unique`メソッドは、コレクション内のすべての一意のモデルを返します。他のモデルと同じ主キーを持つモデルは削除されます：
 
     $users = $users->unique();
 
 <a name="custom-collections"></a>
-## Custom Collections
+## カスタムコレクション
 
-If you would like to use a custom `Collection` object when interacting with a given model, you may define a `newCollection` method on your model:
+特定のモデルと対話する際にカスタム`Collection`オブジェクトを使用したい場合は、モデルに`newCollection`メソッドを定義できます：
 
     <?php
 
@@ -255,7 +255,7 @@ If you would like to use a custom `Collection` object when interacting with a gi
     class User extends Model
     {
         /**
-         * Create a new Eloquent Collection instance.
+         * 新しいEloquentコレクションインスタンスを作成します。
          *
          * @param  array<int, \Illuminate\Database\Eloquent\Model>  $models
          * @return \Illuminate\Database\Eloquent\Collection<int, \Illuminate\Database\Eloquent\Model>
@@ -266,4 +266,4 @@ If you would like to use a custom `Collection` object when interacting with a gi
         }
     }
 
-Once you have defined a `newCollection` method, you will receive an instance of your custom collection anytime Eloquent would normally return an `Illuminate\Database\Eloquent\Collection` instance. If you would like to use a custom collection for every model in your application, you should define the `newCollection` method on a base model class that is extended by all of your application's models.
+`newCollection`メソッドを定義したら、Eloquentが通常`Illuminate\Database\Eloquent\Collection`インスタンスを返すときはいつでも、カスタムコレクションのインスタンスを受け取ることになります。アプリケーション内のすべてのモデルに対してカスタムコレクションを使用したい場合は、アプリケーションのすべてのモデルが拡張する基本モデルクラスに`newCollection`メソッドを定義する必要があります。

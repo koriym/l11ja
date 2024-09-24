@@ -1,38 +1,38 @@
-# Hashing
+# ハッシュ化
 
-- [Introduction](#introduction)
-- [Configuration](#configuration)
-- [Basic Usage](#basic-usage)
-    - [Hashing Passwords](#hashing-passwords)
-    - [Verifying That a Password Matches a Hash](#verifying-that-a-password-matches-a-hash)
-    - [Determining if a Password Needs to be Rehashed](#determining-if-a-password-needs-to-be-rehashed)
-- [Hash Algorithm Verification](#hash-algorithm-verification)
+- [イントロダクション](#introduction)
+- [設定](#configuration)
+- [基本的な使い方](#basic-usage)
+    - [パスワードのハッシュ化](#hashing-passwords)
+    - [パスワードがハッシュに一致するかの確認](#verifying-that-a-password-matches-a-hash)
+    - [パスワードの再ハッシュが必要かの判断](#determining-if-a-password-needs-to-be-rehashed)
+- [ハッシュアルゴリズムの検証](#hash-algorithm-verification)
 
 <a name="introduction"></a>
-## Introduction
+## イントロダクション
 
-The Laravel `Hash` [facade](/docs/{{version}}/facades) provides secure Bcrypt and Argon2 hashing for storing user passwords. If you are using one of the [Laravel application starter kits](/docs/{{version}}/starter-kits), Bcrypt will be used for registration and authentication by default.
+Laravelの`Hash` [ファサード](facades.md)は、ユーザーパスワードの保存に安全なBcryptとArgon2のハッシュ化を提供します。[Laravelアプリケーションスターターキット](starter-kits.md)のいずれかを使用している場合、デフォルトでは登録と認証にBcryptが使用されます。
 
-Bcrypt is a great choice for hashing passwords because its "work factor" is adjustable, which means that the time it takes to generate a hash can be increased as hardware power increases. When hashing passwords, slow is good. The longer an algorithm takes to hash a password, the longer it takes malicious users to generate "rainbow tables" of all possible string hash values that may be used in brute force attacks against applications.
+Bcryptはパスワードのハッシュ化に適しています。なぜならその「作業係数」は調整可能であり、ハードウェアの性能が向上するにつれてハッシュ生成にかかる時間を増やすことができるからです。パスワードのハッシュ化において、遅いことは良いことです。アルゴリズムがパスワードをハッシュ化するのに時間がかかるほど、悪意のあるユーザーがアプリケーションに対するブルートフォース攻撃に使用される可能性のあるすべての文字列ハッシュ値の「レインボーテーブル」を生成するのに時間がかかります。
 
 <a name="configuration"></a>
-## Configuration
+## 設定
 
-By default, Laravel uses the `bcrypt` hashing driver when hashing data. However, several other hashing drivers are supported, including [`argon`](https://en.wikipedia.org/wiki/Argon2) and [`argon2id`](https://en.wikipedia.org/wiki/Argon2).
+Laravelはデフォルトでデータのハッシュ化に`bcrypt`ハッシュドライバを使用します。しかし、他にも[`argon`](https://en.wikipedia.org/wiki/Argon2)や[`argon2id`](https://en.wikipedia.org/wiki/Argon2)など、いくつかのハッシュドライバがサポートされています。
 
-You may specify your application's hashing driver using the `HASH_DRIVER` environment variable. But, if you want to customize all of Laravel's hashing driver options, you should publish the complete `hashing` configuration file using the `config:publish` Artisan command:
+アプリケーションのハッシュドライバは、`HASH_DRIVER`環境変数を使用して指定できます。ただし、Laravelのすべてのハッシュドライバオプションをカスタマイズしたい場合は、`config:publish` Artisanコマンドを使用して完全な`hashing`設定ファイルを公開する必要があります。
 
 ```bash
 php artisan config:publish hashing
 ```
 
 <a name="basic-usage"></a>
-## Basic Usage
+## 基本的な使い方
 
 <a name="hashing-passwords"></a>
-### Hashing Passwords
+### パスワードのハッシュ化
 
-You may hash a password by calling the `make` method on the `Hash` facade:
+`Hash`ファサードの`make`メソッドを呼び出すことで、パスワードをハッシュ化できます。
 
     <?php
 
@@ -45,11 +45,11 @@ You may hash a password by calling the `make` method on the `Hash` facade:
     class PasswordController extends Controller
     {
         /**
-         * Update the password for the user.
+         * ユーザーのパスワードを更新する。
          */
         public function update(Request $request): RedirectResponse
         {
-            // Validate the new password length...
+            // 新しいパスワードの長さを検証...
 
             $request->user()->fill([
                 'password' => Hash::make($request->newPassword)
@@ -60,18 +60,18 @@ You may hash a password by calling the `make` method on the `Hash` facade:
     }
 
 <a name="adjusting-the-bcrypt-work-factor"></a>
-#### Adjusting The Bcrypt Work Factor
+#### Bcrypt作業係数の調整
 
-If you are using the Bcrypt algorithm, the `make` method allows you to manage the work factor of the algorithm using the `rounds` option; however, the default work factor managed by Laravel is acceptable for most applications:
+Bcryptアルゴリズムを使用している場合、`make`メソッドで`rounds`オプションを使用してアルゴリズムの作業係数を管理できます。ただし、Laravelが管理するデフォルトの作業係数はほとんどのアプリケーションに適しています。
 
     $hashed = Hash::make('password', [
         'rounds' => 12,
     ]);
 
 <a name="adjusting-the-argon2-work-factor"></a>
-#### Adjusting The Argon2 Work Factor
+#### Argon2作業係数の調整
 
-If you are using the Argon2 algorithm, the `make` method allows you to manage the work factor of the algorithm using the `memory`, `time`, and `threads` options; however, the default values managed by Laravel are acceptable for most applications:
+Argon2アルゴリズムを使用している場合、`make`メソッドで`memory`、`time`、`threads`オプションを使用してアルゴリズムの作業係数を管理できます。ただし、Laravelが管理するデフォルト値はほとんどのアプリケーションに適しています。
 
     $hashed = Hash::make('password', [
         'memory' => 1024,
@@ -79,33 +79,33 @@ If you are using the Argon2 algorithm, the `make` method allows you to manage th
         'threads' => 2,
     ]);
 
-> [!NOTE]  
-> For more information on these options, please refer to the [official PHP documentation regarding Argon hashing](https://secure.php.net/manual/en/function.password-hash.php).
+> NOTE:  
+> これらのオプションの詳細については、[Argonハッシュに関する公式PHPドキュメント](https://secure.php.net/manual/en/function.password-hash.php)を参照してください。
 
 <a name="verifying-that-a-password-matches-a-hash"></a>
-### Verifying That a Password Matches a Hash
+### パスワードがハッシュに一致するかの確認
 
-The `check` method provided by the `Hash` facade allows you to verify that a given plain-text string corresponds to a given hash:
+`Hash`ファサードが提供する`check`メソッドを使用すると、指定された平文文字列が指定されたハッシュに対応するかどうかを確認できます。
 
     if (Hash::check('plain-text', $hashedPassword)) {
-        // The passwords match...
+        // パスワードが一致します...
     }
 
 <a name="determining-if-a-password-needs-to-be-rehashed"></a>
-### Determining if a Password Needs to be Rehashed
+### パスワードの再ハッシュが必要かの判断
 
-The `needsRehash` method provided by the `Hash` facade allows you to determine if the work factor used by the hasher has changed since the password was hashed. Some applications choose to perform this check during the application's authentication process:
+`Hash`ファサードが提供する`needsRehash`メソッドを使用すると、パスワードがハッシュ化されてからハッシャーが使用する作業係数が変更されたかどうかを判断できます。一部のアプリケーションでは、このチェックをアプリケーションの認証プロセス中に実行することを選択します。
 
     if (Hash::needsRehash($hashed)) {
         $hashed = Hash::make('plain-text');
     }
 
 <a name="hash-algorithm-verification"></a>
-## Hash Algorithm Verification
+## ハッシュアルゴリズムの検証
 
-To prevent hash algorithm manipulation, Laravel's `Hash::check` method will first verify the given hash was generated using the application's selected hashing algorithm. If the algorithms are different, a `RuntimeException` exception will be thrown.
+ハッシュアルゴリズムの操作を防ぐために、Laravelの`Hash::check`メソッドは最初に指定されたハッシュがアプリケーションの選択されたハッシュアルゴリズムを使用して生成されたかどうかを検証します。アルゴリズムが異なる場合、`RuntimeException`例外がスローされます。
 
-This is the expected behavior for most applications, where the hashing algorithm is not expected to change and different algorithms can be an indication of a malicious attack. However, if you need to support multiple hashing algorithms within your application, such as when migrating from one algorithm to another, you can disable hash algorithm verification by setting the `HASH_VERIFY` environment variable to `false`:
+これは、ハッシュアルゴリズムが変更されることを期待していないほとんどのアプリケーションにとって期待される動作であり、異なるアルゴリズムは悪意のある攻撃の兆候である可能性があります。ただし、アプリケーション内で複数のハッシュアルゴリズムをサポートする必要がある場合、例えばあるアルゴリズムから別のアルゴリズムに移行する場合など、`HASH_VERIFY`環境変数を`false`に設定することでハッシュアルゴリズムの検証を無効にできます。
 
 ```ini
 HASH_VERIFY=false

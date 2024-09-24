@@ -1,69 +1,69 @@
-# Validation
+# バリデーション
 
-- [Introduction](#introduction)
-- [Validation Quickstart](#validation-quickstart)
-    - [Defining the Routes](#quick-defining-the-routes)
-    - [Creating the Controller](#quick-creating-the-controller)
-    - [Writing the Validation Logic](#quick-writing-the-validation-logic)
-    - [Displaying the Validation Errors](#quick-displaying-the-validation-errors)
-    - [Repopulating Forms](#repopulating-forms)
-    - [A Note on Optional Fields](#a-note-on-optional-fields)
-    - [Validation Error Response Format](#validation-error-response-format)
-- [Form Request Validation](#form-request-validation)
-    - [Creating Form Requests](#creating-form-requests)
-    - [Authorizing Form Requests](#authorizing-form-requests)
-    - [Customizing the Error Messages](#customizing-the-error-messages)
-    - [Preparing Input for Validation](#preparing-input-for-validation)
-- [Manually Creating Validators](#manually-creating-validators)
-    - [Automatic Redirection](#automatic-redirection)
-    - [Named Error Bags](#named-error-bags)
-    - [Customizing the Error Messages](#manual-customizing-the-error-messages)
-    - [Performing Additional Validation](#performing-additional-validation)
-- [Working With Validated Input](#working-with-validated-input)
-- [Working With Error Messages](#working-with-error-messages)
-    - [Specifying Custom Messages in Language Files](#specifying-custom-messages-in-language-files)
-    - [Specifying Attributes in Language Files](#specifying-attribute-in-language-files)
-    - [Specifying Values in Language Files](#specifying-values-in-language-files)
-- [Available Validation Rules](#available-validation-rules)
-- [Conditionally Adding Rules](#conditionally-adding-rules)
-- [Validating Arrays](#validating-arrays)
-    - [Validating Nested Array Input](#validating-nested-array-input)
-    - [Error Message Indexes and Positions](#error-message-indexes-and-positions)
-- [Validating Files](#validating-files)
-- [Validating Passwords](#validating-passwords)
-- [Custom Validation Rules](#custom-validation-rules)
-    - [Using Rule Objects](#using-rule-objects)
-    - [Using Closures](#using-closures)
-    - [Implicit Rules](#implicit-rules)
+- [はじめに](#introduction)
+- [バリデーションのクイックスタート](#validation-quickstart)
+    - [ルートの定義](#quick-defining-the-routes)
+    - [コントローラの作成](#quick-creating-the-controller)
+    - [バリデーションロジックの記述](#quick-writing-the-validation-logic)
+    - [バリデーションエラーの表示](#quick-displaying-the-validation-errors)
+    - [フォームの再入力](#repopulating-forms)
+    - [オプションフィールドに関する注意](#a-note-on-optional-fields)
+    - [バリデーションエラーのレスポンスフォーマット](#validation-error-response-format)
+- [フォームリクエストによるバリデーション](#form-request-validation)
+    - [フォームリクエストの作成](#creating-form-requests)
+    - [フォームリクエストの認可](#authorizing-form-requests)
+    - [エラーメッセージのカスタマイズ](#customizing-the-error-messages)
+    - [バリデーションのための入力の準備](#preparing-input-for-validation)
+- [バリデータの手動作成](#manually-creating-validators)
+    - [自動リダイレクト](#automatic-redirection)
+    - [名前付きエラーバッグ](#named-error-bags)
+    - [エラーメッセージのカスタマイズ](#manual-customizing-the-error-messages)
+    - [追加のバリデーションの実行](#performing-additional-validation)
+- [バリデーション済みの入力の操作](#working-with-validated-input)
+- [エラーメッセージの操作](#working-with-error-messages)
+    - [言語ファイルでのカスタムメッセージの指定](#specifying-custom-messages-in-language-files)
+    - [言語ファイルでの属性の指定](#specifying-attribute-in-language-files)
+    - [言語ファイルでの値の指定](#specifying-values-in-language-files)
+- [利用可能なバリデーションルール](#available-validation-rules)
+- [条件付きでルールを追加](#conditionally-adding-rules)
+- [配列のバリデーション](#validating-arrays)
+    - [ネストした配列入力のバリデーション](#validating-nested-array-input)
+    - [エラーメッセージのインデックスと位置](#error-message-indexes-and-positions)
+- [ファイルのバリデーション](#validating-files)
+- [パスワードのバリデーション](#validating-passwords)
+- [カスタムバリデーションルール](#custom-validation-rules)
+    - [ルールオブジェクトの使用](#using-rule-objects)
+    - [クロージャの使用](#using-closures)
+    - [暗黙のルール](#implicit-rules)
 
 <a name="introduction"></a>
-## Introduction
+## はじめに
 
-Laravel provides several different approaches to validate your application's incoming data. It is most common to use the `validate` method available on all incoming HTTP requests. However, we will discuss other approaches to validation as well.
+Laravelは、アプリケーションの受信データを検証するためのいくつかの異なるアプローチを提供します。すべての受信HTTPリクエストで利用可能な`validate`メソッドを使用するのが最も一般的です。しかし、他のバリデーションアプローチについても説明します。
 
-Laravel includes a wide variety of convenient validation rules that you may apply to data, even providing the ability to validate if values are unique in a given database table. We'll cover each of these validation rules in detail so that you are familiar with all of Laravel's validation features.
+Laravelには、データに適用できるさまざまな便利なバリデーションルールが含まれており、特定のデータベーステーブル内で値が一意であるかどうかを検証する機能も提供します。これらのバリデーションルールについて詳しく説明し、Laravelのバリデーション機能をすべて理解できるようにします。
 
 <a name="validation-quickstart"></a>
-## Validation Quickstart
+## バリデーションのクイックスタート
 
-To learn about Laravel's powerful validation features, let's look at a complete example of validating a form and displaying the error messages back to the user. By reading this high-level overview, you'll be able to gain a good general understanding of how to validate incoming request data using Laravel:
+Laravelの強力なバリデーション機能について学ぶために、フォームを検証し、エラーメッセージをユーザーに表示する完全な例を見てみましょう。この概要を読むことで、Laravelを使用して受信リクエストデータを検証する方法について、一般的な理解を得ることができます。
 
 <a name="quick-defining-the-routes"></a>
-### Defining the Routes
+### ルートの定義
 
-First, let's assume we have the following routes defined in our `routes/web.php` file:
+まず、`routes/web.php`ファイルに以下のルートが定義されていると仮定しましょう。
 
     use App\Http\Controllers\PostController;
 
     Route::get('/post/create', [PostController::class, 'create']);
     Route::post('/post', [PostController::class, 'store']);
 
-The `GET` route will display a form for the user to create a new blog post, while the `POST` route will store the new blog post in the database.
+`GET`ルートは、ユーザーが新しいブログ投稿を作成するためのフォームを表示し、`POST`ルートは新しいブログ投稿をデータベースに保存します。
 
 <a name="quick-creating-the-controller"></a>
-### Creating the Controller
+### コントローラの作成
 
-Next, let's take a look at a simple controller that handles incoming requests to these routes. We'll leave the `store` method empty for now:
+次に、これらのルートに対する受信リクエストを処理するシンプルなコントローラを見てみましょう。今のところ`store`メソッドは空のままにしておきます。
 
     <?php
 
@@ -76,7 +76,7 @@ Next, let's take a look at a simple controller that handles incoming requests to
     class PostController extends Controller
     {
         /**
-         * Show the form to create a new blog post.
+         * 新しいブログ投稿を作成するためのフォームを表示します。
          */
         public function create(): View
         {
@@ -84,11 +84,11 @@ Next, let's take a look at a simple controller that handles incoming requests to
         }
 
         /**
-         * Store a new blog post.
+         * 新しいブログ投稿を保存します。
          */
         public function store(Request $request): RedirectResponse
         {
-            // Validate and store the blog post...
+            // バリデーションとブログ投稿の保存...
 
             $post = /** ... */
 
@@ -97,16 +97,16 @@ Next, let's take a look at a simple controller that handles incoming requests to
     }
 
 <a name="quick-writing-the-validation-logic"></a>
-### Writing the Validation Logic
+### バリデーションロジックの記述
 
-Now we are ready to fill in our `store` method with the logic to validate the new blog post. To do this, we will use the `validate` method provided by the `Illuminate\Http\Request` object. If the validation rules pass, your code will keep executing normally; however, if validation fails, an `Illuminate\Validation\ValidationException` exception will be thrown and the proper error response will automatically be sent back to the user.
+これで、新しいブログ投稿を検証するロジックを`store`メソッドに記述する準備が整いました。これを行うには、`Illuminate\Http\Request`オブジェクトによって提供される`validate`メソッドを使用します。バリデーションルールが通過すると、コードは通常どおり実行されます。しかし、バリデーションが失敗すると、`Illuminate\Validation\ValidationException`例外がスローされ、適切なエラーレスポンスが自動的にユーザーに返されます。
 
-If validation fails during a traditional HTTP request, a redirect response to the previous URL will be generated. If the incoming request is an XHR request, a [JSON response containing the validation error messages](#validation-error-response-format) will be returned.
+従来のHTTPリクエスト中にバリデーションが失敗した場合、前のURLへのリダイレクトレスポンスが生成されます。受信リクエストがXHRリクエストの場合、[バリデーションエラーメッセージを含むJSONレスポンス](#validation-error-response-format)が返されます。
 
-To get a better understanding of the `validate` method, let's jump back into the `store` method:
+`validate`メソッドをよりよく理解するために、`store`メソッドに戻りましょう。
 
     /**
-     * Store a new blog post.
+     * 新しいブログ投稿を保存します。
      */
     public function store(Request $request): RedirectResponse
     {
@@ -115,21 +115,21 @@ To get a better understanding of the `validate` method, let's jump back into the
             'body' => 'required',
         ]);
 
-        // The blog post is valid...
+        // ブログ投稿は有効です...
 
         return redirect('/posts');
     }
 
-As you can see, the validation rules are passed into the `validate` method. Don't worry - all available validation rules are [documented](#available-validation-rules). Again, if the validation fails, the proper response will automatically be generated. If the validation passes, our controller will continue executing normally.
+ご覧のように、バリデーションルールは`validate`メソッドに渡されます。心配しないでください。利用可能なすべてのバリデーションルールは[ドキュメント化されています](#available-validation-rules)。繰り返しますが、バリデーションが失敗すると、適切なレスポンスが自動的に生成されます。バリデーションが通過すると、コントローラは通常どおり実行されます。
 
-Alternatively, validation rules may be specified as arrays of rules instead of a single `|` delimited string:
+あるいは、バリデーションルールを単一の`|`区切りの文字列ではなく、ルールの配列として指定することもできます。
 
     $validatedData = $request->validate([
         'title' => ['required', 'unique:posts', 'max:255'],
         'body' => ['required'],
     ]);
 
-In addition, you may use the `validateWithBag` method to validate a request and store any error messages within a [named error bag](#named-error-bags):
+さらに、`validateWithBag`メソッドを使用してリクエストを検証し、エラーメッセージを[名前付きエラーバッグ](#named-error-bags)に保存することもできます。
 
     $validatedData = $request->validateWithBag('post', [
         'title' => ['required', 'unique:posts', 'max:255'],
@@ -137,21 +137,21 @@ In addition, you may use the `validateWithBag` method to validate a request and 
     ]);
 
 <a name="stopping-on-first-validation-failure"></a>
-#### Stopping on First Validation Failure
+#### 最初のバリデーション失敗時に停止
 
-Sometimes you may wish to stop running validation rules on an attribute after the first validation failure. To do so, assign the `bail` rule to the attribute:
+属性の最初のバリデーション失敗時にバリデーションルールの実行を停止したい場合があります。そのためには、属性に`bail`ルールを割り当てます。
 
     $request->validate([
         'title' => 'bail|required|unique:posts|max:255',
         'body' => 'required',
     ]);
 
-In this example, if the `unique` rule on the `title` attribute fails, the `max` rule will not be checked. Rules will be validated in the order they are assigned.
+この例では、`title`属性の`unique`ルールが失敗した場合、`max`ルールはチェックされません。ルールは割り当てられた順序で検証されます。
 
 <a name="a-note-on-nested-attributes"></a>
-#### A Note on Nested Attributes
+#### ネストした属性に関する注意
 
-If the incoming HTTP request contains "nested" field data, you may specify these fields in your validation rules using "dot" syntax:
+受信HTTPリクエストに「ネスト」したフィールドデータが含まれている場合、「ドット」構文を使用してバリデーションルールでこれらのフィールドを指定できます。
 
     $request->validate([
         'title' => 'required|unique:posts|max:255',
@@ -159,7 +159,7 @@ If the incoming HTTP request contains "nested" field data, you may specify these
         'author.description' => 'required',
     ]);
 
-On the other hand, if your field name contains a literal period, you can explicitly prevent this from being interpreted as "dot" syntax by escaping the period with a backslash:
+一方、フィールド名にリテラルなピリオドが含まれている場合、バックスラッシュでエスケープして、「ドット」構文として解釈されないように明示的に防ぐことができます。
 
     $request->validate([
         'title' => 'required|unique:posts|max:255',
@@ -167,13 +167,13 @@ On the other hand, if your field name contains a literal period, you can explici
     ]);
 
 <a name="quick-displaying-the-validation-errors"></a>
-### Displaying the Validation Errors
+### バリデーションエラーの表示
 
-So, what if the incoming request fields do not pass the given validation rules? As mentioned previously, Laravel will automatically redirect the user back to their previous location. In addition, all of the validation errors and [request input](/docs/{{version}}/requests#retrieving-old-input) will automatically be [flashed to the session](/docs/{{version}}/session#flash-data).
+では、受信リクエストフィールドが指定されたバリデーションルールを通過しない場合はどうなるでしょうか？前述のように、Laravelは自動的にユーザーを前の場所にリダイレクトします。さらに、すべてのバリデーションエラーと[リクエスト入力](requests.md#retrieving-old-input)は自動的に[セッションにフラッシュ](session.md#flash-data)されます。
 
-An `$errors` variable is shared with all of your application's views by the `Illuminate\View\Middleware\ShareErrorsFromSession` middleware, which is provided by the `web` middleware group. When this middleware is applied an `$errors` variable will always be available in your views, allowing you to conveniently assume the `$errors` variable is always defined and can be safely used. The `$errors` variable will be an instance of `Illuminate\Support\MessageBag`. For more information on working with this object, [check out its documentation](#working-with-error-messages).
+`Illuminate\View\Middleware\ShareErrorsFromSession`ミドルウェアによって、アプリケーションのすべてのビューで`$errors`変数が共有されます。このミドルウェアは`web`ミドルウェアグループによって提供されます。このミドルウェアが適用されると、`$errors`変数は常にビューで利用可能になり、`$errors`変数が常に定義されており、安全に使用できると仮定できます。`$errors`変数は`Illuminate\Support\MessageBag`のインスタンスになります。このオブジェクトの操作についての詳細は、[そのドキュメント](#working-with-error-messages)を参照してください。
 
-So, in our example, the user will be redirected to our controller's `create` method when validation fails, allowing us to display the error messages in the view:
+したがって、この例では、バリデーションが失敗すると、ユーザーはコントローラの`create`メソッドにリダイレクトされ、エラーメッセージをビューに表示できます。
 
 ```blade
 <!-- /resources/views/post/create.blade.php -->
@@ -194,26 +194,26 @@ So, in our example, the user will be redirected to our controller's `create` met
 ```
 
 <a name="quick-customizing-the-error-messages"></a>
-#### Customizing the Error Messages
+#### エラーメッセージのカスタマイズ
 
-Laravel's built-in validation rules each have an error message that is located in your application's `lang/en/validation.php` file. If your application does not have a `lang` directory, you may instruct Laravel to create it using the `lang:publish` Artisan command.
+Laravelの組み込みバリデーションルールには、アプリケーションの`lang/en/validation.php`ファイルにあるエラーメッセージがあります。アプリケーションに`lang`ディレクトリがない場合、`lang:publish` Artisanコマンドを使用してLaravelに作成させることができます。
 
-Within the `lang/en/validation.php` file, you will find a translation entry for each validation rule. You are free to change or modify these messages based on the needs of your application.
+`lang/en/validation.php`ファイル内には、各バリデーションルールの翻訳エントリがあります。アプリケーションのニーズに基づいて、これらのメッセージを自由に変更または修正できます。
 
-In addition, you may copy this file to another language directory to translate the messages for your application's language. To learn more about Laravel localization, check out the complete [localization documentation](/docs/{{version}}/localization).
+さらに、このファイルを別の言語ディレクトリにコピーして、アプリケーションの言語用のメッセージを翻訳することもできます。Laravelのローカリゼーションについて詳しく知りたい場合は、完全な[ローカリゼーションドキュメント](localization.md)を確認してください。
 
-> [!WARNING]  
-> By default, the Laravel application skeleton does not include the `lang` directory. If you would like to customize Laravel's language files, you may publish them via the `lang:publish` Artisan command.
+> WARNING:  
+> デフォルトでは、Laravelアプリケーションのスケルトンには`lang`ディレクトリは含まれていません。Laravelの言語ファイルをカスタマイズしたい場合は、`lang:publish` Artisanコマンドを介してそれらを公開することができます。
 
 <a name="quick-xhr-requests-and-validation"></a>
-#### XHR Requests and Validation
+#### XHRリクエストとバリデーション
 
-In this example, we used a traditional form to send data to the application. However, many applications receive XHR requests from a JavaScript powered frontend. When using the `validate` method during an XHR request, Laravel will not generate a redirect response. Instead, Laravel generates a [JSON response containing all of the validation errors](#validation-error-response-format). This JSON response will be sent with a 422 HTTP status code.
+この例では、従来のフォームを使用してデータをアプリケーションに送信しました。しかし、多くのアプリケーションはJavaScriptを使用したフロントエンドからXHRリクエストを受け取ります。XHRリクエスト中に`validate`メソッドを使用すると、Laravelはリダイレクトレスポンスを生成しません。代わりに、Laravelは[すべてのバリデーションエラーを含むJSONレスポンス](#validation-error-response-format)を生成します。このJSONレスポンスは422 HTTPステータスコードとともに送信されます。
 
 <a name="the-at-error-directive"></a>
-#### The `@error` Directive
+#### `@error`ディレクティブ
 
-You may use the `@error` [Blade](/docs/{{version}}/blade) directive to quickly determine if validation error messages exist for a given attribute. Within an `@error` directive, you may echo the `$message` variable to display the error message:
+特定の属性に対するバリデーションエラーメッセージが存在するかどうかを素早く判断するために、`@error` [Blade](blade.md)ディレクティブを使用できます。`@error`ディレクティブ内で、エラーメッセージを表示するために`$message`変数をechoすることができます：
 
 ```blade
 <!-- /resources/views/post/create.blade.php -->
@@ -230,31 +230,31 @@ You may use the `@error` [Blade](/docs/{{version}}/blade) directive to quickly d
 @enderror
 ```
 
-If you are using [named error bags](#named-error-bags), you may pass the name of the error bag as the second argument to the `@error` directive:
+[名前付きエラーバッグ](#named-error-bags)を使用している場合、`@error`ディレクティブにエラーバッグの名前を2番目の引数として渡すことができます：
 
 ```blade
 <input ... class="@error('title', 'post') is-invalid @enderror">
 ```
 
 <a name="repopulating-forms"></a>
-### Repopulating Forms
+### フォームの再入力
 
-When Laravel generates a redirect response due to a validation error, the framework will automatically [flash all of the request's input to the session](/docs/{{version}}/session#flash-data). This is done so that you may conveniently access the input during the next request and repopulate the form that the user attempted to submit.
+バリデーションエラーによりLaravelがリダイレクトレスポンスを生成する場合、フレームワークは自動的に[リクエストのすべての入力をセッションにフラッシュ](session.md#flash-data)します。これにより、次のリクエスト中に入力にアクセスし、ユーザーが送信しようとしたフォームを再入力することが便利になります。
 
-To retrieve flashed input from the previous request, invoke the `old` method on an instance of `Illuminate\Http\Request`. The `old` method will pull the previously flashed input data from the [session](/docs/{{version}}/session):
+前のリクエストからフラッシュされた入力を取得するには、`Illuminate\Http\Request`のインスタンスで`old`メソッドを呼び出します。`old`メソッドは、[セッション](session.md)から以前にフラッシュされた入力データを引き出します：
 
     $title = $request->old('title');
 
-Laravel also provides a global `old` helper. If you are displaying old input within a [Blade template](/docs/{{version}}/blade), it is more convenient to use the `old` helper to repopulate the form. If no old input exists for the given field, `null` will be returned:
+Laravelはグローバルな`old`ヘルパーも提供しています。[Bladeテンプレート](blade.md)内で古い入力を表示する場合、`old`ヘルパーを使用してフォームを再入力する方が便利です。指定されたフィールドの古い入力が存在しない場合、`null`が返されます：
 
 ```blade
 <input type="text" name="title" value="{{ old('title') }}">
 ```
 
 <a name="a-note-on-optional-fields"></a>
-### A Note on Optional Fields
+### オプションフィールドに関する注意
 
-By default, Laravel includes the `TrimStrings` and `ConvertEmptyStringsToNull` middleware in your application's global middleware stack. Because of this, you will often need to mark your "optional" request fields as `nullable` if you do not want the validator to consider `null` values as invalid. For example:
+デフォルトでは、Laravelはアプリケーションのグローバルミドルウェアスタックに`TrimStrings`と`ConvertEmptyStringsToNull`ミドルウェアを含んでいます。このため、バリデーターが`null`値を無効と見なさないようにするには、"オプション"のリクエストフィールドを`nullable`とマークする必要があることが多いです。例えば：
 
     $request->validate([
         'title' => 'required|unique:posts|max:255',
@@ -262,14 +262,14 @@ By default, Laravel includes the `TrimStrings` and `ConvertEmptyStringsToNull` m
         'publish_at' => 'nullable|date',
     ]);
 
-In this example, we are specifying that the `publish_at` field may be either `null` or a valid date representation. If the `nullable` modifier is not added to the rule definition, the validator would consider `null` an invalid date.
+この例では、`publish_at`フィールドが`null`または有効な日付表現のいずれかであることを指定しています。`nullable`修飾子がルール定義に追加されていない場合、バリデーターは`null`を無効な日付と見なします。
 
 <a name="validation-error-response-format"></a>
-### Validation Error Response Format
+### バリデーションエラーレスポンスのフォーマット
 
-When your application throws a `Illuminate\Validation\ValidationException` exception and the incoming HTTP request is expecting a JSON response, Laravel will automatically format the error messages for you and return a `422 Unprocessable Entity` HTTP response.
+アプリケーションが`Illuminate\Validation\ValidationException`例外をスローし、受信したHTTPリクエストがJSONレスポンスを期待している場合、Laravelは自動的にエラーメッセージをフォーマットし、`422 Unprocessable Entity` HTTPレスポンスを返します。
 
-Below, you can review an example of the JSON response format for validation errors. Note that nested error keys are flattened into "dot" notation format:
+以下に、バリデーションエラーのJSONレスポンスフォーマットの例を示します。ネストされたエラーキーは"ドット"記法形式に平坦化されていることに注意してください：
 
 ```json
 {
@@ -293,20 +293,20 @@ Below, you can review an example of the JSON response format for validation erro
 ```
 
 <a name="form-request-validation"></a>
-## Form Request Validation
+## フォームリクエストのバリデーション
 
 <a name="creating-form-requests"></a>
-### Creating Form Requests
+### フォームリクエストの作成
 
-For more complex validation scenarios, you may wish to create a "form request". Form requests are custom request classes that encapsulate their own validation and authorization logic. To create a form request class, you may use the `make:request` Artisan CLI command:
+より複雑なバリデーションシナリオの場合、"フォームリクエスト"を作成することができます。フォームリクエストは、独自のバリデーションと認可ロジックをカプセル化するカスタムリクエストクラスです。フォームリクエストクラスを作成するには、`make:request` Artisan CLIコマンドを使用できます：
 
 ```shell
 php artisan make:request StorePostRequest
 ```
 
-The generated form request class will be placed in the `app/Http/Requests` directory. If this directory does not exist, it will be created when you run the `make:request` command. Each form request generated by Laravel has two methods: `authorize` and `rules`.
+生成されたフォームリクエストクラスは`app/Http/Requests`ディレクトリに配置されます。このディレクトリが存在しない場合、`make:request`コマンドを実行すると作成されます。Laravelによって生成される各フォームリクエストには、`authorize`と`rules`の2つのメソッドがあります。
 
-As you might have guessed, the `authorize` method is responsible for determining if the currently authenticated user can perform the action represented by the request, while the `rules` method returns the validation rules that should apply to the request's data:
+ご想像の通り、`authorize`メソッドは現在認証されているユーザーがリクエストで表されるアクションを実行できるかどうかを判断する役割を果たし、`rules`メソッドはリクエストのデータに適用されるバリデーションルールを返します：
 
     /**
      * Get the validation rules that apply to the request.
@@ -321,10 +321,10 @@ As you might have guessed, the `authorize` method is responsible for determining
         ];
     }
 
-> [!NOTE]  
-> You may type-hint any dependencies you require within the `rules` method's signature. They will automatically be resolved via the Laravel [service container](/docs/{{version}}/container).
+> NOTE:  
+> `rules`メソッドのシグネチャ内で必要な依存関係をタイプヒントすることができます。これらは自動的にLaravelの[サービスコンテナ](container.md)を介して解決されます。
 
-So, how are the validation rules evaluated? All you need to do is type-hint the request on your controller method. The incoming form request is validated before the controller method is called, meaning you do not need to clutter your controller with any validation logic:
+では、バリデーションルールはどのように評価されるのでしょうか？必要なのは、コントローラーメソッドにリクエストをタイプヒントすることだけです。コントローラーメソッドが呼び出される前に、受信したフォームリクエストがバリデーションされます。つまり、コントローラーにバリデーションロジックを散らかす必要はありません：
 
     /**
      * Store a new blog post.
@@ -345,17 +345,17 @@ So, how are the validation rules evaluated? All you need to do is type-hint the 
         return redirect('/posts');
     }
 
-If validation fails, a redirect response will be generated to send the user back to their previous location. The errors will also be flashed to the session so they are available for display. If the request was an XHR request, an HTTP response with a 422 status code will be returned to the user including a [JSON representation of the validation errors](#validation-error-response-format).
+バリデーションが失敗すると、リダイレクトレスポンスが生成され、ユーザーを前の場所に戻します。エラーもセッションにフラッシュされ、表示できるようになります。リクエストがXHRリクエストだった場合、[バリデーションエラーのJSON表現](#validation-error-response-format)を含む422ステータスコードのHTTPレスポンスがユーザーに返されます。
 
-> [!NOTE]  
-> Need to add real-time form request validation to your Inertia powered Laravel frontend? Check out [Laravel Precognition](/docs/{{version}}/precognition).
+> NOTE:  
+> Inertiaを使用したLaravelフロントエンドにリアルタイムのフォームリクエストバリデーションを追加する必要がありますか？[Laravel Precognition](precognition.md)をチェックしてください。
 
 <a name="performing-additional-validation-on-form-requests"></a>
-#### Performing Additional Validation
+#### 追加のバリデーションの実行
 
-Sometimes you need to perform additional validation after your initial validation is complete. You can accomplish this using the form request's `after` method.
+最初のバリデーションが完了した後に追加のバリデーションを実行する必要がある場合、フォームリクエストの`after`メソッドを使用してこれを実現できます。
 
-The `after` method should return an array of callables or closures which will be invoked after validation is complete. The given callables will receive an `Illuminate\Validation\Validator` instance, allowing you to raise additional error messages if necessary:
+`after`メソッドは、バリデーションが完了した後に呼び出されるコールバックまたはクロージャの配列を返す必要があります。与えられたコールバックは`Illuminate\Validation\Validator`インスタンスを受け取り、必要に応じて追加のエラーメッセージを発生させることができます：
 
     use Illuminate\Validation\Validator;
 
@@ -376,7 +376,7 @@ The `after` method should return an array of callables or closures which will be
         ];
     }
 
-As noted, the array returned by the `after` method may also contain invokable classes. The `__invoke` method of these classes will receive an `Illuminate\Validation\Validator` instance:
+前述のように、`after`メソッドによって返される配列には、呼び出し可能なクラスを含めることもできます。これらのクラスの`__invoke`メソッドは`Illuminate\Validation\Validator`インスタンスを受け取ります：
 
 ```php
 use App\Validation\ValidateShippingTime;
@@ -399,9 +399,9 @@ public function after(): array
 ```
 
 <a name="request-stopping-on-first-validation-rule-failure"></a>
-#### Stopping on the First Validation Failure
+#### 最初のバリデーション失敗時に停止
 
-By adding a `stopOnFirstFailure` property to your request class, you may inform the validator that it should stop validating all attributes once a single validation failure has occurred:
+リクエストクラスに`stopOnFirstFailure`プロパティを追加することで、バリデーターに単一のバリデーション失敗が発生したらすべての属性のバリデーションを停止するように指示できます：
 
     /**
      * Indicates if the validator should stop on the first rule failure.
@@ -411,254 +411,290 @@ By adding a `stopOnFirstFailure` property to your request class, you may inform 
     protected $stopOnFirstFailure = true;
 
 <a name="customizing-the-redirect-location"></a>
-#### Customizing the Redirect Location
+#### リダイレクト先のカスタマイズ
 
-As previously discussed, a redirect response will be generated to send the user back to their previous location when form request validation fails. However, you are free to customize this behavior. To do so, define a `$redirect` property on your form request:
+前述のように、フォームリクエストのバリデーションが失敗した場合、ユーザーを前の場所に戻すリダイレクトレスポンスが生成されます。しかし、この動作を自由にカスタマイズすることができます。そのためには、フォームリクエストに`$redirect`プロパティを定義します：
 
-    /**
-     * The URI that users should be redirected to if validation fails.
-     *
-     * @var string
-     */
-    protected $redirect = '/dashboard';
+```php
+/**
+ * バリデーションが失敗した場合にユーザーがリダイレクトされるURI。
+ *
+ * @var string
+ */
+protected $redirect = '/dashboard';
+```
 
-Or, if you would like to redirect users to a named route, you may define a `$redirectRoute` property instead:
+または、ユーザーを名前付きルートにリダイレクトしたい場合は、代わりに `$redirectRoute` プロパティを定義できます：
 
-    /**
-     * The route that users should be redirected to if validation fails.
-     *
-     * @var string
-     */
-    protected $redirectRoute = 'dashboard';
+```php
+/**
+ * バリデーションが失敗した場合にユーザーがリダイレクトされるルート。
+ *
+ * @var string
+ */
+protected $redirectRoute = 'dashboard';
+```
 
 <a name="authorizing-form-requests"></a>
-### Authorizing Form Requests
+### フォームリクエストの認可
 
-The form request class also contains an `authorize` method. Within this method, you may determine if the authenticated user actually has the authority to update a given resource. For example, you may determine if a user actually owns a blog comment they are attempting to update. Most likely, you will interact with your [authorization gates and policies](/docs/{{version}}/authorization) within this method:
+フォームリクエストクラスには `authorize` メソッドも含まれています。このメソッド内で、認証されたユーザーが実際に特定のリソースを更新する権限を持っているかどうかを判断できます。たとえば、ユーザーが更新しようとしているブログコメントを実際に所有しているかどうかを判断できます。おそらく、このメソッド内で [認可ゲートとポリシー](authorization.md) とやり取りするでしょう：
 
-    use App\Models\Comment;
+```php
+use App\Models\Comment;
 
-    /**
-     * Determine if the user is authorized to make this request.
-     */
-    public function authorize(): bool
-    {
-        $comment = Comment::find($this->route('comment'));
+/**
+ * ユーザーがこのリクエストを行うことを認可されているかどうかを判断します。
+ */
+public function authorize(): bool
+{
+    $comment = Comment::find($this->route('comment'));
 
-        return $comment && $this->user()->can('update', $comment);
-    }
+    return $comment && $this->user()->can('update', $comment);
+}
+```
 
-Since all form requests extend the base Laravel request class, we may use the `user` method to access the currently authenticated user. Also, note the call to the `route` method in the example above. This method grants you access to the URI parameters defined on the route being called, such as the `{comment}` parameter in the example below:
+すべてのフォームリクエストはベースの Laravel リクエストクラスを拡張しているため、`user` メソッドを使用して現在認証されているユーザーにアクセスできます。また、上記の例で `route` メソッドの呼び出しに注意してください。このメソッドを使用すると、呼び出されているルートに定義された URI パラメータにアクセスできます。たとえば、以下の例では `{comment}` パラメータにアクセスできます：
 
-    Route::post('/comment/{comment}');
+```php
+Route::post('/comment/{comment}');
+```
 
-Therefore, if your application is taking advantage of [route model binding](/docs/{{version}}/routing#route-model-binding), your code may be made even more succinct by accessing the resolved model as a property of the request:
+したがって、アプリケーションが [ルートモデルバインディング](routing.md#route-model-binding) を利用している場合、リクエストのプロパティとして解決されたモデルにアクセスすることで、コードをさらに簡潔にすることができます：
 
-    return $this->user()->can('update', $this->comment);
+```php
+return $this->user()->can('update', $this->comment);
+```
 
-If the `authorize` method returns `false`, an HTTP response with a 403 status code will automatically be returned and your controller method will not execute.
+`authorize` メソッドが `false` を返す場合、403 ステータスコードの HTTP レスポンスが自動的に返され、コントローラメソッドは実行されません。
 
-If you plan to handle authorization logic for the request in another part of your application, you may remove the `authorize` method completely, or simply return `true`:
+リクエストの認可ロジックをアプリケーションの別の部分で処理する予定の場合は、`authorize` メソッドを完全に削除するか、単に `true` を返すことができます：
 
-    /**
-     * Determine if the user is authorized to make this request.
-     */
-    public function authorize(): bool
-    {
-        return true;
-    }
+```php
+/**
+ * ユーザーがこのリクエストを行うことを認可されているかどうかを判断します。
+ */
+public function authorize(): bool
+{
+    return true;
+}
+```
 
-> [!NOTE]  
-> You may type-hint any dependencies you need within the `authorize` method's signature. They will automatically be resolved via the Laravel [service container](/docs/{{version}}/container).
+> NOTE:  
+> `authorize` メソッドのシグネチャ内に必要な依存関係をタイプヒントで指定できます。これらは自動的に Laravel の [サービスコンテナ](container.md) を介して解決されます。
 
 <a name="customizing-the-error-messages"></a>
-### Customizing the Error Messages
+### エラーメッセージのカスタマイズ
 
-You may customize the error messages used by the form request by overriding the `messages` method. This method should return an array of attribute / rule pairs and their corresponding error messages:
+フォームリクエストによって使用されるエラーメッセージをカスタマイズするには、`messages` メソッドをオーバーライドします。このメソッドは、属性/ルールのペアとそれに対応するエラーメッセージの配列を返す必要があります：
 
-    /**
-     * Get the error messages for the defined validation rules.
-     *
-     * @return array<string, string>
-     */
-    public function messages(): array
-    {
-        return [
-            'title.required' => 'A title is required',
-            'body.required' => 'A message is required',
-        ];
-    }
+```php
+/**
+ * 定義されたバリデーションルールのエラーメッセージを取得します。
+ *
+ * @return array<string, string>
+ */
+public function messages(): array
+{
+    return [
+        'title.required' => 'タイトルは必須です',
+        'body.required' => 'メッセージは必須です',
+    ];
+}
+```
 
 <a name="customizing-the-validation-attributes"></a>
-#### Customizing the Validation Attributes
+#### バリデーション属性のカスタマイズ
 
-Many of Laravel's built-in validation rule error messages contain an `:attribute` placeholder. If you would like the `:attribute` placeholder of your validation message to be replaced with a custom attribute name, you may specify the custom names by overriding the `attributes` method. This method should return an array of attribute / name pairs:
+Laravel の組み込みバリデーションルールの多くのエラーメッセージには、`:attribute` プレースホルダが含まれています。バリデーションメッセージの `:attribute` プレースホルダをカスタム属性名に置き換えたい場合は、`attributes` メソッドをオーバーライドしてカスタム名を指定できます。このメソッドは、属性/名前のペアの配列を返す必要があります：
 
-    /**
-     * Get custom attributes for validator errors.
-     *
-     * @return array<string, string>
-     */
-    public function attributes(): array
-    {
-        return [
-            'email' => 'email address',
-        ];
-    }
+```php
+/**
+ * バリデータエラーのカスタム属性を取得します。
+ *
+ * @return array<string, string>
+ */
+public function attributes(): array
+{
+    return [
+        'email' => 'メールアドレス',
+    ];
+}
+```
 
 <a name="preparing-input-for-validation"></a>
-### Preparing Input for Validation
+### バリデーションのための入力の準備
 
-If you need to prepare or sanitize any data from the request before you apply your validation rules, you may use the `prepareForValidation` method:
+バリデーションルールを適用する前にリクエストからのデータを準備またはサニタイズする必要がある場合は、`prepareForValidation` メソッドを使用できます：
 
-    use Illuminate\Support\Str;
+```php
+use Illuminate\Support\Str;
 
-    /**
-     * Prepare the data for validation.
-     */
-    protected function prepareForValidation(): void
-    {
-        $this->merge([
-            'slug' => Str::slug($this->slug),
-        ]);
-    }
+/**
+ * バリデーションのためにデータを準備します。
+ */
+protected function prepareForValidation(): void
+{
+    $this->merge([
+        'slug' => Str::slug($this->slug),
+    ]);
+}
+```
 
-Likewise, if you need to normalize any request data after validation is complete, you may use the `passedValidation` method:
+同様に、バリデーションが完了した後にリクエストデータを正規化する必要がある場合は、`passedValidation` メソッドを使用できます：
 
-    /**
-     * Handle a passed validation attempt.
-     */
-    protected function passedValidation(): void
-    {
-        $this->replace(['name' => 'Taylor']);
-    }
+```php
+/**
+ * バリデーションが成功した試行を処理します。
+ */
+protected function passedValidation(): void
+{
+    $this->replace(['name' => 'Taylor']);
+}
+```
 
 <a name="manually-creating-validators"></a>
-## Manually Creating Validators
+## バリデータの手動作成
 
-If you do not want to use the `validate` method on the request, you may create a validator instance manually using the `Validator` [facade](/docs/{{version}}/facades). The `make` method on the facade generates a new validator instance:
+リクエストの `validate` メソッドを使用したくない場合は、`Validator` [ファサード](facades.md) を使用してバリデータインスタンスを手動で作成できます。ファサードの `make` メソッドは新しいバリデータインスタンスを生成します：
 
-    <?php
+```php
+<?php
 
-    namespace App\Http\Controllers;
+namespace App\Http\Controllers;
 
-    use Illuminate\Http\RedirectResponse;
-    use Illuminate\Http\Request;
-    use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
-    class PostController extends Controller
+class PostController extends Controller
+{
+    /**
+     * 新しいブログ記事を保存します。
+     */
+    public function store(Request $request): RedirectResponse
     {
-        /**
-         * Store a new blog post.
-         */
-        public function store(Request $request): RedirectResponse
-        {
-            $validator = Validator::make($request->all(), [
-                'title' => 'required|unique:posts|max:255',
-                'body' => 'required',
-            ]);
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|unique:posts|max:255',
+            'body' => 'required',
+        ]);
 
-            if ($validator->fails()) {
-                return redirect('/post/create')
-                            ->withErrors($validator)
-                            ->withInput();
-            }
-
-            // Retrieve the validated input...
-            $validated = $validator->validated();
-
-            // Retrieve a portion of the validated input...
-            $validated = $validator->safe()->only(['name', 'email']);
-            $validated = $validator->safe()->except(['name', 'email']);
-
-            // Store the blog post...
-
-            return redirect('/posts');
+        if ($validator->fails()) {
+            return redirect('/post/create')
+                        ->withErrors($validator)
+                        ->withInput();
         }
+
+        // バリデーション済みの入力を取得...
+        $validated = $validator->validated();
+
+        // バリデーション済みの入力の一部を取得...
+        $validated = $validator->safe()->only(['name', 'email']);
+        $validated = $validator->safe()->except(['name', 'email']);
+
+        // ブログ記事を保存...
+
+        return redirect('/posts');
     }
+}
+```
 
-The first argument passed to the `make` method is the data under validation. The second argument is an array of the validation rules that should be applied to the data.
+`make` メソッドに渡される最初の引数は、バリデーション対象のデータです。2番目の引数は、データに適用する必要があるバリデーションルールの配列です。
 
-After determining whether the request validation failed, you may use the `withErrors` method to flash the error messages to the session. When using this method, the `$errors` variable will automatically be shared with your views after redirection, allowing you to easily display them back to the user. The `withErrors` method accepts a validator, a `MessageBag`, or a PHP `array`.
+リクエストのバリデーションが失敗したかどうかを判断した後、`withErrors` メソッドを使用してセッションにエラーメッセージをフラッシュできます。このメソッドを使用すると、リダイレクト後に `$errors` 変数が自動的にビューと共有され、ユーザーに簡単に表示できるようになります。`withErrors` メソッドは、バリデータ、`MessageBag`、または PHP の `array` を受け入れます。
 
-#### Stopping on First Validation Failure
+#### 最初のバリデーション失敗時に停止
 
-The `stopOnFirstFailure` method will inform the validator that it should stop validating all attributes once a single validation failure has occurred:
+`stopOnFirstFailure` メソッドは、バリデータに一度バリデーション失敗が発生したらすべての属性のバリデーションを停止するように指示します：
 
-    if ($validator->stopOnFirstFailure()->fails()) {
-        // ...
-    }
+```php
+if ($validator->stopOnFirstFailure()->fails()) {
+    // ...
+}
+```
 
 <a name="automatic-redirection"></a>
-### Automatic Redirection
+### 自動リダイレクト
 
-If you would like to create a validator instance manually but still take advantage of the automatic redirection offered by the HTTP request's `validate` method, you may call the `validate` method on an existing validator instance. If validation fails, the user will automatically be redirected or, in the case of an XHR request, a [JSON response will be returned](#validation-error-response-format):
+バリデータインスタンスを手動で作成したいが、HTTP リクエストの `validate` メソッドが提供する自動リダイレクトを利用したい場合は、既存のバリデータインスタンスで `validate` メソッドを呼び出すことができます。バリデーションが失敗した場合、ユーザーは自動的にリダイレクトされます。XHR リクエストの場合は、[JSON レスポンスが返されます](#validation-error-response-format)：
 
-    Validator::make($request->all(), [
-        'title' => 'required|unique:posts|max:255',
-        'body' => 'required',
-    ])->validate();
+```php
+Validator::make($request->all(), [
+    'title' => 'required|unique:posts|max:255',
+    'body' => 'required',
+])->validate();
+```
 
-You may use the `validateWithBag` method to store the error messages in a [named error bag](#named-error-bags) if validation fails:
+バリデーションが失敗した場合にエラーメッセージを [名前付きエラーバッグ](#named-error-bags) に保存するには、`validateWithBag` メソッドを使用できます：
 
-    Validator::make($request->all(), [
-        'title' => 'required|unique:posts|max:255',
-        'body' => 'required',
-    ])->validateWithBag('post');
+```php
+Validator::make($request->all(), [
+    'title' => 'required|unique:posts|max:255',
+    'body' => 'required',
+])->validateWithBag('post');
+```
 
 <a name="named-error-bags"></a>
-### Named Error Bags
+### 名前付きエラーバッグ
 
-If you have multiple forms on a single page, you may wish to name the `MessageBag` containing the validation errors, allowing you to retrieve the error messages for a specific form. To achieve this, pass a name as the second argument to `withErrors`:
+1 つのページに複数のフォームがある場合、バリデーションエラーを含む `MessageBag` に名前を付け、特定のフォームのエラーメッセージを取得できるようにすることができます。これを実現するには、`withErrors` の 2 番目の引数として名前を渡します：
 
-    return redirect('/register')->withErrors($validator, 'login');
+```php
+return redirect('/register')->withErrors($validator, 'login');
+```
 
-You may then access the named `MessageBag` instance from the `$errors` variable:
+その後、`$errors` 変数から名前付き `MessageBag` インスタンスにアクセスできます：
 
 ```blade
 {{ $errors->login->first('email') }}
 ```
 
 <a name="manual-customizing-the-error-messages"></a>
-### Customizing the Error Messages
+### エラーメッセージのカスタマイズ
 
-If needed, you may provide custom error messages that a validator instance should use instead of the default error messages provided by Laravel. There are several ways to specify custom messages. First, you may pass the custom messages as the third argument to the `Validator::make` method:
+必要に応じて、バリデータインスタンスが使用するデフォルトのエラーメッセージの代わりにカスタムエラーメッセージを指定できます。カスタムメッセージを指定するには、いくつかの方法があります。まず、`Validator::make` メソッドにカスタムメッセージを 3 番目の引数として渡すことができます：
 
-    $validator = Validator::make($input, $rules, $messages = [
-        'required' => 'The :attribute field is required.',
-    ]);
+```php
+$validator = Validator::make($input, $rules, $messages = [
+    'required' => ':attribute フィールドは必須です。',
+]);
+```
 
-In this example, the `:attribute` placeholder will be replaced by the actual name of the field under validation. You may also utilize other placeholders in validation messages. For example:
+この例では、`:attribute` プレースホルダは、バリデーション中のフィールドの実際の名前に置き換えられます。バリデーションメッセージで他のプレースホルダを利用することもできます。例：
 
-    $messages = [
-        'same' => 'The :attribute and :other must match.',
-        'size' => 'The :attribute must be exactly :size.',
-        'between' => 'The :attribute value :input is not between :min - :max.',
-        'in' => 'The :attribute must be one of the following types: :values',
-    ];
+```php
+$messages = [
+    'same' => ':attribute と :other は一致する必要があります。',
+    'size' => ':attribute は正確に :size である必要があります。',
+    'between' => ':attribute の値 :input は :min から :max の間である必要があります。',
+    'in' => ':attribute は次のいずれかのタイプである必要があります: :values',
+];
+```
 
 <a name="specifying-a-custom-message-for-a-given-attribute"></a>
-#### Specifying a Custom Message for a Given Attribute
+#### 特定の属性に対するカスタムメッセージの指定
 
-Sometimes you may wish to specify a custom error message only for a specific attribute. You may do so using "dot" notation. Specify the attribute's name first, followed by the rule:
+特定の属性に対してのみカスタムエラーメッセージを指定したい場合があります。これは、「ドット」表記を使用して行うことができます。最初に属性の名前を指定し、次にルールを指定します：
 
-    $messages = [
-        'email.required' => 'We need to know your email address!',
-    ];
+```php
+$messages = [
+    'email.required' => 'メールアドレスを教えてください！',
+];
+```
 
 <a name="specifying-custom-attribute-values"></a>
-#### Specifying Custom Attribute Values
+#### カスタム属性値の指定
 
-Many of Laravel's built-in error messages include an `:attribute` placeholder that is replaced with the name of the field or attribute under validation. To customize the values used to replace these placeholders for specific fields, you may pass an array of custom attributes as the fourth argument to the `Validator::make` method:
+Laravelの組み込みエラーメッセージの多くには、バリデーション対象のフィールドまたは属性の名前に置き換えられる `:attribute` プレースホルダが含まれています。特定のフィールドに対してこれらのプレースホルダを置き換える値をカスタマイズするには、`Validator::make` メソッドの第4引数としてカスタム属性の配列を渡すことができます。
 
     $validator = Validator::make($input, $rules, $messages, [
-        'email' => 'email address',
+        'email' => 'メールアドレス',
     ]);
 
 <a name="performing-additional-validation"></a>
-### Performing Additional Validation
+### 追加のバリデーションの実行
 
-Sometimes you need to perform additional validation after your initial validation is complete. You can accomplish this using the validator's `after` method. The `after` method accepts a closure or an array of callables which will be invoked after validation is complete. The given callables will receive an `Illuminate\Validation\Validator` instance, allowing you to raise additional error messages if necessary:
+初期バリデーションが完了した後に追加のバリデーションを実行する必要がある場合があります。これは、バリデータの `after` メソッドを使用して実現できます。`after` メソッドは、バリデーションが完了した後に呼び出されるクロージャまたはコールバックの配列を受け取ります。指定されたコールバックは `Illuminate\Validation\Validator` インスタンスを受け取り、必要に応じて追加のエラーメッセージを発生させることができます。
 
     use Illuminate\Support\Facades\Validator;
 
@@ -667,7 +703,7 @@ Sometimes you need to perform additional validation after your initial validatio
     $validator->after(function ($validator) {
         if ($this->somethingElseIsInvalid()) {
             $validator->errors()->add(
-                'field', 'Something is wrong with this field!'
+                'field', 'このフィールドに何か問題があります！'
             );
         }
     });
@@ -676,7 +712,7 @@ Sometimes you need to perform additional validation after your initial validatio
         // ...
     }
 
-As noted, the `after` method also accepts an array of callables, which is particularly convenient if your "after validation" logic is encapsulated in invokable classes, which will receive an `Illuminate\Validation\Validator` instance via their `__invoke` method:
+前述のように、`after` メソッドはコールバックの配列も受け取ります。これは、"バリデーション後" のロジックが呼び出し可能なクラスにカプセル化されている場合に特に便利です。これらのクラスは、`__invoke` メソッドを介して `Illuminate\Validation\Validator` インスタンスを受け取ります。
 
 ```php
 use App\Validation\ValidateShippingTime;
@@ -692,15 +728,15 @@ $validator->after([
 ```
 
 <a name="working-with-validated-input"></a>
-## Working With Validated Input
+## バリデーション済みの入力の操作
 
-After validating incoming request data using a form request or a manually created validator instance, you may wish to retrieve the incoming request data that actually underwent validation. This can be accomplished in several ways. First, you may call the `validated` method on a form request or validator instance. This method returns an array of the data that was validated:
+フォームリクエストまたは手動で作成したバリデータインスタンスを使用して受信リクエストデータをバリデーションした後、実際にバリデーションを受けた受信リクエストデータを取得したい場合があります。これはいくつかの方法で実現できます。まず、フォームリクエストまたはバリデータインスタンスで `validated` メソッドを呼び出すことができます。このメソッドは、バリデーションを受けたデータの配列を返します。
 
     $validated = $request->validated();
 
     $validated = $validator->validated();
 
-Alternatively, you may call the `safe` method on a form request or validator instance. This method returns an instance of `Illuminate\Support\ValidatedInput`. This object exposes `only`, `except`, and `all` methods to retrieve a subset of the validated data or the entire array of validated data:
+または、フォームリクエストまたはバリデータインスタンスで `safe` メソッドを呼び出すこともできます。このメソッドは `Illuminate\Support\ValidatedInput` のインスタンスを返します。このオブジェクトは、バリデーション済みデータのサブセットまたはバリデーション済みデータ全体を取得するための `only`、`except`、`all` メソッドを公開しています。
 
     $validated = $request->safe()->only(['name', 'email']);
 
@@ -708,145 +744,145 @@ Alternatively, you may call the `safe` method on a form request or validator ins
 
     $validated = $request->safe()->all();
 
-In addition, the `Illuminate\Support\ValidatedInput` instance may be iterated over and accessed like an array:
+さらに、`Illuminate\Support\ValidatedInput` インスタンスは、配列のように反復処理したりアクセスしたりすることができます。
 
-    // Validated data may be iterated...
+    // バリデーション済みデータは反復処理できます...
     foreach ($request->safe() as $key => $value) {
         // ...
     }
 
-    // Validated data may be accessed as an array...
+    // バリデーション済みデータは配列としてアクセスできます...
     $validated = $request->safe();
 
     $email = $validated['email'];
 
-If you would like to add additional fields to the validated data, you may call the `merge` method:
+バリデーション済みデータに追加のフィールドを追加したい場合は、`merge` メソッドを呼び出すことができます。
 
     $validated = $request->safe()->merge(['name' => 'Taylor Otwell']);
 
-If you would like to retrieve the validated data as a [collection](/docs/{{version}}/collections) instance, you may call the `collect` method:
+バリデーション済みデータを [コレクション](collections.md) インスタンスとして取得したい場合は、`collect` メソッドを呼び出すことができます。
 
     $collection = $request->safe()->collect();
 
 <a name="working-with-error-messages"></a>
-## Working With Error Messages
+## エラーメッセージの操作
 
-After calling the `errors` method on a `Validator` instance, you will receive an `Illuminate\Support\MessageBag` instance, which has a variety of convenient methods for working with error messages. The `$errors` variable that is automatically made available to all views is also an instance of the `MessageBag` class.
+`Validator` インスタンスで `errors` メソッドを呼び出すと、エラーメッセージを操作するためのさまざまな便利なメソッドを持つ `Illuminate\Support\MessageBag` インスタンスが返されます。すべてのビューで自動的に利用可能な `$errors` 変数も `MessageBag` クラスのインスタンスです。
 
 <a name="retrieving-the-first-error-message-for-a-field"></a>
-#### Retrieving the First Error Message for a Field
+#### フィールドの最初のエラーメッセージの取得
 
-To retrieve the first error message for a given field, use the `first` method:
+特定のフィールドの最初のエラーメッセージを取得するには、`first` メソッドを使用します。
 
     $errors = $validator->errors();
 
     echo $errors->first('email');
 
 <a name="retrieving-all-error-messages-for-a-field"></a>
-#### Retrieving All Error Messages for a Field
+#### フィールドのすべてのエラーメッセージの取得
 
-If you need to retrieve an array of all the messages for a given field, use the `get` method:
+特定のフィールドのすべてのメッセージを配列として取得するには、`get` メソッドを使用します。
 
     foreach ($errors->get('email') as $message) {
         // ...
     }
 
-If you are validating an array form field, you may retrieve all of the messages for each of the array elements using the `*` character:
+配列フォームフィールドをバリデーションする場合、`*` 文字を使用して各配列要素のすべてのメッセージを取得できます。
 
     foreach ($errors->get('attachments.*') as $message) {
         // ...
     }
 
 <a name="retrieving-all-error-messages-for-all-fields"></a>
-#### Retrieving All Error Messages for All Fields
+#### すべてのフィールドのすべてのエラーメッセージの取得
 
-To retrieve an array of all messages for all fields, use the `all` method:
+すべてのフィールドのすべてのメッセージを配列として取得するには、`all` メソッドを使用します。
 
     foreach ($errors->all() as $message) {
         // ...
     }
 
 <a name="determining-if-messages-exist-for-a-field"></a>
-#### Determining if Messages Exist for a Field
+#### フィールドにメッセージが存在するかどうかの確認
 
-The `has` method may be used to determine if any error messages exist for a given field:
+特定のフィールドにエラーメッセージが存在するかどうかを確認するには、`has` メソッドを使用します。
 
     if ($errors->has('email')) {
         // ...
     }
 
 <a name="specifying-custom-messages-in-language-files"></a>
-### Specifying Custom Messages in Language Files
+### 言語ファイルでのカスタムメッセージの指定
 
-Laravel's built-in validation rules each have an error message that is located in your application's `lang/en/validation.php` file. If your application does not have a `lang` directory, you may instruct Laravel to create it using the `lang:publish` Artisan command.
+Laravelの組み込みバリデーションルールにはそれぞれ、アプリケーションの `lang/en/validation.php` ファイルにあるエラーメッセージがあります。アプリケーションに `lang` ディレクトリがない場合は、`lang:publish` Artisan コマンドを使用してLaravelに作成させることができます。
 
-Within the `lang/en/validation.php` file, you will find a translation entry for each validation rule. You are free to change or modify these messages based on the needs of your application.
+`lang/en/validation.php` ファイル内に、各バリデーションルールの翻訳エントリがあります。アプリケーションのニーズに基づいてこれらのメッセージを自由に変更または修正できます。
 
-In addition, you may copy this file to another language directory to translate the messages for your application's language. To learn more about Laravel localization, check out the complete [localization documentation](/docs/{{version}}/localization).
+さらに、このファイルを別の言語ディレクトリにコピーして、アプリケーションの言語のメッセージを翻訳することもできます。Laravelのローカリゼーションの詳細については、完全な [ローカリゼーションドキュメント](localization.md) を確認してください。
 
-> [!WARNING]  
-> By default, the Laravel application skeleton does not include the `lang` directory. If you would like to customize Laravel's language files, you may publish them via the `lang:publish` Artisan command.
+> WARNING:  
+> デフォルトでは、Laravelアプリケーションのスケルトンには `lang` ディレクトリが含まれていません。Laravelの言語ファイルをカスタマイズしたい場合は、`lang:publish` Artisan コマンドを介してそれらを公開することができます。
 
 <a name="custom-messages-for-specific-attributes"></a>
-#### Custom Messages for Specific Attributes
+#### 特定の属性のカスタムメッセージ
 
-You may customize the error messages used for specified attribute and rule combinations within your application's validation language files. To do so, add your message customizations to the `custom` array of your application's `lang/xx/validation.php` language file:
+アプリケーションのバリデーション言語ファイル内で指定された属性とルールの組み合わせに使用されるエラーメッセージをカスタマイズすることができます。そのためには、アプリケーションの `lang/xx/validation.php` 言語ファイルの `custom` 配列にメッセージのカスタマイズを追加します。
 
     'custom' => [
         'email' => [
-            'required' => 'We need to know your email address!',
-            'max' => 'Your email address is too long!'
+            'required' => 'メールアドレスを教えてください！',
+            'max' => 'メールアドレスが長すぎます！'
         ],
     ],
 
 <a name="specifying-attribute-in-language-files"></a>
-### Specifying Attributes in Language Files
+### 言語ファイルでの属性の指定
 
-Many of Laravel's built-in error messages include an `:attribute` placeholder that is replaced with the name of the field or attribute under validation. If you would like the `:attribute` portion of your validation message to be replaced with a custom value, you may specify the custom attribute name in the `attributes` array of your `lang/xx/validation.php` language file:
+Laravelの組み込みエラーメッセージの多くには、バリデーション対象のフィールドまたは属性の名前に置き換えられる `:attribute` プレースホルダが含まれています。バリデーションメッセージの `:attribute` 部分をカスタム値に置き換えたい場合は、`lang/xx/validation.php` 言語ファイルの `attributes` 配列でカスタム属性名を指定できます。
 
     'attributes' => [
-        'email' => 'email address',
+        'email' => 'メールアドレス',
     ],
 
-> [!WARNING]  
-> By default, the Laravel application skeleton does not include the `lang` directory. If you would like to customize Laravel's language files, you may publish them via the `lang:publish` Artisan command.
+> WARNING:  
+> デフォルトでは、Laravelアプリケーションのスケルトンには `lang` ディレクトリが含まれていません。Laravelの言語ファイルをカスタマイズしたい場合は、`lang:publish` Artisan コマンドを介してそれらを公開することができます。
 
 <a name="specifying-values-in-language-files"></a>
-### Specifying Values in Language Files
+### 言語ファイルでの値の指定
 
-Some of Laravel's built-in validation rule error messages contain a `:value` placeholder that is replaced with the current value of the request attribute. However, you may occasionally need the `:value` portion of your validation message to be replaced with a custom representation of the value. For example, consider the following rule that specifies that a credit card number is required if the `payment_type` has a value of `cc`:
+Laravelの組み込みバリデーションルールのエラーメッセージの一部には、リクエスト属性の現在の値に置き換えられる `:value` プレースホルダが含まれています。ただし、バリデーションメッセージの `:value` 部分をカスタム表現に置き換えたい場合があります。たとえば、`payment_type` の値が `cc` の場合にクレジットカード番号が必須であるというルールを考えてみましょう。
 
     Validator::make($request->all(), [
         'credit_card_number' => 'required_if:payment_type,cc'
     ]);
 
-If this validation rule fails, it will produce the following error message:
+このバリデーションルールが失敗すると、次のエラーメッセージが生成されます。
 
 ```none
 The credit card number field is required when payment type is cc.
 ```
 
-Instead of displaying `cc` as the payment type value, you may specify a more user-friendly value representation in your `lang/xx/validation.php` language file by defining a `values` array:
+支払いタイプの値として `cc` を表示する代わりに、`lang/xx/validation.php` 言語ファイルで `values` 配列を定義することで、よりユーザーフレンドリーな値表現を指定できます。
 
     'values' => [
         'payment_type' => [
-            'cc' => 'credit card'
+            'cc' => 'クレジットカード'
         ],
     ],
 
-> [!WARNING]  
-> By default, the Laravel application skeleton does not include the `lang` directory. If you would like to customize Laravel's language files, you may publish them via the `lang:publish` Artisan command.
+> WARNING:  
+> デフォルトでは、Laravelアプリケーションのスケルトンには `lang` ディレクトリが含まれていません。Laravelの言語ファイルをカスタマイズしたい場合は、`lang:publish` Artisan コマンドを介してそれらを公開することができます。
 
-After defining this value, the validation rule will produce the following error message:
+この値を定義した後、バリデーションルールは次のエラーメッセージを生成します。
 
 ```none
-The credit card number field is required when payment type is credit card.
+The credit card number field is required when payment type is クレジットカード.
 ```
 
 <a name="available-validation-rules"></a>
-## Available Validation Rules
+## 利用可能なバリデーションルール
 
-Below is a list of all available validation rules and their function:
+以下は、利用可能なすべてのバリデーションルールとその機能のリストです。
 
 <style>
     .collection-method-list > p {
@@ -863,318 +899,332 @@ Below is a list of all available validation rules and their function:
 
 <div class="collection-method-list" markdown="1">
 
-[Accepted](#rule-accepted)
-[Accepted If](#rule-accepted-if)
-[Active URL](#rule-active-url)
-[After (Date)](#rule-after)
-[After Or Equal (Date)](#rule-after-or-equal)
-[Alpha](#rule-alpha)
-[Alpha Dash](#rule-alpha-dash)
-[Alpha Numeric](#rule-alpha-num)
-[Array](#rule-array)
-[Ascii](#rule-ascii)
-[Bail](#rule-bail)
-[Before (Date)](#rule-before)
-[Before Or Equal (Date)](#rule-before-or-equal)
-[Between](#rule-between)
-[Boolean](#rule-boolean)
-[Confirmed](#rule-confirmed)
-[Contains](#rule-contains)
-[Current Password](#rule-current-password)
-[Date](#rule-date)
-[Date Equals](#rule-date-equals)
-[Date Format](#rule-date-format)
-[Decimal](#rule-decimal)
-[Declined](#rule-declined)
-[Declined If](#rule-declined-if)
-[Different](#rule-different)
-[Digits](#rule-digits)
-[Digits Between](#rule-digits-between)
-[Dimensions (Image Files)](#rule-dimensions)
-[Distinct](#rule-distinct)
-[Doesnt Start With](#rule-doesnt-start-with)
-[Doesnt End With](#rule-doesnt-end-with)
-[Email](#rule-email)
-[Ends With](#rule-ends-with)
-[Enum](#rule-enum)
-[Exclude](#rule-exclude)
-[Exclude If](#rule-exclude-if)
-[Exclude Unless](#rule-exclude-unless)
-[Exclude With](#rule-exclude-with)
-[Exclude Without](#rule-exclude-without)
-[Exists (Database)](#rule-exists)
-[Extensions](#rule-extensions)
-[File](#rule-file)
-[Filled](#rule-filled)
-[Greater Than](#rule-gt)
-[Greater Than Or Equal](#rule-gte)
-[Hex Color](#rule-hex-color)
-[Image (File)](#rule-image)
-[In](#rule-in)
-[In Array](#rule-in-array)
-[Integer](#rule-integer)
-[IP Address](#rule-ip)
-[JSON](#rule-json)
-[Less Than](#rule-lt)
-[Less Than Or Equal](#rule-lte)
-[List](#rule-list)
-[Lowercase](#rule-lowercase)
-[MAC Address](#rule-mac)
-[Max](#rule-max)
-[Max Digits](#rule-max-digits)
-[MIME Types](#rule-mimetypes)
-[MIME Type By File Extension](#rule-mimes)
-[Min](#rule-min)
-[Min Digits](#rule-min-digits)
-[Missing](#rule-missing)
-[Missing If](#rule-missing-if)
-[Missing Unless](#rule-missing-unless)
-[Missing With](#rule-missing-with)
-[Missing With All](#rule-missing-with-all)
-[Multiple Of](#rule-multiple-of)
-[Not In](#rule-not-in)
-[Not Regex](#rule-not-regex)
-[Nullable](#rule-nullable)
-[Numeric](#rule-numeric)
-[Present](#rule-present)
-[Present If](#rule-present-if)
-[Present Unless](#rule-present-unless)
-[Present With](#rule-present-with)
-[Present With All](#rule-present-with-all)
-[Prohibited](#rule-prohibited)
-[Prohibited If](#rule-prohibited-if)
-[Prohibited Unless](#rule-prohibited-unless)
-[Prohibits](#rule-prohibits)
-[Regular Expression](#rule-regex)
-[Required](#rule-required)
-[Required If](#rule-required-if)
-[Required If Accepted](#rule-required-if-accepted)
-[Required If Declined](#rule-required-if-declined)
-[Required Unless](#rule-required-unless)
-[Required With](#rule-required-with)
-[Required With All](#rule-required-with-all)
-[Required Without](#rule-required-without)
-[Required Without All](#rule-required-without-all)
-[Required Array Keys](#rule-required-array-keys)
-[Same](#rule-same)
-[Size](#rule-size)
-[Sometimes](#validating-when-present)
-[Starts With](#rule-starts-with)
-[String](#rule-string)
-[Timezone](#rule-timezone)
-[Unique (Database)](#rule-unique)
-[Uppercase](#rule-uppercase)
-[URL](#rule-url)
-[ULID](#rule-ulid)
+# 検証ルール
+
+[Accepted](#rule-accepted)  
+[Accepted If](#rule-accepted-if)  
+[Active URL](#rule-active-url)  
+[After (Date)](#rule-after)  
+[After Or Equal (Date)](#rule-after-or-equal)  
+[Alpha](#rule-alpha)  
+[Alpha Dash](#rule-alpha-dash)  
+[Alpha Numeric](#rule-alpha-num)  
+[Array](#rule-array)  
+[Ascii](#rule-ascii)  
+[Bail](#rule-bail)  
+[Before (Date)](#rule-before)  
+[Before Or Equal (Date)](#rule-before-or-equal)  
+[Between](#rule-between)  
+[Boolean](#rule-boolean)  
+[Confirmed](#rule-confirmed)  
+[Contains](#rule-contains)  
+[Current Password](#rule-current-password)  
+[Date](#rule-date)  
+[Date Equals](#rule-date-equals)  
+[Date Format](#rule-date-format)  
+[Decimal](#rule-decimal)  
+[Declined](#rule-declined)  
+[Declined If](#rule-declined-if)  
+[Different](#rule-different)  
+[Digits](#rule-digits)  
+[Digits Between](#rule-digits-between)  
+[Dimensions (Image Files)](#rule-dimensions)  
+[Distinct](#rule-distinct)  
+[Doesnt Start With](#rule-doesnt-start-with)  
+[Doesnt End With](#rule-doesnt-end-with)  
+[Email](#rule-email)  
+[Ends With](#rule-ends-with)  
+[Enum](#rule-enum)  
+[Exclude](#rule-exclude)  
+[Exclude If](#rule-exclude-if)  
+[Exclude Unless](#rule-exclude-unless)  
+[Exclude With](#rule-exclude-with)  
+[Exclude Without](#rule-exclude-without)  
+[Exists (Database)](#rule-exists)  
+[Extensions](#rule-extensions)  
+[File](#rule-file)  
+[Filled](#rule-filled)  
+[Greater Than](#rule-gt)  
+[Greater Than Or Equal](#rule-gte)  
+[Hex Color](#rule-hex-color)  
+[Image (File)](#rule-image)  
+[In](#rule-in)  
+[In Array](#rule-in-array)  
+[Integer](#rule-integer)  
+[IP Address](#rule-ip)  
+[JSON](#rule-json)  
+[Less Than](#rule-lt)  
+[Less Than Or Equal](#rule-lte)  
+[List](#rule-list)  
+[Lowercase](#rule-lowercase)  
+[MAC Address](#rule-mac)  
+[Max](#rule-max)  
+[Max Digits](#rule-max-digits)  
+[MIME Types](#rule-mimetypes)  
+[MIME Type By File Extension](#rule-mimes)  
+[Min](#rule-min)  
+[Min Digits](#rule-min-digits)  
+[Missing](#rule-missing)  
+[Missing If](#rule-missing-if)  
+[Missing Unless](#rule-missing-unless)  
+[Missing With](#rule-missing-with)  
+[Missing With All](#rule-missing-with-all)  
+[Multiple Of](#rule-multiple-of)  
+[Not In](#rule-not-in)  
+[Not Regex](#rule-not-regex)  
+[Nullable](#rule-nullable)  
+[Numeric](#rule-numeric)  
+[Present](#rule-present)  
+[Present If](#rule-present-if)  
+[Present Unless](#rule-present-unless)  
+[Present With](#rule-present-with)  
+[Present With All](#rule-present-with-all)  
+[Prohibited](#rule-prohibited)  
+[Prohibited If](#rule-prohibited-if)  
+[Prohibited Unless](#rule-prohibited-unless)  
+[Prohibits](#rule-prohibits)  
+[Regular Expression](#rule-regex)  
+[Required](#rule-required)  
+[Required If](#rule-required-if)  
+[Required If Accepted](#rule-required-if-accepted)  
+[Required If Declined](#rule-required-if-declined)  
+[Required Unless](#rule-required-unless)  
+[Required With](#rule-required-with)  
+[Required With All](#rule-required-with-all)  
+[Required Without](#rule-required-without)  
+[Required Without All](#rule-required-without-all)  
+[Required Array Keys](#rule-required-array-keys)  
+[Same](#rule-same)  
+[Size](#rule-size)  
+[Sometimes](#validating-when-present)  
+[Starts With](#rule-starts-with)  
+[String](#rule-string)  
+[Timezone](#rule-timezone)  
+[Unique (Database)](#rule-unique)  
+[Uppercase](#rule-uppercase)  
+[URL](#rule-url)  
+[ULID](#rule-ulid)  
 [UUID](#rule-uuid)
 
 </div>
 
 <a name="rule-accepted"></a>
-#### accepted
+### accepted
 
-The field under validation must be `"yes"`, `"on"`, `1`, `"1"`, `true`, or `"true"`. This is useful for validating "Terms of Service" acceptance or similar fields.
+検証中のフィールドは `"yes"`、`"on"`、`1`、`"1"`、`true`、または `"true"` でなければなりません。これは「利用規約」の同意などのフィールドの検証に便利です。
 
 <a name="rule-accepted-if"></a>
-#### accepted_if:anotherfield,value,...
+### accepted_if:anotherfield,value,...
 
-The field under validation must be `"yes"`, `"on"`, `1`, `"1"`, `true`, or `"true"` if another field under validation is equal to a specified value. This is useful for validating "Terms of Service" acceptance or similar fields.
+検証中のフィールドは、別のフィールドが指定された値と等しい場合に `"yes"`、`"on"`、`1`、`"1"`、`true`、または `"true"` でなければなりません。これは「利用規約」の同意などのフィールドの検証に便利です。
 
 <a name="rule-active-url"></a>
-#### active_url
+### active_url
 
-The field under validation must have a valid A or AAAA record according to the `dns_get_record` PHP function. The hostname of the provided URL is extracted using the `parse_url` PHP function before being passed to `dns_get_record`.
+検証中のフィールドは、`dns_get_record` PHP 関数に従って有効な A または AAAA レコードを持っている必要があります。提供された URL のホスト名は、`parse_url` PHP 関数を使用して抽出され、`dns_get_record` に渡されます。
 
 <a name="rule-after"></a>
-#### after:_date_
+### after:_date_
 
-The field under validation must be a value after a given date. The dates will be passed into the `strtotime` PHP function in order to be converted to a valid `DateTime` instance:
+検証中のフィールドは、指定された日付より後の値でなければなりません。日付は `strtotime` PHP 関数に渡され、有効な `DateTime` インスタンスに変換されます。
 
-    'start_date' => 'required|date|after:tomorrow'
+```php
+'start_date' => 'required|date|after:tomorrow'
+```
 
-Instead of passing a date string to be evaluated by `strtotime`, you may specify another field to compare against the date:
+`strtotime` で評価される日付文字列の代わりに、日付と比較する別のフィールドを指定することもできます。
 
-    'finish_date' => 'required|date|after:start_date'
+```php
+'finish_date' => 'required|date|after:start_date'
+```
 
 <a name="rule-after-or-equal"></a>
-#### after\_or\_equal:_date_
+### after\_or\_equal:_date_
 
-The field under validation must be a value after or equal to the given date. For more information, see the [after](#rule-after) rule.
+検証中のフィールドは、指定された日付と等しいかそれより後の値でなければなりません。詳細については、[after](#rule-after) ルールを参照してください。
 
 <a name="rule-alpha"></a>
-#### alpha
+### alpha
 
-The field under validation must be entirely Unicode alphabetic characters contained in [`\p{L}`](https://util.unicode.org/UnicodeJsps/list-unicodeset.jsp?a=%5B%3AL%3A%5D&g=&i=) and [`\p{M}`](https://util.unicode.org/UnicodeJsps/list-unicodeset.jsp?a=%5B%3AM%3A%5D&g=&i=).
+検証中のフィールドは、[`\p{L}`](https://util.unicode.org/UnicodeJsps/list-unicodeset.jsp?a=%5B%3AL%3A%5D&g=&i=) および [`\p{M}`](https://util.unicode.org/UnicodeJsps/list-unicodeset.jsp?a=%5B%3AM%3A%5D&g=&i=) に含まれる Unicode のアルファベット文字でなければなりません。
 
-To restrict this validation rule to characters in the ASCII range (`a-z` and `A-Z`), you may provide the `ascii` option to the validation rule:
+この検証ルールを ASCII 範囲 (`a-z` および `A-Z`) の文字に制限するには、検証ルールに `ascii` オプションを指定できます。
 
 ```php
 'username' => 'alpha:ascii',
 ```
 
 <a name="rule-alpha-dash"></a>
-#### alpha_dash
+### alpha_dash
 
-The field under validation must be entirely Unicode alpha-numeric characters contained in [`\p{L}`](https://util.unicode.org/UnicodeJsps/list-unicodeset.jsp?a=%5B%3AL%3A%5D&g=&i=), [`\p{M}`](https://util.unicode.org/UnicodeJsps/list-unicodeset.jsp?a=%5B%3AM%3A%5D&g=&i=), [`\p{N}`](https://util.unicode.org/UnicodeJsps/list-unicodeset.jsp?a=%5B%3AN%3A%5D&g=&i=), as well as ASCII dashes (`-`) and ASCII underscores (`_`).
+検証中のフィールドは、[`\p{L}`](https://util.unicode.org/UnicodeJsps/list-unicodeset.jsp?a=%5B%3AL%3A%5D&g=&i=)、[`\p{M}`](https://util.unicode.org/UnicodeJsps/list-unicodeset.jsp?a=%5B%3AM%3A%5D&g=&i=)、[`\p{N}`](https://util.unicode.org/UnicodeJsps/list-unicodeset.jsp?a=%5B%3AN%3A%5D&g=&i=) に含まれる Unicode のアルファベット数字文字、および ASCII のダッシュ (`-`) とアンダースコア (`_`) でなければなりません。
 
-To restrict this validation rule to characters in the ASCII range (`a-z` and `A-Z`), you may provide the `ascii` option to the validation rule:
+この検証ルールを ASCII 範囲 (`a-z` および `A-Z`) の文字に制限するには、検証ルールに `ascii` オプションを指定できます。
 
 ```php
 'username' => 'alpha_dash:ascii',
 ```
 
 <a name="rule-alpha-num"></a>
-#### alpha_num
+### alpha_num
 
-The field under validation must be entirely Unicode alpha-numeric characters contained in [`\p{L}`](https://util.unicode.org/UnicodeJsps/list-unicodeset.jsp?a=%5B%3AL%3A%5D&g=&i=), [`\p{M}`](https://util.unicode.org/UnicodeJsps/list-unicodeset.jsp?a=%5B%3AM%3A%5D&g=&i=), and [`\p{N}`](https://util.unicode.org/UnicodeJsps/list-unicodeset.jsp?a=%5B%3AN%3A%5D&g=&i=).
+検証中のフィールドは、[`\p{L}`](https://util.unicode.org/UnicodeJsps/list-unicodeset.jsp?a=%5B%3AL%3A%5D&g=&i=)、[`\p{M}`](https://util.unicode.org/UnicodeJsps/list-unicodeset.jsp?a=%5B%3AM%3A%5D&g=&i=)、および [`\p{N}`](https://util.unicode.org/UnicodeJsps/list-unicodeset.jsp?a=%5B%3AN%3A%5D&g=&i=) に含まれる Unicode のアルファベット数字文字でなければなりません。
 
-To restrict this validation rule to characters in the ASCII range (`a-z` and `A-Z`), you may provide the `ascii` option to the validation rule:
+この検証ルールを ASCII 範囲 (`a-z` および `A-Z`) の文字に制限するには、検証ルールに `ascii` オプションを指定できます。
 
 ```php
 'username' => 'alpha_num:ascii',
 ```
 
 <a name="rule-array"></a>
-#### array
+### array
 
-The field under validation must be a PHP `array`.
+検証中のフィールドは、PHP の `array` でなければなりません。
 
-When additional values are provided to the `array` rule, each key in the input array must be present within the list of values provided to the rule. In the following example, the `admin` key in the input array is invalid since it is not contained in the list of values provided to the `array` rule:
+`array` ルールに追加の値が提供されると、入力配列の各キーは、ルールに提供される値のリスト内に存在しなければなりません。以下の例では、入力配列の `admin` キーは、`array` ルールに提供される値のリストに含まれていないため無効です。
 
-    use Illuminate\Support\Facades\Validator;
+```php
+use Illuminate\Support\Facades\Validator;
 
-    $input = [
-        'user' => [
-            'name' => 'Taylor Otwell',
-            'username' => 'taylorotwell',
-            'admin' => true,
-        ],
-    ];
+$input = [
+    'user' => [
+        'name' => 'Taylor Otwell',
+        'username' => 'taylorotwell',
+        'admin' => true,
+    ],
+];
 
-    Validator::make($input, [
-        'user' => 'array:name,username',
-    ]);
+Validator::make($input, [
+    'user' => 'array:name,username',
+]);
+```
 
-In general, you should always specify the array keys that are allowed to be present within your array.
+一般的に、配列内に存在することが許可される配列キーを常に指定する必要があります。
 
 <a name="rule-ascii"></a>
-#### ascii
+### ascii
 
-The field under validation must be entirely 7-bit ASCII characters.
+検証中のフィールドは、完全に 7 ビット ASCII 文字でなければなりません。
 
 <a name="rule-bail"></a>
-#### bail
+### bail
 
-Stop running validation rules for the field after the first validation failure.
+フィールドの最初の検証失敗後に、フィールドの検証ルールの実行を停止します。
 
-While the `bail` rule will only stop validating a specific field when it encounters a validation failure, the `stopOnFirstFailure` method will inform the validator that it should stop validating all attributes once a single validation failure has occurred:
+`bail` ルールは、検証失敗が発生した場合に特定のフィールドの検証のみを停止しますが、`stopOnFirstFailure` メソッドは、単一の検証失敗が発生した場合にすべての属性の検証を停止するようにバリデータに指示します。
 
-    if ($validator->stopOnFirstFailure()->fails()) {
-        // ...
-    }
+```php
+if ($validator->stopOnFirstFailure()->fails()) {
+    // ...
+}
+```
 
 <a name="rule-before"></a>
-#### before:_date_
+### before:_date_
 
-The field under validation must be a value preceding the given date. The dates will be passed into the PHP `strtotime` function in order to be converted into a valid `DateTime` instance. In addition, like the [`after`](#rule-after) rule, the name of another field under validation may be supplied as the value of `date`.
+検証中のフィールドは、指定された日付より前の値でなければなりません。日付は PHP の `strtotime` 関数に渡され、有効な `DateTime` インスタンスに変換されます。さらに、[`after`](#rule-after) ルールと同様に、検証中の別のフィールドの名前を `date` の値として指定できます。
 
 <a name="rule-before-or-equal"></a>
-#### before\_or\_equal:_date_
+### before\_or\_equal:_date_
 
-The field under validation must be a value preceding or equal to the given date. The dates will be passed into the PHP `strtotime` function in order to be converted into a valid `DateTime` instance. In addition, like the [`after`](#rule-after) rule, the name of another field under validation may be supplied as the value of `date`.
+検証中のフィールドは、指定された日付と等しいかそれより前の値でなければなりません。日付は PHP の `strtotime` 関数に渡され、有効な `DateTime` インスタンスに変換されます。さらに、[`after`](#rule-after) ルールと同様に、検証中の別のフィールドの名前を `date` の値として指定できます。
 
 <a name="rule-between"></a>
-#### between:_min_,_max_
+### between:_min_,_max_
 
-The field under validation must have a size between the given _min_ and _max_ (inclusive). Strings, numerics, arrays, and files are evaluated in the same fashion as the [`size`](#rule-size) rule.
+検証中のフィールドは、指定された _min_ と _max_ の間のサイズでなければなりません（両端を含む）。文字列、数値、配列、ファイルは、[`size`](#rule-size) ルールと同じ方法で評価されます。
 
 <a name="rule-boolean"></a>
-#### boolean
+### boolean
 
-The field under validation must be able to be cast as a boolean. Accepted input are `true`, `false`, `1`, `0`, `"1"`, and `"0"`.
+検証中のフィールドは、ブール値にキャスト可能でなければなりません。受け入れられる入力は `true`、`false`、`1`、`0`、`"1"`、および `"0"` です。
 
 <a name="rule-confirmed"></a>
-#### confirmed
+### confirmed
 
-The field under validation must have a matching field of `{field}_confirmation`. For example, if the field under validation is `password`, a matching `password_confirmation` field must be present in the input.
+検証中のフィールドは、`{field}_confirmation` と一致するフィールドを持っている必要があります。たとえば、検証中のフィールドが `password` の場合、`password_confirmation` フィールドが入力に存在しなければなりません。
 
 <a name="rule-contains"></a>
-#### contains:_foo_,_bar_,...
+### contains:_foo_,_bar_,...
 
-The field under validation must be an array that contains all of the given parameter values.
+検証中のフィールドは、すべての指定されたパラメータ値を含む配列でなければなりません。
 
 <a name="rule-current-password"></a>
-#### current_password
+### current_password
 
-The field under validation must match the authenticated user's password. You may specify an [authentication guard](/docs/{{version}}/authentication) using the rule's first parameter:
+検証中のフィールドは、認証されたユーザーのパスワードと一致しなければなりません。ルールの最初のパラメータを使用して、[認証ガード](authentication.md) を指定できます。
 
-    'password' => 'current_password:api'
+```php
+'password' => 'current_password:api'
+```
 
 <a name="rule-date"></a>
-#### date
+### date
 
-The field under validation must be a valid, non-relative date according to the `strtotime` PHP function.
+検証中のフィールドは、`strtotime` PHP 関数に従って有効な非相対日付でなければなりません。
 
 <a name="rule-date-equals"></a>
-#### date_equals:_date_
+### date_equals:_date_
 
-The field under validation must be equal to the given date. The dates will be passed into the PHP `strtotime` function in order to be converted into a valid `DateTime` instance.
+検証中のフィールドは、指定された日付と等しい値でなければなりません。日付は `strtotime` PHP 関数に渡され、有効な `DateTime` インスタンスに変換されます。
+
+検証対象のフィールドは、指定された日付と等しくなければなりません。日付は、有効な `DateTime` インスタンスに変換するために、PHP の `strtotime` 関数に渡されます。
 
 <a name="rule-date-format"></a>
 #### date_format:_format_,...
 
-The field under validation must match one of the given _formats_. You should use **either** `date` or `date_format` when validating a field, not both. This validation rule supports all formats supported by PHP's [DateTime](https://www.php.net/manual/en/class.datetime.php) class.
+検証対象のフィールドは、指定されたフォーマットのいずれかに一致しなければなりません。フィールドを検証する際には、`date` または `date_format` のいずれかを使用する必要があり、両方を使用することはできません。この検証ルールは、PHP の [DateTime](https://www.php.net/manual/en/class.datetime.php) クラスがサポートするすべてのフォーマットをサポートしています。
 
 <a name="rule-decimal"></a>
 #### decimal:_min_,_max_
 
-The field under validation must be numeric and must contain the specified number of decimal places:
+検証対象のフィールドは数値であり、指定された小数点以下の桁数を含まなければなりません:
 
-    // Must have exactly two decimal places (9.99)...
+    // 小数点以下2桁でなければならない (9.99)...
     'price' => 'decimal:2'
 
-    // Must have between 2 and 4 decimal places...
+    // 小数点以下2から4桁の間でなければならない...
     'price' => 'decimal:2,4'
 
 <a name="rule-declined"></a>
 #### declined
 
-The field under validation must be `"no"`, `"off"`, `0`, `"0"`, `false`, or `"false"`.
+検証対象のフィールドは `"no"`、`"off"`、`0`、`"0"`、`false`、または `"false"` でなければなりません。
 
 <a name="rule-declined-if"></a>
 #### declined_if:anotherfield,value,...
 
-The field under validation must be `"no"`, `"off"`, `0`, `"0"`, `false`, or `"false"` if another field under validation is equal to a specified value.
+検証対象のフィールドは、別のフィールドが指定された値と等しい場合に `"no"`、`"off"`、`0`、`"0"`、`false`、または `"false"` でなければなりません。
 
 <a name="rule-different"></a>
 #### different:_field_
 
-The field under validation must have a different value than _field_.
+検証対象のフィールドは、_field_ と異なる値でなければなりません。
 
 <a name="rule-digits"></a>
 #### digits:_value_
 
-The integer under validation must have an exact length of _value_.
+検証対象の整数は、_value_ の正確な長さを持たなければなりません。
 
 <a name="rule-digits-between"></a>
 #### digits_between:_min_,_max_
 
-The integer validation must have a length between the given _min_ and _max_.
+検証対象の整数は、指定された _min_ と _max_ の間の長さを持たなければなりません。
 
 <a name="rule-dimensions"></a>
 #### dimensions
 
-The file under validation must be an image meeting the dimension constraints as specified by the rule's parameters:
+検証対象のファイルは、ルールのパラメータで指定された寸法制約を満たす画像でなければなりません:
 
     'avatar' => 'dimensions:min_width=100,min_height=200'
 
-Available constraints are: _min\_width_, _max\_width_, _min\_height_, _max\_height_, _width_, _height_, _ratio_.
+利用可能な制約は: _min\_width_、_max\_width_、_min\_height_、_max\_height_、_width_、_height_、_ratio_ です。
 
-A _ratio_ constraint should be represented as width divided by height. This can be specified either by a fraction like `3/2` or a float like `1.5`:
+_ratio_ 制約は、幅を高さで割ったものとして表されるべきです。これは `3/2` のような分数または `1.5` のような浮動小数点数で指定できます:
 
     'avatar' => 'dimensions:ratio=3/2'
 
-Since this rule requires several arguments, you may use the `Rule::dimensions` method to fluently construct the rule:
+このルールは複数の引数を必要とするため、`Rule::dimensions` メソッドを使用してルールを流暢に構築することができます:
 
     use Illuminate\Support\Facades\Validator;
     use Illuminate\Validation\Rule;
@@ -1189,36 +1239,36 @@ Since this rule requires several arguments, you may use the `Rule::dimensions` m
 <a name="rule-distinct"></a>
 #### distinct
 
-When validating arrays, the field under validation must not have any duplicate values:
+配列を検証する際、検証対象のフィールドは重複する値を持ってはなりません:
 
     'foo.*.id' => 'distinct'
 
-Distinct uses loose variable comparisons by default. To use strict comparisons, you may add the `strict` parameter to your validation rule definition:
+Distinct はデフォルトで緩い変数比較を使用します。厳密な比較を使用するには、検証ルール定義に `strict` パラメータを追加できます:
 
     'foo.*.id' => 'distinct:strict'
 
-You may add `ignore_case` to the validation rule's arguments to make the rule ignore capitalization differences:
+検証ルールの引数に `ignore_case` を追加することで、ルールが大文字と小文字の違いを無視するようにできます:
 
     'foo.*.id' => 'distinct:ignore_case'
 
 <a name="rule-doesnt-start-with"></a>
 #### doesnt_start_with:_foo_,_bar_,...
 
-The field under validation must not start with one of the given values.
+検証対象のフィールドは、指定された値のいずれかで始まってはなりません。
 
 <a name="rule-doesnt-end-with"></a>
 #### doesnt_end_with:_foo_,_bar_,...
 
-The field under validation must not end with one of the given values.
+検証対象のフィールドは、指定された値のいずれかで終わってはなりません。
 
 <a name="rule-email"></a>
 #### email
 
-The field under validation must be formatted as an email address. This validation rule utilizes the [`egulias/email-validator`](https://github.com/egulias/EmailValidator) package for validating the email address. By default, the `RFCValidation` validator is applied, but you can apply other validation styles as well:
+検証対象のフィールドは、メールアドレスとしてフォーマットされていなければなりません。この検証ルールは、メールアドレスの検証に [`egulias/email-validator`](https://github.com/egulias/EmailValidator) パッケージを利用します。デフォルトでは `RFCValidation` バリデータが適用されますが、他の検証スタイルも適用できます:
 
     'email' => 'email:rfc,dns'
 
-The example above will apply the `RFCValidation` and `DNSCheckValidation` validations. Here's a full list of validation styles you can apply:
+上記の例では、`RFCValidation` と `DNSCheckValidation` の検証が適用されます。適用可能な検証スタイルの完全なリストは以下の通りです:
 
 <div class="content-list" markdown="1">
 
@@ -1231,20 +1281,20 @@ The example above will apply the `RFCValidation` and `DNSCheckValidation` valida
 
 </div>
 
-The `filter` validator, which uses PHP's `filter_var` function, ships with Laravel and was Laravel's default email validation behavior prior to Laravel version 5.8.
+`filter` バリデータは、PHP の `filter_var` 関数を使用し、Laravel 5.8 以前のデフォルトのメール検証動作でした。
 
-> [!WARNING]  
-> The `dns` and `spoof` validators require the PHP `intl` extension.
+> WARNING:  
+> `dns` および `spoof` バリデータには、PHP の `intl` 拡張が必要です。
 
 <a name="rule-ends-with"></a>
 #### ends_with:_foo_,_bar_,...
 
-The field under validation must end with one of the given values.
+検証対象のフィールドは、指定された値のいずれかで終わらなければなりません。
 
 <a name="rule-enum"></a>
 #### enum
 
-The `Enum` rule is a class based rule that validates whether the field under validation contains a valid enum value. The `Enum` rule accepts the name of the enum as its only constructor argument. When validating primitive values, a backed Enum should be provided to the `Enum` rule:
+`Enum` ルールは、クラスベースのルールで、検証対象のフィールドが有効な enum 値を含んでいるかどうかを検証します。`Enum` ルールは、enum の名前を唯一のコンストラクタ引数として受け取ります。プリミティブ値を検証する場合、`Enum` ルールには backed Enum を提供する必要があります:
 
     use App\Enums\ServerStatus;
     use Illuminate\Validation\Rule;
@@ -1253,7 +1303,7 @@ The `Enum` rule is a class based rule that validates whether the field under val
         'status' => [Rule::enum(ServerStatus::class)],
     ]);
 
-The `Enum` rule's `only` and `except` methods may be used to limit which enum cases should be considered valid:
+`Enum` ルールの `only` および `except` メソッドを使用して、どの enum ケースを有効と見なすかを制限できます:
 
     Rule::enum(ServerStatus::class)
         ->only([ServerStatus::Pending, ServerStatus::Active]);
@@ -1261,7 +1311,7 @@ The `Enum` rule's `only` and `except` methods may be used to limit which enum ca
     Rule::enum(ServerStatus::class)
         ->except([ServerStatus::Pending, ServerStatus::Active]);
 
-The `when` method may be used to conditionally modify the `Enum` rule:
+`when` メソッドを使用して、`Enum` ルールを条件付きで変更できます:
 
 ```php
 use Illuminate\Support\Facades\Auth;
@@ -1278,14 +1328,14 @@ Rule::enum(ServerStatus::class)
 <a name="rule-exclude"></a>
 #### exclude
 
-The field under validation will be excluded from the request data returned by the `validate` and `validated` methods.
+検証対象のフィールドは、`validate` および `validated` メソッドによって返されるリクエストデータから除外されます。
 
 <a name="rule-exclude-if"></a>
 #### exclude_if:_anotherfield_,_value_
 
-The field under validation will be excluded from the request data returned by the `validate` and `validated` methods if the _anotherfield_ field is equal to _value_.
+検証対象のフィールドは、_anotherfield_ フィールドが _value_ と等しい場合、`validate` および `validated` メソッドによって返されるリクエストデータから除外されます。
 
-If complex conditional exclusion logic is required, you may utilize the `Rule::excludeIf` method. This method accepts a boolean or a closure. When given a closure, the closure should return `true` or `false` to indicate if the field under validation should be excluded:
+複雑な条件付き除外ロジックが必要な場合、`Rule::excludeIf` メソッドを使用できます。このメソッドは、ブール値またはクロージャを受け取ります。クロージャが与えられた場合、クロージャは検証対象のフィールドを除外するかどうかを示すために `true` または `false` を返すべきです:
 
     use Illuminate\Support\Facades\Validator;
     use Illuminate\Validation\Rule;
@@ -1301,46 +1351,46 @@ If complex conditional exclusion logic is required, you may utilize the `Rule::e
 <a name="rule-exclude-unless"></a>
 #### exclude_unless:_anotherfield_,_value_
 
-The field under validation will be excluded from the request data returned by the `validate` and `validated` methods unless _anotherfield_'s field is equal to _value_. If _value_ is `null` (`exclude_unless:name,null`), the field under validation will be excluded unless the comparison field is `null` or the comparison field is missing from the request data.
+検証対象のフィールドは、_anotherfield_ フィールドが _value_ と等しくない限り、`validate` および `validated` メソッドによって返されるリクエストデータから除外されます。_value_ が `null` (`exclude_unless:name,null`) の場合、検証対象のフィールドは、比較フィールドが `null` であるか、比較フィールドがリクエストデータに存在しない限り、除外されます。
 
 <a name="rule-exclude-with"></a>
 #### exclude_with:_anotherfield_
 
-The field under validation will be excluded from the request data returned by the `validate` and `validated` methods if the _anotherfield_ field is present.
+検証対象のフィールドは、_anotherfield_ フィールドが存在する場合、`validate` および `validated` メソッドによって返されるリクエストデータから除外されます。
 
 <a name="rule-exclude-without"></a>
 #### exclude_without:_anotherfield_
 
-The field under validation will be excluded from the request data returned by the `validate` and `validated` methods if the _anotherfield_ field is not present.
+検証対象のフィールドは、_anotherfield_ フィールドが存在しない場合、`validate` および `validated` メソッドによって返されるリクエストデータから除外されます。
 
 <a name="rule-exists"></a>
 #### exists:_table_,_column_
 
-The field under validation must exist in a given database table.
+検証対象のフィールドは、指定されたデータベーステーブルに存在しなければなりません。
 
 <a name="basic-usage-of-exists-rule"></a>
-#### Basic Usage of Exists Rule
+#### Exists ルールの基本的な使用法
 
     'state' => 'exists:states'
 
-If the `column` option is not specified, the field name will be used. So, in this case, the rule will validate that the `states` database table contains a record with a `state` column value matching the request's `state` attribute value.
+`column` オプションが指定されていない場合、フィールド名が使用されます。したがって、この場合、ルールは `states` データベーステーブルに、リクエストの `state` 属性値に一致する `state` 列の値を持つレコードが存在することを検証します。
 
 <a name="specifying-a-custom-column-name"></a>
-#### Specifying a Custom Column Name
+#### カスタム列名の指定
 
-You may explicitly specify the database column name that should be used by the validation rule by placing it after the database table name:
+検証ルールによって使用されるべきデータベース列名を明示的に指定するには、データベーステーブル名の後に列名を配置します:
 
     'state' => 'exists:states,abbreviation'
 
-Occasionally, you may need to specify a specific database connection to be used for the `exists` query. You can accomplish this by prepending the connection name to the table name:
+時には、`exists` クエリに使用される特定のデータベース接続を指定する必要があるかもしれません。これは、接続名をテーブル名の前に付けることで実現できます:
 
     'email' => 'exists:connection.staff,email'
 
-Instead of specifying the table name directly, you may specify the Eloquent model which should be used to determine the table name:
+テーブル名を直接指定する代わりに、テーブル名を決定するために使用される Eloquent モデルを指定することもできます:
 
     'user_id' => 'exists:App\Models\User,id'
 
-If you would like to customize the query executed by the validation rule, you may use the `Rule` class to fluently define the rule. In this example, we'll also specify the validation rules as an array instead of using the `|` character to delimit them:
+検証ルールによって実行されるクエリをカスタマイズしたい場合、`Rule` クラスを使用してルールを流暢に定義できます。この例では、検証ルールを `|` 文字で区切る代わりに配列として指定します:
 
     use Illuminate\Database\Query\Builder;
     use Illuminate\Support\Facades\Validator;
@@ -1355,54 +1405,54 @@ If you would like to customize the query executed by the validation rule, you ma
         ],
     ]);
 
-You may explicitly specify the database column name that should be used by the `exists` rule generated by the `Rule::exists` method by providing the column name as the second argument to the `exists` method:
+`Rule::exists` メソッドによって生成される `exists` ルールによって使用されるべきデータベース列名を明示的に指定するには、`exists` メソッドの第2引数として列名を提供します:
 
     'state' => Rule::exists('states', 'abbreviation'),
 
 <a name="rule-extensions"></a>
 #### extensions:_foo_,_bar_,...
 
-The file under validation must have a user-assigned extension corresponding to one of the listed extensions:
+検証対象のファイルは、リストされた拡張子のいずれかに対応するユーザーが割り当てた拡張子を持たなければなりません:
 
     'photo' => ['required', 'extensions:jpg,png'],
 
-> [!WARNING]  
-> You should never rely on validating a file by its user-assigned extension alone. This rule should typically always be used in combination with the [`mimes`](#rule-mimes) or [`mimetypes`](#rule-mimetypes) rules.
+> WARNING:  
+> ファイルの検証をユーザーが割り当てた拡張子のみに依存するべきではありません。このルールは通常、[`mimes`](#rule-mimes) または [`mimetypes`](#rule-mimetypes) ルールと組み合わせて使用する必要があります。
 
 <a name="rule-file"></a>
 #### file
 
-The field under validation must be a successfully uploaded file.
+検証中のフィールドは、正常にアップロードされたファイルでなければなりません。
 
 <a name="rule-filled"></a>
 #### filled
 
-The field under validation must not be empty when it is present.
+検証中のフィールドは、存在する場合に空であってはなりません。
 
 <a name="rule-gt"></a>
 #### gt:_field_
 
-The field under validation must be greater than the given _field_ or _value_. The two fields must be of the same type. Strings, numerics, arrays, and files are evaluated using the same conventions as the [`size`](#rule-size) rule.
+検証中のフィールドは、指定された _field_ または _value_ より大きくなければなりません。2つのフィールドは同じ型でなければなりません。文字列、数値、配列、ファイルは、[`size`](#rule-size) ルールと同じ規則を使用して評価されます。
 
 <a name="rule-gte"></a>
 #### gte:_field_
 
-The field under validation must be greater than or equal to the given _field_ or _value_. The two fields must be of the same type. Strings, numerics, arrays, and files are evaluated using the same conventions as the [`size`](#rule-size) rule.
+検証中のフィールドは、指定された _field_ または _value_ 以上でなければなりません。2つのフィールドは同じ型でなければなりません。文字列、数値、配列、ファイルは、[`size`](#rule-size) ルールと同じ規則を使用して評価されます。
 
 <a name="rule-hex-color"></a>
 #### hex_color
 
-The field under validation must contain a valid color value in [hexadecimal](https://developer.mozilla.org/en-US/docs/Web/CSS/hex-color) format.
+検証中のフィールドは、有効な [16進数](https://developer.mozilla.org/en-US/docs/Web/CSS/hex-color) 形式の色の値を含んでいなければなりません。
 
 <a name="rule-image"></a>
 #### image
 
-The file under validation must be an image (jpg, jpeg, png, bmp, gif, svg, or webp).
+検証中のファイルは、画像（jpg、jpeg、png、bmp、gif、svg、または webp）でなければなりません。
 
 <a name="rule-in"></a>
 #### in:_foo_,_bar_,...
 
-The field under validation must be included in the given list of values. Since this rule often requires you to `implode` an array, the `Rule::in` method may be used to fluently construct the rule:
+検証中のフィールドは、指定された値のリストに含まれていなければなりません。このルールはしばしば配列を `implode` する必要がありますが、`Rule::in` メソッドを使用してルールを流暢に構築することができます：
 
     use Illuminate\Support\Facades\Validator;
     use Illuminate\Validation\Rule;
@@ -1414,7 +1464,7 @@ The field under validation must be included in the given list of values. Since t
         ],
     ]);
 
-When the `in` rule is combined with the `array` rule, each value in the input array must be present within the list of values provided to the `in` rule. In the following example, the `LAS` airport code in the input array is invalid since it is not contained in the list of airports provided to the `in` rule:
+`in` ルールが `array` ルールと組み合わされると、入力配列内の各値は `in` ルールに提供された値のリスト内に存在しなければなりません。次の例では、入力配列内の `LAS` 空港コードは無効です。なぜなら、`in` ルールに提供された空港のリストに含まれていないからです：
 
     use Illuminate\Support\Facades\Validator;
     use Illuminate\Validation\Rule;
@@ -1434,140 +1484,140 @@ When the `in` rule is combined with the `array` rule, each value in the input ar
 <a name="rule-in-array"></a>
 #### in_array:_anotherfield_.*
 
-The field under validation must exist in _anotherfield_'s values.
+検証中のフィールドは、_anotherfield_ の値の中に存在しなければなりません。
 
 <a name="rule-integer"></a>
 #### integer
 
-The field under validation must be an integer.
+検証中のフィールドは整数でなければなりません。
 
-> [!WARNING]  
-> This validation rule does not verify that the input is of the "integer" variable type, only that the input is of a type accepted by PHP's `FILTER_VALIDATE_INT` rule. If you need to validate the input as being a number please use this rule in combination with [the `numeric` validation rule](#rule-numeric).
+> WARNING:  
+> この検証ルールは、入力が "integer" 変数型であることを検証しません。PHP の `FILTER_VALIDATE_INT` ルールで受け入れられる型であることのみを検証します。入力が数値であることを検証する場合は、このルールと [ `numeric` 検証ルール](#rule-numeric) を組み合わせて使用してください。
 
 <a name="rule-ip"></a>
 #### ip
 
-The field under validation must be an IP address.
+検証中のフィールドは、IP アドレスでなければなりません。
 
 <a name="ipv4"></a>
 #### ipv4
 
-The field under validation must be an IPv4 address.
+検証中のフィールドは、IPv4 アドレスでなければなりません。
 
 <a name="ipv6"></a>
 #### ipv6
 
-The field under validation must be an IPv6 address.
+検証中のフィールドは、IPv6 アドレスでなければなりません。
 
 <a name="rule-json"></a>
 #### json
 
-The field under validation must be a valid JSON string.
+検証中のフィールドは、有効な JSON 文字列でなければなりません。
 
 <a name="rule-lt"></a>
 #### lt:_field_
 
-The field under validation must be less than the given _field_. The two fields must be of the same type. Strings, numerics, arrays, and files are evaluated using the same conventions as the [`size`](#rule-size) rule.
+検証中のフィールドは、指定された _field_ より小さくなければなりません。2つのフィールドは同じ型でなければなりません。文字列、数値、配列、ファイルは、[`size`](#rule-size) ルールと同じ規則を使用して評価されます。
 
 <a name="rule-lte"></a>
 #### lte:_field_
 
-The field under validation must be less than or equal to the given _field_. The two fields must be of the same type. Strings, numerics, arrays, and files are evaluated using the same conventions as the [`size`](#rule-size) rule.
+検証中のフィールドは、指定された _field_ 以下でなければなりません。2つのフィールドは同じ型でなければなりません。文字列、数値、配列、ファイルは、[`size`](#rule-size) ルールと同じ規則を使用して評価されます。
 
 <a name="rule-lowercase"></a>
 #### lowercase
 
-The field under validation must be lowercase.
+検証中のフィールドは、小文字でなければなりません。
 
 <a name="rule-list"></a>
 #### list
 
-The field under validation must be an array that is a list. An array is considered a list if its keys consist of consecutive numbers from 0 to `count($array) - 1`.
+検証中のフィールドは、リストである配列でなければなりません。配列は、そのキーが 0 から `count($array) - 1` までの連続した数値で構成されている場合、リストと見なされます。
 
 <a name="rule-mac"></a>
 #### mac_address
 
-The field under validation must be a MAC address.
+検証中のフィールドは、MAC アドレスでなければなりません。
 
 <a name="rule-max"></a>
 #### max:_value_
 
-The field under validation must be less than or equal to a maximum _value_. Strings, numerics, arrays, and files are evaluated in the same fashion as the [`size`](#rule-size) rule.
+検証中のフィールドは、最大 _value_ 以下でなければなりません。文字列、数値、配列、ファイルは、[`size`](#rule-size) ルールと同じ方法で評価されます。
 
 <a name="rule-max-digits"></a>
 #### max_digits:_value_
 
-The integer under validation must have a maximum length of _value_.
+検証中の整数は、最大 _value_ の長さでなければなりません。
 
 <a name="rule-mimetypes"></a>
 #### mimetypes:_text/plain_,...
 
-The file under validation must match one of the given MIME types:
+検証中のファイルは、指定された MIME タイプのいずれかと一致しなければなりません：
 
     'video' => 'mimetypes:video/avi,video/mpeg,video/quicktime'
 
-To determine the MIME type of the uploaded file, the file's contents will be read and the framework will attempt to guess the MIME type, which may be different from the client's provided MIME type.
+アップロードされたファイルの MIME タイプを決定するために、ファイルの内容が読み取られ、フレームワークは MIME タイプを推測しようとします。これは、クライアントが提供した MIME タイプと異なる場合があります。
 
 <a name="rule-mimes"></a>
 #### mimes:_foo_,_bar_,...
 
-The file under validation must have a MIME type corresponding to one of the listed extensions:
+検証中のファイルは、リストされた拡張子のいずれかに対応する MIME タイプを持っていなければなりません：
 
     'photo' => 'mimes:jpg,bmp,png'
 
-Even though you only need to specify the extensions, this rule actually validates the MIME type of the file by reading the file's contents and guessing its MIME type. A full listing of MIME types and their corresponding extensions may be found at the following location:
+拡張子のみを指定する必要がありますが、このルールは実際にはファイルの内容を読み取り、その MIME タイプを推測することでファイルの MIME タイプを検証します。MIME タイプとそれに対応する拡張子の完全なリストは、次の場所で見つけることができます：
 
 [https://svn.apache.org/repos/asf/httpd/httpd/trunk/docs/conf/mime.types](https://svn.apache.org/repos/asf/httpd/httpd/trunk/docs/conf/mime.types)
 
 <a name="mime-types-and-extensions"></a>
-#### MIME Types and Extensions
+#### MIME タイプと拡張子
 
-This validation rule does not verify agreement between the MIME type and the extension the user assigned to the file. For example, the `mimes:png` validation rule would consider a file containing valid PNG content to be a valid PNG image, even if the file is named `photo.txt`. If you would like to validate the user-assigned extension of the file, you may use the [`extensions`](#rule-extensions) rule.
+この検証ルールは、MIME タイプとユーザーがファイルに割り当てた拡張子の一致を検証しません。たとえば、`mimes:png` 検証ルールは、有効な PNG コンテンツを含むファイルを有効な PNG 画像と見なします。たとえファイルが `photo.txt` という名前であってもです。ファイルのユーザー割り当て拡張子を検証したい場合は、[`extensions`](#rule-extensions) ルールを使用してください。
 
 <a name="rule-min"></a>
 #### min:_value_
 
-The field under validation must have a minimum _value_. Strings, numerics, arrays, and files are evaluated in the same fashion as the [`size`](#rule-size) rule.
+検証中のフィールドは、最小 _value_ を持っていなければなりません。文字列、数値、配列、ファイルは、[`size`](#rule-size) ルールと同じ方法で評価されます。
 
 <a name="rule-min-digits"></a>
 #### min_digits:_value_
 
-The integer under validation must have a minimum length of _value_.
+検証中の整数は、最小 _value_ の長さでなければなりません。
 
 <a name="rule-multiple-of"></a>
 #### multiple_of:_value_
 
-The field under validation must be a multiple of _value_.
+検証中のフィールドは、_value_ の倍数でなければなりません。
 
 <a name="rule-missing"></a>
 #### missing
 
-The field under validation must not be present in the input data.
+検証中のフィールドは、入力データに存在してはなりません。
 
 <a name="rule-missing-if"></a>
 #### missing_if:_anotherfield_,_value_,...
 
-The field under validation must not be present if the _anotherfield_ field is equal to any _value_.
+_anotherfield_ フィールドがいずれかの _value_ と等しい場合、検証中のフィールドは存在してはなりません。
 
 <a name="rule-missing-unless"></a>
 #### missing_unless:_anotherfield_,_value_
 
-The field under validation must not be present unless the _anotherfield_ field is equal to any _value_.
+_anotherfield_ フィールドがいずれかの _value_ と等しい場合を除き、検証中のフィールドは存在してはなりません。
 
 <a name="rule-missing-with"></a>
 #### missing_with:_foo_,_bar_,...
 
-The field under validation must not be present _only if_ any of the other specified fields are present.
+指定された他のフィールドのいずれかが存在する場合、検証中のフィールドは存在してはなりません。
 
 <a name="rule-missing-with-all"></a>
 #### missing_with_all:_foo_,_bar_,...
 
-The field under validation must not be present _only if_ all of the other specified fields are present.
+指定された他のすべてのフィールドが存在する場合、検証中のフィールドは存在してはなりません。
 
 <a name="rule-not-in"></a>
 #### not_in:_foo_,_bar_,...
 
-The field under validation must not be included in the given list of values. The `Rule::notIn` method may be used to fluently construct the rule:
+検証中のフィールドは、指定された値のリストに含まれてはなりません。`Rule::notIn` メソッドを使用してルールを流暢に構築することができます：
 
     use Illuminate\Validation\Rule;
 
@@ -1581,313 +1631,337 @@ The field under validation must not be included in the given list of values. The
 <a name="rule-not-regex"></a>
 #### not_regex:_pattern_
 
-The field under validation must not match the given regular expression.
+検証中のフィールドは、指定された正規表現に一致してはなりません。
 
-Internally, this rule uses the PHP `preg_match` function. The pattern specified should obey the same formatting required by `preg_match` and thus also include valid delimiters. For example: `'email' => 'not_regex:/^.+$/i'`.
+内部的には、このルールは PHP の `preg_match` 関数を使用します。指定されたパターンは、`preg_match` で必要とされるのと同じ形式に従う必要があり、有効な区切り文字を含める必要があります。例：`'email' => 'not_regex:/^.+$/i'`。
 
-> [!WARNING]  
-> When using the `regex` / `not_regex` patterns, it may be necessary to specify your validation rules using an array instead of using `|` delimiters, especially if the regular expression contains a `|` character.
+> WARNING:  
+> `regex` / `not_regex` パターンを使用する場合、特に正規表現に `|` 文字が含まれている場合、検証ルールを `|` 区切り文字ではなく配列で指定する必要があるかもしれません。
 
 <a name="rule-nullable"></a>
 #### nullable
 
-The field under validation may be `null`.
+検証中のフィールドは `null` である可能性があります。
 
 <a name="rule-numeric"></a>
 #### numeric
 
-The field under validation must be [numeric](https://www.php.net/manual/en/function.is-numeric.php).
+検証中のフィールドは、[数値](https://www.php.net/manual/en/function.is-numeric.php) でなければなりません。
 
 <a name="rule-present"></a>
 #### present
 
-The field under validation must exist in the input data.
+検証中のフィールドは、入力データに存在しなければなりません。
 
 <a name="rule-present-if"></a>
 #### present_if:_anotherfield_,_value_,...
 
-The field under validation must be present if the _anotherfield_ field is equal to any _value_.
+_anotherfield_ フィールドがいずれかの _value_ と等しい場合、検証中のフィールドは存在しなければなりません。
 
 <a name="rule-present-unless"></a>
 #### present_unless:_anotherfield_,_value_
 
-The field under validation must be present unless the _anotherfield_ field is equal to any _value_.
+_anotherfield_ フィールドがいずれかの _value_ と等しい場合を除き、検証中のフィールドは存在しなければなりません。
 
 <a name="rule-present-with"></a>
 #### present_with:_foo_,_bar_,...
 
-The field under validation must be present _only if_ any of the other specified fields are present.
+指定された他のフィールドのいずれかが存在する場合、検証中のフィールドは存在しなければなりません。
 
 <a name="rule-present-with-all"></a>
 #### present_with_all:_foo_,_bar_,...
 
-The field under validation must be present _only if_ all of the other specified fields are present.
+指定された他のすべてのフィールドが存在する場合、検証中のフィールドは存在しなければなりません。
 
 <a name="rule-prohibited"></a>
 #### prohibited
 
-The field under validation must be missing or empty. A field is "empty" if it meets one of the following criteria:
+検証中のフィールドは、存在しないか空でなければなりません。フィールドは、次のいずれかの基準を満たす場合、「空」と見なされます：
 
 <div class="content-list" markdown="1">
 
-- The value is `null`.
-- The value is an empty string.
-- The value is an empty array or empty `Countable` object.
-- The value is an uploaded file with an empty path.
+- 値が `null` である。
+- 値が空の文字列である。
+- 値が空の配列または空の `Countable` オブジェクトである。
+- 値が空のパスを持つアップロードファイルである。
 
 </div>
 
 <a name="rule-prohibited-if"></a>
 #### prohibited_if:_anotherfield_,_value_,...
 
-The field under validation must be missing or empty if the _anotherfield_ field is equal to any _value_. A field is "empty" if it meets one of the following criteria:
+_anotherfield_ フィールドがいずれかの _value_ と等しい場合、検証中のフィールドは存在しないか空でなければなりません。フィールドは、次のいずれかの基準を満たす場合、「空」と見なされます：
 
 <div class="content-list" markdown="1">
 
-- The value is `null`.
-- The value is an empty string.
-- The value is an empty array or empty `Countable` object.
-- The value is an uploaded file with an empty path.
+- 値が `null` である。
+- 値が空の文字列である。
+- 値が空の配列または空の `Countable` オブジェクトである。
+- 値が空のパスを持つアップロードファイルである。
 
 </div>
 
-If complex conditional prohibition logic is required, you may utilize the `Rule::prohibitedIf` method. This method accepts a boolean or a closure. When given a closure, the closure should return `true` or `false` to indicate if the field under validation should be prohibited:
+複雑な条件付き禁止ロジックが必要な場合、`Rule::prohibitedIf`メソッドを利用できます。このメソッドは、ブール値またはクロージャを受け取ります。クロージャが与えられた場合、クロージャはバリデーション対象のフィールドが禁止されるべきかどうかを示すために`true`または`false`を返すべきです。
 
-    use Illuminate\Support\Facades\Validator;
-    use Illuminate\Validation\Rule;
+```php
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
-    Validator::make($request->all(), [
-        'role_id' => Rule::prohibitedIf($request->user()->is_admin),
-    ]);
+Validator::make($request->all(), [
+    'role_id' => Rule::prohibitedIf($request->user()->is_admin),
+]);
 
-    Validator::make($request->all(), [
-        'role_id' => Rule::prohibitedIf(fn () => $request->user()->is_admin),
-    ]);
+Validator::make($request->all(), [
+    'role_id' => Rule::prohibitedIf(fn () => $request->user()->is_admin),
+]);
+```
 
 <a name="rule-prohibited-unless"></a>
 #### prohibited_unless:_anotherfield_,_value_,...
 
-The field under validation must be missing or empty unless the _anotherfield_ field is equal to any _value_. A field is "empty" if it meets one of the following criteria:
+バリデーション対象のフィールドは、_anotherfield_フィールドが任意の_value_と等しくない限り、存在しないか空である必要があります。フィールドが「空」であるとは、以下のいずれかの条件を満たすことを意味します：
 
 <div class="content-list" markdown="1">
 
-- The value is `null`.
-- The value is an empty string.
-- The value is an empty array or empty `Countable` object.
-- The value is an uploaded file with an empty path.
+- 値が`null`である。
+- 値が空の文字列である。
+- 値が空の配列または空の`Countable`オブジェクトである。
+- 値が空のパスを持つアップロードファイルである。
 
 </div>
 
 <a name="rule-prohibits"></a>
 #### prohibits:_anotherfield_,...
 
-If the field under validation is not missing or empty, all fields in _anotherfield_ must be missing or empty. A field is "empty" if it meets one of the following criteria:
+バリデーション対象のフィールドが存在しないか空でない場合、_anotherfield_内のすべてのフィールドは存在しないか空である必要があります。フィールドが「空」であるとは、以下のいずれかの条件を満たすことを意味します：
 
 <div class="content-list" markdown="1">
 
-- The value is `null`.
-- The value is an empty string.
-- The value is an empty array or empty `Countable` object.
-- The value is an uploaded file with an empty path.
+- 値が`null`である。
+- 値が空の文字列である。
+- 値が空の配列または空の`Countable`オブジェクトである。
+- 値が空のパスを持つアップロードファイルである。
 
 </div>
 
 <a name="rule-regex"></a>
 #### regex:_pattern_
 
-The field under validation must match the given regular expression.
+バリデーション対象のフィールドは、指定された正規表現に一致する必要があります。
 
-Internally, this rule uses the PHP `preg_match` function. The pattern specified should obey the same formatting required by `preg_match` and thus also include valid delimiters. For example: `'email' => 'regex:/^.+@.+$/i'`.
+内部的には、このルールはPHPの`preg_match`関数を使用します。指定されたパターンは、`preg_match`が要求するのと同じフォーマットに従う必要があり、有効な区切り文字も含める必要があります。例：`'email' => 'regex:/^.+@.+$/i'`。
 
-> [!WARNING]  
-> When using the `regex` / `not_regex` patterns, it may be necessary to specify rules in an array instead of using `|` delimiters, especially if the regular expression contains a `|` character.
+> WARNING:  
+> `regex` / `not_regex`パターンを使用する場合、特に正規表現に`|`文字が含まれている場合、ルールを配列で指定する必要があるかもしれません。
 
 <a name="rule-required"></a>
 #### required
 
-The field under validation must be present in the input data and not empty. A field is "empty" if it meets one of the following criteria:
+バリデーション対象のフィールドは、入力データに存在し、空でない必要があります。フィールドが「空」であるとは、以下のいずれかの条件を満たすことを意味します：
 
 <div class="content-list" markdown="1">
 
-- The value is `null`.
-- The value is an empty string.
-- The value is an empty array or empty `Countable` object.
-- The value is an uploaded file with no path.
+- 値が`null`である。
+- 値が空の文字列である。
+- 値が空の配列または空の`Countable`オブジェクトである。
+- 値がパスを持たないアップロードファイルである。
 
 </div>
 
 <a name="rule-required-if"></a>
 #### required_if:_anotherfield_,_value_,...
 
-The field under validation must be present and not empty if the _anotherfield_ field is equal to any _value_.
+バリデーション対象のフィールドは、_anotherfield_フィールドが任意の_value_と等しい場合、存在し、空でない必要があります。
 
-If you would like to construct a more complex condition for the `required_if` rule, you may use the `Rule::requiredIf` method. This method accepts a boolean or a closure. When passed a closure, the closure should return `true` or `false` to indicate if the field under validation is required:
+`required_if`ルールのためにより複雑な条件を構築したい場合、`Rule::requiredIf`メソッドを使用できます。このメソッドは、ブール値またはクロージャを受け取ります。クロージャが渡された場合、クロージャはバリデーション対象のフィールドが必要かどうかを示すために`true`または`false`を返すべきです：
 
-    use Illuminate\Support\Facades\Validator;
-    use Illuminate\Validation\Rule;
+```php
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
-    Validator::make($request->all(), [
-        'role_id' => Rule::requiredIf($request->user()->is_admin),
-    ]);
+Validator::make($request->all(), [
+    'role_id' => Rule::requiredIf($request->user()->is_admin),
+]);
 
-    Validator::make($request->all(), [
-        'role_id' => Rule::requiredIf(fn () => $request->user()->is_admin),
-    ]);
+Validator::make($request->all(), [
+    'role_id' => Rule::requiredIf(fn () => $request->user()->is_admin),
+]);
+```
 
 <a name="rule-required-if-accepted"></a>
 #### required_if_accepted:_anotherfield_,...
 
-The field under validation must be present and not empty if the _anotherfield_ field is equal to `"yes"`, `"on"`, `1`, `"1"`, `true`, or `"true"`.
+バリデーション対象のフィールドは、_anotherfield_フィールドが`"yes"`、`"on"`、`1`、`"1"`、`true`、または`"true"`と等しい場合、存在し、空でない必要があります。
 
 <a name="rule-required-if-declined"></a>
 #### required_if_declined:_anotherfield_,...
 
-The field under validation must be present and not empty if the _anotherfield_ field is equal to `"no"`, `"off"`, `0`, `"0"`, `false`, or `"false"`.
+バリデーション対象のフィールドは、_anotherfield_フィールドが`"no"`、`"off"`、`0`、`"0"`、`false`、または`"false"`と等しい場合、存在し、空でない必要があります。
 
 <a name="rule-required-unless"></a>
 #### required_unless:_anotherfield_,_value_,...
 
-The field under validation must be present and not empty unless the _anotherfield_ field is equal to any _value_. This also means _anotherfield_ must be present in the request data unless _value_ is `null`. If _value_ is `null` (`required_unless:name,null`), the field under validation will be required unless the comparison field is `null` or the comparison field is missing from the request data.
+バリデーション対象のフィールドは、_anotherfield_フィールドが任意の_value_と等しくない限り、存在し、空でない必要があります。これはまた、_value_が`null`でない限り、_anotherfield_がリクエストデータに存在する必要があることを意味します。_value_が`null`の場合（`required_unless:name,null`）、バリデーション対象のフィールドは、比較フィールドが`null`であるか、比較フィールドがリクエストデータから欠落している限り、必要です。
 
 <a name="rule-required-with"></a>
 #### required_with:_foo_,_bar_,...
 
-The field under validation must be present and not empty _only if_ any of the other specified fields are present and not empty.
+バリデーション対象のフィールドは、他の指定されたフィールドのいずれかが存在し、空でない場合にのみ、存在し、空でない必要があります。
 
 <a name="rule-required-with-all"></a>
 #### required_with_all:_foo_,_bar_,...
 
-The field under validation must be present and not empty _only if_ all of the other specified fields are present and not empty.
+バリデーション対象のフィールドは、他の指定されたフィールドすべてが存在し、空でない場合にのみ、存在し、空でない必要があります。
 
 <a name="rule-required-without"></a>
 #### required_without:_foo_,_bar_,...
 
-The field under validation must be present and not empty _only when_ any of the other specified fields are empty or not present.
+バリデーション対象のフィールドは、他の指定されたフィールドのいずれかが空または存在しない場合にのみ、存在し、空でない必要があります。
 
 <a name="rule-required-without-all"></a>
 #### required_without_all:_foo_,_bar_,...
 
-The field under validation must be present and not empty _only when_ all of the other specified fields are empty or not present.
+バリデーション対象のフィールドは、他の指定されたフィールドすべてが空または存在しない場合にのみ、存在し、空でない必要があります。
 
 <a name="rule-required-array-keys"></a>
 #### required_array_keys:_foo_,_bar_,...
 
-The field under validation must be an array and must contain at least the specified keys.
+バリデーション対象のフィールドは、配列であり、少なくとも指定されたキーを含む必要があります。
 
 <a name="rule-same"></a>
 #### same:_field_
 
-The given _field_ must match the field under validation.
+指定された_field_は、バリデーション対象のフィールドと一致する必要があります。
 
 <a name="rule-size"></a>
 #### size:_value_
 
-The field under validation must have a size matching the given _value_. For string data, _value_ corresponds to the number of characters. For numeric data, _value_ corresponds to a given integer value (the attribute must also have the `numeric` or `integer` rule). For an array, _size_ corresponds to the `count` of the array. For files, _size_ corresponds to the file size in kilobytes. Let's look at some examples:
+バリデーション対象のフィールドは、指定された_value_と一致するサイズを持つ必要があります。文字列データの場合、_value_は文字数に対応します。数値データの場合、_value_は指定された整数値に対応します（属性は`numeric`または`integer`ルールも持つ必要があります）。配列の場合、_size_は配列の`count`に対応します。ファイルの場合、_size_はファイルサイズ（キロバイト単位）に対応します。いくつかの例を見てみましょう：
 
-    // Validate that a string is exactly 12 characters long...
-    'title' => 'size:12';
+```php
+// 文字列が正確に12文字であることを検証する...
+'title' => 'size:12';
 
-    // Validate that a provided integer equals 10...
-    'seats' => 'integer|size:10';
+// 提供された整数が10であることを検証する...
+'seats' => 'integer|size:10';
 
-    // Validate that an array has exactly 5 elements...
-    'tags' => 'array|size:5';
+// 配列が正確に5つの要素を持つことを検証する...
+'tags' => 'array|size:5';
 
-    // Validate that an uploaded file is exactly 512 kilobytes...
-    'image' => 'file|size:512';
+// アップロードされたファイルが正確に512キロバイトであることを検証する...
+'image' => 'file|size:512';
+```
 
 <a name="rule-starts-with"></a>
 #### starts_with:_foo_,_bar_,...
 
-The field under validation must start with one of the given values.
+バリデーション対象のフィールドは、指定された値のいずれかで始まる必要があります。
 
 <a name="rule-string"></a>
 #### string
 
-The field under validation must be a string. If you would like to allow the field to also be `null`, you should assign the `nullable` rule to the field.
+バリデーション対象のフィールドは、文字列である必要があります。フィールドが`null`であることも許可したい場合は、フィールドに`nullable`ルールを割り当てる必要があります。
 
 <a name="rule-timezone"></a>
 #### timezone
 
-The field under validation must be a valid timezone identifier according to the `DateTimeZone::listIdentifiers` method.
+バリデーション対象のフィールドは、`DateTimeZone::listIdentifiers`メソッドに従った有効なタイムゾーン識別子である必要があります。
 
-The arguments [accepted by the `DateTimeZone::listIdentifiers` method](https://www.php.net/manual/en/datetimezone.listidentifiers.php) may also be provided to this validation rule:
+[`DateTimeZone::listIdentifiers`メソッド](https://www.php.net/manual/en/datetimezone.listidentifiers.php)によって受け入れられる引数も、このバリデーションルールに提供できます：
 
-    'timezone' => 'required|timezone:all';
+```php
+'timezone' => 'required|timezone:all';
 
-    'timezone' => 'required|timezone:Africa';
+'timezone' => 'required|timezone:Africa';
 
-    'timezone' => 'required|timezone:per_country,US';
+'timezone' => 'required|timezone:per_country,US';
+```
 
 <a name="rule-unique"></a>
 #### unique:_table_,_column_
 
-The field under validation must not exist within the given database table.
+バリデーション対象のフィールドは、指定されたデータベーステーブル内に存在してはなりません。
 
-**Specifying a Custom Table / Column Name:**
+**カスタムテーブル/カラム名の指定：**
 
-Instead of specifying the table name directly, you may specify the Eloquent model which should be used to determine the table name:
+テーブル名を直接指定する代わりに、テーブル名を決定するために使用されるEloquentモデルを指定できます：
 
-    'email' => 'unique:App\Models\User,email_address'
+```php
+'email' => 'unique:App\Models\User,email_address'
+```
 
-The `column` option may be used to specify the field's corresponding database column. If the `column` option is not specified, the name of the field under validation will be used.
+`column`オプションは、フィールドの対応するデータベースカラムを指定するために使用できます。`column`オプションが指定されていない場合、バリデーション対象のフィールドの名前が使用されます。
 
-    'email' => 'unique:users,email_address'
+```php
+'email' => 'unique:users,email_address'
+```
 
-**Specifying a Custom Database Connection**
+**カスタムデータベース接続の指定**
 
-Occasionally, you may need to set a custom connection for database queries made by the Validator. To accomplish this, you may prepend the connection name to the table name:
+Validatorによって行われるデータベースクエリのためにカスタム接続を設定する必要がある場合があります。これを行うには、テーブル名の前に接続名を付けます：
 
-    'email' => 'unique:connection.users,email_address'
+```php
+'email' => 'unique:connection.users,email_address'
+```
 
-**Forcing a Unique Rule to Ignore a Given ID:**
+**ユニークルールを特定のIDを無視するように強制する：**
 
-Sometimes, you may wish to ignore a given ID during unique validation. For example, consider an "update profile" screen that includes the user's name, email address, and location. You will probably want to verify that the email address is unique. However, if the user only changes the name field and not the email field, you do not want a validation error to be thrown because the user is already the owner of the email address in question.
+ユニークバリデーション中に特定のIDを無視したい場合があります。例えば、ユーザーの名前、メールアドレス、場所を含む「プロフィール更新」画面を考えてみましょう。メールアドレスがユニークであることを検証したいと思うでしょう。しかし、ユーザーが名前フィールドのみを変更し、メールフィールドを変更しない場合、ユーザーがすでにそのメールアドレスの所有者であるため、バリデーションエラーを投げたくないでしょう。
 
-To instruct the validator to ignore the user's ID, we'll use the `Rule` class to fluently define the rule. In this example, we'll also specify the validation rules as an array instead of using the `|` character to delimit the rules:
+バリデータにユーザーのIDを無視するように指示するには、`Rule`クラスを使用してルールを流暢に定義します。この例では、ルールを`|`文字で区切る代わりに、バリデーションルールを配列として指定します：
 
-    use Illuminate\Support\Facades\Validator;
-    use Illuminate\Validation\Rule;
+```php
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
-    Validator::make($data, [
-        'email' => [
-            'required',
-            Rule::unique('users')->ignore($user->id),
-        ],
-    ]);
+Validator::make($data, [
+    'email' => [
+        'required',
+        Rule::unique('users')->ignore($user->id),
+    ],
+]);
+```
 
-> [!WARNING]  
-> You should never pass any user controlled request input into the `ignore` method. Instead, you should only pass a system generated unique ID such as an auto-incrementing ID or UUID from an Eloquent model instance. Otherwise, your application will be vulnerable to an SQL injection attack.
+> WARNING:  
+> ユーザー制御のリクエスト入力を`ignore`メソッドに渡すべきではありません。代わりに、自動増分IDやEloquentモデルインスタンスからのUUIDなど、システム生成の一意のIDのみを渡すべきです。そうしないと、アプリケーションはSQLインジェクション攻撃に対して脆弱になります。
 
-Instead of passing the model key's value to the `ignore` method, you may also pass the entire model instance. Laravel will automatically extract the key from the model:
+`ignore`メソッドにモデルキーの値を渡す代わりに、モデルインスタンス全体を渡すこともできます。Laravelは自動的にモデルからキーを抽出します：
 
-    Rule::unique('users')->ignore($user)
+```php
+Rule::unique('users')->ignore($user)
+```
 
-If your table uses a primary key column name other than `id`, you may specify the name of the column when calling the `ignore` method:
+テーブルが`id`以外の主キーカラム名を使用している場合、`ignore`メソッドを呼び出す際にカラム名を指定できます：
 
-    Rule::unique('users')->ignore($user->id, 'user_id')
+```php
+Rule::unique('users')->ignore($user->id, 'user_id')
+```
 
-By default, the `unique` rule will check the uniqueness of the column matching the name of the attribute being validated. However, you may pass a different column name as the second argument to the `unique` method:
+デフォルトでは、`unique`ルールはバリデーション対象の属性名に一致するカラムのユニーク性をチェックします。ただし、`unique`メソッドの第二引数として異なるカラム名を渡すことができます：
 
-    Rule::unique('users', 'email_address')->ignore($user->id)
+```php
+Rule::unique('users', 'email_address')->ignore($user->id)
+```
 
-**Adding Additional Where Clauses:**
+**追加のWhere句の追加：**
 
-You may specify additional query conditions by customizing the query using the `where` method. For example, let's add a query condition that scopes the query to only search records that have an `account_id` column value of `1`:
+以下のMarkdownコンテンツを日本語に翻訳します。すべてのMarkdownフォーマットを保持し、ヘッダーには'#'を使用します。
+
+クエリ条件を追加指定するには、`where`メソッドを使用してクエリをカスタマイズします。例えば、`account_id`カラムの値が`1`であるレコードのみを検索対象とするクエリ条件を追加します。
 
     'email' => Rule::unique('users')->where(fn (Builder $query) => $query->where('account_id', 1))
 
 <a name="rule-uppercase"></a>
 #### uppercase
 
-The field under validation must be uppercase.
+検証対象のフィールドは大文字でなければなりません。
 
 <a name="rule-url"></a>
 #### url
 
-The field under validation must be a valid URL.
+検証対象のフィールドは有効なURLでなければなりません。
 
-If you would like to specify the URL protocols that should be considered valid, you may pass the protocols as validation rule parameters:
+有効と見なされるURLプロトコルを指定したい場合は、検証ルールパラメータとしてプロトコルを渡すことができます。
 
 ```php
 'url' => 'url:http,https',
@@ -1898,20 +1972,20 @@ If you would like to specify the URL protocols that should be considered valid, 
 <a name="rule-ulid"></a>
 #### ulid
 
-The field under validation must be a valid [Universally Unique Lexicographically Sortable Identifier](https://github.com/ulid/spec) (ULID).
+検証対象のフィールドは有効な[Universally Unique Lexicographically Sortable Identifier](https://github.com/ulid/spec) (ULID)でなければなりません。
 
 <a name="rule-uuid"></a>
 #### uuid
 
-The field under validation must be a valid RFC 4122 (version 1, 3, 4, or 5) universally unique identifier (UUID).
+検証対象のフィールドは有効なRFC 4122（バージョン1、3、4、または5）のuniversally unique identifier (UUID)でなければなりません。
 
 <a name="conditionally-adding-rules"></a>
-## Conditionally Adding Rules
+## 条件付きでルールを追加する
 
 <a name="skipping-validation-when-fields-have-certain-values"></a>
-#### Skipping Validation When Fields Have Certain Values
+#### 特定の値を持つフィールドの検証をスキップする
 
-You may occasionally wish to not validate a given field if another field has a given value. You may accomplish this using the `exclude_if` validation rule. In this example, the `appointment_date` and `doctor_name` fields will not be validated if the `has_appointment` field has a value of `false`:
+他のフィールドが特定の値を持つ場合に、特定のフィールドの検証を行わないようにしたいことがあります。これは`exclude_if`検証ルールを使用して実現できます。この例では、`has_appointment`フィールドが`false`の場合、`appointment_date`と`doctor_name`フィールドの検証は行われません。
 
     use Illuminate\Support\Facades\Validator;
 
@@ -1921,7 +1995,7 @@ You may occasionally wish to not validate a given field if another field has a g
         'doctor_name' => 'exclude_if:has_appointment,false|required|string',
     ]);
 
-Alternatively, you may use the `exclude_unless` rule to not validate a given field unless another field has a given value:
+または、`exclude_unless`ルールを使用して、他のフィールドが特定の値を持つ場合にのみ検証を行わないようにすることもできます。
 
     $validator = Validator::make($data, [
         'has_appointment' => 'required|boolean',
@@ -1930,23 +2004,23 @@ Alternatively, you may use the `exclude_unless` rule to not validate a given fie
     ]);
 
 <a name="validating-when-present"></a>
-#### Validating When Present
+#### 存在する場合に検証する
 
-In some situations, you may wish to run validation checks against a field **only** if that field is present in the data being validated. To quickly accomplish this, add the `sometimes` rule to your rule list:
+特定の状況では、検証対象のデータにフィールドが存在する場合にのみ検証を実行したいことがあります。これを簡単に実現するには、ルールリストに`sometimes`ルールを追加します。
 
     $validator = Validator::make($data, [
         'email' => 'sometimes|required|email',
     ]);
 
-In the example above, the `email` field will only be validated if it is present in the `$data` array.
+上記の例では、`email`フィールドは`$data`配列に存在する場合にのみ検証されます。
 
-> [!NOTE]  
-> If you are attempting to validate a field that should always be present but may be empty, check out [this note on optional fields](#a-note-on-optional-fields).
+> NOTE:  
+> 常に存在する必要があるが空である可能性があるフィールドを検証しようとしている場合は、[オプションフィールドに関するこの注意](#a-note-on-optional-fields)を確認してください。
 
 <a name="complex-conditional-validation"></a>
-#### Complex Conditional Validation
+#### 複雑な条件付き検証
 
-Sometimes you may wish to add validation rules based on more complex conditional logic. For example, you may wish to require a given field only if another field has a greater value than 100. Or, you may need two fields to have a given value only when another field is present. Adding these validation rules doesn't have to be a pain. First, create a `Validator` instance with your _static rules_ that never change:
+より複雑な条件ロジックに基づいて検証ルールを追加したい場合があります。例えば、他のフィールドの値が100より大きい場合にのみ特定のフィールドを要求したい場合や、他のフィールドが存在する場合にのみ2つのフィールドが特定の値を持つ必要がある場合などです。これらの検証ルールを追加するのは難しくありません。まず、変更されない_静的ルール_で`Validator`インスタンスを作成します。
 
     use Illuminate\Support\Facades\Validator;
 
@@ -1955,7 +2029,7 @@ Sometimes you may wish to add validation rules based on more complex conditional
         'games' => 'required|numeric',
     ]);
 
-Let's assume our web application is for game collectors. If a game collector registers with our application and they own more than 100 games, we want them to explain why they own so many games. For example, perhaps they run a game resale shop, or maybe they just enjoy collecting games. To conditionally add this requirement, we can use the `sometimes` method on the `Validator` instance.
+ゲームコレクター向けのWebアプリケーションを想定します。ゲームコレクターが100以上のゲームを所有している場合、なぜそんなに多くのゲームを所有しているのかを説明するように要求したいとします。例えば、ゲームのリセールショップを運営しているか、単にゲームを収集するのが好きかもしれません。この要件を条件付きで追加するには、`Validator`インスタンスの`sometimes`メソッドを使用できます。
 
     use Illuminate\Support\Fluent;
 
@@ -1963,19 +2037,19 @@ Let's assume our web application is for game collectors. If a game collector reg
         return $input->games >= 100;
     });
 
-The first argument passed to the `sometimes` method is the name of the field we are conditionally validating. The second argument is a list of the rules we want to add. If the closure passed as the third argument returns `true`, the rules will be added. This method makes it a breeze to build complex conditional validations. You may even add conditional validations for several fields at once:
+`sometimes`メソッドに渡される最初の引数は、条件付きで検証するフィールドの名前です。2番目の引数は追加したいルールのリストです。3番目の引数として渡されるクロージャが`true`を返す場合、ルールが追加されます。このメソッドを使用すると、複雑な条件付き検証を簡単に構築できます。複数のフィールドに対して条件付き検証を一度に追加することもできます。
 
     $validator->sometimes(['reason', 'cost'], 'required', function (Fluent $input) {
         return $input->games >= 100;
     });
 
-> [!NOTE]  
-> The `$input` parameter passed to your closure will be an instance of `Illuminate\Support\Fluent` and may be used to access your input and files under validation.
+> NOTE:  
+> クロージャに渡される`$input`パラメータは`Illuminate\Support\Fluent`のインスタンスであり、検証対象の入力とファイルにアクセスするために使用できます。
 
 <a name="complex-conditional-array-validation"></a>
-#### Complex Conditional Array Validation
+#### 複雑な条件付き配列検証
 
-Sometimes you may want to validate a field based on another field in the same nested array whose index you do not know. In these situations, you may allow your closure to receive a second argument which will be the current individual item in the array being validated:
+同じネストされた配列内の他のフィールドに基づいてフィールドを検証したい場合がありますが、そのインデックスが不明です。このような状況では、クロージャが検証中の配列の現在の個々のアイテムである2番目の引数を受け取ることができます。
 
     $input = [
         'channels' => [
@@ -1998,12 +2072,12 @@ Sometimes you may want to validate a field based on another field in the same ne
         return $item->type !== 'email';
     });
 
-Like the `$input` parameter passed to the closure, the `$item` parameter is an instance of `Illuminate\Support\Fluent` when the attribute data is an array; otherwise, it is a string.
+`$input`パラメータと同様に、`$item`パラメータは属性データが配列の場合は`Illuminate\Support\Fluent`のインスタンスです。それ以外の場合は文字列です。
 
 <a name="validating-arrays"></a>
-## Validating Arrays
+## 配列の検証
 
-As discussed in the [`array` validation rule documentation](#rule-array), the `array` rule accepts a list of allowed array keys. If any additional keys are present within the array, validation will fail:
+[`array`検証ルールのドキュメント](#rule-array)で説明されているように、`array`ルールは許可された配列キーのリストを受け取ります。配列内に追加のキーが存在する場合、検証は失敗します。
 
     use Illuminate\Support\Facades\Validator;
 
@@ -2019,12 +2093,12 @@ As discussed in the [`array` validation rule documentation](#rule-array), the `a
         'user' => 'array:name,username',
     ]);
 
-In general, you should always specify the array keys that are allowed to be present within your array. Otherwise, the validator's `validate` and `validated` methods will return all of the validated data, including the array and all of its keys, even if those keys were not validated by other nested array validation rules.
+一般的に、配列内に存在することが許可される配列キーを常に指定する必要があります。そうしないと、バリデータの`validate`と`validated`メソッドは、検証されたすべてのデータを返します。これには、配列とそのすべてのキーが含まれます。たとえそれらのキーが他のネストされた配列検証ルールによって検証されなかったとしてもです。
 
 <a name="validating-nested-array-input"></a>
-### Validating Nested Array Input
+### ネストされた配列入力の検証
 
-Validating nested array based form input fields doesn't have to be a pain. You may use "dot notation" to validate attributes within an array. For example, if the incoming HTTP request contains a `photos[profile]` field, you may validate it like so:
+ネストされた配列ベースのフォーム入力フィールドの検証は、難しいものではありません。"ドット表記"を使用して、配列内の属性を検証できます。例えば、受信HTTPリクエストに`photos[profile]`フィールドが含まれている場合、次のように検証できます。
 
     use Illuminate\Support\Facades\Validator;
 
@@ -2032,25 +2106,25 @@ Validating nested array based form input fields doesn't have to be a pain. You m
         'photos.profile' => 'required|image',
     ]);
 
-You may also validate each element of an array. For example, to validate that each email in a given array input field is unique, you may do the following:
+また、配列の各要素を検証することもできます。例えば、特定の配列入力フィールド内の各メールが一意であることを検証するには、次のようにします。
 
     $validator = Validator::make($request->all(), [
         'person.*.email' => 'email|unique:users',
         'person.*.first_name' => 'required_with:person.*.last_name',
     ]);
 
-Likewise, you may use the `*` character when specifying [custom validation messages in your language files](#custom-messages-for-specific-attributes), making it a breeze to use a single validation message for array based fields:
+同様に、[言語ファイル内のカスタム検証メッセージ](#custom-messages-for-specific-attributes)を指定する際に`*`文字を使用することで、配列ベースのフィールドに対して単一の検証メッセージを簡単に使用できます。
 
     'custom' => [
         'person.*.email' => [
-            'unique' => 'Each person must have a unique email address',
+            'unique' => '各人物は一意のメールアドレスを持つ必要があります',
         ]
     ],
 
 <a name="accessing-nested-array-data"></a>
-#### Accessing Nested Array Data
+#### ネストされた配列データへのアクセス
 
-Sometimes you may need to access the value for a given nested array element when assigning validation rules to the attribute. You may accomplish this using the `Rule::forEach` method. The `forEach` method accepts a closure that will be invoked for each iteration of the array attribute under validation and will receive the attribute's value and explicit, fully-expanded attribute name. The closure should return an array of rules to assign to the array element:
+検証ルールを属性に割り当てる際に、特定のネストされた配列要素の値にアクセスする必要がある場合があります。これは`Rule::forEach`メソッドを使用して実現できます。`forEach`メソッドは、検証中の配列属性の各反復に対して呼び出されるクロージャを受け取り、属性の値と完全に展開された属性名を受け取ります。クロージャは配列要素に割り当てるルールの配列を返す必要があります。
 
     use App\Rules\HasPermission;
     use Illuminate\Support\Facades\Validator;
@@ -2066,9 +2140,9 @@ Sometimes you may need to access the value for a given nested array element when
     ]);
 
 <a name="error-message-indexes-and-positions"></a>
-### Error Message Indexes and Positions
+### エラーメッセージのインデックスと位置
 
-When validating arrays, you may want to reference the index or position of a particular item that failed validation within the error message displayed by your application. To accomplish this, you may include the `:index` (starts from `0`) and `:position` (starts from `1`) placeholders within your [custom validation message](#manual-customizing-the-error-messages):
+配列の検証時に、アプリケーションによって表示されるエラーメッセージ内で、特定の項目のインデックスまたは位置を参照したい場合があります。これを実現するには、[カスタム検証メッセージ](#manual-customizing-the-error-messages)内に`：index`（`0`から始まる）と`：position`（`1`から始まる）のプレースホルダーを含めることができます。
 
     use Illuminate\Support\Facades\Validator;
 
@@ -2091,52 +2165,58 @@ When validating arrays, you may want to reference the index or position of a par
         'photos.*.description.required' => 'Please describe photo #:position.',
     ]);
 
-Given the example above, validation will fail and the user will be presented with the following error of _"Please describe photo #2."_
+上記の例に基づくと、バリデーションは失敗し、ユーザーには_"写真 #2 を説明してください。"_というエラーが表示されます。
 
-If necessary, you may reference more deeply nested indexes and positions via `second-index`, `second-position`, `third-index`, `third-position`, etc.
+必要に応じて、`second-index`、`second-position`、`third-index`、`third-position`などを介して、より深くネストされたインデックスと位置を参照することができます。
 
-    'photos.*.attributes.*.string' => 'Invalid attribute for photo #:second-position.',
+```php
+'photos.*.attributes.*.string' => '写真 #:second-position の属性が無効です。',
+```
 
 <a name="validating-files"></a>
-## Validating Files
+## ファイルのバリデーション
 
-Laravel provides a variety of validation rules that may be used to validate uploaded files, such as `mimes`, `image`, `min`, and `max`. While you are free to specify these rules individually when validating files, Laravel also offers a fluent file validation rule builder that you may find convenient:
+Laravelは、`mimes`、`image`、`min`、`max`など、アップロードされたファイルを検証するために使用できるさまざまなバリデーションルールを提供しています。ファイルを検証する際にこれらのルールを個別に指定することもできますが、Laravelは便利なファイル検証ルールビルダーも提供しています。
 
-    use Illuminate\Support\Facades\Validator;
-    use Illuminate\Validation\Rules\File;
+```php
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rules\File;
 
-    Validator::validate($input, [
-        'attachment' => [
-            'required',
-            File::types(['mp3', 'wav'])
-                ->min(1024)
-                ->max(12 * 1024),
-        ],
-    ]);
+Validator::validate($input, [
+    'attachment' => [
+        'required',
+        File::types(['mp3', 'wav'])
+            ->min(1024)
+            ->max(12 * 1024),
+    ],
+]);
+```
 
-If your application accepts images uploaded by your users, you may use the `File` rule's `image` constructor method to indicate that the uploaded file should be an image. In addition, the `dimensions` rule may be used to limit the dimensions of the image:
+アプリケーションがユーザーによってアップロードされた画像を受け入れる場合、`File`ルールの`image`コンストラクタメソッドを使用して、アップロードされたファイルが画像であることを示すことができます。さらに、`dimensions`ルールを使用して画像の寸法を制限することもできます。
 
-    use Illuminate\Support\Facades\Validator;
-    use Illuminate\Validation\Rule;
-    use Illuminate\Validation\Rules\File;
+```php
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\File;
 
-    Validator::validate($input, [
-        'photo' => [
-            'required',
-            File::image()
-                ->min(1024)
-                ->max(12 * 1024)
-                ->dimensions(Rule::dimensions()->maxWidth(1000)->maxHeight(500)),
-        ],
-    ]);
+Validator::validate($input, [
+    'photo' => [
+        'required',
+        File::image()
+            ->min(1024)
+            ->max(12 * 1024)
+            ->dimensions(Rule::dimensions()->maxWidth(1000)->maxHeight(500)),
+    ],
+]);
+```
 
-> [!NOTE]  
-> More information regarding validating image dimensions may be found in the [dimension rule documentation](#rule-dimensions).
+> NOTE:  
+> 画像の寸法を検証するための詳細情報は、[dimensionルールのドキュメント](#rule-dimensions)で見つけることができます。
 
 <a name="validating-files-file-sizes"></a>
-#### File Sizes
+#### ファイルサイズ
 
-For convenience, minimum and maximum file sizes may be specified as a string with a suffix indicating the file size units. The `kb`, `mb`, `gb`, and `tb` suffixes are supported:
+便宜上、最小および最大ファイルサイズは、ファイルサイズ単位を示す接尾辞を持つ文字列として指定できます。`kb`、`mb`、`gb`、`tb`の接尾辞がサポートされています。
 
 ```php
 File::image()
@@ -2145,65 +2225,75 @@ File::image()
 ```
 
 <a name="validating-files-file-types"></a>
-#### File Types
+#### ファイルタイプ
 
-Even though you only need to specify the extensions when invoking the `types` method, this method actually validates the MIME type of the file by reading the file's contents and guessing its MIME type. A full listing of MIME types and their corresponding extensions may be found at the following location:
+`types`メソッドを呼び出す際には拡張子のみを指定する必要がありますが、このメソッドは実際にはファイルの内容を読み取り、そのMIMEタイプを推測することでファイルのMIMEタイプを検証します。MIMEタイプとそれに対応する拡張子の完全なリストは、以下の場所で見つけることができます。
 
 [https://svn.apache.org/repos/asf/httpd/httpd/trunk/docs/conf/mime.types](https://svn.apache.org/repos/asf/httpd/httpd/trunk/docs/conf/mime.types)
 
 <a name="validating-passwords"></a>
-## Validating Passwords
+## パスワードのバリデーション
 
-To ensure that passwords have an adequate level of complexity, you may use Laravel's `Password` rule object:
+パスワードが十分なレベルの複雑さを持っていることを確認するために、Laravelの`Password`ルールオブジェクトを使用できます。
 
-    use Illuminate\Support\Facades\Validator;
-    use Illuminate\Validation\Rules\Password;
+```php
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rules\Password;
 
-    $validator = Validator::make($request->all(), [
-        'password' => ['required', 'confirmed', Password::min(8)],
-    ]);
+$validator = Validator::make($request->all(), [
+    'password' => ['required', 'confirmed', Password::min(8)],
+]);
+```
 
-The `Password` rule object allows you to easily customize the password complexity requirements for your application, such as specifying that passwords require at least one letter, number, symbol, or characters with mixed casing:
+`Password`ルールオブジェクトを使用すると、アプリケーションのパスワードの複雑さ要件を簡単にカスタマイズできます。例えば、パスワードに少なくとも1つの文字、数字、記号、または大文字と小文字の混合が必要であることを指定できます。
 
-    // Require at least 8 characters...
-    Password::min(8)
+```php
+// 少なくとも8文字が必要...
+Password::min(8)
 
-    // Require at least one letter...
-    Password::min(8)->letters()
+// 少なくとも1つの文字が必要...
+Password::min(8)->letters()
 
-    // Require at least one uppercase and one lowercase letter...
-    Password::min(8)->mixedCase()
+// 少なくとも1つの大文字と1つの小文字が必要...
+Password::min(8)->mixedCase()
 
-    // Require at least one number...
-    Password::min(8)->numbers()
+// 少なくとも1つの数字が必要...
+Password::min(8)->numbers()
 
-    // Require at least one symbol...
-    Password::min(8)->symbols()
+// 少なくとも1つの記号が必要...
+Password::min(8)->symbols()
+```
 
-In addition, you may ensure that a password has not been compromised in a public password data breach leak using the `uncompromised` method:
+さらに、`uncompromised`メソッドを使用して、パスワードが公開されたパスワードデータ侵害で漏洩していないことを確認できます。
 
-    Password::min(8)->uncompromised()
+```php
+Password::min(8)->uncompromised()
+```
 
-Internally, the `Password` rule object uses the [k-Anonymity](https://en.wikipedia.org/wiki/K-anonymity) model to determine if a password has been leaked via the [haveibeenpwned.com](https://haveibeenpwned.com) service without sacrificing the user's privacy or security.
+内部的には、`Password`ルールオブジェクトは[k-匿名性](https://en.wikipedia.org/wiki/K-anonymity)モデルを使用して、ユーザーのプライバシーやセキュリティを犠牲にすることなく、[haveibeenpwned.com](https://haveibeenpwned.com)サービスを介してパスワードが漏洩したかどうかを判断します。
 
-By default, if a password appears at least once in a data leak, it will be considered compromised. You can customize this threshold using the first argument of the `uncompromised` method:
+デフォルトでは、パスワードがデータ侵害で少なくとも1回出現した場合、それは侵害されたと見なされます。このしきい値は、`uncompromised`メソッドの最初の引数を使用してカスタマイズできます。
 
-    // Ensure the password appears less than 3 times in the same data leak...
-    Password::min(8)->uncompromised(3);
+```php
+// パスワードが同じデータ侵害で3回以上出現しないことを確認...
+Password::min(8)->uncompromised(3);
+```
 
-Of course, you may chain all the methods in the examples above:
+もちろん、上記の例のすべてのメソッドを連鎖させることができます。
 
-    Password::min(8)
-        ->letters()
-        ->mixedCase()
-        ->numbers()
-        ->symbols()
-        ->uncompromised()
+```php
+Password::min(8)
+    ->letters()
+    ->mixedCase()
+    ->numbers()
+    ->symbols()
+    ->uncompromised()
+```
 
 <a name="defining-default-password-rules"></a>
-#### Defining Default Password Rules
+#### デフォルトのパスワードルールの定義
 
-You may find it convenient to specify the default validation rules for passwords in a single location of your application. You can easily accomplish this using the `Password::defaults` method, which accepts a closure. The closure given to the `defaults` method should return the default configuration of the Password rule. Typically, the `defaults` rule should be called within the `boot` method of one of your application's service providers:
+アプリケーションの単一の場所でパスワードのデフォルトのバリデーションルールを指定すると便利な場合があります。これは、`Password::defaults`メソッドを使用して簡単に実現できます。このメソッドはクロージャを受け取ります。クロージャは、Passwordルールのデフォルト設定を返す必要があります。通常、`defaults`ルールは、アプリケーションのサービスプロバイダの`boot`メソッド内で呼び出す必要があります。
 
 ```php
 use Illuminate\Validation\Rules\Password;
@@ -2223,134 +2313,162 @@ public function boot(): void
 }
 ```
 
-Then, when you would like to apply the default rules to a particular password undergoing validation, you may invoke the `defaults` method with no arguments:
+そして、特定のパスワードのバリデーションにデフォルトのルールを適用したい場合、引数なしで`defaults`メソッドを呼び出すことができます。
 
-    'password' => ['required', Password::defaults()],
+```php
+'password' => ['required', Password::defaults()],
+```
 
-Occasionally, you may want to attach additional validation rules to your default password validation rules. You may use the `rules` method to accomplish this:
+場合によっては、デフォルトのパスワードバリデーションルールに追加のバリデーションルールを添付したいことがあります。これは、`rules`メソッドを使用して実現できます。
 
-    use App\Rules\ZxcvbnRule;
+```php
+use App\Rules\ZxcvbnRule;
 
-    Password::defaults(function () {
-        $rule = Password::min(8)->rules([new ZxcvbnRule]);
+Password::defaults(function () {
+    $rule = Password::min(8)->rules([new ZxcvbnRule]);
 
-        // ...
-    });
+    // ...
+});
+```
 
 <a name="custom-validation-rules"></a>
-## Custom Validation Rules
+## カスタムバリデーションルール
 
 <a name="using-rule-objects"></a>
-### Using Rule Objects
+### ルールオブジェクトの使用
 
-Laravel provides a variety of helpful validation rules; however, you may wish to specify some of your own. One method of registering custom validation rules is using rule objects. To generate a new rule object, you may use the `make:rule` Artisan command. Let's use this command to generate a rule that verifies a string is uppercase. Laravel will place the new rule in the `app/Rules` directory. If this directory does not exist, Laravel will create it when you execute the Artisan command to create your rule:
+Laravelはさまざまな便利なバリデーションルールを提供していますが、独自のルールを指定したい場合があります。カスタムバリデーションルールを登録する方法の1つは、ルールオブジェクトを使用することです。新しいルールオブジェクトを生成するには、`make:rule` Artisanコマンドを使用できます。このコマンドを使用して、文字列が大文字であることを検証するルールを生成しましょう。Laravelは新しいルールを`app/Rules`ディレクトリに配置します。このディレクトリが存在しない場合、Laravelはルールを作成するArtisanコマンドを実行するときに作成します。
 
 ```shell
 php artisan make:rule Uppercase
 ```
 
-Once the rule has been created, we are ready to define its behavior. A rule object contains a single method: `validate`. This method receives the attribute name, its value, and a callback that should be invoked on failure with the validation error message:
+ルールが作成されたら、その動作を定義する準備が整いました。ルールオブジェクトには`validate`という単一のメソッドが含まれています。このメソッドは、属性名、その値、およびバリデーションエラーメッセージで失敗時に呼び出されるコールバックを受け取ります。
 
-    <?php
+```php
+<?php
 
-    namespace App\Rules;
+namespace App\Rules;
 
-    use Closure;
-    use Illuminate\Contracts\Validation\ValidationRule;
+use Closure;
+use Illuminate\Contracts\Validation\ValidationRule;
 
-    class Uppercase implements ValidationRule
+class Uppercase implements ValidationRule
+{
+    /**
+     * Run the validation rule.
+     */
+    public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        /**
-         * Run the validation rule.
-         */
-        public function validate(string $attribute, mixed $value, Closure $fail): void
-        {
-            if (strtoupper($value) !== $value) {
-                $fail('The :attribute must be uppercase.');
-            }
+        if (strtoupper($value) !== $value) {
+            $fail('The :attribute must be uppercase.');
         }
     }
+}
+```
 
-Once the rule has been defined, you may attach it to a validator by passing an instance of the rule object with your other validation rules:
+ルールが定義されたら、他のバリデーションルールとともにルールオブジェクトのインスタンスを渡すことで、バリデータに添付できます。
 
-    use App\Rules\Uppercase;
+```php
+use App\Rules\Uppercase;
 
-    $request->validate([
-        'name' => ['required', 'string', new Uppercase],
-    ]);
+$request->validate([
+    'name' => ['required', 'string', new Uppercase],
+]);
+```
 
-#### Translating Validation Messages
+#### バリデーションメッセージの翻訳
 
-Instead of providing a literal error message to the `$fail` closure, you may also provide a [translation string key](/docs/{{version}}/localization) and instruct Laravel to translate the error message:
+`$fail`クロージャにリテラルエラーメッセージを提供する代わりに、[翻訳文字列キー](localization.md)を提供し、Laravelにエラーメッセージを翻訳させることができます。
 
-    if (strtoupper($value) !== $value) {
-        $fail('validation.uppercase')->translate();
-    }
+```php
+if (strtoupper($value) !== $value) {
+    $fail('validation.uppercase')->translate();
+}
+```
 
-If necessary, you may provide placeholder replacements and the preferred language as the first and second arguments to the `translate` method:
+必要に応じて、プレースホルダの置換と優先言語を`translate`メソッドの最初と2番目の引数として提供できます。
 
-    $fail('validation.location')->translate([
-        'value' => $this->value,
-    ], 'fr')
+```php
+$fail('validation.location')->translate([
+    'value' => $this->value,
+], 'fr')
+```
 
-#### Accessing Additional Data
+#### 追加データへのアクセス
 
-If your custom validation rule class needs to access all of the other data undergoing validation, your rule class may implement the `Illuminate\Contracts\Validation\DataAwareRule` interface. This interface requires your class to define a `setData` method. This method will automatically be invoked by Laravel (before validation proceeds) with all of the data under validation:
+カスタムバリデーションルールクラスが検証中のすべての他のデータにアクセスする必要がある場合、ルールクラスは`Illuminate\Contracts\Validation\DataAwareRule`インターフェースを実装できます。このインターフェースは、クラスに`setData`メソッドを定義することを要求します。このメソッドは、Laravelによって自動的に呼び出され（バリデーションが進行する前に）、検証中のすべてのデータが渡されます。
 
-    <?php
+```php
+<?php
 
-    namespace App\Rules;
+namespace App\Rules;
 
-    use Illuminate\Contracts\Validation\DataAwareRule;
-    use Illuminate\Contracts\Validation\ValidationRule;
+use Illuminate\Contracts\Validation\DataAwareRule;
+use Illuminate\Contracts\Validation\ValidationRule;
 
-    class Uppercase implements DataAwareRule, ValidationRule
+class Uppercase implements DataAwareRule, ValidationRule
+{
+    /**
+     * All of the data under validation.
+     *
+     * @var array<string, mixed>
+     */
+    protected $data = [];
+
+    // ...
+
+    /**
+     * Set the data under validation.
+     *
+     * @param  array<string, mixed>  $data
+     */
+    public function setData(array $data): static
     {
-        /**
-         * All of the data under validation.
-         *
-         * @var array<string, mixed>
-         */
-        protected $data = [];
+        $this->data = $data;
 
-        // ...
-
-        /**
-         * Set the data under validation.
-         *
-         * @param  array<string, mixed>  $data
-         */
-        public function setData(array $data): static
-        {
-            $this->data = $data;
-
-            return $this;
-        }
+        return $this;
     }
+}
+```
 
-Or, if your validation rule requires access to the validator instance performing the validation, you may implement the `ValidatorAwareRule` interface:
+または、バリデーションルールがバリデーションを実行しているバリデータインスタンスにアクセスする必要がある場合、`ValidatorAwareRule`インターフェースを実装できます。
 
-    <?php
+```php
+<?php
 
-    namespace App\Rules;
+namespace App\Rules;
 
-    use Illuminate\Contracts\Validation\ValidationRule;
-    use Illuminate\Contracts\Validation\ValidatorAwareRule;
-    use Illuminate\Validation\Validator;
+use Illuminate\Contracts\Validation\ValidationRule;
+use Illuminate\Contracts\Validation\ValidatorAwareRule;
+use Illuminate\Validation\Validator;
 
-    class Uppercase implements ValidationRule, ValidatorAwareRule
+class Uppercase implements ValidationRule, ValidatorAwareRule
+{
+    /**
+     * The validator instance.
+     *
+     * @var \Illuminate\Validation\Validator
+     */
+    protected $validator;
+
+    // ...
+
+    /**
+     * Set the current validator.
+     */
+    public function setValidator(Validator $validator): static
     {
-        /**
-         * The validator instance.
-         *
-         * @var \Illuminate\Validation\Validator
-         */
-        protected $validator;
+        $this->validator = $validator;
 
-        // ...
+        return $this;
+    }
+}
+```
 
+```php
         /**
-         * Set the current validator.
+         * 現在のバリデーターを設定します。
          */
         public function setValidator(Validator $validator): static
         {
@@ -2359,12 +2477,14 @@ Or, if your validation rule requires access to the validator instance performing
             return $this;
         }
     }
+```
 
 <a name="using-closures"></a>
-### Using Closures
+### クロージャの使用
 
-If you only need the functionality of a custom rule once throughout your application, you may use a closure instead of a rule object. The closure receives the attribute's name, the attribute's value, and a `$fail` callback that should be called if validation fails:
+アプリケーション全体でカスタムルールの機能が一度しか必要ない場合は、ルールオブジェクトの代わりにクロージャを使用できます。クロージャは属性の名前、属性の値、およびバリデーションが失敗した場合に呼び出す必要がある`$fail`コールバックを受け取ります。
 
+```php
     use Illuminate\Support\Facades\Validator;
     use Closure;
 
@@ -2379,12 +2499,14 @@ If you only need the functionality of a custom rule once throughout your applica
             },
         ],
     ]);
+```
 
 <a name="implicit-rules"></a>
-### Implicit Rules
+### 暗黙のルール
 
-By default, when an attribute being validated is not present or contains an empty string, normal validation rules, including custom rules, are not run. For example, the [`unique`](#rule-unique) rule will not be run against an empty string:
+デフォルトでは、バリデーションされる属性が存在しないか、空の文字列を含む場合、通常のバリデーションルール（カスタムルールを含む）は実行されません。例えば、[`unique`](#rule-unique)ルールは空の文字列に対して実行されません。
 
+```php
     use Illuminate\Support\Facades\Validator;
 
     $rules = ['name' => 'unique:users,name'];
@@ -2392,12 +2514,14 @@ By default, when an attribute being validated is not present or contains an empt
     $input = ['name' => ''];
 
     Validator::make($input, $rules)->passes(); // true
+```
 
-For a custom rule to run even when an attribute is empty, the rule must imply that the attribute is required. To quickly generate a new implicit rule object, you may use the `make:rule` Artisan command with the `--implicit` option:
+属性が空であってもカスタムルールが実行されるようにするには、そのルールは属性が必須であることを示唆する必要があります。新しい暗黙のルールオブジェクトを素早く生成するには、`make:rule` Artisanコマンドに`--implicit`オプションを付けて使用できます。
 
 ```shell
 php artisan make:rule Uppercase --implicit
 ```
 
-> [!WARNING]  
-> An "implicit" rule only _implies_ that the attribute is required. Whether it actually invalidates a missing or empty attribute is up to you.
+> WARNING:  
+> 「暗黙の」ルールは属性が必須であることを**示唆する**だけです。実際に欠落したり空の属性を無効とするかどうかは、あなた次第です。
+

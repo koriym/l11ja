@@ -1,49 +1,49 @@
-# HTTP Responses
+# HTTPレスポンス
 
-- [Creating Responses](#creating-responses)
-    - [Attaching Headers to Responses](#attaching-headers-to-responses)
-    - [Attaching Cookies to Responses](#attaching-cookies-to-responses)
-    - [Cookies and Encryption](#cookies-and-encryption)
-- [Redirects](#redirects)
-    - [Redirecting to Named Routes](#redirecting-named-routes)
-    - [Redirecting to Controller Actions](#redirecting-controller-actions)
-    - [Redirecting to External Domains](#redirecting-external-domains)
-    - [Redirecting With Flashed Session Data](#redirecting-with-flashed-session-data)
-- [Other Response Types](#other-response-types)
-    - [View Responses](#view-responses)
-    - [JSON Responses](#json-responses)
-    - [File Downloads](#file-downloads)
-    - [File Responses](#file-responses)
-    - [Streamed Responses](#streamed-responses)
-- [Response Macros](#response-macros)
+- [レスポンスの作成](#creating-responses)
+    - [ヘッダーをレスポンスに添付する](#attaching-headers-to-responses)
+    - [クッキーをレスポンスに添付する](#attaching-cookies-to-responses)
+    - [クッキーと暗号化](#cookies-and-encryption)
+- [リダイレクト](#redirects)
+    - [名前付きルートへのリダイレクト](#redirecting-named-routes)
+    - [コントローラアクションへのリダイレクト](#redirecting-controller-actions)
+    - [外部ドメインへのリダイレクト](#redirecting-external-domains)
+    - [セッションデータをフラッシュしてリダイレクト](#redirecting-with-flashed-session-data)
+- [その他のレスポンスタイプ](#other-response-types)
+    - [ビューレスポンス](#view-responses)
+    - [JSONレスポンス](#json-responses)
+    - [ファイルダウンロード](#file-downloads)
+    - [ファイルレスポンス](#file-responses)
+    - [ストリーミングレスポンス](#streamed-responses)
+- [レスポンスマクロ](#response-macros)
 
 <a name="creating-responses"></a>
-## Creating Responses
+## レスポンスの作成
 
 <a name="strings-arrays"></a>
-#### Strings and Arrays
+#### 文字列と配列
 
-All routes and controllers should return a response to be sent back to the user's browser. Laravel provides several different ways to return responses. The most basic response is returning a string from a route or controller. The framework will automatically convert the string into a full HTTP response:
+すべてのルートとコントローラは、ユーザーのブラウザに送り返されるレスポンスを返す必要があります。Laravelは、レスポンスを返すためのいくつかの異なる方法を提供しています。最も基本的なレスポンスは、ルートまたはコントローラから文字列を返すことです。フレームワークは自動的に文字列を完全なHTTPレスポンスに変換します：
 
     Route::get('/', function () {
         return 'Hello World';
     });
 
-In addition to returning strings from your routes and controllers, you may also return arrays. The framework will automatically convert the array into a JSON response:
+ルートやコントローラから文字列を返すだけでなく、配列を返すこともできます。フレームワークは自動的に配列をJSONレスポンスに変換します：
 
     Route::get('/', function () {
         return [1, 2, 3];
     });
 
-> [!NOTE]  
-> Did you know you can also return [Eloquent collections](/docs/{{version}}/eloquent-collections) from your routes or controllers? They will automatically be converted to JSON. Give it a shot!
+> NOTE:  
+> ルートやコントローラから[Eloquentコレクション](eloquent-collections.md)を返すこともできることを知っていましたか？これらは自動的にJSONに変換されます。試してみてください！
 
 <a name="response-objects"></a>
-#### Response Objects
+#### レスポンスオブジェクト
 
-Typically, you won't just be returning simple strings or arrays from your route actions. Instead, you will be returning full `Illuminate\Http\Response` instances or [views](/docs/{{version}}/views).
+通常、ルートアクションから単純な文字列や配列を返すだけではありません。代わりに、完全な`Illuminate\Http\Response`インスタンスまたは[ビュー](views.md)を返します。
 
-Returning a full `Response` instance allows you to customize the response's HTTP status code and headers. A `Response` instance inherits from the `Symfony\Component\HttpFoundation\Response` class, which provides a variety of methods for building HTTP responses:
+完全な`Response`インスタンスを返すことで、レスポンスのHTTPステータスコードやヘッダーをカスタマイズできます。`Response`インスタンスは`Symfony\Component\HttpFoundation\Response`クラスを継承しており、HTTPレスポンスを構築するためのさまざまなメソッドを提供しています：
 
     Route::get('/home', function () {
         return response('Hello World', 200)
@@ -51,9 +51,9 @@ Returning a full `Response` instance allows you to customize the response's HTTP
     });
 
 <a name="eloquent-models-and-collections"></a>
-#### Eloquent Models and Collections
+#### Eloquentモデルとコレクション
 
-You may also return [Eloquent ORM](/docs/{{version}}/eloquent) models and collections directly from your routes and controllers. When you do, Laravel will automatically convert the models and collections to JSON responses while respecting the model's [hidden attributes](/docs/{{version}}/eloquent-serialization#hiding-attributes-from-json):
+ルートやコントローラから直接[Eloquent ORM](eloquent.md)モデルとコレクションを返すこともできます。そうすると、Laravelは自動的にモデルとコレクションをJSONレスポンスに変換し、モデルの[非表示属性](eloquent-serialization.md#hiding-attributes-from-json)を尊重します：
 
     use App\Models\User;
 
@@ -62,16 +62,16 @@ You may also return [Eloquent ORM](/docs/{{version}}/eloquent) models and collec
     });
 
 <a name="attaching-headers-to-responses"></a>
-### Attaching Headers to Responses
+### レスポンスにヘッダーを添付する
 
-Keep in mind that most response methods are chainable, allowing for the fluent construction of response instances. For example, you may use the `header` method to add a series of headers to the response before sending it back to the user:
+ほとんどのレスポンスメソッドはチェーン可能であり、レスポンスインスタンスを流暢に構築できます。たとえば、`header`メソッドを使用して、ユーザーに送り返す前に一連のヘッダーをレスポンスに追加できます：
 
     return response($content)
                 ->header('Content-Type', $type)
                 ->header('X-Header-One', 'Header Value')
                 ->header('X-Header-Two', 'Header Value');
 
-Or, you may use the `withHeaders` method to specify an array of headers to be added to the response:
+または、`withHeaders`メソッドを使用して、レスポンスに追加するヘッダーの配列を指定できます：
 
     return response($content)
                 ->withHeaders([
@@ -81,9 +81,9 @@ Or, you may use the `withHeaders` method to specify an array of headers to be ad
                 ]);
 
 <a name="cache-control-middleware"></a>
-#### Cache Control Middleware
+#### キャッシュコントロールミドルウェア
 
-Laravel includes a `cache.headers` middleware, which may be used to quickly set the `Cache-Control` header for a group of routes. Directives should be provided using the "snake case" equivalent of the corresponding cache-control directive and should be separated by a semicolon. If `etag` is specified in the list of directives, an MD5 hash of the response content will automatically be set as the ETag identifier:
+Laravelには`cache.headers`ミドルウェアが含まれており、これを使用してルートのグループに対して`Cache-Control`ヘッダーをすばやく設定できます。ディレクティブは、対応するキャッシュコントロールディレクティブの「スネークケース」相当で提供され、セミコロンで区切る必要があります。ディレクティブのリストに`etag`が指定されている場合、レスポンス内容のMD5ハッシュが自動的にETag識別子として設定されます：
 
     Route::middleware('cache.headers:public;max_age=2628000;etag')->group(function () {
         Route::get('/privacy', function () {
@@ -96,50 +96,50 @@ Laravel includes a `cache.headers` middleware, which may be used to quickly set 
     });
 
 <a name="attaching-cookies-to-responses"></a>
-### Attaching Cookies to Responses
+### レスポンスにクッキーを添付する
 
-You may attach a cookie to an outgoing `Illuminate\Http\Response` instance using the `cookie` method. You should pass the name, value, and the number of minutes the cookie should be considered valid to this method:
+送信される`Illuminate\Http\Response`インスタンスにクッキーを添付するには、`cookie`メソッドを使用します。このメソッドには、名前、値、およびクッキーが有効とみなされる分数を渡す必要があります：
 
     return response('Hello World')->cookie(
         'name', 'value', $minutes
     );
 
-The `cookie` method also accepts a few more arguments which are used less frequently. Generally, these arguments have the same purpose and meaning as the arguments that would be given to PHP's native [setcookie](https://secure.php.net/manual/en/function.setcookie.php) method:
+`cookie`メソッドは、より頻繁に使用されないいくつかの引数も受け入れます。一般に、これらの引数はPHPのネイティブ[setcookie](https://secure.php.net/manual/en/function.setcookie.php)メソッドに与えられる引数と同じ目的と意味を持っています：
 
     return response('Hello World')->cookie(
         'name', 'value', $minutes, $path, $domain, $secure, $httpOnly
     );
 
-If you would like to ensure that a cookie is sent with the outgoing response but you do not yet have an instance of that response, you can use the `Cookie` facade to "queue" cookies for attachment to the response when it is sent. The `queue` method accepts the arguments needed to create a cookie instance. These cookies will be attached to the outgoing response before it is sent to the browser:
+送信されるレスポンスにクッキーを添付することを確認したいが、まだそのレスポンスのインスタンスがない場合は、`Cookie`ファサードを使用してクッキーを「キュー」に入れることができます。`queue`メソッドは、クッキーインスタンスを作成するために必要な引数を受け入れます。これらのクッキーは、ブラウザに送信される前に送信レスポンスに添付されます：
 
     use Illuminate\Support\Facades\Cookie;
 
     Cookie::queue('name', 'value', $minutes);
 
 <a name="generating-cookie-instances"></a>
-#### Generating Cookie Instances
+#### クッキーインスタンスの生成
 
-If you would like to generate a `Symfony\Component\HttpFoundation\Cookie` instance that can be attached to a response instance at a later time, you may use the global `cookie` helper. This cookie will not be sent back to the client unless it is attached to a response instance:
+後でレスポンスインスタンスに添付できる`Symfony\Component\HttpFoundation\Cookie`インスタンスを生成したい場合は、グローバルな`cookie`ヘルパーを使用できます。このクッキーは、レスポンスインスタンスに添付されない限り、クライアントに送り返されません：
 
     $cookie = cookie('name', 'value', $minutes);
 
     return response('Hello World')->cookie($cookie);
 
 <a name="expiring-cookies-early"></a>
-#### Expiring Cookies Early
+#### クッキーの早期期限切れ
 
-You may remove a cookie by expiring it via the `withoutCookie` method of an outgoing response:
+送信レスポンスの`withoutCookie`メソッドを介してクッキーを期限切れにすることで、クッキーを削除できます：
 
     return response('Hello World')->withoutCookie('name');
 
-If you do not yet have an instance of the outgoing response, you may use the `Cookie` facade's `expire` method to expire a cookie:
+送信レスポンスのインスタンスがまだない場合は、`Cookie`ファサードの`expire`メソッドを使用してクッキーを期限切れにすることができます：
 
     Cookie::expire('name');
 
 <a name="cookies-and-encryption"></a>
-### Cookies and Encryption
+### クッキーと暗号化
 
-By default, thanks to the `Illuminate\Cookie\Middleware\EncryptCookies` middleware, all cookies generated by Laravel are encrypted and signed so that they can't be modified or read by the client. If you would like to disable encryption for a subset of cookies generated by your application, you may use the `encryptCookies` method in your application's `bootstrap/app.php` file:
+デフォルトでは、Laravelによって生成されるすべてのクッキーは、`Illuminate\Cookie\Middleware\EncryptCookies`ミドルウェアのおかげで暗号化され、署名されているため、クライアントによって変更または読み取られることはありません。アプリケーションによって生成されるクッキーのサブセットの暗号化を無効にしたい場合は、アプリケーションの`bootstrap/app.php`ファイルで`encryptCookies`メソッドを使用できます：
 
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->encryptCookies(except: [
@@ -148,48 +148,48 @@ By default, thanks to the `Illuminate\Cookie\Middleware\EncryptCookies` middlewa
     })
 
 <a name="redirects"></a>
-## Redirects
+## リダイレクト
 
-Redirect responses are instances of the `Illuminate\Http\RedirectResponse` class, and contain the proper headers needed to redirect the user to another URL. There are several ways to generate a `RedirectResponse` instance. The simplest method is to use the global `redirect` helper:
+リダイレクトレスポンスは`Illuminate\Http\RedirectResponse`クラスのインスタンスであり、ユーザーを別のURLにリダイレクトするために必要な適切なヘッダーを含んでいます。`RedirectResponse`インスタンスを生成する方法はいくつかあります。最も簡単な方法は、グローバルな`redirect`ヘルパーを使用することです：
 
     Route::get('/dashboard', function () {
         return redirect('/home/dashboard');
     });
 
-Sometimes you may wish to redirect the user to their previous location, such as when a submitted form is invalid. You may do so by using the global `back` helper function. Since this feature utilizes the [session](/docs/{{version}}/session), make sure the route calling the `back` function is using the `web` middleware group:
+ユーザーを以前の場所にリダイレクトしたい場合があります。たとえば、送信されたフォームが無効な場合などです。グローバルな`back`ヘルパー関数を使用してこれを行うことができます。この機能は[セッション](session.md)を利用しているため、`back`関数を呼び出すルートが`web`ミドルウェアグループを使用していることを確認してください：
 
     Route::post('/user/profile', function () {
-        // Validate the request...
+        // リクエストの検証...
 
         return back()->withInput();
     });
 
 <a name="redirecting-named-routes"></a>
-### Redirecting to Named Routes
+### 名前付きルートへのリダイレクト
 
-When you call the `redirect` helper with no parameters, an instance of `Illuminate\Routing\Redirector` is returned, allowing you to call any method on the `Redirector` instance. For example, to generate a `RedirectResponse` to a named route, you may use the `route` method:
+パラメータを指定せずに`redirect`ヘルパーを呼び出すと、`Illuminate\Routing\Redirector`のインスタンスが返され、`Redirector`インスタンスの任意のメソッドを呼び出すことができます。たとえば、名前付きルートへの`RedirectResponse`を生成するには、`route`メソッドを使用できます：
 
     return redirect()->route('login');
 
-If your route has parameters, you may pass them as the second argument to the `route` method:
+ルートにパラメータがある場合は、それらを`route`メソッドの2番目の引数として渡すことができます：
 
-    // For a route with the following URI: /profile/{id}
+    // 次のようなURIのルートの場合: /profile/{id}
 
     return redirect()->route('profile', ['id' => 1]);
 
 <a name="populating-parameters-via-eloquent-models"></a>
-#### Populating Parameters via Eloquent Models
+#### Eloquentモデルによるパラメータの設定
 
-If you are redirecting to a route with an "ID" parameter that is being populated from an Eloquent model, you may pass the model itself. The ID will be extracted automatically:
+Eloquentモデルから「ID」パラメータを設定するルートにリダイレクトする場合は、モデル自体を渡すことができます。IDは自動的に抽出されます：
 
-    // For a route with the following URI: /profile/{id}
+    // 次のようなURIのルートの場合: /profile/{id}
 
     return redirect()->route('profile', [$user]);
 
-If you would like to customize the value that is placed in the route parameter, you can specify the column in the route parameter definition (`/profile/{id:slug}`) or you can override the `getRouteKey` method on your Eloquent model:
+ルートパラメータに配置される値をカスタマイズしたい場合は、ルートパラメータ定義（`/profile/{id:slug}`）で列を指定するか、Eloquentモデルで`getRouteKey`メソッドをオーバーライドできます：
 
     /**
-     * Get the value of the model's route key.
+     * モデルのルートキーの値を取得します。
      */
     public function getRouteKey(): mixed
     {
@@ -197,31 +197,31 @@ If you would like to customize the value that is placed in the route parameter, 
     }
 
 <a name="redirecting-controller-actions"></a>
-### Redirecting to Controller Actions
+### コントローラアクションへのリダイレクト
 
-You may also generate redirects to [controller actions](/docs/{{version}}/controllers). To do so, pass the controller and action name to the `action` method:
+[コントローラアクション](controllers.md)へのリダイレクトを生成することもできます。そのためには、コントローラとアクションの名前を`action`メソッドに渡します：
 
     use App\Http\Controllers\UserController;
 
     return redirect()->action([UserController::class, 'index']);
 
-If your controller route requires parameters, you may pass them as the second argument to the `action` method:
+もしコントローラーのルートがパラメータを必要とする場合、それらを`action`メソッドの第二引数として渡すことができます。
 
     return redirect()->action(
         [UserController::class, 'profile'], ['id' => 1]
     );
 
 <a name="redirecting-external-domains"></a>
-### Redirecting to External Domains
+### 外部ドメインへのリダイレクト
 
-Sometimes you may need to redirect to a domain outside of your application. You may do so by calling the `away` method, which creates a `RedirectResponse` without any additional URL encoding, validation, or verification:
+アプリケーション外のドメインにリダイレクトする必要がある場合があります。その場合、`away`メソッドを呼び出すことで、追加のURLエンコーディング、検証、または検証なしで`RedirectResponse`を作成できます。
 
     return redirect()->away('https://www.google.com');
 
 <a name="redirecting-with-flashed-session-data"></a>
-### Redirecting With Flashed Session Data
+### セッションデータをフラッシュしてリダイレクト
 
-Redirecting to a new URL and [flashing data to the session](/docs/{{version}}/session#flash-data) are usually done at the same time. Typically, this is done after successfully performing an action when you flash a success message to the session. For convenience, you may create a `RedirectResponse` instance and flash data to the session in a single, fluent method chain:
+新しいURLにリダイレクトし、[セッションにデータをフラッシュする](session.md#flash-data)ことは、通常同時に行われます。これは通常、アクションが正常に実行された後に成功メッセージをセッションにフラッシュする場合に行われます。便宜上、`RedirectResponse`インスタンスを作成し、セッションにデータをフラッシュすることができます。
 
     Route::post('/user/profile', function () {
         // ...
@@ -229,7 +229,7 @@ Redirecting to a new URL and [flashing data to the session](/docs/{{version}}/se
         return redirect('/dashboard')->with('status', 'Profile updated!');
     });
 
-After the user is redirected, you may display the flashed message from the [session](/docs/{{version}}/session). For example, using [Blade syntax](/docs/{{version}}/blade):
+ユーザーがリダイレクトされた後、[セッション](session.md)からフラッシュされたメッセージを表示できます。例えば、[Blade構文](blade.md)を使用して：
 
     @if (session('status'))
         <div class="alert alert-success">
@@ -238,69 +238,69 @@ After the user is redirected, you may display the flashed message from the [sess
     @endif
 
 <a name="redirecting-with-input"></a>
-#### Redirecting With Input
+#### 入力を伴うリダイレクト
 
-You may use the `withInput` method provided by the `RedirectResponse` instance to flash the current request's input data to the session before redirecting the user to a new location. This is typically done if the user has encountered a validation error. Once the input has been flashed to the session, you may easily [retrieve it](/docs/{{version}}/requests#retrieving-old-input) during the next request to repopulate the form:
+`RedirectResponse`インスタンスが提供する`withInput`メソッドを使用して、ユーザーを新しい場所にリダイレクトする前に現在のリクエストの入力データをセッションにフラッシュすることができます。これは通常、ユーザーがバリデーションエラーに遭遇した場合に行われます。入力がセッションにフラッシュされると、次のリクエスト中に簡単に[取得](requests.md#retrieving-old-input)してフォームを再入力することができます。
 
     return back()->withInput();
 
 <a name="other-response-types"></a>
-## Other Response Types
+## その他のレスポンスタイプ
 
-The `response` helper may be used to generate other types of response instances. When the `response` helper is called without arguments, an implementation of the `Illuminate\Contracts\Routing\ResponseFactory` [contract](/docs/{{version}}/contracts) is returned. This contract provides several helpful methods for generating responses.
+`response`ヘルパーは、他のタイプのレスポンスインスタンスを生成するために使用できます。`response`ヘルパーが引数なしで呼び出されると、`Illuminate\Contracts\Routing\ResponseFactory`[契約](contracts.md)の実装が返されます。この契約は、レスポンスを生成するためのいくつかの便利なメソッドを提供します。
 
 <a name="view-responses"></a>
-### View Responses
+### ビューレスポンス
 
-If you need control over the response's status and headers but also need to return a [view](/docs/{{version}}/views) as the response's content, you should use the `view` method:
+レスポンスのステータスとヘッダーを制御する必要があるが、レスポンスの内容として[ビュー](views.md)も返す必要がある場合は、`view`メソッドを使用する必要があります。
 
     return response()
                 ->view('hello', $data, 200)
                 ->header('Content-Type', $type);
 
-Of course, if you do not need to pass a custom HTTP status code or custom headers, you may use the global `view` helper function.
+もちろん、カスタムHTTPステータスコードやカスタムヘッダーを渡す必要がない場合は、グローバルな`view`ヘルパー関数を使用できます。
 
 <a name="json-responses"></a>
-### JSON Responses
+### JSONレスポンス
 
-The `json` method will automatically set the `Content-Type` header to `application/json`, as well as convert the given array to JSON using the `json_encode` PHP function:
+`json`メソッドは、`Content-Type`ヘッダーを自動的に`application/json`に設定し、与えられた配列を`json_encode` PHP関数を使用してJSONに変換します。
 
     return response()->json([
         'name' => 'Abigail',
         'state' => 'CA',
     ]);
 
-If you would like to create a JSONP response, you may use the `json` method in combination with the `withCallback` method:
+JSONPレスポンスを作成する場合は、`json`メソッドと`withCallback`メソッドを組み合わせて使用できます。
 
     return response()
                 ->json(['name' => 'Abigail', 'state' => 'CA'])
                 ->withCallback($request->input('callback'));
 
 <a name="file-downloads"></a>
-### File Downloads
+### ファイルダウンロード
 
-The `download` method may be used to generate a response that forces the user's browser to download the file at the given path. The `download` method accepts a filename as the second argument to the method, which will determine the filename that is seen by the user downloading the file. Finally, you may pass an array of HTTP headers as the third argument to the method:
+`download`メソッドは、指定されたパスのファイルをユーザーのブラウザにダウンロードさせるレスポンスを生成するために使用できます。`download`メソッドは、メソッドの第二引数としてファイル名を受け取り、ユーザーがファイルをダウンロードする際に表示されるファイル名を決定します。最後に、メソッドの第三引数としてHTTPヘッダーの配列を渡すことができます。
 
     return response()->download($pathToFile);
 
     return response()->download($pathToFile, $name, $headers);
 
-> [!WARNING]  
-> Symfony HttpFoundation, which manages file downloads, requires the file being downloaded to have an ASCII filename.
+> WARNING:  
+> Symfony HttpFoundation（ファイルダウンロードを管理する）は、ダウンロードされるファイルがASCIIファイル名を持つ必要があります。
 
 <a name="file-responses"></a>
-### File Responses
+### ファイルレスポンス
 
-The `file` method may be used to display a file, such as an image or PDF, directly in the user's browser instead of initiating a download. This method accepts the absolute path to the file as its first argument and an array of headers as its second argument:
+`file`メソッドは、画像やPDFなどのファイルをダウンロードを開始する代わりにユーザーのブラウザに直接表示するために使用できます。このメソッドは、ファイルへの絶対パスを第一引数として受け取り、ヘッダーの配列を第二引数として受け取ります。
 
     return response()->file($pathToFile);
 
     return response()->file($pathToFile, $headers);
 
 <a name="streamed-responses"></a>
-### Streamed Responses
+### ストリーミングレスポンス
 
-By streaming data to the client as it is generated, you can significantly reduce memory usage and improve performance, especially for very large responses. Streamed responses allow the client to begin processing data before the server has finished sending it:
+データを生成されると同時にクライアントにストリーミングすることで、特に非常に大きなレスポンスの場合にメモリ使用量を大幅に削減し、パフォーマンスを向上させることができます。ストリーミングレスポンスにより、サーバーがデータの送信を完了する前にクライアントがデータの処理を開始できます。
 
     function streamedContent(): Generator {
         yield 'Hello, ';
@@ -313,18 +313,18 @@ By streaming data to the client as it is generated, you can significantly reduce
                 echo $chunk;
                 ob_flush();
                 flush();
-                sleep(2); // Simulate delay between chunks...
+                sleep(2); // チャンク間の遅延をシミュレート...
             }
         }, 200, ['X-Accel-Buffering' => 'no']);
     });
 
-> [!NOTE]
-> Internally, Laravel utilizes PHP's output buffering functionality. As you can see in the example above, you should use the `ob_flush` and `flush` functions to push buffered content to the client.
+> NOTE:
+> 内部的には、LaravelはPHPの出力バッファリング機能を利用しています。上記の例でわかるように、バッファリングされたコンテンツをクライアントにプッシュするために`ob_flush`と`flush`関数を使用する必要があります。
 
 <a name="streamed-json-responses"></a>
-#### Streamed JSON Responses
+#### ストリーミングJSONレスポンス
 
-If you need to stream JSON data incrementally, you may utilize the `streamJson` method. This method is especially useful for large datasets that need to be sent progressively to the browser in a format that can be easily parsed by JavaScript:
+JSONデータをインクリメンタルにストリーミングする必要がある場合は、`streamJson`メソッドを利用できます。このメソッドは、特にJavaScriptで簡単に解析できる形式でブラウザに徐々に送信する必要がある大規模なデータセットに特に便利です。
 
     use App\Models\User;
 
@@ -335,9 +335,9 @@ If you need to stream JSON data incrementally, you may utilize the `streamJson` 
     });
 
 <a name="streamed-downloads"></a>
-#### Streamed Downloads
+#### ストリーミングダウンロード
 
-Sometimes you may wish to turn the string response of a given operation into a downloadable response without having to write the contents of the operation to disk. You may use the `streamDownload` method in this scenario. This method accepts a callback, filename, and an optional array of headers as its arguments:
+特定の操作の文字列レスポンスをディスクに書き込むことなくダウンロード可能なレスポンスに変換したい場合があります。このような場合には、`streamDownload`メソッドを使用できます。このメソッドは、コールバック、ファイル名、およびオプションのヘッダー配列を引数として受け取ります。
 
     use App\Services\GitHub;
 
@@ -348,9 +348,9 @@ Sometimes you may wish to turn the string response of a given operation into a d
     }, 'laravel-readme.md');
 
 <a name="response-macros"></a>
-## Response Macros
+## レスポンスマクロ
 
-If you would like to define a custom response that you can re-use in a variety of your routes and controllers, you may use the `macro` method on the `Response` facade. Typically, you should call this method from the `boot` method of one of your application's [service providers](/docs/{{version}}/providers), such as the `App\Providers\AppServiceProvider` service provider:
+さまざまなルートやコントローラーで再利用できるカスタムレスポンスを定義したい場合は、`Response`ファサードの`macro`メソッドを使用できます。通常、このメソッドは、`App\Providers\AppServiceProvider`サービスプロバイダーなど、アプリケーションの[サービスプロバイダー](providers.md)の`boot`メソッドから呼び出す必要があります。
 
     <?php
 
@@ -362,7 +362,7 @@ If you would like to define a custom response that you can re-use in a variety o
     class AppServiceProvider extends ServiceProvider
     {
         /**
-         * Bootstrap any application services.
+         * アプリケーションサービスの初期化処理
          */
         public function boot(): void
         {
@@ -372,6 +372,6 @@ If you would like to define a custom response that you can re-use in a variety o
         }
     }
 
-The `macro` function accepts a name as its first argument and a closure as its second argument. The macro's closure will be executed when calling the macro name from a `ResponseFactory` implementation or the `response` helper:
+`macro`関数は、名前を第一引数として受け取り、クロージャを第二引数として受け取ります。マクロのクロージャは、`ResponseFactory`実装または`response`ヘルパーからマクロ名を呼び出すと実行されます。
 
     return response()->caps('foo');

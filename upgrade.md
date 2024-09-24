@@ -1,93 +1,93 @@
-# Upgrade Guide
+# アップグレードガイド
 
-- [Upgrading To 11.0 From 10.x](#upgrade-11.0)
+- [10.x から 11.0 へのアップグレード](#upgrade-11.0)
 
 <a name="high-impact-changes"></a>
-## High Impact Changes
+## 高影響の変更
 
 <div class="content-list" markdown="1">
 
-- [Updating Dependencies](#updating-dependencies)
-- [Application Structure](#application-structure)
-- [Floating-Point Types](#floating-point-types)
-- [Modifying Columns](#modifying-columns)
-- [SQLite Minimum Version](#sqlite-minimum-version)
-- [Updating Sanctum](#updating-sanctum)
+- [依存関係の更新](#updating-dependencies)
+- [アプリケーション構造](#application-structure)
+- [浮動小数点型](#floating-point-types)
+- [カラムの変更](#modifying-columns)
+- [SQLite の最低バージョン](#sqlite-minimum-version)
+- [Sanctum の更新](#updating-sanctum)
 
 </div>
 
 <a name="medium-impact-changes"></a>
-## Medium Impact Changes
+## 中影響の変更
 
 <div class="content-list" markdown="1">
 
 - [Carbon 3](#carbon-3)
-- [Password Rehashing](#password-rehashing)
-- [Per-Second Rate Limiting](#per-second-rate-limiting)
-- [Spatie Once Package](#spatie-once-package)
+- [パスワードの再ハッシュ](#password-rehashing)
+- [秒単位のレート制限](#per-second-rate-limiting)
+- [Spatie Once パッケージ](#spatie-once-package)
 
 </div>
 
 <a name="low-impact-changes"></a>
-## Low Impact Changes
+## 低影響の変更
 
 <div class="content-list" markdown="1">
 
-- [Doctrine DBAL Removal](#doctrine-dbal-removal)
-- [Eloquent Model `casts` Method](#eloquent-model-casts-method)
-- [Spatial Types](#spatial-types)
-- [The `Enumerable` Contract](#the-enumerable-contract)
-- [The `UserProvider` Contract](#the-user-provider-contract)
-- [The `Authenticatable` Contract](#the-authenticatable-contract)
+- [Doctrine DBAL の削除](#doctrine-dbal-removal)
+- [Eloquent モデルの `casts` メソッド](#eloquent-model-casts-method)
+- [空間型](#spatial-types)
+- [`Enumerable` コントラクト](#the-enumerable-contract)
+- [`UserProvider` コントラクト](#the-user-provider-contract)
+- [`Authenticatable` コントラクト](#the-authenticatable-contract)
 
 </div>
 
 <a name="upgrade-11.0"></a>
-## Upgrading To 11.0 From 10.x
+## 10.x から 11.0 へのアップグレード
 
 <a name="estimated-upgrade-time-??-minutes"></a>
-#### Estimated Upgrade Time: 15 Minutes
+#### 推定アップグレード時間: 15 分
 
-> [!NOTE]  
-> We attempt to document every possible breaking change. Since some of these breaking changes are in obscure parts of the framework only a portion of these changes may actually affect your application. Want to save time? You can use [Laravel Shift](https://laravelshift.com/) to help automate your application upgrades.
+> NOTE:  
+> 可能な限りすべての破壊的変更を文書化しようとしています。これらの破壊的変更の一部は、フレームワークのあまり知られていない部分にあるため、これらの変更の一部が実際にアプリケーションに影響を与える可能性があります。時間を節約したいですか？ [Laravel Shift](https://laravelshift.com/) を使用して、アプリケーションのアップグレードを自動化することができます。
 
 <a name="updating-dependencies"></a>
-### Updating Dependencies
+### 依存関係の更新
 
-**Likelihood Of Impact: High**
+**影響の可能性: 高**
 
-#### PHP 8.2.0 Required
+#### PHP 8.2.0 が必要
 
-Laravel now requires PHP 8.2.0 or greater.
+Laravel は現在、PHP 8.2.0 以上を必要とします。
 
-#### curl 7.34.0 Required
+#### curl 7.34.0 が必要
 
-Laravel's HTTP client now requires curl 7.34.0 or greater.
+Laravel の HTTP クライアントは現在、curl 7.34.0 以上を必要とします。
 
-#### Composer Dependencies
+#### Composer の依存関係
 
-You should update the following dependencies in your application's `composer.json` file:
+アプリケーションの `composer.json` ファイルで以下の依存関係を更新する必要があります:
 
 <div class="content-list" markdown="1">
 
-- `laravel/framework` to `^11.0`
-- `nunomaduro/collision` to `^8.1`
-- `laravel/breeze` to `^2.0` (If installed)
-- `laravel/cashier` to `^15.0` (If installed)
-- `laravel/dusk` to `^8.0` (If installed)
-- `laravel/jetstream` to `^5.0` (If installed)
-- `laravel/octane` to `^2.3` (If installed)
-- `laravel/passport` to `^12.0` (If installed)
-- `laravel/sanctum` to `^4.0` (If installed)
-- `laravel/scout` to `^10.0` (If installed)
-- `laravel/spark-stripe` to `^5.0` (If installed)
-- `laravel/telescope` to `^5.0` (If installed)
-- `livewire/livewire` to `^3.4` (If installed)
-- `inertiajs/inertia-laravel` to `^1.0` (If installed)
+- `laravel/framework` を `^11.0` に
+- `nunomaduro/collision` を `^8.1` に
+- `laravel/breeze` を `^2.0` に (インストールされている場合)
+- `laravel/cashier` を `^15.0` に (インストールされている場合)
+- `laravel/dusk` を `^8.0` に (インストールされている場合)
+- `laravel/jetstream` を `^5.0` に (インストールされている場合)
+- `laravel/octane` を `^2.3` に (インストールされている場合)
+- `laravel/passport` を `^12.0` に (インストールされている場合)
+- `laravel/sanctum` を `^4.0` に (インストールされている場合)
+- `laravel/scout` を `^10.0` に (インストールされている場合)
+- `laravel/spark-stripe` を `^5.0` に (インストールされている場合)
+- `laravel/telescope` を `^5.0` に (インストールされている場合)
+- `livewire/livewire` を `^3.4` に (インストールされている場合)
+- `inertiajs/inertia-laravel` を `^1.0` に (インストールされている場合)
 
 </div>
 
-If your application is using Laravel Cashier Stripe, Passport, Sanctum, Spark Stripe, or Telescope, you will need to publish their migrations to your application. Cashier Stripe, Passport, Sanctum, Spark Stripe, and Telescope **no longer automatically load migrations from their own migrations** directory. Therefore, you should run the following command to publish their migrations to your application:
+アプリケーションが Laravel Cashier Stripe、Passport、Sanctum、Spark Stripe、または Telescope を使用している場合、それらのマイグレーションをアプリケーションに公開する必要があります。Cashier Stripe、Passport、Sanctum、Spark Stripe、および Telescope は、独自のマイグレーションディレクトリからマイグレーションを自動的に読み込まなくなりました。したがって、以下のコマンドを実行して、それらのマイグレーションをアプリケーションに公開する必要があります:
 
 ```bash
 php artisan vendor:publish --tag=cashier-migrations
@@ -97,7 +97,7 @@ php artisan vendor:publish --tag=spark-migrations
 php artisan vendor:publish --tag=telescope-migrations
 ```
 
-In addition, you should review the upgrade guides for each of these packages to ensure you are aware of any additional breaking changes:
+さらに、これらの各パッケージのアップグレードガイドを確認して、追加の破壊的変更に注意する必要があります:
 
 - [Laravel Cashier Stripe](#cashier-stripe)
 - [Laravel Passport](#passport)
@@ -105,54 +105,54 @@ In addition, you should review the upgrade guides for each of these packages to 
 - [Laravel Spark Stripe](#spark-stripe)
 - [Laravel Telescope](#telescope)
 
-If you have manually installed the Laravel installer, you should update the installer via Composer:
+Laravel インストーラを手動でインストールしている場合、Composer を介してインストーラを更新する必要があります:
 
 ```bash
 composer global require laravel/installer:^5.6
 ```
 
-Finally, you may remove the `doctrine/dbal` Composer dependency if you have previously added it to your application, as Laravel is no longer dependent on this package.
+最後に、以前にアプリケーションに追加した `doctrine/dbal` Composer 依存関係を削除することができます。Laravel はもはやこのパッケージに依存していません。
 
 <a name="application-structure"></a>
-### Application Structure
+### アプリケーション構造
 
-Laravel 11 introduces a new default application structure with fewer default files. Namely, new Laravel applications contain fewer service providers, middleware, and configuration files.
+Laravel 11 は、デフォルトのアプリケーション構造を新しくし、デフォルトのファイルが少なくなりました。具体的には、新しい Laravel アプリケーションには、サービスプロバイダ、ミドルウェア、および設定ファイルが少なくなりました。
 
-However, we do **not recommend** that Laravel 10 applications upgrading to Laravel 11 attempt to migrate their application structure, as Laravel 11 has been carefully tuned to also support the Laravel 10 application structure.
+ただし、Laravel 10 から Laravel 11 にアップグレードするアプリケーションがアプリケーション構造を移行しようとすることは**推奨しません**。Laravel 11 は、Laravel 10 のアプリケーション構造もサポートするように慎重に調整されています。
 
 <a name="authentication"></a>
-### Authentication
+### 認証
 
 <a name="password-rehashing"></a>
-#### Password Rehashing
+#### パスワードの再ハッシュ
 
-Laravel 11 will automatically rehash your user's passwords during authentication if your hashing algorithm's "work factor" has been updated since the password was last hashed.
+Laravel 11 は、ハッシュアルゴリズムの「作業係数」がパスワードが最後にハッシュされてから更新された場合、認証中にユーザーのパスワードを自動的に再ハッシュします。
 
-Typically, this should not disrupt your application; however, you may disable this behavior by adding the `rehash_on_login` option to your application's `config/hashing.php` configuration file:
+通常、これはアプリケーションに影響を与えないはずです。ただし、この動作を無効にするには、アプリケーションの `config/hashing.php` 設定ファイルに `rehash_on_login` オプションを追加します:
 
     'rehash_on_login' => false,
 
 <a name="the-user-provider-contract"></a>
-#### The `UserProvider` Contract
+#### `UserProvider` コントラクト
 
-**Likelihood Of Impact: Low**
+**影響の可能性: 低**
 
-The `Illuminate\Contracts\Auth\UserProvider` contract has received a new `rehashPasswordIfRequired` method. This method is responsible for re-hashing and storing the user's password in storage when the application's hashing algorithm work factor has changed.
+`Illuminate\Contracts\Auth\UserProvider` コントラクトに新しい `rehashPasswordIfRequired` メソッドが追加されました。このメソッドは、アプリケーションのハッシュアルゴリズムの作業係数が変更された場合に、ユーザーのパスワードを再ハッシュしてストレージに保存する役割を果たします。
 
-If your application or package defines a class that implements this interface, you should add the new `rehashPasswordIfRequired` method to your implementation. A reference implementation can be found within the `Illuminate\Auth\EloquentUserProvider` class:
+アプリケーションまたはパッケージがこのインターフェースを実装するクラスを定義している場合、新しい `rehashPasswordIfRequired` メソッドを実装に追加する必要があります。参照実装は `Illuminate\Auth\EloquentUserProvider` クラス内にあります:
 
 ```php
 public function rehashPasswordIfRequired(Authenticatable $user, array $credentials, bool $force = false);
 ```
 
 <a name="the-authenticatable-contract"></a>
-#### The `Authenticatable` Contract
+#### `Authenticatable` コントラクト
 
-**Likelihood Of Impact: Low**
+**影響の可能性: 低**
 
-The `Illuminate\Contracts\Auth\Authenticatable` contract has received a new `getAuthPasswordName` method. This method is responsible for returning the name of your authenticatable entity's password column.
+`Illuminate\Contracts\Auth\Authenticatable` コントラクトに新しい `getAuthPasswordName` メソッドが追加されました。このメソッドは、認証可能なエンティティのパスワードカラムの名前を返す役割を果たします。
 
-If your application or package defines a class that implements this interface, you should add the new `getAuthPasswordName` method to your implementation:
+アプリケーションまたはパッケージがこのインターフェースを実装するクラスを定義している場合、新しい `getAuthPasswordName` メソッドを実装に追加する必要があります:
 
 ```php
 public function getAuthPasswordName()
@@ -161,14 +161,14 @@ public function getAuthPasswordName()
 }
 ```
 
-The default `User` model included with Laravel receives this method automatically since the method is included within the `Illuminate\Auth\Authenticatable` trait.
+Laravel に含まれるデフォルトの `User` モデルは、このメソッドが `Illuminate\Auth\Authenticatable` トレイトに含まれているため、自動的にこのメソッドを受け取ります。
 
 <a name="the-authentication-exception-class"></a>
-#### The `AuthenticationException` Class
+#### `AuthenticationException` クラス
 
-**Likelihood Of Impact: Very Low**
+**影響の可能性: 非常に低**
 
-The `redirectTo` method of the `Illuminate\Auth\AuthenticationException` class now requires an `Illuminate\Http\Request` instance as its first argument. If you are manually catching this exception and calling the `redirectTo` method, you should update your code accordingly:
+`Illuminate\Auth\AuthenticationException` クラスの `redirectTo` メソッドは、最初の引数として `Illuminate\Http\Request` インスタンスを必要とするようになりました。この例外を手動でキャッチして `redirectTo` メソッドを呼び出している場合、コードをそれに応じて更新する必要があります:
 
 ```php
 if ($e instanceof AuthenticationException) {
@@ -177,54 +177,54 @@ if ($e instanceof AuthenticationException) {
 ```
 
 <a name="cache"></a>
-### Cache
+### キャッシュ
 
 <a name="cache-key-prefixes"></a>
-#### Cache Key Prefixes
+#### キャッシュキープレフィックス
 
-**Likelihood Of Impact: Very Low**
+**影響の可能性: 非常に低**
 
-Previously, if a cache key prefix was defined for the DynamoDB, Memcached, or Redis cache stores, Laravel would append a `:` to the prefix. In Laravel 11, the cache key prefix does not receive the `:` suffix. If you would like to maintain the previous prefixing behavior, you can manually add the `:` suffix to your cache key prefix.
+以前は、DynamoDB、Memcached、または Redis キャッシュストアにキャッシュキープレフィックスが定義されている場合、Laravel はプレフィックスに `:` を追加していました。Laravel 11 では、キャッシュキープレフィックスに `:` サフィックスが付きません。以前のプレフィックス動作を維持したい場合は、キャッシュキープレフィックスに手動で `:` サフィックスを追加できます。
 
 <a name="collections"></a>
-### Collections
+### コレクション
 
 <a name="the-enumerable-contract"></a>
-#### The `Enumerable` Contract
+#### `Enumerable` コントラクト
 
-**Likelihood Of Impact: Low**
+**影響の可能性: 低**
 
-The `dump` method of the `Illuminate\Support\Enumerable` contract has been updated to accept a variadic `...$args` argument. If you are implementing this interface you should update your implementation accordingly:
+`Illuminate\Support\Enumerable` コントラクトの `dump` メソッドが、可変長引数 `...$args` を受け入れるように更新されました。このインターフェースを実装している場合、実装をそれに応じて更新する必要があります:
 
 ```php
 public function dump(...$args);
 ```
 
 <a name="database"></a>
-### Database
+### データベース
 
 <a name="sqlite-minimum-version"></a>
 #### SQLite 3.26.0+
 
-**Likelihood Of Impact: High**
+**影響の可能性: 高**
 
-If your application is utilizing an SQLite database, SQLite 3.26.0 or greater is required.
+アプリケーションが SQLite データベースを利用している場合、SQLite 3.26.0 以上が必要です。
 
 <a name="eloquent-model-casts-method"></a>
-#### Eloquent Model `casts` Method
+#### Eloquent モデルの `casts` メソッド
 
-**Likelihood Of Impact: Low**
+**影響の可能性: 低**
 
-The base Eloquent model class now defines a `casts` method in order to support the definition of attribute casts. If one of your application's models is defining a `casts` relationship, it may conflict with the `casts` method now present on the base Eloquent model class.
+ベースの Eloquent モデルクラスは、属性キャストの定義をサポートするために `casts` メソッドを定義するようになりました。アプリケーションのモデルの1つが `casts` リレーションを定義している場合、ベースの Eloquent モデルクラスに存在する `casts` メソッドと競合する可能性があります。
 
 <a name="modifying-columns"></a>
-#### Modifying Columns
+#### カラムの変更
 
-**Likelihood Of Impact: High**
+**影響の可能性: 高**
 
-When modifying a column, you must now explicitly include all the modifiers you want to keep on the column definition after it is changed. Any missing attributes will be dropped. For example, to retain the `unsigned`, `default`, and `comment` attributes, you must call each modifier explicitly when changing the column, even if those attributes have been assigned to the column by a previous migration.
+カラムを変更する場合、変更後のカラム定義に保持したいすべての修飾子を明示的に含める必要があります。欠落している属性は削除されます。たとえば、`unsigned`、`default`、および `comment` 属性を保持するには、カラムを変更する際に各修飾子を明示的に呼び出す必要があります。以前のマイグレーションによってそれらの属性がカラムに割り当てられていた場合でも同様です。
 
-For example, imagine you have a migration that creates a `votes` column with the `unsigned`, `default`, and `comment` attributes:
+たとえば、`votes` カラムを `unsigned`、`default`、および `comment` 属性で作成するマイグレーションがあるとします:
 
 ```php
 Schema::create('users', function (Blueprint $table) {
@@ -232,7 +232,7 @@ Schema::create('users', function (Blueprint $table) {
 });
 ```
 
-Later, you write a migration that changes the column to be `nullable` as well:
+後で、カラムを `nullable` にも変更するマイグレーションを作成します:
 
 ```php
 Schema::table('users', function (Blueprint $table) {
@@ -240,7 +240,7 @@ Schema::table('users', function (Blueprint $table) {
 });
 ```
 
-In Laravel 10, this migration would retain the `unsigned`, `default`, and `comment` attributes on the column. However, in Laravel 11, the migration must now also include all of the attributes that were previously defined on the column. Otherwise, they will be dropped:
+Laravel 10 では、このマイグレーションはカラムに `unsigned`、`default`、および `comment` 属性を保持します。しかし、Laravel 11 では、マイグレーションに以前に定義されたすべての属性も含める必要があります。そうしないと、それらは削除されます:
 
 ```php
 Schema::table('users', function (Blueprint $table) {
@@ -253,44 +253,44 @@ Schema::table('users', function (Blueprint $table) {
 });
 ```
 
-The `change` method does not change the indexes of the column. Therefore, you may use index modifiers to explicitly add or drop an index when modifying the column:
+`change`メソッドは、カラムのインデックスを変更しません。したがって、カラムを変更する際にインデックスを明示的に追加または削除するために、インデックス修飾子を使用することができます。
 
 ```php
-// Add an index...
+// インデックスを追加...
 $table->bigIncrements('id')->primary()->change();
 
-// Drop an index...
+// インデックスを削除...
 $table->char('postal_code', 10)->unique(false)->change();
 ```
 
-If you do not want to update all of the existing "change" migrations in your application to retain the column's existing attributes, you may simply [squash your migrations](/docs/{{version}}/migrations#squashing-migrations):
+カラムの既存の属性を保持するために、アプリケーション内のすべての既存の「change」マイグレーションを更新したくない場合は、単に[マイグレーションを圧縮](migrations.md#squashing-migrations)することができます。
 
 ```bash
 php artisan schema:dump
 ```
 
-Once your migrations have been squashed, Laravel will "migrate" the database using your application's schema file before running any pending migrations.
+マイグレーションが圧縮されると、Laravelはアプリケーションのスキーマファイルを使用してデータベースを「マイグレート」し、その後に保留中のマイグレーションを実行します。
 
 <a name="floating-point-types"></a>
-#### Floating-Point Types
+#### 浮動小数点型
 
-**Likelihood Of Impact: High**
+**影響の可能性: 高**
 
-The `double` and `float` migration column types have been rewritten to be consistent across all databases.
+`double`および`float`マイグレーションカラムタイプは、すべてのデータベースで一貫性を持つように書き直されました。
 
-The `double` column type now creates a `DOUBLE` equivalent column without total digits and places (digits after decimal point), which is the standard SQL syntax. Therefore, you may remove the arguments for `$total` and `$places`:
+`double`カラムタイプは、合計桁数と小数点以下の桁数（小数点以下の桁数）なしで`DOUBLE`相当のカラムを作成します。これは標準のSQL構文です。したがって、`$total`と`$places`の引数を削除することができます。
 
 ```php
 $table->double('amount');
 ```
 
-The `float` column type now creates a `FLOAT` equivalent column without total digits and places (digits after decimal point), but with an optional `$precision` specification to determine storage size as a 4-byte single-precision column or an 8-byte double-precision column. Therefore, you may remove the arguments for `$total` and `$places` and specify the optional `$precision` to your desired value and according to your database's documentation:
+`float`カラムタイプは、合計桁数と小数点以下の桁数（小数点以下の桁数）なしで`FLOAT`相当のカラムを作成しますが、ストレージサイズを4バイトの単精度カラムまたは8バイトの倍精度カラムとして決定するためのオプションの`$precision`指定があります。したがって、`$total`と`$places`の引数を削除し、データベースのドキュメントに従って希望する値としてオプションの`$precision`を指定することができます。
 
 ```php
 $table->float('amount', precision: 53);
 ```
 
-The `unsignedDecimal`, `unsignedDouble`, and `unsignedFloat` methods have been removed, as the unsigned modifier for these column types has been deprecated by MySQL, and was never standardized on other database systems. However, if you wish to continue using the deprecated unsigned attribute for these column types, you may chain the `unsigned` method onto the column's definition:
+`unsignedDecimal`、`unsignedDouble`、および`unsignedFloat`メソッドは削除されました。これらのカラムタイプの符号なし修飾子はMySQLによって非推奨となり、他のデータベースシステムでは標準化されていませんでした。ただし、これらのカラムタイプに対して非推奨の符号なし属性を引き続き使用したい場合は、カラム定義に`unsigned`メソッドを連鎖させることができます。
 
 ```php
 $table->decimal('amount', total: 8, places: 2)->unsigned();
@@ -299,23 +299,25 @@ $table->float('amount', precision: 53)->unsigned();
 ```
 
 <a name="dedicated-mariadb-driver"></a>
-#### Dedicated MariaDB Driver
+#### 専用のMariaDBドライバ
 
-**Likelihood Of Impact: Very Low**
+**影響の可能性: 非常に低**
 
-Instead of always utilizing the MySQL driver when connecting to MariaDB databases, Laravel 11 adds a dedicated database driver for MariaDB.
+MariaDBデータベースに接続する際に常にMySQLドライバを使用する代わりに、Laravel 11はMariaDB用の専用データベースドライバを追加しました。
 
-If your application connects to a MariaDB database, you may update the connection configuration to the new `mariadb` driver to benefit from MariaDB specific features in the future:
+アプリケーションがMariaDBデータベースに接続している場合、接続設定を新しい`mariadb`ドライバに更新して、将来のMariaDB固有の機能を利用することができます。
 
-    'driver' => 'mariadb',
-    'url' => env('DB_URL'),
-    'host' => env('DB_HOST', '127.0.0.1'),
-    'port' => env('DB_PORT', '3306'),
-    // ...
+```php
+'driver' => 'mariadb',
+'url' => env('DB_URL'),
+'host' => env('DB_HOST', '127.0.0.1'),
+'port' => env('DB_PORT', '3306'),
+// ...
+```
 
-Currently, the new MariaDB driver behaves like the current MySQL driver with one exception: the `uuid` schema builder method creates native UUID columns instead of `char(36)` columns.
+現在、新しいMariaDBドライバは現在のMySQLドライバと同様に動作しますが、1つの例外があります。`uuid`スキーマビルダーメソッドは、`char(36)`カラムの代わりにネイティブのUUIDカラムを作成します。
 
-If your existing migrations utilize the `uuid` schema builder method and you choose to use the new `mariadb` database driver, you should update your migration's invocations of the `uuid` method to `char` to avoid breaking changes or unexpected behavior:
+既存のマイグレーションが`uuid`スキーマビルダーメソッドを使用しており、新しい`mariadb`データベースドライバを使用することを選択した場合、`uuid`メソッドの呼び出しを`char`に更新して、破壊的な変更や予期しない動作を避ける必要があります。
 
 ```php
 Schema::table('users', function (Blueprint $table) {
@@ -326,122 +328,122 @@ Schema::table('users', function (Blueprint $table) {
 ```
 
 <a name="spatial-types"></a>
-#### Spatial Types
+#### 空間型
 
-**Likelihood Of Impact: Low**
+**影響の可能性: 低**
 
-The spatial column types of database migrations have been rewritten to be consistent across all databases. Therefore, you may remove `point`, `lineString`, `polygon`, `geometryCollection`, `multiPoint`, `multiLineString`, `multiPolygon`, and `multiPolygonZ` methods from your migrations and use `geometry` or `geography` methods instead:
+データベースマイグレーションの空間カラムタイプは、すべてのデータベースで一貫性を持つように書き直されました。したがって、マイグレーションから`point`、`lineString`、`polygon`、`geometryCollection`、`multiPoint`、`multiLineString`、`multiPolygon`、および`multiPolygonZ`メソッドを削除し、代わりに`geometry`または`geography`メソッドを使用することができます。
 
 ```php
 $table->geometry('shapes');
 $table->geography('coordinates');
 ```
 
-To explicitly restrict the type or the spatial reference system identifier for values stored in the column on MySQL, MariaDB, and PostgreSQL, you may pass the `subtype` and `srid` to the method:
+MySQL、MariaDB、およびPostgreSQLでカラムに格納される値のタイプまたは空間参照システム識別子を明示的に制限するために、メソッドに`subtype`と`srid`を渡すことができます。
 
 ```php
 $table->geometry('dimension', subtype: 'polygon', srid: 0);
 $table->geography('latitude', subtype: 'point', srid: 4326);
 ```
 
-The `isGeometry` and `projection` column modifiers of the PostgreSQL grammar have been removed accordingly.
+PostgreSQL文法の`isGeometry`および`projection`カラム修飾子は、それに応じて削除されました。
 
 <a name="doctrine-dbal-removal"></a>
-#### Doctrine DBAL Removal
+#### Doctrine DBALの削除
 
-**Likelihood Of Impact: Low**
+**影響の可能性: 低**
 
-The following list of Doctrine DBAL related classes and methods have been removed. Laravel is no longer dependent on this package and registering custom Doctrines types is no longer necessary for the proper creation and alteration of various column types that previously required custom types:
+以下のDoctrine DBAL関連のクラスとメソッドが削除されました。Laravelはもはやこのパッケージに依存せず、以前はカスタムタイプを必要としたさまざまなカラムタイプの適切な作成と変更のために、カスタムDoctrinesタイプの登録は不要になりました。
 
 <div class="content-list" markdown="1">
 
-- `Illuminate\Database\Schema\Builder::$alwaysUsesNativeSchemaOperationsIfPossible` class property
-- `Illuminate\Database\Schema\Builder::useNativeSchemaOperationsIfPossible()` method
-- `Illuminate\Database\Connection::usingNativeSchemaOperations()` method
-- `Illuminate\Database\Connection::isDoctrineAvailable()` method
-- `Illuminate\Database\Connection::getDoctrineConnection()` method
-- `Illuminate\Database\Connection::getDoctrineSchemaManager()` method
-- `Illuminate\Database\Connection::getDoctrineColumn()` method
-- `Illuminate\Database\Connection::registerDoctrineType()` method
-- `Illuminate\Database\DatabaseManager::registerDoctrineType()` method
-- `Illuminate\Database\PDO` directory
-- `Illuminate\Database\DBAL\TimestampType` class
-- `Illuminate\Database\Schema\Grammars\ChangeColumn` class
-- `Illuminate\Database\Schema\Grammars\RenameColumn` class
-- `Illuminate\Database\Schema\Grammars\Grammar::getDoctrineTableDiff()` method
+- `Illuminate\Database\Schema\Builder::$alwaysUsesNativeSchemaOperationsIfPossible`クラスプロパティ
+- `Illuminate\Database\Schema\Builder::useNativeSchemaOperationsIfPossible()`メソッド
+- `Illuminate\Database\Connection::usingNativeSchemaOperations()`メソッド
+- `Illuminate\Database\Connection::isDoctrineAvailable()`メソッド
+- `Illuminate\Database\Connection::getDoctrineConnection()`メソッド
+- `Illuminate\Database\Connection::getDoctrineSchemaManager()`メソッド
+- `Illuminate\Database\Connection::getDoctrineColumn()`メソッド
+- `Illuminate\Database\Connection::registerDoctrineType()`メソッド
+- `Illuminate\Database\DatabaseManager::registerDoctrineType()`メソッド
+- `Illuminate\Database\PDO`ディレクトリ
+- `Illuminate\Database\DBAL\TimestampType`クラス
+- `Illuminate\Database\Schema\Grammars\ChangeColumn`クラス
+- `Illuminate\Database\Schema\Grammars\RenameColumn`クラス
+- `Illuminate\Database\Schema\Grammars\Grammar::getDoctrineTableDiff()`メソッド
 
 </div>
 
-In addition, registering custom Doctrine types via `dbal.types` in your application's `database` configuration file is no longer required.
+さらに、アプリケーションの`database`設定ファイルで`dbal.types`を介してカスタムDoctrineタイプを登録することは不要になりました。
 
-If you were previously using Doctrine DBAL to inspect your database and its associated tables, you may use Laravel's new native schema methods (`Schema::getTables()`, `Schema::getColumns()`, `Schema::getIndexes()`, `Schema::getForeignKeys()`, etc.) instead.
+以前にDoctrine DBALを使用してデータベースとその関連テーブルを検査していた場合、代わりにLaravelの新しいネイティブスキーマメソッド（`Schema::getTables()`、`Schema::getColumns()`、`Schema::getIndexes()`、`Schema::getForeignKeys()`など）を使用することができます。
 
 <a name="deprecated-schema-methods"></a>
-#### Deprecated Schema Methods
+#### 非推奨のスキーマメソッド
 
-**Likelihood Of Impact: Very Low**
+**影響の可能性: 非常に低**
 
-The deprecated, Doctrine based `Schema::getAllTables()`, `Schema::getAllViews()`, and `Schema::getAllTypes()` methods have been removed in favor of new Laravel native `Schema::getTables()`, `Schema::getViews()`, and `Schema::getTypes()` methods.
+非推奨のDoctrineベースの`Schema::getAllTables()`、`Schema::getAllViews()`、および`Schema::getAllTypes()`メソッドは、新しいLaravelネイティブの`Schema::getTables()`、`Schema::getViews()`、および`Schema::getTypes()`メソッドに置き換えられ、削除されました。
 
-When using PostgreSQL and SQL Server, none of the new schema methods will accept a three-part reference (e.g. `database.schema.table`). Therefore, you should use `connection()` to declare the database instead:
+PostgreSQLおよびSQL Serverを使用する場合、新しいスキーマメソッドは3つの部分からなる参照（例：`database.schema.table`）を受け入れません。したがって、代わりに`connection()`を使用してデータベースを宣言する必要があります。
 
 ```php
 Schema::connection('database')->hasTable('schema.table');
 ```
 
 <a name="get-column-types"></a>
-#### Schema Builder `getColumnType()` Method
+#### スキーマビルダーの`getColumnType()`メソッド
 
-**Likelihood Of Impact: Very Low**
+**影響の可能性: 非常に低**
 
-The `Schema::getColumnType()` method now always returns actual type of the given column, not the Doctrine DBAL equivalent type.
+`Schema::getColumnType()`メソッドは、Doctrine DBAL相当のタイプではなく、指定されたカラムの実際のタイプを常に返すようになりました。
 
 <a name="database-connection-interface"></a>
-#### Database Connection Interface
+#### データベース接続インターフェース
 
-**Likelihood Of Impact: Very Low**
+**影響の可能性: 非常に低**
 
-The `Illuminate\Database\ConnectionInterface` interface has received a new `scalar` method. If you are defining your own implementation of this interface, you should add the `scalar` method to your implementation:
+`Illuminate\Database\ConnectionInterface`インターフェースに新しい`scalar`メソッドが追加されました。このインターフェースの独自の実装を定義している場合、`scalar`メソッドを実装に追加する必要があります。
 
 ```php
 public function scalar($query, $bindings = [], $useReadPdo = true);
 ```
 
 <a name="dates"></a>
-### Dates
+### 日付
 
 <a name="carbon-3"></a>
 #### Carbon 3
 
-**Likelihood Of Impact: Medium**
+**影響の可能性: 中**
 
-Laravel 11 supports both Carbon 2 and Carbon 3. Carbon is a date manipulation library utilized extensively by Laravel and packages throughout the ecosystem. If you upgrade to Carbon 3, be aware that `diffIn*` methods now return floating-point numbers and may return negative values to indicate time direction, which is a significant change from Carbon 2. Review Carbon's [change log](https://github.com/briannesbitt/Carbon/releases/tag/3.0.0) for detailed information on how to handle these and other changes.
+Laravel 11はCarbon 2とCarbon 3の両方をサポートしています。CarbonはLaravelとエコシステム全体のパッケージで広く使用されている日付操作ライブラリです。Carbon 3にアップグレードする場合、`diffIn*`メソッドが浮動小数点数を返し、時間の方向を示すために負の値を返す可能性があることに注意してください。これはCarbon 2からの大きな変更です。これらの変更やその他の変更を処理する方法については、Carbonの[変更ログ](https://github.com/briannesbitt/Carbon/releases/tag/3.0.0)を確認してください。
 
 <a name="mail"></a>
-### Mail
+### メール
 
 <a name="the-mailer-contract"></a>
-#### The `Mailer` Contract
+#### `Mailer`コントラクト
 
-**Likelihood Of Impact: Very Low**
+**影響の可能性: 非常に低**
 
-The `Illuminate\Contracts\Mail\Mailer` contract has received a new `sendNow` method. If your application or package is manually implementing this contract, you should add the new `sendNow` method to your implementation:
+`Illuminate\Contracts\Mail\Mailer`コントラクトに新しい`sendNow`メソッドが追加されました。アプリケーションまたはパッケージがこのコントラクトを手動で実装している場合、新しい`sendNow`メソッドを実装に追加する必要があります。
 
 ```php
 public function sendNow($mailable, array $data = [], $callback = null);
 ```
 
 <a name="packages"></a>
-### Packages
+### パッケージ
 
 <a name="publishing-service-providers"></a>
-#### Publishing Service Providers to the Application
+#### サービスプロバイダをアプリケーションに公開
 
-**Likelihood Of Impact: Very Low**
+**影響の可能性: 非常に低**
 
-If you have written a Laravel package that manually publishes a service provider to the application's `app/Providers` directory and manually modifies the application's `config/app.php` configuration file to register the service provider, you should update your package to utilize the new `ServiceProvider::addProviderToBootstrapFile` method.
+アプリケーションの`app/Providers`ディレクトリにサービスプロバイダを手動で公開し、アプリケーションの`config/app.php`設定ファイルを手動で変更してサービスプロバイダを登録するLaravelパッケージを作成した場合、パッケージを更新して新しい`ServiceProvider::addProviderToBootstrapFile`メソッドを使用する必要があります。
 
-The `addProviderToBootstrapFile` method will automatically add the service provider you have published to the application's `bootstrap/providers.php` file, since the `providers` array does not exist within the `config/app.php` configuration file in new Laravel 11 applications.
+`addProviderToBootstrapFile`メソッドは、公開したサービスプロバイダをアプリケーションの`bootstrap/providers.php`ファイルに自動的に追加します。これは、`providers`配列が新しいLaravel 11アプリケーションの`config/app.php`設定ファイルに存在しないためです。
 
 ```php
 use Illuminate\Support\ServiceProvider;
@@ -450,53 +452,53 @@ ServiceProvider::addProviderToBootstrapFile(Provider::class);
 ```
 
 <a name="queues"></a>
-### Queues
+### キュー
 
 <a name="the-batch-repository-interface"></a>
-#### The `BatchRepository` Interface
+#### `BatchRepository`インターフェース
 
-**Likelihood Of Impact: Very Low**
+**影響の可能性: 非常に低**
 
-The `Illuminate\Bus\BatchRepository` interface has received a new `rollBack` method. If you are implementing this interface within your own package or application, you should add this method to your implementation:
+`Illuminate\Bus\BatchRepository`インターフェースに新しい`rollBack`メソッドが追加されました。このインターフェースを独自のパッケージまたはアプリケーション内で実装している場合、このメソッドを実装に追加する必要があります。
 
 ```php
 public function rollBack();
 ```
 
 <a name="synchronous-jobs-in-database-transactions"></a>
-#### Synchronous Jobs in Database Transactions
+#### データベーストランザクション内の同期ジョブ
 
-**Likelihood Of Impact: Very Low**
+**影響の可能性: 非常に低**
 
-Previously, synchronous jobs (jobs using the `sync` queue driver) would execute immediately, regardless of whether the `after_commit` configuration option of the queue connection was set to `true` or the `afterCommit` method was invoked on the job.
+以前は、同期ジョブ（`sync` キュードライバーを使用するジョブ）は、キュー接続の `after_commit` 設定オプションが `true` に設定されているか、ジョブで `afterCommit` メソッドが呼び出されているかに関係なく、即座に実行されていました。
 
-In Laravel 11, synchronous queue jobs will now respect the "after commit" configuration of the queue connection or job.
+Laravel 11 では、同期キュージョブはキュー接続の「コミット後」設定やジョブに従うようになりました。
 
 <a name="rate-limiting"></a>
-### Rate Limiting
+### レートリミット
 
 <a name="per-second-rate-limiting"></a>
-#### Per-Second Rate Limiting
+#### 秒単位のレートリミット
 
-**Likelihood Of Impact: Medium**
+**影響の可能性: 中**
 
-Laravel 11 supports per-second rate limiting instead of being limited to per-minute granularity. There are a variety of potential breaking changes you should be aware of related to this change.
+Laravel 11 は、分単位の粒度に制限される代わりに、秒単位のレートリミットをサポートします。この変更に関連する潜在的な破壊的変更について、注意する必要があります。
 
-The `GlobalLimit` class constructor now accepts seconds instead of minutes. This class is not documented and would not typically be used by your application:
+`GlobalLimit` クラスのコンストラクタは、分ではなく秒を受け入れるようになりました。このクラスは文書化されておらず、通常はアプリケーションで使用されません：
 
 ```php
 new GlobalLimit($attempts, 2 * 60);
 ```
 
-The `Limit` class constructor now accepts seconds instead of minutes. All documented usages of this class are limited to static constructors such as `Limit::perMinute` and `Limit::perSecond`. However, if you are instantiating this class manually, you should update your application to provide seconds to the class's constructor:
+`Limit` クラスのコンストラクタも、分ではなく秒を受け入れるようになりました。このクラスの文書化された使用法はすべて、`Limit::perMinute` や `Limit::perSecond` などの静的コンストラクタに制限されています。ただし、このクラスを手動でインスタンス化している場合は、アプリケーションを更新して、クラスのコンストラクタに秒を提供するようにしてください：
 
 ```php
 new Limit($key, $attempts, 2 * 60);
 ```
 
-The `Limit` class's `decayMinutes` property has been renamed to `decaySeconds` and now contains seconds instead of minutes.
+`Limit` クラスの `decayMinutes` プロパティは `decaySeconds` に名前が変更され、分ではなく秒を含むようになりました。
 
-The `Illuminate\Queue\Middleware\ThrottlesExceptions` and `Illuminate\Queue\Middleware\ThrottlesExceptionsWithRedis` class constructors now accept seconds instead of minutes:
+`Illuminate\Queue\Middleware\ThrottlesExceptions` および `Illuminate\Queue\Middleware\ThrottlesExceptionsWithRedis` クラスのコンストラクタは、分ではなく秒を受け入れるようになりました：
 
 ```php
 new ThrottlesExceptions($attempts, 2 * 60);
@@ -507,55 +509,55 @@ new ThrottlesExceptionsWithRedis($attempts, 2 * 60);
 ### Cashier Stripe
 
 <a name="updating-cashier-stripe"></a>
-#### Updating Cashier Stripe
+#### Cashier Stripe の更新
 
-**Likelihood Of Impact: High**
+**影響の可能性: 高**
 
-Laravel 11 no longer supports Cashier Stripe 14.x. Therefore, you should update your application's Laravel Cashier Stripe dependency to `^15.0` in your `composer.json` file.
+Laravel 11 は Cashier Stripe 14.x をサポートしなくなりました。したがって、アプリケーションの Laravel Cashier Stripe 依存関係を `composer.json` ファイル内で `^15.0` に更新する必要があります。
 
-Cashier Stripe 15.0 no longer automatically loads migrations from its own migrations directory. Instead, you should run the following command to publish Cashier Stripe's migrations to your application:
+Cashier Stripe 15.0 は、独自のマイグレーションディレクトリからマイグレーションを自動的にロードしなくなりました。代わりに、以下のコマンドを実行して、Cashier Stripe のマイグレーションをアプリケーションに公開する必要があります：
 
 ```shell
 php artisan vendor:publish --tag=cashier-migrations
 ```
 
-Please review the complete [Cashier Stripe upgrade guide](https://github.com/laravel/cashier-stripe/blob/15.x/UPGRADE.md) for additional breaking changes.
+追加の破壊的変更については、完全な [Cashier Stripe アップグレードガイド](https://github.com/laravel/cashier-stripe/blob/15.x/UPGRADE.md) を確認してください。
 
 <a name="spark-stripe"></a>
 ### Spark (Stripe)
 
 <a name="updating-spark-stripe"></a>
-#### Updating Spark Stripe
+#### Spark Stripe の更新
 
-**Likelihood Of Impact: High**
+**影響の可能性: 高**
 
-Laravel 11 no longer supports Laravel Spark Stripe 4.x. Therefore, you should update your application's Laravel Spark Stripe dependency to `^5.0` in your `composer.json` file.
+Laravel 11 は Laravel Spark Stripe 4.x をサポートしなくなりました。したがって、アプリケーションの Laravel Spark Stripe 依存関係を `composer.json` ファイル内で `^5.0` に更新する必要があります。
 
-Spark Stripe 5.0 no longer automatically loads migrations from its own migrations directory. Instead, you should run the following command to publish Spark Stripe's migrations to your application:
+Spark Stripe 5.0 は、独自のマイグレーションディレクトリからマイグレーションを自動的にロードしなくなりました。代わりに、以下のコマンドを実行して、Spark Stripe のマイグレーションをアプリケーションに公開する必要があります：
 
 ```shell
 php artisan vendor:publish --tag=spark-migrations
 ```
 
-Please review the complete [Spark Stripe upgrade guide](https://spark.laravel.com/docs/spark-stripe/upgrade.html) for additional breaking changes.
+追加の破壊的変更については、完全な [Spark Stripe アップグレードガイド](https://spark.laravel.com/docs/spark-stripe/upgrade.html) を確認してください。
 
 <a name="passport"></a>
 ### Passport
 
 <a name="updating-telescope"></a>
-#### Updating Passport
+#### Passport の更新
 
-**Likelihood Of Impact: High**
+**影響の可能性: 高**
 
-Laravel 11 no longer supports Laravel Passport 11.x. Therefore, you should update your application's Laravel Passport dependency to `^12.0` in your `composer.json` file.
+Laravel 11 は Laravel Passport 11.x をサポートしなくなりました。したがって、アプリケーションの Laravel Passport 依存関係を `composer.json` ファイル内で `^12.0` に更新する必要があります。
 
-Passport 12.0 no longer automatically loads migrations from its own migrations directory. Instead, you should run the following command to publish Passport's migrations to your application:
+Passport 12.0 は、独自のマイグレーションディレクトリからマイグレーションを自動的にロードしなくなりました。代わりに、以下のコマンドを実行して、Passport のマイグレーションをアプリケーションに公開する必要があります：
 
 ```shell
 php artisan vendor:publish --tag=passport-migrations
 ```
 
-In addition, the password grant type is disabled by default. You may enable it by invoking the `enablePasswordGrant` method in the `boot` method of your application's `AppServiceProvider`:
+さらに、パスワード付与タイプはデフォルトで無効になっています。アプリケーションの `AppServiceProvider` の `boot` メソッドで `enablePasswordGrant` メソッドを呼び出すことで有効にできます：
 
     public function boot(): void
     {
@@ -566,19 +568,19 @@ In addition, the password grant type is disabled by default. You may enable it b
 ### Sanctum
 
 <a name="updating-sanctum"></a>
-#### Updating Sanctum
+#### Sanctum の更新
 
-**Likelihood Of Impact: High**
+**影響の可能性: 高**
 
-Laravel 11 no longer supports Laravel Sanctum 3.x. Therefore, you should update your application's Laravel Sanctum dependency to `^4.0` in your `composer.json` file.
+Laravel 11 は Laravel Sanctum 3.x をサポートしなくなりました。したがって、アプリケーションの Laravel Sanctum 依存関係を `composer.json` ファイル内で `^4.0` に更新する必要があります。
 
-Sanctum 4.0 no longer automatically loads migrations from its own migrations directory. Instead, you should run the following command to publish Sanctum's migrations to your application:
+Sanctum 4.0 は、独自のマイグレーションディレクトリからマイグレーションを自動的にロードしなくなりました。代わりに、以下のコマンドを実行して、Sanctum のマイグレーションをアプリケーションに公開する必要があります：
 
 ```shell
 php artisan vendor:publish --tag=sanctum-migrations
 ```
 
-Then, in your application's `config/sanctum.php` configuration file, you should update the references to the `authenticate_session`, `encrypt_cookies`, and `validate_csrf_token` middleware to the following:
+次に、アプリケーションの `config/sanctum.php` 設定ファイルで、`authenticate_session`、`encrypt_cookies`、および `validate_csrf_token` ミドルウェアへの参照を以下のように更新する必要があります：
 
     'middleware' => [
         'authenticate_session' => Laravel\Sanctum\Http\Middleware\AuthenticateSession::class,
@@ -590,26 +592,27 @@ Then, in your application's `config/sanctum.php` configuration file, you should 
 ### Telescope
 
 <a name="updating-telescope"></a>
-#### Updating Telescope
+#### Telescope の更新
 
-**Likelihood Of Impact: High**
+**影響の可能性: 高**
 
-Laravel 11 no longer supports Laravel Telescope 4.x. Therefore, you should update your application's Laravel Telescope dependency to `^5.0` in your `composer.json` file.
+Laravel 11 は Laravel Telescope 4.x をサポートしなくなりました。したがって、アプリケーションの Laravel Telescope 依存関係を `composer.json` ファイル内で `^5.0` に更新する必要があります。
 
-Telescope 5.0 no longer automatically loads migrations from its own migrations directory. Instead, you should run the following command to publish Telescope's migrations to your application:
+Telescope 5.0 は、独自のマイグレーションディレクトリからマイグレーションを自動的にロードしなくなりました。代わりに、以下のコマンドを実行して、Telescope のマイグレーションをアプリケーションに公開する必要があります：
 
 ```shell
 php artisan vendor:publish --tag=telescope-migrations
 ```
 
 <a name="spatie-once-package"></a>
-### Spatie Once Package
+### Spatie Once パッケージ
 
-**Likelihood Of Impact: Medium**
+**影響の可能性: 中**
 
-Laravel 11 now provides its own [`once` function](/docs/{{version}}/helpers#method-once) to ensure that a given closure is only executed once. Therefore, if your application has a dependency on the `spatie/once` package, you should remove it from your application's `composer.json` file to avoid conflicts.
+Laravel 11 は、指定されたクロージャが一度だけ実行されることを保証する独自の [`once` 関数](helpers.md#method-once) を提供するようになりました。したがって、アプリケーションが `spatie/once` パッケージに依存している場合、競合を避けるために、アプリケーションの `composer.json` ファイルから削除する必要があります。
 
 <a name="miscellaneous"></a>
-### Miscellaneous
+### その他
 
-We also encourage you to view the changes in the `laravel/laravel` [GitHub repository](https://github.com/laravel/laravel). While many of these changes are not required, you may wish to keep these files in sync with your application. Some of these changes will be covered in this upgrade guide, but others, such as changes to configuration files or comments, will not be. You can easily view the changes with the [GitHub comparison tool](https://github.com/laravel/laravel/compare/10.x...11.x) and choose which updates are important to you.
+また、`laravel/laravel` [GitHub リポジトリ](https://github.com/laravel/laravel) の変更も確認することをお勧めします。これらの変更の多くは必須ではありませんが、アプリケーションとこれらのファイルを同期させたい場合があります。このアップグレードガイドでは一部の変更がカバーされますが、設定ファイルやコメントの変更などはカバーされません。[GitHub 比較ツール](https://github.com/laravel/laravel/compare/10.x...11.x) を使用して簡単に変更を確認し、どの更新が重要かを選択できます。
+

@@ -1,94 +1,94 @@
-# Blade Templates
+# Bladeテンプレート
 
-- [Introduction](#introduction)
-    - [Supercharging Blade With Livewire](#supercharging-blade-with-livewire)
-- [Displaying Data](#displaying-data)
-    - [HTML Entity Encoding](#html-entity-encoding)
-    - [Blade and JavaScript Frameworks](#blade-and-javascript-frameworks)
-- [Blade Directives](#blade-directives)
-    - [If Statements](#if-statements)
-    - [Switch Statements](#switch-statements)
-    - [Loops](#loops)
-    - [The Loop Variable](#the-loop-variable)
-    - [Conditional Classes](#conditional-classes)
-    - [Additional Attributes](#additional-attributes)
-    - [Including Subviews](#including-subviews)
-    - [The `@once` Directive](#the-once-directive)
-    - [Raw PHP](#raw-php)
-    - [Comments](#comments)
-- [Components](#components)
-    - [Rendering Components](#rendering-components)
-    - [Passing Data to Components](#passing-data-to-components)
-    - [Component Attributes](#component-attributes)
-    - [Reserved Keywords](#reserved-keywords)
-    - [Slots](#slots)
-    - [Inline Component Views](#inline-component-views)
-    - [Dynamic Components](#dynamic-components)
-    - [Manually Registering Components](#manually-registering-components)
-- [Anonymous Components](#anonymous-components)
-    - [Anonymous Index Components](#anonymous-index-components)
-    - [Data Properties / Attributes](#data-properties-attributes)
-    - [Accessing Parent Data](#accessing-parent-data)
-    - [Anonymous Components Paths](#anonymous-component-paths)
-- [Building Layouts](#building-layouts)
-    - [Layouts Using Components](#layouts-using-components)
-    - [Layouts Using Template Inheritance](#layouts-using-template-inheritance)
-- [Forms](#forms)
-    - [CSRF Field](#csrf-field)
-    - [Method Field](#method-field)
-    - [Validation Errors](#validation-errors)
-- [Stacks](#stacks)
-- [Service Injection](#service-injection)
-- [Rendering Inline Blade Templates](#rendering-inline-blade-templates)
-- [Rendering Blade Fragments](#rendering-blade-fragments)
-- [Extending Blade](#extending-blade)
-    - [Custom Echo Handlers](#custom-echo-handlers)
-    - [Custom If Statements](#custom-if-statements)
+- [はじめに](#introduction)
+    - [LivewireでBladeを強化する](#supercharging-blade-with-livewire)
+- [データの表示](#displaying-data)
+    - [HTMLエンティティのエンコーディング](#html-entity-encoding)
+    - [BladeとJavaScriptフレームワーク](#blade-and-javascript-frameworks)
+- [Bladeディレクティブ](#blade-directives)
+    - [If文](#if-statements)
+    - [Switch文](#switch-statements)
+    - [ループ](#loops)
+    - [ループ変数](#the-loop-variable)
+    - [条件付きクラス](#conditional-classes)
+    - [追加属性](#additional-attributes)
+    - [サブビューのインクルード](#including-subviews)
+    - [`@once`ディレクティブ](#the-once-directive)
+    - [生のPHP](#raw-php)
+    - [コメント](#comments)
+- [コンポーネント](#components)
+    - [コンポーネントのレンダリング](#rendering-components)
+    - [コンポーネントへのデータの受け渡し](#passing-data-to-components)
+    - [コンポーネント属性](#component-attributes)
+    - [予約語](#reserved-keywords)
+    - [スロット](#slots)
+    - [インラインコンポーネントビュー](#inline-component-views)
+    - [動的コンポーネント](#dynamic-components)
+    - [コンポーネントの手動登録](#manually-registering-components)
+- [匿名コンポーネント](#anonymous-components)
+    - [匿名インデックスコンポーネント](#anonymous-index-components)
+    - [データプロパティ / 属性](#data-properties-attributes)
+    - [親データへのアクセス](#accessing-parent-data)
+    - [匿名コンポーネントのパス](#anonymous-component-paths)
+- [レイアウトの構築](#building-layouts)
+    - [コンポーネントを使用したレイアウト](#layouts-using-components)
+    - [テンプレート継承を使用したレイアウト](#layouts-using-template-inheritance)
+- [フォーム](#forms)
+    - [CSRFフィールド](#csrf-field)
+    - [メソッドフィールド](#method-field)
+    - [バリデーションエラー](#validation-errors)
+- [スタック](#stacks)
+- [サービスインジェクション](#service-injection)
+- [インラインBladeテンプレートのレンダリング](#rendering-inline-blade-templates)
+- [Bladeフラグメントのレンダリング](#rendering-blade-fragments)
+- [Bladeの拡張](#extending-blade)
+    - [カスタムエコーハンドラ](#custom-echo-handlers)
+    - [カスタムIf文](#custom-if-statements)
 
 <a name="introduction"></a>
-## Introduction
+## はじめに
 
-Blade is the simple, yet powerful templating engine that is included with Laravel. Unlike some PHP templating engines, Blade does not restrict you from using plain PHP code in your templates. In fact, all Blade templates are compiled into plain PHP code and cached until they are modified, meaning Blade adds essentially zero overhead to your application. Blade template files use the `.blade.php` file extension and are typically stored in the `resources/views` directory.
+Bladeは、Laravelに含まれるシンプルで強力なテンプレートエンジンです。他のPHPテンプレートエンジンとは異なり、Bladeはテンプレート内でプレーンなPHPコードを使用することを制限しません。実際、すべてのBladeテンプレートはプレーンなPHPコードにコンパイルされ、変更されるまでキャッシュされるため、Bladeはアプリケーションに実質的にゼロのオーバーヘッドを追加します。Bladeテンプレートファイルは`.blade.php`ファイル拡張子を使用し、通常は`resources/views`ディレクトリに保存されます。
 
-Blade views may be returned from routes or controllers using the global `view` helper. Of course, as mentioned in the documentation on [views](/docs/{{version}}/views), data may be passed to the Blade view using the `view` helper's second argument:
+Bladeビューは、グローバルな`view`ヘルパーを使用してルートまたはコントローラから返されることがあります。もちろん、[ビュー](views.md)のドキュメントで説明されているように、`view`ヘルパーの2番目の引数を使用してBladeビューにデータを渡すことができます。
 
     Route::get('/', function () {
         return view('greeting', ['name' => 'Finn']);
     });
 
 <a name="supercharging-blade-with-livewire"></a>
-### Supercharging Blade With Livewire
+### LivewireでBladeを強化する
 
-Want to take your Blade templates to the next level and build dynamic interfaces with ease? Check out [Laravel Livewire](https://livewire.laravel.com). Livewire allows you to write Blade components that are augmented with dynamic functionality that would typically only be possible via frontend frameworks like React or Vue, providing a great approach to building modern, reactive frontends without the complexities, client-side rendering, or build steps of many JavaScript frameworks.
+Bladeテンプレートを次のレベルに引き上げ、動的なインターフェースを簡単に構築したいですか？[Laravel Livewire](https://livewire.laravel.com)をチェックしてください。Livewireを使用すると、ReactやVueのようなフロントエンドフレームワークでのみ可能な動的な機能を持つBladeコンポーネントを書くことができ、多くのJavaScriptフレームワークの複雑さ、クライアントサイドレンダリング、ビルドステップを回避しながら、現代のリアクティブフロントエンドを構築するための素晴らしいアプローチを提供します。
 
 <a name="displaying-data"></a>
-## Displaying Data
+## データの表示
 
-You may display data that is passed to your Blade views by wrapping the variable in curly braces. For example, given the following route:
+変数を波括弧で囲むことで、Bladeビューに渡されたデータを表示できます。たとえば、次のルートがあるとします。
 
     Route::get('/', function () {
         return view('welcome', ['name' => 'Samantha']);
     });
 
-You may display the contents of the `name` variable like so:
+`name`変数の内容を次のように表示できます。
 
 ```blade
 Hello, {{ $name }}.
 ```
 
-> [!NOTE]  
-> Blade's `{{ }}` echo statements are automatically sent through PHP's `htmlspecialchars` function to prevent XSS attacks.
+> NOTE:  
+> Bladeの`{{ }}`エコー文は、XSS攻撃を防ぐために、自動的にPHPの`htmlspecialchars`関数を通過します。
 
-You are not limited to displaying the contents of the variables passed to the view. You may also echo the results of any PHP function. In fact, you can put any PHP code you wish inside of a Blade echo statement:
+ビューに渡された変数の内容を表示することに限定されません。PHP関数の結果もエコーできます。実際、Bladeエコー文の中に任意のPHPコードを配置できます。
 
 ```blade
 The current UNIX timestamp is {{ time() }}.
 ```
 
 <a name="html-entity-encoding"></a>
-### HTML Entity Encoding
+### HTMLエンティティのエンコーディング
 
-By default, Blade (and the Laravel `e` function) will double encode HTML entities. If you would like to disable double encoding, call the `Blade::withoutDoubleEncoding` method from the `boot` method of your `AppServiceProvider`:
+デフォルトでは、Blade（およびLaravelの`e`関数）はHTMLエンティティを二重にエンコードします。二重エンコードを無効にしたい場合は、`AppServiceProvider`の`boot`メソッドから`Blade::withoutDoubleEncoding`メソッドを呼び出します。
 
     <?php
 
@@ -100,7 +100,7 @@ By default, Blade (and the Laravel `e` function) will double encode HTML entitie
     class AppServiceProvider extends ServiceProvider
     {
         /**
-         * Bootstrap any application services.
+         * アプリケーションサービスの初期化処理
          */
         public function boot(): void
         {
@@ -109,21 +109,21 @@ By default, Blade (and the Laravel `e` function) will double encode HTML entitie
     }
 
 <a name="displaying-unescaped-data"></a>
-#### Displaying Unescaped Data
+#### エスケープされていないデータの表示
 
-By default, Blade `{{ }}` statements are automatically sent through PHP's `htmlspecialchars` function to prevent XSS attacks. If you do not want your data to be escaped, you may use the following syntax:
+デフォルトでは、Bladeの`{{ }}`文は自動的にPHPの`htmlspecialchars`関数を通過してXSS攻撃を防ぎます。データをエスケープしたくない場合は、次の構文を使用できます。
 
 ```blade
 Hello, {!! $name !!}.
 ```
 
-> [!WARNING]  
-> Be very careful when echoing content that is supplied by users of your application. You should typically use the escaped, double curly brace syntax to prevent XSS attacks when displaying user supplied data.
+> WARNING:  
+> アプリケーションのユーザーによって提供されたコンテンツを表示する場合は、非常に注意してください。通常、ユーザー提供のデータを表示する場合は、エスケープされた二重波括弧構文を使用してXSS攻撃を防ぐ必要があります。
 
 <a name="blade-and-javascript-frameworks"></a>
-### Blade and JavaScript Frameworks
+### BladeとJavaScriptフレームワーク
 
-Since many JavaScript frameworks also use "curly" braces to indicate a given expression should be displayed in the browser, you may use the `@` symbol to inform the Blade rendering engine an expression should remain untouched. For example:
+多くのJavaScriptフレームワークも、ブラウザに表示されるべき式を示すために「波括弧」を使用するため、`@`記号を使用してBladeレンダリングエンジンに式をそのままにしておくように指示できます。例えば：
 
 ```blade
 <h1>Laravel</h1>
@@ -131,22 +131,22 @@ Since many JavaScript frameworks also use "curly" braces to indicate a given exp
 Hello, @{{ name }}.
 ```
 
-In this example, the `@` symbol will be removed by Blade; however, `{{ name }}` expression will remain untouched by the Blade engine, allowing it to be rendered by your JavaScript framework.
+この例では、`@`記号はBladeによって削除されますが、`{{ name }}`式はBladeエンジンによってそのままにされ、JavaScriptフレームワークによってレンダリングされます。
 
-The `@` symbol may also be used to escape Blade directives:
+`@`記号は、Bladeディレクティブをエスケープするためにも使用できます。
 
 ```blade
-{{-- Blade template --}}
+{{-- Bladeテンプレート --}}
 @@if()
 
-<!-- HTML output -->
+<!-- HTML出力 -->
 @if()
 ```
 
 <a name="rendering-json"></a>
-#### Rendering JSON
+#### JSONのレンダリング
 
-Sometimes you may pass an array to your view with the intention of rendering it as JSON in order to initialize a JavaScript variable. For example:
+JavaScript変数を初期化するために配列をビューに渡してJSONとしてレンダリングすることがあります。例えば：
 
 ```blade
 <script>
@@ -154,7 +154,7 @@ Sometimes you may pass an array to your view with the intention of rendering it 
 </script>
 ```
 
-However, instead of manually calling `json_encode`, you may use the `Illuminate\Support\Js::from` method directive. The `from` method accepts the same arguments as PHP's `json_encode` function; however, it will ensure that the resulting JSON is properly escaped for inclusion within HTML quotes. The `from` method will return a string `JSON.parse` JavaScript statement that will convert the given object or array into a valid JavaScript object:
+しかし、手動で`json_encode`を呼び出す代わりに、`Illuminate\Support\Js::from`メソッドディレクティブを使用できます。`from`メソッドは、PHPの`json_encode`関数と同じ引数を受け取りますが、結果のJSONがHTMLクォート内に正しくエスケープされることを保証します。`from`メソッドは、指定されたオブジェクトまたは配列を有効なJavaScriptオブジェクトに変換する`JSON.parse` JavaScript文を返します。
 
 ```blade
 <script>
@@ -162,7 +162,7 @@ However, instead of manually calling `json_encode`, you may use the `Illuminate\
 </script>
 ```
 
-The latest versions of the Laravel application skeleton include a `Js` facade, which provides convenient access to this functionality within your Blade templates:
+最新バージョンのLaravelアプリケーションスケルトンには、Bladeテンプレート内でこの機能に簡単にアクセスできる`Js`ファサードが含まれています。
 
 ```blade
 <script>
@@ -170,13 +170,13 @@ The latest versions of the Laravel application skeleton include a `Js` facade, w
 </script>
 ```
 
-> [!WARNING]  
-> You should only use the `Js::from` method to render existing variables as JSON. The Blade templating is based on regular expressions and attempts to pass a complex expression to the directive may cause unexpected failures.
+> WARNING:  
+> `Js::from`メソッドは、既存の変数をJSONとしてレンダリングするためにのみ使用してください。Bladeテンプレートは正規表現に基づいており、複雑な式をディレクティブに渡そうとすると、予期しない失敗が発生する可能性があります。
 
 <a name="the-at-verbatim-directive"></a>
-#### The `@verbatim` Directive
+#### `@verbatim`ディレクティブ
 
-If you are displaying JavaScript variables in a large portion of your template, you may wrap the HTML in the `@verbatim` directive so that you do not have to prefix each Blade echo statement with an `@` symbol:
+テンプレートの大部分でJavaScript変数を表示する場合、HTMLを`@verbatim`ディレクティブでラップして、各Bladeエコー文に`@`記号を付ける必要をなくすことができます。
 
 ```blade
 @verbatim
@@ -187,14 +187,14 @@ If you are displaying JavaScript variables in a large portion of your template, 
 ```
 
 <a name="blade-directives"></a>
-## Blade Directives
+## Bladeディレクティブ
 
-In addition to template inheritance and displaying data, Blade also provides convenient shortcuts for common PHP control structures, such as conditional statements and loops. These shortcuts provide a very clean, terse way of working with PHP control structures while also remaining familiar to their PHP counterparts.
+テンプレートの継承とデータの表示に加えて、Bladeは一般的なPHP制御構造（条件文やループなど）の便利なショートカットも提供します。これらのショートカットは、PHP制御構造を非常にクリーンで簡潔な方法で操作するのに役立ち、それらのPHPの対応物にも馴染みがあります。
 
 <a name="if-statements"></a>
-### If Statements
+### If文
 
-You may construct `if` statements using the `@if`, `@elseif`, `@else`, and `@endif` directives. These directives function identically to their PHP counterparts:
+`@if`、`@elseif`、`@else`、`@endif`ディレクティブを使用して`if`文を構築できます。これらのディレクティブは、対応するPHPのものと同じように機能します。
 
 ```blade
 @if (count($records) === 1)
@@ -206,7 +206,7 @@ You may construct `if` statements using the `@if`, `@elseif`, `@else`, and `@end
 @endif
 ```
 
-For convenience, Blade also provides an `@unless` directive:
+利便性のために、Bladeは`@unless`ディレクティブも提供します。
 
 ```blade
 @unless (Auth::check())
@@ -214,72 +214,78 @@ For convenience, Blade also provides an `@unless` directive:
 @endunless
 ```
 
-In addition to the conditional directives already discussed, the `@isset` and `@empty` directives may be used as convenient shortcuts for their respective PHP functions:
+条件ディレクティブに加えて、`@isset`と`@empty`ディレクティブを、それぞれのPHP関数の便利なショートカットとして使用できます。
 
 ```blade
 @isset($records)
-    // $records is defined and is not null...
+    // $recordsが定義されており、nullでない場合...
 @endisset
 
 @empty($records)
-    // $records is "empty"...
+    // $recordsが「空」の場合...
 @endempty
 ```
 
 <a name="authentication-directives"></a>
-#### Authentication Directives
+#### 認証ディレクティブ
 
-The `@auth` and `@guest` directives may be used to quickly determine if the current user is [authenticated](/docs/{{version}}/authentication) or is a guest:
+`@auth`と`@guest`ディレクティブを使用して、現在のユーザーが[認証されている](authentication.md)か、ゲストであるかをすばやく判断できます。
 
 ```blade
 @auth
-    // The user is authenticated...
+    // ユーザーは認証されています...
 @endauth
 
 @guest
-    // The user is not authenticated...
+    // ユーザーは認証されていません...
 @endguest
 ```
 
-If needed, you may specify the authentication guard that should be checked when using the `@auth` and `@guest` directives:
+必要に応じて、`@auth`と`@guest`ディレクティブを使用する際にチェックする認証ガードを指定できます。
 
 ```blade
 @auth('admin')
-    // The user is authenticated...
+    // ユーザーは認証されています...
 @endauth
 
 @guest('admin')
-    // The user is not authenticated...
+    // ユーザーは認証されていません...
 @endguest
 ```
 
 <a name="environment-directives"></a>
-#### Environment Directives
+#### 環境ディレクティブ
 
-You may check if the application is running in the production environment using the `@production` directive:
+`@production`ディレクティブを使用して、アプリケーションが本番環境で実行されているかどうかを確認できます。
 
 ```blade
 @production
-    // Production specific content...
+    // 本番環境で実行中...
 @endproduction
 ```
 
-Or, you may determine if the application is running in a specific environment using the `@env` directive:
+```blade
+@production
+    // 本番環境固有のコンテンツ...
+@endproduction
+```
+
+または、`@env`ディレクティブを使用して、アプリケーションが特定の環境で実行されているかどうかを判断することもできます：
 
 ```blade
 @env('staging')
-    // The application is running in "staging"...
+    // アプリケーションは "staging" で実行中...
 @endenv
 
 @env(['staging', 'production'])
-    // The application is running in "staging" or "production"...
+    // アプリケーションは "staging" または "production" で実行中...
 @endenv
 ```
 
 <a name="section-directives"></a>
-#### Section Directives
+#### セクションディレクティブ
 
-You may determine if a template inheritance section has content using the `@hasSection` directive:
+`@hasSection`ディレクティブを使用して、テンプレート継承セクションにコンテンツがあるかどうかを判断できます：
 
 ```blade
 @hasSection('navigation')
@@ -291,7 +297,7 @@ You may determine if a template inheritance section has content using the `@hasS
 @endif
 ```
 
-You may use the `sectionMissing` directive to determine if a section does not have content:
+セクションにコンテンツがないかどうかを判断するには、`sectionMissing`ディレクティブを使用できます：
 
 ```blade
 @sectionMissing('navigation')
@@ -302,9 +308,9 @@ You may use the `sectionMissing` directive to determine if a section does not ha
 ```
 
 <a name="session-directives"></a>
-#### Session Directives
+#### セッションディレクティブ
 
-The `@session` directive may be used to determine if a [session](/docs/{{version}}/session) value exists. If the session value exists, the template contents within the `@session` and `@endsession` directives will be evaluated. Within the `@session` directive's contents, you may echo the `$value` variable to display the session value:
+`@session`ディレクティブは、[セッション](session.md)の値が存在するかどうかを判断するために使用できます。セッションの値が存在する場合、`@session`と`@endsession`ディレクティブ内のテンプレートコンテンツが評価されます。`@session`ディレクティブのコンテンツ内で、セッションの値を表示するために`$value`変数をエコーすることができます：
 
 ```blade
 @session('status')
@@ -315,54 +321,54 @@ The `@session` directive may be used to determine if a [session](/docs/{{version
 ```
 
 <a name="switch-statements"></a>
-### Switch Statements
+### Switch文
 
-Switch statements can be constructed using the `@switch`, `@case`, `@break`, `@default` and `@endswitch` directives:
+Switch文は、`@switch`、`@case`、`@break`、`@default`、`@endswitch`ディレクティブを使用して構築できます：
 
 ```blade
 @switch($i)
     @case(1)
-        First case...
+        最初のケース...
         @break
 
     @case(2)
-        Second case...
+        2番目のケース...
         @break
 
     @default
-        Default case...
+        デフォルトのケース...
 @endswitch
 ```
 
 <a name="loops"></a>
-### Loops
+### ループ
 
-In addition to conditional statements, Blade provides simple directives for working with PHP's loop structures. Again, each of these directives functions identically to their PHP counterparts:
+条件文に加えて、BladeはPHPのループ構造を操作するためのシンプルなディレクティブを提供します。これらのディレクティブは、それぞれのPHPの対応物と同様に機能します：
 
 ```blade
 @for ($i = 0; $i < 10; $i++)
-    The current value is {{ $i }}
+    現在の値は {{ $i }}
 @endfor
 
 @foreach ($users as $user)
-    <p>This is user {{ $user->id }}</p>
+    <p>これはユーザー {{ $user->id }}</p>
 @endforeach
 
 @forelse ($users as $user)
     <li>{{ $user->name }}</li>
 @empty
-    <p>No users</p>
+    <p>ユーザーがいません</p>
 @endforelse
 
 @while (true)
-    <p>I'm looping forever.</p>
+    <p>私は永遠にループしています。</p>
 @endwhile
 ```
 
-> [!NOTE]  
-> While iterating through a `foreach` loop, you may use the [loop variable](#the-loop-variable) to gain valuable information about the loop, such as whether you are in the first or last iteration through the loop.
+> NOTE:  
+> `foreach`ループを反復処理する際、[ループ変数](#the-loop-variable)を使用して、ループに関する貴重な情報（例えば、最初または最後の反復処理であるかどうか）を取得できます。
 
-When using loops you may also skip the current iteration or end the loop using the `@continue` and `@break` directives:
+ループを使用する際、`@continue`と`@break`ディレクティブを使用して、現在の反復処理をスキップしたり、ループを終了したりすることもできます：
 
 ```blade
 @foreach ($users as $user)
@@ -378,7 +384,7 @@ When using loops you may also skip the current iteration or end the loop using t
 @endforeach
 ```
 
-You may also include the continuation or break condition within the directive declaration:
+また、ディレクティブ宣言内に継続または中断条件を含めることもできます：
 
 ```blade
 @foreach ($users as $user)
@@ -391,59 +397,59 @@ You may also include the continuation or break condition within the directive de
 ```
 
 <a name="the-loop-variable"></a>
-### The Loop Variable
+### ループ変数
 
-While iterating through a `foreach` loop, a `$loop` variable will be available inside of your loop. This variable provides access to some useful bits of information such as the current loop index and whether this is the first or last iteration through the loop:
+`foreach`ループを反復処理する際、ループ内で`$loop`変数が利用可能になります。この変数は、現在のループインデックスや、これが最初または最後の反復処理であるかどうかなど、いくつかの有用な情報にアクセスできます：
 
 ```blade
 @foreach ($users as $user)
     @if ($loop->first)
-        This is the first iteration.
+        これは最初の反復処理です。
     @endif
 
     @if ($loop->last)
-        This is the last iteration.
+        これは最後の反復処理です。
     @endif
 
-    <p>This is user {{ $user->id }}</p>
+    <p>これはユーザー {{ $user->id }}</p>
 @endforeach
 ```
 
-If you are in a nested loop, you may access the parent loop's `$loop` variable via the `parent` property:
+ネストされたループ内にいる場合、親ループの`$loop`変数に`parent`プロパティを介してアクセスできます：
 
 ```blade
 @foreach ($users as $user)
     @foreach ($user->posts as $post)
         @if ($loop->parent->first)
-            This is the first iteration of the parent loop.
+            これは親ループの最初の反復処理です。
         @endif
     @endforeach
 @endforeach
 ```
 
-The `$loop` variable also contains a variety of other useful properties:
+`$loop`変数には、他にもいくつかの有用なプロパティが含まれています：
 
-<div class="overflow-auto">
+<div class="overflow-auto" markdown=1>
 
-| Property           | Description                                            |
+| プロパティ           | 説明                                            |
 | ------------------ | ------------------------------------------------------ |
-| `$loop->index`     | The index of the current loop iteration (starts at 0). |
-| `$loop->iteration` | The current loop iteration (starts at 1).              |
-| `$loop->remaining` | The iterations remaining in the loop.                  |
-| `$loop->count`     | The total number of items in the array being iterated. |
-| `$loop->first`     | Whether this is the first iteration through the loop.  |
-| `$loop->last`      | Whether this is the last iteration through the loop.   |
-| `$loop->even`      | Whether this is an even iteration through the loop.    |
-| `$loop->odd`       | Whether this is an odd iteration through the loop.     |
-| `$loop->depth`     | The nesting level of the current loop.                 |
-| `$loop->parent`    | When in a nested loop, the parent's loop variable.     |
+| `$loop->index`     | 現在のループ反復処理のインデックス（0から始まる）。 |
+| `$loop->iteration` | 現在のループ反復処理（1から始まる）。              |
+| `$loop->remaining` | ループ内の残りの反復処理。                  |
+| `$loop->count`     | 反復処理される配列内のアイテムの総数。 |
+| `$loop->first`     | これが最初の反復処理であるかどうか。  |
+| `$loop->last`      | これが最後の反復処理であるかどうか。   |
+| `$loop->even`      | これが偶数の反復処理であるかどうか。    |
+| `$loop->odd`       | これが奇数の反復処理であるかどうか。     |
+| `$loop->depth`     | 現在のループのネストレベル。                 |
+| `$loop->parent`    | ネストされたループ内にいる場合、親のループ変数。     |
 
 </div>
 
 <a name="conditional-classes"></a>
-### Conditional Classes & Styles
+### 条件付きクラスとスタイル
 
-The `@class` directive conditionally compiles a CSS class string. The directive accepts an array of classes where the array key contains the class or classes you wish to add, while the value is a boolean expression. If the array element has a numeric key, it will always be included in the rendered class list:
+`@class`ディレクティブは、条件付きでCSSクラス文字列をコンパイルします。このディレクティブは、クラスの配列を受け取ります。配列のキーには追加したいクラスを含み、値はブール式です。配列要素が数値キーを持つ場合、レンダリングされたクラスリストに常に含まれます：
 
 ```blade
 @php
@@ -461,7 +467,7 @@ The `@class` directive conditionally compiles a CSS class string. The directive 
 <span class="p-4 text-gray-500 bg-red"></span>
 ```
 
-Likewise, the `@style` directive may be used to conditionally add inline CSS styles to an HTML element:
+同様に、`@style`ディレクティブを使用して、HTML要素に条件付きでインラインCSSスタイルを追加できます：
 
 ```blade
 @php
@@ -477,9 +483,9 @@ Likewise, the `@style` directive may be used to conditionally add inline CSS sty
 ```
 
 <a name="additional-attributes"></a>
-### Additional Attributes
+### 追加の属性
 
-For convenience, you may use the `@checked` directive to easily indicate if a given HTML checkbox input is "checked". This directive will echo `checked` if the provided condition evaluates to `true`:
+便宜上、`@checked`ディレクティブを使用して、指定されたHTMLチェックボックス入力が「チェック済み」であるかどうかを簡単に示すことができます。このディレクティブは、提供された条件が`true`と評価された場合に`checked`を出力します：
 
 ```blade
 <input type="checkbox"
@@ -488,7 +494,7 @@ For convenience, you may use the `@checked` directive to easily indicate if a gi
         @checked(old('active', $user->active)) />
 ```
 
-Likewise, the `@selected` directive may be used to indicate if a given select option should be "selected":
+同様に、`@selected`ディレクティブを使用して、指定された選択オプションが「選択済み」であるかどうかを示すことができます：
 
 ```blade
 <select name="version">
@@ -500,13 +506,13 @@ Likewise, the `@selected` directive may be used to indicate if a given select op
 </select>
 ```
 
-Additionally, the `@disabled` directive may be used to indicate if a given element should be "disabled":
+さらに、`@disabled`ディレクティブを使用して、指定された要素が「無効」であるかどうかを示すことができます：
 
 ```blade
-<button type="submit" @disabled($errors->isNotEmpty())>Submit</button>
+<button type="submit" @disabled($errors->isNotEmpty())>送信</button>
 ```
 
-Moreover, the `@readonly` directive may be used to indicate if a given element should be "readonly":
+さらに、`@readonly`ディレクティブを使用して、指定された要素が「読み取り専用」であるかどうかを示すことができます：
 
 ```blade
 <input type="email"
@@ -515,7 +521,7 @@ Moreover, the `@readonly` directive may be used to indicate if a given element s
         @readonly($user->isNotAdmin()) />
 ```
 
-In addition, the `@required` directive may be used to indicate if a given element should be "required":
+さらに、`@required`ディレクティブを使用して、指定された要素が「必須」であるかどうかを示すことができます：
 
 ```blade
 <input type="text"
@@ -525,36 +531,36 @@ In addition, the `@required` directive may be used to indicate if a given elemen
 ```
 
 <a name="including-subviews"></a>
-### Including Subviews
+### サブビューのインクルード
 
-> [!NOTE]  
-> While you're free to use the `@include` directive, Blade [components](#components) provide similar functionality and offer several benefits over the `@include` directive such as data and attribute binding.
+> NOTE:  
+> `@include`ディレクティブを自由に使用できますが、Bladeの[コンポーネント](#components)は同様の機能を提供し、データと属性のバインディングなど、`@include`ディレクティブよりもいくつかの利点があります。
 
-Blade's `@include` directive allows you to include a Blade view from within another view. All variables that are available to the parent view will be made available to the included view:
+Bladeの`@include`ディレクティブを使用すると、別のビュー内にBladeビューをインクルードできます。親ビューで利用可能なすべての変数は、インクルードされたビューでも利用可能になります：
 
 ```blade
 <div>
     @include('shared.errors')
 
     <form>
-        <!-- Form Contents -->
+        <!-- フォームの内容 -->
     </form>
 </div>
 ```
 
-Even though the included view will inherit all data available in the parent view, you may also pass an array of additional data that should be made available to the included view:
+インクルードされたビューは、親ビューで利用可能なすべてのデータを継承しますが、インクルードされたビューで利用可能にする追加のデータの配列を渡すこともできます：
 
 ```blade
 @include('view.name', ['status' => 'complete'])
 ```
 
-If you attempt to `@include` a view which does not exist, Laravel will throw an error. If you would like to include a view that may or may not be present, you should use the `@includeIf` directive:
+存在しないビューを`@include`しようとすると、Laravelはエラーをスローします。存在するかどうかわからないビューをインクルードしたい場合は、`@includeIf`ディレクティブを使用する必要があります：
 
 ```blade
 @includeIf('view.name', ['status' => 'complete'])
 ```
 
-If you would like to `@include` a view if a given boolean expression evaluates to `true` or `false`, you may use the `@includeWhen` and `@includeUnless` directives:
+指定されたブール式が`true`または`false`と評価された場合にビューをインクルードしたい場合は、`@includeWhen`と`@includeUnless`ディレクティブを使用できます：
 
 ```blade
 @includeWhen($boolean, 'view.name', ['status' => 'complete'])
@@ -562,56 +568,60 @@ If you would like to `@include` a view if a given boolean expression evaluates t
 @includeUnless($boolean, 'view.name', ['status' => 'complete'])
 ```
 
-To include the first view that exists from a given array of views, you may use the `includeFirst` directive:
+指定されたビューの配列から最初に存在するビューをインクルードするには、`includeFirst`ディレクティブを使用できます：
 
 ```blade
 @includeFirst(['custom.admin', 'admin'], ['status' => 'complete'])
 ```
 
-> [!WARNING]  
-> You should avoid using the `__DIR__` and `__FILE__` constants in your Blade views, since they will refer to the location of the cached, compiled view.
+> WARNING:  
+> Bladeビューで`__DIR__`と`__FILE__`定数を使用することは避けるべきです。キャッシュされたコンパイル済みビューの場所を参照するためです。
 
 <a name="rendering-views-for-collections"></a>
-#### Rendering Views for Collections
+#### コレクションのビューのレンダリング
 
-You may combine loops and includes into one line with Blade's `@each` directive:
+Bladeの`@each`ディレクティブを使用して、ループとインクルードを1行にまとめることができます：
 
 ```blade
 @each('view.name', $jobs, 'job')
 ```
 
-The `@each` directive's first argument is the view to render for each element in the array or collection. The second argument is the array or collection you wish to iterate over, while the third argument is the variable name that will be assigned to the current iteration within the view. So, for example, if you are iterating over an array of `jobs`, typically you will want to access each job as a `job` variable within the view. The array key for the current iteration will be available as the `key` variable within the view.
+`@each`ディレクティブの最初の引数は、配列またはコレクションの各要素に対してレンダリングするビューです。2番目の引数は、反復処理したい配列またはコレクションで、3番目の引数は、現在の反復処理内でビューに割り当てられる変数名です。したがって、例えば、`jobs`の配列を反復処理する場合、通常はビュー内で各ジョブを`job`変数としてアクセスしたいでしょう。現在の反復処理の配列キーは、ビュー内で`key`変数として利用可能です。
 
-You may also pass a fourth argument to the `@each` directive. This argument determines the view that will be rendered if the given array is empty.
+```blade
+@each('view.name', $jobs, 'job')
+```
+
+`@each`ディレクティブには、4番目の引数を渡すこともできます。この引数は、指定された配列が空の場合にレンダリングされるビューを決定します。
 
 ```blade
 @each('view.name', $jobs, 'job', 'view.empty')
 ```
 
-> [!WARNING]  
-> Views rendered via `@each` do not inherit the variables from the parent view. If the child view requires these variables, you should use the `@foreach` and `@include` directives instead.
+> WARNING:  
+> `@each`を介してレンダリングされるビューは、親ビューの変数を継承しません。子ビューがこれらの変数を必要とする場合は、代わりに`@foreach`と`@include`ディレクティブを使用する必要があります。
 
 <a name="the-once-directive"></a>
-### The `@once` Directive
+### `@once`ディレクティブ
 
-The `@once` directive allows you to define a portion of the template that will only be evaluated once per rendering cycle. This may be useful for pushing a given piece of JavaScript into the page's header using [stacks](#stacks). For example, if you are rendering a given [component](#components) within a loop, you may wish to only push the JavaScript to the header the first time the component is rendered:
+`@once`ディレクティブを使用すると、レンダリングサイクルごとに1回だけ評価されるテンプレートの一部を定義できます。これは、[stacks](#stacks)を使用して特定のJavaScriptをページのヘッダーにプッシュする場合に便利です。例えば、ループ内で特定の[コンポーネント](#components)をレンダリングしている場合、コンポーネントが最初にレンダリングされたときにのみJavaScriptをヘッダーにプッシュしたい場合があります。
 
 ```blade
 @once
     @push('scripts')
         <script>
-            // Your custom JavaScript...
+            // カスタムJavaScript...
         </script>
     @endpush
 @endonce
 ```
 
-Since the `@once` directive is often used in conjunction with the `@push` or `@prepend` directives, the `@pushOnce` and `@prependOnce` directives are available for your convenience:
+`@once`ディレクティブは、`@push`や`@prepend`ディレクティブと組み合わせてよく使用されるため、`@pushOnce`と`@prependOnce`ディレクティブも利用できます。
 
 ```blade
 @pushOnce('scripts')
     <script>
-        // Your custom JavaScript...
+        // カスタムJavaScript...
     </script>
 @endPushOnce
 ```
@@ -619,7 +629,7 @@ Since the `@once` directive is often used in conjunction with the `@push` or `@p
 <a name="raw-php"></a>
 ### Raw PHP
 
-In some situations, it's useful to embed PHP code into your views. You can use the Blade `@php` directive to execute a block of plain PHP within your template:
+場合によっては、ビューにPHPコードを埋め込むことが便利なことがあります。Bladeの`@php`ディレクティブを使用して、テンプレート内でプレーンなPHPブロックを実行できます。
 
 ```blade
 @php
@@ -627,104 +637,104 @@ In some situations, it's useful to embed PHP code into your views. You can use t
 @endphp
 ```
 
-Or, if you only need to use PHP to import a class, you may use the `@use` directive:
+また、クラスをインポートするためにPHPを使用するだけであれば、`@use`ディレクティブを使用できます。
 
 ```blade
 @use('App\Models\Flight')
 ```
 
-A second argument may be provided to the `@use` directive to alias the imported class:
+`@use`ディレクティブには、インポートされたクラスにエイリアスを付けるための2番目の引数を指定できます。
 
 ```php
 @use('App\Models\Flight', 'FlightModel')
 ```
 
 <a name="comments"></a>
-### Comments
+### コメント
 
-Blade also allows you to define comments in your views. However, unlike HTML comments, Blade comments are not included in the HTML returned by your application:
+Bladeでは、ビューにコメントを定義することもできます。ただし、HTMLコメントとは異なり、Bladeコメントはアプリケーションによって返されるHTMLには含まれません。
 
 ```blade
-{{-- This comment will not be present in the rendered HTML --}}
+{{-- このコメントはレンダリングされたHTMLには含まれません --}}
 ```
 
 <a name="components"></a>
-## Components
+## コンポーネント
 
-Components and slots provide similar benefits to sections, layouts, and includes; however, some may find the mental model of components and slots easier to understand. There are two approaches to writing components: class based components and anonymous components.
+コンポーネントとスロットは、セクション、レイアウト、インクルードと同様の利点を提供しますが、コンポーネントとスロットのメンタルモデルは理解しやすいかもしれません。コンポーネントを書く方法には、クラスベースのコンポーネントと匿名コンポーネントの2つがあります。
 
-To create a class based component, you may use the `make:component` Artisan command. To illustrate how to use components, we will create a simple `Alert` component. The `make:component` command will place the component in the `app/View/Components` directory:
+クラスベースのコンポーネントを作成するには、`make:component` Artisanコマンドを使用できます。コンポーネントの使用方法を説明するために、シンプルな`Alert`コンポーネントを作成します。`make:component`コマンドは、コンポーネントを`app/View/Components`ディレクトリに配置します。
 
 ```shell
 php artisan make:component Alert
 ```
 
-The `make:component` command will also create a view template for the component. The view will be placed in the `resources/views/components` directory. When writing components for your own application, components are automatically discovered within the `app/View/Components` directory and `resources/views/components` directory, so no further component registration is typically required.
+`make:component`コマンドは、コンポーネントのビューテンプレートも作成します。ビューは`resources/views/components`ディレクトリに配置されます。自分のアプリケーション用のコンポーネントを書く場合、コンポーネントは`app/View/Components`ディレクトリと`resources/views/components`ディレクトリ内で自動的に検出されるため、通常はコンポーネントの登録を追加する必要はありません。
 
-You may also create components within subdirectories:
+サブディレクトリ内にコンポーネントを作成することもできます。
 
 ```shell
 php artisan make:component Forms/Input
 ```
 
-The command above will create an `Input` component in the `app/View/Components/Forms` directory and the view will be placed in the `resources/views/components/forms` directory.
+上記のコマンドは、`app/View/Components/Forms`ディレクトリに`Input`コンポーネントを作成し、ビューは`resources/views/components/forms`ディレクトリに配置されます。
 
-If you would like to create an anonymous component (a component with only a Blade template and no class), you may use the `--view` flag when invoking the `make:component` command:
+クラスを持たない匿名コンポーネント（Bladeテンプレートのみを持つコンポーネント）を作成したい場合は、`make:component`コマンドを呼び出す際に`--view`フラグを使用できます。
 
 ```shell
 php artisan make:component forms.input --view
 ```
 
-The command above will create a Blade file at `resources/views/components/forms/input.blade.php` which can be rendered as a component via `<x-forms.input />`.
+上記のコマンドは、`resources/views/components/forms/input.blade.php`にBladeファイルを作成します。これは、`<x-forms.input />`を介してコンポーネントとしてレンダリングできます。
 
 <a name="manually-registering-package-components"></a>
-#### Manually Registering Package Components
+#### パッケージコンポーネントの手動登録
 
-When writing components for your own application, components are automatically discovered within the `app/View/Components` directory and `resources/views/components` directory.
+自分のアプリケーション用のコンポーネントを書く場合、コンポーネントは`app/View/Components`ディレクトリと`resources/views/components`ディレクトリ内で自動的に検出されます。
 
-However, if you are building a package that utilizes Blade components, you will need to manually register your component class and its HTML tag alias. You should typically register your components in the `boot` method of your package's service provider:
+ただし、Bladeコンポーネントを利用するパッケージを構築している場合は、コンポーネントクラスとそのHTMLタグエイリアスを手動で登録する必要があります。通常、コンポーネントはパッケージのサービスプロバイダの`boot`メソッドで登録する必要があります。
 
     use Illuminate\Support\Facades\Blade;
 
     /**
-     * Bootstrap your package's services.
+     * パッケージのサービスをブートストラップする
      */
     public function boot(): void
     {
         Blade::component('package-alert', Alert::class);
     }
 
-Once your component has been registered, it may be rendered using its tag alias:
+コンポーネントが登録されると、そのタグエイリアスを使用してレンダリングできます。
 
 ```blade
 <x-package-alert/>
 ```
 
-Alternatively, you may use the `componentNamespace` method to autoload component classes by convention. For example, a `Nightshade` package might have `Calendar` and `ColorPicker` components that reside within the `Package\Views\Components` namespace:
+または、`componentNamespace`メソッドを使用して、規約に従ってコンポーネントクラスを自動ロードすることもできます。例えば、`Nightshade`パッケージには、`Package\Views\Components`名前空間内に`Calendar`と`ColorPicker`コンポーネントがあるかもしれません。
 
     use Illuminate\Support\Facades\Blade;
 
     /**
-     * Bootstrap your package's services.
+     * パッケージのサービスをブートストラップする
      */
     public function boot(): void
     {
         Blade::componentNamespace('Nightshade\\Views\\Components', 'nightshade');
     }
 
-This will allow the usage of package components by their vendor namespace using the `package-name::` syntax:
+これにより、ベンダー名前空間を使用してパッケージコンポーネントを`package-name::`構文で使用できます。
 
 ```blade
 <x-nightshade::calendar />
 <x-nightshade::color-picker />
 ```
 
-Blade will automatically detect the class that's linked to this component by pascal-casing the component name. Subdirectories are also supported using "dot" notation.
+Bladeは、コンポーネント名をパスカルケースにして、このコンポーネントにリンクされたクラスを自動的に検出します。サブディレクトリも「ドット」記法でサポートされています。
 
 <a name="rendering-components"></a>
-### Rendering Components
+### コンポーネントのレンダリング
 
-To display a component, you may use a Blade component tag within one of your Blade templates. Blade component tags start with the string `x-` followed by the kebab case name of the component class:
+コンポーネントを表示するには、Bladeテンプレートの1つでBladeコンポーネントタグを使用できます。Bladeコンポーネントタグは、文字列`x-`で始まり、コンポーネントクラスのケバブケース名が続きます。
 
 ```blade
 <x-alert/>
@@ -732,18 +742,18 @@ To display a component, you may use a Blade component tag within one of your Bla
 <x-user-profile/>
 ```
 
-If the component class is nested deeper within the `app/View/Components` directory, you may use the `.` character to indicate directory nesting. For example, if we assume a component is located at `app/View/Components/Inputs/Button.php`, we may render it like so:
+コンポーネントクラスが`app/View/Components`ディレクトリ内でより深くネストされている場合は、`.`文字を使用してディレクトリのネストを示すことができます。例えば、コンポーネントが`app/View/Components/Inputs/Button.php`にあると仮定すると、次のようにレンダリングできます。
 
 ```blade
 <x-inputs.button/>
 ```
 
-If you would like to conditionally render your component, you may define a `shouldRender` method on your component class. If the `shouldRender` method returns `false` the component will not be rendered:
+コンポーネントを条件付きでレンダリングしたい場合は、コンポーネントクラスに`shouldRender`メソッドを定義できます。`shouldRender`メソッドが`false`を返す場合、コンポーネントはレンダリングされません。
 
     use Illuminate\Support\Str;
 
     /**
-     * Whether the component should be rendered
+     * コンポーネントをレンダリングするかどうか
      */
     public function shouldRender(): bool
     {
@@ -751,15 +761,15 @@ If you would like to conditionally render your component, you may define a `shou
     }
 
 <a name="passing-data-to-components"></a>
-### Passing Data to Components
+### コンポーネントへのデータの受け渡し
 
-You may pass data to Blade components using HTML attributes. Hard-coded, primitive values may be passed to the component using simple HTML attribute strings. PHP expressions and variables should be passed to the component via attributes that use the `:` character as a prefix:
+HTML属性を使用してBladeコンポーネントにデータを渡すことができます。ハードコードされたプリミティブ値は、単純なHTML属性文字列を使用してコンポーネントに渡すことができます。PHP式と変数は、`:`文字をプレフィックスとして使用する属性を介してコンポーネントに渡す必要があります。
 
 ```blade
 <x-alert type="error" :message="$message"/>
 ```
 
-You should define all of the component's data attributes in its class constructor. All public properties on a component will automatically be made available to the component's view. It is not necessary to pass the data to the view from the component's `render` method:
+コンポーネントのすべてのデータ属性をクラスコンストラクタで定義する必要があります。コンポーネントのすべてのパブリックプロパティは、コンポーネントのビューで自動的に利用可能になります。コンポーネントの`render`メソッドからビューにデータを渡す必要はありません。
 
     <?php
 
@@ -771,7 +781,7 @@ You should define all of the component's data attributes in its class constructo
     class Alert extends Component
     {
         /**
-         * Create the component instance.
+         * コンポーネントインスタンスを作成する
          */
         public function __construct(
             public string $type,
@@ -779,7 +789,7 @@ You should define all of the component's data attributes in its class constructo
         ) {}
 
         /**
-         * Get the view / contents that represent the component.
+         * コンポーネントを表すビュー/コンテンツを取得する
          */
         public function render(): View
         {
@@ -787,7 +797,7 @@ You should define all of the component's data attributes in its class constructo
         }
     }
 
-When your component is rendered, you may display the contents of your component's public variables by echoing the variables by name:
+コンポーネントがレンダリングされると、コンポーネントのパブリック変数の内容を変数名でエコーすることで表示できます。
 
 ```blade
 <div class="alert alert-{{ $type }}">
@@ -796,40 +806,40 @@ When your component is rendered, you may display the contents of your component'
 ```
 
 <a name="casing"></a>
-#### Casing
+#### ケーシング
 
-Component constructor arguments should be specified using `camelCase`, while `kebab-case` should be used when referencing the argument names in your HTML attributes. For example, given the following component constructor:
+コンポーネントコンストラクタの引数は`camelCase`で指定する必要がありますが、HTML属性で引数名を参照する場合は`kebab-case`を使用する必要があります。例えば、次のコンポーネントコンストラクタがあるとします。
 
     /**
-     * Create the component instance.
+     * コンポーネントインスタンスを作成する
      */
     public function __construct(
         public string $alertType,
     ) {}
 
-The `$alertType` argument may be provided to the component like so:
+`$alertType`引数は、次のようにコンポーネントに提供できます。
 
 ```blade
 <x-alert alert-type="danger" />
 ```
 
 <a name="short-attribute-syntax"></a>
-#### Short Attribute Syntax
+#### 短縮属性構文
 
-When passing attributes to components, you may also use a "short attribute" syntax. This is often convenient since attribute names frequently match the variable names they correspond to:
+コンポーネントに属性を渡す際に、「短縮属性」構文を使用することもできます。これは、属性名が対応する変数名と一致する場合に便利です。
 
 ```blade
-{{-- Short attribute syntax... --}}
+{{-- 短縮属性構文... --}}
 <x-profile :$userId :$name />
 
-{{-- Is equivalent to... --}}
+{{-- これは以下と同等です... --}}
 <x-profile :user-id="$userId" :name="$name" />
 ```
 
 <a name="escaping-attribute-rendering"></a>
-#### Escaping Attribute Rendering
+#### 属性レンダリングのエスケープ
 
-Since some JavaScript frameworks such as Alpine.js also use colon-prefixed attributes, you may use a double colon (`::`) prefix to inform Blade that the attribute is not a PHP expression. For example, given the following component:
+Alpine.jsなどの一部のJavaScriptフレームワークもコロンプレフィックス付きの属性を使用するため、属性がPHP式でないことをBladeに通知するために、ダブルコロン(`::`)プレフィックスを使用できます。例えば、次のコンポーネントがあるとします。
 
 ```blade
 <x-button ::class="{ danger: isDeleting }">
@@ -837,7 +847,7 @@ Since some JavaScript frameworks such as Alpine.js also use colon-prefixed attri
 </x-button>
 ```
 
-The following HTML will be rendered by Blade:
+Bladeによって次のHTMLがレンダリングされます。
 
 ```blade
 <button :class="{ danger: isDeleting }">
@@ -846,19 +856,25 @@ The following HTML will be rendered by Blade:
 ```
 
 <a name="component-methods"></a>
-#### Component Methods
+#### コンポーネントメソッド
 
-In addition to public variables being available to your component template, any public methods on the component may be invoked. For example, imagine a component that has an `isSelected` method:
+コンポーネントテンプレートで利用可能なパブリック変数に加えて、コンポーネントの任意のパブリックメソッドを実行できます。例えば、`isSelected`メソッドを持つコンポーネントがあるとします。
 
     /**
-     * Determine if the given option is the currently selected option.
+     * 指定されたオプションが現在選択されているオプションであるかどうかを判断する
      */
     public function isSelected(string $option): bool
     {
         return $option === $this->selected;
     }
 
-You may execute this method from your component template by invoking the variable matching the name of the method:
+このメソッドは、メソッド名に一致する変数を呼び出すことで、コンポーネントテンプレートから実行できます。
+
+```blade
+<option {{ $isSelected($value) ? 'selected="selected"' : '' }} value="{{ $value }}">
+    {{ $label }}
+</option>
+```
 
 ```blade
 <option {{ $isSelected($value) ? 'selected' : '' }} value="{{ $value }}">
@@ -867,49 +883,49 @@ You may execute this method from your component template by invoking the variabl
 ```
 
 <a name="using-attributes-slots-within-component-class"></a>
-#### Accessing Attributes and Slots Within Component Classes
+#### コンポーネントクラス内での属性とスロットへのアクセス
 
-Blade components also allow you to access the component name, attributes, and slot inside the class's render method. However, in order to access this data, you should return a closure from your component's `render` method:
+Bladeコンポーネントでは、コンポーネント名、属性、スロットにクラスのレンダリングメソッド内からアクセスすることもできます。ただし、このデータにアクセスするには、コンポーネントの `render` メソッドからクロージャを返す必要があります。
 
     use Closure;
 
     /**
-     * Get the view / contents that represent the component.
+     * コンポーネントを表すビュー/コンテンツを取得する
      */
     public function render(): Closure
     {
         return function () {
-            return '<div {{ $attributes }}>Components content</div>';
+            return '<div {{ $attributes }}>コンポーネントのコンテンツ</div>';
         };
     }
 
-The closure returned by your component's `render` method may also receive a `$data` array as its only argument. This array will contain several elements that provide information about the component:
+コンポーネントの `render` メソッドから返されるクロージャは、唯一の引数として `$data` 配列を受け取ることもできます。この配列には、コンポーネントに関する情報を提供するいくつかの要素が含まれます。
 
     return function (array $data) {
         // $data['componentName'];
         // $data['attributes'];
         // $data['slot'];
 
-        return '<div {{ $attributes }}>Components content</div>';
+        return '<div {{ $attributes }}>コンポーネントのコンテンツ</div>';
     }
 
-> [!WARNING]
-> The elements in the `$data` array should never be directly embedded into the Blade string returned by your `render` method, as doing so could allow remote code execution via malicious attribute content.
+> WARNING:
+> `$data` 配列の要素を `render` メソッドから返される Blade 文字列に直接埋め込むべきではありません。そうすると、悪意のある属性の内容を介してリモートコード実行が可能になる可能性があります。
 
-The `componentName` is equal to the name used in the HTML tag after the `x-` prefix. So `<x-alert />`'s `componentName` will be `alert`. The `attributes` element will contain all of the attributes that were present on the HTML tag. The `slot` element is an `Illuminate\Support\HtmlString` instance with the contents of the component's slot.
+`componentName` は、`x-` プレフィックスの後に使用される HTML タグの名前と同じです。したがって、`<x-alert />` の `componentName` は `alert` になります。`attributes` 要素には、HTML タグに存在したすべての属性が含まれます。`slot` 要素は、コンポーネントのスロットの内容を持つ `Illuminate\Support\HtmlString` インスタンスです。
 
-The closure should return a string. If the returned string corresponds to an existing view, that view will be rendered; otherwise, the returned string will be evaluated as an inline Blade view.
+クロージャは文字列を返す必要があります。返された文字列が既存のビューに対応する場合、そのビューがレンダリングされます。それ以外の場合、返された文字列はインライン Blade ビューとして評価されます。
 
 <a name="additional-dependencies"></a>
-#### Additional Dependencies
+#### 追加の依存関係
 
-If your component requires dependencies from Laravel's [service container](/docs/{{version}}/container), you may list them before any of the component's data attributes and they will automatically be injected by the container:
+コンポーネントが Laravel の [サービスコンテナ](container.md) からの依存関係を必要とする場合、コンポーネントのデータ属性の前にそれらをリストすることができ、コンテナによって自動的に注入されます。
 
 ```php
 use App\Services\AlertCreator;
 
 /**
- * Create the component instance.
+ * コンポーネントインスタンスを作成する
  */
 public function __construct(
     public AlertCreator $creator,
@@ -919,9 +935,9 @@ public function __construct(
 ```
 
 <a name="hiding-attributes-and-methods"></a>
-#### Hiding Attributes / Methods
+#### 属性/メソッドの非表示
 
-If you would like to prevent some public methods or properties from being exposed as variables to your component template, you may add them to an `$except` array property on your component:
+コンポーネントテンプレートに変数として公開されることを防ぐために、いくつかのパブリックメソッドやプロパティを非表示にしたい場合は、コンポーネントに `$except` 配列プロパティを追加することができます。
 
     <?php
 
@@ -932,14 +948,14 @@ If you would like to prevent some public methods or properties from being expose
     class Alert extends Component
     {
         /**
-         * The properties / methods that should not be exposed to the component template.
+         * コンポーネントテンプレートに公開すべきでないプロパティ/メソッド
          *
          * @var array
          */
         protected $except = ['type'];
 
         /**
-         * Create the component instance.
+         * コンポーネントインスタンスを作成する
          */
         public function __construct(
             public string $type,
@@ -947,29 +963,29 @@ If you would like to prevent some public methods or properties from being expose
     }
 
 <a name="component-attributes"></a>
-### Component Attributes
+### コンポーネント属性
 
-We've already examined how to pass data attributes to a component; however, sometimes you may need to specify additional HTML attributes, such as `class`, that are not part of the data required for a component to function. Typically, you want to pass these additional attributes down to the root element of the component template. For example, imagine we want to render an `alert` component like so:
+すでにコンポーネントにデータ属性を渡す方法を見てきましたが、コンポーネントが機能するために必要なデータの一部ではない追加の HTML 属性（例えば `class`）を指定する必要がある場合があります。通常、これらの追加属性をコンポーネントテンプレートのルート要素に渡したいと考えます。例えば、`alert` コンポーネントを次のようにレンダリングしたいとします。
 
 ```blade
 <x-alert type="error" :message="$message" class="mt-4"/>
 ```
 
-All of the attributes that are not part of the component's constructor will automatically be added to the component's "attribute bag". This attribute bag is automatically made available to the component via the `$attributes` variable. All of the attributes may be rendered within the component by echoing this variable:
+コンポーネントのコンストラクタの一部ではないすべての属性は、自動的にコンポーネントの「属性バッグ」に追加されます。この属性バッグは、`$attributes` 変数を介してコンポーネントに自動的に提供されます。この変数をエコーすることで、コンポーネント内のすべての属性をレンダリングできます。
 
 ```blade
 <div {{ $attributes }}>
-    <!-- Component content -->
+    <!-- コンポーネントのコンテンツ -->
 </div>
 ```
 
-> [!WARNING]  
-> Using directives such as `@env` within component tags is not supported at this time. For example, `<x-alert :live="@env('production')"/>` will not be compiled.
+> WARNING:  
+> コンポーネントタグ内で `@env` などのディレクティブを使用することは現在サポートされていません。例えば、`<x-alert :live="@env('production')"/>` はコンパイルされません。
 
 <a name="default-merged-attributes"></a>
-#### Default / Merged Attributes
+#### デフォルト/マージされた属性
 
-Sometimes you may need to specify default values for attributes or merge additional values into some of the component's attributes. To accomplish this, you may use the attribute bag's `merge` method. This method is particularly useful for defining a set of default CSS classes that should always be applied to a component:
+属性にデフォルト値を指定したり、コンポーネントの一部の属性に追加の値をマージしたりする必要がある場合があります。これを行うには、属性バッグの `merge` メソッドを使用できます。このメソッドは、コンポーネントに常に適用される一連のデフォルト CSS クラスを定義するのに特に便利です。
 
 ```blade
 <div {{ $attributes->merge(['class' => 'alert alert-'.$type]) }}>
@@ -977,24 +993,24 @@ Sometimes you may need to specify default values for attributes or merge additio
 </div>
 ```
 
-If we assume this component is utilized like so:
+このコンポーネントが次のように使用されると仮定します。
 
 ```blade
 <x-alert type="error" :message="$message" class="mb-4"/>
 ```
 
-The final, rendered HTML of the component will appear like the following:
+コンポーネントの最終的なレンダリングされた HTML は次のようになります。
 
 ```blade
 <div class="alert alert-error mb-4">
-    <!-- Contents of the $message variable -->
+    <!-- $message 変数の内容 -->
 </div>
 ```
 
 <a name="conditionally-merge-classes"></a>
-#### Conditionally Merge Classes
+#### 条件付きでクラスをマージする
 
-Sometimes you may wish to merge classes if a given condition is `true`. You can accomplish this via the `class` method, which accepts an array of classes where the array key contains the class or classes you wish to add, while the value is a boolean expression. If the array element has a numeric key, it will always be included in the rendered class list:
+特定の条件が `true` の場合にクラスをマージしたい場合があります。これは `class` メソッドを介して行うことができます。このメソッドは、クラスを追加したいクラスまたはクラスの配列を含む配列を受け取り、値はブール式です。配列要素が数値キーを持つ場合、レンダリングされるクラスリストに常に含まれます。
 
 ```blade
 <div {{ $attributes->class(['p-4', 'bg-red' => $hasError]) }}>
@@ -1002,7 +1018,7 @@ Sometimes you may wish to merge classes if a given condition is `true`. You can 
 </div>
 ```
 
-If you need to merge other attributes onto your component, you can chain the `merge` method onto the `class` method:
+コンポーネントに他の属性をマージする必要がある場合は、`class` メソッドに `merge` メソッドをチェーンすることができます。
 
 ```blade
 <button {{ $attributes->class(['p-4'])->merge(['type' => 'button']) }}>
@@ -1010,13 +1026,13 @@ If you need to merge other attributes onto your component, you can chain the `me
 </button>
 ```
 
-> [!NOTE]  
-> If you need to conditionally compile classes on other HTML elements that shouldn't receive merged attributes, you can use the [`@class` directive](#conditional-classes).
+> NOTE:  
+> マージされた属性を受け取らない他の HTML 要素で条件付きでクラスをコンパイルする必要がある場合は、[`@class` ディレクティブ](#conditional-classes)を使用できます。
 
 <a name="non-class-attribute-merging"></a>
-#### Non-Class Attribute Merging
+#### 非クラス属性のマージ
 
-When merging attributes that are not `class` attributes, the values provided to the `merge` method will be considered the "default" values of the attribute. However, unlike the `class` attribute, these attributes will not be merged with injected attribute values. Instead, they will be overwritten. For example, a `button` component's implementation may look like the following:
+`class` 属性以外の属性をマージする場合、`merge` メソッドに提供される値は属性の「デフォルト」値と見なされます。ただし、`class` 属性とは異なり、これらの属性は注入された属性値とマージされません。代わりに、上書きされます。例えば、`button` コンポーネントの実装は次のようになります。
 
 ```blade
 <button {{ $attributes->merge(['type' => 'button']) }}>
@@ -1024,7 +1040,7 @@ When merging attributes that are not `class` attributes, the values provided to 
 </button>
 ```
 
-To render the button component with a custom `type`, it may be specified when consuming the component. If no type is specified, the `button` type will be used:
+ボタンコンポーネントをカスタム `type` でレンダリングするには、コンポーネントを使用するときに指定できます。タイプが指定されていない場合は、`button` タイプが使用されます。
 
 ```blade
 <x-button type="submit">
@@ -1032,7 +1048,7 @@ To render the button component with a custom `type`, it may be specified when co
 </x-button>
 ```
 
-The rendered HTML of the `button` component in this example would be:
+この例のボタンコンポーネントのレンダリングされた HTML は次のようになります。
 
 ```blade
 <button type="submit">
@@ -1040,7 +1056,7 @@ The rendered HTML of the `button` component in this example would be:
 </button>
 ```
 
-If you would like an attribute other than `class` to have its default value and injected values joined together, you may use the `prepends` method. In this example, the `data-controller` attribute will always begin with `profile-controller` and any additional injected `data-controller` values will be placed after this default value:
+`class` 以外の属性にデフォルト値と注入された値を結合する場合は、`prepends` メソッドを使用できます。この例では、`data-controller` 属性は常に `profile-controller` で始まり、追加の注入された `data-controller` 値はこのデフォルト値の後に配置されます。
 
 ```blade
 <div {{ $attributes->merge(['data-controller' => $attributes->prepends('profile-controller')]) }}>
@@ -1049,66 +1065,66 @@ If you would like an attribute other than `class` to have its default value and 
 ```
 
 <a name="filtering-attributes"></a>
-#### Retrieving and Filtering Attributes
+#### 属性の取得とフィルタリング
 
-You may filter attributes using the `filter` method. This method accepts a closure which should return `true` if you wish to retain the attribute in the attribute bag:
+`filter` メソッドを使用して属性をフィルタリングできます。このメソッドは、属性を保持したい場合に `true` を返すクロージャを受け取ります。
 
 ```blade
 {{ $attributes->filter(fn (string $value, string $key) => $key == 'foo') }}
 ```
 
-For convenience, you may use the `whereStartsWith` method to retrieve all attributes whose keys begin with a given string:
+便宜上、`whereStartsWith` メソッドを使用して、キーが指定された文字列で始まるすべての属性を取得できます。
 
 ```blade
 {{ $attributes->whereStartsWith('wire:model') }}
 ```
 
-Conversely, the `whereDoesntStartWith` method may be used to exclude all attributes whose keys begin with a given string:
+逆に、`whereDoesntStartWith` メソッドを使用して、キーが指定された文字列で始まるすべての属性を除外できます。
 
 ```blade
 {{ $attributes->whereDoesntStartWith('wire:model') }}
 ```
 
-Using the `first` method, you may render the first attribute in a given attribute bag:
+`first` メソッドを使用して、指定された属性バッグ内の最初の属性をレンダリングできます。
 
 ```blade
 {{ $attributes->whereStartsWith('wire:model')->first() }}
 ```
 
-If you would like to check if an attribute is present on the component, you may use the `has` method. This method accepts the attribute name as its only argument and returns a boolean indicating whether or not the attribute is present:
+コンポーネントに属性が存在するかどうかを確認する場合は、`has` メソッドを使用できます。このメソッドは、属性名を唯一の引数として受け取り、属性が存在するかどうかを示すブール値を返します。
 
 ```blade
 @if ($attributes->has('class'))
-    <div>Class attribute is present</div>
+    <div>Class 属性が存在します</div>
 @endif
 ```
 
-If an array is passed to the `has` method, the method will determine if all of the given attributes are present on the component:
+`has` メソッドに配列が渡された場合、メソッドは指定されたすべての属性がコンポーネントに存在するかどうかを判断します。
 
 ```blade
 @if ($attributes->has(['name', 'class']))
-    <div>All of the attributes are present</div>
+    <div>すべての属性が存在します</div>
 @endif
 ```
 
-The `hasAny` method may be used to determine if any of the given attributes are present on the component:
+`hasAny` メソッドを使用して、指定された属性のいずれかがコンポーネントに存在するかどうかを判断できます。
 
 ```blade
 @if ($attributes->hasAny(['href', ':href', 'v-bind:href']))
-    <div>One of the attributes is present</div>
+    <div>属性のいずれかが存在します</div>
 @endif
 ```
 
-You may retrieve a specific attribute's value using the `get` method:
+`get` メソッドを使用して、特定の属性の値を取得できます。
 
 ```blade
 {{ $attributes->get('class') }}
 ```
 
 <a name="reserved-keywords"></a>
-### Reserved Keywords
+### 予約語
 
-By default, some keywords are reserved for Blade's internal use in order to render components. The following keywords cannot be defined as public properties or method names within your components:
+デフォルトでは、いくつかのキーワードが Blade の内部使用のために予約されています。これらのキーワードは、コンポーネント内でパブリックプロパティまたはメソッド名として定義することはできません。
 
 <div class="content-list" markdown="1">
 
@@ -1123,9 +1139,9 @@ By default, some keywords are reserved for Blade's internal use in order to rend
 </div>
 
 <a name="slots"></a>
-### Slots
+### スロット
 
-You will often need to pass additional content to your component via "slots". Component slots are rendered by echoing the `$slot` variable. To explore this concept, let's imagine that an `alert` component has the following markup:
+多くの場合、"スロット" を介してコンポーネントに追加のコンテンツを渡す必要があります。コンポーネントスロットは、`$slot` 変数をエコーすることでレンダリングされます。この概念を探るために、`alert` コンポーネントが次のマークアップを持つと想像してみましょう。
 
 ```blade
 <!-- /resources/views/components/alert.blade.php -->
@@ -1135,7 +1151,7 @@ You will often need to pass additional content to your component via "slots". Co
 </div>
 ```
 
-We may pass content to the `slot` by injecting content into the component:
+コンポーネントにコンテンツを渡すために、コンポーネントにコンテンツを注入することができます。
 
 ```blade
 <x-alert>
@@ -1143,7 +1159,7 @@ We may pass content to the `slot` by injecting content into the component:
 </x-alert>
 ```
 
-Sometimes a component may need to render multiple different slots in different locations within the component. Let's modify our alert component to allow for the injection of a "title" slot:
+場合によっては、コンポーネント内の異なる場所に複数の異なるスロットをレンダリングする必要があるかもしれません。アラートコンポーネントを修正して、"title" スロットの注入を許可してみましょう。
 
 ```blade
 <!-- /resources/views/components/alert.blade.php -->
@@ -1155,7 +1171,7 @@ Sometimes a component may need to render multiple different slots in different l
 </div>
 ```
 
-You may define the content of the named slot using the `x-slot` tag. Any content not within an explicit `x-slot` tag will be passed to the component in the `$slot` variable:
+`x-slot` タグを使用して、名前付きスロットのコンテンツを定義できます。明示的な `x-slot` タグ内にないコンテンツは、`$slot` 変数にコンポーネントに渡されます。
 
 ```xml
 <x-alert>
@@ -1167,7 +1183,7 @@ You may define the content of the named slot using the `x-slot` tag. Any content
 </x-alert>
 ```
 
-You may invoke a slot's `isEmpty` method to determine if the slot contains content:
+スロットの `isEmpty` メソッドを呼び出して、スロットにコンテンツが含まれているかどうかを判断できます。
 
 ```blade
 <span class="alert-title">{{ $title }}</span>
@@ -1181,7 +1197,7 @@ You may invoke a slot's `isEmpty` method to determine if the slot contains conte
 </div>
 ```
 
-Additionally, the `hasActualContent` method may be used to determine if the slot contains any "actual" content that is not an HTML comment:
+さらに、`hasActualContent` メソッドを使用して、スロットに HTML コメントではない "実際の" コンテンツが含まれているかどうかを判断できます。
 
 ```blade
 @if ($slot->hasActualContent())
@@ -1190,9 +1206,9 @@ Additionally, the `hasActualContent` method may be used to determine if the slot
 ```
 
 <a name="scoped-slots"></a>
-#### Scoped Slots
+#### スコープ付きスロット
 
-If you have used a JavaScript framework such as Vue, you may be familiar with "scoped slots", which allow you to access data or methods from the component within your slot. You may achieve similar behavior in Laravel by defining public methods or properties on your component and accessing the component within your slot via the `$component` variable. In this example, we will assume that the `x-alert` component has a public `formatAlert` method defined on its component class:
+Vue などの JavaScript フレームワークを使用したことがある場合、スロット内からコンポーネントのデータやメソッドにアクセスできる "スコープ付きスロット" に慣れているかもしれません。Laravel では、コンポーネントにパブリックメソッドやプロパティを定義し、スロット内から `$component` 変数を介してコンポーネントにアクセスすることで、同様の動作を実現できます。この例では、`x-alert` コンポーネントに `formatAlert` メソッドがコンポーネントクラスに定義されていると仮定します。
 
 ```blade
 <x-alert>
@@ -1205,9 +1221,9 @@ If you have used a JavaScript framework such as Vue, you may be familiar with "s
 ```
 
 <a name="slot-attributes"></a>
-#### Slot Attributes
+#### スロット属性
 
-Like Blade components, you may assign additional [attributes](#component-attributes) to slots such as CSS class names:
+Blade コンポーネントと同様に、CSS クラス名などの追加の [属性](#component-attributes) をスロットに割り当てることができます。
 
 ```xml
 <x-card class="shadow-sm">
@@ -1223,7 +1239,7 @@ Like Blade components, you may assign additional [attributes](#component-attribu
 </x-card>
 ```
 
-To interact with slot attributes, you may access the `attributes` property of the slot's variable. For more information on how to interact with attributes, please consult the documentation on [component attributes](#component-attributes):
+スロット属性とやり取りするには、スロットの変数の `attributes` プロパティにアクセスできます。属性とのやり取りの詳細については、[コンポーネント属性](#component-attributes) のドキュメントを参照してください。
 
 ```blade
 @props([
@@ -1245,35 +1261,37 @@ To interact with slot attributes, you may access the `attributes` property of th
 ```
 
 <a name="inline-component-views"></a>
-### Inline Component Views
+### インラインコンポーネントビュー
 
-For very small components, it may feel cumbersome to manage both the component class and the component's view template. For this reason, you may return the component's markup directly from the `render` method:
+非常に小さなコンポーネントの場合、コンポーネントクラスとコンポーネントのビューテンプレートの両方を管理するのは面倒かもしれません。そのため、`render` メソッドから直接コンポーネントのマークアップを返すことができます。
 
-    /**
-     * Get the view / contents that represent the component.
-     */
-    public function render(): string
-    {
-        return <<<'blade'
-            <div class="alert alert-danger">
-                {{ $slot }}
-            </div>
-        blade;
-    }
+```php
+/**
+ * Get the view / contents that represent the component.
+ */
+public function render(): string
+{
+    return <<<'blade'
+        <div class="alert alert-danger">
+            {{ $slot }}
+        </div>
+    blade;
+}
+```
 
 <a name="generating-inline-view-components"></a>
-#### Generating Inline View Components
+#### インラインビューコンポーネントの生成
 
-To create a component that renders an inline view, you may use the `inline` option when executing the `make:component` command:
+インラインビューをレンダリングするコンポーネントを作成するには、`make:component` コマンドを実行する際に `inline` オプションを使用できます。
 
 ```shell
 php artisan make:component Alert --inline
 ```
 
 <a name="dynamic-components"></a>
-### Dynamic Components
+### 動的コンポーネント
 
-Sometimes you may need to render a component but not know which component should be rendered until runtime. In this situation, you may use Laravel's built-in `dynamic-component` component to render the component based on a runtime value or variable:
+コンポーネントをレンダリングする必要があるが、どのコンポーネントをレンダリングするかが実行時までわからない場合があります。このような状況では、Laravel の組み込みの `dynamic-component` コンポーネントを使用して、実行時の値または変数に基づいてコンポーネントをレンダリングできます。
 
 ```blade
 // $componentName = "secondary-button";
@@ -1282,81 +1300,85 @@ Sometimes you may need to render a component but not know which component should
 ```
 
 <a name="manually-registering-components"></a>
-### Manually Registering Components
+### コンポーネントの手動登録
 
-> [!WARNING]  
-> The following documentation on manually registering components is primarily applicable to those who are writing Laravel packages that include view components. If you are not writing a package, this portion of the component documentation may not be relevant to you.
+> WARNING:  
+> 以下のコンポーネントの手動登録に関するドキュメントは、ビューコンポーネントを含む Laravel パッケージを作成している場合に主に適用されます。パッケージを作成していない場合、この部分のコンポーネントドキュメントはあまり関係がないかもしれません。
 
-When writing components for your own application, components are automatically discovered within the `app/View/Components` directory and `resources/views/components` directory.
+独自のアプリケーション用のコンポーネントを作成する場合、コンポーネントは `app/View/Components` ディレクトリと `resources/views/components` ディレクトリ内で自動的に検出されます。
 
-However, if you are building a package that utilizes Blade components or placing components in non-conventional directories, you will need to manually register your component class and its HTML tag alias so that Laravel knows where to find the component. You should typically register your components in the `boot` method of your package's service provider:
+ただし、Blade コンポーネントを利用するパッケージを作成している場合や、コンポーネントを非標準的なディレクトリに配置している場合、コンポーネントクラスとその HTML タグエイリアスを手動で登録して、Laravel がコンポーネントを見つけられるようにする必要があります。通常、コンポーネントはパッケージのサービスプロバイダの `boot` メソッドで登録します。
 
-    use Illuminate\Support\Facades\Blade;
-    use VendorPackage\View\Components\AlertComponent;
+```php
+use Illuminate\Support\Facades\Blade;
+use VendorPackage\View\Components\AlertComponent;
 
-    /**
-     * Bootstrap your package's services.
-     */
-    public function boot(): void
-    {
-        Blade::component('package-alert', AlertComponent::class);
-    }
+/**
+ * Bootstrap your package's services.
+ */
+public function boot(): void
+{
+    Blade::component('package-alert', AlertComponent::class);
+}
+```
 
-Once your component has been registered, it may be rendered using its tag alias:
+コンポーネントが登録されると、そのタグエイリアスを使用してレンダリングできます。
 
 ```blade
 <x-package-alert/>
 ```
 
-#### Autoloading Package Components
+#### パッケージコンポーネントの自動読み込み
 
-Alternatively, you may use the `componentNamespace` method to autoload component classes by convention. For example, a `Nightshade` package might have `Calendar` and `ColorPicker` components that reside within the `Package\Views\Components` namespace:
+代わりに、`componentNamespace` メソッドを使用して、規約に基づいてコンポーネントクラスを自動読み込みすることもできます。たとえば、`Nightshade` パッケージには `Package\Views\Components` 名前空間内に `Calendar` と `ColorPicker` コンポーネントがあるとします。
 
-    use Illuminate\Support\Facades\Blade;
+```php
+use Illuminate\Support\Facades\Blade;
 
-    /**
-     * Bootstrap your package's services.
-     */
-    public function boot(): void
-    {
-        Blade::componentNamespace('Nightshade\\Views\\Components', 'nightshade');
-    }
+/**
+ * Bootstrap your package's services.
+ */
+public function boot(): void
+{
+    Blade::componentNamespace('Nightshade\\Views\\Components', 'nightshade');
+}
+```
 
-This will allow the usage of package components by their vendor namespace using the `package-name::` syntax:
+これにより、`package-name::` 構文を使用してベンダー名前空間でパッケージコンポーネントを使用できます。
 
 ```blade
 <x-nightshade::calendar />
 <x-nightshade::color-picker />
 ```
 
-Blade will automatically detect the class that's linked to this component by pascal-casing the component name. Subdirectories are also supported using "dot" notation.
+Blade は、コンポーネント名をパスカルケースにして、このコンポーネントにリンクされたクラスを自動的に検出します。サブディレクトリも "ドット" 表記でサポートされています。
 
 <a name="anonymous-components"></a>
-## Anonymous Components
+## 匿名コンポーネント
 
-Similar to inline components, anonymous components provide a mechanism for managing a component via a single file. However, anonymous components utilize a single view file and have no associated class. To define an anonymous component, you only need to place a Blade template within your `resources/views/components` directory. For example, assuming you have defined a component at `resources/views/components/alert.blade.php`, you may simply render it like so:
+インラインコンポーネントと同様に、匿名コンポーネントは単一のファイルを介してコンポーネントを管理するメカニズムを提供します。ただし、匿名コンポーネントは単一のビューファイルを使用し、関連するクラスはありません。匿名コンポーネントを定義するには、Blade テンプレートを `resources/views/components` ディレクトリに配置するだけです。たとえば、`resources/views/components/alert.blade.php` にコンポーネントを定義した場合、次のようにレンダリングできます。
 
 ```blade
 <x-alert/>
 ```
 
-You may use the `.` character to indicate if a component is nested deeper inside the `components` directory. For example, assuming the component is defined at `resources/views/components/inputs/button.blade.php`, you may render it like so:
+コンポーネントが `components` ディレクトリ内のより深い階層にネストされている場合、`.` 文字を使用してコンポーネントを示すことができます。たとえば、コンポーネントが `resources/views/components/inputs/button.blade.php` に定義されている場合、次のようにレンダリングできます。
 
 ```blade
 <x-inputs.button/>
 ```
 
 <a name="anonymous-index-components"></a>
-### Anonymous Index Components
+### 匿名インデックスコンポーネント
 
-Sometimes, when a component is made up of many Blade templates, you may wish to group the given component's templates within a single directory. For example, imagine an "accordion" component with the following directory structure:
+コンポーネントが多くの Blade テンプレートで構成されている場合、特定のコンポーネントのテンプレートを単一のディレクトリ内にグループ化したい場合があります。たとえば、"accordion" コンポーネントが次のディレクトリ構造を持っているとします。
 
 ```none
 /resources/views/components/accordion.blade.php
 /resources/views/components/accordion/item.blade.php
 ```
 
-This directory structure allows you to render the accordion component and its item like so:
+このディレクトリ構造により、次のようにアコーディオンコンポーネントとそのアイテムをレンダリングできます。
 
 ```blade
 <x-accordion>
@@ -1366,9 +1388,9 @@ This directory structure allows you to render the accordion component and its it
 </x-accordion>
 ```
 
-However, in order to render the accordion component via `x-accordion`, we were forced to place the "index" accordion component template in the `resources/views/components` directory instead of nesting it within the `accordion` directory with the other accordion related templates.
+ただし、`x-accordion` を介してアコーディオンコンポーネントをレンダリングするために、"index" アコーディオンコンポーネントテンプレートを `resources/views/components` ディレクトリに配置する必要がありました。これは、他のアコーディオン関連のテンプレートと一緒に `accordion` ディレクトリ内にネストされているのではなく、配置する必要がありました。
 
-Thankfully, Blade allows you to place an `index.blade.php` file within a component's template directory. When an `index.blade.php` template exists for the component, it will be rendered as the "root" node of the component. So, we can continue to use the same Blade syntax given in the example above; however, we will adjust our directory structure like so:
+幸いなことに、Blade ではコンポーネントのテンプレートディレクトリ内に `index.blade.php` ファイルを配置できます。コンポーネントの `index.blade.php` テンプレートが存在する場合、それはコンポーネントの "ルート" ノードとしてレンダリングされます。したがって、上記の例で与えられた同じ Blade 構文を使用し続けることができますが、ディレクトリ構造を次のように調整します。
 
 ```none
 /resources/views/components/accordion/index.blade.php
@@ -1376,11 +1398,11 @@ Thankfully, Blade allows you to place an `index.blade.php` file within a compone
 ```
 
 <a name="data-properties-attributes"></a>
-### Data Properties / Attributes
+### データプロパティ / 属性
 
-Since anonymous components do not have any associated class, you may wonder how you may differentiate which data should be passed to the component as variables and which attributes should be placed in the component's [attribute bag](#component-attributes).
+匿名コンポーネントには関連するクラスがないため、どのデータを変数としてコンポーネントに渡すべきか、どの属性をコンポーネントの [属性バッグ](#component-attributes) に配置するべきかを区別する方法が気になるかもしれません。
 
-You may specify which attributes should be considered data variables using the `@props` directive at the top of your component's Blade template. All other attributes on the component will be available via the component's attribute bag. If you wish to give a data variable a default value, you may specify the variable's name as the array key and the default value as the array value:
+コンポーネントの Blade テンプレートの先頭で `@props` ディレクティブを使用して、データ変数として扱うべき属性を指定できます。コンポーネント上の他のすべての属性は、コンポーネントの属性バッグを介して利用できます。データ変数にデフォルト値を指定したい場合は、変数名を配列キーとして、デフォルト値を配列値として指定できます。
 
 ```blade
 <!-- /resources/views/components/alert.blade.php -->
@@ -1392,16 +1414,16 @@ You may specify which attributes should be considered data variables using the `
 </div>
 ```
 
-Given the component definition above, we may render the component like so:
+上記のコンポーネント定義に基づいて、次のようにコンポーネントをレンダリングできます。
 
 ```blade
 <x-alert type="error" :message="$message" class="mb-4"/>
 ```
 
 <a name="accessing-parent-data"></a>
-### Accessing Parent Data
+### 親データへのアクセス
 
-Sometimes you may want to access data from a parent component inside a child component. In these cases, you may use the `@aware` directive. For example, imagine we are building a complex menu component consisting of a parent `<x-menu>` and child `<x-menu.item>`:
+子コンポーネント内から親コンポーネントのデータにアクセスしたい場合があります。このような場合、`@aware` ディレクティブを使用できます。たとえば、親 `<x-menu>` と子 `<x-menu.item>` で構成される複雑なメニューコンポーネントを構築しているとします。
 
 ```blade
 <x-menu color="purple">
@@ -1410,7 +1432,7 @@ Sometimes you may want to access data from a parent component inside a child com
 </x-menu>
 ```
 
-The `<x-menu>` component may have an implementation like the following:
+`<x-menu>` コンポーネントは次のようになります。
 
 ```blade
 <!-- /resources/views/components/menu/index.blade.php -->
@@ -1422,7 +1444,7 @@ The `<x-menu>` component may have an implementation like the following:
 </ul>
 ```
 
-Because the `color` prop was only passed into the parent (`<x-menu>`), it won't be available inside `<x-menu.item>`. However, if we use the `@aware` directive, we can make it available inside `<x-menu.item>` as well:
+`<x-menu.item>` コンポーネント内から親の `color` 属性にアクセスするには、コンポーネントの Blade テンプレート内で `@aware` ディレクティブを使用します。
 
 ```blade
 <!-- /resources/views/components/menu/item.blade.php -->
@@ -1434,15 +1456,46 @@ Because the `color` prop was only passed into the parent (`<x-menu>`), it won't 
 </li>
 ```
 
-> [!WARNING]  
-> The `@aware` directive can not access parent data that is not explicitly passed to the parent component via HTML attributes. Default `@props` values that are not explicitly passed to the parent component can not be accessed by the `@aware` directive.
+```blade
+<x-menu color="purple">
+    <x-menu.item>...</x-menu.item>
+    <x-menu.item>...</x-menu.item>
+</x-menu>
+```
+
+`<x-menu>` コンポーネントは、以下のような実装を持つかもしれません：
+
+```blade
+<!-- /resources/views/components/menu/index.blade.php -->
+
+@props(['color' => 'gray'])
+
+<ul {{ $attributes->merge(['class' => 'bg-'.$color.'-200']) }}>
+    {{ $slot }}
+</ul>
+```
+
+`color` プロパティは親 (`<x-menu>`) にのみ渡されるため、`<x-menu.item>` 内では利用できません。しかし、`@aware` ディレクティブを使用することで、`<x-menu.item>` 内でも利用できるようになります：
+
+```blade
+<!-- /resources/views/components/menu/item.blade.php -->
+
+@aware(['color' => 'gray'])
+
+<li {{ $attributes->merge(['class' => 'text-'.$color.'-800']) }}>
+    {{ $slot }}
+</li>
+```
+
+> WARNING:  
+> `@aware` ディレクティブは、HTML属性を介して親コンポーネントに明示的に渡されていない親データにはアクセスできません。親コンポーネントに明示的に渡されていないデフォルトの `@props` 値には、`@aware` ディレクティブからアクセスできません。
 
 <a name="anonymous-component-paths"></a>
-### Anonymous Component Paths
+### 匿名コンポーネントのパス
 
-As previously discussed, anonymous components are typically defined by placing a Blade template within your `resources/views/components` directory. However, you may occasionally want to register other anonymous component paths with Laravel in addition to the default path.
+前述のように、匿名コンポーネントは通常、`resources/views/components` ディレクトリ内にBladeテンプレートを配置することで定義されます。しかし、デフォルトのパスに加えて、Laravelに他の匿名コンポーネントのパスを登録したい場合があります。
 
-The `anonymousComponentPath` method accepts the "path" to the anonymous component location as its first argument and an optional "namespace" that components should be placed under as its second argument. Typically, this method should be called from the `boot` method of one of your application's [service providers](/docs/{{version}}/providers):
+`anonymousComponentPath` メソッドは、匿名コンポーネントの場所の「パス」を最初の引数として受け取り、コンポーネントが配置されるオプションの「名前空間」を2番目の引数として受け取ります。通常、このメソッドは、アプリケーションの[サービスプロバイダ](providers.md)の `boot` メソッドから呼び出す必要があります：
 
     /**
      * Bootstrap any application services.
@@ -1452,34 +1505,34 @@ The `anonymousComponentPath` method accepts the "path" to the anonymous componen
         Blade::anonymousComponentPath(__DIR__.'/../components');
     }
 
-When component paths are registered without a specified prefix as in the example above, they may be rendered in your Blade components without a corresponding prefix as well. For example, if a `panel.blade.php` component exists in the path registered above, it may be rendered like so:
+上記の例のように、コンポーネントパスが指定されたプレフィックスなしで登録されている場合、Bladeコンポーネントで対応するプレフィックスなしでレンダリングできます。例えば、上記のパスに `panel.blade.php` コンポーネントが存在する場合、以下のようにレンダリングできます：
 
 ```blade
 <x-panel />
 ```
 
-Prefix "namespaces" may be provided as the second argument to the `anonymousComponentPath` method:
+`anonymousComponentPath` メソッドの2番目の引数としてプレフィックス「名前空間」を指定できます：
 
     Blade::anonymousComponentPath(__DIR__.'/../components', 'dashboard');
 
-When a prefix is provided, components within that "namespace" may be rendered by prefixing to the component's namespace to the component name when the component is rendered:
+プレフィックスが提供されると、その「名前空間」内のコンポーネントは、コンポーネントをレンダリングする際にコンポーネント名に名前空間をプレフィックスとして付けることでレンダリングできます：
 
 ```blade
 <x-dashboard::panel />
 ```
 
 <a name="building-layouts"></a>
-## Building Layouts
+## レイアウトの構築
 
 <a name="layouts-using-components"></a>
-### Layouts Using Components
+### コンポーネントを使用したレイアウト
 
-Most web applications maintain the same general layout across various pages. It would be incredibly cumbersome and hard to maintain our application if we had to repeat the entire layout HTML in every view we create. Thankfully, it's convenient to define this layout as a single [Blade component](#components) and then use it throughout our application.
+ほとんどのWebアプリケーションは、さまざまなページで同じ一般的なレイアウトを維持します。すべてのビューでレイアウト全体のHTMLを繰り返す必要がある場合、アプリケーションのメンテナンスは非常に面倒で困難になります。幸いなことに、このレイアウトを単一の [Bladeコンポーネント](#components) として定義し、アプリケーション全体で使用することが便利です。
 
 <a name="defining-the-layout-component"></a>
-#### Defining the Layout Component
+#### レイアウトコンポーネントの定義
 
-For example, imagine we are building a "todo" list application. We might define a `layout` component that looks like the following:
+例えば、「todo」リストアプリケーションを構築していると想像してください。以下のような `layout` コンポーネントを定義するかもしれません：
 
 ```blade
 <!-- resources/views/components/layout.blade.php -->
@@ -1497,9 +1550,9 @@ For example, imagine we are building a "todo" list application. We might define 
 ```
 
 <a name="applying-the-layout-component"></a>
-#### Applying the Layout Component
+#### レイアウトコンポーネントの適用
 
-Once the `layout` component has been defined, we may create a Blade view that utilizes the component. In this example, we will define a simple view that displays our task list:
+`layout` コンポーネントが定義されたら、そのコンポーネントを利用するBladeビューを作成できます。この例では、タスクリストを表示するシンプルなビューを定義します：
 
 ```blade
 <!-- resources/views/tasks.blade.php -->
@@ -1511,7 +1564,7 @@ Once the `layout` component has been defined, we may create a Blade view that ut
 </x-layout>
 ```
 
-Remember, content that is injected into a component will be supplied to the default `$slot` variable within our `layout` component. As you may have noticed, our `layout` also respects a `$title` slot if one is provided; otherwise, a default title is shown. We may inject a custom title from our task list view using the standard slot syntax discussed in the [component documentation](#components):
+コンポーネントに注入されたコンテンツは、`layout` コンポーネント内のデフォルトの `$slot` 変数に提供されます。お気づきのように、`layout` は `$title` スロットが提供された場合にも対応します。そうでない場合は、デフォルトのタイトルが表示されます。タスクリストビューからカスタムタイトルを注入するには、[コンポーネントドキュメント](#components)で説明されている標準のスロット構文を使用します：
 
 ```blade
 <!-- resources/views/tasks.blade.php -->
@@ -1527,7 +1580,7 @@ Remember, content that is injected into a component will be supplied to the defa
 </x-layout>
 ```
 
-Now that we have defined our layout and task list views, we just need to return the `task` view from a route:
+レイアウトとタスクリストビューを定義したら、ルートから `task` ビューを返すだけです：
 
     use App\Models\Task;
 
@@ -1536,14 +1589,14 @@ Now that we have defined our layout and task list views, we just need to return 
     });
 
 <a name="layouts-using-template-inheritance"></a>
-### Layouts Using Template Inheritance
+### テンプレート継承を使用したレイアウト
 
 <a name="defining-a-layout"></a>
-#### Defining a Layout
+#### レイアウトの定義
 
-Layouts may also be created via "template inheritance". This was the primary way of building applications prior to the introduction of [components](#components).
+レイアウトは、「テンプレート継承」を介しても作成できます。これは、[コンポーネント](#components)が導入される前にアプリケーションを構築するための主要な方法でした。
 
-To get started, let's take a look at a simple example. First, we will examine a page layout. Since most web applications maintain the same general layout across various pages, it's convenient to define this layout as a single Blade view:
+まず、簡単な例を見てみましょう。最初に、ページレイアウトを見てみましょう。ほとんどのWebアプリケーションは、さまざまなページで同じ一般的なレイアウトを維持するため、このレイアウトを単一のBladeビューとして定義すると便利です：
 
 ```blade
 <!-- resources/views/layouts/app.blade.php -->
@@ -1564,14 +1617,14 @@ To get started, let's take a look at a simple example. First, we will examine a 
 </html>
 ```
 
-As you can see, this file contains typical HTML mark-up. However, take note of the `@section` and `@yield` directives. The `@section` directive, as the name implies, defines a section of content, while the `@yield` directive is used to display the contents of a given section.
+このファイルには、典型的なHTMLマークアップが含まれています。ただし、`@section` および `@yield` ディレクティブに注意してください。`@section` ディレクティブは、名前が示すように、コンテンツのセクションを定義し、`@yield` ディレクティブは、指定されたセクションの内容を表示するために使用されます。
 
-Now that we have defined a layout for our application, let's define a child page that inherits the layout.
+これで、アプリケーションのレイアウトを定義したので、子ビューを定義しましょう。
 
 <a name="extending-a-layout"></a>
-#### Extending a Layout
+#### レイアウトの拡張
 
-When defining a child view, use the `@extends` Blade directive to specify which layout the child view should "inherit". Views which extend a Blade layout may inject content into the layout's sections using `@section` directives. Remember, as seen in the example above, the contents of these sections will be displayed in the layout using `@yield`:
+子ビューを定義する際に、`@extends` Bladeディレクティブを使用して、子ビューがどのレイアウトを「継承」するかを指定します。レイアウトを継承するビューは、`@section` ディレクティブを使用してレイアウトのセクションにコンテンツを注入できます。前述の例で見たように、これらのセクションの内容は `@yield` を使用してレイアウトに表示されます：
 
 ```blade
 <!-- resources/views/child.blade.php -->
@@ -1591,24 +1644,24 @@ When defining a child view, use the `@extends` Blade directive to specify which 
 @endsection
 ```
 
-In this example, the `sidebar` section is utilizing the `@@parent` directive to append (rather than overwriting) content to the layout's sidebar. The `@@parent` directive will be replaced by the content of the layout when the view is rendered.
+この例では、`sidebar` セクションは `@@parent` ディレクティブを使用して、レイアウトのサイドバーにコンテンツを追加（上書きではなく）しています。`@@parent` ディレクティブは、ビューがレンダリングされるときにレイアウトのコンテンツに置き換えられます。
 
-> [!NOTE]  
-> Contrary to the previous example, this `sidebar` section ends with `@endsection` instead of `@show`. The `@endsection` directive will only define a section while `@show` will define and **immediately yield** the section.
+> NOTE:  
+> 前述の例とは異なり、この `sidebar` セクションは `@endsection` で終わります。`@show` ではなく。`@endsection` ディレクティブはセクションを定義するだけですが、`@show` はセクションを定義し、**すぐにセクションを表示**します。
 
-The `@yield` directive also accepts a default value as its second parameter. This value will be rendered if the section being yielded is undefined:
+`@yield` ディレクティブは、2番目のパラメータとしてデフォルト値も受け取ります。この値は、生成されるセクションが未定義の場合にレンダリングされます：
 
 ```blade
 @yield('content', 'Default content')
 ```
 
 <a name="forms"></a>
-## Forms
+## フォーム
 
 <a name="csrf-field"></a>
-### CSRF Field
+### CSRFフィールド
 
-Anytime you define an HTML form in your application, you should include a hidden CSRF token field in the form so that [the CSRF protection](/docs/{{version}}/csrf) middleware can validate the request. You may use the `@csrf` Blade directive to generate the token field:
+アプリケーションでHTMLフォームを定義する際には、[CSRF保護](csrf.md)ミドルウェアがリクエストを検証できるように、フォームに隠しCSRFトークンフィールドを含める必要があります。`@csrf` Bladeディレクティブを使用して、トークンフィールドを生成できます：
 
 ```blade
 <form method="POST" action="/profile">
@@ -1619,9 +1672,9 @@ Anytime you define an HTML form in your application, you should include a hidden
 ```
 
 <a name="method-field"></a>
-### Method Field
+### メソッドフィールド
 
-Since HTML forms can't make `PUT`, `PATCH`, or `DELETE` requests, you will need to add a hidden `_method` field to spoof these HTTP verbs. The `@method` Blade directive can create this field for you:
+HTMLフォームは `PUT`、`PATCH`、または `DELETE` リクエストを作成できないため、これらのHTTP動詞を偽装するために隠し `_method` フィールドを追加する必要があります。`@method` Bladeディレクティブは、このフィールドを作成できます：
 
 ```blade
 <form action="/foo/bar" method="POST">
@@ -1632,9 +1685,9 @@ Since HTML forms can't make `PUT`, `PATCH`, or `DELETE` requests, you will need 
 ```
 
 <a name="validation-errors"></a>
-### Validation Errors
+### バリデーションエラー
 
-The `@error` directive may be used to quickly check if [validation error messages](/docs/{{version}}/validation#quick-displaying-the-validation-errors) exist for a given attribute. Within an `@error` directive, you may echo the `$message` variable to display the error message:
+`@error` ディレクティブは、指定された属性に対して [バリデーションエラーメッセージ](validation.md#quick-displaying-the-validation-errors) が存在するかどうかをすばやく確認するために使用できます。`@error` ディレクティブ内では、エラーメッセージを表示するために `$message` 変数を出力できます：
 
 ```blade
 <!-- /resources/views/post/create.blade.php -->
@@ -1650,7 +1703,7 @@ The `@error` directive may be used to quickly check if [validation error message
 @enderror
 ```
 
-Since the `@error` directive compiles to an "if" statement, you may use the `@else` directive to render content when there is not an error for an attribute:
+`@error` ディレクティブは "if" 文にコンパイルされるため、属性にエラーがない場合にコンテンツをレンダリングするために `@else` ディレクティブを使用できます：
 
 ```blade
 <!-- /resources/views/auth.blade.php -->
@@ -1662,7 +1715,7 @@ Since the `@error` directive compiles to an "if" statement, you may use the `@el
     class="@error('email') is-invalid @else is-valid @enderror">
 ```
 
-You may pass [the name of a specific error bag](/docs/{{version}}/validation#named-error-bags) as the second parameter to the `@error` directive to retrieve validation error messages on pages containing multiple forms:
+[特定のエラーバッグの名前](validation.md#named-error-bags)を `@error` ディレクティブの2番目のパラメータとして渡すことで、複数のフォームを含むページでバリデーションエラーメッセージを取得できます：
 
 ```blade
 <!-- /resources/views/auth.blade.php -->
@@ -1679,9 +1732,9 @@ You may pass [the name of a specific error bag](/docs/{{version}}/validation#nam
 ```
 
 <a name="stacks"></a>
-## Stacks
+## スタック
 
-Blade allows you to push to named stacks which can be rendered somewhere else in another view or layout. This can be particularly useful for specifying any JavaScript libraries required by your child views:
+Bladeでは、他のビューやレイアウトの別の場所でレンダリングできる名前付きスタックにプッシュできます。これは、子ビューに必要なJavaScriptライブラリを指定するのに特に便利です：
 
 ```blade
 @push('scripts')
@@ -1689,7 +1742,7 @@ Blade allows you to push to named stacks which can be rendered somewhere else in
 @endpush
 ```
 
-If you would like to `@push` content if a given boolean expression evaluates to `true`, you may use the `@pushIf` directive:
+指定されたブール式が `true` と評価された場合にコンテンツを `@push` したい場合、`@pushIf` ディレクティブを使用できます：
 
 ```blade
 @pushIf($shouldPush, 'scripts')
@@ -1697,47 +1750,47 @@ If you would like to `@push` content if a given boolean expression evaluates to 
 @endPushIf
 ```
 
-You may push to a stack as many times as needed. To render the complete stack contents, pass the name of the stack to the `@stack` directive:
+必要なだけ何度でもスタックにプッシュできます。スタックの完全な内容をレンダリングするには、スタックの名前を `@stack` ディレクティブに渡します：
 
 ```blade
 <head>
-    <!-- Head Contents -->
+    <!-- ヘッドの内容 -->
 
     @stack('scripts')
 </head>
 ```
 
-If you would like to prepend content onto the beginning of a stack, you should use the `@prepend` directive:
+スタックの先頭にコンテンツを追加したい場合は、`@prepend` ディレクティブを使用する必要があります：
 
 ```blade
 @push('scripts')
-    This will be second...
+    これは2番目になります...
 @endpush
 
-// Later...
+// 後で...
 
 @prepend('scripts')
-    This will be first...
+    これは最初になります...
 @endprepend
 ```
 
 <a name="service-injection"></a>
-## Service Injection
+## サービスの注入
 
-The `@inject` directive may be used to retrieve a service from the Laravel [service container](/docs/{{version}}/container). The first argument passed to `@inject` is the name of the variable the service will be placed into, while the second argument is the class or interface name of the service you wish to resolve:
+`@inject` ディレクティブを使用して、Laravelの[サービスコンテナ](container.md)からサービスを取得できます。`@inject` に渡される最初の引数は、サービスが配置される変数の名前で、2番目の引数は解決したいサービスのクラスまたはインターフェース名です：
 
 ```blade
 @inject('metrics', 'App\Services\MetricsService')
 
 <div>
-    Monthly Revenue: {{ $metrics->monthlyRevenue() }}.
+    月間収益: {{ $metrics->monthlyRevenue() }}.
 </div>
 ```
 
 <a name="rendering-inline-blade-templates"></a>
-## Rendering Inline Blade Templates
+## インライン Blade テンプレートのレンダリング
 
-Sometimes you may need to transform a raw Blade template string into valid HTML. You may accomplish this using the `render` method provided by the `Blade` facade. The `render` method accepts the Blade template string and an optional array of data to provide to the template:
+時々、生の Blade テンプレート文字列を有効な HTML に変換する必要があるかもしれません。これは、`Blade` ファサードによって提供される `render` メソッドを使用して行うことができます。`render` メソッドは、Blade テンプレート文字列と、テンプレートに提供するオプションのデータ配列を受け取ります：
 
 ```php
 use Illuminate\Support\Facades\Blade;
@@ -1745,7 +1798,7 @@ use Illuminate\Support\Facades\Blade;
 return Blade::render('Hello, {{ $name }}', ['name' => 'Julian Bashir']);
 ```
 
-Laravel renders inline Blade templates by writing them to the `storage/framework/views` directory. If you would like Laravel to remove these temporary files after rendering the Blade template, you may provide the `deleteCachedView` argument to the method:
+Laravel はインライン Blade テンプレートを `storage/framework/views` ディレクトリに書き込んでレンダリングします。Blade テンプレートをレンダリングした後にこれらの一時ファイルを削除したい場合は、メソッドに `deleteCachedView` 引数を指定できます：
 
 ```php
 return Blade::render(
@@ -1756,9 +1809,9 @@ return Blade::render(
 ```
 
 <a name="rendering-blade-fragments"></a>
-## Rendering Blade Fragments
+## Blade フラグメントのレンダリング
 
-When using frontend frameworks such as [Turbo](https://turbo.hotwired.dev/) and [htmx](https://htmx.org/), you may occasionally need to only return a portion of a Blade template within your HTTP response. Blade "fragments" allow you to do just that. To get started, place a portion of your Blade template within `@fragment` and `@endfragment` directives:
+[Turbo](https://turbo.hotwired.dev/) や [htmx](https://htmx.org/) などのフロントエンドフレームワークを使用する場合、HTTP レスポンス内で Blade テンプレートの一部のみを返す必要があることがあります。Blade "フラグメント" を使用すると、それが可能になります。まず、Blade テンプレートの一部を `@fragment` と `@endfragment` ディレクティブ内に配置します：
 
 ```blade
 @fragment('user-list')
@@ -1770,20 +1823,20 @@ When using frontend frameworks such as [Turbo](https://turbo.hotwired.dev/) and 
 @endfragment
 ```
 
-Then, when rendering the view that utilizes this template, you may invoke the `fragment` method to specify that only the specified fragment should be included in the outgoing HTTP response:
+そして、このテンプレートを使用するビューをレンダリングする際に、`fragment` メソッドを呼び出して、指定されたフラグメントのみが送信される HTTP レスポンスに含まれるように指定できます：
 
 ```php
 return view('dashboard', ['users' => $users])->fragment('user-list');
 ```
 
-The `fragmentIf` method allows you to conditionally return a fragment of a view based on a given condition. Otherwise, the entire view will be returned:
+`fragmentIf` メソッドを使用すると、指定された条件に基づいてビューのフラグメントを条件付きで返すことができます。それ以外の場合は、ビュー全体が返されます：
 
 ```php
 return view('dashboard', ['users' => $users])
     ->fragmentIf($request->hasHeader('HX-Request'), 'user-list');
 ```
 
-The `fragments` and `fragmentsIf` methods allow you to return multiple view fragments in the response. The fragments will be concatenated together:
+`fragments` および `fragmentsIf` メソッドを使用すると、複数のビューフラグメントをレスポンスで返すことができます。フラグメントは連結されます：
 
 ```php
 view('dashboard', ['users' => $users])
@@ -1797,11 +1850,11 @@ view('dashboard', ['users' => $users])
 ```
 
 <a name="extending-blade"></a>
-## Extending Blade
+## Blade の拡張
 
-Blade allows you to define your own custom directives using the `directive` method. When the Blade compiler encounters the custom directive, it will call the provided callback with the expression that the directive contains.
+Blade では、`directive` メソッドを使用して独自のカスタムディレクティブを定義できます。Blade コンパイラがカスタムディレクティブを見つけると、ディレクティブに含まれる式を使用して提供されたコールバックを呼び出します。
 
-The following example creates a `@datetime($var)` directive which formats a given `$var`, which should be an instance of `DateTime`:
+次の例では、`DateTime` のインスタンスである `$var` をフォーマットする `@datetime($var)` ディレクティブを作成します：
 
     <?php
 
@@ -1813,7 +1866,7 @@ The following example creates a `@datetime($var)` directive which formats a give
     class AppServiceProvider extends ServiceProvider
     {
         /**
-         * Register any application services.
+         * 任意のアプリケーションサービスの登録。
          */
         public function register(): void
         {
@@ -1821,7 +1874,7 @@ The following example creates a `@datetime($var)` directive which formats a give
         }
 
         /**
-         * Bootstrap any application services.
+         * 任意のアプリケーションサービスのブートストラップ。
          */
         public function boot(): void
         {
@@ -1831,25 +1884,25 @@ The following example creates a `@datetime($var)` directive which formats a give
         }
     }
 
-As you can see, we will chain the `format` method onto whatever expression is passed into the directive. So, in this example, the final PHP generated by this directive will be:
+見ての通り、ディレクティブに渡された式に `format` メソッドを連鎖させます。したがって、この例では、このディレクティブによって生成される最終的な PHP は次のようになります：
 
     <?php echo ($var)->format('m/d/Y H:i'); ?>
 
-> [!WARNING]  
-> After updating the logic of a Blade directive, you will need to delete all of the cached Blade views. The cached Blade views may be removed using the `view:clear` Artisan command.
+> WARNING:  
+> Blade ディレクティブのロジックを更新した後、キャッシュされたすべての Blade ビューを削除する必要があります。キャッシュされた Blade ビューは、`view:clear` Artisan コマンドを使用して削除できます。
 
 <a name="custom-echo-handlers"></a>
-### Custom Echo Handlers
+### カスタムエコーハンドラ
 
-If you attempt to "echo" an object using Blade, the object's `__toString` method will be invoked. The [`__toString`](https://www.php.net/manual/en/language.oop5.magic.php#object.tostring) method is one of PHP's built-in "magic methods". However, sometimes you may not have control over the `__toString` method of a given class, such as when the class that you are interacting with belongs to a third-party library.
+Blade を使用してオブジェクトを "echo" しようとすると、オブジェクトの `__toString` メソッドが呼び出されます。[`__toString`](https://www.php.net/manual/en/language.oop5.magic.php#object.tostring) メソッドは、PHP の組み込みの "マジックメソッド" の1つです。ただし、場合によっては、特定のクラスの `__toString` メソッドを制御できないことがあります。たとえば、対話しているクラスがサードパーティのライブラリに属している場合などです。
 
-In these cases, Blade allows you to register a custom echo handler for that particular type of object. To accomplish this, you should invoke Blade's `stringable` method. The `stringable` method accepts a closure. This closure should type-hint the type of object that it is responsible for rendering. Typically, the `stringable` method should be invoked within the `boot` method of your application's `AppServiceProvider` class:
+このような場合、Blade ではその特定のタイプのオブジェクトのカスタムエコーハンドラを登録できます。これを行うには、Blade の `stringable` メソッドを呼び出します。`stringable` メソッドはクロージャを受け取ります。このクロージャは、レンダリングを担当するオブジェクトのタイプをタイプヒントする必要があります。通常、`stringable` メソッドは、アプリケーションの `AppServiceProvider` クラスの `boot` メソッド内で呼び出されるべきです：
 
     use Illuminate\Support\Facades\Blade;
     use Money\Money;
 
     /**
-     * Bootstrap any application services.
+     * 任意のアプリケーションサービスのブートストラップ。
      */
     public function boot(): void
     {
@@ -1858,21 +1911,21 @@ In these cases, Blade allows you to register a custom echo handler for that part
         });
     }
 
-Once your custom echo handler has been defined, you may simply echo the object in your Blade template:
+カスタムエコーハンドラが定義されると、Blade テンプレート内でオブジェクトを単純に echo できます：
 
 ```blade
-Cost: {{ $money }}
+コスト: {{ $money }}
 ```
 
 <a name="custom-if-statements"></a>
-### Custom If Statements
+### カスタム If ステートメント
 
-Programming a custom directive is sometimes more complex than necessary when defining simple, custom conditional statements. For that reason, Blade provides a `Blade::if` method which allows you to quickly define custom conditional directives using closures. For example, let's define a custom conditional that checks the configured default "disk" for the application. We may do this in the `boot` method of our `AppServiceProvider`:
+カスタムディレクティブをプログラミングすることは、単純なカスタム条件ステートメントを定義する場合には必要以上に複雑なことがあります。そのため、Blade は `Blade::if` メソッドを提供しており、クロージャを使用してカスタム条件ディレクティブをすばやく定義できます。たとえば、アプリケーションに設定されたデフォルトの "ディスク" をチェックするカスタム条件を定義しましょう。これは、`AppServiceProvider` の `boot` メソッドで行うことができます：
 
     use Illuminate\Support\Facades\Blade;
 
     /**
-     * Bootstrap any application services.
+     * 任意のアプリケーションサービスのブートストラップ。
      */
     public function boot(): void
     {
@@ -1881,18 +1934,18 @@ Programming a custom directive is sometimes more complex than necessary when def
         });
     }
 
-Once the custom conditional has been defined, you can use it within your templates:
+カスタム条件が定義されると、テンプレート内でそれを使用できます：
 
 ```blade
 @disk('local')
-    <!-- The application is using the local disk... -->
+    <!-- アプリケーションはローカルディスクを使用しています... -->
 @elsedisk('s3')
-    <!-- The application is using the s3 disk... -->
+    <!-- アプリケーションは s3 ディスクを使用しています... -->
 @else
-    <!-- The application is using some other disk... -->
+    <!-- アプリケーションは他のディスクを使用しています... -->
 @enddisk
 
 @unlessdisk('local')
-    <!-- The application is not using the local disk... -->
+    <!-- アプリケーションはローカルディスクを使用していません... -->
 @enddisk
 ```

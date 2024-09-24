@@ -1,45 +1,45 @@
 # Laravel Socialite
 
-- [Introduction](#introduction)
-- [Installation](#installation)
-- [Upgrading Socialite](#upgrading-socialite)
-- [Configuration](#configuration)
-- [Authentication](#authentication)
-    - [Routing](#routing)
-    - [Authentication and Storage](#authentication-and-storage)
-    - [Access Scopes](#access-scopes)
-    - [Slack Bot Scopes](#slack-bot-scopes)
-    - [Optional Parameters](#optional-parameters)
-- [Retrieving User Details](#retrieving-user-details)
+- [はじめに](#introduction)
+- [インストール](#installation)
+- [Socialiteのアップグレード](#upgrading-socialite)
+- [設定](#configuration)
+- [認証](#authentication)
+    - [ルーティング](#routing)
+    - [認証と保存](#authentication-and-storage)
+    - [アクセススコープ](#access-scopes)
+    - [Slack Botスコープ](#slack-bot-scopes)
+    - [オプションパラメータ](#optional-parameters)
+- [ユーザー詳細の取得](#retrieving-user-details)
 
 <a name="introduction"></a>
-## Introduction
+## はじめに
 
-In addition to typical, form based authentication, Laravel also provides a simple, convenient way to authenticate with OAuth providers using [Laravel Socialite](https://github.com/laravel/socialite). Socialite currently supports authentication via Facebook, X, LinkedIn, Google, GitHub, GitLab, Bitbucket, and Slack.
+Laravelは、従来のフォームベースの認証に加えて、[Laravel Socialite](https://github.com/laravel/socialite)を使用してOAuthプロバイダーで認証するためのシンプルで便利な方法も提供しています。Socialiteは現在、Facebook、X、LinkedIn、Google、GitHub、GitLab、Bitbucket、Slackを介した認証をサポートしています。
 
-> [!NOTE]  
-> Adapters for other platforms are available via the community driven [Socialite Providers](https://socialiteproviders.com/) website.
+> NOTE:  
+> 他のプラットフォーム用のアダプターは、コミュニティ主導の[Socialite Providers](https://socialiteproviders.com/)ウェブサイトから入手できます。
 
 <a name="installation"></a>
-## Installation
+## インストール
 
-To get started with Socialite, use the Composer package manager to add the package to your project's dependencies:
+Socialiteを使い始めるには、Composerパッケージマネージャーを使用して、プロジェクトの依存関係にパッケージを追加します。
 
 ```shell
 composer require laravel/socialite
 ```
 
 <a name="upgrading-socialite"></a>
-## Upgrading Socialite
+## Socialiteのアップグレード
 
-When upgrading to a new major version of Socialite, it's important that you carefully review [the upgrade guide](https://github.com/laravel/socialite/blob/master/UPGRADE.md).
+Socialiteを新しいメジャーバージョンにアップグレードする際は、[アップグレードガイド](https://github.com/laravel/socialite/blob/master/UPGRADE.md)を注意深く確認することが重要です。
 
 <a name="configuration"></a>
-## Configuration
+## 設定
 
-Before using Socialite, you will need to add credentials for the OAuth providers your application utilizes. Typically, these credentials may be retrieved by creating a "developer application" within the dashboard of the service you will be authenticating with.
+Socialiteを使用する前に、アプリケーションが利用するOAuthプロバイダーの認証情報を追加する必要があります。通常、これらの認証情報は、認証するサービスのダッシュボード内で「開発者アプリケーション」を作成することで取得できます。
 
-These credentials should be placed in your application's `config/services.php` configuration file, and should use the key `facebook`, `x`, `linkedin-openid`, `google`, `github`, `gitlab`, `bitbucket`, `slack`, or `slack-openid`, depending on the providers your application requires:
+これらの認証情報は、アプリケーションの`config/services.php`設定ファイルに配置し、キー`facebook`、`x`、`linkedin-openid`、`google`、`github`、`gitlab`、`bitbucket`、`slack`、または`slack-openid`を使用します。これは、アプリケーションが必要とするプロバイダーによります。
 
     'github' => [
         'client_id' => env('GITHUB_CLIENT_ID'),
@@ -47,16 +47,16 @@ These credentials should be placed in your application's `config/services.php` c
         'redirect' => 'http://example.com/callback-url',
     ],
 
-> [!NOTE]  
-> If the `redirect` option contains a relative path, it will automatically be resolved to a fully qualified URL.
+> NOTE:  
+> `redirect`オプションに相対パスが含まれている場合、自動的に完全修飾URLに解決されます。
 
 <a name="authentication"></a>
-## Authentication
+## 認証
 
 <a name="routing"></a>
-### Routing
+### ルーティング
 
-To authenticate users using an OAuth provider, you will need two routes: one for redirecting the user to the OAuth provider, and another for receiving the callback from the provider after authentication. The example routes below demonstrate the implementation of both routes:
+OAuthプロバイダーを使用してユーザーを認証するには、ユーザーをOAuthプロバイダーにリダイレクトするためのルートと、認証後にプロバイダーからのコールバックを受け取るための別のルートが必要です。以下の例のルートは、両方のルートの実装を示しています。
 
     use Laravel\Socialite\Facades\Socialite;
 
@@ -70,12 +70,12 @@ To authenticate users using an OAuth provider, you will need two routes: one for
         // $user->token
     });
 
-The `redirect` method provided by the `Socialite` facade takes care of redirecting the user to the OAuth provider, while the `user` method will examine the incoming request and retrieve the user's information from the provider after they have approved the authentication request.
+`Socialite`ファサードが提供する`redirect`メソッドは、ユーザーをOAuthプロバイダーにリダイレクトする役割を果たし、`user`メソッドは、認証要求を承認した後にプロバイダーからの受信リクエストを調べ、ユーザーの情報を取得します。
 
 <a name="authentication-and-storage"></a>
-### Authentication and Storage
+### 認証と保存
 
-Once the user has been retrieved from the OAuth provider, you may determine if the user exists in your application's database and [authenticate the user](/docs/{{version}}/authentication#authenticate-a-user-instance). If the user does not exist in your application's database, you will typically create a new record in your database to represent the user:
+OAuthプロバイダーからユーザーが取得されたら、アプリケーションのデータベースにユーザーが存在するかどうかを判断し、[ユーザーを認証](authentication.md#authenticate-a-user-instance)できます。アプリケーションのデータベースにユーザーが存在しない場合、通常はユーザーを表す新しいレコードをデータベースに作成します。
 
     use App\Models\User;
     use Illuminate\Support\Facades\Auth;
@@ -98,13 +98,13 @@ Once the user has been retrieved from the OAuth provider, you may determine if t
         return redirect('/dashboard');
     });
 
-> [!NOTE]  
-> For more information regarding what user information is available from specific OAuth providers, please consult the documentation on [retrieving user details](#retrieving-user-details).
+> NOTE:  
+> 特定のOAuthプロバイダーからどのようなユーザー情報が利用可能かについての詳細は、[ユーザー詳細の取得](#retrieving-user-details)のドキュメントを参照してください。
 
 <a name="access-scopes"></a>
-### Access Scopes
+### アクセススコープ
 
-Before redirecting the user, you may use the `scopes` method to specify the "scopes" that should be included in the authentication request. This method will merge all previously specified scopes with the scopes that you specify:
+ユーザーをリダイレクトする前に、`scopes`メソッドを使用して認証リクエストに含めるべき「スコープ」を指定できます。このメソッドは、以前に指定されたすべてのスコープを指定したスコープとマージします。
 
     use Laravel\Socialite\Facades\Socialite;
 
@@ -112,43 +112,43 @@ Before redirecting the user, you may use the `scopes` method to specify the "sco
         ->scopes(['read:user', 'public_repo'])
         ->redirect();
 
-You can overwrite all existing scopes on the authentication request using the `setScopes` method:
+認証リクエストのすべての既存のスコープを上書きするには、`setScopes`メソッドを使用します。
 
     return Socialite::driver('github')
         ->setScopes(['read:user', 'public_repo'])
         ->redirect();
 
 <a name="slack-bot-scopes"></a>
-### Slack Bot Scopes
+### Slack Botスコープ
 
-Slack's API provides [different types of access tokens](https://api.slack.com/authentication/token-types), each with their own set of [permission scopes](https://api.slack.com/scopes). Socialite is compatible with both of the following Slack access tokens types:
+SlackのAPIは、それぞれ独自の[権限スコープ](https://api.slack.com/scopes)を持つ[異なるタイプのアクセストークン](https://api.slack.com/authentication/token-types)を提供します。Socialiteは、以下の両方のSlackアクセストークンタイプと互換性があります。
 
 <div class="content-list" markdown="1">
 
-- Bot (prefixed with `xoxb-`)
-- User (prefixed with `xoxp-`)
+- Bot（`xoxb-`で始まる）
+- User（`xoxp-`で始まる）
 
 </div>
 
-By default, the `slack` driver will generate a `user` token and invoking the driver's `user` method will return the user's details.
+デフォルトでは、`slack`ドライバーは`user`トークンを生成し、ドライバーの`user`メソッドを呼び出すとユーザーの詳細が返されます。
 
-Bot tokens are primarily useful if your application will be sending notifications to external Slack workspaces that are owned by your application's users. To generate a bot token, invoke the `asBotUser` method before redirecting the user to Slack for authentication:
+Botトークンは、主にアプリケーションがアプリケーションのユーザーが所有する外部のSlackワークスペースに通知を送信する場合に便利です。Botトークンを生成するには、ユーザーをSlackにリダイレクトして認証する前に`asBotUser`メソッドを呼び出します。
 
     return Socialite::driver('slack')
         ->asBotUser()
         ->setScopes(['chat:write', 'chat:write.public', 'chat:write.customize'])
         ->redirect();
 
-In addition, you must invoke the `asBotUser` method before invoking the `user` method after Slack redirects the user back to your application after authentication:
+さらに、Slackが認証後にユーザーをアプリケーションにリダイレクトした後に`user`メソッドを呼び出す前に、`asBotUser`メソッドを呼び出す必要があります。
 
     $user = Socialite::driver('slack')->asBotUser()->user();
 
-When generating a bot token, the `user` method will still return a `Laravel\Socialite\Two\User` instance; however, only the `token` property will be hydrated. This token may be stored in order to [send notifications to the authenticated user's Slack workspaces](/docs/{{version}}/notifications#notifying-external-slack-workspaces).
+Botトークンを生成する場合、`user`メソッドは依然として`Laravel\Socialite\Two\User`インスタンスを返します。ただし、`token`プロパティのみがハイドレートされます。このトークンは、[認証されたユーザーのSlackワークスペースに通知を送信する](notifications.md#notifying-external-slack-workspaces)ために保存できます。
 
 <a name="optional-parameters"></a>
-### Optional Parameters
+### オプションパラメータ
 
-A number of OAuth providers support other optional parameters on the redirect request. To include any optional parameters in the request, call the `with` method with an associative array:
+多くのOAuthプロバイダーは、リダイレクトリクエストで他のオプションパラメーターをサポートしています。リクエストにオプションパラメーターを含めるには、連想配列を指定して`with`メソッドを呼び出します。
 
     use Laravel\Socialite\Facades\Socialite;
 
@@ -156,31 +156,31 @@ A number of OAuth providers support other optional parameters on the redirect re
         ->with(['hd' => 'example.com'])
         ->redirect();
 
-> [!WARNING]  
-> When using the `with` method, be careful not to pass any reserved keywords such as `state` or `response_type`.
+> WARNING:  
+> `with`メソッドを使用する場合、`state`や`response_type`などの予約語を渡さないように注意してください。
 
 <a name="retrieving-user-details"></a>
-## Retrieving User Details
+## ユーザー詳細の取得
 
-After the user is redirected back to your application's authentication callback route, you may retrieve the user's details using Socialite's `user` method. The user object returned by the `user` method provides a variety of properties and methods you may use to store information about the user in your own database.
+ユーザーがアプリケーションの認証コールバックルートにリダイレクトされた後、Socialiteの`user`メソッドを使用してユーザーの詳細を取得できます。`user`メソッドによって返されるユーザーオブジェクトは、独自のデータベースにユーザーに関する情報を保存するために使用できるさまざまなプロパティとメソッドを提供します。
 
-Differing properties and methods may be available on this object depending on whether the OAuth provider you are authenticating with supports OAuth 1.0 or OAuth 2.0:
+このオブジェクトで利用可能なプロパティとメソッドは、認証に使用しているOAuthプロバイダーがOAuth 1.0またはOAuth 2.0をサポートしているかによって異なります。
 
     use Laravel\Socialite\Facades\Socialite;
 
     Route::get('/auth/callback', function () {
         $user = Socialite::driver('github')->user();
 
-        // OAuth 2.0 providers...
+        // OAuth 2.0プロバイダー...
         $token = $user->token;
         $refreshToken = $user->refreshToken;
         $expiresIn = $user->expiresIn;
 
-        // OAuth 1.0 providers...
+        // OAuth 1.0プロバイダー...
         $token = $user->token;
         $tokenSecret = $user->tokenSecret;
 
-        // All providers...
+        // すべてのプロバイダー...
         $user->getId();
         $user->getNickname();
         $user->getName();
@@ -189,21 +189,22 @@ Differing properties and methods may be available on this object depending on wh
     });
 
 <a name="retrieving-user-details-from-a-token-oauth2"></a>
-#### Retrieving User Details From a Token
+#### トークンからユーザー詳細を取得
 
-If you already have a valid access token for a user, you can retrieve their user details using Socialite's `userFromToken` method:
+ユーザーの有効なアクセストークンが既にある場合、Socialiteの`userFromToken`メソッドを使用してユーザーの詳細を取得できます。
 
     use Laravel\Socialite\Facades\Socialite;
 
     $user = Socialite::driver('github')->userFromToken($token);
 
-If you are using Facebook Limited Login via an iOS application, Facebook will return an OIDC token instead of an access token. Like an access token, the OIDC token can be provided to the `userFromToken` method in order to retrieve user details.
+iOSアプリケーションを介してFacebook Limited Loginを使用している場合、Facebookはアクセストークンの代わりにOIDCトークンを返します。アクセストークンと同様に、OIDCトークンを`userFromToken`メソッドに提供してユーザー詳細を取得できます。
 
 <a name="stateless-authentication"></a>
-#### Stateless Authentication
+#### ステートレス認証
 
-The `stateless` method may be used to disable session state verification. This is useful when adding social authentication to a stateless API that does not utilize cookie based sessions:
+`stateless`メソッドを使用してセッション状態の検証を無効にすることができます。これは、Cookieベースのセッションを使用しないステートレスAPIにソーシャル認証を追加する場合に便利です。
 
     use Laravel\Socialite\Facades\Socialite;
 
     return Socialite::driver('google')->stateless()->user();
+

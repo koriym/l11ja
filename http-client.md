@@ -1,38 +1,38 @@
-# HTTP Client
+# HTTPクライアント
 
-- [Introduction](#introduction)
-- [Making Requests](#making-requests)
-    - [Request Data](#request-data)
-    - [Headers](#headers)
-    - [Authentication](#authentication)
-    - [Timeout](#timeout)
-    - [Retries](#retries)
-    - [Error Handling](#error-handling)
-    - [Guzzle Middleware](#guzzle-middleware)
-    - [Guzzle Options](#guzzle-options)
-- [Concurrent Requests](#concurrent-requests)
-- [Macros](#macros)
-- [Testing](#testing)
-    - [Faking Responses](#faking-responses)
-    - [Inspecting Requests](#inspecting-requests)
-    - [Preventing Stray Requests](#preventing-stray-requests)
-- [Events](#events)
+- [はじめに](#introduction)
+- [リクエストの作成](#making-requests)
+    - [リクエストデータ](#request-data)
+    - [ヘッダー](#headers)
+    - [認証](#authentication)
+    - [タイムアウト](#timeout)
+    - [リトライ](#retries)
+    - [エラーハンドリング](#error-handling)
+    - [Guzzleミドルウェア](#guzzle-middleware)
+    - [Guzzleオプション](#guzzle-options)
+- [同時リクエスト](#concurrent-requests)
+- [マクロ](#macros)
+- [テスト](#testing)
+    - [レスポンスのフェイク](#faking-responses)
+    - [リクエストの検査](#inspecting-requests)
+    - [ストレイリクエストの防止](#preventing-stray-requests)
+- [イベント](#events)
 
 <a name="introduction"></a>
-## Introduction
+## はじめに
 
-Laravel provides an expressive, minimal API around the [Guzzle HTTP client](http://docs.guzzlephp.org/en/stable/), allowing you to quickly make outgoing HTTP requests to communicate with other web applications. Laravel's wrapper around Guzzle is focused on its most common use cases and a wonderful developer experience.
+Laravelは、[Guzzle HTTPクライアント](http://docs.guzzlephp.org/en/stable/)を中心に、表現力豊かで最小限のAPIを提供しており、他のWebアプリケーションと通信するために、すばやく送信HTTPリクエストを作成できます。LaravelのGuzzleラッパーは、最も一般的なユースケースと素晴らしい開発者体験に焦点を当てています。
 
 <a name="making-requests"></a>
-## Making Requests
+## リクエストの作成
 
-To make requests, you may use the `head`, `get`, `post`, `put`, `patch`, and `delete` methods provided by the `Http` facade. First, let's examine how to make a basic `GET` request to another URL:
+リクエストを作成するには、`Http`ファサードが提供する`head`、`get`、`post`、`put`、`patch`、`delete`メソッドを使用できます。まず、他のURLに対して基本的な`GET`リクエストを作成する方法を見てみましょう。
 
     use Illuminate\Support\Facades\Http;
 
     $response = Http::get('http://example.com');
 
-The `get` method returns an instance of `Illuminate\Http\Client\Response`, which provides a variety of methods that may be used to inspect the response:
+`get`メソッドは`Illuminate\Http\Client\Response`のインスタンスを返し、これにはレスポンスを検査するために使用できるさまざまなメソッドが用意されています。
 
     $response->body() : string;
     $response->json($key = null, $default = null) : mixed;
@@ -47,11 +47,11 @@ The `get` method returns an instance of `Illuminate\Http\Client\Response`, which
     $response->header($header) : string;
     $response->headers() : array;
 
-The `Illuminate\Http\Client\Response` object also implements the PHP `ArrayAccess` interface, allowing you to access JSON response data directly on the response:
+`Illuminate\Http\Client\Response`オブジェクトはPHPの`ArrayAccess`インターフェースも実装しているため、レスポンス上のJSONレスポンスデータに直接アクセスできます。
 
     return Http::get('http://example.com/users/1')['name'];
 
-In addition to the response methods listed above, the following methods may be used to determine if the response has a given status code:
+上記のレスポンスメソッドに加えて、以下のメソッドを使用して、レスポンスが特定のステータスコードを持っているかどうかを判断できます。
 
     $response->ok() : bool;                  // 200 OK
     $response->created() : bool;             // 201 Created
@@ -71,9 +71,9 @@ In addition to the response methods listed above, the following methods may be u
     $response->serverError() : bool;         // 500 Internal Server Error
 
 <a name="uri-templates"></a>
-#### URI Templates
+#### URIテンプレート
 
-The HTTP client also allows you to construct request URLs using the [URI template specification](https://www.rfc-editor.org/rfc/rfc6570). To define the URL parameters that can be expanded by your URI template, you may use the `withUrlParameters` method:
+HTTPクライアントでは、[URIテンプレート仕様](https://www.rfc-editor.org/rfc/rfc6570)を使用してリクエストURLを構築することもできます。URIテンプレートで展開可能なURLパラメータを定義するには、`withUrlParameters`メソッドを使用できます。
 
 ```php
 Http::withUrlParameters([
@@ -85,16 +85,16 @@ Http::withUrlParameters([
 ```
 
 <a name="dumping-requests"></a>
-#### Dumping Requests
+#### リクエストのダンプ
 
-If you would like to dump the outgoing request instance before it is sent and terminate the script's execution, you may add the `dd` method to the beginning of your request definition:
+送信前に送信リクエストインスタンスをダンプし、スクリプトの実行を終了したい場合は、リクエスト定義の先頭に`dd`メソッドを追加できます。
 
     return Http::dd()->get('http://example.com');
 
 <a name="request-data"></a>
-### Request Data
+### リクエストデータ
 
-Of course, it is common when making `POST`, `PUT`, and `PATCH` requests to send additional data with your request, so these methods accept an array of data as their second argument. By default, data will be sent using the `application/json` content type:
+もちろん、`POST`、`PUT`、`PATCH`リクエストを作成する際に、リクエストと一緒に追加のデータを送信するのが一般的です。これらのメソッドは、データの配列を2番目の引数として受け取ります。デフォルトでは、データは`application/json`コンテンツタイプを使用して送信されます。
 
     use Illuminate\Support\Facades\Http;
 
@@ -104,16 +104,16 @@ Of course, it is common when making `POST`, `PUT`, and `PATCH` requests to send 
     ]);
 
 <a name="get-request-query-parameters"></a>
-#### GET Request Query Parameters
+#### GETリクエストのクエリパラメータ
 
-When making `GET` requests, you may either append a query string to the URL directly or pass an array of key / value pairs as the second argument to the `get` method:
+`GET`リクエストを作成する際に、クエリ文字列をURLに直接追加するか、`get`メソッドの2番目の引数としてキー/値のペアの配列を渡すことができます。
 
     $response = Http::get('http://example.com/users', [
         'name' => 'Taylor',
         'page' => 1,
     ]);
 
-Alternatively, the `withQueryParameters` method may be used:
+または、`withQueryParameters`メソッドを使用することもできます。
 
     Http::retry(3, 100)->withQueryParameters([
         'name' => 'Taylor',
@@ -121,9 +121,9 @@ Alternatively, the `withQueryParameters` method may be used:
     ])->get('http://example.com/users')
 
 <a name="sending-form-url-encoded-requests"></a>
-#### Sending Form URL Encoded Requests
+#### フォームURLエンコードリクエストの送信
 
-If you would like to send data using the `application/x-www-form-urlencoded` content type, you should call the `asForm` method before making your request:
+`application/x-www-form-urlencoded`コンテンツタイプを使用してデータを送信したい場合は、リクエストを作成する前に`asForm`メソッドを呼び出す必要があります。
 
     $response = Http::asForm()->post('http://example.com/users', [
         'name' => 'Sara',
@@ -131,24 +131,24 @@ If you would like to send data using the `application/x-www-form-urlencoded` con
     ]);
 
 <a name="sending-a-raw-request-body"></a>
-#### Sending a Raw Request Body
+#### 生のリクエストボディの送信
 
-You may use the `withBody` method if you would like to provide a raw request body when making a request. The content type may be provided via the method's second argument:
+リクエストを作成する際に生のリクエストボディを提供したい場合は、`withBody`メソッドを使用できます。コンテンツタイプはメソッドの2番目の引数を介して提供できます。
 
     $response = Http::withBody(
         base64_encode($photo), 'image/jpeg'
     )->post('http://example.com/photo');
 
 <a name="multi-part-requests"></a>
-#### Multi-Part Requests
+#### マルチパートリクエスト
 
-If you would like to send files as multi-part requests, you should call the `attach` method before making your request. This method accepts the name of the file and its contents. If needed, you may provide a third argument which will be considered the file's filename, while a fourth argument may be used to provide headers associated with the file:
+ファイルをマルチパートリクエストとして送信したい場合は、リクエストを作成する前に`attach`メソッドを呼び出す必要があります。このメソッドは、ファイルの名前とその内容を受け取ります。必要に応じて、3番目の引数をファイル名として、4番目の引数をファイルに関連付けられたヘッダーとして提供できます。
 
     $response = Http::attach(
         'attachment', file_get_contents('photo.jpg'), 'photo.jpg', ['Content-Type' => 'image/jpeg']
     )->post('http://example.com/attachments');
 
-Instead of passing the raw contents of a file, you may pass a stream resource:
+ファイルの生の内容の代わりに、ストリームリソースを渡すこともできます。
 
     $photo = fopen('photo.jpg', 'r');
 
@@ -157,9 +157,9 @@ Instead of passing the raw contents of a file, you may pass a stream resource:
     )->post('http://example.com/attachments');
 
 <a name="headers"></a>
-### Headers
+### ヘッダー
 
-Headers may be added to requests using the `withHeaders` method. This `withHeaders` method accepts an array of key / value pairs:
+`withHeaders`メソッドを使用してリクエストにヘッダーを追加できます。この`withHeaders`メソッドは、キー/値のペアの配列を受け取ります。
 
     $response = Http::withHeaders([
         'X-First' => 'foo',
@@ -168,15 +168,15 @@ Headers may be added to requests using the `withHeaders` method. This `withHeade
         'name' => 'Taylor',
     ]);
 
-You may use the `accept` method to specify the content type that your application is expecting in response to your request:
+アプリケーションがリクエストに対して期待するコンテンツタイプを指定するには、`accept`メソッドを使用できます。
 
     $response = Http::accept('application/json')->get('http://example.com/users');
 
-For convenience, you may use the `acceptJson` method to quickly specify that your application expects the `application/json` content type in response to your request:
+利便性のために、`acceptJson`メソッドを使用して、アプリケーションがリクエストに対して`application/json`コンテンツタイプを期待していることをすばやく指定できます。
 
     $response = Http::acceptJson()->get('http://example.com/users');
 
-The `withHeaders` method merges new headers into the request's existing headers. If needed, you may replace all of the headers entirely using the `replaceHeaders` method:
+`withHeaders`メソッドは、新しいヘッダーをリクエストの既存のヘッダーにマージします。必要に応じて、`replaceHeaders`メソッドを使用してすべてのヘッダーを完全に置き換えることができます。
 
 ```php
 $response = Http::withHeaders([
@@ -189,44 +189,44 @@ $response = Http::withHeaders([
 ```
 
 <a name="authentication"></a>
-### Authentication
+### 認証
 
-You may specify basic and digest authentication credentials using the `withBasicAuth` and `withDigestAuth` methods, respectively:
+`withBasicAuth`メソッドと`withDigestAuth`メソッドをそれぞれ使用して、基本認証とダイジェスト認証の資格情報を指定できます。
 
-    // Basic authentication...
+    // 基本認証...
     $response = Http::withBasicAuth('taylor@laravel.com', 'secret')->post(/* ... */);
 
-    // Digest authentication...
+    // ダイジェスト認証...
     $response = Http::withDigestAuth('taylor@laravel.com', 'secret')->post(/* ... */);
 
 <a name="bearer-tokens"></a>
-#### Bearer Tokens
+#### ベアラートークン
 
-If you would like to quickly add a bearer token to the request's `Authorization` header, you may use the `withToken` method:
+リクエストの`Authorization`ヘッダーにベアラートークンをすばやく追加したい場合は、`withToken`メソッドを使用できます。
 
     $response = Http::withToken('token')->post(/* ... */);
 
 <a name="timeout"></a>
-### Timeout
+### タイムアウト
 
-The `timeout` method may be used to specify the maximum number of seconds to wait for a response. By default, the HTTP client will timeout after 30 seconds:
+`timeout`メソッドを使用して、レスポンスを待つ最大秒数を指定できます。デフォルトでは、HTTPクライアントは30秒後にタイムアウトします。
 
     $response = Http::timeout(3)->get(/* ... */);
 
-If the given timeout is exceeded, an instance of `Illuminate\Http\Client\ConnectionException` will  be thrown.
+指定されたタイムアウトを超えると、`Illuminate\Http\Client\ConnectionException`のインスタンスがスローされます。
 
-You may specify the maximum number of seconds to wait while trying to connect to a server using the `connectTimeout` method:
+サーバーへの接続を試みる間に待機する最大秒数を指定するには、`connectTimeout`メソッドを使用できます。
 
     $response = Http::connectTimeout(3)->get(/* ... */);
 
 <a name="retries"></a>
-### Retries
+### リトライ
 
-If you would like the HTTP client to automatically retry the request if a client or server error occurs, you may use the `retry` method. The `retry` method accepts the maximum number of times the request should be attempted and the number of milliseconds that Laravel should wait in between attempts:
+HTTPクライアントがクライアントまたはサーバーエラーが発生した場合にリクエストを自動的に再試行するようにしたい場合は、`retry`メソッドを使用できます。`retry`メソッドは、リクエストを試行する最大回数とLaravelが再試行間に待機するミリ秒数を受け取ります。
 
     $response = Http::retry(3, 100)->post(/* ... */);
 
-If you would like to manually calculate the number of milliseconds to sleep between attempts, you may pass a closure as the second argument to the `retry` method:
+再試行間に待機するミリ秒数を手動で計算したい場合は、`retry`メソッドの2番目の引数としてクロージャを渡すことができます。
 
     use Exception;
 
@@ -234,11 +234,11 @@ If you would like to manually calculate the number of milliseconds to sleep betw
         return $attempt * 100;
     })->post(/* ... */);
 
-For convenience, you may also provide an array as the first argument to the `retry` method. This array will be used to determine how many milliseconds to sleep between subsequent attempts:
+便宜上、`retry` メソッドの最初の引数として配列を提供することもできます。この配列は、後続の試行の間に何ミリ秒スリープするかを決定するために使用されます：
 
     $response = Http::retry([100, 200])->post(/* ... */);
 
-If needed, you may pass a third argument to the `retry` method. The third argument should be a callable that determines if the retries should actually be attempted. For example, you may wish to only retry the request if the initial request encounters an `ConnectionException`:
+必要に応じて、`retry` メソッドに3番目の引数を渡すことができます。3番目の引数は、再試行を実際に試みるかどうかを決定する callable である必要があります。例えば、最初のリクエストが `ConnectionException` に遭遇した場合にのみリクエストを再試行したい場合があります：
 
     use Exception;
     use Illuminate\Http\Client\PendingRequest;
@@ -247,7 +247,7 @@ If needed, you may pass a third argument to the `retry` method. The third argume
         return $exception instanceof ConnectionException;
     })->post(/* ... */);
 
-If a request attempt fails, you may wish to make a change to the request before a new attempt is made. You can achieve this by modifying the request argument provided to the callable you provided to the `retry` method. For example, you might want to retry the request with a new authorization token if the first attempt returned an authentication error:
+リクエストの試行が失敗した場合、新しい試行が行われる前にリクエストに変更を加えたい場合があります。これは、`retry` メソッドに提供した callable に渡されるリクエスト引数を変更することで実現できます。例えば、最初の試行が認証エラーを返した場合に新しい認証トークンでリクエストを再試行したい場合があります：
 
     use Exception;
     use Illuminate\Http\Client\PendingRequest;
@@ -263,72 +263,72 @@ If a request attempt fails, you may wish to make a change to the request before 
         return true;
     })->post(/* ... */);
 
-If all of the requests fail, an instance of `Illuminate\Http\Client\RequestException` will be thrown. If you would like to disable this behavior, you may provide a `throw` argument with a value of `false`. When disabled, the last response received by the client will be returned after all retries have been attempted:
+すべてのリクエストが失敗した場合、`Illuminate\Http\Client\RequestException` のインスタンスがスローされます。この動作を無効にしたい場合は、`throw` 引数に `false` の値を指定できます。無効にすると、すべての再試行が試行された後にクライアントが受信した最後のレスポンスが返されます：
 
     $response = Http::retry(3, 100, throw: false)->post(/* ... */);
 
-> [!WARNING]  
-> If all of the requests fail because of a connection issue, a `Illuminate\Http\Client\ConnectionException` will still be thrown even when the `throw` argument is set to `false`.
+> WARNING:  
+> 接続の問題ですべてのリクエストが失敗した場合でも、`throw` 引数が `false` に設定されている場合でも、`Illuminate\Http\Client\ConnectionException` がスローされます。
 
 <a name="error-handling"></a>
-### Error Handling
+### エラー処理
 
-Unlike Guzzle's default behavior, Laravel's HTTP client wrapper does not throw exceptions on client or server errors (`400` and `500` level responses from servers). You may determine if one of these errors was returned using the `successful`, `clientError`, or `serverError` methods:
+Guzzle のデフォルトの動作とは異なり、Laravel の HTTP クライアントラッパーはクライアントまたはサーバーエラー（サーバーからの `400` および `500` レベルのレスポンス）で例外をスローしません。これらのエラーのいずれかが返されたかどうかは、`successful`、`clientError`、または `serverError` メソッドを使用して判断できます：
 
-    // Determine if the status code is >= 200 and < 300...
+    // ステータスコードが >= 200 かつ < 300 かどうかを判定...
     $response->successful();
 
-    // Determine if the status code is >= 400...
+    // ステータスコードが >= 400 かどうかを判定...
     $response->failed();
 
-    // Determine if the response has a 400 level status code...
+    // レスポンスが 400 レベルのステータスコードを持つかどうかを判定...
     $response->clientError();
 
-    // Determine if the response has a 500 level status code...
+    // レスポンスが 500 レベルのステータスコードを持つかどうかを判定...
     $response->serverError();
 
-    // Immediately execute the given callback if there was a client or server error...
+    // クライアントまたはサーバーエラーが発生した場合、指定されたコールバックを即座に実行...
     $response->onError(callable $callback);
 
 <a name="throwing-exceptions"></a>
-#### Throwing Exceptions
+#### 例外のスロー
 
-If you have a response instance and would like to throw an instance of `Illuminate\Http\Client\RequestException` if the response status code indicates a client or server error, you may use the `throw` or `throwIf` methods:
+レスポンスインスタンスがあり、レスポンスステータスコードがクライアントまたはサーバーエラーを示している場合に `Illuminate\Http\Client\RequestException` のインスタンスをスローしたい場合は、`throw` または `throwIf` メソッドを使用できます：
 
     use Illuminate\Http\Client\Response;
 
     $response = Http::post(/* ... */);
 
-    // Throw an exception if a client or server error occurred...
+    // クライアントまたはサーバーエラーが発生した場合に例外をスロー...
     $response->throw();
 
-    // Throw an exception if an error occurred and the given condition is true...
+    // エラーが発生し、指定された条件が true の場合に例外をスロー...
     $response->throwIf($condition);
 
-    // Throw an exception if an error occurred and the given closure resolves to true...
+    // エラーが発生し、指定されたクロージャが true を返す場合に例外をスロー...
     $response->throwIf(fn (Response $response) => true);
 
-    // Throw an exception if an error occurred and the given condition is false...
+    // エラーが発生し、指定された条件が false の場合に例外をスロー...
     $response->throwUnless($condition);
 
-    // Throw an exception if an error occurred and the given closure resolves to false...
+    // エラーが発生し、指定されたクロージャが false を返す場合に例外をスロー...
     $response->throwUnless(fn (Response $response) => false);
 
-    // Throw an exception if the response has a specific status code...
+    // レスポンスが特定のステータスコードを持つ場合に例外をスロー...
     $response->throwIfStatus(403);
 
-    // Throw an exception unless the response has a specific status code...
+    // レスポンスが特定のステータスコードを持たない場合に例外をスロー...
     $response->throwUnlessStatus(200);
 
     return $response['user']['id'];
 
-The `Illuminate\Http\Client\RequestException` instance has a public `$response` property which will allow you to inspect the returned response.
+`Illuminate\Http\Client\RequestException` インスタンスには、返されたレスポンスを検査できるようにするパブリックの `$response` プロパティがあります。
 
-The `throw` method returns the response instance if no error occurred, allowing you to chain other operations onto the `throw` method:
+`throw` メソッドは、エラーが発生しなかった場合にレスポンスインスタンスを返し、`throw` メソッドに他の操作を連鎖させることができます：
 
     return Http::post(/* ... */)->throw()->json();
 
-If you would like to perform some additional logic before the exception is thrown, you may pass a closure to the `throw` method. The exception will be thrown automatically after the closure is invoked, so you do not need to re-throw the exception from within the closure:
+例外がスローされる前に追加のロジックを実行したい場合は、`throw` メソッドにクロージャを渡すことができます。クロージャが呼び出された後、例外は自動的にスローされるため、クロージャ内から例外を再スローする必要はありません：
 
     use Illuminate\Http\Client\Response;
     use Illuminate\Http\Client\RequestException;
@@ -338,9 +338,9 @@ If you would like to perform some additional logic before the exception is throw
     })->json();
 
 <a name="guzzle-middleware"></a>
-### Guzzle Middleware
+### Guzzle ミドルウェア
 
-Since Laravel's HTTP client is powered by Guzzle, you may take advantage of [Guzzle Middleware](https://docs.guzzlephp.org/en/stable/handlers-and-middleware.html) to manipulate the outgoing request or inspect the incoming response. To manipulate the outgoing request, register a Guzzle middleware via the `withRequestMiddleware` method:
+Laravel の HTTP クライアントは Guzzle によって動作しているため、[Guzzle Middleware](https://docs.guzzlephp.org/en/stable/handlers-and-middleware.html) を利用して、送信リクエストを操作したり、受信レスポンスを検査したりできます。送信リクエストを操作するために、`withRequestMiddleware` メソッドを介して Guzzle ミドルウェアを登録します：
 
     use Illuminate\Support\Facades\Http;
     use Psr\Http\Message\RequestInterface;
@@ -351,7 +351,7 @@ Since Laravel's HTTP client is powered by Guzzle, you may take advantage of [Guz
         }
     )->get('http://example.com');
 
-Likewise, you can inspect the incoming HTTP response by registering a middleware via the `withResponseMiddleware` method:
+同様に、`withResponseMiddleware` メソッドを介してミドルウェアを登録することで、受信 HTTP レスポンスを検査できます：
 
     use Illuminate\Support\Facades\Http;
     use Psr\Http\Message\ResponseInterface;
@@ -367,9 +367,9 @@ Likewise, you can inspect the incoming HTTP response by registering a middleware
     )->get('http://example.com');
 
 <a name="global-middleware"></a>
-#### Global Middleware
+#### グローバルミドルウェア
 
-Sometimes, you may want to register a middleware that applies to every outgoing request and incoming response. To accomplish this, you may use the `globalRequestMiddleware` and `globalResponseMiddleware` methods. Typically, these methods should be invoked in the `boot` method of your application's `AppServiceProvider`:
+すべての送信リクエストと受信レスポンスに適用されるミドルウェアを登録したい場合があります。これを実現するには、`globalRequestMiddleware` および `globalResponseMiddleware` メソッドを使用します。通常、これらのメソッドはアプリケーションの `AppServiceProvider` の `boot` メソッドで呼び出す必要があります：
 
 ```php
 use Illuminate\Support\Facades\Http;
@@ -384,18 +384,18 @@ Http::globalResponseMiddleware(fn ($response) => $response->withHeader(
 ```
 
 <a name="guzzle-options"></a>
-### Guzzle Options
+### Guzzle オプション
 
-You may specify additional [Guzzle request options](http://docs.guzzlephp.org/en/stable/request-options.html) for an outgoing request using the `withOptions` method. The `withOptions` method accepts an array of key / value pairs:
+`withOptions` メソッドを使用して、送信リクエストに追加の [Guzzle リクエストオプション](http://docs.guzzlephp.org/en/stable/request-options.html)を指定できます。`withOptions` メソッドは、キー/値ペアの配列を受け取ります：
 
     $response = Http::withOptions([
         'debug' => true,
     ])->get('http://example.com/users');
 
 <a name="global-options"></a>
-#### Global Options
+#### グローバルオプション
 
-To configure default options for every outgoing request, you may utilize the `globalOptions` method. Typically, this method should be invoked from the `boot` method of your application's `AppServiceProvider`:
+すべての送信リクエストに対してデフォルトのオプションを設定するには、`globalOptions` メソッドを利用できます。通常、このメソッドはアプリケーションの `AppServiceProvider` の `boot` メソッドから呼び出す必要があります：
 
 ```php
 use Illuminate\Support\Facades\Http;
@@ -412,11 +412,11 @@ public function boot(): void
 ```
 
 <a name="concurrent-requests"></a>
-## Concurrent Requests
+## 並行リクエスト
 
-Sometimes, you may wish to make multiple HTTP requests concurrently. In other words, you want several requests to be dispatched at the same time instead of issuing the requests sequentially. This can lead to substantial performance improvements when interacting with slow HTTP APIs.
+複数の HTTP リクエストを同時に行いたい場合があります。つまり、リクエストを順次ではなく同時に発行したい場合です。これにより、遅い HTTP API とのやり取りで大幅なパフォーマンス向上が見込めます。
 
-Thankfully, you may accomplish this using the `pool` method. The `pool` method accepts a closure which receives an `Illuminate\Http\Client\Pool` instance, allowing you to easily add requests to the request pool for dispatching:
+幸いなことに、`pool` メソッドを使用してこれを実現できます。`pool` メソッドは、`Illuminate\Http\Client\Pool` インスタンスを受け取るクロージャを受け取り、リクエストプールにリクエストを簡単に追加して発行できます：
 
     use Illuminate\Http\Client\Pool;
     use Illuminate\Support\Facades\Http;
@@ -431,7 +431,7 @@ Thankfully, you may accomplish this using the `pool` method. The `pool` method a
            $responses[1]->ok() &&
            $responses[2]->ok();
 
-As you can see, each response instance can be accessed based on the order it was added to the pool. If you wish, you can name the requests using the `as` method, which allows you to access the corresponding responses by name:
+ご覧のとおり、各レスポンスインスタンスは、プールに追加された順序に基づいてアクセスできます。必要に応じて、`as` メソッドを使用してリクエストに名前を付けることができ、対応するレスポンスに名前でアクセスできます：
 
     use Illuminate\Http\Client\Pool;
     use Illuminate\Support\Facades\Http;
@@ -445,9 +445,9 @@ As you can see, each response instance can be accessed based on the order it was
     return $responses['first']->ok();
 
 <a name="customizing-concurrent-requests"></a>
-#### Customizing Concurrent Requests
+#### 並行リクエストのカスタマイズ
 
-The `pool` method cannot be chained with other HTTP client methods such as the `withHeaders` or `middleware` methods. If you want to apply custom headers or middleware to pooled requests, you should configure those options on each request in the pool:
+`pool` メソッドは、`withHeaders` や `middleware` メソッドなどの他の HTTP クライアントメソッドと連鎖できません。プールされたリクエストにカスタムヘッダーやミドルウェアを適用したい場合は、プール内の各リクエストでそれらのオプションを設定する必要があります：
 
 ```php
 use Illuminate\Http\Client\Pool;
@@ -465,15 +465,15 @@ $responses = Http::pool(fn (Pool $pool) => [
 ```
 
 <a name="macros"></a>
-## Macros
+## マクロ
 
-The Laravel HTTP client allows you to define "macros", which can serve as a fluent, expressive mechanism to configure common request paths and headers when interacting with services throughout your application. To get started, you may define the macro within the `boot` method of your application's `App\Providers\AppServiceProvider` class:
+LaravelのHTTPクライアントでは、"マクロ"を定義できます。これは、アプリケーション全体でサービスとやり取りする際に、一般的なリクエストパスやヘッダーを設定するための流暢で表現力豊かなメカニズムとして機能します。始めるには、アプリケーションの`App\Providers\AppServiceProvider`クラスの`boot`メソッド内でマクロを定義します。
 
 ```php
 use Illuminate\Support\Facades\Http;
 
 /**
- * Bootstrap any application services.
+ * アプリケーションサービスのブートストラップ
  */
 public function boot(): void
 {
@@ -485,21 +485,21 @@ public function boot(): void
 }
 ```
 
-Once your macro has been configured, you may invoke it from anywhere in your application to create a pending request with the specified configuration:
+マクロを設定したら、アプリケーション内のどこからでも、指定された設定で保留中のリクエストを作成するために呼び出すことができます。
 
 ```php
 $response = Http::github()->get('/');
 ```
 
 <a name="testing"></a>
-## Testing
+## テスト
 
-Many Laravel services provide functionality to help you easily and expressively write tests, and Laravel's HTTP client is no exception. The `Http` facade's `fake` method allows you to instruct the HTTP client to return stubbed / dummy responses when requests are made.
+多くのLaravelサービスは、テストを簡単かつ表現力豊かに書くための機能を提供しており、LaravelのHTTPクライアントも例外ではありません。`Http`ファサードの`fake`メソッドを使用すると、HTTPクライアントにリクエストが行われたときにスタブ/ダミーのレスポンスを返すように指示できます。
 
 <a name="faking-responses"></a>
-### Faking Responses
+### レスポンスのフェイク
 
-For example, to instruct the HTTP client to return empty, `200` status code responses for every request, you may call the `fake` method with no arguments:
+例えば、すべてのリクエストに対して空の`200`ステータスコードのレスポンスを返すようにHTTPクライアントに指示するには、引数なしで`fake`メソッドを呼び出します。
 
     use Illuminate\Support\Facades\Http;
 
@@ -508,61 +508,61 @@ For example, to instruct the HTTP client to return empty, `200` status code resp
     $response = Http::post(/* ... */);
 
 <a name="faking-specific-urls"></a>
-#### Faking Specific URLs
+#### 特定のURLのフェイク
 
-Alternatively, you may pass an array to the `fake` method. The array's keys should represent URL patterns that you wish to fake and their associated responses. The `*` character may be used as a wildcard character. Any requests made to URLs that have not been faked will actually be executed. You may use the `Http` facade's `response` method to construct stub / fake responses for these endpoints:
+また、`fake`メソッドに配列を渡すこともできます。配列のキーはフェイクしたいURLパターンを表し、それに対応するレスポンスを指定します。`*`文字はワイルドカード文字として使用できます。フェイクされていないURLに対するリクエストは実際に実行されます。`Http`ファサードの`response`メソッドを使用して、これらのエンドポイントのスタブ/ダミーレスポンスを構築できます。
 
     Http::fake([
-        // Stub a JSON response for GitHub endpoints...
+        // GitHubエンドポイントのJSONレスポンスをスタブする
         'github.com/*' => Http::response(['foo' => 'bar'], 200, $headers),
 
-        // Stub a string response for Google endpoints...
+        // Googleエンドポイントの文字列レスポンスをスタブする
         'google.com/*' => Http::response('Hello World', 200, $headers),
     ]);
 
-If you would like to specify a fallback URL pattern that will stub all unmatched URLs, you may use a single `*` character:
+すべての一致しないURLに対してフォールバックURLパターンを指定したい場合は、単一の`*`文字を使用できます。
 
     Http::fake([
-        // Stub a JSON response for GitHub endpoints...
+        // GitHubエンドポイントのJSONレスポンスをスタブする
         'github.com/*' => Http::response(['foo' => 'bar'], 200, ['Headers']),
 
-        // Stub a string response for all other endpoints...
+        // 他のすべてのエンドポイントの文字列レスポンスをスタブする
         '*' => Http::response('Hello World', 200, ['Headers']),
     ]);
 
 <a name="faking-response-sequences"></a>
-#### Faking Response Sequences
+#### レスポンスシーケンスのフェイク
 
-Sometimes you may need to specify that a single URL should return a series of fake responses in a specific order. You may accomplish this using the `Http::sequence` method to build the responses:
+特定のURLが特定の順序で一連のフェイクレスポンスを返す必要がある場合、`Http::sequence`メソッドを使用してレスポンスを構築できます。
 
     Http::fake([
-        // Stub a series of responses for GitHub endpoints...
+        // GitHubエンドポイントの一連のレスポンスをスタブする
         'github.com/*' => Http::sequence()
                                 ->push('Hello World', 200)
                                 ->push(['foo' => 'bar'], 200)
                                 ->pushStatus(404),
     ]);
 
-When all the responses in a response sequence have been consumed, any further requests will cause the response sequence to throw an exception. If you would like to specify a default response that should be returned when a sequence is empty, you may use the `whenEmpty` method:
+レスポンスシーケンス内のすべてのレスポンスが消費された場合、それ以降のリクエストはレスポンスシーケンスが例外をスローする原因となります。シーケンスが空の場合に返すデフォルトのレスポンスを指定したい場合は、`whenEmpty`メソッドを使用できます。
 
     Http::fake([
-        // Stub a series of responses for GitHub endpoints...
+        // GitHubエンドポイントの一連のレスポンスをスタブする
         'github.com/*' => Http::sequence()
                                 ->push('Hello World', 200)
                                 ->push(['foo' => 'bar'], 200)
                                 ->whenEmpty(Http::response()),
     ]);
 
-If you would like to fake a sequence of responses but do not need to specify a specific URL pattern that should be faked, you may use the `Http::fakeSequence` method:
+レスポンスのシーケンスをフェイクしたいが、特定のURLパターンをフェイクする必要がない場合は、`Http::fakeSequence`メソッドを使用できます。
 
     Http::fakeSequence()
             ->push('Hello World', 200)
             ->whenEmpty(Http::response());
 
 <a name="fake-callback"></a>
-#### Fake Callback
+#### フェイクコールバック
 
-If you require more complicated logic to determine what responses to return for certain endpoints, you may pass a closure to the `fake` method. This closure will receive an instance of `Illuminate\Http\Client\Request` and should return a response instance. Within your closure, you may perform whatever logic is necessary to determine what type of response to return:
+特定のエンドポイントに対してどのようなレスポンスを返すかを決定するためにより複雑なロジックが必要な場合、`fake`メソッドにクロージャを渡すことができます。このクロージャは`Illuminate\Http\Client\Request`のインスタンスを受け取り、レスポンスインスタンスを返す必要があります。クロージャ内で、どのようなタイプのレスポンスを返すかを決定するために必要なロジックを実行できます。
 
     use Illuminate\Http\Client\Request;
 
@@ -571,9 +571,9 @@ If you require more complicated logic to determine what responses to return for 
     });
 
 <a name="preventing-stray-requests"></a>
-### Preventing Stray Requests
+### ストレイリクエストの防止
 
-If you would like to ensure that all requests sent via the HTTP client have been faked throughout your individual test or complete test suite, you can call the `preventStrayRequests` method. After calling this method, any requests that do not have a corresponding fake response will throw an exception rather than making the actual HTTP request:
+HTTPクライアントを介して送信されるすべてのリクエストが、個々のテストまたは完全なテストスイート全体でフェイクされていることを確認したい場合、`preventStrayRequests`メソッドを呼び出すことができます。このメソッドを呼び出した後、対応するフェイクレスポンスがないリクエストは、実際のHTTPリクエストを行う代わりに例外をスローします。
 
     use Illuminate\Support\Facades\Http;
 
@@ -583,18 +583,18 @@ If you would like to ensure that all requests sent via the HTTP client have been
         'github.com/*' => Http::response('ok'),
     ]);
 
-    // An "ok" response is returned...
+    // "ok"レスポンスが返される
     Http::get('https://github.com/laravel/framework');
 
-    // An exception is thrown...
+    // 例外がスローされる
     Http::get('https://laravel.com');
 
 <a name="inspecting-requests"></a>
-### Inspecting Requests
+### リクエストの検査
 
-When faking responses, you may occasionally wish to inspect the requests the client receives in order to make sure your application is sending the correct data or headers. You may accomplish this by calling the `Http::assertSent` method after calling `Http::fake`.
+レスポンスをフェイクする際、クライアントが受け取るリクエストを検査して、アプリケーションが正しいデータやヘッダーを送信していることを確認したい場合があります。これを実現するには、`Http::fake`を呼び出した後に`Http::assertSent`メソッドを呼び出します。
 
-The `assertSent` method accepts a closure which will receive an `Illuminate\Http\Client\Request` instance and should return a boolean value indicating if the request matches your expectations. In order for the test to pass, at least one request must have been issued matching the given expectations:
+`assertSent`メソッドは、`Illuminate\Http\Client\Request`インスタンスを受け取り、リクエストが期待に一致するかどうかを示すブール値を返すクロージャを受け取ります。テストがパスするためには、少なくとも1つのリクエストが指定された期待に一致する必要があります。
 
     use Illuminate\Http\Client\Request;
     use Illuminate\Support\Facades\Http;
@@ -615,7 +615,7 @@ The `assertSent` method accepts a closure which will receive an `Illuminate\Http
                $request['role'] == 'Developer';
     });
 
-If needed, you may assert that a specific request was not sent using the `assertNotSent` method:
+必要に応じて、`assertNotSent`メソッドを使用して特定のリクエストが送信されなかったことをアサートできます。
 
     use Illuminate\Http\Client\Request;
     use Illuminate\Support\Facades\Http;
@@ -631,22 +631,22 @@ If needed, you may assert that a specific request was not sent using the `assert
         return $request->url() === 'http://example.com/posts';
     });
 
-You may use the `assertSentCount` method to assert how many requests were "sent" during the test:
+`assertSentCount`メソッドを使用して、テスト中に「送信」されたリクエストの数をアサートできます。
 
     Http::fake();
 
     Http::assertSentCount(5);
 
-Or, you may use the `assertNothingSent` method to assert that no requests were sent during the test:
+または、`assertNothingSent`メソッドを使用して、テスト中にリクエストが送信されなかったことをアサートできます。
 
     Http::fake();
 
     Http::assertNothingSent();
 
 <a name="recording-requests-and-responses"></a>
-#### Recording Requests / Responses
+#### リクエスト/レスポンスの記録
 
-You may use the `recorded` method to gather all requests and their corresponding responses. The `recorded` method returns a collection of arrays that contains instances of `Illuminate\Http\Client\Request` and `Illuminate\Http\Client\Response`:
+`recorded`メソッドを使用して、すべてのリクエストとそれに対応するレスポンスを収集できます。`recorded`メソッドは、`Illuminate\Http\Client\Request`と`Illuminate\Http\Client\Response`のインスタンスを含む配列のコレクションを返します。
 
 ```php
 Http::fake([
@@ -662,7 +662,7 @@ $recorded = Http::recorded();
 [$request, $response] = $recorded[0];
 ```
 
-Additionally, the `recorded` method accepts a closure which will receive an instance of `Illuminate\Http\Client\Request` and `Illuminate\Http\Client\Response` and may be used to filter request / response pairs based on your expectations:
+さらに、`recorded`メソッドは、`Illuminate\Http\Client\Request`と`Illuminate\Http\Client\Response`のインスタンスを受け取るクロージャを受け取り、期待に基づいてリクエスト/レスポンスのペアをフィルタリングするために使用できます。
 
 ```php
 use Illuminate\Http\Client\Request;
@@ -683,18 +683,18 @@ $recorded = Http::recorded(function (Request $request, Response $response) {
 ```
 
 <a name="events"></a>
-## Events
+## イベント
 
-Laravel fires three events during the process of sending HTTP requests. The `RequestSending` event is fired prior to a request being sent, while the `ResponseReceived` event is fired after a response is received for a given request. The `ConnectionFailed` event is fired if no response is received for a given request.
+Laravelは、HTTPリクエストの送信プロセス中に3つのイベントを発火します。`RequestSending`イベントはリクエストが送信される前に発火し、`ResponseReceived`イベントは特定のリクエストに対するレスポンスが受信された後に発火します。`ConnectionFailed`イベントは、特定のリクエストに対してレスポンスが受信されなかった場合に発火します。
 
-The `RequestSending` and `ConnectionFailed` events both contain a public `$request` property that you may use to inspect the `Illuminate\Http\Client\Request` instance. Likewise, the `ResponseReceived` event contains a `$request` property as well as a `$response` property which may be used to inspect the `Illuminate\Http\Client\Response` instance. You may create [event listeners](/docs/{{version}}/events) for these events within your application:
+`RequestSending`と`ConnectionFailed`イベントはどちらも、`Illuminate\Http\Client\Request`インスタンスを検査するために使用できるパブリックな`$request`プロパティを持っています。同様に、`ResponseReceived`イベントは`$request`プロパティと`$response`プロパティを持っており、`Illuminate\Http\Client\Response`インスタンスを検査するために使用できます。これらのイベントに対して[イベントリスナー](events.md)を作成できます。
 
     use Illuminate\Http\Client\Events\RequestSending;
 
     class LogRequest
     {
         /**
-         * Handle the given event.
+         * 指定されたイベントを処理します。
          */
         public function handle(RequestSending $event): void
         {

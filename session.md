@@ -1,54 +1,54 @@
-# HTTP Session
+# HTTPセッション
 
-- [Introduction](#introduction)
-    - [Configuration](#configuration)
-    - [Driver Prerequisites](#driver-prerequisites)
-- [Interacting With the Session](#interacting-with-the-session)
-    - [Retrieving Data](#retrieving-data)
-    - [Storing Data](#storing-data)
-    - [Flash Data](#flash-data)
-    - [Deleting Data](#deleting-data)
-    - [Regenerating the Session ID](#regenerating-the-session-id)
-- [Session Blocking](#session-blocking)
-- [Adding Custom Session Drivers](#adding-custom-session-drivers)
-    - [Implementing the Driver](#implementing-the-driver)
-    - [Registering the Driver](#registering-the-driver)
+- [はじめに](#introduction)
+    - [設定](#configuration)
+    - [ドライバの前提条件](#driver-prerequisites)
+- [セッションとのやり取り](#interacting-with-the-session)
+    - [データの取得](#retrieving-data)
+    - [データの保存](#storing-data)
+    - [フラッシュデータ](#flash-data)
+    - [データの削除](#deleting-data)
+    - [セッションIDの再生成](#regenerating-the-session-id)
+- [セッションブロッキング](#session-blocking)
+- [カスタムセッションドライバの追加](#adding-custom-session-drivers)
+    - [ドライバの実装](#implementing-the-driver)
+    - [ドライバの登録](#registering-the-driver)
 
 <a name="introduction"></a>
-## Introduction
+## はじめに
 
-Since HTTP driven applications are stateless, sessions provide a way to store information about the user across multiple requests. That user information is typically placed in a persistent store / backend that can be accessed from subsequent requests.
+HTTP駆動のアプリケーションはステートレスであるため、セッションはユーザーに関する情報を複数のリクエストにわたって保存する方法を提供します。そのユーザー情報は通常、後続のリクエストからアクセスできる永続的なストア/バックエンドに配置されます。
 
-Laravel ships with a variety of session backends that are accessed through an expressive, unified API. Support for popular backends such as [Memcached](https://memcached.org), [Redis](https://redis.io), and databases is included.
+Laravelには、表現力豊かで統一されたAPIを介してアクセスできるさまざまなセッションバックエンドが付属しています。[Memcached](https://memcached.org)、[Redis](https://redis.io)、データベースなどの一般的なバックエンドのサポートが含まれています。
 
 <a name="configuration"></a>
-### Configuration
+### 設定
 
-Your application's session configuration file is stored at `config/session.php`. Be sure to review the options available to you in this file. By default, Laravel is configured to use the `database` session driver.
+アプリケーションのセッション設定ファイルは`config/session.php`に保存されています。このファイルで利用可能なオプションを確認してください。デフォルトでは、Laravelは`database`セッションドライバを使用するように設定されています。
 
-The session `driver` configuration option defines where session data will be stored for each request. Laravel includes a variety of drivers:
+セッションの`driver`設定オプションは、各リクエストのセッションデータがどこに保存されるかを定義します。Laravelにはさまざまなドライバが含まれています：
 
 <div class="content-list" markdown="1">
 
-- `file` - sessions are stored in `storage/framework/sessions`.
-- `cookie` - sessions are stored in secure, encrypted cookies.
-- `database` - sessions are stored in a relational database.
-- `memcached` / `redis` - sessions are stored in one of these fast, cache based stores.
-- `dynamodb` - sessions are stored in AWS DynamoDB.
-- `array` - sessions are stored in a PHP array and will not be persisted.
+- `file` - セッションは`storage/framework/sessions`に保存されます。
+- `cookie` - セッションは安全で暗号化されたクッキーに保存されます。
+- `database` - セッションはリレーショナルデータベースに保存されます。
+- `memcached` / `redis` - セッションはこれらの高速なキャッシュベースのストアのいずれかに保存されます。
+- `dynamodb` - セッションはAWS DynamoDBに保存されます。
+- `array` - セッションはPHP配列に保存され、永続化されません。
 
 </div>
 
-> [!NOTE]  
-> The array driver is primarily used during [testing](/docs/{{version}}/testing) and prevents the data stored in the session from being persisted.
+> NOTE:  
+> 配列ドライバは主に[テスト](testing.md)中に使用され、セッションに保存されたデータが永続化されないようにします。
 
 <a name="driver-prerequisites"></a>
-### Driver Prerequisites
+### ドライバの前提条件
 
 <a name="database"></a>
-#### Database
+#### データベース
 
-When using the `database` session driver, you will need to ensure that you have a database table to contain the session data. Typically, this is included in Laravel's default `0001_01_01_000000_create_users_table.php` [database migration](/docs/{{version}}/migrations); however, if for any reason you do not have a `sessions` table, you may use the `make:session-table` Artisan command to generate this migration:
+`database`セッションドライバを使用する場合、セッションデータを格納するデータベーステーブルが必要です。通常、これはLaravelのデフォルトの`0001_01_01_000000_create_users_table.php`[データベースマイグレーション](migrations.md)に含まれています。ただし、何らかの理由で`sessions`テーブルがない場合は、`make:session-table` Artisanコマンドを使用してこのマイグレーションを生成できます：
 
 ```shell
 php artisan make:session-table
@@ -59,18 +59,18 @@ php artisan migrate
 <a name="redis"></a>
 #### Redis
 
-Before using Redis sessions with Laravel, you will need to either install the PhpRedis PHP extension via PECL or install the `predis/predis` package (~1.0) via Composer. For more information on configuring Redis, consult Laravel's [Redis documentation](/docs/{{version}}/redis#configuration).
+LaravelでRedisセッションを使用する前に、PECLを介してPhpRedis PHP拡張機能をインストールするか、Composerを介して`predis/predis`パッケージ（~1.0）をインストールする必要があります。Redisの設定についての詳細は、Laravelの[Redisドキュメント](redis.md#configuration)を参照してください。
 
-> [!NOTE]  
-> The `SESSION_CONNECTION` environment variable, or the `connection` option in the `session.php` configuration file, may be used to specify which Redis connection is used for session storage.
+> NOTE:  
+> `SESSION_CONNECTION`環境変数、または`session.php`設定ファイルの`connection`オプションを使用して、セッションストレージに使用するRedis接続を指定できます。
 
 <a name="interacting-with-the-session"></a>
-## Interacting With the Session
+## セッションとのやり取り
 
 <a name="retrieving-data"></a>
-### Retrieving Data
+### データの取得
 
-There are two primary ways of working with session data in Laravel: the global `session` helper and via a `Request` instance. First, let's look at accessing the session via a `Request` instance, which can be type-hinted on a route closure or controller method. Remember, controller method dependencies are automatically injected via the Laravel [service container](/docs/{{version}}/container):
+Laravelでセッションデータを操作するには、グローバルな`session`ヘルパと`Request`インスタンスの2つの主要な方法があります。まず、ルートクロージャまたはコントローラメソッドでタイプヒントを付けてセッションにアクセスする方法を見てみましょう。コントローラメソッドの依存関係は、Laravelの[サービスコンテナ](container.md)を介して自動的に注入されることに注意してください：
 
     <?php
 
@@ -82,7 +82,7 @@ There are two primary ways of working with session data in Laravel: the global `
     class UserController extends Controller
     {
         /**
-         * Show the profile for the given user.
+         * 指定されたユーザーのプロフィールを表示します。
          */
         public function show(Request $request, string $id): View
         {
@@ -96,7 +96,7 @@ There are two primary ways of working with session data in Laravel: the global `
         }
     }
 
-When you retrieve an item from the session, you may also pass a default value as the second argument to the `get` method. This default value will be returned if the specified key does not exist in the session. If you pass a closure as the default value to the `get` method and the requested key does not exist, the closure will be executed and its result returned:
+セッションからアイテムを取得する際に、`get`メソッドに2番目の引数としてデフォルト値を渡すこともできます。このデフォルト値は、指定されたキーがセッションに存在しない場合に返されます。`get`メソッドにクロージャをデフォルト値として渡し、要求されたキーが存在しない場合、クロージャが実行され、その結果が返されます：
 
     $value = $request->session()->get('key', 'default');
 
@@ -105,90 +105,90 @@ When you retrieve an item from the session, you may also pass a default value as
     });
 
 <a name="the-global-session-helper"></a>
-#### The Global Session Helper
+#### グローバルセッションヘルパ
 
-You may also use the global `session` PHP function to retrieve and store data in the session. When the `session` helper is called with a single, string argument, it will return the value of that session key. When the helper is called with an array of key / value pairs, those values will be stored in the session:
+セッション内のデータを取得および保存するために、グローバルな`session` PHP関数を使用することもできます。`session`ヘルパが単一の文字列引数で呼び出されると、そのセッションキーの値が返されます。ヘルパがキー/値ペアの配列で呼び出されると、それらの値がセッションに保存されます：
 
     Route::get('/home', function () {
-        // Retrieve a piece of data from the session...
+        // セッションからデータを取得する...
         $value = session('key');
 
-        // Specifying a default value...
+        // デフォルト値を指定する...
         $value = session('key', 'default');
 
-        // Store a piece of data in the session...
+        // セッションにデータを保存する...
         session(['key' => 'value']);
     });
 
-> [!NOTE]  
-> There is little practical difference between using the session via an HTTP request instance versus using the global `session` helper. Both methods are [testable](/docs/{{version}}/testing) via the `assertSessionHas` method which is available in all of your test cases.
+> NOTE:  
+> HTTPリクエストインスタンスを介してセッションを使用するか、グローバルな`session`ヘルパを使用するかに実際的な違いはほとんどありません。どちらの方法も、すべてのテストケースで利用可能な`assertSessionHas`メソッドを介して[テスト可能](testing.md)です。
 
 <a name="retrieving-all-session-data"></a>
-#### Retrieving All Session Data
+#### すべてのセッションデータの取得
 
-If you would like to retrieve all the data in the session, you may use the `all` method:
+セッション内のすべてのデータを取得したい場合は、`all`メソッドを使用できます：
 
     $data = $request->session()->all();
 
 <a name="retrieving-a-portion-of-the-session-data"></a>
-#### Retrieving a Portion of the Session Data
+#### セッションデータの一部の取得
 
-The `only` and `except` methods may be used to retrieve a subset of the session data:
+`only`および`except`メソッドを使用して、セッションデータのサブセットを取得できます：
 
     $data = $request->session()->only(['username', 'email']);
 
     $data = $request->session()->except(['username', 'email']);
 
 <a name="determining-if-an-item-exists-in-the-session"></a>
-#### Determining if an Item Exists in the Session
+#### セッション内にアイテムが存在するかどうかの判定
 
-To determine if an item is present in the session, you may use the `has` method. The `has` method returns `true` if the item is present and is not `null`:
+アイテムがセッション内に存在するかどうかを判定するには、`has`メソッドを使用できます。`has`メソッドは、アイテムが存在し、`null`でない場合に`true`を返します：
 
     if ($request->session()->has('users')) {
         // ...
     }
 
-To determine if an item is present in the session, even if its value is `null`, you may use the `exists` method:
+アイテムがセッション内に存在し、その値が`null`であっても存在するかどうかを判定するには、`exists`メソッドを使用できます：
 
     if ($request->session()->exists('users')) {
         // ...
     }
 
-To determine if an item is not present in the session, you may use the `missing` method. The `missing` method returns `true` if the item is not present:
+アイテムがセッション内に存在しないかどうかを判定するには、`missing`メソッドを使用できます。`missing`メソッドは、アイテムが存在しない場合に`true`を返します：
 
     if ($request->session()->missing('users')) {
         // ...
     }
 
 <a name="storing-data"></a>
-### Storing Data
+### データの保存
 
-To store data in the session, you will typically use the request instance's `put` method or the global `session` helper:
+セッションにデータを保存するには、通常、リクエストインスタンスの`put`メソッドまたはグローバルな`session`ヘルパを使用します：
 
-    // Via a request instance...
+    // リクエストインスタンスを介して...
     $request->session()->put('key', 'value');
 
-    // Via the global "session" helper...
+    // グローバルな "session" ヘルパを介して...
     session(['key' => 'value']);
 
 <a name="pushing-to-array-session-values"></a>
-#### Pushing to Array Session Values
+#### 配列セッション値へのプッシュ
 
-The `push` method may be used to push a new value onto a session value that is an array. For example, if the `user.teams` key contains an array of team names, you may push a new value onto the array like so:
+`push`メソッドを使用して、セッション値が配列である新しい値をプッシュできます。たとえば、`user.teams`キーにチーム名の配列が含まれている場合、次のように新しい値を配列にプッシュできます：
 
     $request->session()->push('user.teams', 'developers');
 
 <a name="retrieving-deleting-an-item"></a>
-#### Retrieving and Deleting an Item
+#### アイテムの取得と削除
 
-The `pull` method will retrieve and delete an item from the session in a single statement:
+`pull`メソッドは、セッションからアイテムを1つのステートメントで取得して削除します：
 
     $value = $request->session()->pull('key', 'default');
 
 <a name="incrementing-and-decrementing-session-values"></a>
-#### Incrementing and Decrementing Session Values
+#### セッション値のインクリメントとデクリメント
 
-If your session data contains an integer you wish to increment or decrement, you may use the `increment` and `decrement` methods:
+セッションデータにインクリメントまたはデクリメントしたい整数が含まれている場合、`increment`および`decrement`メソッドを使用できます：
 
     $request->session()->increment('count');
 
@@ -199,57 +199,61 @@ If your session data contains an integer you wish to increment or decrement, you
     $request->session()->decrement('count', $decrementBy = 2);
 
 <a name="flash-data"></a>
-### Flash Data
+### フラッシュデータ
 
-Sometimes you may wish to store items in the session for the next request. You may do so using the `flash` method. Data stored in the session using this method will be available immediately and during the subsequent HTTP request. After the subsequent HTTP request, the flashed data will be deleted. Flash data is primarily useful for short-lived status messages:
+次のリクエストのためにセッションにアイテムを保存したい場合があります。`flash`メソッドを使用してそうすることができます。この方法でセッションに保存されたデータは、すぐに利用可能で、次のHTTPリクエスト中に利用可能です。次のHTTPリクエストの後、フラッシュデータは削除されます。フラッシュデータは主に短命のステータスメッセージに役立ちます：
 
     $request->session()->flash('status', 'Task was successful!');
 
-If you need to persist your flash data for several requests, you may use the `reflash` method, which will keep all of the flash data for an additional request. If you only need to keep specific flash data, you may use the `keep` method:
+フラッシュデータを複数のリクエストにわたって保持する必要がある場合は、`reflash`メソッドを使用して、すべてのフラッシュデータを追加のリクエストに保持できます。特定のフラッシュデータのみを保持する場合は、`keep`メソッドを使用できます：
 
     $request->session()->reflash();
 
     $request->session()->keep(['username', 'email']);
 
-To persist your flash data only for the current request, you may use the `now` method:
+フラッシュデータを現在のリクエストのみに保持する場合は、`now`メソッドを使用できます：
 
     $request->session()->now('status', 'Task was successful!');
 
 <a name="deleting-data"></a>
-### Deleting Data
+### データの削除
 
-The `forget` method will remove a piece of data from the session. If you would like to remove all data from the session, you may use the `flush` method:
+`forget`メソッドは、セッションからデータを削除します。セッションからすべてのデータを削除する場合は、`flush`メソッドを使用できます：
 
-    // Forget a single key...
+    // 単一のキーを忘れる...
     $request->session()->forget('name');
 
-    // Forget multiple keys...
+    // 複数のキーを忘れる...
     $request->session()->forget(['name', 'status']);
 
     $request->session()->flush();
 
 <a name="regenerating-the-session-id"></a>
-### Regenerating the Session ID
+### セッションIDの再生成
 
-Regenerating the session ID is often done in order to prevent malicious users from exploiting a [session fixation](https://owasp.org/www-community/attacks/Session_fixation) attack on your application.
-
-Laravel automatically regenerates the session ID during authentication if you are using one of the Laravel [application starter kits](/docs/{{version}}/starter-kits) or [Laravel Fortify](/docs/{{version}}/fortify); however, if you need to manually regenerate the session ID, you may use the `regenerate` method:
+セッションIDを再生成するには、通常、セッションハイジャックから保護するために使用されます。Laravelは、`regenerate`メソッドを使用してセッションIDを再生成します：
 
     $request->session()->regenerate();
 
-If you need to regenerate the session ID and remove all data from the session in a single statement, you may use the `invalidate` method:
+セッションIDの再生成は、悪意のあるユーザーがアプリケーションに対して[セッション固定](https://owasp.org/www-community/attacks/Session_fixation)攻撃を仕掛けるのを防ぐためによく行われます。
+
+Laravelは、Laravelの[アプリケーションスターターキット](starter-kits.md)または[Laravel Fortify](fortify.md)を使用している場合、認証時に自動的にセッションIDを再生成します。ただし、セッションIDを手動で再生成する必要がある場合は、`regenerate`メソッドを使用できます。
+
+    $request->session()->regenerate();
+
+セッションIDを再生成し、セッション内のすべてのデータを1つのステートメントで削除する場合は、`invalidate`メソッドを使用できます。
 
     $request->session()->invalidate();
 
 <a name="session-blocking"></a>
-## Session Blocking
+## セッションブロッキング
 
-> [!WARNING]  
-> To utilize session blocking, your application must be using a cache driver that supports [atomic locks](/docs/{{version}}/cache#atomic-locks). Currently, those cache drivers include the `memcached`, `dynamodb`, `redis`, `database`, `file`, and `array` drivers. In addition, you may not use the `cookie` session driver.
+> WARNING:  
+> セッションブロッキングを利用するには、アプリケーションが[アトミックロック](cache.md#atomic-locks)をサポートするキャッシュドライバを使用している必要があります。現在、それらのキャッシュドライバには、`memcached`、`dynamodb`、`redis`、`database`、`file`、および`array`ドライバが含まれます。また、`cookie`セッションドライバを使用することはできません。
 
-By default, Laravel allows requests using the same session to execute concurrently. So, for example, if you use a JavaScript HTTP library to make two HTTP requests to your application, they will both execute at the same time. For many applications, this is not a problem; however, session data loss can occur in a small subset of applications that make concurrent requests to two different application endpoints which both write data to the session.
+デフォルトでは、Laravelは同じセッションを使用するリクエストを同時に実行できます。たとえば、JavaScriptのHTTPライブラリを使用してアプリケーションに対して2つのHTTPリクエストを行う場合、それらは両方とも同時に実行されます。多くのアプリケーションでは、これは問題になりません。ただし、セッションデータの損失が発生する可能性があるアプリケーションの小さなサブセットでは、2つの異なるアプリケーションエンドポイントに対して同時にリクエストを行い、どちらもセッションにデータを書き込む場合があります。
 
-To mitigate this, Laravel provides functionality that allows you to limit concurrent requests for a given session. To get started, you may simply chain the `block` method onto your route definition. In this example, an incoming request to the `/profile` endpoint would acquire a session lock. While this lock is being held, any incoming requests to the `/profile` or `/order` endpoints which share the same session ID will wait for the first request to finish executing before continuing their execution:
+これを緩和するために、Laravelは、特定のセッションに対する同時リクエストを制限する機能を提供します。開始するには、ルート定義に`block`メソッドを単純にチェーンするだけです。この例では、`/profile`エンドポイントへの着信リクエストはセッションロックを取得します。このロックが保持されている間、同じセッションIDを共有する`/profile`または`/order`エンドポイントへの着信リクエストは、最初のリクエストが実行を完了するまで待機してから実行を続行します。
 
     Route::post('/profile', function () {
         // ...
@@ -259,23 +263,23 @@ To mitigate this, Laravel provides functionality that allows you to limit concur
         // ...
     })->block($lockSeconds = 10, $waitSeconds = 10)
 
-The `block` method accepts two optional arguments. The first argument accepted by the `block` method is the maximum number of seconds the session lock should be held for before it is released. Of course, if the request finishes executing before this time the lock will be released earlier.
+`block`メソッドは2つのオプションの引数を受け入れます。`block`メソッドが受け入れる最初の引数は、セッションロックを解放する前に保持する最大秒数です。もちろん、リクエストがこの時間より前に実行を完了した場合、ロックはより早く解放されます。
 
-The second argument accepted by the `block` method is the number of seconds a request should wait while attempting to obtain a session lock. An `Illuminate\Contracts\Cache\LockTimeoutException` will be thrown if the request is unable to obtain a session lock within the given number of seconds.
+`block`メソッドが受け入れる2番目の引数は、リクエストがセッションロックを取得しようとする間に待機する秒数です。指定された秒数以内にリクエストがセッションロックを取得できない場合、`Illuminate\Contracts\Cache\LockTimeoutException`がスローされます。
 
-If neither of these arguments is passed, the lock will be obtained for a maximum of 10 seconds and requests will wait a maximum of 10 seconds while attempting to obtain a lock:
+これらの引数のいずれも渡されない場合、ロックは最大10秒間取得され、リクエストはロックを取得しようとする間に最大10秒間待機します。
 
     Route::post('/profile', function () {
         // ...
     })->block()
 
 <a name="adding-custom-session-drivers"></a>
-## Adding Custom Session Drivers
+## カスタムセッションドライバの追加
 
 <a name="implementing-the-driver"></a>
-### Implementing the Driver
+### ドライバの実装
 
-If none of the existing session drivers fit your application's needs, Laravel makes it possible to write your own session handler. Your custom session driver should implement PHP's built-in `SessionHandlerInterface`. This interface contains just a few simple methods. A stubbed MongoDB implementation looks like the following:
+既存のセッションドライバのいずれもアプリケーションのニーズに合わない場合、Laravelでは独自のセッションハンドラを書くことが可能です。カスタムセッションドライバは、PHPの組み込みの`SessionHandlerInterface`を実装する必要があります。このインターフェースには、いくつかのシンプルなメソッドが含まれています。スタブ化されたMongoDBの実装は次のようになります。
 
     <?php
 
@@ -291,26 +295,26 @@ If none of the existing session drivers fit your application's needs, Laravel ma
         public function gc($lifetime) {}
     }
 
-> [!NOTE]  
-> Laravel does not ship with a directory to contain your extensions. You are free to place them anywhere you like. In this example, we have created an `Extensions` directory to house the `MongoSessionHandler`.
+> NOTE:  
+> Laravelには拡張機能を格納するためのディレクトリは付属していません。お好きな場所に配置できます。この例では、`MongoSessionHandler`を格納するために`Extensions`ディレクトリを作成しました。
 
-Since the purpose of these methods is not readily understandable, let's quickly cover what each of the methods do:
+これらのメソッドの目的はすぐには理解しにくいため、各メソッドが何を行うかを簡単に説明しましょう。
 
 <div class="content-list" markdown="1">
 
-- The `open` method would typically be used in file based session store systems. Since Laravel ships with a `file` session driver, you will rarely need to put anything in this method. You can simply leave this method empty.
-- The `close` method, like the `open` method, can also usually be disregarded. For most drivers, it is not needed.
-- The `read` method should return the string version of the session data associated with the given `$sessionId`. There is no need to do any serialization or other encoding when retrieving or storing session data in your driver, as Laravel will perform the serialization for you.
-- The `write` method should write the given `$data` string associated with the `$sessionId` to some persistent storage system, such as MongoDB or another storage system of your choice.  Again, you should not perform any serialization - Laravel will have already handled that for you.
-- The `destroy` method should remove the data associated with the `$sessionId` from persistent storage.
-- The `gc` method should destroy all session data that is older than the given `$lifetime`, which is a UNIX timestamp. For self-expiring systems like Memcached and Redis, this method may be left empty.
+- `open`メソッドは通常、ファイルベースのセッションストアシステムで使用されます。Laravelには`file`セッションドライバが付属しているため、このメソッドにはほとんど何も入れる必要はありません。単純にこのメソッドを空のままにしておくことができます。
+- `close`メソッドは、`open`メソッドと同様に通常は無視できます。多くのドライバでは必要ありません。
+- `read`メソッドは、指定された`$sessionId`に関連付けられたセッションデータの文字列バージョンを返す必要があります。ドライバでセッションデータを取得または保存する際に、シリアライズやその他のエンコーディングを行う必要はありません。Laravelがシリアライズを行います。
+- `write`メソッドは、指定された`$sessionId`に関連付けられた`$data`文字列をMongoDBなどの永続ストレージシステムに書き込む必要があります。ここでも、シリアライズを行う必要はありません。Laravelがすでにそれを処理しています。
+- `destroy`メソッドは、永続ストレージから`$sessionId`に関連付けられたデータを削除する必要があります。
+- `gc`メソッドは、指定された`$lifetime`（UNIXタイムスタンプ）より古いすべてのセッションデータを破棄する必要があります。MemcachedやRedisのような自己期限切れシステムの場合、このメソッドは空のままにしておくことができます。
 
 </div>
 
 <a name="registering-the-driver"></a>
-### Registering the Driver
+### ドライバの登録
 
-Once your driver has been implemented, you are ready to register it with Laravel. To add additional drivers to Laravel's session backend, you may use the `extend` method provided by the `Session` [facade](/docs/{{version}}/facades). You should call the `extend` method from the `boot` method of a [service provider](/docs/{{version}}/providers). You may do this from the existing `App\Providers\AppServiceProvider` or create an entirely new provider:
+ドライバが実装されたら、Laravelに登録する準備が整いました。Laravelのセッションバックエンドに追加のドライバを追加するには、`Session`[ファサード](facades.md)が提供する`extend`メソッドを使用できます。`extend`メソッドは、[サービスプロバイダ](providers.md)の`boot`メソッドから呼び出す必要があります。これは、既存の`App\Providers\AppServiceProvider`から行うか、まったく新しいプロバイダを作成することができます。
 
     <?php
 
@@ -324,7 +328,7 @@ Once your driver has been implemented, you are ready to register it with Laravel
     class SessionServiceProvider extends ServiceProvider
     {
         /**
-         * Register any application services.
+         * 任意のアプリケーションサービスの登録。
          */
         public function register(): void
         {
@@ -332,15 +336,16 @@ Once your driver has been implemented, you are ready to register it with Laravel
         }
 
         /**
-         * Bootstrap any application services.
+         * 任意のアプリケーションサービスの起動。
          */
         public function boot(): void
         {
             Session::extend('mongo', function (Application $app) {
-                // Return an implementation of SessionHandlerInterface...
+                // SessionHandlerInterfaceの実装を返す...
                 return new MongoSessionHandler;
             });
         }
     }
 
-Once the session driver has been registered, you may specify the `mongo` driver as your application's session driver using the `SESSION_DRIVER` environment variable or within the application's `config/session.php` configuration file.
+セッションドライバが登録されたら、アプリケーションのセッションドライバとして`mongo`ドライバを`SESSION_DRIVER`環境変数またはアプリケーションの`config/session.php`設定ファイル内で指定できます。
+

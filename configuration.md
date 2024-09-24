@@ -1,79 +1,79 @@
-# Configuration
+# 設定
 
-- [Introduction](#introduction)
-- [Environment Configuration](#environment-configuration)
-    - [Environment Variable Types](#environment-variable-types)
-    - [Retrieving Environment Configuration](#retrieving-environment-configuration)
-    - [Determining the Current Environment](#determining-the-current-environment)
-    - [Encrypting Environment Files](#encrypting-environment-files)
-- [Accessing Configuration Values](#accessing-configuration-values)
-- [Configuration Caching](#configuration-caching)
-- [Configuration Publishing](#configuration-publishing)
-- [Debug Mode](#debug-mode)
-- [Maintenance Mode](#maintenance-mode)
+- [はじめに](#introduction)
+- [環境設定](#environment-configuration)
+    - [環境変数の種類](#environment-variable-types)
+    - [環境設定の取得](#retrieving-environment-configuration)
+    - [現在の環境の決定](#determining-the-current-environment)
+    - [環境ファイルの暗号化](#encrypting-environment-files)
+- [設定値へのアクセス](#accessing-configuration-values)
+- [設定のキャッシュ](#configuration-caching)
+- [設定の公開](#configuration-publishing)
+- [デバッグモード](#debug-mode)
+- [メンテナンスモード](#maintenance-mode)
 
 <a name="introduction"></a>
-## Introduction
+## はじめに
 
-All of the configuration files for the Laravel framework are stored in the `config` directory. Each option is documented, so feel free to look through the files and get familiar with the options available to you.
+Laravelフレームワークのすべての設定ファイルは、`config`ディレクトリに保存されています。各オプションには説明があるので、ファイルを見て、利用可能なオプションに慣れてください。
 
-These configuration files allow you to configure things like your database connection information, your mail server information, as well as various other core configuration values such as your application timezone and encryption key.
+これらの設定ファイルを使用すると、データベース接続情報、メールサーバー情報などのようなものを設定できます。また、アプリケーションのタイムゾーンや暗号化キーなど、さまざまなコア設定値も設定できます。
 
 <a name="the-about-command"></a>
-#### The `about` Command
+#### `about`コマンド
 
-Laravel can display an overview of your application's configuration, drivers, and environment via the `about` Artisan command.
+Laravelは、`about` Artisanコマンドを介して、アプリケーションの設定、ドライバ、環境の概要を表示できます。
 
 ```shell
 php artisan about
 ```
 
-If you're only interested in a particular section of the application overview output, you may filter for that section using the `--only` option:
+アプリケーション概要の出力の特定のセクションにのみ興味がある場合は、`--only`オプションを使用してそのセクションをフィルタリングできます：
 
 ```shell
 php artisan about --only=environment
 ```
 
-Or, to explore a specific configuration file's values in detail, you may use the `config:show` Artisan command:
+また、特定の設定ファイルの値を詳細に調べるには、`config:show` Artisanコマンドを使用できます：
 
 ```shell
 php artisan config:show database
 ```
 
 <a name="environment-configuration"></a>
-## Environment Configuration
+## 環境設定
 
-It is often helpful to have different configuration values based on the environment where the application is running. For example, you may wish to use a different cache driver locally than you do on your production server.
+アプリケーションが実行されている環境に基づいて異なる設定値を持つと便利な場合があります。たとえば、ローカルでは本番サーバーとは異なるキャッシュドライバを使用したい場合があります。
 
-To make this a cinch, Laravel utilizes the [DotEnv](https://github.com/vlucas/phpdotenv) PHP library. In a fresh Laravel installation, the root directory of your application will contain a `.env.example` file that defines many common environment variables. During the Laravel installation process, this file will automatically be copied to `.env`.
+これを簡単にするために、Laravelは[DotEnv](https://github.com/vlucas/phpdotenv) PHPライブラリを利用しています。新しいLaravelインストールでは、アプリケーションのルートディレクトリに、多くの一般的な環境変数を定義する`.env.example`ファイルが含まれています。Laravelのインストールプロセス中に、このファイルは自動的に`.env`にコピーされます。
 
-Laravel's default `.env` file contains some common configuration values that may differ based on whether your application is running locally or on a production web server. These values are then read by the configuration files within the `config` directory using Laravel's `env` function.
+Laravelのデフォルトの`.env`ファイルには、アプリケーションがローカルで実行されているか本番Webサーバーで実行されているかに基づいて異なる可能性のある一般的な設定値が含まれています。これらの値は、Laravelの`env`関数を使用して`config`ディレクトリ内の設定ファイルから読み取られます。
 
-If you are developing with a team, you may wish to continue including and updating the `.env.example` file with your application. By putting placeholder values in the example configuration file, other developers on your team can clearly see which environment variables are needed to run your application.
+チームで開発している場合、アプリケーションに`.env.example`ファイルを含めて更新し続けることができます。例の設定ファイルにプレースホルダー値を入れることで、チームの他の開発者は、アプリケーションを実行するために必要な環境変数を明確に確認できます。
 
-> [!NOTE]  
-> Any variable in your `.env` file can be overridden by external environment variables such as server-level or system-level environment variables.
+> NOTE:  
+> `.env`ファイル内のすべての変数は、サーバーレベルまたはシステムレベルの環境変数などの外部環境変数によってオーバーライドできます。
 
 <a name="environment-file-security"></a>
-#### Environment File Security
+#### 環境ファイルのセキュリティ
 
-Your `.env` file should not be committed to your application's source control, since each developer / server using your application could require a different environment configuration. Furthermore, this would be a security risk in the event an intruder gains access to your source control repository, since any sensitive credentials would get exposed.
+`.env`ファイルをアプリケーションのソース管理にコミットしてはいけません。アプリケーションを使用する各開発者/サーバーには、異なる環境設定が必要になる可能性があるためです。さらに、これはセキュリティリスクになります。侵入者がソース管理リポジトリにアクセスした場合、すべての機密資格情報が公開されるためです。
 
-However, it is possible to encrypt your environment file using Laravel's built-in [environment encryption](#encrypting-environment-files). Encrypted environment files may be placed in source control safely.
+ただし、Laravelの組み込みの[環境暗号化](#encrypting-environment-files)を使用して環境ファイルを暗号化することは可能です。暗号化された環境ファイルは、アプリケーションの残りの部分とともにソース管理に安全に追加できます。
 
 <a name="additional-environment-files"></a>
-#### Additional Environment Files
+#### 追加の環境ファイル
 
-Before loading your application's environment variables, Laravel determines if an `APP_ENV` environment variable has been externally provided or if the `--env` CLI argument has been specified. If so, Laravel will attempt to load an `.env.[APP_ENV]` file if it exists. If it does not exist, the default `.env` file will be loaded.
+アプリケーションの環境変数をロードする前に、Laravelは`APP_ENV`環境変数が外部から提供されているか、`--env` CLI引数が指定されているかを判断します。もしそうなら、Laravelは存在する場合に`.env.[APP_ENV]`ファイルをロードしようとします。存在しない場合は、デフォルトの`.env`ファイルがロードされます。
 
 <a name="environment-variable-types"></a>
-### Environment Variable Types
+### 環境変数の種類
 
-All variables in your `.env` files are typically parsed as strings, so some reserved values have been created to allow you to return a wider range of types from the `env()` function:
+`.env`ファイル内のすべての変数は通常文字列として解析されるため、`env()`関数からより広範な型を返すことができるように、いくつかの予約値が作成されています：
 
-<div class="overflow-auto">
+<div class="overflow-auto" markdown=1>
 
-| `.env` Value | `env()` Value |
+| `.env` 値 | `env()` 値 |
 | ------------ | ------------- |
 | true         | (bool) true   |
 | (true)       | (bool) true   |
@@ -86,111 +86,111 @@ All variables in your `.env` files are typically parsed as strings, so some rese
 
 </div>
 
-If you need to define an environment variable with a value that contains spaces, you may do so by enclosing the value in double quotes:
+スペースを含む値を持つ環境変数を定義する必要がある場合は、値を二重引用符で囲むことでそれを行うことができます：
 
 ```ini
 APP_NAME="My Application"
 ```
 
 <a name="retrieving-environment-configuration"></a>
-### Retrieving Environment Configuration
+### 環境設定の取得
 
-All of the variables listed in the `.env` file will be loaded into the `$_ENV` PHP super-global when your application receives a request. However, you may use the `env` function to retrieve values from these variables in your configuration files. In fact, if you review the Laravel configuration files, you will notice many of the options are already using this function:
+`.env`ファイルにリストされているすべての変数は、アプリケーションがリクエストを受け取るときに`$_ENV` PHPスーパーグローバルにロードされます。ただし、設定ファイル内のこれらの変数の値を取得するには、`env`関数を使用できます。実際、Laravelの設定ファイルを確認すると、多くのオプションがすでにこの関数を使用していることがわかります：
 
     'debug' => env('APP_DEBUG', false),
 
-The second value passed to the `env` function is the "default value". This value will be returned if no environment variable exists for the given key.
+`env`関数に渡される2番目の値は「デフォルト値」です。この値は、指定されたキーに対して環境変数が存在しない場合に返されます。
 
 <a name="determining-the-current-environment"></a>
-### Determining the Current Environment
+### 現在の環境の決定
 
-The current application environment is determined via the `APP_ENV` variable from your `.env` file. You may access this value via the `environment` method on the `App` [facade](/docs/{{version}}/facades):
+現在のアプリケーション環境は、`.env`ファイルの`APP_ENV`変数によって決定されます。この値には、`App` [facade](facades.md)の`environment`メソッドを介してアクセスできます：
 
     use Illuminate\Support\Facades\App;
 
     $environment = App::environment();
 
-You may also pass arguments to the `environment` method to determine if the environment matches a given value. The method will return `true` if the environment matches any of the given values:
+`environment`メソッドに引数を渡して、環境が指定された値と一致するかどうかを判断することもできます。メソッドは、環境が指定された値のいずれかと一致する場合に`true`を返します：
 
     if (App::environment('local')) {
-        // The environment is local
+        // 環境はローカルです
     }
 
     if (App::environment(['local', 'staging'])) {
-        // The environment is either local OR staging...
+        // 環境はローカルまたはステージングです...
     }
 
-> [!NOTE]  
-> The current application environment detection can be overridden by defining a server-level `APP_ENV` environment variable.
+> NOTE:  
+> 現在のアプリケーション環境の検出は、サーバーレベルの`APP_ENV`環境変数を定義することでオーバーライドできます。
 
 <a name="encrypting-environment-files"></a>
-### Encrypting Environment Files
+### 環境ファイルの暗号化
 
-Unencrypted environment files should never be stored in source control. However, Laravel allows you to encrypt your environment files so that they may safely be added to source control with the rest of your application.
+暗号化されていない環境ファイルをソース管理に保存してはいけません。ただし、Laravelを使用すると、環境ファイルを暗号化して、アプリケーションの残りの部分とともにソース管理に安全に追加できます。
 
 <a name="encryption"></a>
-#### Encryption
+#### 暗号化
 
-To encrypt an environment file, you may use the `env:encrypt` command:
+環境ファイルを暗号化するには、`env:encrypt`コマンドを使用できます：
 
 ```shell
 php artisan env:encrypt
 ```
 
-Running the `env:encrypt` command will encrypt your `.env` file and place the encrypted contents in an `.env.encrypted` file. The decryption key is presented in the output of the command and should be stored in a secure password manager. If you would like to provide your own encryption key you may use the `--key` option when invoking the command:
+`env:encrypt`コマンドを実行すると、`.env`ファイルが暗号化され、暗号化された内容が`.env.encrypted`ファイルに配置されます。復号化キーはコマンドの出力に表示され、安全なパスワードマネージャに保存する必要があります。独自の暗号化キーを提供する場合は、コマンドを呼び出すときに`--key`オプションを使用できます：
 
 ```shell
 php artisan env:encrypt --key=3UVsEgGVK36XN82KKeyLFMhvosbZN1aF
 ```
 
-> [!NOTE]  
-> The length of the key provided should match the key length required by the encryption cipher being used. By default, Laravel will use the `AES-256-CBC` cipher which requires a 32 character key. You are free to use any cipher supported by Laravel's [encrypter](/docs/{{version}}/encryption) by passing the `--cipher` option when invoking the command.
+> NOTE:  
+> 提供されるキーの長さは、使用される暗号化暗号に必要なキーの長さと一致する必要があります。デフォルトでは、Laravelは`AES-256-CBC`暗号を使用します。これには32文字のキーが必要です。コマンドを呼び出すときに`--cipher`オプションを渡すことで、Laravelの[暗号化](encryption.md)でサポートされている任意の暗号を自由に使用できます。
 
-If your application has multiple environment files, such as `.env` and `.env.staging`, you may specify the environment file that should be encrypted by providing the environment name via the `--env` option:
+アプリケーションに`.env`や`.env.staging`などの複数の環境ファイルがある場合、`--env`オプションを介して暗号化する必要がある環境ファイルを指定できます：
 
 ```shell
 php artisan env:encrypt --env=staging
 ```
 
 <a name="decryption"></a>
-#### Decryption
+#### 復号化
 
-To decrypt an environment file, you may use the `env:decrypt` command. This command requires a decryption key, which Laravel will retrieve from the `LARAVEL_ENV_ENCRYPTION_KEY` environment variable:
+環境ファイルを復号化するには、`env:decrypt`コマンドを使用できます。このコマンドには復号化キーが必要で、Laravelは`LARAVEL_ENV_ENCRYPTION_KEY`環境変数から取得します：
 
 ```shell
 php artisan env:decrypt
 ```
 
-Or, the key may be provided directly to the command via the `--key` option:
+または、キーを`--key`オプションを介してコマンドに直接提供できます：
 
 ```shell
 php artisan env:decrypt --key=3UVsEgGVK36XN82KKeyLFMhvosbZN1aF
 ```
 
-When the `env:decrypt` command is invoked, Laravel will decrypt the contents of the `.env.encrypted` file and place the decrypted contents in the `.env` file.
+`env:decrypt`コマンドが呼び出されると、Laravelは`.env.encrypted`ファイルの内容を復号化し、復号化された内容を`.env`ファイルに配置します。
 
-The `--cipher` option may be provided to the `env:decrypt` command in order to use a custom encryption cipher:
+`--cipher`オプションを`env:decrypt`コマンドに提供して、カスタム暗号化暗号を使用することができます：
 
 ```shell
 php artisan env:decrypt --key=qUWuNRdfuImXcKxZ --cipher=AES-128-CBC
 ```
 
-If your application has multiple environment files, such as `.env` and `.env.staging`, you may specify the environment file that should be decrypted by providing the environment name via the `--env` option:
+アプリケーションに`.env`や`.env.staging`などの複数の環境ファイルがある場合、`--env`オプションを介して復号化する必要がある環境ファイルを指定できます：
 
 ```shell
 php artisan env:decrypt --env=staging
 ```
 
-In order to overwrite an existing environment file, you may provide the `--force` option to the `env:decrypt` command:
+既存の環境ファイルを上書きするには、`env:decrypt`コマンドに`--force`オプションを提供できます：
 
 ```shell
 php artisan env:decrypt --force
 ```
 
 <a name="accessing-configuration-values"></a>
-## Accessing Configuration Values
+## 設定値へのアクセス
 
-You may easily access your configuration values using the `Config` facade or global `config` function from anywhere in your application. The configuration values may be accessed using "dot" syntax, which includes the name of the file and option you wish to access. A default value may also be specified and will be returned if the configuration option does not exist:
+アプリケーション内のどこからでも`Config` facadeまたはグローバル`config`関数を使用して設定値に簡単にアクセスできます。設定値には「ドット」構文を使用してアクセスできます。これには、アクセスしたいファイルとオプションの名前が含まれます。デフォルト値を指定することもでき、設定オプションが存在しない場合に返されます：
 
     use Illuminate\Support\Facades\Config;
 
@@ -198,16 +198,16 @@ You may easily access your configuration values using the `Config` facade or glo
 
     $value = config('app.timezone');
 
-    // Retrieve a default value if the configuration value does not exist...
+    // 設定値が存在しない場合にデフォルト値を取得...
     $value = config('app.timezone', 'Asia/Seoul');
 
-To set configuration values at runtime, you may invoke the `Config` facade's `set` method or pass an array to the `config` function:
+ランタイム時に設定値を設定するには、`Config`ファサードの`set`メソッドを呼び出すか、配列を`config`関数に渡します。
 
     Config::set('app.timezone', 'America/Chicago');
 
     config(['app.timezone' => 'America/Chicago']);
 
-To assist with static analysis, the `Config` facade also provides typed configuration retrieval methods. If the retrieved configuration value does not match the expected type, an exception will be thrown:
+静的解析を支援するために、`Config`ファサードは型付きの設定取得メソッドも提供しています。取得された設定値が期待される型と一致しない場合、例外がスローされます。
 
     Config::string('config-key');
     Config::integer('config-key');
@@ -216,31 +216,31 @@ To assist with static analysis, the `Config` facade also provides typed configur
     Config::array('config-key');
 
 <a name="configuration-caching"></a>
-## Configuration Caching
+## 設定のキャッシュ
 
-To give your application a speed boost, you should cache all of your configuration files into a single file using the `config:cache` Artisan command. This will combine all of the configuration options for your application into a single file which can be quickly loaded by the framework.
+アプリケーションの速度を向上させるために、`config:cache` Artisanコマンドを使用して、すべての設定ファイルを単一のファイルにキャッシュする必要があります。これにより、アプリケーションのすべての設定オプションが1つのファイルに結合され、フレームワークによって迅速に読み込まれるようになります。
 
-You should typically run the `php artisan config:cache` command as part of your production deployment process. The command should not be run during local development as configuration options will frequently need to be changed during the course of your application's development.
+通常、`php artisan config:cache`コマンドは本番環境のデプロイプロセスの一部として実行する必要があります。このコマンドは、アプリケーションの開発中に設定オプションを頻繁に変更する必要があるため、ローカル開発中に実行すべきではありません。
 
-Once the configuration has been cached, your application's `.env` file will not be loaded by the framework during requests or Artisan commands; therefore, the `env` function will only return external, system level environment variables.
+設定がキャッシュされると、アプリケーションの`.env`ファイルはリクエストやArtisanコマンド中にフレームワークによって読み込まれません。したがって、`env`関数はシステムレベルの環境変数のみを返します。
 
-For this reason, you should ensure you are only calling the `env` function from within your application's configuration (`config`) files. You can see many examples of this by examining Laravel's default configuration files. Configuration values may be accessed from anywhere in your application using the `config` function [described above](#accessing-configuration-values).
+このため、アプリケーションの設定（`config`）ファイル内からのみ`env`関数を呼び出すようにしてください。Laravelのデフォルト設定ファイルを調べることで、この例を多く見ることができます。設定値は、[前述](#accessing-configuration-values)の`config`関数を使用して、アプリケーション内のどこからでもアクセスできます。
 
-The `config:clear` command may be used to purge the cached configuration:
+キャッシュされた設定をクリアするには、`config:clear`コマンドを使用できます。
 
 ```shell
 php artisan config:clear
 ```
 
-> [!WARNING]  
-> If you execute the `config:cache` command during your deployment process, you should be sure that you are only calling the `env` function from within your configuration files. Once the configuration has been cached, the `.env` file will not be loaded; therefore, the `env` function will only return external, system level environment variables.
+> WARNING:  
+> デプロイプロセス中に`config:cache`コマンドを実行する場合、設定ファイル内からのみ`env`関数を呼び出していることを確認してください。設定がキャッシュされると、`.env`ファイルは読み込まれません。したがって、`env`関数はシステムレベルの環境変数のみを返します。
 
 <a name="configuration-publishing"></a>
-## Configuration Publishing
+## 設定の公開
 
-Most of Laravel's configuration files are already published in your application's `config` directory; however, certain configuration files like `cors.php` and `view.php` are not published by default, as most applications will never need to modify them.
+Laravelのほとんどの設定ファイルは、既にアプリケーションの`config`ディレクトリに公開されています。ただし、`cors.php`や`view.php`などの特定の設定ファイルは、デフォルトでは公開されていません。ほとんどのアプリケーションはこれらを変更する必要がないためです。
 
-However, you may use the `config:publish` Artisan command to publish any configuration files that are not published by default:
+ただし、`config:publish` Artisanコマンドを使用して、デフォルトで公開されていない設定ファイルを公開することができます。
 
 ```shell
 php artisan config:publish
@@ -249,68 +249,68 @@ php artisan config:publish --all
 ```
 
 <a name="debug-mode"></a>
-## Debug Mode
+## デバッグモード
 
-The `debug` option in your `config/app.php` configuration file determines how much information about an error is actually displayed to the user. By default, this option is set to respect the value of the `APP_DEBUG` environment variable, which is stored in your `.env` file.
+`config/app.php`設定ファイルの`debug`オプションは、エラーに関するどの程度の情報がユーザーに実際に表示されるかを決定します。デフォルトでは、このオプションは`.env`ファイルに保存されている`APP_DEBUG`環境変数の値を尊重するように設定されています。
 
-> [!WARNING]  
-> For local development, you should set the `APP_DEBUG` environment variable to `true`. **In your production environment, this value should always be `false`. If the variable is set to `true` in production, you risk exposing sensitive configuration values to your application's end users.**
+> WARNING:  
+> ローカル開発では、`APP_DEBUG`環境変数を`true`に設定する必要があります。**本番環境では、この値は常に`false`である必要があります。本番環境でこの変数が`true`に設定されていると、アプリケーションのエンドユーザーに機密性の高い設定値が公開されるリスクがあります。**
 
 <a name="maintenance-mode"></a>
-## Maintenance Mode
+## メンテナンスモード
 
-When your application is in maintenance mode, a custom view will be displayed for all requests into your application. This makes it easy to "disable" your application while it is updating or when you are performing maintenance. A maintenance mode check is included in the default middleware stack for your application. If the application is in maintenance mode, a `Symfony\Component\HttpKernel\Exception\HttpException` instance will be thrown with a status code of 503.
+アプリケーションがメンテナンスモードの場合、アプリケーションへのすべてのリクエストに対してカスタムビューが表示されます。これにより、更新中やメンテナンス中にアプリケーションを「無効化」することが容易になります。メンテナンスモードのチェックは、アプリケーションのデフォルトのミドルウェアスタックに含まれています。アプリケーションがメンテナンスモードの場合、ステータスコード503で`Symfony\Component\HttpKernel\Exception\HttpException`インスタンスがスローされます。
 
-To enable maintenance mode, execute the `down` Artisan command:
+メンテナンスモードを有効にするには、`down` Artisanコマンドを実行します。
 
 ```shell
 php artisan down
 ```
 
-If you would like the `Refresh` HTTP header to be sent with all maintenance mode responses, you may provide the `refresh` option when invoking the `down` command. The `Refresh` header will instruct the browser to automatically refresh the page after the specified number of seconds:
+すべてのメンテナンスモードのレスポンスで`Refresh` HTTPヘッダーを送信したい場合は、`down`コマンドを呼び出す際に`refresh`オプションを指定できます。`Refresh`ヘッダーは、指定された秒数後にブラウザに自動的にページを更新するよう指示します。
 
 ```shell
 php artisan down --refresh=15
 ```
 
-You may also provide a `retry` option to the `down` command, which will be set as the `Retry-After` HTTP header's value, although browsers generally ignore this header:
+また、`down`コマンドに`retry`オプションを指定することもできます。これは`Retry-After` HTTPヘッダーの値として設定されますが、通常ブラウザはこのヘッダーを無視します。
 
 ```shell
 php artisan down --retry=60
 ```
 
 <a name="bypassing-maintenance-mode"></a>
-#### Bypassing Maintenance Mode
+#### メンテナンスモードのバイパス
 
-To allow maintenance mode to be bypassed using a secret token, you may use the `secret` option to specify a maintenance mode bypass token:
+シークレットトークンを使用してメンテナンスモードをバイパスできるようにするには、`secret`オプションを使用してメンテナンスモードバイパストークンを指定できます。
 
 ```shell
 php artisan down --secret="1630542a-246b-4b66-afa1-dd72a4c43515"
 ```
 
-After placing the application in maintenance mode, you may navigate to the application URL matching this token and Laravel will issue a maintenance mode bypass cookie to your browser:
+アプリケーションをメンテナンスモードにした後、このトークンに一致するアプリケーションURLに移動すると、Laravelはメンテナンスモードバイパスクッキーをブラウザに発行します。
 
 ```shell
 https://example.com/1630542a-246b-4b66-afa1-dd72a4c43515
 ```
 
-If you would like Laravel to generate the secret token for you, you may use the `with-secret` option. The secret will be displayed to you once the application is in maintenance mode:
+Laravelにシークレットトークンを生成させたい場合は、`with-secret`オプションを使用できます。シークレットは、アプリケーションがメンテナンスモードになった後に表示されます。
 
 ```shell
 php artisan down --with-secret
 ```
 
-When accessing this hidden route, you will then be redirected to the `/` route of the application. Once the cookie has been issued to your browser, you will be able to browse the application normally as if it was not in maintenance mode.
+この隠しルートにアクセスすると、アプリケーションの`/`ルートにリダイレクトされます。クッキーがブラウザに発行されると、メンテナンスモードでないかのようにアプリケーションを通常通り閲覧できます。
 
-> [!NOTE]  
-> Your maintenance mode secret should typically consist of alpha-numeric characters and, optionally, dashes. You should avoid using characters that have special meaning in URLs such as `?` or `&`.
+> NOTE:  
+> メンテナンスモードのシークレットは、通常、英数字とオプションでダッシュで構成されるべきです。URLで特別な意味を持つ文字（例：`?`や`&`）は避けるべきです。
 
 <a name="maintenance-mode-on-multiple-servers"></a>
-#### Maintenance Mode on Multiple Servers
+#### 複数サーバーでのメンテナンスモード
 
-By default, Laravel determines if your application is in maintenance mode using a file-based system. This means to activate maintenance mode, the `php artisan down` command has to be executed on each server hosting your application.
+デフォルトでは、Laravelはファイルベースのシステムを使用してアプリケーションがメンテナンスモードかどうかを判断します。これは、メンテナンスモードを有効にするために、`php artisan down`コマンドをアプリケーションをホストしている各サーバーで実行する必要があることを意味します。
 
-Alternatively, Laravel offers a cache-based method for handling maintenance mode. This method requires running the `php artisan down` command on just one server. To use this approach, modify the "driver" setting in the `config/app.php` file of your application to `cache`. Then, select a cache `store` that is accessible by all your servers. This ensures the maintenance mode status is consistently maintained across every server:
+あるいは、Laravelはメンテナンスモードを処理するためのキャッシュベースの方法も提供しています。この方法では、`php artisan down`コマンドを1つのサーバーで実行するだけで済みます。このアプローチを使用するには、アプリケーションの`config/app.php`ファイルの「driver」設定を`cache`に変更します。次に、すべてのサーバーからアクセス可能なキャッシュ`store`を選択します。これにより、メンテナンスモードのステータスがすべてのサーバーで一貫して維持されます。
 
 ```php
 'maintenance' => [
@@ -320,43 +320,44 @@ Alternatively, Laravel offers a cache-based method for handling maintenance mode
 ```
 
 <a name="pre-rendering-the-maintenance-mode-view"></a>
-#### Pre-Rendering the Maintenance Mode View
+#### メンテナンスモードビューのプリレンダリング
 
-If you utilize the `php artisan down` command during deployment, your users may still occasionally encounter errors if they access the application while your Composer dependencies or other infrastructure components are updating. This occurs because a significant part of the Laravel framework must boot in order to determine your application is in maintenance mode and render the maintenance mode view using the templating engine.
+デプロイ中に`php artisan down`コマンドを使用する場合、Composerの依存関係やその他のインフラストラクチャコンポーネントが更新されている間に、ユーザーがアプリケーションにアクセスすると、エラーが発生することがあります。これは、Laravelフレームワークの大部分が起動してアプリケーションがメンテナンスモードであることを判断し、テンプレートエンジンを使用してメンテナンスモードビューをレンダリングする必要があるためです。
 
-For this reason, Laravel allows you to pre-render a maintenance mode view that will be returned at the very beginning of the request cycle. This view is rendered before any of your application's dependencies have loaded. You may pre-render a template of your choice using the `down` command's `render` option:
+このため、Laravelでは、リクエストサイクルの非常に早い段階で返されるメンテナンスモードビューをプリレンダリングできます。このビューは、アプリケーションの依存関係がいずれもロードされる前にレンダリングされます。`down`コマンドの`render`オプションを使用して、選択したテンプレートをプリレンダリングできます。
 
 ```shell
 php artisan down --render="errors::503"
 ```
 
 <a name="redirecting-maintenance-mode-requests"></a>
-#### Redirecting Maintenance Mode Requests
+#### メンテナンスモードリクエストのリダイレクト
 
-While in maintenance mode, Laravel will display the maintenance mode view for all application URLs the user attempts to access. If you wish, you may instruct Laravel to redirect all requests to a specific URL. This may be accomplished using the `redirect` option. For example, you may wish to redirect all requests to the `/` URI:
+メンテナンスモード中に、ユーザーがアクセスしようとするすべてのアプリケーションURLに対してメンテナンスモードビューが表示されます。必要に応じて、Laravelにすべてのリクエストを特定のURLにリダイレクトするよう指示できます。これは、`redirect`オプションを使用して行うことができます。たとえば、すべてのリクエストを`/` URIにリダイレクトすることができます。
 
 ```shell
 php artisan down --redirect=/
 ```
 
 <a name="disabling-maintenance-mode"></a>
-#### Disabling Maintenance Mode
+#### メンテナンスモードの無効化
 
-To disable maintenance mode, use the `up` command:
+メンテナンスモードを無効にするには、`up`コマンドを使用します。
 
 ```shell
 php artisan up
 ```
 
-> [!NOTE]  
-> You may customize the default maintenance mode template by defining your own template at `resources/views/errors/503.blade.php`.
+> NOTE:  
+> デフォルトのメンテナンスモードテンプレートは、`resources/views/errors/503.blade.php`に独自のテンプレートを定義することでカスタマイズできます。
 
 <a name="maintenance-mode-queues"></a>
-#### Maintenance Mode and Queues
+#### メンテナンスモードとキュー
 
-While your application is in maintenance mode, no [queued jobs](/docs/{{version}}/queues) will be handled. The jobs will continue to be handled as normal once the application is out of maintenance mode.
+アプリケーションがメンテナンスモードの間、[キュージョブ](queues.md)は処理されません。アプリケーションがメンテナンスモードから抜けると、ジョブは通常通り処理されます。
 
 <a name="alternatives-to-maintenance-mode"></a>
-#### Alternatives to Maintenance Mode
+#### メンテナンスモードの代替手段
 
-Since maintenance mode requires your application to have several seconds of downtime, consider alternatives like [Laravel Vapor](https://vapor.laravel.com) and [Envoyer](https://envoyer.io) to accomplish zero-downtime deployment with Laravel.
+メンテナンスモードでは、アプリケーションに数秒のダウンタイムが必要になるため、Laravel VaporやEnvoyerなどの代替手段を検討して、Laravelでゼロダウンタイムデプロイを実現してください。
+

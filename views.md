@@ -1,26 +1,26 @@
-# Views
+# ビュー
 
-- [Introduction](#introduction)
-    - [Writing Views in React / Vue](#writing-views-in-react-or-vue)
-- [Creating and Rendering Views](#creating-and-rendering-views)
-    - [Nested View Directories](#nested-view-directories)
-    - [Creating the First Available View](#creating-the-first-available-view)
-    - [Determining if a View Exists](#determining-if-a-view-exists)
-- [Passing Data to Views](#passing-data-to-views)
-    - [Sharing Data With All Views](#sharing-data-with-all-views)
-- [View Composers](#view-composers)
-    - [View Creators](#view-creators)
-- [Optimizing Views](#optimizing-views)
+- [イントロダクション](#introduction)
+    - [React / Vue でのビューの記述](#writing-views-in-react-or-vue)
+- [ビューの作成とレンダリング](#creating-and-rendering-views)
+    - [ネストされたビューディレクトリ](#nested-view-directories)
+    - [最初に利用可能なビューの作成](#creating-the-first-available-view)
+    - [ビューが存在するかどうかの判定](#determining-if-a-view-exists)
+- [ビューへのデータの受け渡し](#passing-data-to-views)
+    - [すべてのビューとデータの共有](#sharing-data-with-all-views)
+- [ビューコンポーザ](#view-composers)
+    - [ビュークリエイター](#view-creators)
+- [ビューの最適化](#optimizing-views)
 
 <a name="introduction"></a>
-## Introduction
+## イントロダクション
 
-Of course, it's not practical to return entire HTML documents strings directly from your routes and controllers. Thankfully, views provide a convenient way to place all of our HTML in separate files.
+もちろん、ルートやコントローラから直接HTMLドキュメント全体の文字列を返すのは現実的ではありません。幸いなことに、ビューはすべてのHTMLを別々のファイルに配置する便利な方法を提供します。
 
-Views separate your controller / application logic from your presentation logic and are stored in the `resources/views` directory. When using Laravel, view templates are usually written using the [Blade templating language](/docs/{{version}}/blade). A simple view might look something like this:
+ビューは、コントローラ/アプリケーションロジックをプレゼンテーションロジックから分離し、`resources/views`ディレクトリに保存されます。Laravelを使用する場合、ビューテンプレートは通常[Bladeテンプレート言語](blade.md)を使用して記述されます。シンプルなビューは次のようになります：
 
 ```blade
-<!-- View stored in resources/views/greeting.blade.php -->
+<!-- ビューはresources/views/greeting.blade.phpに保存されています -->
 
 <html>
     <body>
@@ -29,70 +29,70 @@ Views separate your controller / application logic from your presentation logic 
 </html>
 ```
 
-Since this view is stored at `resources/views/greeting.blade.php`, we may return it using the global `view` helper like so:
+このビューが`resources/views/greeting.blade.php`に保存されている場合、グローバルな`view`ヘルパーを使用して次のように返すことができます：
 
     Route::get('/', function () {
         return view('greeting', ['name' => 'James']);
     });
 
-> [!NOTE]  
-> Looking for more information on how to write Blade templates? Check out the full [Blade documentation](/docs/{{version}}/blade) to get started.
+> NOTE:  
+> Bladeテンプレートの記述方法について詳しく知りたい場合は、[Bladeドキュメント](blade.md)を参照してください。
 
 <a name="writing-views-in-react-or-vue"></a>
-### Writing Views in React / Vue
+### React / Vue でのビューの記述
 
-Instead of writing their frontend templates in PHP via Blade, many developers have begun to prefer to write their templates using React or Vue. Laravel makes this painless thanks to [Inertia](https://inertiajs.com/), a library that makes it a cinch to tie your React / Vue frontend to your Laravel backend without the typical complexities of building an SPA.
+Bladeを介してPHPでフロントエンドテンプレートを記述する代わりに、多くの開発者はテンプレートをReactまたはVueを使用して記述することを好みます。Laravelは[Inertia](https://inertiajs.com/)のおかげで、React/VueのフロントエンドをLaravelのバックエンドに結びつけるのが簡単になります。
 
-Our Breeze and Jetstream [starter kits](/docs/{{version}}/starter-kits) give you a great starting point for your next Laravel application powered by Inertia. In addition, the [Laravel Bootcamp](https://bootcamp.laravel.com) provides a full demonstration of building a Laravel application powered by Inertia, including examples in Vue and React.
+BreezeとJetstreamの[スターターキット](starter-kits.md)は、Inertiaを搭載した次のLaravelアプリケーションのための素晴らしい出発点を提供します。さらに、[Laravel Bootcamp](https://bootcamp.laravel.com)は、VueとReactの例を含む、Inertiaを搭載したLaravelアプリケーションの構築の完全なデモンストレーションを提供します。
 
 <a name="creating-and-rendering-views"></a>
-## Creating and Rendering Views
+## ビューの作成とレンダリング
 
-You may create a view by placing a file with the `.blade.php` extension in your application's `resources/views` directory or by using the `make:view` Artisan command:
+アプリケーションの`resources/views`ディレクトリに`.blade.php`拡張子を持つファイルを配置するか、`make:view` Artisanコマンドを使用してビューを作成できます：
 
 ```shell
 php artisan make:view greeting
 ```
 
-The `.blade.php` extension informs the framework that the file contains a [Blade template](/docs/{{version}}/blade). Blade templates contain HTML as well as Blade directives that allow you to easily echo values, create "if" statements, iterate over data, and more.
+`.blade.php`拡張子は、ファイルが[Bladeテンプレート](blade.md)を含んでいることをフレームワークに通知します。BladeテンプレートにはHTMLと、値を簡単に出力したり、"if"文を作成したり、データを反復処理したりするためのBladeディレクティブが含まれます。
 
-Once you have created a view, you may return it from one of your application's routes or controllers using the global `view` helper:
+ビューを作成したら、アプリケーションのルートまたはコントローラからグローバルな`view`ヘルパーを使用して返すことができます：
 
     Route::get('/', function () {
         return view('greeting', ['name' => 'James']);
     });
 
-Views may also be returned using the `View` facade:
+ビューは`View`ファサードを使用して返すこともできます：
 
     use Illuminate\Support\Facades\View;
 
     return View::make('greeting', ['name' => 'James']);
 
-As you can see, the first argument passed to the `view` helper corresponds to the name of the view file in the `resources/views` directory. The second argument is an array of data that should be made available to the view. In this case, we are passing the `name` variable, which is displayed in the view using [Blade syntax](/docs/{{version}}/blade).
+ご覧のように、`view`ヘルパーに渡される最初の引数は、`resources/views`ディレクトリ内のビューファイルの名前に対応しています。2番目の引数は、ビューで利用可能にする必要があるデータの配列です。この場合、`name`変数を渡しています。これは[Blade構文](blade.md)を使用してビューに表示されます。
 
 <a name="nested-view-directories"></a>
-### Nested View Directories
+### ネストされたビューディレクトリ
 
-Views may also be nested within subdirectories of the `resources/views` directory. "Dot" notation may be used to reference nested views. For example, if your view is stored at `resources/views/admin/profile.blade.php`, you may return it from one of your application's routes / controllers like so:
+ビューは`resources/views`ディレクトリのサブディレクトリ内にもネストされることがあります。"ドット"記法を使用してネストされたビューを参照できます。たとえば、ビューが`resources/views/admin/profile.blade.php`に保存されている場合、アプリケーションのルート/コントローラから次のように返すことができます：
 
     return view('admin.profile', $data);
 
-> [!WARNING]  
-> View directory names should not contain the `.` character.
+> WARNING:  
+> ビューディレクトリ名には`.`文字を含めないでください。
 
 <a name="creating-the-first-available-view"></a>
-### Creating the First Available View
+### 最初に利用可能なビューの作成
 
-Using the `View` facade's `first` method, you may create the first view that exists in a given array of views. This may be useful if your application or package allows views to be customized or overwritten:
+`View`ファサードの`first`メソッドを使用して、指定されたビューの配列の中で最初に存在するビューを作成できます。これは、アプリケーションまたはパッケージがビューをカスタマイズまたは上書きできる場合に便利です：
 
     use Illuminate\Support\Facades\View;
 
     return View::first(['custom.admin', 'admin'], $data);
 
 <a name="determining-if-a-view-exists"></a>
-### Determining if a View Exists
+### ビューが存在するかどうかの判定
 
-If you need to determine if a view exists, you may use the `View` facade. The `exists` method will return `true` if the view exists:
+ビューが存在するかどうかを判定する必要がある場合は、`View`ファサードを使用できます。`exists`メソッドは、ビューが存在する場合に`true`を返します：
 
     use Illuminate\Support\Facades\View;
 
@@ -101,24 +101,24 @@ If you need to determine if a view exists, you may use the `View` facade. The `e
     }
 
 <a name="passing-data-to-views"></a>
-## Passing Data to Views
+## ビューへのデータの受け渡し
 
-As you saw in the previous examples, you may pass an array of data to views to make that data available to the view:
+前の例で見たように、ビューにデータの配列を渡して、そのデータをビューで利用可能にすることができます：
 
     return view('greetings', ['name' => 'Victoria']);
 
-When passing information in this manner, the data should be an array with key / value pairs. After providing data to a view, you can then access each value within your view using the data's keys, such as `<?php echo $name; ?>`.
+この方法で情報を渡す場合、データはキー/値のペアを持つ配列である必要があります。ビューにデータを提供した後、データのキーを使用してビュー内で各値にアクセスできます。例えば`<?php echo $name; ?>`のように。
 
-As an alternative to passing a complete array of data to the `view` helper function, you may use the `with` method to add individual pieces of data to the view. The `with` method returns an instance of the view object so that you can continue chaining methods before returning the view:
+`view`ヘルパー関数に完全なデータ配列を渡す代わりに、`with`メソッドを使用してビューに個々のデータを追加することもできます。`with`メソッドはビューオブジェクトのインスタンスを返すため、ビューを返す前にメソッドを連鎖させることができます：
 
     return view('greeting')
                 ->with('name', 'Victoria')
                 ->with('occupation', 'Astronaut');
 
 <a name="sharing-data-with-all-views"></a>
-### Sharing Data With All Views
+### すべてのビューとデータの共有
 
-Occasionally, you may need to share data with all views that are rendered by your application. You may do so using the `View` facade's `share` method. Typically, you should place calls to the `share` method within a service provider's `boot` method. You are free to add them to the `App\Providers\AppServiceProvider` class or generate a separate service provider to house them:
+アプリケーションによってレンダリングされるすべてのビューとデータを共有する必要がある場合があります。`View`ファサードの`share`メソッドを使用して行うことができます。通常、`share`メソッドの呼び出しはサービスプロバイダの`boot`メソッド内に配置する必要があります。`App\Providers\AppServiceProvider`クラスに追加するか、それらを格納するための別のサービスプロバイダを生成することができます：
 
     <?php
 
@@ -129,7 +129,7 @@ Occasionally, you may need to share data with all views that are rendered by you
     class AppServiceProvider extends ServiceProvider
     {
         /**
-         * Register any application services.
+         * 任意のアプリケーションサービスの登録。
          */
         public function register(): void
         {
@@ -137,7 +137,7 @@ Occasionally, you may need to share data with all views that are rendered by you
         }
 
         /**
-         * Bootstrap any application services.
+         * 任意のアプリケーションサービスのブートストラップ。
          */
         public function boot(): void
         {
@@ -146,13 +146,13 @@ Occasionally, you may need to share data with all views that are rendered by you
     }
 
 <a name="view-composers"></a>
-## View Composers
+## ビューコンポーザ
 
-View composers are callbacks or class methods that are called when a view is rendered. If you have data that you want to be bound to a view each time that view is rendered, a view composer can help you organize that logic into a single location. View composers may prove particularly useful if the same view is returned by multiple routes or controllers within your application and always needs a particular piece of data.
+ビューコンポーザは、ビューがレンダリングされるときに呼び出されるコールバックまたはクラスメソッドです。ビューがレンダリングされるたびにビューにバインドしたいデータがある場合、ビューコンポーザはそのロジックを1つの場所に整理するのに役立ちます。ビューコンポーザは、アプリケーション内の複数のルートまたはコントローラから同じビューが返され、常に特定のデータが必要な場合に特に便利です。
 
-Typically, view composers will be registered within one of your application's [service providers](/docs/{{version}}/providers). In this example, we'll assume that the `App\Providers\AppServiceProvider` will house this logic.
+通常、ビューコンポーザはアプリケーションの[サービスプロバイダ](providers.md)の1つに登録されます。この例では、`App\Providers\AppServiceProvider`がこのロジックを格納すると仮定します。
 
-We'll use the `View` facade's `composer` method to register the view composer. Laravel does not include a default directory for class based view composers, so you are free to organize them however you wish. For example, you could create an `app/View/Composers` directory to house all of your application's view composers:
+`View`ファサードの`composer`メソッドを使用してビューコンポーザを登録します。Laravelにはクラスベースのビューコンポーザのためのデフォルトディレクトリは含まれていないため、自由に整理することができます。たとえば、アプリケーションのすべてのビューコンポーザを格納するために`app/View/Composers`ディレクトリを作成することができます：
 
     <?php
 
@@ -166,7 +166,7 @@ We'll use the `View` facade's `composer` method to register the view composer. L
     class AppServiceProvider extends ServiceProvider
     {
         /**
-         * Register any application services.
+         * 任意のアプリケーションサービスの登録。
          */
         public function register(): void
         {
@@ -174,14 +174,14 @@ We'll use the `View` facade's `composer` method to register the view composer. L
         }
 
         /**
-         * Bootstrap any application services.
+         * 任意のアプリケーションサービスのブートストラップ。
          */
         public function boot(): void
         {
-            // Using class based composers...
+            // クラスベースのコンポーザを使用...
             Facades\View::composer('profile', ProfileComposer::class);
 
-            // Using closure based composers...
+            // クロージャベースのコンポーザを使用...
             Facades\View::composer('welcome', function (View $view) {
                 // ...
             });
@@ -192,7 +192,7 @@ We'll use the `View` facade's `composer` method to register the view composer. L
         }
     }
 
-Now that we have registered the composer, the `compose` method of the `App\View\Composers\ProfileComposer` class will be executed each time the `profile` view is being rendered. Let's take a look at an example of the composer class:
+これで、ビューコンポーザが登録されたので、`profile`ビューがレンダリングされるたびに`App\View\Composers\ProfileComposer`クラスの`compose`メソッドが実行されます。ビューコンポーザクラスの例を見てみましょう：
 
     <?php
 
@@ -204,14 +204,14 @@ Now that we have registered the composer, the `compose` method of the `App\View\
     class ProfileComposer
     {
         /**
-         * Create a new profile composer.
+         * 新しいプロフィールコンポーザを作成します。
          */
         public function __construct(
             protected UserRepository $users,
         ) {}
 
         /**
-         * Bind data to the view.
+         * ビューにデータをバインドします。
          */
         public function compose(View $view): void
         {
@@ -219,12 +219,12 @@ Now that we have registered the composer, the `compose` method of the `App\View\
         }
     }
 
-As you can see, all view composers are resolved via the [service container](/docs/{{version}}/container), so you may type-hint any dependencies you need within a composer's constructor.
+ご覧のように、すべてのビューコンポーザは[サービスコンテナ](container.md)を介して解決されるため、コンポーザのコンストラクタ内で必要な依存関係をタイプヒントで指定できます。
 
 <a name="attaching-a-composer-to-multiple-views"></a>
-#### Attaching a Composer to Multiple Views
+#### 複数のビューへのコンポーザのアタッチ
 
-You may attach a view composer to multiple views at once by passing an array of views as the first argument to the `composer` method:
+`composer`メソッドの最初の引数としてビューの配列を渡すことで、一度に複数のビューにビューコンポーザをアタッチできます：
 
     use App\Views\Composers\MultiComposer;
     use Illuminate\Support\Facades\View;
@@ -234,38 +234,50 @@ You may attach a view composer to multiple views at once by passing an array of 
         MultiComposer::class
     );
 
-The `composer` method also accepts the `*` character as a wildcard, allowing you to attach a composer to all views:
+```php
+View::composer(
+    ['profile', 'dashboard'],
+    MultiComposer::class
+);
+```
 
-    use Illuminate\Support\Facades;
-    use Illuminate\View\View;
+`composer`メソッドは、ワイルドカードとして`*`文字も受け入れるため、コンポーザーをすべてのビューにアタッチすることができます:
 
-    Facades\View::composer('*', function (View $view) {
-        // ...
-    });
+```php
+use Illuminate\Support\Facades;
+use Illuminate\View\View;
+
+Facades\View::composer('*', function (View $view) {
+    // ...
+});
+```
 
 <a name="view-creators"></a>
-### View Creators
+### ビュークリエイター
 
-View "creators" are very similar to view composers; however, they are executed immediately after the view is instantiated instead of waiting until the view is about to render. To register a view creator, use the `creator` method:
+ビュー「クリエイター」はビューコンポーザーと非常によく似ていますが、ビューがレンダリングされる直前ではなく、ビューがインスタンス化された直後に実行されます。ビュークリエイターを登録するには、`creator`メソッドを使用します:
 
-    use App\View\Creators\ProfileCreator;
-    use Illuminate\Support\Facades\View;
+```php
+use App\View\Creators\ProfileCreator;
+use Illuminate\Support\Facades\View;
 
-    View::creator('profile', ProfileCreator::class);
+View::creator('profile', ProfileCreator::class);
+```
 
 <a name="optimizing-views"></a>
-## Optimizing Views
+## ビューの最適化
 
-By default, Blade template views are compiled on demand. When a request is executed that renders a view, Laravel will determine if a compiled version of the view exists. If the file exists, Laravel will then determine if the uncompiled view has been modified more recently than the compiled view. If the compiled view either does not exist, or the uncompiled view has been modified, Laravel will recompile the view.
+デフォルトでは、Bladeテンプレートビューは必要に応じてコンパイルされます。ビューをレンダリングするリクエストが実行されると、Laravelはビューのコンパイル済みバージョンが存在するかどうかを判断します。ファイルが存在する場合、Laravelは未コンパイルのビューがコンパイル済みビューよりも最近に変更されたかどうかを判断します。コンパイル済みビューが存在しないか、未コンパイルビューが変更されている場合、Laravelはビューを再コンパイルします。
 
-Compiling views during the request may have a small negative impact on performance, so Laravel provides the `view:cache` Artisan command to precompile all of the views utilized by your application. For increased performance, you may wish to run this command as part of your deployment process:
+リクエスト中にビューをコンパイルすると、パフォーマンスにわずかなマイナスの影響がある可能性があります。そのため、Laravelは`view:cache` Artisanコマンドを提供し、アプリケーションで使用されるすべてのビューを事前にコンパイルします。パフォーマンスを向上させるために、このコマンドをデプロイプロセスの一部として実行することをお勧めします:
 
 ```shell
 php artisan view:cache
 ```
 
-You may use the `view:clear` command to clear the view cache:
+ビューキャッシュをクリアするには、`view:clear`コマンドを使用できます:
 
 ```shell
 php artisan view:clear
 ```
+

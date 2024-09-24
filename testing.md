@@ -1,57 +1,58 @@
-# Testing: Getting Started
+# テスト: はじめに
 
-- [Introduction](#introduction)
-- [Environment](#environment)
-- [Creating Tests](#creating-tests)
-- [Running Tests](#running-tests)
-    - [Running Tests in Parallel](#running-tests-in-parallel)
-    - [Reporting Test Coverage](#reporting-test-coverage)
-    - [Profiling Tests](#profiling-tests)
+- [イントロダクション](#introduction)
+- [環境](#environment)
+- [テストの作成](#creating-tests)
+- [テストの実行](#running-tests)
+    - [テストの並列実行](#running-tests-in-parallel)
+    - [テストカバレッジのレポート](#reporting-test-coverage)
+    - [テストのプロファイリング](#profiling-tests)
 
 <a name="introduction"></a>
-## Introduction
+## イントロダクション
 
-Laravel is built with testing in mind. In fact, support for testing with [Pest](https://pestphp.com) and [PHPUnit](https://phpunit.de) is included out of the box and a `phpunit.xml` file is already set up for your application. The framework also ships with convenient helper methods that allow you to expressively test your applications.
+Laravelはテストを念頭に置いて構築されています。実際、[Pest](https://pestphp.com)と[PHPUnit](https://phpunit.de)によるテストのサポートはデフォルトで含まれており、アプリケーション用に`phpunit.xml`ファイルもすでに設定されています。また、フレームワークには、アプリケーションを表現豊かにテストできる便利なヘルパーメソッドも付属しています。
 
-By default, your application's `tests` directory contains two directories: `Feature` and `Unit`. Unit tests are tests that focus on a very small, isolated portion of your code. In fact, most unit tests probably focus on a single method. Tests within your "Unit" test directory do not boot your Laravel application and therefore are unable to access your application's database or other framework services.
+デフォルトでは、アプリケーションの`tests`ディレクトリには、`Feature`と`Unit`の2つのディレクトリが含まれています。ユニットテストは、コードの非常に小さく、孤立した部分に焦点を当てたテストです。実際、ほとんどのユニットテストは単一のメソッドに焦点を当てている可能性があります。"Unit"テストディレクトリ内のテストは、Laravelアプリケーションを起動しないため、アプリケーションのデータベースやその他のフレームワークサービスにアクセスできません。
 
-Feature tests may test a larger portion of your code, including how several objects interact with each other or even a full HTTP request to a JSON endpoint. **Generally, most of your tests should be feature tests. These types of tests provide the most confidence that your system as a whole is functioning as intended.**
+機能テストは、コードのより大きな部分をテストすることができ、複数のオブジェクトがどのように相互作用するか、またはJSONエンドポイントへの完全なHTTPリクエストを含むこともできます。**一般的に、ほとんどのテストは機能テストであるべきです。これらのタイプのテストは、システム全体が意図したとおりに機能していることを最も確信を持たせてくれます。**
 
-An `ExampleTest.php` file is provided in both the `Feature` and `Unit` test directories. After installing a new Laravel application, execute the `vendor/bin/pest`, `vendor/bin/phpunit`, or `php artisan test` commands to run your tests.
+`Feature`と`Unit`テストディレクトリの両方に`ExampleTest.php`ファイルが用意されています。新しいLaravelアプリケーションをインストールした後、`vendor/bin/pest`、`vendor/bin/phpunit`、または`php artisan test`コマンドを実行してテストを実行します。
 
 <a name="environment"></a>
-## Environment
+## 環境
 
-When running tests, Laravel will automatically set the [configuration environment](/docs/{{version}}/configuration#environment-configuration) to `testing` because of the environment variables defined in the `phpunit.xml` file. Laravel also automatically configures the session and cache to the `array` driver so that no session or cache data will be persisted while testing.
+テストを実行すると、Laravelは自動的に[設定環境](configuration.md#environment-configuration)を`testing`に設定します。これは、`phpunit.xml`ファイルで定義された環境変数のためです。また、Laravelはセッションとキャッシュを`array`ドライバに自動的に設定し、テスト中にセッションやキャッシュデータが永続化されないようにします。
 
-You are free to define other testing environment configuration values as necessary. The `testing` environment variables may be configured in your application's `phpunit.xml` file, but make sure to clear your configuration cache using the `config:clear` Artisan command before running your tests!
+必要に応じて、他のテスト環境の設定値を自由に定義できます。`testing`環境変数は、アプリケーションの`phpunit.xml`ファイルで設定できますが、テストを実行する前に`config:clear` Artisanコマンドを使用して設定キャッシュをクリアすることを忘れないでください！
 
 <a name="the-env-testing-environment-file"></a>
-#### The `.env.testing` Environment File
+#### `.env.testing`環境ファイル
 
-In addition, you may create a `.env.testing` file in the root of your project. This file will be used instead of the `.env` file when running Pest and PHPUnit tests or executing Artisan commands with the `--env=testing` option.
+さらに、プロジェクトのルートに`.env.testing`ファイルを作成することもできます。このファイルは、PestとPHPUnitテストを実行するとき、または`--env=testing`オプションを使用してArtisanコマンドを実行するときに、`.env`ファイルの代わりに使用されます。
 
 <a name="creating-tests"></a>
-## Creating Tests
+## テストの作成
 
-To create a new test case, use the `make:test` Artisan command. By default, tests will be placed in the `tests/Feature` directory:
+新しいテストケースを作成するには、`make:test` Artisanコマンドを使用します。デフォルトでは、テストは`tests/Feature`ディレクトリに配置されます：
 
 ```shell
 php artisan make:test UserTest
 ```
 
-If you would like to create a test within the `tests/Unit` directory, you may use the `--unit` option when executing the `make:test` command:
+`tests/Unit`ディレクトリ内にテストを作成したい場合は、`make:test`コマンドを実行する際に`--unit`オプションを使用できます：
 
 ```shell
 php artisan make:test UserTest --unit
 ```
 
-> [!NOTE]  
-> Test stubs may be customized using [stub publishing](/docs/{{version}}/artisan#stub-customization).
+> NOTE:  
+> テストスタブは、[スタブの公開](artisan.md#stub-customization)を使用してカスタマイズできます。
 
-Once the test has been generated, you may define test as you normally would using Pest or PHPUnit. To run your tests, execute the `vendor/bin/pest`, `vendor/bin/phpunit`, or `php artisan test` command from your terminal:
+テストが生成されたら、PestまたはPHPUnitを使用して通常どおりにテストを定義できます。テストを実行するには、ターミナルから`vendor/bin/pest`、`vendor/bin/phpunit`、または`php artisan test`コマンドを実行します：
 
-```php tab=Pest
+===  "Pest"
+```php
 <?php
 
 test('basic', function () {
@@ -59,7 +60,8 @@ test('basic', function () {
 });
 ```
 
-```php tab=PHPUnit
+===  "PHPUnit"
+```php
 <?php
 
 namespace Tests\Unit;
@@ -69,7 +71,7 @@ use PHPUnit\Framework\TestCase;
 class ExampleTest extends TestCase
 {
     /**
-     * A basic test example.
+     * 基本的なテスト例。
      */
     public function test_basic_test(): void
     {
@@ -78,13 +80,13 @@ class ExampleTest extends TestCase
 }
 ```
 
-> [!WARNING]  
-> If you define your own `setUp` / `tearDown` methods within a test class, be sure to call the respective `parent::setUp()` / `parent::tearDown()` methods on the parent class. Typically, you should invoke `parent::setUp()` at the start of your own `setUp` method, and `parent::tearDown()` at the end of your `tearDown` method.
+> WARNING:  
+> テストクラス内で独自の`setUp` / `tearDown`メソッドを定義する場合、親クラスの`parent::setUp()` / `parent::tearDown()`メソッドをそれぞれ呼び出すようにしてください。通常、独自の`setUp`メソッドの先頭で`parent::setUp()`を、`tearDown`メソッドの末尾で`parent::tearDown()`を呼び出すべきです。
 
 <a name="running-tests"></a>
-## Running Tests
+## テストの実行
 
-As mentioned previously, once you've written tests, you may run them using `pest` or `phpunit`:
+前述のように、テストを書いたら、`pest`または`phpunit`を使用して実行できます：
 
 ```shell tab=Pest
 ./vendor/bin/pest
@@ -94,22 +96,22 @@ As mentioned previously, once you've written tests, you may run them using `pest
 ./vendor/bin/phpunit
 ```
 
-In addition to the `pest` or `phpunit` commands, you may use the `test` Artisan command to run your tests. The Artisan test runner provides verbose test reports in order to ease development and debugging:
+`pest`または`phpunit`コマンドに加えて、`test` Artisanコマンドを使用してテストを実行することもできます。Artisanテストランナーは、開発とデバッグを容易にするために詳細なテストレポートを提供します：
 
 ```shell
 php artisan test
 ```
 
-Any arguments that can be passed to the `pest` or `phpunit` commands may also be passed to the Artisan `test` command:
+`pest`または`phpunit`コマンドに渡すことができる引数は、Artisanの`test`コマンドにも渡すことができます：
 
 ```shell
 php artisan test --testsuite=Feature --stop-on-failure
 ```
 
 <a name="running-tests-in-parallel"></a>
-### Running Tests in Parallel
+### テストの並列実行
 
-By default, Laravel and Pest / PHPUnit execute your tests sequentially within a single process. However, you may greatly reduce the amount of time it takes to run your tests by running tests simultaneously across multiple processes. To get started, you should install the `brianium/paratest` Composer package as a "dev" dependency. Then, include the `--parallel` option when executing the `test` Artisan command:
+デフォルトでは、LaravelとPest / PHPUnitはテストを単一のプロセス内で順次実行します。しかし、テストを複数のプロセスで同時に実行することで、テストの実行時間を大幅に短縮できます。まず、`brianium/paratest` Composerパッケージを"dev"依存関係としてインストールする必要があります。その後、`test` Artisanコマンドを実行する際に`--parallel`オプションを含めます：
 
 ```shell
 composer require brianium/paratest --dev
@@ -117,32 +119,32 @@ composer require brianium/paratest --dev
 php artisan test --parallel
 ```
 
-By default, Laravel will create as many processes as there are available CPU cores on your machine. However, you may adjust the number of processes using the `--processes` option:
+デフォルトでは、Laravelはマシン上で利用可能なCPUコアの数と同じ数のプロセスを作成します。ただし、`--processes`オプションを使用してプロセスの数を調整できます：
 
 ```shell
 php artisan test --parallel --processes=4
 ```
 
-> [!WARNING]  
-> When running tests in parallel, some Pest / PHPUnit options (such as `--do-not-cache-result`) may not be available.
+> WARNING:  
+> テストを並列実行する場合、一部のPest / PHPUnitオプション（例：`--do-not-cache-result`）は利用できない場合があります。
 
 <a name="parallel-testing-and-databases"></a>
-#### Parallel Testing and Databases
+#### 並列テストとデータベース
 
-As long as you have configured a primary database connection, Laravel automatically handles creating and migrating a test database for each parallel process that is running your tests. The test databases will be suffixed with a process token which is unique per process. For example, if you have two parallel test processes, Laravel will create and use `your_db_test_1` and `your_db_test_2` test databases.
+プライマリデータベース接続を設定している場合、Laravelは自動的にテストを実行する各並列プロセスのためにテストデータベースを作成および移行します。テストデータベースには、プロセスごとに一意のプロセストークンが付加されます。たとえば、2つの並列テストプロセスがある場合、Laravelは`your_db_test_1`と`your_db_test_2`のテストデータベースを作成して使用します。
 
-By default, test databases persist between calls to the `test` Artisan command so that they can be used again by subsequent `test` invocations. However, you may re-create them using the `--recreate-databases` option:
+デフォルトでは、テストデータベースは`test` Artisanコマンドの呼び出し間で保持されるため、後続の`test`呼び出しで再利用できます。ただし、`--recreate-databases`オプションを使用して再作成することもできます：
 
 ```shell
 php artisan test --parallel --recreate-databases
 ```
 
 <a name="parallel-testing-hooks"></a>
-#### Parallel Testing Hooks
+#### 並列テストフック
 
-Occasionally, you may need to prepare certain resources used by your application's tests so they may be safely used by multiple test processes.
+アプリケーションのテストで使用される特定のリソースを準備し、複数のテストプロセスで安全に使用できるようにする必要がある場合があります。
 
-Using the `ParallelTesting` facade, you may specify code to be executed on the `setUp` and `tearDown` of a process or test case. The given closures receive the `$token` and `$testCase` variables that contain the process token and the current test case, respectively:
+`ParallelTesting`ファサードを使用すると、プロセスまたはテストケースの`setUp`と`tearDown`で実行されるコードを指定できます。指定されたクロージャは、プロセストークンと現在のテストケースを含む`$token`と`$testCase`変数を受け取ります：
 
     <?php
 
@@ -156,7 +158,7 @@ Using the `ParallelTesting` facade, you may specify code to be executed on the `
     class AppServiceProvider extends ServiceProvider
     {
         /**
-         * Bootstrap any application services.
+         * 任意のアプリケーションサービスのブートストラップ。
          */
         public function boot(): void
         {
@@ -168,7 +170,7 @@ Using the `ParallelTesting` facade, you may specify code to be executed on the `
                 // ...
             });
 
-            // Executed when a test database is created...
+            // テストデータベースが作成されたときに実行されます...
             ParallelTesting::setUpTestDatabase(function (string $database, int $token) {
                 Artisan::call('db:seed');
             });
@@ -184,37 +186,37 @@ Using the `ParallelTesting` facade, you may specify code to be executed on the `
     }
 
 <a name="accessing-the-parallel-testing-token"></a>
-#### Accessing the Parallel Testing Token
+#### 並列テストトークンへのアクセス
 
-If you would like to access the current parallel process "token" from any other location in your application's test code, you may use the `token` method. This token is a unique, string identifier for an individual test process and may be used to segment resources across parallel test processes. For example, Laravel automatically appends this token to the end of the test databases created by each parallel testing process:
+アプリケーションのテストコード内の他の場所から現在の並列プロセスの"トークン"にアクセスしたい場合は、`token`メソッドを使用できます。このトークンは、個々のテストプロセスの一意の文字列識別子であり、並列テストプロセス間でリソースを分割するために使用できます。たとえば、Laravelは自動的に各並列テストプロセスによって作成されたテストデータベースの末尾にこのトークンを付加します：
 
     $token = ParallelTesting::token();
 
 <a name="reporting-test-coverage"></a>
-### Reporting Test Coverage
+### テストカバレッジのレポート
 
-> [!WARNING]  
-> This feature requires [Xdebug](https://xdebug.org) or [PCOV](https://pecl.php.net/package/pcov).
+> WARNING:  
+> この機能には[Xdebug](https://xdebug.org)または[PCOV](https://pecl.php.net/package/pcov)が必要です。
 
-When running your application tests, you may want to determine whether your test cases are actually covering the application code and how much application code is used when running your tests. To accomplish this, you may provide the `--coverage` option when invoking the `test` command:
+アプリケーションのテストを実行する際に、テストケースが実際にアプリケーションコードをカバーしているか、どれだけのアプリケーションコードがテスト実行時に使用されているかを確認したい場合があります。これを実現するには、`test`コマンドを呼び出す際に`--coverage`オプションを提供します：
 
 ```shell
 php artisan test --coverage
 ```
 
 <a name="enforcing-a-minimum-coverage-threshold"></a>
-#### Enforcing a Minimum Coverage Threshold
+#### 最小カバレッジ閾値の強制
 
-You may use the `--min` option to define a minimum test coverage threshold for your application. The test suite will fail if this threshold is not met:
+`--min`オプションを使用して、アプリケーションの最小テストカバレッジ閾値を定義できます。この閾値を満たさない場合、テストスイートは失敗します：
 
 ```shell
 php artisan test --coverage --min=80.3
 ```
 
 <a name="profiling-tests"></a>
-### Profiling Tests
+### テストのプロファイリング
 
-The Artisan test runner also includes a convenient mechanism for listing your application's slowest tests. Invoke the `test` command with the `--profile` option to be presented with a list of your ten slowest tests, allowing you to easily investigate which tests can be improved to speed up your test suite:
+Artisanテストランナーには、アプリケーションの最も遅いテストをリストアップする便利なメカニズムも含まれています。`test`コマンドに`--profile`オプションを付けて呼び出すと、10個の最も遅いテストが表示され、テストスイートの速度を向上させるためにどのテストを改善できるかを簡単に調査できます：
 
 ```shell
 php artisan test --profile

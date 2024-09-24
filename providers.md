@@ -1,43 +1,43 @@
-# Service Providers
+# サービスプロバイダ
 
-- [Introduction](#introduction)
-- [Writing Service Providers](#writing-service-providers)
-    - [The Register Method](#the-register-method)
-    - [The Boot Method](#the-boot-method)
-- [Registering Providers](#registering-providers)
-- [Deferred Providers](#deferred-providers)
+- [イントロダクション](#introduction)
+- [サービスプロバイダの作成](#writing-service-providers)
+    - [Registerメソッド](#the-register-method)
+    - [Bootメソッド](#the-boot-method)
+- [プロバイダの登録](#registering-providers)
+- [遅延プロバイダ](#deferred-providers)
 
 <a name="introduction"></a>
-## Introduction
+## イントロダクション
 
-Service providers are the central place of all Laravel application bootstrapping. Your own application, as well as all of Laravel's core services, are bootstrapped via service providers.
+サービスプロバイダは、すべてのLaravelアプリケーションの初期起動の中心です。あなた自身のアプリケーション、そしてLaravelのコアサービスもすべて、サービスプロバイダを介して初期起動されます。
 
-But, what do we mean by "bootstrapped"? In general, we mean **registering** things, including registering service container bindings, event listeners, middleware, and even routes. Service providers are the central place to configure your application.
+しかし、「初期起動」とは何を意味するのでしょうか？一般的に、**登録**を意味します。つまり、サービスコンテナのバインディング、イベントリスナー、ミドルウェア、さらにはルートの登録です。サービスプロバイダは、アプリケーションの設定の中心地です。
 
-Laravel uses dozens of service providers internally to bootstrap its core services, such as the mailer, queue, cache, and others. Many of these providers are "deferred" providers, meaning they will not be loaded on every request, but only when the services they provide are actually needed.
+Laravelは、メーラー、キュー、キャッシュなどのコアサービスを初期起動するために、内部的に数十のサービスプロバイダを使用しています。これらのプロバイダの多くは「遅延」プロバイダであり、つまり、すべてのリクエストで読み込まれるのではなく、提供するサービスが実際に必要になったときにのみ読み込まれます。
 
-All user-defined service providers are registered in the `bootstrap/providers.php` file. In the following documentation, you will learn how to write your own service providers and register them with your Laravel application.
+すべてのユーザー定義のサービスプロバイダは、`bootstrap/providers.php`ファイルに登録されています。次のドキュメントでは、独自のサービスプロバイダを作成し、Laravelアプリケーションに登録する方法を学びます。
 
-> [!NOTE]  
-> If you would like to learn more about how Laravel handles requests and works internally, check out our documentation on the Laravel [request lifecycle](/docs/{{version}}/lifecycle).
+> NOTE:  
+> Laravelがリクエストを処理し、内部でどのように動作するかについて詳しく知りたい場合は、Laravelの[リクエストライフサイクル](lifecycle.md)に関するドキュメントをチェックしてください。
 
 <a name="writing-service-providers"></a>
-## Writing Service Providers
+## サービスプロバイダの作成
 
-All service providers extend the `Illuminate\Support\ServiceProvider` class. Most service providers contain a `register` and a `boot` method. Within the `register` method, you should **only bind things into the [service container](/docs/{{version}}/container)**. You should never attempt to register any event listeners, routes, or any other piece of functionality within the `register` method.
+すべてのサービスプロバイダは、`Illuminate\Support\ServiceProvider`クラスを拡張します。ほとんどのサービスプロバイダには、`register`メソッドと`boot`メソッドが含まれています。`register`メソッド内では、**[サービスコンテナ](container.md)にバインディングを登録するだけ**にしてください。`register`メソッド内でイベントリスナー、ルート、またはその他の機能を登録しようとしないでください。
 
-The Artisan CLI can generate a new provider via the `make:provider` command. Laravel will automatically register your new provider in your application's `bootstrap/providers.php` file:
+Artisan CLIは、`make:provider`コマンドを介して新しいプロバイダを生成できます。Laravelは自動的に、アプリケーションの`bootstrap/providers.php`ファイルに新しいプロバイダを登録します。
 
 ```shell
 php artisan make:provider RiakServiceProvider
 ```
 
 <a name="the-register-method"></a>
-### The Register Method
+### Registerメソッド
 
-As mentioned previously, within the `register` method, you should only bind things into the [service container](/docs/{{version}}/container). You should never attempt to register any event listeners, routes, or any other piece of functionality within the `register` method. Otherwise, you may accidentally use a service that is provided by a service provider which has not loaded yet.
+前述のように、`register`メソッド内では、**[サービスコンテナ](container.md)にバインディングを登録するだけ**にしてください。`register`メソッド内でイベントリスナー、ルート、またはその他の機能を登録しようとしないでください。そうしないと、まだ読み込まれていないサービスプロバイダによって提供されるサービスを誤って使用する可能性があります。
 
-Let's take a look at a basic service provider. Within any of your service provider methods, you always have access to the `$app` property which provides access to the service container:
+基本的なサービスプロバイダを見てみましょう。サービスプロバイダのメソッド内では、常にサービスコンテナにアクセスできる`$app`プロパティを使用できます。
 
     <?php
 
@@ -50,7 +50,7 @@ Let's take a look at a basic service provider. Within any of your service provid
     class RiakServiceProvider extends ServiceProvider
     {
         /**
-         * Register any application services.
+         * 任意のアプリケーションサービスを登録します。
          */
         public function register(): void
         {
@@ -60,12 +60,12 @@ Let's take a look at a basic service provider. Within any of your service provid
         }
     }
 
-This service provider only defines a `register` method, and uses that method to define an implementation of `App\Services\Riak\Connection` in the service container. If you're not yet familiar with Laravel's service container, check out [its documentation](/docs/{{version}}/container).
+このサービスプロバイダは、`register`メソッドのみを定義し、そのメソッドを使用して、`App\Services\Riak\Connection`の実装をサービスコンテナに定義します。Laravelのサービスコンテナにまだ慣れていない場合は、[そのドキュメント](container.md)をチェックしてください。
 
 <a name="the-bindings-and-singletons-properties"></a>
-#### The `bindings` and `singletons` Properties
+#### `bindings`と`singletons`プロパティ
 
-If your service provider registers many simple bindings, you may wish to use the `bindings` and `singletons` properties instead of manually registering each container binding. When the service provider is loaded by the framework, it will automatically check for these properties and register their bindings:
+サービスプロバイダが多くの単純なバインディングを登録する場合、`bindings`と`singletons`プロパティを使用することを選択できます。フレームワークがサービスプロバイダを読み込むとき、これらのプロパティを自動的にチェックし、それらのバインディングを登録します。
 
     <?php
 
@@ -81,7 +81,7 @@ If your service provider registers many simple bindings, you may wish to use the
     class AppServiceProvider extends ServiceProvider
     {
         /**
-         * All of the container bindings that should be registered.
+         * 登録すべきすべてのコンテナバインディング。
          *
          * @var array
          */
@@ -90,7 +90,7 @@ If your service provider registers many simple bindings, you may wish to use the
         ];
 
         /**
-         * All of the container singletons that should be registered.
+         * 登録すべきすべてのコンテナシングルトン。
          *
          * @var array
          */
@@ -101,9 +101,9 @@ If your service provider registers many simple bindings, you may wish to use the
     }
 
 <a name="the-boot-method"></a>
-### The Boot Method
+### Bootメソッド
 
-So, what if we need to register a [view composer](/docs/{{version}}/views#view-composers) within our service provider? This should be done within the `boot` method. **This method is called after all other service providers have been registered**, meaning you have access to all other services that have been registered by the framework:
+では、サービスプロバイダ内で[ビューコンポーザ](views.md#view-composers)を登録する必要がある場合はどうでしょうか？それは`boot`メソッド内で行うべきです。**このメソッドは、他のすべてのサービスプロバイダが登録された後に呼び出されます**。つまり、フレームワークによって登録された他のすべてのサービスにアクセスできます。
 
     <?php
 
@@ -115,7 +115,7 @@ So, what if we need to register a [view composer](/docs/{{version}}/views#view-c
     class ComposerServiceProvider extends ServiceProvider
     {
         /**
-         * Bootstrap any application services.
+         * 任意のアプリケーションサービスを起動します。
          */
         public function boot(): void
         {
@@ -126,14 +126,14 @@ So, what if we need to register a [view composer](/docs/{{version}}/views#view-c
     }
 
 <a name="boot-method-dependency-injection"></a>
-#### Boot Method Dependency Injection
+#### Bootメソッドの依存性注入
 
-You may type-hint dependencies for your service provider's `boot` method. The [service container](/docs/{{version}}/container) will automatically inject any dependencies you need:
+サービスプロバイダの`boot`メソッドに依存関係をタイプヒントすることができます。[サービスコンテナ](container.md)は、必要な依存関係を自動的に注入します。
 
     use Illuminate\Contracts\Routing\ResponseFactory;
 
     /**
-     * Bootstrap any application services.
+     * 任意のアプリケーションサービスを起動します。
      */
     public function boot(ResponseFactory $response): void
     {
@@ -143,9 +143,9 @@ You may type-hint dependencies for your service provider's `boot` method. The [s
     }
 
 <a name="registering-providers"></a>
-## Registering Providers
+## プロバイダの登録
 
-All service providers are registered in the `bootstrap/providers.php` configuration file. This file returns an array that contains the class names of your application's service providers:
+すべてのサービスプロバイダは、`bootstrap/providers.php`設定ファイルに登録されています。このファイルは、アプリケーションのサービスプロバイダのクラス名を含む配列を返します。
 
     <?php
 
@@ -153,7 +153,7 @@ All service providers are registered in the `bootstrap/providers.php` configurat
         App\Providers\AppServiceProvider::class,
     ];
 
-When you invoke the `make:provider` Artisan command, Laravel will automatically add the generated provider to the `bootstrap/providers.php` file. However, if you have manually created the provider class, you should manually add the provider class to the array:
+`make:provider` Artisanコマンドを呼び出すと、Laravelは自動的に生成されたプロバイダを`bootstrap/providers.php`ファイルに追加します。ただし、プロバイダクラスを手動で作成した場合は、配列にプロバイダクラスを手動で追加する必要があります。
 
     <?php
 
@@ -163,13 +163,13 @@ When you invoke the `make:provider` Artisan command, Laravel will automatically 
     ];
 
 <a name="deferred-providers"></a>
-## Deferred Providers
+## 遅延プロバイダ
 
-If your provider is **only** registering bindings in the [service container](/docs/{{version}}/container), you may choose to defer its registration until one of the registered bindings is actually needed. Deferring the loading of such a provider will improve the performance of your application, since it is not loaded from the filesystem on every request.
+もし、プロバイダが**[サービスコンテナ](container.md)にバインディングを登録するだけ**である場合、その登録を遅延させることを選択できます。遅延読み込みされたプロバイダは、アプリケーションのパフォーマンスを向上させます。なぜなら、それはすべてのリクエストでファイルシステムから読み込まれるのではなく、登録されたバインディングのいずれかが実際に必要になったときにのみ読み込まれるからです。
 
-Laravel compiles and stores a list of all of the services supplied by deferred service providers, along with the name of its service provider class. Then, only when you attempt to resolve one of these services does Laravel load the service provider.
+Laravelは、遅延サービスプロバイダによって提供されるすべてのサービスのリストと、そのサービスプロバイダクラスの名前をコンパイルして保存します。その後、これらのサービスのいずれかを解決しようとすると、Laravelはサービスプロバイダを読み込みます。
 
-To defer the loading of a provider, implement the `\Illuminate\Contracts\Support\DeferrableProvider` interface and define a `provides` method. The `provides` method should return the service container bindings registered by the provider:
+プロバイダの読み込みを遅延させるには、`\Illuminate\Contracts\Support\DeferrableProvider`インターフェースを実装し、`provides`メソッドを定義します。`provides`メソッドは、プロバイダによって登録されたサービスコンテナのバインディングを返す必要があります。
 
     <?php
 
@@ -183,7 +183,7 @@ To defer the loading of a provider, implement the `\Illuminate\Contracts\Support
     class RiakServiceProvider extends ServiceProvider implements DeferrableProvider
     {
         /**
-         * Register any application services.
+         * 任意のアプリケーションサービスを登録します。
          */
         public function register(): void
         {
@@ -193,7 +193,7 @@ To defer the loading of a provider, implement the `\Illuminate\Contracts\Support
         }
 
         /**
-         * Get the services provided by the provider.
+         * プロバイダによって提供されるサービスを取得します。
          *
          * @return array<int, string>
          */
@@ -202,3 +202,4 @@ To defer the loading of a provider, implement the `\Illuminate\Contracts\Support
             return [Connection::class];
         }
     }
+

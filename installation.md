@@ -1,70 +1,70 @@
-# Installation
+# インストール
 
-- [Meet Laravel](#meet-laravel)
-    - [Why Laravel?](#why-laravel)
-- [Creating a Laravel Project](#creating-a-laravel-project)
-- [Initial Configuration](#initial-configuration)
-    - [Environment Based Configuration](#environment-based-configuration)
-    - [Databases and Migrations](#databases-and-migrations)
-    - [Directory Configuration](#directory-configuration)
-- [Local Installation Using Herd](#local-installation-using-herd)
-    - [Herd on macOS](#herd-on-macos)
-    - [Herd on Windows](#herd-on-windows)
-- [Docker Installation Using Sail](#docker-installation-using-sail)
-    - [Sail on macOS](#sail-on-macos)
-    - [Sail on Windows](#sail-on-windows)
-    - [Sail on Linux](#sail-on-linux)
-    - [Choosing Your Sail Services](#choosing-your-sail-services)
-- [IDE Support](#ide-support)
-- [Next Steps](#next-steps)
-    - [Laravel the Full Stack Framework](#laravel-the-fullstack-framework)
-    - [Laravel the API Backend](#laravel-the-api-backend)
+- [Laravelについて](#meet-laravel)
+    - [なぜLaravelなのか？](#why-laravel)
+- [Laravelプロジェクトの作成](#creating-a-laravel-project)
+- [初期設定](#initial-configuration)
+    - [環境ベースの設定](#environment-based-configuration)
+    - [データベースとマイグレーション](#databases-and-migrations)
+    - [ディレクトリ設定](#directory-configuration)
+- [Herdを使用したローカルインストール](#local-installation-using-herd)
+    - [macOSでのHerd](#herd-on-macos)
+    - [WindowsでのHerd](#herd-on-windows)
+- [Sailを使用したDockerインストール](#docker-installation-using-sail)
+    - [macOSでのSail](#sail-on-macos)
+    - [WindowsでのSail](#sail-on-windows)
+    - [LinuxでのSail](#sail-on-linux)
+    - [Sailサービスの選択](#choosing-your-sail-services)
+- [IDEサポート](#ide-support)
+- [次のステップ](#next-steps)
+    - [Laravel、フルスタックフレームワーク](#laravel-the-fullstack-framework)
+    - [Laravel、APIバックエンド](#laravel-the-api-backend)
 
 <a name="meet-laravel"></a>
-## Meet Laravel
+## Laravelについて
 
-Laravel is a web application framework with expressive, elegant syntax. A web framework provides a structure and starting point for creating your application, allowing you to focus on creating something amazing while we sweat the details.
+Laravelは、表現力豊かでエレガントな構文を持つWebアプリケーションフレームワークです。Webフレームワークは、アプリケーションを作成するための構造と出発点を提供し、詳細を気にせずに素晴らしいものを作成することに集中できるようにします。
 
-Laravel strives to provide an amazing developer experience while providing powerful features such as thorough dependency injection, an expressive database abstraction layer, queues and scheduled jobs, unit and integration testing, and more.
+Laravelは、驚くべき開発者体験を提供すると同時に、徹底的な依存性注入、表現力豊かなデータベース抽象化レイヤー、キューとスケジュールされたジョブ、ユニットテストと統合テストなどの強力な機能を提供することを目指しています。
 
-Whether you are new to PHP web frameworks or have years of experience, Laravel is a framework that can grow with you. We'll help you take your first steps as a web developer or give you a boost as you take your expertise to the next level. We can't wait to see what you build.
+PHPのWebフレームワークを初めて使用する方でも、何年もの経験を持つ方でも、Laravelはあなたと共に成長するフレームワークです。Web開発者としての最初の一歩を踏み出すのを手助けしたり、専門知識を次のレベルに引き上げるのを支援します。あなたが何を作るかを見るのが楽しみです。
 
-> [!NOTE]  
-> New to Laravel? Check out the [Laravel Bootcamp](https://bootcamp.laravel.com) for a hands-on tour of the framework while we walk you through building your first Laravel application.
+> NOTE:  
+> Laravelを初めて使う方は、[Laravel Bootcamp](https://bootcamp.laravel.com)をチェックしてください。フレームワークのハンズオンツアーを通じて、初めてのLaravelアプリケーションを構築する過程を一緒に進めます。
 
 <a name="why-laravel"></a>
-### Why Laravel?
+### なぜLaravelなのか？
 
-There are a variety of tools and frameworks available to you when building a web application. However, we believe Laravel is the best choice for building modern, full-stack web applications.
+Webアプリケーションを構築する際には、さまざまなツールやフレームワークが利用可能です。しかし、私たちはLaravelが現代のフルスタックWebアプリケーションを構築するための最良の選択肢であると考えています。
 
-#### A Progressive Framework
+#### プログレッシブフレームワーク
 
-We like to call Laravel a "progressive" framework. By that, we mean that Laravel grows with you. If you're just taking your first steps into web development, Laravel's vast library of documentation, guides, and [video tutorials](https://laracasts.com) will help you learn the ropes without becoming overwhelmed.
+Laravelを「プログレッシブ」フレームワークと呼ぶことがあります。つまり、Laravelはあなたと共に成長します。Web開発の最初の一歩を踏み出す場合、Laravelの膨大なドキュメント、ガイド、[ビデオチュートリアル](https://laracasts.com)が、圧倒されることなく学習をサポートします。
 
-If you're a senior developer, Laravel gives you robust tools for [dependency injection](/docs/{{version}}/container), [unit testing](/docs/{{version}}/testing), [queues](/docs/{{version}}/queues), [real-time events](/docs/{{version}}/broadcasting), and more. Laravel is fine-tuned for building professional web applications and ready to handle enterprise work loads.
+シニア開発者であれば、Laravelは[依存性注入](container.md)、[ユニットテスト](testing.md)、[キュー](queues.md)、[リアルタイムイベント](broadcasting.md)などの強力なツールを提供します。Laravelは、プロフェッショナルなWebアプリケーションを構築するために微調整されており、企業のワークロードに対応できる準備が整っています。
 
-#### A Scalable Framework
+#### スケーラブルなフレームワーク
 
-Laravel is incredibly scalable. Thanks to the scaling-friendly nature of PHP and Laravel's built-in support for fast, distributed cache systems like Redis, horizontal scaling with Laravel is a breeze. In fact, Laravel applications have been easily scaled to handle hundreds of millions of requests per month.
+Laravelは非常にスケーラブルです。PHPのスケーリングに適した性質と、Laravelの組み込みサポートであるRedisのような高速で分散型のキャッシュシステムのおかげで、Laravelでの水平スケーリングは簡単です。実際、Laravelアプリケーションは月に何億ものリクエストを簡単に処理できるようにスケーリングされています。
 
-Need extreme scaling? Platforms like [Laravel Vapor](https://vapor.laravel.com) allow you to run your Laravel application at nearly limitless scale on AWS's latest serverless technology.
+極端なスケーリングが必要ですか？[Laravel Vapor](https://vapor.laravel.com)のようなプラットフォームでは、AWSの最新のサーバーレステクノロジーを使用して、ほぼ無制限のスケールでLaravelアプリケーションを実行できます。
 
-#### A Community Framework
+#### コミュニティフレームワーク
 
-Laravel combines the best packages in the PHP ecosystem to offer the most robust and developer friendly framework available. In addition, thousands of talented developers from around the world have [contributed to the framework](https://github.com/laravel/framework). Who knows, maybe you'll even become a Laravel contributor.
+Laravelは、PHPエコシステムの最高のパッケージを組み合わせて、最も堅牢で開発者に優しいフレームワークを提供します。さらに、世界中から何千人もの才能ある開発者が[フレームワークに貢献](https://github.com/laravel/framework)しています。誰もがLaravelの貢献者になるかもしれません。
 
 <a name="creating-a-laravel-project"></a>
-## Creating a Laravel Project
+## Laravelプロジェクトの作成
 
-Before creating your first Laravel project, make sure that your local machine has PHP and [Composer](https://getcomposer.org) installed. If you are developing on macOS or Windows, PHP, Composer, Node and NPM can be installed in minutes via [Laravel Herd](#local-installation-using-herd).
+最初のLaravelプロジェクトを作成する前に、ローカルマシンにPHPと[Composer](https://getcomposer.org)がインストールされていることを確認してください。macOSまたはWindowsで開発している場合、PHP、Composer、Node、NPMは[Laravel Herd](#local-installation-using-herd)を介して数分でインストールできます。
 
-After you have installed PHP and Composer, you may create a new Laravel project via Composer's `create-project` command:
+PHPとComposerをインストールした後、Composerの`create-project`コマンドを使用して新しいLaravelプロジェクトを作成できます：
 
 ```nothing
 composer create-project laravel/laravel example-app
 ```
 
-Or, you may create new Laravel projects by globally installing [the Laravel installer](https://github.com/laravel/installer) via Composer. The Laravel installer allows you to select your preferred testing framework, database, and starter kit when creating new applications:
+または、[Laravelインストーラー](https://github.com/laravel/installer)をComposerを介してグローバルにインストールすることで、新しいLaravelプロジェクトを作成できます。Laravelインストーラーを使用すると、新しいアプリケーションを作成する際に、好みのテストフレームワーク、データベース、スターターキットを選択できます：
 
 ```nothing
 composer global require laravel/installer
@@ -72,7 +72,7 @@ composer global require laravel/installer
 laravel new example-app
 ```
 
-Once the project has been created, start Laravel's local development server using Laravel Artisan's `serve` command:
+プロジェクトが作成されたら、Laravel Artisanの`serve`コマンドを使用してLaravelのローカル開発サーバーを起動します：
 
 ```nothing
 cd example-app
@@ -80,36 +80,36 @@ cd example-app
 php artisan serve
 ```
 
-Once you have started the Artisan development server, your application will be accessible in your web browser at [http://localhost:8000](http://localhost:8000). Next, you're ready to [start taking your next steps into the Laravel ecosystem](#next-steps). Of course, you may also want to [configure a database](#databases-and-migrations).
+Artisan開発サーバーを起動したら、アプリケーションはWebブラウザで[http://localhost:8000](http://localhost:8000)からアクセスできます。次に、[Laravelエコシステムの次のステップに進む](#next-steps)準備が整いました。もちろん、[データベースの設定](#databases-and-migrations)も行いたいかもしれません。
 
-> [!NOTE]  
-> If you would like a head start when developing your Laravel application, consider using one of our [starter kits](/docs/{{version}}/starter-kits). Laravel's starter kits provide backend and frontend authentication scaffolding for your new Laravel application.
+> NOTE:  
+> Laravelアプリケーションの開発を始める際に先を急ぎたい場合は、[スターターキット](starter-kits.md)のいずれかを使用することを検討してください。Laravelのスターターキットは、新しいLaravelアプリケーションのためのバックエンドとフロントエンドの認証スキャフォールディングを提供します。
 
 <a name="initial-configuration"></a>
-## Initial Configuration
+## 初期設定
 
-All of the configuration files for the Laravel framework are stored in the `config` directory. Each option is documented, so feel free to look through the files and get familiar with the options available to you.
+Laravelフレームワークのすべての設定ファイルは、`config`ディレクトリに保存されています。各オプションにはドキュメントがあるので、ファイルを見て、利用可能なオプションに慣れ親しんでください。
 
-Laravel needs almost no additional configuration out of the box. You are free to get started developing! However, you may wish to review the `config/app.php` file and its documentation. It contains several options such as `timezone` and `locale` that you may wish to change according to your application.
+Laravelは、ほとんど追加の設定を必要としません。自由に開発を始めることができます！ただし、`config/app.php`ファイルとそのドキュメントを確認することをお勧めします。アプリケーションに応じて変更したい`timezone`や`locale`などのオプションが含まれています。
 
 <a name="environment-based-configuration"></a>
-### Environment Based Configuration
+### 環境ベースの設定
 
-Since many of Laravel's configuration option values may vary depending on whether your application is running on your local machine or on a production web server, many important configuration values are defined using the `.env` file that exists at the root of your application.
+Laravelの多くの設定オプションの値は、アプリケーションがローカルマシンで実行されているか、本番Webサーバーで実行されているかによって異なる場合があります。そのため、多くの重要な設定値は、アプリケーションのルートに存在する`.env`ファイルを使用して定義されます。
 
-Your `.env` file should not be committed to your application's source control, since each developer / server using your application could require a different environment configuration. Furthermore, this would be a security risk in the event an intruder gains access to your source control repository, since any sensitive credentials would be exposed.
+`.env`ファイルは、アプリケーションのソース管理にコミットしないでください。アプリケーションを使用する各開発者/サーバーは、異なる環境設定を必要とする可能性があるためです。さらに、侵入者がソース管理リポジトリにアクセスした場合、機密の認証情報が公開されるリスクがあります。
 
-> [!NOTE]  
-> For more information about the `.env` file and environment based configuration, check out the full [configuration documentation](/docs/{{version}}/configuration#environment-configuration).
+> NOTE:  
+> `.env`ファイルと環境ベースの設定についての詳細は、完全な[設定ドキュメント](configuration.md#environment-configuration)を確認してください。
 
 <a name="databases-and-migrations"></a>
-### Databases and Migrations
+### データベースとマイグレーション
 
-Now that you have created your Laravel application, you probably want to store some data in a database. By default, your application's `.env` configuration file specifies that Laravel will be interacting with a SQLite database.
+Laravelアプリケーションを作成したので、おそらくデータベースにデータを保存したいと思うでしょう。デフォルトでは、アプリケーションの`.env`設定ファイルは、LaravelがSQLiteデータベースと対話することを指定しています。
 
-During the creation of the project, Laravel created a `database/database.sqlite` file for you, and ran the necessary migrations to create the application's database tables.
+プロジェクトの作成中に、Laravelは`database/database.sqlite`ファイルを作成し、アプリケーションのデータベーステーブルを作成するために必要なマイグレーションを実行しました。
 
-If you prefer to use another database driver such as MySQL or PostgreSQL, you can update your `.env` configuration file to use the appropriate database. For example, if you wish to use MySQL, update your `.env` configuration file's `DB_*` variables like so:
+MySQLやPostgreSQLなどの別のデータベースドライバを使用する場合は、`.env`設定ファイルを更新して適切なデータベースを使用するようにします。たとえば、MySQLを使用する場合は、`.env`設定ファイルの`DB_*`変数を次のように更新します：
 
 ```ini
 DB_CONNECTION=mysql
@@ -120,38 +120,112 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
-If you choose to use a database other than SQLite, you will need to create the database and run your application's [database migrations](/docs/{{version}}/migrations):
+SQLite以外のデータベースを使用する場合は、データベースを作成し、アプリケーションの[データベースマイグレーション](migrations.md)を実行する必要があります：
 
 ```shell
 php artisan migrate
 ```
 
-> [!NOTE]  
-> If you are developing on macOS or Windows and need to install MySQL, PostgreSQL, or Redis locally, consider using [Herd Pro](https://herd.laravel.com/#plans).
+> NOTE:  
+> macOSまたはWindowsで開発しており、MySQL、PostgreSQL、またはRedisをローカルにインストールする必要がある場合は、[Herd Pro](https://herd.laravel.com/#plans)の使用を検討してください。
 
 <a name="directory-configuration"></a>
-### Directory Configuration
+### ディレクトリ設定
 
-Laravel should always be served out of the root of the "web directory" configured for your web server. You should not attempt to serve a Laravel application out of a subdirectory of the "web directory". Attempting to do so could expose sensitive files present within your application.
+Laravelは、Webサーバー用に設定された「Webディレクトリ」のルートから常に提供されるべきです。Laravelアプリケーションを「Webディレクトリ」のサブディレクトリから提供しようとしないでください。そうすると、アプリケーション内に存在する機密ファイルが公開される可能性があります。
 
 <a name="local-installation-using-herd"></a>
-## Local Installation Using Herd
+## Herdを使用したローカルインストール
 
-[Laravel Herd](https://herd.laravel.com) is a blazing fast, native Laravel and PHP development environment for macOS and Windows. Herd includes everything you need to get started with Laravel development, including PHP and Nginx.
+[Laravel Herd](https://herd.laravel.com)は、macOSとWindows用の超高速なネイティブLaravelおよびPHP開発環境です。Herdには、Laravel開発を始めるために必要なすべてが含まれています。PHPとNginxを含む。
 
-Once you install Herd, you're ready to start developing with Laravel. Herd includes command line tools for `php`, `composer`, `laravel`, `expose`, `node`, `npm`, and `nvm`.
+Herdをインストールしたら、Laravelでの開発を始める準備が整います。Herdには、`php`、`composer`、`laravel`、`expose`、`node`、`npm`、`nvm`のコマンドラインツールが含まれています。
 
-> [!NOTE]  
-> [Herd Pro](https://herd.laravel.com/#plans) augments Herd with additional powerful features, such as the ability to create and manage local MySQL, Postgres, and Redis databases, as well as local mail viewing and log monitoring.
+> NOTE:  
+> [Herd Pro](https://herd.laravel.com/#plans)は、Herdをさらに強力な機能で拡張します。例えば、ローカルのMySQL、Postgres、Redisデータベースの作成と管理、ローカルメールの表示、ログの監視などが可能です。
 
 <a name="herd-on-macos"></a>
-### Herd on macOS
+### macOSでのHerd
 
-If you develop on macOS, you can download the Herd installer from the [Herd website](https://herd.laravel.com). The installer automatically downloads the latest version of PHP and configures your Mac to always run [Nginx](https://www.nginx.com/) in the background.
+macOSで開発している場合、[HerdのWebサイト](https://herd.laravel.com)からHerdインストーラーをダウンロードできます。インストーラーは、最新バージョンのPHPを自動的にダウンロードし、Macを常に[Nginx](https://www.nginx.com/)をバックグラウンドで実行するように設定します。
 
-Herd for macOS uses [dnsmasq](https://en.wikipedia.org/wiki/Dnsmasq) to support "parked" directories. Any Laravel application in a parked directory will automatically be served by Herd. By default, Herd creates a parked directory at `~/Herd` and you can access any Laravel application in this directory on the `.test` domain using its directory name.
+macOS用のHerdは、「パークされた」ディレクトリをサポートするために[dnsmasq](https://en.wikipedia.org/wiki/Dnsmasq)を使用します。パークされたディレクトリ内のLaravelアプリケーションは、自動的にHerdによって提供されます。デフォルトでは、Herdは`~/Herd`にパークされたディレクトリを作成し、このディレクトリ内のLaravelアプリケーションには、ディレクトリ名を使用して`.test`ドメインでアクセスできます。
 
-After installing Herd, the fastest way to create a new Laravel project is using the Laravel CLI, which is bundled with Herd:
+<a name="herd-on-windows"></a>
+### WindowsでのHerd
+
+Windowsで開発している場合、[HerdのWebサイト](https://herd.laravel.com)からHerdインストーラーをダウンロードできます。インストーラーは、最新バージョンのPHPを自動的にダウンロードし、Windowsを常に[Nginx](https://www.nginx.com/)をバックグラウンドで実行するように設定します。
+
+Windows用のHerdは、「パークされた」ディレクトリをサポートするために[dnsmasq](https://en.wikipedia.org/wiki/Dnsmasq)を使用します。パークされたディレクトリ内のLaravelアプリケーションは、自動的にHerdによって提供されます。デフォルトでは、Herdは`~/Herd`にパークされたディレクトリを作成し、このディレクトリ内のLaravelアプリケーションには、ディレクトリ名を使用して`.test`ドメインでアクセスできます。
+
+<a name="docker-installation-using-sail"></a>
+## Sailを使用したDockerインストール
+
+[Laravel Sail](https://laravel.com/docs/sail)は、LaravelのデフォルトのDocker開発環境です。Sailは、Dockerを使用してLaravelアプリケーションを開発するための簡単な方法を提供します。
+
+Sailを使用してLaravelプロジェクトを作成するには、Composerの`create-project`コマンドを使用します：
+
+```nothing
+composer create-project laravel/laravel example-app
+```
+
+プロジェクトが作成されたら、Sailを起動します：
+
+```nothing
+cd example-app
+
+./vendor/bin/sail up
+```
+
+Sailを起動したら、アプリケーションはWebブラウザで[http://localhost](http://localhost)からアクセスできます。次に、[Laravelエコシステムの次のステップに進む](#next-steps)準備が整いました。もちろん、[データベースの設定](#databases-and-migrations)も行いたいかもしれません。
+
+<a name="sail-on-macos"></a>
+### macOSでのSail
+
+macOSで開発している場合、[Docker Desktop](https://www.docker.com/products/docker-desktop)をインストールする必要があります。Docker Desktopをインストールしたら、Sailを使用してLaravelプロジェクトを作成できます。
+
+<a name="sail-on-windows"></a>
+### WindowsでのSail
+
+Windowsで開発している場合、[Docker Desktop](https://www.docker.com/products/docker-desktop)をインストールする必要があります。Docker Desktopをインストールしたら、Sailを使用してLaravelプロジェクトを作成できます。
+
+<a name="sail-on-linux"></a>
+### LinuxでのSail
+
+Linuxで開発している場合、[Docker](https://www.docker.com/products/docker-desktop)をインストールする必要があります。Dockerをインストールしたら、Sailを使用してLaravelプロジェクトを作成できます。
+
+<a name="choosing-your-sail-services"></a>
+### Sailサービスの選択
+
+Sailを使用してLaravelプロジェクトを作成する際に、使用するサービスを選択できます。デフォルトでは、SailはMySQL、Redis、Memcached、MeiliSearch、MailHog、およびNodeを使用します。
+
+サービスを選択するには、`create-project`コマンドに`--services`オプションを追加します：
+
+```nothing
+composer create-project laravel/laravel example-app --services=mysql,redis
+```
+
+<a name="ide-support"></a>
+## IDEサポート
+
+Laravelは、[VS Code](https://code.visualstudio.com/)や[PHPStorm](https://www.jetbrains.com/phpstorm/)などの一般的なIDEをサポートしています。Laravelアプリケーションを開発する際に、これらのIDEを使用することを強くお勧めします。
+
+<a name="next-steps"></a>
+## 次のステップ
+
+Laravelアプリケーションの開発を始めたら、次のステップに進む準備が整いました。
+
+<a name="laravel-the-fullstack-framework"></a>
+### Laravel、フルスタックフレームワーク
+
+Laravelは、フルスタックフレームワークとして使用できます。Laravelを使用して、バックエンドとフロントエンドの両方を開発できます。Laravelは、バックエンドの開発に必要なすべてのツールを提供し、フロントエンドの開発に必要なツールも提供します。
+
+<a name="laravel-the-api-backend"></a>
+### Laravel、APIバックエンド
+
+Laravelは、APIバックエンドとして使用できます。Laravelを使用して、フロントエンドアプリケーションのAPIバックエンドを開発できます。Laravelは、APIバックエンドの開発に必要なすべてのツールを提供します。
+
+Herdをインストールした後、新しいLaravelプロジェクトを作成する最も速い方法は、HerdにバンドルされているLaravel CLIを使用することです。
 
 ```nothing
 cd ~/Herd
@@ -160,20 +234,20 @@ cd my-app
 herd open
 ```
 
-Of course, you can always manage your parked directories and other PHP settings via Herd's UI, which can be opened from the Herd menu in your system tray.
+もちろん、パークされたディレクトリやその他のPHP設定は、システムトレイのHerdメニューから開くことができるHerdのUIを介していつでも管理できます。
 
-You can learn more about Herd by checking out the [Herd documentation](https://herd.laravel.com/docs).
+Herdの詳細については、[Herdのドキュメント](https://herd.laravel.com/docs)を確認してください。
 
 <a name="herd-on-windows"></a>
-### Herd on Windows
+### WindowsでのHerd
 
-You can download the Windows installer for Herd on the [Herd website](https://herd.laravel.com/windows). After the installation finishes, you can start Herd to complete the onboarding process and access the Herd UI for the first time.
+Windows用のインストーラーは、[Herdのウェブサイト](https://herd.laravel.com/windows)からダウンロードできます。インストールが完了したら、Herdを起動してオンボーディングプロセスを完了し、初めてHerdのUIにアクセスできます。
 
-The Herd UI is accessible by left-clicking on Herd's system tray icon. A right-click opens the quick menu with access to all tools that you need on a daily basis.
+HerdのUIには、Herdのシステムトレイアイコンを左クリックすることでアクセスできます。右クリックすると、毎日必要なすべてのツールにアクセスできるクイックメニューが開きます。
 
-During installation, Herd creates a "parked" directory in your home directory at `%USERPROFILE%\Herd`. Any Laravel application in a parked directory will automatically be served by Herd, and you can access any Laravel application in this directory on the `.test` domain using its directory name.
+インストール中に、Herdはホームディレクトリに`%USERPROFILE%\Herd`に「パークされた」ディレクトリを作成します。パークされたディレクトリ内のLaravelアプリケーションは自動的にHerdによって提供され、このディレクトリ内の任意のLaravelアプリケーションには、そのディレクトリ名を使用して`.test`ドメインでアクセスできます。
 
-After installing Herd, the fastest way to create a new Laravel project is using the Laravel CLI, which is bundled with Herd. To get started, open Powershell and run the following commands:
+Herdをインストールした後、新しいLaravelプロジェクトを作成する最も速い方法は、HerdにバンドルされているLaravel CLIを使用することです。始めるには、Powershellを開いて次のコマンドを実行してください：
 
 ```nothing
 cd ~\Herd
@@ -182,34 +256,34 @@ cd my-app
 herd open
 ```
 
-You can learn more about Herd by checking out the [Herd documentation for Windows](https://herd.laravel.com/docs/windows).
+Herdの詳細については、[Windows用のHerdドキュメント](https://herd.laravel.com/docs/windows)を確認してください。
 
 <a name="docker-installation-using-sail"></a>
-## Docker Installation Using Sail
+## Dockerを使用したインストール（Sailを使用）
 
-We want it to be as easy as possible to get started with Laravel regardless of your preferred operating system. So, there are a variety of options for developing and running a Laravel project on your local machine. While you may wish to explore these options at a later time, Laravel provides [Sail](/docs/{{version}}/sail), a built-in solution for running your Laravel project using [Docker](https://www.docker.com).
+お好みのオペレーティングシステムに関係なく、Laravelをできるだけ簡単に始められるようにしたいと考えています。そのため、ローカルマシンでLaravelプロジェクトを開発して実行するためのさまざまなオプションが用意されています。後でこれらのオプションを探求することもできますが、Laravelは[Sail](sail.md)を提供しており、これはLaravelプロジェクトを[Docker](https://www.docker.com)を使用して実行するための組み込みのソリューションです。
 
-Docker is a tool for running applications and services in small, light-weight "containers" which do not interfere with your local machine's installed software or configuration. This means you don't have to worry about configuring or setting up complicated development tools such as web servers and databases on your local machine. To get started, you only need to install [Docker Desktop](https://www.docker.com/products/docker-desktop).
+Dockerは、アプリケーションやサービスを小さく軽量な「コンテナ」で実行するためのツールで、ローカルマシンにインストールされたソフトウェアや設定に干渉しません。つまり、ローカルマシンにWebサーバーやデータベースなどの複雑な開発ツールを設定する心配はありません。始めるには、[Docker Desktop](https://www.docker.com/products/docker-desktop)をインストールするだけです。
 
-Laravel Sail is a light-weight command-line interface for interacting with Laravel's default Docker configuration. Sail provides a great starting point for building a Laravel application using PHP, MySQL, and Redis without requiring prior Docker experience.
+Laravel Sailは、LaravelのデフォルトのDocker設定と対話するための軽量なコマンドラインインターフェースです。Sailは、Dockerの経験がなくてもPHP、MySQL、Redisを使用してLaravelアプリケーションを構築するための素晴らしい出発点を提供します。
 
-> [!NOTE]  
-> Already a Docker expert? Don't worry! Everything about Sail can be customized using the `docker-compose.yml` file included with Laravel.
+> NOTE:  
+> すでにDockerの専門家ですか？心配はいりません！Sailのすべては、Laravelに含まれる`docker-compose.yml`ファイルを使用してカスタマイズできます。
 
 <a name="sail-on-macos"></a>
-### Sail on macOS
+### macOSでのSail
 
-If you're developing on a Mac and [Docker Desktop](https://www.docker.com/products/docker-desktop) is already installed, you can use a simple terminal command to create a new Laravel project. For example, to create a new Laravel application in a directory named "example-app", you may run the following command in your terminal:
+Macで開発していて、[Docker Desktop](https://www.docker.com/products/docker-desktop)がすでにインストールされている場合、シンプルなターミナルコマンドを使用して新しいLaravelプロジェクトを作成できます。たとえば、"example-app"という名前のディレクトリに新しいLaravelアプリケーションを作成するには、ターミナルで次のコマンドを実行します：
 
 ```shell
 curl -s "https://laravel.build/example-app" | bash
 ```
 
-Of course, you can change "example-app" in this URL to anything you like - just make sure the application name only contains alpha-numeric characters, dashes, and underscores. The Laravel application's directory will be created within the directory you execute the command from.
+もちろん、このURLの"example-app"は好きなものに変更できますが、アプリケーション名には英数字、ダッシュ、アンダースコアのみを含めるようにしてください。Laravelアプリケーションのディレクトリは、コマンドを実行したディレクトリ内に作成されます。
 
-Sail installation may take several minutes while Sail's application containers are built on your local machine.
+Sailのインストールには、Sailのアプリケーションコンテナがローカルマシン上で構築される間、数分かかる場合があります。
 
-After the project has been created, you can navigate to the application directory and start Laravel Sail. Laravel Sail provides a simple command-line interface for interacting with Laravel's default Docker configuration:
+プロジェクトが作成されたら、アプリケーションディレクトリに移動し、Laravel Sailを起動できます。Laravel Sailは、LaravelのデフォルトのDocker設定と対話するためのシンプルなコマンドラインインターフェースを提供します：
 
 ```shell
 cd example-app
@@ -217,36 +291,36 @@ cd example-app
 ./vendor/bin/sail up
 ```
 
-Once the application's Docker containers have started, you should run your application's [database migrations](/docs/{{version}}/migrations):
+アプリケーションのDockerコンテナが起動したら、アプリケーションの[データベースマイグレーション](migrations.md)を実行する必要があります：
 
 ```shell
 ./vendor/bin/sail artisan migrate
 ```
 
-Finally, you can access the application in your web browser at: http://localhost.
+最後に、アプリケーションにはWebブラウザでhttp://localhostにアクセスできます。
 
-> [!NOTE]  
-> To continue learning more about Laravel Sail, review its [complete documentation](/docs/{{version}}/sail).
+> NOTE:  
+> Laravel Sailの詳細を学び続けるには、その[完全なドキュメント](sail.md)を確認してください。
 
 <a name="sail-on-windows"></a>
-### Sail on Windows
+### WindowsでのSail
 
-Before we create a new Laravel application on your Windows machine, make sure to install [Docker Desktop](https://www.docker.com/products/docker-desktop). Next, you should ensure that Windows Subsystem for Linux 2 (WSL2) is installed and enabled. WSL allows you to run Linux binary executables natively on Windows 10. Information on how to install and enable WSL2 can be found within Microsoft's [developer environment documentation](https://docs.microsoft.com/en-us/windows/wsl/install-win10).
+Windowsマシンで新しいLaravelアプリケーションを作成する前に、[Docker Desktop](https://www.docker.com/products/docker-desktop)をインストールしてください。次に、Windows Subsystem for Linux 2 (WSL2)がインストールされ、有効になっていることを確認してください。WSLは、Windows 10上でLinuxバイナリ実行ファイルをネイティブに実行できるようにします。WSL2のインストールと有効化方法については、Microsoftの[開発者環境ドキュメント](https://docs.microsoft.com/en-us/windows/wsl/install-win10)に記載されています。
 
-> [!NOTE]  
-> After installing and enabling WSL2, you should ensure that Docker Desktop is [configured to use the WSL2 backend](https://docs.docker.com/docker-for-windows/wsl/).
+> NOTE:  
+> WSL2をインストールして有効にした後、Docker Desktopが[WSL2バックエンドを使用するように設定されている](https://docs.docker.com/docker-for-windows/wsl/)ことを確認してください。
 
-Next, you are ready to create your first Laravel project. Launch [Windows Terminal](https://www.microsoft.com/en-us/p/windows-terminal/9n0dx20hk701?rtc=1&activetab=pivot:overviewtab) and begin a new terminal session for your WSL2 Linux operating system. Next, you can use a simple terminal command to create a new Laravel project. For example, to create a new Laravel application in a directory named "example-app", you may run the following command in your terminal:
+次に、最初のLaravelプロジェクトを作成する準備が整いました。[Windows Terminal](https://www.microsoft.com/en-us/p/windows-terminal/9n0dx20hk701?rtc=1&activetab=pivot:overviewtab)を起動し、WSL2 Linuxオペレーティングシステムの新しいターミナルセッションを開始します。次に、シンプルなターミナルコマンドを使用して新しいLaravelプロジェクトを作成できます。たとえば、"example-app"という名前のディレクトリに新しいLaravelアプリケーションを作成するには、ターミナルで次のコマンドを実行します：
 
 ```shell
 curl -s https://laravel.build/example-app | bash
 ```
 
-Of course, you can change "example-app" in this URL to anything you like - just make sure the application name only contains alpha-numeric characters, dashes, and underscores. The Laravel application's directory will be created within the directory you execute the command from.
+もちろん、このURLの"example-app"は好きなものに変更できますが、アプリケーション名には英数字、ダッシュ、アンダースコアのみを含めるようにしてください。Laravelアプリケーションのディレクトリは、コマンドを実行したディレクトリ内に作成されます。
 
-Sail installation may take several minutes while Sail's application containers are built on your local machine.
+Sailのインストールには、Sailのアプリケーションコンテナがローカルマシン上で構築される間、数分かかる場合があります。
 
-After the project has been created, you can navigate to the application directory and start Laravel Sail. Laravel Sail provides a simple command-line interface for interacting with Laravel's default Docker configuration:
+プロジェクトが作成されたら、アプリケーションディレクトリに移動し、Laravel Sailを起動できます。Laravel Sailは、LaravelのデフォルトのDocker設定と対話するためのシンプルなコマンドラインインターフェースを提供します：
 
 ```shell
 cd example-app
@@ -254,45 +328,45 @@ cd example-app
 ./vendor/bin/sail up
 ```
 
-Once the application's Docker containers have started, you should run your application's [database migrations](/docs/{{version}}/migrations):
+アプリケーションのDockerコンテナが起動したら、アプリケーションの[データベースマイグレーション](migrations.md)を実行する必要があります：
 
 ```shell
 ./vendor/bin/sail artisan migrate
 ```
 
-Finally, you can access the application in your web browser at: http://localhost.
+最後に、アプリケーションにはWebブラウザでhttp://localhostにアクセスできます。
 
-> [!NOTE]  
-> To continue learning more about Laravel Sail, review its [complete documentation](/docs/{{version}}/sail).
+> NOTE:  
+> Laravel Sailの詳細を学び続けるには、その[完全なドキュメント](sail.md)を確認してください。
 
-#### Developing Within WSL2
+#### WSL2内での開発
 
-Of course, you will need to be able to modify the Laravel application files that were created within your WSL2 installation. To accomplish this, we recommend using Microsoft's [Visual Studio Code](https://code.visualstudio.com) editor and their first-party extension for [Remote Development](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack).
+もちろん、WSL2インストール内に作成されたLaravelアプリケーションファイルを変更できる必要があります。これを実現するために、Microsoftの[Visual Studio Code](https://code.visualstudio.com)エディタと、[Remote Development](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack)用の公式拡張機能を使用することをお勧めします。
 
-Once these tools are installed, you may open any Laravel project by executing the `code .` command from your application's root directory using Windows Terminal.
+これらのツールがインストールされたら、Windows Terminalを使用してアプリケーションのルートディレクトリから`code .`コマンドを実行することで、任意のLaravelプロジェクトを開くことができます。
 
 <a name="sail-on-linux"></a>
-### Sail on Linux
+### LinuxでのSail
 
-If you're developing on Linux and [Docker Compose](https://docs.docker.com/compose/install/) is already installed, you can use a simple terminal command to create a new Laravel project.
+Linuxで開発していて、[Docker Compose](https://docs.docker.com/compose/install/)がすでにインストールされている場合、シンプルなターミナルコマンドを使用して新しいLaravelプロジェクトを作成できます。
 
-First, if you are using Docker Desktop for Linux, you should execute the following command. If you are not using Docker Desktop for Linux, you may skip this step:
+まず、Docker Desktop for Linuxを使用している場合、次のコマンドを実行してください。Docker Desktop for Linuxを使用していない場合は、このステップをスキップできます：
 
 ```shell
 docker context use default
 ```
 
-Then, to create a new Laravel application in a directory named "example-app", you may run the following command in your terminal:
+次に、"example-app"という名前のディレクトリに新しいLaravelアプリケーションを作成するには、ターミナルで次のコマンドを実行します：
 
 ```shell
 curl -s https://laravel.build/example-app | bash
 ```
 
-Of course, you can change "example-app" in this URL to anything you like - just make sure the application name only contains alpha-numeric characters, dashes, and underscores. The Laravel application's directory will be created within the directory you execute the command from.
+もちろん、このURLの"example-app"は好きなものに変更できますが、アプリケーション名には英数字、ダッシュ、アンダースコアのみを含めるようにしてください。Laravelアプリケーションのディレクトリは、コマンドを実行したディレクトリ内に作成されます。
 
-Sail installation may take several minutes while Sail's application containers are built on your local machine.
+Sailのインストールには、Sailのアプリケーションコンテナがローカルマシン上で構築される間、数分かかる場合があります。
 
-After the project has been created, you can navigate to the application directory and start Laravel Sail. Laravel Sail provides a simple command-line interface for interacting with Laravel's default Docker configuration:
+プロジェクトが作成されたら、アプリケーションディレクトリに移動し、Laravel Sailを起動できます。Laravel Sailは、LaravelのデフォルトのDocker設定と対話するためのシンプルなコマンドラインインターフェースを提供します：
 
 ```shell
 cd example-app
@@ -300,80 +374,81 @@ cd example-app
 ./vendor/bin/sail up
 ```
 
-Once the application's Docker containers have started, you should run your application's [database migrations](/docs/{{version}}/migrations):
+アプリケーションのDockerコンテナが起動したら、アプリケーションの[データベースマイグレーション](migrations.md)を実行する必要があります：
 
 ```shell
 ./vendor/bin/sail artisan migrate
 ```
 
-Finally, you can access the application in your web browser at: http://localhost.
+最後に、アプリケーションにはWebブラウザでhttp://localhostにアクセスできます。
 
-> [!NOTE]  
-> To continue learning more about Laravel Sail, review its [complete documentation](/docs/{{version}}/sail).
+> NOTE:  
+> Laravel Sailの詳細を学び続けるには、その[完全なドキュメント](sail.md)を確認してください。
 
 <a name="choosing-your-sail-services"></a>
-### Choosing Your Sail Services
+### Sailサービスの選択
 
-When creating a new Laravel application via Sail, you may use the `with` query string variable to choose which services should be configured in your new application's `docker-compose.yml` file. Available services include `mysql`, `pgsql`, `mariadb`, `redis`, `memcached`, `meilisearch`, `typesense`, `minio`, `selenium`, and `mailpit`:
+新しいLaravelアプリケーションをSailを介して作成する際、`with`クエリ文字列変数を使用して、新しいアプリケーションの`docker-compose.yml`ファイルに設定するサービスを選択できます。利用可能なサービスには、`mysql`、`pgsql`、`mariadb`、`redis`、`memcached`、`meilisearch`、`typesense`、`minio`、`selenium`、`mailpit`が含まれます：
 
 ```shell
 curl -s "https://laravel.build/example-app?with=mysql,redis" | bash
 ```
 
-If you do not specify which services you would like configured, a default stack of `mysql`, `redis`, `meilisearch`, `mailpit`, and `selenium` will be configured.
+設定するサービスを指定しない場合、`mysql`、`redis`、`meilisearch`、`mailpit`、`selenium`のデフォルトスタックが設定されます。
 
-You may instruct Sail to install a default [Devcontainer](/docs/{{version}}/sail#using-devcontainers) by adding the `devcontainer` parameter to the URL:
+`devcontainer`パラメータをURLに追加することで、デフォルトの[Devcontainer](sail.md#using-devcontainers)をインストールするようにSailに指示できます：
 
 ```shell
 curl -s "https://laravel.build/example-app?with=mysql,redis&devcontainer" | bash
 ```
 
 <a name="ide-support"></a>
-## IDE Support
+## IDEサポート
 
-You are free to use any code editor you wish when developing Laravel applications; however, [PhpStorm](https://www.jetbrains.com/phpstorm/laravel/) offers extensive support for Laravel and its ecosystem, including [Laravel Pint](https://www.jetbrains.com/help/phpstorm/using-laravel-pint.html).
+Laravelアプリケーションの開発には、お好きなコードエディタを自由にお使いいただけますが、[PhpStorm](https://www.jetbrains.com/phpstorm/laravel/)はLaravelとそのエコシステムに対して広範なサポートを提供しており、[Laravel Pint](https://www.jetbrains.com/help/phpstorm/using-laravel-pint.html)も含まれています。
 
-In addition, the community maintained [Laravel Idea](https://laravel-idea.com/) PhpStorm plugin offers a variety of helpful IDE augmentations, including code generation, Eloquent syntax completion, validation rule completion, and more.
+さらに、コミュニティがメンテナンスしている[Laravel Idea](https://laravel-idea.com/)のPhpStormプラグインは、コード生成、Eloquent構文の補完、バリデーションルールの補完など、さまざまな便利なIDE拡張機能を提供しています。
 
 <a name="next-steps"></a>
-## Next Steps
+## 次のステップ
 
-Now that you have created your Laravel project, you may be wondering what to learn next. First, we strongly recommend becoming familiar with how Laravel works by reading the following documentation:
+これでLaravelプロジェクトを作成できましたが、次に何を学ぶべきか迷っているかもしれません。まず、Laravelの動作を理解するために、以下のドキュメントを読むことを強くお勧めします。
 
 <div class="content-list" markdown="1">
 
-- [Request Lifecycle](/docs/{{version}}/lifecycle)
-- [Configuration](/docs/{{version}}/configuration)
-- [Directory Structure](/docs/{{version}}/structure)
-- [Frontend](/docs/{{version}}/frontend)
-- [Service Container](/docs/{{version}}/container)
-- [Facades](/docs/{{version}}/facades)
+- [リクエストライフサイクル](lifecycle.md)
+- [設定](configuration.md)
+- [ディレクトリ構造](structure.md)
+- [フロントエンド](frontend.md)
+- [サービスコンテナ](container.md)
+- [ファサード](facades.md)
 
 </div>
 
-How you want to use Laravel will also dictate the next steps on your journey. There are a variety of ways to use Laravel, and we'll explore two primary use cases for the framework below.
+Laravelをどのように使うかによっても、次のステップは変わってきます。Laravelにはさまざまな使い方がありますが、以下ではフレームワークの主な2つの使用例を紹介します。
 
-> [!NOTE]  
-> New to Laravel? Check out the [Laravel Bootcamp](https://bootcamp.laravel.com) for a hands-on tour of the framework while we walk you through building your first Laravel application.
+> NOTE:  
+> Laravel初心者ですか？[Laravel Bootcamp](https://bootcamp.laravel.com)で、フレームワークのハンズオンツアーを体験しながら、初めてのLaravelアプリケーションを構築する方法を学ぶことができます。
 
 <a name="laravel-the-fullstack-framework"></a>
-### Laravel the Full Stack Framework
+### Laravelをフルスタックフレームワークとして使用する
 
-Laravel may serve as a full stack framework. By "full stack" framework we mean that you are going to use Laravel to route requests to your application and render your frontend via [Blade templates](/docs/{{version}}/blade) or a single-page application hybrid technology like [Inertia](https://inertiajs.com). This is the most common way to use the Laravel framework, and, in our opinion, the most productive way to use Laravel.
+Laravelはフルスタックフレームワークとして機能します。「フルスタック」フレームワークとは、Laravelを使用してアプリケーションへのリクエストをルーティングし、[Bladeテンプレート](blade.md)または[Inertia](https://inertiajs.com)のようなシングルページアプリケーションのハイブリッド技術を介してフロントエンドをレンダリングすることを意味します。これはLaravelを使用する最も一般的な方法であり、私たちの意見では、Laravelを使用する最も生産的な方法です。
 
-If this is how you plan to use Laravel, you may want to check out our documentation on [frontend development](/docs/{{version}}/frontend), [routing](/docs/{{version}}/routing), [views](/docs/{{version}}/views), or the [Eloquent ORM](/docs/{{version}}/eloquent). In addition, you might be interested in learning about community packages like [Livewire](https://livewire.laravel.com) and [Inertia](https://inertiajs.com). These packages allow you to use Laravel as a full-stack framework while enjoying many of the UI benefits provided by single-page JavaScript applications.
+この方法でLaravelを使用する場合、[フロントエンド開発](frontend.md)、[ルーティング](routing.md)、[ビュー](views.md)、または[Eloquent ORM](eloquent.md)に関するドキュメントをチェックしてみてください。さらに、[Livewire](https://livewire.laravel.com)や[Inertia](https://inertiajs.com)のようなコミュニティパッケージに興味があるかもしれません。これらのパッケージを使用すると、Laravelをフルスタックフレームワークとして使用しながら、シングルページJavaScriptアプリケーションが提供する多くのUIの利点を享受できます。
 
-If you are using Laravel as a full stack framework, we also strongly encourage you to learn how to compile your application's CSS and JavaScript using [Vite](/docs/{{version}}/vite).
+Laravelをフルスタックフレームワークとして使用する場合、アプリケーションのCSSとJavaScriptを[Vite](vite.md)を使用してコンパイルする方法を学ぶことも強くお勧めします。
 
-> [!NOTE]  
-> If you want to get a head start building your application, check out one of our official [application starter kits](/docs/{{version}}/starter-kits).
+> NOTE:  
+> アプリケーションの構築を早めに開始したい場合は、公式の[アプリケーションスターターキット](starter-kits.md)のいずれかをチェックしてください。
 
 <a name="laravel-the-api-backend"></a>
-### Laravel the API Backend
+### LaravelをAPIバックエンドとして使用する
 
-Laravel may also serve as an API backend to a JavaScript single-page application or mobile application. For example, you might use Laravel as an API backend for your [Next.js](https://nextjs.org) application. In this context, you may use Laravel to provide [authentication](/docs/{{version}}/sanctum) and data storage / retrieval for your application, while also taking advantage of Laravel's powerful services such as queues, emails, notifications, and more.
+Laravelは、JavaScriptのシングルページアプリケーションやモバイルアプリケーションのAPIバックエンドとしても機能します。例えば、Laravelを[Next.js](https://nextjs.org)アプリケーションのAPIバックエンドとして使用することができます。このコンテキストでは、Laravelを使用してアプリケーションの[認証](sanctum.md)とデータの保存/取得を提供し、キューやメール、通知などのLaravelの強力なサービスを活用することができます。
 
-If this is how you plan to use Laravel, you may want to check out our documentation on [routing](/docs/{{version}}/routing), [Laravel Sanctum](/docs/{{version}}/sanctum), and the [Eloquent ORM](/docs/{{version}}/eloquent).
+この方法でLaravelを使用する場合、[ルーティング](routing.md)、[Laravel Sanctum](sanctum.md)、および[Eloquent ORM](eloquent.md)に関するドキュメントをチェックしてみてください。
 
-> [!NOTE]  
-> Need a head start scaffolding your Laravel backend and Next.js frontend? Laravel Breeze offers an [API stack](/docs/{{version}}/starter-kits#breeze-and-next) as well as a [Next.js frontend implementation](https://github.com/laravel/breeze-next) so you can get started in minutes.
+> NOTE:  
+> LaravelバックエンドとNext.jsフロントエンドのスキャフォールディングを早めに開始したいですか？Laravel Breezeは[APIスタック](starter-kits.md#breeze-and-next)と[Next.jsフロントエンド実装](https://github.com/laravel/breeze-next)を提供しており、数分で開始できます。
+

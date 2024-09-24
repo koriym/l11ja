@@ -1,94 +1,94 @@
 # Laravel Sail
 
-- [Introduction](#introduction)
-- [Installation and Setup](#installation)
-    - [Installing Sail Into Existing Applications](#installing-sail-into-existing-applications)
-    - [Rebuilding Sail Images](#rebuilding-sail-images)
-    - [Configuring A Shell Alias](#configuring-a-shell-alias)
-- [Starting and Stopping Sail](#starting-and-stopping-sail)
-- [Executing Commands](#executing-sail-commands)
-    - [Executing PHP Commands](#executing-php-commands)
-    - [Executing Composer Commands](#executing-composer-commands)
-    - [Executing Artisan Commands](#executing-artisan-commands)
-    - [Executing Node / NPM Commands](#executing-node-npm-commands)
-- [Interacting With Databases](#interacting-with-sail-databases)
+- [はじめに](#introduction)
+- [インストールとセットアップ](#installation)
+    - [既存のアプリケーションにSailをインストールする](#installing-sail-into-existing-applications)
+    - [Sailイメージの再構築](#rebuilding-sail-images)
+    - [シェルエイリアスの設定](#configuring-a-shell-alias)
+- [Sailの起動と停止](#starting-and-stopping-sail)
+- [コマンドの実行](#executing-sail-commands)
+    - [PHPコマンドの実行](#executing-php-commands)
+    - [Composerコマンドの実行](#executing-composer-commands)
+    - [Artisanコマンドの実行](#executing-artisan-commands)
+    - [Node / NPMコマンドの実行](#executing-node-npm-commands)
+- [データベースとの連携](#interacting-with-sail-databases)
     - [MySQL](#mysql)
     - [Redis](#redis)
     - [Meilisearch](#meilisearch)
     - [Typesense](#typesense)
-- [File Storage](#file-storage)
-- [Running Tests](#running-tests)
+- [ファイルストレージ](#file-storage)
+- [テストの実行](#running-tests)
     - [Laravel Dusk](#laravel-dusk)
-- [Previewing Emails](#previewing-emails)
-- [Container CLI](#sail-container-cli)
-- [PHP Versions](#sail-php-versions)
-- [Node Versions](#sail-node-versions)
-- [Sharing Your Site](#sharing-your-site)
-- [Debugging With Xdebug](#debugging-with-xdebug)
-  - [Xdebug CLI Usage](#xdebug-cli-usage)
-  - [Xdebug Browser Usage](#xdebug-browser-usage)
-- [Customization](#sail-customization)
+- [メールのプレビュー](#previewing-emails)
+- [コンテナCLI](#sail-container-cli)
+- [PHPバージョン](#sail-php-versions)
+- [Nodeバージョン](#sail-node-versions)
+- [サイトの共有](#sharing-your-site)
+- [Xdebugによるデバッグ](#debugging-with-xdebug)
+  - [Xdebug CLIの使用](#xdebug-cli-usage)
+  - [Xdebugブラウザの使用](#xdebug-browser-usage)
+- [カスタマイズ](#sail-customization)
 
 <a name="introduction"></a>
-## Introduction
+## はじめに
 
-[Laravel Sail](https://github.com/laravel/sail) is a light-weight command-line interface for interacting with Laravel's default Docker development environment. Sail provides a great starting point for building a Laravel application using PHP, MySQL, and Redis without requiring prior Docker experience.
+[Laravel Sail](https://github.com/laravel/sail)は、LaravelのデフォルトのDocker開発環境と対話するための軽量のコマンドラインインターフェースです。Sailは、Dockerの経験がなくてもPHP、MySQL、Redisを使用してLaravelアプリケーションを構築するための優れた出発点を提供します。
 
-At its heart, Sail is the `docker-compose.yml` file and the `sail` script that is stored at the root of your project. The `sail` script provides a CLI with convenient methods for interacting with the Docker containers defined by the `docker-compose.yml` file.
+Sailの中核は、プロジェクトのルートに保存されている`docker-compose.yml`ファイルと`sail`スクリプトです。`sail`スクリプトは、`docker-compose.yml`ファイルで定義されたDockerコンテナと対話するための便利なメソッドを持つCLIを提供します。
 
-Laravel Sail is supported on macOS, Linux, and Windows (via [WSL2](https://docs.microsoft.com/en-us/windows/wsl/about)).
+Laravel SailはmacOS、Linux、および[WSL2](https://docs.microsoft.com/en-us/windows/wsl/about)経由のWindowsでサポートされています。
 
 <a name="installation"></a>
-## Installation and Setup
+## インストールとセットアップ
 
-Laravel Sail is automatically installed with all new Laravel applications so you may start using it immediately. To learn how to create a new Laravel application, please consult Laravel's [installation documentation](/docs/{{version}}/installation#docker-installation-using-sail) for your operating system. During installation, you will be asked to choose which Sail supported services your application will be interacting with.
+Laravel Sailはすべての新しいLaravelアプリケーションに自動的にインストールされるため、すぐに使用を開始できます。新しいLaravelアプリケーションを作成する方法については、お使いのオペレーティングシステムのLaravelの[インストールドキュメント](installation.md#docker-installation-using-sail)を参照してください。インストール中に、アプリケーションが対話するSailがサポートするサービスを選択するよう求められます。
 
 <a name="installing-sail-into-existing-applications"></a>
-### Installing Sail Into Existing Applications
+### 既存のアプリケーションにSailをインストールする
 
-If you are interested in using Sail with an existing Laravel application, you may simply install Sail using the Composer package manager. Of course, these steps assume that your existing local development environment allows you to install Composer dependencies:
+既存のLaravelアプリケーションでSailを使用したい場合は、Composerパッケージマネージャを使用してSailをインストールできます。もちろん、これらの手順は、既存のローカル開発環境でComposerの依存関係をインストールできることを前提としています。
 
 ```shell
 composer require laravel/sail --dev
 ```
 
-After Sail has been installed, you may run the `sail:install` Artisan command. This command will publish Sail's `docker-compose.yml` file to the root of your application and modify your `.env` file with the required environment variables in order to connect to the Docker services:
+Sailがインストールされたら、`sail:install` Artisanコマンドを実行できます。このコマンドは、Sailの`docker-compose.yml`ファイルをアプリケーションのルートに公開し、Dockerサービスに接続するために必要な環境変数で`.env`ファイルを変更します。
 
 ```shell
 php artisan sail:install
 ```
 
-Finally, you may start Sail. To continue learning how to use Sail, please continue reading the remainder of this documentation:
+最後に、Sailを起動できます。Sailの使用方法を続けて学ぶには、このドキュメントの残りの部分を読み進めてください。
 
 ```shell
 ./vendor/bin/sail up
 ```
 
-> [!WARNING]  
-> If you are using Docker Desktop for Linux, you should use the `default` Docker context by executing the following command: `docker context use default`.
+> WARNING:  
+> Docker Desktop for Linuxを使用している場合は、次のコマンドを実行して`default` Dockerコンテキストを使用する必要があります: `docker context use default`。
 
 <a name="adding-additional-services"></a>
-#### Adding Additional Services
+#### 追加のサービスを追加する
 
-If you would like to add an additional service to your existing Sail installation, you may run the `sail:add` Artisan command:
+既存のSailインストールに追加のサービスを追加したい場合は、`sail:add` Artisanコマンドを実行できます。
 
 ```shell
 php artisan sail:add
 ```
 
 <a name="using-devcontainers"></a>
-#### Using Devcontainers
+#### Devcontainersを使用する
 
-If you would like to develop within a [Devcontainer](https://code.visualstudio.com/docs/remote/containers), you may provide the `--devcontainer` option to the `sail:install` command. The `--devcontainer` option will instruct the `sail:install` command to publish a default `.devcontainer/devcontainer.json ` file to the root of your application:
+[Devcontainer](https://code.visualstudio.com/docs/remote/containers)内で開発したい場合は、`sail:install`コマンドに`--devcontainer`オプションを指定できます。`--devcontainer`オプションは、`sail:install`コマンドにアプリケーションのルートにデフォルトの`.devcontainer/devcontainer.json`ファイルを公開するよう指示します。
 
 ```shell
 php artisan sail:install --devcontainer
 ```
 
 <a name="rebuilding-sail-images"></a>
-### Rebuilding Sail Images
+### Sailイメージの再構築
 
-Sometimes you may want to completely rebuild your Sail images to ensure all of the image's packages and software are up to date. You may accomplish this using the `build` command:
+場合によっては、イメージのすべてのパッケージとソフトウェアが最新であることを確認するために、Sailイメージを完全に再構築したいことがあります。これは`build`コマンドを使用して行うことができます。
 
 ```shell
 docker compose down -v
@@ -99,72 +99,72 @@ sail up
 ```
 
 <a name="configuring-a-shell-alias"></a>
-### Configuring A Shell Alias
+### シェルエイリアスの設定
 
-By default, Sail commands are invoked using the `vendor/bin/sail` script that is included with all new Laravel applications:
+デフォルトでは、Sailコマンドはすべての新しいLaravelアプリケーションに含まれる`vendor/bin/sail`スクリプトを使用して実行されます。
 
 ```shell
 ./vendor/bin/sail up
 ```
 
-However, instead of repeatedly typing `vendor/bin/sail` to execute Sail commands, you may wish to configure a shell alias that allows you to execute Sail's commands more easily:
+ただし、`vendor/bin/sail`を繰り返し入力する代わりに、Sailのコマンドをより簡単に実行できるようにシェルエイリアスを設定したい場合があります。
 
 ```shell
 alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
 ```
 
-To make sure this is always available, you may add this to your shell configuration file in your home directory, such as `~/.zshrc` or `~/.bashrc`, and then restart your shell.
+これが常に利用可能になるように、これをホームディレクトリのシェル設定ファイル（例: `~/.zshrc` または `~/.bashrc`）に追加し、シェルを再起動してください。
 
-Once the shell alias has been configured, you may execute Sail commands by simply typing `sail`. The remainder of this documentation's examples will assume that you have configured this alias:
+シェルエイリアスが設定されたら、単に`sail`と入力するだけでSailコマンドを実行できます。このドキュメントの残りの部分の例では、このエイリアスが設定されていることを前提としています。
 
 ```shell
 sail up
 ```
 
 <a name="starting-and-stopping-sail"></a>
-## Starting and Stopping Sail
+## Sailの起動と停止
 
-Laravel Sail's `docker-compose.yml` file defines a variety of Docker containers that work together to help you build Laravel applications. Each of these containers is an entry within the `services` configuration of your `docker-compose.yml` file. The `laravel.test` container is the primary application container that will be serving your application.
+Laravel Sailの`docker-compose.yml`ファイルは、Laravelアプリケーションの構築に役立つさまざまなDockerコンテナを定義しています。これらのコンテナは、`docker-compose.yml`ファイルの`services`設定内のエントリです。`laravel.test`コンテナは、アプリケーションを提供するプライマリアプリケーションコンテナです。
 
-Before starting Sail, you should ensure that no other web servers or databases are running on your local computer. To start all of the Docker containers defined in your application's `docker-compose.yml` file, you should execute the `up` command:
+Sailを起動する前に、ローカルコンピュータで他のWebサーバーやデータベースが実行されていないことを確認してください。アプリケーションの`docker-compose.yml`ファイルで定義されたすべてのDockerコンテナを起動するには、`up`コマンドを実行します。
 
 ```shell
 sail up
 ```
 
-To start all of the Docker containers in the background, you may start Sail in "detached" mode:
+すべてのDockerコンテナをバックグラウンドで起動するには、Sailを「デタッチ」モードで起動できます。
 
 ```shell
 sail up -d
 ```
 
-Once the application's containers have been started, you may access the project in your web browser at: http://localhost.
+アプリケーションのコンテナが起動したら、Webブラウザでプロジェクトにアクセスできます: http://localhost。
 
-To stop all of the containers, you may simply press Control + C to stop the container's execution. Or, if the containers are running in the background, you may use the `stop` command:
+すべてのコンテナを停止するには、単にControl + Cを押してコンテナの実行を停止するか、コンテナがバックグラウンドで実行されている場合は`stop`コマンドを使用できます。
 
 ```shell
 sail stop
 ```
 
 <a name="executing-sail-commands"></a>
-## Executing Commands
+## コマンドの実行
 
-When using Laravel Sail, your application is executing within a Docker container and is isolated from your local computer. However, Sail provides a convenient way to run various commands against your application such as arbitrary PHP commands, Artisan commands, Composer commands, and Node / NPM commands.
+Laravel Sailを使用する場合、アプリケーションはDockerコンテナ内で実行され、ローカルコンピュータから分離されます。ただし、Sailは、任意のPHPコマンド、Artisanコマンド、Composerコマンド、およびNode / NPMコマンドなど、アプリケーションに対してさまざまなコマンドを実行する便利な方法を提供します。
 
-**When reading the Laravel documentation, you will often see references to Composer, Artisan, and Node / NPM commands that do not reference Sail.** Those examples assume that these tools are installed on your local computer. If you are using Sail for your local Laravel development environment, you should execute those commands using Sail:
+**Laravelのドキュメントを読むとき、Composer、Artisan、およびNode / NPMコマンドへの参照がSailを参照しないことがよくあります。** これらの例は、これらのツールがローカルコンピュータにインストールされていることを前提としています。ローカルのLaravel開発環境にSailを使用している場合は、これらのコマンドをSailを使用して実行する必要があります。
 
 ```shell
-# Running Artisan commands locally...
+# ローカルでArtisanコマンドを実行する...
 php artisan queue:work
 
-# Running Artisan commands within Laravel Sail...
+# Laravel Sail内でArtisanコマンドを実行する...
 sail artisan queue:work
 ```
 
 <a name="executing-php-commands"></a>
-### Executing PHP Commands
+### PHPコマンドの実行
 
-PHP commands may be executed using the `php` command. Of course, these commands will execute using the PHP version that is configured for your application. To learn more about the PHP versions available to Laravel Sail, consult the [PHP version documentation](#sail-php-versions):
+PHPコマンドは`php`コマンドを使用して実行できます。もちろん、これらのコマンドはアプリケーション用に設定されたPHPバージョンを使用して実行されます。Laravel Sailで利用可能なPHPバージョンの詳細については、[PHPバージョンドキュメント](#sail-php-versions)を参照してください。
 
 ```shell
 sail php --version
@@ -173,20 +173,20 @@ sail php script.php
 ```
 
 <a name="executing-composer-commands"></a>
-### Executing Composer Commands
+### Composerコマンドの実行
 
-Composer commands may be executed using the `composer` command. Laravel Sail's application container includes a Composer installation:
+Composerコマンドは`composer`コマンドを使用して実行できます。Laravel SailのアプリケーションコンテナにはComposerがインストールされています。
 
 ```nothing
 sail composer require laravel/sanctum
 ```
 
 <a name="installing-composer-dependencies-for-existing-projects"></a>
-#### Installing Composer Dependencies for Existing Applications
+#### 既存のアプリケーションのComposer依存関係をインストールする
 
-If you are developing an application with a team, you may not be the one that initially creates the Laravel application. Therefore, none of the application's Composer dependencies, including Sail, will be installed after you clone the application's repository to your local computer.
+チームでアプリケーションを開発している場合、あなたが最初にLaravelアプリケーションを作成したわけではないかもしれません。したがって、アプリケーションのリポジトリをローカルコンピュータにクローンした後、アプリケーションのComposer依存関係（Sailを含む）はインストールされません。
 
-You may install the application's dependencies by navigating to the application's directory and executing the following command. This command uses a small Docker container containing PHP and Composer to install the application's dependencies:
+アプリケーションのディレクトリに移動し、次のコマンドを実行してアプリケーションの依存関係をインストールできます。このコマンドは、PHPとComposerを含む小さなDockerコンテナを使用してアプリケーションの依存関係をインストールします。
 
 ```shell
 docker run --rm \
@@ -197,21 +197,21 @@ docker run --rm \
     composer install --ignore-platform-reqs
 ```
 
-When using the `laravelsail/phpXX-composer` image, you should use the same version of PHP that you plan to use for your application (`80`, `81`, `82`, or `83`).
+`laravelsail/phpXX-composer`イメージを使用する場合、アプリケーションで使用する予定のPHPバージョン（`80`、`81`、`82`、または`83`）を使用する必要があります。
 
 <a name="executing-artisan-commands"></a>
-### Executing Artisan Commands
+### Artisanコマンドの実行
 
-Laravel Artisan commands may be executed using the `artisan` command:
+Laravel Artisanコマンドは`artisan`コマンドを使用して実行できます。
 
 ```shell
 sail artisan queue:work
 ```
 
 <a name="executing-node-npm-commands"></a>
-### Executing Node / NPM Commands
+### Node / NPMコマンドの実行
 
-Node commands may be executed using the `node` command while NPM commands may be executed using the `npm` command:
+Nodeコマンドは`node`コマンドを使用して実行でき、NPMコマンドは`npm`コマンドを使用して実行できます。
 
 ```shell
 sail node --version
@@ -219,44 +219,44 @@ sail node --version
 sail npm run dev
 ```
 
-If you wish, you may use Yarn instead of NPM:
+必要に応じて、NPMの代わりにYarnを使用できます。
 
 ```shell
 sail yarn
 ```
 
 <a name="interacting-with-sail-databases"></a>
-## Interacting With Databases
+## データベースとの連携
 
 <a name="mysql"></a>
 ### MySQL
 
-As you may have noticed, your application's `docker-compose.yml` file contains an entry for a MySQL container. This container uses a [Docker volume](https://docs.docker.com/storage/volumes/) so that the data stored in your database is persisted even when stopping and restarting your containers.
+ご存知かもしれませんが、アプリケーションの `docker-compose.yml` ファイルには MySQL コンテナのエントリが含まれています。このコンテナは [Docker ボリューム](https://docs.docker.com/storage/volumes/) を使用しているため、コンテナを停止して再起動しても、データベースに保存されたデータは永続化されます。
 
-In addition, the first time the MySQL container starts, it will create two databases for you. The first database is named using the value of your `DB_DATABASE` environment variable and is for your local development. The second is a dedicated testing database named `testing` and will ensure that your tests do not interfere with your development data.
+さらに、MySQL コンテナが初めて起動するときに、2 つのデータベースが作成されます。最初のデータベースは `DB_DATABASE` 環境変数の値を使用して名前が付けられ、ローカル開発用です。2 つ目は専用のテストデータベースで、名前は `testing` で、テストが開発データに干渉しないようにします。
 
-Once you have started your containers, you may connect to the MySQL instance within your application by setting your `DB_HOST` environment variable within your application's `.env` file to `mysql`.
+コンテナを起動したら、アプリケーションの `.env` ファイル内で `DB_HOST` 環境変数を `mysql` に設定することで、アプリケーション内の MySQL インスタンスに接続できます。
 
-To connect to your application's MySQL database from your local machine, you may use a graphical database management application such as [TablePlus](https://tableplus.com). By default, the MySQL database is accessible at `localhost` port 3306 and the access credentials correspond to the values of your `DB_USERNAME` and `DB_PASSWORD` environment variables. Or, you may connect as the `root` user, which also utilizes the value of your `DB_PASSWORD` environment variable as its password.
+ローカルマシンからアプリケーションの MySQL データベースに接続するには、[TablePlus](https://tableplus.com) などのグラフィカルなデータベース管理アプリケーションを使用できます。デフォルトでは、MySQL データベースは `localhost` のポート 3306 でアクセス可能で、アクセス資格情報は `DB_USERNAME` および `DB_PASSWORD` 環境変数の値に対応しています。または、`root` ユーザーとして接続することもできます。この場合も、パスワードとして `DB_PASSWORD` 環境変数の値が使用されます。
 
 <a name="redis"></a>
 ### Redis
 
-Your application's `docker-compose.yml` file also contains an entry for a [Redis](https://redis.io) container. This container uses a [Docker volume](https://docs.docker.com/storage/volumes/) so that the data stored in your Redis data is persisted even when stopping and restarting your containers. Once you have started your containers, you may connect to the Redis instance within your application by setting your `REDIS_HOST` environment variable within your application's `.env` file to `redis`.
+アプリケーションの `docker-compose.yml` ファイルには、[Redis](https://redis.io) コンテナのエントリも含まれています。このコンテナは [Docker ボリューム](https://docs.docker.com/storage/volumes/) を使用しているため、コンテナを停止して再起動しても、Redis に保存されたデータは永続化されます。コンテナを起動したら、アプリケーションの `.env` ファイル内で `REDIS_HOST` 環境変数を `redis` に設定することで、アプリケーション内の Redis インスタンスに接続できます。
 
-To connect to your application's Redis database from your local machine, you may use a graphical database management application such as [TablePlus](https://tableplus.com). By default, the Redis database is accessible at `localhost` port 6379.
+ローカルマシンからアプリケーションの Redis データベースに接続するには、[TablePlus](https://tableplus.com) などのグラフィカルなデータベース管理アプリケーションを使用できます。デフォルトでは、Redis データベースは `localhost` のポート 6379 でアクセス可能です。
 
 <a name="meilisearch"></a>
 ### Meilisearch
 
-If you chose to install the [Meilisearch](https://www.meilisearch.com) service when installing Sail, your application's `docker-compose.yml` file will contain an entry for this powerful search engine that is integrated with [Laravel Scout](/docs/{{version}}/scout). Once you have started your containers, you may connect to the Meilisearch instance within your application by setting your `MEILISEARCH_HOST` environment variable to `http://meilisearch:7700`.
+Sail のインストール時に [Meilisearch](https://www.meilisearch.com) サービスをインストールすることを選択した場合、アプリケーションの `docker-compose.yml` ファイルには、[Laravel Scout](scout.md) と統合されたこの強力な検索エンジンのエントリが含まれます。コンテナを起動したら、`MEILISEARCH_HOST` 環境変数を `http://meilisearch:7700` に設定することで、アプリケーション内の Meilisearch インスタンスに接続できます。
 
-From your local machine, you may access Meilisearch's web based administration panel by navigating to `http://localhost:7700` in your web browser.
+ローカルマシンから、Web ベースの Meilisearch 管理パネルに `http://localhost:7700` でアクセスできます。
 
 <a name="typesense"></a>
 ### Typesense
 
-If you chose to install the [Typesense](https://typesense.org) service when installing Sail, your application's `docker-compose.yml` file will contain an entry for this lightning fast, open-source search engine that is natively integrated with [Laravel Scout](/docs/{{version}}/scout#typesense). Once you have started your containers, you may connect to the Typesense instance within your application by setting the following environment variables:
+Sail のインストール時に [Typesense](https://typesense.org) サービスをインストールすることを選択した場合、アプリケーションの `docker-compose.yml` ファイルには、[Laravel Scout](scout.md#typesense) とネイティブに統合されたこの高速なオープンソース検索エンジンのエントリが含まれます。コンテナを起動したら、以下の環境変数を設定することで、アプリケーション内の Typesense インスタンスに接続できます：
 
 ```ini
 TYPESENSE_HOST=typesense
@@ -265,14 +265,14 @@ TYPESENSE_PROTOCOL=http
 TYPESENSE_API_KEY=xyz
 ```
 
-From your local machine, you may access Typesense's API via `http://localhost:8108`.
+ローカルマシンから、`http://localhost:8108` で Typesense の API にアクセスできます。
 
 <a name="file-storage"></a>
-## File Storage
+## ファイルストレージ
 
-If you plan to use Amazon S3 to store files while running your application in its production environment, you may wish to install the [MinIO](https://min.io) service when installing Sail. MinIO provides an S3 compatible API that you may use to develop locally using Laravel's `s3` file storage driver without creating "test" storage buckets in your production S3 environment. If you choose to install MinIO while installing Sail, a MinIO configuration section will be added to your application's `docker-compose.yml` file.
+アプリケーションを本番環境で実行する際に Amazon S3 を使用してファイルを保存する予定の場合、Sail のインストール時に [MinIO](https://min.io) サービスをインストールすることをお勧めします。MinIO は、本番環境の S3 環境に「テスト」ストレージバケットを作成することなく、Laravel の `s3` ファイルストレージドライバを使用してローカルで開発するために使用できる S3 互換 API を提供します。MinIO をインストールすることを選択した場合、MinIO の設定セクションがアプリケーションの `docker-compose.yml` ファイルに追加されます。
 
-By default, your application's `filesystems` configuration file already contains a disk configuration for the `s3` disk. In addition to using this disk to interact with Amazon S3, you may use it to interact with any S3 compatible file storage service such as MinIO by simply modifying the associated environment variables that control its configuration. For example, when using MinIO, your filesystem environment variable configuration should be defined as follows:
+デフォルトでは、アプリケーションの `filesystems` 設定ファイルには、`s3` ディスクのディスク設定が既に含まれています。Amazon S3 とやり取りするためにこのディスクを使用するだけでなく、MinIO などの S3 互換ファイルストレージサービスとやり取りするためにも使用できます。そのためには、関連する環境変数を単純に変更します。例えば、MinIO を使用する場合、ファイルシステムの環境変数設定は次のように定義されます：
 
 ```ini
 FILESYSTEM_DISK=s3
@@ -284,21 +284,21 @@ AWS_ENDPOINT=http://minio:9000
 AWS_USE_PATH_STYLE_ENDPOINT=true
 ```
 
-In order for Laravel's Flysystem integration to generate proper URLs when using MinIO, you should define the `AWS_URL` environment variable so that it matches your application's local URL and includes the bucket name in the URL path:
+Laravel の Flysystem 統合が MinIO を使用する際に適切な URL を生成できるようにするには、`AWS_URL` 環境変数を定義して、アプリケーションのローカル URL と一致させ、URL パスにバケット名を含める必要があります：
 
 ```ini
 AWS_URL=http://localhost:9000/local
 ```
 
-You may create buckets via the MinIO console, which is available at `http://localhost:8900`. The default username for the MinIO console is `sail` while the default password is `password`.
+MinIO コンソールを介してバケットを作成できます。MinIO コンソールは `http://localhost:8900` で利用できます。MinIO コンソールのデフォルトユーザー名は `sail` で、デフォルトパスワードは `password` です。
 
-> [!WARNING]  
-> Generating temporary storage URLs via the `temporaryUrl` method is not supported when using MinIO.
+> WARNING:  
+> `temporaryUrl` メソッドを介して一時的なストレージ URL を生成することは、MinIO を使用する場合はサポートされていません。
 
 <a name="running-tests"></a>
-## Running Tests
+## テストの実行
 
-Laravel provides amazing testing support out of the box, and you may use Sail's `test` command to run your applications [feature and unit tests](/docs/{{version}}/testing). Any CLI options that are accepted by Pest / PHPUnit may also be passed to the `test` command:
+Laravel は、ボックスから出してすぐに素晴らしいテストサポートを提供します。Sail の `test` コマンドを使用して、アプリケーションの [機能テストと単体テスト](testing.md) を実行できます。Pest / PHPUnit が受け入れるすべての CLI オプションも `test` コマンドに渡すことができます：
 
 ```shell
 sail test
@@ -306,13 +306,13 @@ sail test
 sail test --group orders
 ```
 
-The Sail `test` command is equivalent to running the `test` Artisan command:
+Sail の `test` コマンドは、`test` Artisan コマンドを実行するのと同じです：
 
 ```shell
 sail artisan test
 ```
 
-By default, Sail will create a dedicated `testing` database so that your tests do not interfere with the current state of your database. In a default Laravel installation, Sail will also configure your `phpunit.xml` file to use this database when executing your tests:
+デフォルトでは、Sail は専用の `testing` データベースを作成し、テストが現在のデータベースの状態に干渉しないようにします。デフォルトの Laravel インストールでは、Sail は `phpunit.xml` ファイルを設定して、テストの実行時にこのデータベースを使用するようにします：
 
 ```xml
 <env name="DB_DATABASE" value="testing"/>
@@ -321,7 +321,7 @@ By default, Sail will create a dedicated `testing` database so that your tests d
 <a name="laravel-dusk"></a>
 ### Laravel Dusk
 
-[Laravel Dusk](/docs/{{version}}/dusk) provides an expressive, easy-to-use browser automation and testing API. Thanks to Sail, you may run these tests without ever installing Selenium or other tools on your local computer. To get started, uncomment the Selenium service in your application's `docker-compose.yml` file:
+[Laravel Dusk](dusk.md) は、表現力豊かで使いやすいブラウザ自動化およびテスト API を提供します。Sail のおかげで、ローカルコンピュータに Selenium やその他のツールをインストールすることなく、これらのテストを実行できます。始めるには、アプリケーションの `docker-compose.yml` ファイル内の Selenium サービスのコメントを外します：
 
 ```yaml
 selenium:
@@ -334,7 +334,7 @@ selenium:
         - sail
 ```
 
-Next, ensure that the `laravel.test` service in your application's `docker-compose.yml` file has a `depends_on` entry for `selenium`:
+次に、アプリケーションの `docker-compose.yml` ファイル内の `laravel.test` サービスに `depends_on` エントリを追加して、`selenium` に依存するようにします：
 
 ```yaml
 depends_on:
@@ -343,16 +343,16 @@ depends_on:
     - selenium
 ```
 
-Finally, you may run your Dusk test suite by starting Sail and running the `dusk` command:
+最後に、Sail を起動して `dusk` コマンドを実行することで、Dusk テストスイートを実行できます：
 
 ```shell
 sail dusk
 ```
 
 <a name="selenium-on-apple-silicon"></a>
-#### Selenium on Apple Silicon
+#### Apple Silicon 上の Selenium
 
-If your local machine contains an Apple Silicon chip, your `selenium` service must use the `selenium/standalone-chromium` image:
+ローカルマシンに Apple Silicon チップが搭載されている場合、`selenium` サービスは `selenium/standalone-chromium` イメージを使用する必要があります：
 
 ```yaml
 selenium:
@@ -366,9 +366,9 @@ selenium:
 ```
 
 <a name="previewing-emails"></a>
-## Previewing Emails
+## メールのプレビュー
 
-Laravel Sail's default `docker-compose.yml` file contains a service entry for [Mailpit](https://github.com/axllent/mailpit). Mailpit intercepts emails sent by your application during local development and provides a convenient web interface so that you can preview your email messages in your browser. When using Sail, Mailpit's default host is `mailpit` and is available via port 1025:
+Laravel Sail のデフォルトの `docker-compose.yml` ファイルには、[Mailpit](https://github.com/axllent/mailpit) のサービスエントリが含まれています。Mailpit は、ローカル開発中にアプリケーションから送信されたメールを傍受し、ブラウザでメールメッセージをプレビューできる便利な Web インターフェースを提供します。Sail を使用する場合、Mailpit のデフォルトホストは `mailpit` で、ポート 1025 で利用できます：
 
 ```ini
 MAIL_HOST=mailpit
@@ -376,12 +376,12 @@ MAIL_PORT=1025
 MAIL_ENCRYPTION=null
 ```
 
-When Sail is running, you may access the Mailpit web interface at: http://localhost:8025
+Sail が実行されている場合、Mailpit の Web インターフェースに `http://localhost:8025` でアクセスできます。
 
 <a name="sail-container-cli"></a>
-## Container CLI
+## コンテナ CLI
 
-Sometimes you may wish to start a Bash session within your application's container. You may use the `shell` command to connect to your application's container, allowing you to inspect its files and installed services as well as execute arbitrary shell commands within the container:
+アプリケーションのコンテナ内で Bash セッションを開始したい場合があります。`shell` コマンドを使用してアプリケーションのコンテナに接続し、そのファイルやインストールされたサービスを検査したり、コンテナ内で任意のシェルコマンドを実行したりできます：
 
 ```shell
 sail shell
@@ -389,16 +389,16 @@ sail shell
 sail root-shell
 ```
 
-To start a new [Laravel Tinker](https://github.com/laravel/tinker) session, you may execute the `tinker` command:
+新しい [Laravel Tinker](https://github.com/laravel/tinker) セッションを開始するには、`tinker` コマンドを実行できます：
 
 ```shell
 sail tinker
 ```
 
 <a name="sail-php-versions"></a>
-## PHP Versions
+## PHP バージョン
 
-Sail currently supports serving your application via PHP 8.3, 8.2, 8.1, or PHP 8.0. The default PHP version used by Sail is currently PHP 8.3. To change the PHP version that is used to serve your application, you should update the `build` definition of the `laravel.test` container in your application's `docker-compose.yml` file:
+Sail は現在、PHP 8.3、8.2、8.1、または PHP 8.0 を介してアプリケーションを提供することをサポートしています。Sail で使用されるデフォルトの PHP バージョンは現在 PHP 8.3 です。アプリケーションを提供するために使用される PHP バージョンを変更するには、アプリケーションの `docker-compose.yml` ファイル内の `laravel.test` コンテナの `build` 定義を更新する必要があります：
 
 ```yaml
 # PHP 8.3
@@ -414,13 +414,13 @@ context: ./vendor/laravel/sail/runtimes/8.1
 context: ./vendor/laravel/sail/runtimes/8.0
 ```
 
-In addition, you may wish to update your `image` name to reflect the version of PHP being used by your application. This option is also defined in your application's `docker-compose.yml` file:
+さらに、アプリケーションで使用される PHP バージョンを反映するように `image` 名を更新することもできます。このオプションもアプリケーションの `docker-compose.yml` ファイルで定義されています：
 
 ```yaml
 image: sail-8.2/app
 ```
 
-After updating your application's `docker-compose.yml` file, you should rebuild your container images:
+アプリケーションの `docker-compose.yml` ファイルを更新した後、コンテナイメージを再構築する必要があります：
 
 ```shell
 sail build --no-cache
@@ -429,9 +429,9 @@ sail up
 ```
 
 <a name="sail-node-versions"></a>
-## Node Versions
+## Node バージョン
 
-Sail installs Node 20 by default. To change the Node version that is installed when building your images, you may update the `build.args` definition of the `laravel.test` service in your application's `docker-compose.yml` file:
+Sail はデフォルトで Node 20 をインストールします。イメージを構築する際にインストールされる Node バージョンを変更するには、アプリケーションの `docker-compose.yml` ファイル内の `laravel.test` サービスの `build.args` 定義を更新する必要があります：
 
 ```yaml
 build:
@@ -440,7 +440,7 @@ build:
         NODE_VERSION: '18'
 ```
 
-After updating your application's `docker-compose.yml` file, you should rebuild your container images:
+アプリケーションの `docker-compose.yml` ファイルを更新した後、コンテナイメージを再構築する必要があります：
 
 ```shell
 sail build --no-cache
@@ -449,43 +449,45 @@ sail up
 ```
 
 <a name="sharing-your-site"></a>
-## Sharing Your Site
+## サイトの共有
 
-Sometimes you may need to share your site publicly in order to preview your site for a colleague or to test webhook integrations with your application. To share your site, you may use the `share` command. After executing this command, you will be issued a random `laravel-sail.site` URL that you may use to access your application:
+時には、サイトを公開して、同僚にサイトをプレビューしてもらったり、アプリケーションとのWebhook統合をテストしたりする必要があるかもしれません。サイトを共有するには、`share`コマンドを使用できます。このコマンドを実行すると、アプリケーションにアクセスするために使用できるランダムな`laravel-sail.site` URLが発行されます。
 
 ```shell
 sail share
 ```
 
-When sharing your site via the `share` command, you should configure your application's trusted proxies using the `trustProxies` middleware method in your application's `bootstrap/app.php` file. Otherwise, URL generation helpers such as `url` and `route` will be unable to determine the correct HTTP host that should be used during URL generation:
+`share`コマンドでサイトを共有する場合、アプリケーションの`bootstrap/app.php`ファイル内で`trustProxies`ミドルウェアメソッドを使用して、アプリケーションの信頼できるプロキシを設定する必要があります。そうしないと、`url`や`route`などのURL生成ヘルパーは、URL生成時に使用すべき正しいHTTPホストを決定できません。
 
-    ->withMiddleware(function (Middleware $middleware) {
-        $middleware->trustProxies(at: '*');
-    })
+```php
+->withMiddleware(function (Middleware $middleware) {
+    $middleware->trustProxies(at: '*');
+})
+```
 
-If you would like to choose the subdomain for your shared site, you may provide the `subdomain` option when executing the `share` command:
+共有サイトのサブドメインを選択したい場合は、`share`コマンドを実行する際に`subdomain`オプションを指定できます。
 
 ```shell
 sail share --subdomain=my-sail-site
 ```
 
-> [!NOTE]  
-> The `share` command is powered by [Expose](https://github.com/beyondcode/expose), an open source tunneling service by [BeyondCode](https://beyondco.de).
+> NOTE:  
+> `share`コマンドは、[BeyondCode](https://beyondco.de)によるオープンソースのトンネリングサービスである[Expose](https://github.com/beyondcode/expose)を利用しています。
 
 <a name="debugging-with-xdebug"></a>
-## Debugging With Xdebug
+## Xdebugによるデバッグ
 
-Laravel Sail's Docker configuration includes support for [Xdebug](https://xdebug.org/), a popular and powerful debugger for PHP. In order to enable Xdebug, you will need to add a few variables to your application's `.env` file to [configure Xdebug](https://xdebug.org/docs/step_debug#mode). To enable Xdebug you must set the appropriate mode(s) before starting Sail:
+Laravel SailのDocker設定には、PHP用の人気で強力なデバッガーである[Xdebug](https://xdebug.org/)のサポートが含まれています。Xdebugを有効にするには、アプリケーションの`.env`ファイルにいくつかの変数を追加して、[Xdebugを設定](https://xdebug.org/docs/step_debug#mode)する必要があります。Xdebugを有効にするには、Sailを起動する前に適切なモードを設定する必要があります。
 
 ```ini
 SAIL_XDEBUG_MODE=develop,debug,coverage
 ```
 
-#### Linux Host IP Configuration
+#### LinuxホストのIP設定
 
-Internally, the `XDEBUG_CONFIG` environment variable is defined as `client_host=host.docker.internal` so that Xdebug will be properly configured for Mac and Windows (WSL2). If your local machine is running Linux and you're using Docker 20.10+, `host.docker.internal` is available, and no manual configuration is required.
+内部的には、`XDEBUG_CONFIG`環境変数は`client_host=host.docker.internal`と定義されており、XdebugはMacとWindows（WSL2）で正しく設定されます。ローカルマシンがLinuxで、Docker 20.10+を使用している場合、`host.docker.internal`は利用可能であり、手動設定は必要ありません。
 
-For Docker versions older than 20.10, `host.docker.internal` is not supported on Linux, and you will need to manually define the host IP. To do this, configure a static IP for your container by defining a custom network in your `docker-compose.yml` file:
+Docker 20.10より古いバージョンでは、Linuxで`host.docker.internal`はサポートされておらず、ホストIPを手動で定義する必要があります。これを行うには、`docker-compose.yml`ファイルでカスタムネットワークを定義して、コンテナに静的IPを設定します。
 
 ```yaml
 networks:
@@ -501,46 +503,47 @@ services:
         ipv4_address: 172.20.0.2
 ```
 
-Once you have set the static IP, define the SAIL_XDEBUG_CONFIG variable within your application's .env file:
+静的IPを設定したら、アプリケーションの`.env`ファイル内で`SAIL_XDEBUG_CONFIG`変数を定義します。
 
 ```ini
 SAIL_XDEBUG_CONFIG="client_host=172.20.0.2"
 ```
 
 <a name="xdebug-cli-usage"></a>
-### Xdebug CLI Usage
+### Xdebug CLIの使用
 
-A `sail debug` command may be used to start a debugging session when running an Artisan command:
+`sail debug`コマンドを使用して、Artisanコマンドを実行する際にデバッグセッションを開始できます。
 
 ```shell
-# Run an Artisan command without Xdebug...
+# XdebugなしでArtisanコマンドを実行する...
 sail artisan migrate
 
-# Run an Artisan command with Xdebug...
+# Xdebugを使用してArtisanコマンドを実行する...
 sail debug migrate
 ```
 
 <a name="xdebug-browser-usage"></a>
-### Xdebug Browser Usage
+### Xdebugブラウザの使用
 
-To debug your application while interacting with the application via a web browser, follow the [instructions provided by Xdebug](https://xdebug.org/docs/step_debug#web-application) for initiating an Xdebug session from the web browser.
+Webブラウザを介してアプリケーションと対話しながらアプリケーションをデバッグするには、Xdebugが提供する[指示](https://xdebug.org/docs/step_debug#web-application)に従って、WebブラウザからXdebugセッションを開始します。
 
-If you're using PhpStorm, please review JetBrains' documentation regarding [zero-configuration debugging](https://www.jetbrains.com/help/phpstorm/zero-configuration-debugging.html).
+PhpStormを使用している場合は、JetBrainsのドキュメントを参照して、[ゼロコンフィグレーションデバッグ](https://www.jetbrains.com/help/phpstorm/zero-configuration-debugging.html)について確認してください。
 
-> [!WARNING]  
-> Laravel Sail relies on `artisan serve` to serve your application. The `artisan serve` command only accepts the `XDEBUG_CONFIG` and `XDEBUG_MODE` variables as of Laravel version 8.53.0. Older versions of Laravel (8.52.0 and below) do not support these variables and will not accept debug connections.
+> WARNING:  
+> Laravel Sailはアプリケーションを提供するために`artisan serve`に依存しています。`artisan serve`コマンドは、Laravelバージョン8.53.0以降でのみ`XDEBUG_CONFIG`と`XDEBUG_MODE`変数を受け付けます。Laravelの古いバージョン（8.52.0以下）はこれらの変数をサポートせず、デバッグ接続を受け付けません。
 
 <a name="sail-customization"></a>
-## Customization
+## カスタマイズ
 
-Since Sail is just Docker, you are free to customize nearly everything about it. To publish Sail's own Dockerfiles, you may execute the `sail:publish` command:
+SailはDockerなので、ほぼすべての部分を自由にカスタマイズできます。Sailの独自のDockerfileを公開するには、`sail:publish`コマンドを実行できます。
 
 ```shell
 sail artisan sail:publish
 ```
 
-After running this command, the Dockerfiles and other configuration files used by Laravel Sail will be placed within a `docker` directory in your application's root directory. After customizing your Sail installation, you may wish to change the image name for the application container in your application's `docker-compose.yml` file. After doing so, rebuild your application's containers using the `build` command. Assigning a unique name to the application image is particularly important if you are using Sail to develop multiple Laravel applications on a single machine:
+このコマンドを実行すると、Laravel Sailが使用するDockerfileやその他の設定ファイルが、アプリケーションのルートディレクトリ内の`docker`ディレクトリに配置されます。Sailのインストールをカスタマイズした後、アプリケーションの`docker-compose.yml`ファイルでアプリケーションコンテナのイメージ名を変更することをお勧めします。その後、`build`コマンドを使用してアプリケーションのコンテナを再構築します。アプリケーションイメージに一意の名前を付けることは、Sailを使用して1台のマシン上で複数のLaravelアプリケーションを開発する場合に特に重要です。
 
 ```shell
 sail build --no-cache
 ```
+

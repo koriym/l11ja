@@ -1,67 +1,67 @@
-# Resetting Passwords
+# パスワードのリセット
 
-- [Introduction](#introduction)
-    - [Model Preparation](#model-preparation)
-    - [Database Preparation](#database-preparation)
-    - [Configuring Trusted Hosts](#configuring-trusted-hosts)
-- [Routing](#routing)
-    - [Requesting the Password Reset Link](#requesting-the-password-reset-link)
-    - [Resetting the Password](#resetting-the-password)
-- [Deleting Expired Tokens](#deleting-expired-tokens)
-- [Customization](#password-customization)
+- [はじめに](#introduction)
+    - [モデルの準備](#model-preparation)
+    - [データベースの準備](#database-preparation)
+    - [信頼できるホストの設定](#configuring-trusted-hosts)
+- [ルーティング](#routing)
+    - [パスワードリセットリンクのリクエスト](#requesting-the-password-reset-link)
+    - [パスワードのリセット](#resetting-the-password)
+- [期限切れトークンの削除](#deleting-expired-tokens)
+- [カスタマイズ](#password-customization)
 
 <a name="introduction"></a>
-## Introduction
+## はじめに
 
-Most web applications provide a way for users to reset their forgotten passwords. Rather than forcing you to re-implement this by hand for every application you create, Laravel provides convenient services for sending password reset links and secure resetting passwords.
+ほとんどのウェブアプリケーションは、ユーザーが忘れたパスワードをリセットする方法を提供しています。すべてのアプリケーションに手動で再実装するのではなく、Laravelはパスワードリセットリンクの送信とパスワードの安全なリセットのための便利なサービスを提供しています。
 
-> [!NOTE]  
-> Want to get started fast? Install a Laravel [application starter kit](/docs/{{version}}/starter-kits) in a fresh Laravel application. Laravel's starter kits will take care of scaffolding your entire authentication system, including resetting forgotten passwords.
+> NOTE:  
+> すぐに始めたいですか？新しいLaravelアプリケーションにLaravelの[アプリケーションスターターキット](starter-kits.md)をインストールしてください。Laravelのスターターキットは、忘れたパスワードのリセットを含む、認証システム全体のスキャフォールディングを行います。
 
 <a name="model-preparation"></a>
-### Model Preparation
+### モデルの準備
 
-Before using the password reset features of Laravel, your application's `App\Models\User` model must use the `Illuminate\Notifications\Notifiable` trait. Typically, this trait is already included on the default `App\Models\User` model that is created with new Laravel applications.
+Laravelのパスワードリセット機能を使用する前に、アプリケーションの`App\Models\User`モデルが`Illuminate\Notifications\Notifiable`トレイトを使用している必要があります。通常、このトレイトは新しいLaravelアプリケーションで作成されるデフォルトの`App\Models\User`モデルに既に含まれています。
 
-Next, verify that your `App\Models\User` model implements the `Illuminate\Contracts\Auth\CanResetPassword` contract. The `App\Models\User` model included with the framework already implements this interface, and uses the `Illuminate\Auth\Passwords\CanResetPassword` trait to include the methods needed to implement the interface.
+次に、`App\Models\User`モデルが`Illuminate\Contracts\Auth\CanResetPassword`コントラクトを実装していることを確認してください。フレームワークに含まれる`App\Models\User`モデルは、このインターフェースを既に実装しており、`Illuminate\Auth\Passwords\CanResetPassword`トレイトを使用して、インターフェースを実装するために必要なメソッドを含んでいます。
 
 <a name="database-preparation"></a>
-### Database Preparation
+### データベースの準備
 
-A table must be created to store your application's password reset tokens. Typically, this is included in Laravel's default `0001_01_01_000000_create_users_table.php` database migration.
+アプリケーションのパスワードリセットトークンを保存するためのテーブルを作成する必要があります。通常、これはLaravelのデフォルトの`0001_01_01_000000_create_users_table.php`データベースマイグレーションに含まれています。
 
 <a name="configuring-trusted-hosts"></a>
-### Configuring Trusted Hosts
+### 信頼できるホストの設定
 
-By default, Laravel will respond to all requests it receives regardless of the content of the HTTP request's `Host` header. In addition, the `Host` header's value will be used when generating absolute URLs to your application during a web request.
+デフォルトでは、LaravelはHTTPリクエストの`Host`ヘッダの内容に関係なく、受信したすべてのリクエストに応答します。さらに、`Host`ヘッダの値は、Webリクエスト中にアプリケーションへの絶対URLを生成する際に使用されます。
 
-Typically, you should configure your web server, such as Nginx or Apache, to only send requests to your application that match a given hostname. However, if you do not have the ability to customize your web server directly and need to instruct Laravel to only respond to certain hostnames, you may do so by using the `trustHosts` middleware method in your application's `bootstrap/app.php` file. This is particularly important when your application offers password reset functionality.
+通常、NginxやApacheなどのWebサーバーを設定して、特定のホスト名に一致するリクエストのみをアプリケーションに送信するようにする必要があります。ただし、Webサーバーを直接カスタマイズする権限がなく、Laravelに特定のホスト名にのみ応答するように指示する必要がある場合は、アプリケーションの`bootstrap/app.php`ファイルで`trustHosts`ミドルウェアメソッドを使用して行うことができます。これは、特にアプリケーションがパスワードリセット機能を提供する場合に重要です。
 
-To learn more about this middleware method, please consult the [`TrustHosts` middleware documentation](/docs/{{version}}/requests#configuring-trusted-hosts).
+このミドルウェアメソッドの詳細については、[`TrustHosts`ミドルウェアのドキュメント](requests.md#configuring-trusted-hosts)を参照してください。
 
 <a name="routing"></a>
-## Routing
+## ルーティング
 
-To properly implement support for allowing users to reset their passwords, we will need to define several routes. First, we will need a pair of routes to handle allowing the user to request a password reset link via their email address. Second, we will need a pair of routes to handle actually resetting the password once the user visits the password reset link that is emailed to them and completes the password reset form.
+ユーザーがパスワードをリセットできるようにするためのサポートを適切に実装するために、いくつかのルートを定義する必要があります。まず、ユーザーがメールアドレスを介してパスワードリセットリンクをリクエストできるようにするためのルートのペアを定義します。次に、ユーザーがパスワードリセットリンクをクリックし、パスワードリセットフォームを完了した後に、実際にパスワードをリセットするためのルートのペアを定義します。
 
 <a name="requesting-the-password-reset-link"></a>
-### Requesting the Password Reset Link
+### パスワードリセットリンクのリクエスト
 
 <a name="the-password-reset-link-request-form"></a>
-#### The Password Reset Link Request Form
+#### パスワードリセットリンクリクエストフォーム
 
-First, we will define the routes that are needed to request password reset links. To get started, we will define a route that returns a view with the password reset link request form:
+まず、パスワードリセットリンクをリクエストするために必要なルートを定義します。始めに、パスワードリセットリンクリクエストフォームを含むビューを返すルートを定義します。
 
     Route::get('/forgot-password', function () {
         return view('auth.forgot-password');
     })->middleware('guest')->name('password.request');
 
-The view that is returned by this route should have a form containing an `email` field, which will allow the user to request a password reset link for a given email address.
+このルートによって返されるビューには、ユーザーが特定のメールアドレスのパスワードリセットリンクをリクエストできるようにする`email`フィールドを含むフォームが必要です。
 
 <a name="password-reset-link-handling-the-form-submission"></a>
-#### Handling the Form Submission
+#### フォーム送信の処理
 
-Next, we will define a route that handles the form submission request from the "forgot password" view. This route will be responsible for validating the email address and sending the password reset request to the corresponding user:
+次に、「パスワードを忘れた」ビューからのフォーム送信リクエストを処理するルートを定義します。このルートは、メールアドレスを検証し、対応するユーザーにパスワードリセットリクエストを送信する役割を担います。
 
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Password;
@@ -78,36 +78,36 @@ Next, we will define a route that handles the form submission request from the "
                     : back()->withErrors(['email' => __($status)]);
     })->middleware('guest')->name('password.email');
 
-Before moving on, let's examine this route in more detail. First, the request's `email` attribute is validated. Next, we will use Laravel's built-in "password broker" (via the `Password` facade) to send a password reset link to the user. The password broker will take care of retrieving the user by the given field (in this case, the email address) and sending the user a password reset link via Laravel's built-in [notification system](/docs/{{version}}/notifications).
+次に進む前に、このルートをより詳しく見てみましょう。まず、リクエストの`email`属性が検証されます。次に、Laravelの組み込みの「パスワードブローカー」（`Password`ファサードを介して）を使用して、ユーザーにパスワードリセットリンクを送信します。パスワードブローカーは、指定されたフィールド（この場合はメールアドレス）でユーザーを取得し、Laravelの組み込みの[通知システム](notifications.md)を介してユーザーにパスワードリセットリンクを送信します。
 
-The `sendResetLink` method returns a "status" slug. This status may be translated using Laravel's [localization](/docs/{{version}}/localization) helpers in order to display a user-friendly message to the user regarding the status of their request. The translation of the password reset status is determined by your application's `lang/{lang}/passwords.php` language file. An entry for each possible value of the status slug is located within the `passwords` language file.
+`sendResetLink`メソッドは、「ステータス」スラッグを返します。このステータスは、Laravelの[ローカリゼーション](localization.md)ヘルパーを使用して翻訳され、ユーザーに対してリクエストのステータスに関するユーザーフレンドリーなメッセージを表示することができます。パスワードリセットステータスの翻訳は、アプリケーションの`lang/{lang}/passwords.php`言語ファイルによって決定されます。ステータススラッグの可能な各値のエントリは、`passwords`言語ファイル内にあります。
 
-> [!NOTE]  
-> By default, the Laravel application skeleton does not include the `lang` directory. If you would like to customize Laravel's language files, you may publish them via the `lang:publish` Artisan command.
+> NOTE:  
+> デフォルトでは、Laravelアプリケーションのスケルトンには`lang`ディレクトリは含まれていません。Laravelの言語ファイルをカスタマイズしたい場合は、`lang:publish` Artisanコマンドを介して公開することができます。
 
-You may be wondering how Laravel knows how to retrieve the user record from your application's database when calling the `Password` facade's `sendResetLink` method. The Laravel password broker utilizes your authentication system's "user providers" to retrieve database records. The user provider used by the password broker is configured within the `passwords` configuration array of your `config/auth.php` configuration file. To learn more about writing custom user providers, consult the [authentication documentation](/docs/{{version}}/authentication#adding-custom-user-providers).
+`Password`ファサードの`sendResetLink`メソッドを呼び出すときに、Laravelがどのようにしてアプリケーションのデータベースからユーザーレコードを取得するか疑問に思うかもしれません。Laravelのパスワードブローカーは、認証システムの「ユーザープロバイダ」を利用してデータベースレコードを取得します。パスワードブローカーによって使用されるユーザープロバイダは、`config/auth.php`設定ファイルの`passwords`設定配列内で設定されます。カスタムユーザープロバイダの作成について詳しくは、[認証ドキュメント](authentication.md#adding-custom-user-providers)を参照してください。
 
-> [!NOTE]  
-> When manually implementing password resets, you are required to define the contents of the views and routes yourself. If you would like scaffolding that includes all necessary authentication and verification logic, check out the [Laravel application starter kits](/docs/{{version}}/starter-kits).
+> NOTE:  
+> パスワードリセットを手動で実装する場合、ビューとルートの内容を自分で定義する必要があります。すべての必要な認証と検証ロジックを含むスキャフォールディングを希望する場合は、[Laravelアプリケーションスターターキット](starter-kits.md)を確認してください。
 
 <a name="resetting-the-password"></a>
-### Resetting the Password
+### パスワードのリセット
 
 <a name="the-password-reset-form"></a>
-#### The Password Reset Form
+#### パスワードリセットフォーム
 
-Next, we will define the routes necessary to actually reset the password once the user clicks on the password reset link that has been emailed to them and provides a new password. First, let's define the route that will display the reset password form that is displayed when the user clicks the reset password link. This route will receive a `token` parameter that we will use later to verify the password reset request:
+次に、ユーザーがパスワードリセットリンクをクリックし、新しいパスワードを提供した後に、実際にパスワードをリセットするために必要なルートを定義します。まず、パスワードリセットリンクをクリックしたときに表示されるパスワードリセットフォームを返すルートを定義します。このルートは、後でパスワードリセットリクエストを検証するために使用する`token`パラメータを受け取ります。
 
     Route::get('/reset-password/{token}', function (string $token) {
         return view('auth.reset-password', ['token' => $token]);
     })->middleware('guest')->name('password.reset');
 
-The view that is returned by this route should display a form containing an `email` field, a `password` field, a `password_confirmation` field, and a hidden `token` field, which should contain the value of the secret `$token` received by our route.
+このルートによって返されるビューには、`email`フィールド、`password`フィールド、`password_confirmation`フィールド、および秘密の`$token`値を含む`token`フィールドを含むフォームが必要です。
 
 <a name="password-reset-handling-the-form-submission"></a>
-#### Handling the Form Submission
+#### フォーム送信の処理
 
-Of course, we need to define a route to actually handle the password reset form submission. This route will be responsible for validating the incoming request and updating the user's password in the database:
+もちろん、パスワードリセットフォームの送信を実際に処理するためのルートを定義する必要があります。このルートは、受信リクエストを検証し、データベース内のユーザーのパスワードを更新する役割を担います。
 
     use App\Models\User;
     use Illuminate\Auth\Events\PasswordReset;
@@ -141,36 +141,36 @@ Of course, we need to define a route to actually handle the password reset form 
                     : back()->withErrors(['email' => [__($status)]]);
     })->middleware('guest')->name('password.update');
 
-Before moving on, let's examine this route in more detail. First, the request's `token`, `email`, and `password` attributes are validated. Next, we will use Laravel's built-in "password broker" (via the `Password` facade) to validate the password reset request credentials.
+次に進む前に、このルートをより詳しく見てみましょう。まず、リクエストの`token`、`email`、および`password`属性が検証されます。次に、Laravelの組み込みの「パスワードブローカー」（`Password`ファサードを介して）を使用して、パスワードリセットリクエストの資格情報を検証します。
 
-If the token, email address, and password given to the password broker are valid, the closure passed to the `reset` method will be invoked. Within this closure, which receives the user instance and the plain-text password provided to the password reset form, we may update the user's password in the database.
+与えられたトークン、メールアドレス、パスワードがパスワードブローカーに対して有効であれば、`reset`メソッドに渡されたクロージャが呼び出されます。このクロージャ内で、パスワードリセットフォームに提供されたユーザーインスタンスと平文のパスワードを受け取り、データベース内のユーザーのパスワードを更新することができます。
 
-The `reset` method returns a "status" slug. This status may be translated using Laravel's [localization](/docs/{{version}}/localization) helpers in order to display a user-friendly message to the user regarding the status of their request. The translation of the password reset status is determined by your application's `lang/{lang}/passwords.php` language file. An entry for each possible value of the status slug is located within the `passwords` language file. If your application does not contain a `lang` directory, you may create it using the `lang:publish` Artisan command.
+`reset`メソッドは「ステータス」スラッグを返します。このステータスは、Laravelの[ローカリゼーション](localization.md)ヘルパーを使用して翻訳し、ユーザーにリクエストのステータスに関するユーザーフレンドリーなメッセージを表示することができます。パスワードリセットステータスの翻訳は、アプリケーションの`lang/{lang}/passwords.php`言語ファイルによって決定されます。ステータススラッグの各可能な値のエントリは、`passwords`言語ファイル内にあります。アプリケーションに`lang`ディレクトリが含まれていない場合は、`lang:publish` Artisanコマンドを使用して作成できます。
 
-Before moving on, you may be wondering how Laravel knows how to retrieve the user record from your application's database when calling the `Password` facade's `reset` method. The Laravel password broker utilizes your authentication system's "user providers" to retrieve database records. The user provider used by the password broker is configured within the `passwords` configuration array of your `config/auth.php` configuration file. To learn more about writing custom user providers, consult the [authentication documentation](/docs/{{version}}/authentication#adding-custom-user-providers).
+次に進む前に、Laravelが`Password`ファサードの`reset`メソッドを呼び出す際に、どのようにアプリケーションのデータベースからユーザーレコードを取得するのか疑問に思うかもしれません。Laravelのパスワードブローカーは、認証システムの「ユーザープロバイダー」を利用してデータベースレコードを取得します。パスワードブローカーによって使用されるユーザープロバイダーは、`config/auth.php`設定ファイルの`passwords`設定配列内で設定されます。カスタムユーザープロバイダーの書き方について詳しく知りたい場合は、[認証ドキュメント](authentication.md#adding-custom-user-providers)を参照してください。
 
 <a name="deleting-expired-tokens"></a>
-## Deleting Expired Tokens
+## 期限切れトークンの削除
 
-Password reset tokens that have expired will still be present within your database. However, you may easily delete these records using the `auth:clear-resets` Artisan command:
+期限切れのパスワードリセットトークンは、データベース内に残っています。しかし、`auth:clear-resets` Artisanコマンドを使用してこれらのレコードを簡単に削除できます：
 
 ```shell
 php artisan auth:clear-resets
 ```
 
-If you would like to automate this process, consider adding the command to your application's [scheduler](/docs/{{version}}/scheduling):
+このプロセスを自動化したい場合は、コマンドをアプリケーションの[スケジューラ](scheduling.md)に追加することを検討してください：
 
     use Illuminate\Support\Facades\Schedule;
 
     Schedule::command('auth:clear-resets')->everyFifteenMinutes();
 
 <a name="password-customization"></a>
-## Customization
+## カスタマイズ
 
 <a name="reset-link-customization"></a>
-#### Reset Link Customization
+#### リセットリンクのカスタマイズ
 
-You may customize the password reset link URL using the `createUrlUsing` method provided by the `ResetPassword` notification class. This method accepts a closure which receives the user instance that is receiving the notification as well as the password reset link token. Typically, you should call this method from your `App\Providers\AppServiceProvider` service provider's `boot` method:
+`ResetPassword`通知クラスが提供する`createUrlUsing`メソッドを使用して、パスワードリセットリンクのURLをカスタマイズできます。このメソッドは、通知を受け取るユーザーインスタンスとパスワードリセットリンクトークンを受け取るクロージャを受け入れます。通常、このメソッドは`App\Providers\AppServiceProvider`サービスプロバイダの`boot`メソッドから呼び出す必要があります：
 
     use App\Models\User;
     use Illuminate\Auth\Notifications\ResetPassword;
@@ -186,9 +186,9 @@ You may customize the password reset link URL using the `createUrlUsing` method 
     }
 
 <a name="reset-email-customization"></a>
-#### Reset Email Customization
+#### リセットメールのカスタマイズ
 
-You may easily modify the notification class used to send the password reset link to the user. To get started, override the `sendPasswordResetNotification` method on your `App\Models\User` model. Within this method, you may send the notification using any [notification class](/docs/{{version}}/notifications) of your own creation. The password reset `$token` is the first argument received by the method. You may use this `$token` to build the password reset URL of your choice and send your notification to the user:
+パスワードリセットリンクをユーザーに送信するために使用される通知クラスを簡単に変更できます。まず、`App\Models\User`モデルの`sendPasswordResetNotification`メソッドをオーバーライドします。このメソッド内で、独自に作成した[通知クラス](notifications.md)を使用して通知を送信できます。パスワードリセットの`$token`は、このメソッドが受け取る最初の引数です。この`$token`を使用して、選択したパスワードリセットURLを構築し、ユーザーに通知を送信できます：
 
     use App\Notifications\ResetPasswordNotification;
 

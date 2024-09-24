@@ -1,42 +1,42 @@
-# Contracts
+# 契約
 
-- [Introduction](#introduction)
-    - [Contracts vs. Facades](#contracts-vs-facades)
-- [When to Use Contracts](#when-to-use-contracts)
-- [How to Use Contracts](#how-to-use-contracts)
-- [Contract Reference](#contract-reference)
+- [はじめに](#introduction)
+    - [契約 vs. ファサード](#contracts-vs-facades)
+- [契約をいつ使うか](#when-to-use-contracts)
+- [契約の使い方](#how-to-use-contracts)
+- [契約リファレンス](#contract-reference)
 
 <a name="introduction"></a>
-## Introduction
+## はじめに
 
-Laravel's "contracts" are a set of interfaces that define the core services provided by the framework. For example, an `Illuminate\Contracts\Queue\Queue` contract defines the methods needed for queueing jobs, while the `Illuminate\Contracts\Mail\Mailer` contract defines the methods needed for sending e-mail.
+Laravelの「契約」は、フレームワークが提供するコアサービスを定義する一連のインターフェースです。例えば、`Illuminate\Contracts\Queue\Queue`契約はジョブをキューに入れるために必要なメソッドを定義し、`Illuminate\Contracts\Mail\Mailer`契約は電子メールを送信するために必要なメソッドを定義します。
 
-Each contract has a corresponding implementation provided by the framework. For example, Laravel provides a queue implementation with a variety of drivers, and a mailer implementation that is powered by [Symfony Mailer](https://symfony.com/doc/7.0/mailer.html).
+各契約には、フレームワークによって提供される対応する実装があります。例えば、Laravelはさまざまなドライバーを持つキュー実装と、[Symfony Mailer](https://symfony.com/doc/7.0/mailer.html)を利用したメーラー実装を提供します。
 
-All of the Laravel contracts live in [their own GitHub repository](https://github.com/illuminate/contracts). This provides a quick reference point for all available contracts, as well as a single, decoupled package that may be utilized when building packages that interact with Laravel services.
+すべてのLaravel契約は[独自のGitHubリポジトリ](https://github.com/illuminate/contracts)に存在します。これにより、利用可能なすべての契約へのクイックリファレンスが提供され、Laravelサービスと対話するパッケージを構築する際に使用できる単一の分離されたパッケージが提供されます。
 
 <a name="contracts-vs-facades"></a>
-### Contracts vs. Facades
+### 契約 vs. ファサード
 
-Laravel's [facades](/docs/{{version}}/facades) and helper functions provide a simple way of utilizing Laravel's services without needing to type-hint and resolve contracts out of the service container. In most cases, each facade has an equivalent contract.
+Laravelの[ファサード](facades.md)とヘルパー関数は、サービスコンテナから契約をタイプヒントして解決する必要なく、Laravelのサービスを利用するための簡単な方法を提供します。ほとんどの場合、各ファサードには対応する契約があります。
 
-Unlike facades, which do not require you to require them in your class' constructor, contracts allow you to define explicit dependencies for your classes. Some developers prefer to explicitly define their dependencies in this way and therefore prefer to use contracts, while other developers enjoy the convenience of facades. **In general, most applications can use facades without issue during development.**
+ファサードとは異なり、クラスのコンストラクタでそれらを要求する必要がないため、契約を使用するとクラスの明示的な依存関係を定義できます。一部の開発者は依存関係をこのように明示的に定義することを好み、そのため契約を使用することを好みますが、他の開発者はファサードの便利さを楽しんでいます。**一般的に、ほとんどのアプリケーションは開発中に問題なくファサードを使用できます。**
 
 <a name="when-to-use-contracts"></a>
-## When to Use Contracts
+## 契約をいつ使うか
 
-The decision to use contracts or facades will come down to personal taste and the tastes of your development team. Both contracts and facades can be used to create robust, well-tested Laravel applications. Contracts and facades are not mutually exclusive. Some parts of your applications may use facades while others depend on contracts. As long as you are keeping your class' responsibilities focused, you will notice very few practical differences between using contracts and facades.
+契約とファサードのどちらを使用するかの決定は、個人的な好みと開発チームの好みに帰着します。契約とファサードの両方を使用して、堅牢で十分にテストされたLaravelアプリケーションを作成できます。契約とファサードは相互排他的ではありません。アプリケーションの一部はファサードを使用し、他の部分は契約に依存することがあります。クラスの責任を集中させている限り、契約とファサードの使用において実際的な違いはほとんどありません。
 
-In general, most applications can use facades without issue during development. If you are building a package that integrates with multiple PHP frameworks you may wish to use the `illuminate/contracts` package to define your integration with Laravel's services without the need to require Laravel's concrete implementations in your package's `composer.json` file.
+一般的に、ほとんどのアプリケーションは開発中に問題なくファサードを使用できます。複数のPHPフレームワークと統合するパッケージを構築している場合は、パッケージの`composer.json`ファイルでLaravelの具体的な実装を要求する必要なく、Laravelのサービスとの統合を定義するために`illuminate/contracts`パッケージを使用することを希望するかもしれません。
 
 <a name="how-to-use-contracts"></a>
-## How to Use Contracts
+## 契約の使い方
 
-So, how do you get an implementation of a contract? It's actually quite simple.
+では、契約の実装をどのように取得するのでしょうか？実際には非常に簡単です。
 
-Many types of classes in Laravel are resolved through the [service container](/docs/{{version}}/container), including controllers, event listeners, middleware, queued jobs, and even route closures. So, to get an implementation of a contract, you can just "type-hint" the interface in the constructor of the class being resolved.
+Laravelの多くのクラスタイプは、[サービスコンテナ](container.md)を通じて解決されます。これには、コントローラ、イベントリスナ、ミドルウェア、キューに入れられたジョブ、さらにはルートクロージャも含まれます。したがって、契約の実装を取得するには、解決されるクラスのコンストラクタでインターフェースを「タイプヒント」するだけです。
 
-For example, take a look at this event listener:
+例えば、このイベントリスナを見てください：
 
     <?php
 
@@ -49,14 +49,14 @@ For example, take a look at this event listener:
     class CacheOrderInformation
     {
         /**
-         * Create a new event handler instance.
+         * 新しいイベントハンドラインスタンスを作成します。
          */
         public function __construct(
             protected Factory $redis,
         ) {}
 
         /**
-         * Handle the event.
+         * イベントを処理します。
          */
         public function handle(OrderWasPlaced $event): void
         {
@@ -64,16 +64,16 @@ For example, take a look at this event listener:
         }
     }
 
-When the event listener is resolved, the service container will read the type-hints on the constructor of the class, and inject the appropriate value. To learn more about registering things in the service container, check out [its documentation](/docs/{{version}}/container).
+イベントリスナが解決されると、サービスコンテナはクラスのコンストラクタのタイプヒントを読み取り、適切な値を注入します。サービスコンテナに物事を登録する方法について詳しく知るには、[そのドキュメント](container.md)を確認してください。
 
 <a name="contract-reference"></a>
-## Contract Reference
+## 契約リファレンス
 
-This table provides a quick reference to all of the Laravel contracts and their equivalent facades:
+この表は、すべてのLaravel契約とそれに対応するファサードへのクイックリファレンスを提供します：
 
-<div class="overflow-auto">
+<div class="overflow-auto" markdown=1>
 
-| Contract | References Facade |
+| 契約 | リファレンスファサード |
 | --- | --- |
 | [Illuminate\Contracts\Auth\Access\Authorizable](https://github.com/illuminate/contracts/blob/{{version}}/Auth/Access/Authorizable.php) | &nbsp; |
 | [Illuminate\Contracts\Auth\Access\Gate](https://github.com/illuminate/contracts/blob/{{version}}/Auth/Access/Gate.php) | `Gate` |

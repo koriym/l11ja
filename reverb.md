@@ -1,47 +1,47 @@
 # Laravel Reverb
 
-- [Introduction](#introduction)
-- [Installation](#installation)
-- [Configuration](#configuration)
-    - [Application Credentials](#application-credentials)
-    - [Allowed Origins](#allowed-origins)
-    - [Additional Applications](#additional-applications)
+- [はじめに](#introduction)
+- [インストール](#installation)
+- [設定](#configuration)
+    - [アプリケーションの認証情報](#application-credentials)
+    - [許可されたオリジン](#allowed-origins)
+    - [追加のアプリケーション](#additional-applications)
     - [SSL](#ssl)
-- [Running the Server](#running-server)
-    - [Debugging](#debugging)
-    - [Restarting](#restarting)
-- [Monitoring](#monitoring)
-- [Running Reverb in Production](#production)
-    - [Open Files](#open-files)
-    - [Event Loop](#event-loop)
-    - [Web Server](#web-server)
-    - [Ports](#ports)
-    - [Process Management](#process-management)
-    - [Scaling](#scaling)
+- [サーバーの実行](#running-server)
+    - [デバッグ](#debugging)
+    - [再起動](#restarting)
+- [監視](#monitoring)
+- [本番環境でのReverbの実行](#production)
+    - [オープンファイル](#open-files)
+    - [イベントループ](#event-loop)
+    - [Webサーバー](#web-server)
+    - [ポート](#ports)
+    - [プロセス管理](#process-management)
+    - [スケーリング](#scaling)
 
 <a name="introduction"></a>
-## Introduction
+## はじめに
 
-[Laravel Reverb](https://github.com/laravel/reverb) brings blazing-fast and scalable real-time WebSocket communication directly to your Laravel application, and provides seamless integration with Laravel’s existing suite of [event broadcasting tools](/docs/{{version}}/broadcasting).
+[Laravel Reverb](https://github.com/laravel/reverb) は、Laravelアプリケーションに直接、高速でスケーラブルなリアルタイムWebSocket通信をもたらし、Laravelの既存の[イベントブロードキャストツール](broadcasting.md)とのシームレスな統合を提供します。
 
 <a name="installation"></a>
-## Installation
+## インストール
 
-You may install Reverb using the `install:broadcasting` Artisan command:
+`install:broadcasting` Artisanコマンドを使用してReverbをインストールできます:
 
 ```
 php artisan install:broadcasting
 ```
 
 <a name="configuration"></a>
-## Configuration
+## 設定
 
-Behind the scenes, the `install:broadcasting` Artisan command will run the `reverb:install` command, which will install Reverb with a sensible set of default configuration options. If you would like to make any configuration changes, you may do so by updating Reverb's environment variables or by updating the `config/reverb.php` configuration file.
+内部的には、`install:broadcasting` Artisanコマンドは`reverb:install`コマンドを実行し、デフォルトの設定オプションでReverbをインストールします。設定を変更したい場合は、Reverbの環境変数を更新するか、`config/reverb.php`設定ファイルを更新することで行えます。
 
 <a name="application-credentials"></a>
-### Application Credentials
+### アプリケーションの認証情報
 
-In order to establish a connection to Reverb, a set of Reverb "application" credentials must be exchanged between the client and server. These credentials are configured on the server and are used to verify the request from the client. You may define these credentials using the following environment variables:
+Reverbへの接続を確立するためには、クライアントとサーバー間でReverbの「アプリケーション」認証情報のセットを交換する必要があります。これらの認証情報はサーバー上で設定され、クライアントからのリクエストを検証するために使用されます。以下の環境変数を使用してこれらの認証情報を定義できます:
 
 ```ini
 REVERB_APP_ID=my-app-id
@@ -50,9 +50,9 @@ REVERB_APP_SECRET=my-app-secret
 ```
 
 <a name="allowed-origins"></a>
-### Allowed Origins
+### 許可されたオリジン
 
-You may also define the origins from which client requests may originate by updating the value of the `allowed_origins` configuration value within the `apps` section of the `config/reverb.php` configuration file. Any requests from an origin not listed in your allowed origins will be rejected. You may allow all origins using `*`:
+クライアントリクエストが発信されるオリジンを定義することもできます。`config/reverb.php`設定ファイルの`apps`セクション内の`allowed_origins`設定値を更新することで行えます。許可されたオリジンにリストされていないオリジンからのリクエストは拒否されます。すべてのオリジンを許可するには`*`を使用できます:
 
 ```php
 'apps' => [
@@ -65,11 +65,11 @@ You may also define the origins from which client requests may originate by upda
 ```
 
 <a name="additional-applications"></a>
-### Additional Applications
+### 追加のアプリケーション
 
-Typically, Reverb provides a WebSocket server for the application in which it is installed. However, it is possible to serve more than one application using a single Reverb installation.
+通常、Reverbはインストールされたアプリケーション用のWebSocketサーバーを提供します。しかし、単一のReverbインストールで複数のアプリケーションを提供することも可能です。
 
-For example, you may wish to maintain a single Laravel application which, via Reverb, provides WebSocket connectivity for multiple applications. This can be achieved by defining multiple `apps` in your application's `config/reverb.php` configuration file:
+例えば、Reverbを介して複数のアプリケーションにWebSocket接続性を提供する単一のLaravelアプリケーションを維持したい場合、アプリケーションの`config/reverb.php`設定ファイルで複数の`apps`を定義することで実現できます:
 
 ```php
 'apps' => [
@@ -87,17 +87,17 @@ For example, you may wish to maintain a single Laravel application which, via Re
 <a name="ssl"></a>
 ### SSL
 
-In most cases, secure WebSocket connections are handled by the upstream web server (Nginx, etc.) before the request is proxied to your Reverb server.
+ほとんどの場合、安全なWebSocket接続はリクエストがReverbサーバーにプロキシされる前に、上流のWebサーバー（Nginxなど）によって処理されます。
 
-However, it can sometimes be useful, such as during local development, for the Reverb server to handle secure connections directly. If you are using [Laravel Herd's](https://herd.laravel.com) secure site feature or you are using [Laravel Valet](/docs/{{version}}/valet) and have run the [secure command](/docs/{{version}}/valet#securing-sites) against your application, you may use the Herd / Valet certificate generated for your site to secure your Reverb connections. To do so, set the `REVERB_HOST` environment variable to your site's hostname or explicitly pass the hostname option when starting the Reverb server:
+しかし、ローカル開発中など、Reverbサーバーが直接安全な接続を処理することが有用な場合もあります。[Laravel Herd](https://herd.laravel.com)の安全なサイト機能を使用している場合、または[Laravel Valet](valet.md)を使用していて、アプリケーションに対して[secureコマンド](valet.md#securing-sites)を実行している場合、サイト用に生成されたHerd / Valet証明書を使用してReverb接続を保護できます。そのためには、`REVERB_HOST`環境変数をサイトのホスト名に設定するか、Reverbサーバーを起動する際にホスト名オプションを明示的に渡します:
 
 ```sh
 php artisan reverb:start --host="0.0.0.0" --port=8080 --hostname="laravel.test"
 ```
 
-Since Herd and Valet domains resolve to `localhost`, running the command above will result in your Reverb server being accessible via the secure WebSocket protocol (`wss`) at `wss://laravel.test:8080`.
+HerdとValetドメインは`localhost`に解決されるため、上記のコマンドを実行すると、Reverbサーバーは安全なWebSocketプロトコル（`wss`）を介して`wss://laravel.test:8080`でアクセス可能になります。
 
-You may also manually choose a certificate by defining `tls` options in your application's `config/reverb.php` configuration file. Within the array of `tls` options, you may provide any of the options supported by [PHP's SSL context options](https://www.php.net/manual/en/context.ssl.php):
+また、アプリケーションの`config/reverb.php`設定ファイルで`tls`オプションを定義することで、証明書を手動で選択することもできます。`tls`オプションの配列内で、[PHPのSSLコンテキストオプション](https://www.php.net/manual/en/context.ssl.php)でサポートされている任意のオプションを提供できます:
 
 ```php
 'options' => [
@@ -108,25 +108,25 @@ You may also manually choose a certificate by defining `tls` options in your app
 ```
 
 <a name="running-server"></a>
-## Running the Server
+## サーバーの実行
 
-The Reverb server can be started using the `reverb:start` Artisan command:
+Reverbサーバーは`reverb:start` Artisanコマンドを使用して起動できます:
 
 ```sh
 php artisan reverb:start
 ```
 
-By default, the Reverb server will be started at `0.0.0.0:8080`, making it accessible from all network interfaces.
+デフォルトでは、Reverbサーバーは`0.0.0.0:8080`で起動し、すべてのネットワークインターフェースからアクセスできるようになります。
 
-If you need to specify a custom host or port, you may do so via the `--host` and `--port` options when starting the server:
+カスタムホストまたはポートを指定する必要がある場合は、サーバーを起動する際に`--host`および`--port`オプションを使用して指定できます:
 
 ```sh
 php artisan reverb:start --host=127.0.0.1 --port=9000
 ```
 
-Alternatively, you may define `REVERB_SERVER_HOST` and `REVERB_SERVER_PORT` environment variables in your application's `.env` configuration file.
+または、アプリケーションの`.env`設定ファイルで`REVERB_SERVER_HOST`および`REVERB_SERVER_PORT`環境変数を定義することもできます。
 
-The `REVERB_SERVER_HOST` and `REVERB_SERVER_PORT` environment variables should not be confused with `REVERB_HOST` and `REVERB_PORT`. The former specify the host and port on which to run the Reverb server itself, while the latter pair instruct Laravel where to send broadcast messages. For example, in a production environment, you may route requests from your public Reverb hostname on port `443` to a Reverb server operating on `0.0.0.0:8080`. In this scenario, your environment variables would be defined as follows:
+`REVERB_SERVER_HOST`および`REVERB_SERVER_PORT`環境変数は、`REVERB_HOST`および`REVERB_PORT`と混同しないでください。前者はReverbサーバー自体が実行されるホストとポートを指定し、後者のペアはLaravelにブロードキャストメッセージを送信する場所を指示します。例えば、本番環境では、パブリックReverbホスト名のポート`443`から`0.0.0.0:8080`で動作するReverbサーバーにリクエストをルーティングする場合、環境変数は次のように定義されます:
 
 ```ini
 REVERB_SERVER_HOST=0.0.0.0
@@ -137,31 +137,31 @@ REVERB_PORT=443
 ```
 
 <a name="debugging"></a>
-### Debugging
+### デバッグ
 
-To improve performance, Reverb does not output any debug information by default. If you would like to see the stream of data passing through your Reverb server, you may provide the `--debug` option to the `reverb:start` command:
+パフォーマンスを向上させるため、Reverbはデフォルトでデバッグ情報を出力しません。Reverbサーバーを通過するデータのストリームを確認したい場合は、`reverb:start`コマンドに`--debug`オプションを提供できます:
 
 ```sh
 php artisan reverb:start --debug
 ```
 
 <a name="restarting"></a>
-### Restarting
+### 再起動
 
-Since Reverb is a long-running process, changes to your code will not be reflected without restarting the server via the `reverb:restart` Artisan command.
+Reverbは長時間実行されるプロセスであるため、コードの変更はサーバーを再起動しない限り反映されません。`reverb:restart` Artisanコマンドを使用してサーバーを再起動します。
 
-The `reverb:restart` command ensures all connections are gracefully terminated before stopping the server. If you are running Reverb with a process manager such as Supervisor, the server will be automatically restarted by the process manager after all connections have been terminated:
+`reverb:restart`コマンドは、サーバーを停止する前にすべての接続が正常に終了することを保証します。SupervisorなどのプロセスマネージャでReverbを実行している場合、すべての接続が終了した後、プロセスマネージャによってサーバーが自動的に再起動されます:
 
 ```sh
 php artisan reverb:restart
 ```
 
 <a name="monitoring"></a>
-## Monitoring
+## 監視
 
-Reverb may be monitored via an integration with [Laravel Pulse](/docs/{{version}}/pulse). By enabling Reverb's Pulse integration, you may track the number of connections and messages being handled by your server.
+Reverbは[Laravel Pulse](pulse.md)との統合を介して監視できます。ReverbのPulse統合を有効にすることで、サーバーが処理している接続数とメッセージ数を追跡できます。
 
-To enable the integration, you should first ensure you have [installed Pulse](/docs/{{version}}/pulse#installation). Then, add any of Reverb's recorders to your application's `config/pulse.php` configuration file:
+統合を有効にするには、まず[Pulseをインストール](pulse.md#installation)していることを確認してください。次に、Reverbのレコーダーをアプリケーションの`config/pulse.php`設定ファイルに追加します:
 
 ```php
 use Laravel\Reverb\Pulse\Recorders\ReverbConnections;
@@ -180,7 +180,7 @@ use Laravel\Reverb\Pulse\Recorders\ReverbMessages;
 ],
 ```
 
-Next, add the Pulse cards for each recorder to your [Pulse dashboard](/docs/{{version}}/pulse#dashboard-customization):
+次に、各レコーダーのPulseカードを[Pulseダッシュボード](pulse.md#dashboard-customization)に追加します:
 
 ```blade
 <x-pulse>
@@ -191,28 +191,28 @@ Next, add the Pulse cards for each recorder to your [Pulse dashboard](/docs/{{ve
 ```
 
 <a name="production"></a>
-## Running Reverb in Production
+## 本番環境でのReverbの実行
 
-Due to the long-running nature of WebSocket servers, you may need to make some optimizations to your server and hosting environment to ensure your Reverb server can effectively handle the optimal number of connections for the resources available on your server.
+WebSocketサーバーの長時間実行の性質上、Reverbサーバーがサーバー上で利用可能なリソースに対して最適な接続数を効果的に処理できるように、サーバーとホスティング環境にいくつかの最適化を行う必要があるかもしれません。
 
-> [!NOTE]  
-> If your site is managed by [Laravel Forge](https://forge.laravel.com), you may automatically optimize your server for Reverb directly from the "Application" panel. By enabling the Reverb integration, Forge will ensure your server is production-ready, including installing any required extensions and increasing the allowed number of connections.
+> NOTE:  
+> サイトが[Laravel Forge](https://forge.laravel.com)によって管理されている場合、「Application」パネルからReverbのためにサーバーを自動的に最適化できます。Reverb統合を有効にすると、Forgeはサーバーが本番環境に対応できるようにし、必要な拡張機能のインストールや許可された接続数の増加を含めます。
 
 <a name="open-files"></a>
-### Open Files
+### オープンファイル
 
-Each WebSocket connection is held in memory until either the client or server disconnects. In Unix and Unix-like environments, each connection is represented by a file. However, there are often limits on the number of allowed open files at both the operating system and application level.
+各WebSocket接続は、クライアントまたはサーバーが切断するまでメモリ内に保持されます。UnixおよびUnixライクな環境では、各接続はファイルによって表されます。しかし、オープンファイルの許可数には、オペレーティングシステムとアプリケーションレベルの両方で制限があります。
 
 <a name="operating-system"></a>
-#### Operating System
+#### オペレーティングシステム
 
-On a Unix based operating system, you may determine the allowed number of open files using the `ulimit` command:
+Unixベースのオペレーティングシステムでは、`ulimit`コマンドを使用して許可されたオープンファイルの数を確認できます:
 
 ```sh
 ulimit -n
 ```
 
-This command will display the open file limits allowed for different users. You may update these values by editing the `/etc/security/limits.conf` file. For example, updating the maximum number of open files to 10,000 for the `forge` user would look like the following:
+このコマンドは、異なるユーザーに対して許可されたオープンファイルの制限を表示します。これらの値は、`/etc/security/limits.conf`ファイルを編集することで更新できます。例えば、`forge`ユーザーの最大オープンファイル数を10,000に更新する場合、次のようになります:
 
 ```ini
 # /etc/security/limits.conf
@@ -221,20 +221,20 @@ forge        hard  nofile  10000
 ```
 
 <a name="event-loop"></a>
-### Event Loop
+### イベントループ
 
-Under the hood, Reverb uses a ReactPHP event loop to manage WebSocket connections on the server. By default, this event loop is powered by `stream_select`, which doesn't require any additional extensions. However, `stream_select` is typically limited to 1,024 open files. As such, if you plan to handle more than 1,000 concurrent connections, you will need to use an alternative event loop not bound to the same restrictions.
+内部的には、ReverbはReactPHPイベントループを使用してサーバー上のWebSocket接続を管理します。デフォルトでは、このイベントループは`stream_select`によって動力を得ており、追加の拡張機能を必要としません。しかし、`stream_select`は通常1,024のオープンファイルに制限されています。そのため、1,000以上の同時接続を処理する予定がある場合、同じ制限に縛られない代替のイベントループを使用する必要があります。
 
-Reverb will automatically switch to an `ext-uv` powered loop when available. This PHP extension is available for install via PECL:
+Reverbは、利用可能な場合、`ext-uv`によって動力を得たループに自動的に切り替えます。このPHP拡張機能はPECLを介してインストールできます:
 
 ```sh
 pecl install uv
 ```
 
 <a name="web-server"></a>
-### Web Server
+### Webサーバー
 
-In most cases, Reverb runs on a non web-facing port on your server. So, in order to route traffic to Reverb, you should configure a reverse proxy. Assuming Reverb is running on host `0.0.0.0` and port `8080` and your server utilizes the Nginx web server, a reverse proxy can be defined for your Reverb server using the following Nginx site configuration:
+ほとんどの場合、Reverbはサーバー上のWebに面していないポートで動作します。そのため、Reverbにトラフィックをルーティングするには、リバースプロキシを設定する必要があります。Reverbがホスト `0.0.0.0` とポート `8080` で動作しており、サーバーがNginx Webサーバーを使用していると仮定すると、以下のNginxサイト設定を使用してReverbサーバーのリバースプロキシを定義できます：
 
 ```nginx
 server {
@@ -257,10 +257,10 @@ server {
 }
 ```
 
-> [!WARNING]  
-> Reverb listens for WebSocket connections at `/app` and handles API requests at `/apps`. You should ensure the web server handling Reverb requests can serve both of these URIs. If you are using [Laravel Forge](https://forge.laravel.com) to manage your servers, your Reverb server will be correctly configured by default.
+> WARNING:  
+> ReverbはWebSocket接続を `/app` で、APIリクエストを `/apps` で待ち受けます。Reverbリクエストを処理するWebサーバーがこれらのURIを提供できることを確認する必要があります。[Laravel Forge](https://forge.laravel.com)を使用してサーバーを管理している場合、Reverbサーバーはデフォルトで正しく設定されます。
 
-Typically, web servers are configured to limit the number of allowed connections in order to prevent overloading the server. To increase the number of allowed connections on an Nginx web server to 10,000, the `worker_rlimit_nofile` and `worker_connections` values of the `nginx.conf` file should be updated:
+通常、Webサーバーはサーバーの過負荷を防ぐために、許可される接続数を制限するように設定されています。Nginx Webサーバーで許可される接続数を10,000に増やすには、`nginx.conf`ファイルの`worker_rlimit_nofile`と`worker_connections`の値を更新する必要があります：
 
 ```nginx
 user forge;
@@ -275,24 +275,24 @@ events {
 }
 ```
 
-The configuration above will allow up to 10,000 Nginx workers per process to be spawned. In addition, this configuration sets Nginx's open file limit to 10,000.
+上記の設定により、プロセスごとに最大10,000のNginxワーカーを生成できます。さらに、この設定によりNginxのオープンファイルの制限が10,000に設定されます。
 
 <a name="ports"></a>
-### Ports
+### ポート
 
-Unix-based operating systems typically limit the number of ports which can be opened on the server. You may see the current allowed range via the following command:
+Unixベースのオペレーティングシステムは通常、サーバー上で開くことができるポートの数を制限しています。以下のコマンドで現在許可されている範囲を確認できます：
 
  ```sh
 cat /proc/sys/net/ipv4/ip_local_port_range
 # 32768	60999
 ```
 
-The output above shows the server can handle a maximum of 28,231 (60,999 - 32,768) connections since each connection requires a free port. Although we recommend [horizontal scaling](#scaling) to increase the number of allowed connections, you may increase the number of available open ports by updating the allowed port range in your server's `/etc/sysctl.conf` configuration file.
+上記の出力は、サーバーが最大28,231（60,999 - 32,768）の接続を処理できることを示しています。各接続には空きポートが必要です。許可される接続数を増やすために[水平スケーリング](#scaling)を推奨しますが、サーバーの`/etc/sysctl.conf`設定ファイルで許可されるポート範囲を更新することで、利用可能なオープンポートの数を増やすことができます。
 
 <a name="process-management"></a>
-### Process Management
+### プロセス管理
 
-In most cases, you should use a process manager such as Supervisor to ensure the Reverb server is continually running. If you are using Supervisor to run Reverb, you should update the `minfds` setting of your server's `supervisor.conf` file to ensure Supervisor is able to open the files required to handle connections to your Reverb server:
+ほとんどの場合、Reverbサーバーが常に実行されていることを確認するために、Supervisorなどのプロセスマネージャを使用する必要があります。Supervisorを使用してReverbを実行している場合、サーバーの`supervisor.conf`ファイルの`minfds`設定を更新して、SupervisorがReverbサーバーへの接続を処理するために必要なファイルを開くことができるようにする必要があります：
 
 ```ini
 [supervisord]
@@ -301,16 +301,17 @@ minfds=10000
 ```
 
 <a name="scaling"></a>
-### Scaling
+### スケーリング
 
-If you need to handle more connections than a single server will allow, you may scale your Reverb server horizontally. Utilizing the publish / subscribe capabilities of Redis, Reverb is able to manage connections across multiple servers. When a message is received by one of your application's Reverb servers, the server will use Redis to publish the incoming message to all other servers.
+単一のサーバーで許可される接続数を超えて処理する必要がある場合、Reverbサーバーを水平方向にスケーリングすることができます。Redisのパブリッシュ/サブスクライブ機能を利用することで、Reverbは複数のサーバー間で接続を管理できます。アプリケーションのReverbサーバーの1つがメッセージを受信すると、そのサーバーはRedisを使用して受信メッセージを他のすべてのサーバーにパブリッシュします。
 
-To enable horizontal scaling, you should set the `REVERB_SCALING_ENABLED` environment variable to `true` in your application's `.env` configuration file:
+水平スケーリングを有効にするには、アプリケーションの`.env`設定ファイルで`REVERB_SCALING_ENABLED`環境変数を`true`に設定する必要があります：
 
 ```env
 REVERB_SCALING_ENABLED=true
 ```
 
-Next, you should have a dedicated, central Redis server to which all of the Reverb servers will communicate. Reverb will use the [default Redis connection configured for your application](/docs/{{version}}/redis#configuration) to publish messages to all of your Reverb servers.
+次に、すべてのReverbサーバーが通信する専用の中央Redisサーバーを用意する必要があります。Reverbは、アプリケーション用に設定された[デフォルトのRedis接続](redis.md#configuration)を使用して、すべてのReverbサーバーにメッセージをパブリッシュします。
 
-Once you have enabled Reverb's scaling option and configured a Redis server, you may simply invoke the `reverb:start` command on multiple servers that are able to communicate with your Redis server. These Reverb servers should be placed behind a load balancer that distributes incoming requests evenly among the servers.
+Reverbのスケーリングオプションを有効にし、Redisサーバーを設定したら、Redisサーバーと通信できる複数のサーバーで`reverb:start`コマンドを実行するだけです。これらのReverbサーバーは、受信リクエストをサーバー間で均等に分散するロードバランサーの背後に配置する必要があります。
+

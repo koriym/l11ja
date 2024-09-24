@@ -1,15 +1,15 @@
-# Strings
+# 文字列
 
-- [Introduction](#introduction)
-- [Available Methods](#available-methods)
+- [はじめに](#introduction)
+- [利用可能なメソッド](#available-methods)
 
 <a name="introduction"></a>
-## Introduction
+## はじめに
 
-Laravel includes a variety of functions for manipulating string values. Many of these functions are used by the framework itself; however, you are free to use them in your own applications if you find them convenient.
+Laravelには、文字列値を操作するためのさまざまな関数が含まれています。これらの関数の多くはフレームワーク自体で使用されていますが、自分のアプリケーションで便利だと思う場合は自由に使用できます。
 
 <a name="available-methods"></a>
-## Available Methods
+## 利用可能なメソッド
 
 <style>
     .collection-method-list > p {
@@ -25,7 +25,7 @@ Laravel includes a variety of functions for manipulating string values. Many of 
 </style>
 
 <a name="strings-method-list"></a>
-### Strings
+### 文字列
 
 <div class="collection-method-list" markdown="1">
 
@@ -232,23 +232,23 @@ Laravel includes a variety of functions for manipulating string values. Many of 
 </div>
 
 <a name="strings"></a>
-## Strings
+## 文字列
 
 <a name="method-__"></a>
 #### `__()` {.collection-method}
 
-The `__` function translates the given translation string or translation key using your [language files](/docs/{{version}}/localization):
+`__`関数は、[言語ファイル](localization.md)を使用して、指定された翻訳文字列または翻訳キーを翻訳します。
 
     echo __('Welcome to our application');
 
     echo __('messages.welcome');
 
-If the specified translation string or key does not exist, the `__` function will return the given value. So, using the example above, the `__` function would return `messages.welcome` if that translation key does not exist.
+指定された翻訳文字列またはキーが存在しない場合、`__`関数は指定された値を返します。したがって、上記の例を使用すると、翻訳キーが存在しない場合、`__`関数は`messages.welcome`を返します。
 
 <a name="method-class-basename"></a>
 #### `class_basename()` {.collection-method}
 
-The `class_basename` function returns the class name of the given class with the class's namespace removed:
+`class_basename`関数は、指定されたクラスの名前を、そのクラスの名前空間を削除して返します。
 
     $class = class_basename('Foo\Bar\Baz');
 
@@ -257,7 +257,7 @@ The `class_basename` function returns the class name of the given class with the
 <a name="method-e"></a>
 #### `e()` {.collection-method}
 
-The `e` function runs PHP's `htmlspecialchars` function with the `double_encode` option set to `true` by default:
+`e`関数は、PHPの`htmlspecialchars`関数を、`double_encode`オプションをデフォルトで`true`に設定して実行します。
 
     echo e('<html>foo</html>');
 
@@ -266,7 +266,7 @@ The `e` function runs PHP's `htmlspecialchars` function with the `double_encode`
 <a name="method-preg-replace-array"></a>
 #### `preg_replace_array()` {.collection-method}
 
-The `preg_replace_array` function replaces a given pattern in the string sequentially using an array:
+`preg_replace_array`関数は、文字列内の指定されたパターンを配列を使用して順次置換します。
 
     $string = 'The event will take place between :start and :end';
 
@@ -277,7 +277,7 @@ The `preg_replace_array` function replaces a given pattern in the string sequent
 <a name="method-str-after"></a>
 #### `Str::after()` {.collection-method}
 
-The `Str::after` method returns everything after the given value in a string. The entire string will be returned if the value does not exist within the string:
+`Str::after`メソッドは、文字列内の指定された値の後にあるすべてを返します。文字列内に値が存在しない場合、文字列全体が返されます。
 
     use Illuminate\Support\Str;
 
@@ -288,7 +288,7 @@ The `Str::after` method returns everything after the given value in a string. Th
 <a name="method-str-after-last"></a>
 #### `Str::afterLast()` {.collection-method}
 
-The `Str::afterLast` method returns everything after the last occurrence of the given value in a string. The entire string will be returned if the value does not exist within the string:
+`Str::afterLast`メソッドは、文字列内で指定された値が最後に現れた後のすべてを返します。文字列内に値が存在しない場合は、文字列全体が返されます。
 
     use Illuminate\Support\Str;
 
@@ -299,7 +299,7 @@ The `Str::afterLast` method returns everything after the last occurrence of the 
 <a name="method-str-apa"></a>
 #### `Str::apa()` {.collection-method}
 
-The `Str::apa` method converts the given string to title case following the [APA guidelines](https://apastyle.apa.org/style-grammar-guidelines/capitalization/title-case):
+`Str::apa`メソッドは、指定された文字列を[APAガイドライン](https://apastyle.apa.org/style-grammar-guidelines/capitalization/title-case)に従ってタイトルケースに変換します。
 
     use Illuminate\Support\Str;
 
@@ -310,7 +310,7 @@ The `Str::apa` method converts the given string to title case following the [APA
 <a name="method-str-ascii"></a>
 #### `Str::ascii()` {.collection-method}
 
-The `Str::ascii` method will attempt to transliterate the string into an ASCII value:
+`Str::ascii`メソッドは、文字列をASCII値に変換しようとします。
 
     use Illuminate\Support\Str;
 
@@ -321,7 +321,7 @@ The `Str::ascii` method will attempt to transliterate the string into an ASCII v
 <a name="method-str-before"></a>
 #### `Str::before()` {.collection-method}
 
-The `Str::before` method returns everything before the given value in a string:
+`Str::before`メソッドは、文字列内で指定された値の前のすべてを返します。
 
     use Illuminate\Support\Str;
 
@@ -332,7 +332,7 @@ The `Str::before` method returns everything before the given value in a string:
 <a name="method-str-before-last"></a>
 #### `Str::beforeLast()` {.collection-method}
 
-The `Str::beforeLast` method returns everything before the last occurrence of the given value in a string:
+`Str::beforeLast`メソッドは、文字列内で指定された値が最後に現れる前のすべてを返します。
 
     use Illuminate\Support\Str;
 
@@ -343,7 +343,7 @@ The `Str::beforeLast` method returns everything before the last occurrence of th
 <a name="method-str-between"></a>
 #### `Str::between()` {.collection-method}
 
-The `Str::between` method returns the portion of a string between two values:
+`Str::between`メソッドは、文字列内の2つの値の間の部分を返します。
 
     use Illuminate\Support\Str;
 
@@ -354,7 +354,7 @@ The `Str::between` method returns the portion of a string between two values:
 <a name="method-str-between-first"></a>
 #### `Str::betweenFirst()` {.collection-method}
 
-The `Str::betweenFirst` method returns the smallest possible portion of a string between two values:
+`Str::betweenFirst`メソッドは、文字列内の2つの値の間の最小の部分を返します。
 
     use Illuminate\Support\Str;
 
@@ -365,7 +365,7 @@ The `Str::betweenFirst` method returns the smallest possible portion of a string
 <a name="method-camel-case"></a>
 #### `Str::camel()` {.collection-method}
 
-The `Str::camel` method converts the given string to `camelCase`:
+`Str::camel`メソッドは、指定された文字列を`camelCase`に変換します。
 
     use Illuminate\Support\Str;
 
@@ -376,7 +376,7 @@ The `Str::camel` method converts the given string to `camelCase`:
 <a name="method-char-at"></a>
 #### `Str::charAt()` {.collection-method}
 
-The `Str::charAt` method returns the character at the specified index. If the index is out of bounds, `false` is returned:
+`Str::charAt`メソッドは、指定されたインデックスの文字を返します。インデックスが範囲外の場合、`false`が返されます。
 
     use Illuminate\Support\Str;
 
@@ -387,7 +387,7 @@ The `Str::charAt` method returns the character at the specified index. If the in
 <a name="method-str-chop-start"></a>
 #### `Str::chopStart()` {.collection-method}
 
-The `Str::chopStart` method removes the first occurrence of the given value only if the value appears at the start of the string:
+`Str::chopStart`メソッドは、文字列の先頭に指定された値が現れる場合にのみ、その値を削除します。
 
     use Illuminate\Support\Str;
 
@@ -395,7 +395,7 @@ The `Str::chopStart` method removes the first occurrence of the given value only
 
     // 'laravel.com'
 
-You may also pass an array as the second argument. If the string starts with any of the values in the array then that value will be removed from string:
+また、2番目の引数として配列を渡すこともできます。文字列が配列内のいずれかの値で始まる場合、その値が文字列から削除されます。
 
     use Illuminate\Support\Str;
 
@@ -406,7 +406,7 @@ You may also pass an array as the second argument. If the string starts with any
 <a name="method-str-chop-end"></a>
 #### `Str::chopEnd()` {.collection-method}
 
-The `Str::chopEnd` method removes the last occurrence of the given value only if the value appears at the end of the string:
+`Str::chopEnd`メソッドは、文字列の末尾に指定された値が現れる場合にのみ、その値を削除します。
 
     use Illuminate\Support\Str;
 
@@ -414,7 +414,7 @@ The `Str::chopEnd` method removes the last occurrence of the given value only if
 
     // 'app/Models/Photograph'
 
-You may also pass an array as the second argument. If the string ends with any of the values in the array then that value will be removed from string:
+また、2番目の引数として配列を渡すこともできます。文字列が配列内のいずれかの値で終わる場合、その値が文字列から削除されます。
 
     use Illuminate\Support\Str;
 
@@ -425,7 +425,7 @@ You may also pass an array as the second argument. If the string ends with any o
 <a name="method-str-contains"></a>
 #### `Str::contains()` {.collection-method}
 
-The `Str::contains` method determines if the given string contains the given value. By default this method is case sensitive:
+`Str::contains`メソッドは、指定された文字列に指定された値が含まれているかどうかを判断します。デフォルトでは、このメソッドは大文字と小文字を区別します。
 
     use Illuminate\Support\Str;
 
@@ -433,7 +433,7 @@ The `Str::contains` method determines if the given string contains the given val
 
     // true
 
-You may also pass an array of values to determine if the given string contains any of the values in the array:
+また、配列を渡して、指定された文字列に配列内のいずれかの値が含まれているかどうかを判断することもできます。
 
     use Illuminate\Support\Str;
 
@@ -441,7 +441,7 @@ You may also pass an array of values to determine if the given string contains a
 
     // true
 
-You may disable case sensitivity by setting the `ignoreCase` argument to `true`:
+大文字と小文字を区別しないようにするには、`ignoreCase`引数を`true`に設定します。
 
     use Illuminate\Support\Str;
 
@@ -452,7 +452,7 @@ You may disable case sensitivity by setting the `ignoreCase` argument to `true`:
 <a name="method-str-contains-all"></a>
 #### `Str::containsAll()` {.collection-method}
 
-The `Str::containsAll` method determines if the given string contains all of the values in a given array:
+`Str::containsAll`メソッドは、指定された文字列に指定された配列内のすべての値が含まれているかどうかを判断します。
 
     use Illuminate\Support\Str;
 
@@ -460,7 +460,7 @@ The `Str::containsAll` method determines if the given string contains all of the
 
     // true
 
-You may disable case sensitivity by setting the `ignoreCase` argument to `true`:
+大文字と小文字を区別しないようにするには、`ignoreCase`引数を`true`に設定します。
 
     use Illuminate\Support\Str;
 
@@ -471,7 +471,7 @@ You may disable case sensitivity by setting the `ignoreCase` argument to `true`:
 <a name="method-deduplicate"></a>
 #### `Str::deduplicate()` {.collection-method}
 
-The `Str::deduplicate` method replaces consecutive instances of a character with a single instance of that character in the given string. By default, the method deduplicates spaces:
+`Str::deduplicate`メソッドは、指定された文字列内の連続する文字のインスタンスをその文字の単一のインスタンスに置き換えます。デフォルトでは、このメソッドはスペースを重複排除します。
 
     use Illuminate\Support\Str;
 
@@ -479,7 +479,7 @@ The `Str::deduplicate` method replaces consecutive instances of a character with
 
     // The Laravel Framework
 
-You may specify a different character to deduplicate by passing it in as the second argument to the method:
+重複排除する文字を指定するには、メソッドの2番目の引数として渡します。
 
     use Illuminate\Support\Str;
 
@@ -490,7 +490,7 @@ You may specify a different character to deduplicate by passing it in as the sec
 <a name="method-ends-with"></a>
 #### `Str::endsWith()` {.collection-method}
 
-The `Str::endsWith` method determines if the given string ends with the given value:
+`Str::endsWith`メソッドは、指定された文字列が指定された値で終わるかどうかを判断します。
 
     use Illuminate\Support\Str;
 
@@ -498,7 +498,7 @@ The `Str::endsWith` method determines if the given string ends with the given va
 
     // true
 
-You may also pass an array of values to determine if the given string ends with any of the values in the array:
+また、配列を渡して、指定された文字列が配列内のいずれかの値で終わるかどうかを判断することもできます。
 
     use Illuminate\Support\Str;
 
@@ -513,7 +513,7 @@ You may also pass an array of values to determine if the given string ends with 
 <a name="method-excerpt"></a>
 #### `Str::excerpt()` {.collection-method}
 
-The `Str::excerpt` method extracts an excerpt from a given string that matches the first instance of a phrase within that string:
+`Str::excerpt`メソッドは、指定された文字列内で最初に一致するフレーズに基づいて抜粋を抽出します。
 
     use Illuminate\Support\Str;
 
@@ -523,9 +523,9 @@ The `Str::excerpt` method extracts an excerpt from a given string that matches t
 
     // '...is my na...'
 
-The `radius` option, which defaults to `100`, allows you to define the number of characters that should appear on each side of the truncated string.
+`radius`オプション（デフォルトは`100`）を使用して、切り取られた文字列の両側に表示される文字数を定義できます。
 
-In addition, you may use the `omission` option to define the string that will be prepended and appended to the truncated string:
+さらに、`omission`オプションを使用して、切り取られた文字列の前後に追加される文字列を定義できます。
 
     use Illuminate\Support\Str;
 
@@ -539,7 +539,7 @@ In addition, you may use the `omission` option to define the string that will be
 <a name="method-str-finish"></a>
 #### `Str::finish()` {.collection-method}
 
-The `Str::finish` method adds a single instance of the given value to a string if it does not already end with that value:
+`Str::finish`メソッドは、文字列が指定された値で終わっていない場合に、その値の単一のインスタンスを文字列に追加します。
 
     use Illuminate\Support\Str;
 
@@ -554,7 +554,7 @@ The `Str::finish` method adds a single instance of the given value to a string i
 <a name="method-str-headline"></a>
 #### `Str::headline()` {.collection-method}
 
-The `Str::headline` method will convert strings delimited by casing, hyphens, or underscores into a space delimited string with each word's first letter capitalized:
+`Str::headline`メソッドは、大文字と小文字、ハイフン、またはアンダースコアで区切られた文字列を、各単語の最初の文字が大文字になるスペース区切りの文字列に変換します。
 
     use Illuminate\Support\Str;
 
@@ -569,7 +569,7 @@ The `Str::headline` method will convert strings delimited by casing, hyphens, or
 <a name="method-str-inline-markdown"></a>
 #### `Str::inlineMarkdown()` {.collection-method}
 
-The `Str::inlineMarkdown` method converts GitHub flavored Markdown into inline HTML using [CommonMark](https://commonmark.thephpleague.com/). However, unlike the `markdown` method, it does not wrap all generated HTML in a block-level element:
+`Str::inlineMarkdown`メソッドは、GitHubフレーバーのMarkdownを[CommonMark](https://commonmark.thephpleague.com/)を使用してインラインHTMLに変換します。ただし、`markdown`メソッドとは異なり、生成されたすべてのHTMLをブロックレベルの要素でラップしません。
 
     use Illuminate\Support\Str;
 
@@ -577,9 +577,9 @@ The `Str::inlineMarkdown` method converts GitHub flavored Markdown into inline H
 
     // <strong>Laravel</strong>
 
-#### Markdown Security
+#### Markdownセキュリティ
 
-By default, Markdown supports raw HTML, which will expose Cross-Site Scripting (XSS) vulnerabilities when used with raw user input. As per the [CommonMark Security documentation](https://commonmark.thephpleague.com/security/), you may use the `html_input` option to either escape or strip raw HTML, and the `allow_unsafe_links` option to specify whether to allow unsafe links. If you need to allow some raw HTML, you should pass your compiled Markdown through an HTML Purifier:
+デフォルトでは、Markdownは生のHTMLをサポートしており、生のユーザー入力と共に使用するとクロスサイトスクリプティング（XSS）の脆弱性が露呈します。[CommonMarkセキュリティドキュメント](https://commonmark.thephpleague.com/security/)に従い、`html_input`オプションを使用して生のHTMLをエスケープまたは削除するか、`allow_unsafe_links`オプションを使用して安全でないリンクを許可するかを指定できます。生のHTMLを一部許可する必要がある場合は、コンパイルされたMarkdownをHTML Purifierを通して渡すべきです。
 
     use Illuminate\Support\Str;
 
@@ -593,7 +593,7 @@ By default, Markdown supports raw HTML, which will expose Cross-Site Scripting (
 <a name="method-str-is"></a>
 #### `Str::is()` {.collection-method}
 
-The `Str::is` method determines if a given string matches a given pattern. Asterisks may be used as wildcard values:
+`Str::is`メソッドは、指定された文字列が指定されたパターンに一致するかどうかを判断します。アスタリスクをワイルドカードとして使用できます。
 
     use Illuminate\Support\Str;
 
@@ -608,7 +608,7 @@ The `Str::is` method determines if a given string matches a given pattern. Aster
 <a name="method-str-is-ascii"></a>
 #### `Str::isAscii()` {.collection-method}
 
-The `Str::isAscii` method determines if a given string is 7 bit ASCII:
+`Str::isAscii`メソッドは、指定された文字列が7ビットASCIIであるかどうかを判断します。
 
     use Illuminate\Support\Str;
 
@@ -623,26 +623,26 @@ The `Str::isAscii` method determines if a given string is 7 bit ASCII:
 <a name="method-str-is-json"></a>
 #### `Str::isJson()` {.collection-method}
 
-The `Str::isJson` method determines if the given string is valid JSON:
+`Str::isJson`メソッドは、指定された文字列が有効なJSONであるかどうかを判断します。
 
     use Illuminate\Support\Str;
 
     $result = Str::isJson('[1,2,3]');
 
-    // true
+// true
 
-    $result = Str::isJson('{"first": "John", "last": "Doe"}');
+$result = Str::isJson('{"first": "John", "last": "Doe"}');
 
-    // true
+// true
 
-    $result = Str::isJson('{first: "John", last: "Doe"}');
+$result = Str::isJson('{first: "John", last: "Doe"}');
 
-    // false
+// false
 
 <a name="method-str-is-url"></a>
 #### `Str::isUrl()` {.collection-method}
 
-The `Str::isUrl` method determines if the given string is a valid URL:
+`Str::isUrl`メソッドは、指定された文字列が有効なURLであるかどうかを判定します。
 
     use Illuminate\Support\Str;
 
@@ -654,14 +654,14 @@ The `Str::isUrl` method determines if the given string is a valid URL:
 
     // false
 
-The `isUrl` method considers a wide range of protocols as valid. However, you may specify the protocols that should be considered valid by providing them to the `isUrl` method:
+`isUrl`メソッドは幅広いプロトコルを有効とみなします。しかし、`isUrl`メソッドにそれらを渡すことで、有効とみなすべきプロトコルを指定できます。
 
     $isUrl = Str::isUrl('http://example.com', ['http', 'https']);
 
 <a name="method-str-is-ulid"></a>
 #### `Str::isUlid()` {.collection-method}
 
-The `Str::isUlid` method determines if the given string is a valid ULID:
+`Str::isUlid`メソッドは、指定された文字列が有効なULIDであるかどうかを判定します。
 
     use Illuminate\Support\Str;
 
@@ -676,7 +676,7 @@ The `Str::isUlid` method determines if the given string is a valid ULID:
 <a name="method-str-is-uuid"></a>
 #### `Str::isUuid()` {.collection-method}
 
-The `Str::isUuid` method determines if the given string is a valid UUID:
+`Str::isUuid`メソッドは、指定された文字列が有効なUUIDであるかどうかを判定します。
 
     use Illuminate\Support\Str;
 
@@ -691,7 +691,7 @@ The `Str::isUuid` method determines if the given string is a valid UUID:
 <a name="method-kebab-case"></a>
 #### `Str::kebab()` {.collection-method}
 
-The `Str::kebab` method converts the given string to `kebab-case`:
+`Str::kebab`メソッドは、指定された文字列を`kebab-case`に変換します。
 
     use Illuminate\Support\Str;
 
@@ -702,7 +702,7 @@ The `Str::kebab` method converts the given string to `kebab-case`:
 <a name="method-str-lcfirst"></a>
 #### `Str::lcfirst()` {.collection-method}
 
-The `Str::lcfirst` method returns the given string with the first character lowercased:
+`Str::lcfirst`メソッドは、指定された文字列の最初の文字を小文字にして返します。
 
     use Illuminate\Support\Str;
 
@@ -713,7 +713,7 @@ The `Str::lcfirst` method returns the given string with the first character lowe
 <a name="method-str-length"></a>
 #### `Str::length()` {.collection-method}
 
-The `Str::length` method returns the length of the given string:
+`Str::length`メソッドは、指定された文字列の長さを返します。
 
     use Illuminate\Support\Str;
 
@@ -724,7 +724,7 @@ The `Str::length` method returns the length of the given string:
 <a name="method-str-limit"></a>
 #### `Str::limit()` {.collection-method}
 
-The `Str::limit` method truncates the given string to the specified length:
+`Str::limit`メソッドは、指定された文字列を指定された長さに切り詰めます。
 
     use Illuminate\Support\Str;
 
@@ -732,13 +732,13 @@ The `Str::limit` method truncates the given string to the specified length:
 
     // The quick brown fox...
 
-You may pass a third argument to the method to change the string that will be appended to the end of the truncated string:
+切り詰められた文字列の末尾に追加される文字列を変更するために、メソッドに第三引数を渡すことができます。
 
     $truncated = Str::limit('The quick brown fox jumps over the lazy dog', 20, ' (...)');
 
     // The quick brown fox (...)
 
-If you would like to preserve complete words when truncating the string, you may utilize the `preserveWords` argument. When this argument is `true`, the string will be truncated to the nearest complete word boundary:
+文字列を切り詰める際に完全な単語を保持したい場合は、`preserveWords`引数を使用できます。この引数が`true`の場合、文字列は最も近い完全な単語の境界で切り詰められます。
 
     $truncated = Str::limit('The quick brown fox', 12, preserveWords: true);
 
@@ -747,7 +747,7 @@ If you would like to preserve complete words when truncating the string, you may
 <a name="method-str-lower"></a>
 #### `Str::lower()` {.collection-method}
 
-The `Str::lower` method converts the given string to lowercase:
+`Str::lower`メソッドは、指定された文字列を小文字に変換します。
 
     use Illuminate\Support\Str;
 
@@ -758,7 +758,7 @@ The `Str::lower` method converts the given string to lowercase:
 <a name="method-str-markdown"></a>
 #### `Str::markdown()` {.collection-method}
 
-The `Str::markdown` method converts GitHub flavored Markdown into HTML using [CommonMark](https://commonmark.thephpleague.com/):
+`Str::markdown`メソッドは、GitHub風のMarkdownを[CommonMark](https://commonmark.thephpleague.com/)を使用してHTMLに変換します。
 
     use Illuminate\Support\Str;
 
@@ -772,9 +772,9 @@ The `Str::markdown` method converts GitHub flavored Markdown into HTML using [Co
 
     // <h1>Taylor Otwell</h1>
 
-#### Markdown Security
+#### Markdownのセキュリティ
 
-By default, Markdown supports raw HTML, which will expose Cross-Site Scripting (XSS) vulnerabilities when used with raw user input. As per the [CommonMark Security documentation](https://commonmark.thephpleague.com/security/), you may use the `html_input` option to either escape or strip raw HTML, and the `allow_unsafe_links` option to specify whether to allow unsafe links. If you need to allow some raw HTML, you should pass your compiled Markdown through an HTML Purifier:
+デフォルトでは、Markdownは生のHTMLをサポートしており、生のユーザー入力と共に使用するとクロスサイトスクリプティング（XSS）の脆弱性が露呈します。[CommonMarkのセキュリティドキュメント](https://commonmark.thephpleague.com/security/)に従い、生のHTMLをエスケープまたは除去するために`html_input`オプションを使用し、安全でないリンクを許可するかどうかを指定するために`allow_unsafe_links`オプションを使用できます。生のHTMLを一部許可する必要がある場合は、コンパイルされたMarkdownをHTML Purifierを通して渡すべきです。
 
     use Illuminate\Support\Str;
 
@@ -788,7 +788,7 @@ By default, Markdown supports raw HTML, which will expose Cross-Site Scripting (
 <a name="method-str-mask"></a>
 #### `Str::mask()` {.collection-method}
 
-The `Str::mask` method masks a portion of a string with a repeated character, and may be used to obfuscate segments of strings such as email addresses and phone numbers:
+`Str::mask`メソッドは、文字列の一部を繰り返し文字でマスクし、メールアドレスや電話番号などの文字列のセグメントを難読化するために使用できます。
 
     use Illuminate\Support\Str;
 
@@ -796,7 +796,7 @@ The `Str::mask` method masks a portion of a string with a repeated character, an
 
     // tay***************
 
-If needed, you provide a negative number as the third argument to the `mask` method, which will instruct the method to begin masking at the given distance from the end of the string:
+必要に応じて、`mask`メソッドに負の数を第三引数として渡すことができます。これにより、メソッドは文字列の終わりから指定された距離でマスクを開始するように指示されます。
 
     $string = Str::mask('taylor@example.com', '*', -15, 3);
 
@@ -805,7 +805,7 @@ If needed, you provide a negative number as the third argument to the `mask` met
 <a name="method-str-ordered-uuid"></a>
 #### `Str::orderedUuid()` {.collection-method}
 
-The `Str::orderedUuid` method generates a "timestamp first" UUID that may be efficiently stored in an indexed database column. Each UUID that is generated using this method will be sorted after UUIDs previously generated using the method:
+`Str::orderedUuid`メソッドは、インデックス付きデータベースカラムに効率的に格納できる「タイムスタンプ優先」のUUIDを生成します。このメソッドを使用して生成された各UUIDは、以前にこのメソッドを使用して生成されたUUIDの後にソートされます。
 
     use Illuminate\Support\Str;
 
@@ -814,7 +814,7 @@ The `Str::orderedUuid` method generates a "timestamp first" UUID that may be eff
 <a name="method-str-padboth"></a>
 #### `Str::padBoth()` {.collection-method}
 
-The `Str::padBoth` method wraps PHP's `str_pad` function, padding both sides of a string with another string until the final string reaches a desired length:
+`Str::padBoth`メソッドは、PHPの`str_pad`関数をラップし、最終的な文字列が所望の長さに達するまで、文字列の両側を別の文字列でパディングします。
 
     use Illuminate\Support\Str;
 
@@ -829,7 +829,7 @@ The `Str::padBoth` method wraps PHP's `str_pad` function, padding both sides of 
 <a name="method-str-padleft"></a>
 #### `Str::padLeft()` {.collection-method}
 
-The `Str::padLeft` method wraps PHP's `str_pad` function, padding the left side of a string with another string until the final string reaches a desired length:
+`Str::padLeft`メソッドは、PHPの`str_pad`関数をラップし、最終的な文字列が所望の長さに達するまで、文字列の左側を別の文字列でパディングします。
 
     use Illuminate\Support\Str;
 
@@ -844,7 +844,7 @@ The `Str::padLeft` method wraps PHP's `str_pad` function, padding the left side 
 <a name="method-str-padright"></a>
 #### `Str::padRight()` {.collection-method}
 
-The `Str::padRight` method wraps PHP's `str_pad` function, padding the right side of a string with another string until the final string reaches a desired length:
+`Str::padRight`メソッドは、PHPの`str_pad`関数をラップし、最終的な文字列が所望の長さに達するまで、文字列の右側を別の文字列でパディングします。
 
     use Illuminate\Support\Str;
 
@@ -859,7 +859,7 @@ The `Str::padRight` method wraps PHP's `str_pad` function, padding the right sid
 <a name="method-str-password"></a>
 #### `Str::password()` {.collection-method}
 
-The `Str::password` method may be used to generate a secure, random password of a given length. The password will consist of a combination of letters, numbers, symbols, and spaces. By default, passwords are 32 characters long:
+`Str::password`メソッドは、指定された長さの安全でランダムなパスワードを生成するために使用できます。パスワードは、文字、数字、記号、スペースの組み合わせで構成されます。デフォルトでは、パスワードは32文字長です。
 
     use Illuminate\Support\Str;
 
@@ -874,7 +874,7 @@ The `Str::password` method may be used to generate a secure, random password of 
 <a name="method-str-plural"></a>
 #### `Str::plural()` {.collection-method}
 
-The `Str::plural` method converts a singular word string to its plural form. This function supports [any of the languages support by Laravel's pluralizer](/docs/{{version}}/localization#pluralization-language):
+`Str::plural`メソッドは、単数形の単語文字列を複数形に変換します。この関数は、[Laravelの複数形化機能がサポートする任意の言語](localization.md#pluralization-language)をサポートしています。
 
     use Illuminate\Support\Str;
 
@@ -886,7 +886,7 @@ The `Str::plural` method converts a singular word string to its plural form. Thi
 
     // children
 
-You may provide an integer as a second argument to the function to retrieve the singular or plural form of the string:
+関数に第二引数として整数を渡すことで、文字列の単数形または複数形を取得できます。
 
     use Illuminate\Support\Str;
 
@@ -901,7 +901,7 @@ You may provide an integer as a second argument to the function to retrieve the 
 <a name="method-str-plural-studly"></a>
 #### `Str::pluralStudly()` {.collection-method}
 
-The `Str::pluralStudly` method converts a singular word string formatted in studly caps case to its plural form. This function supports [any of the languages support by Laravel's pluralizer](/docs/{{version}}/localization#pluralization-language):
+`Str::pluralStudly`メソッドは、スタッディキャップスケースでフォーマットされた単数形の単語文字列を複数形に変換します。この関数は、[Laravelの複数形化機能がサポートする任意の言語](localization.md#pluralization-language)をサポートしています。
 
     use Illuminate\Support\Str;
 
@@ -913,7 +913,7 @@ The `Str::pluralStudly` method converts a singular word string formatted in stud
 
     // UserFeedback
 
-You may provide an integer as a second argument to the function to retrieve the singular or plural form of the string:
+関数に第二引数として整数を渡すことで、文字列の単数形または複数形を取得できます。
 
     use Illuminate\Support\Str;
 
@@ -928,7 +928,7 @@ You may provide an integer as a second argument to the function to retrieve the 
 <a name="method-str-position"></a>
 #### `Str::position()` {.collection-method}
 
-The `Str::position` method returns the position of the first occurrence of a substring in a string. If the substring does not exist in the given string, `false` is returned:
+`Str::position`メソッドは、文字列内で部分文字列が最初に出現する位置を返します。指定された文字列に部分文字列が存在しない場合、`false`が返されます。
 
     use Illuminate\Support\Str;
 
@@ -943,26 +943,26 @@ The `Str::position` method returns the position of the first occurrence of a sub
 <a name="method-str-random"></a>
 #### `Str::random()` {.collection-method}
 
-The `Str::random` method generates a random string of the specified length. This function uses PHP's `random_bytes` function:
+`Str::random`メソッドは、指定された長さのランダムな文字列を生成します。この関数はPHPの`random_bytes`関数を使用します。
 
     use Illuminate\Support\Str;
 
     $random = Str::random(40);
 
-During testing, it may be useful to "fake" the value that is returned by the `Str::random` method. To accomplish this, you may use the `createRandomStringsUsing` method:
+テスト中に`Str::random`メソッドが返す値を「偽装」することが有用な場合があります。これを実現するには、`createRandomStringsUsing`メソッドを使用できます。
 
     Str::createRandomStringsUsing(function () {
         return 'fake-random-string';
     });
 
-To instruct the `random` method to return to generating random strings normally, you may invoke the `createRandomStringsNormally` method:
+`random`メソッドを通常のランダムな文字列の生成に戻すには、`createRandomStringsNormally`メソッドを呼び出すことができます。
 
     Str::createRandomStringsNormally();
 
 <a name="method-str-remove"></a>
 #### `Str::remove()` {.collection-method}
 
-The `Str::remove` method removes the given value or array of values from the string:
+`Str::remove`メソッドは、指定された値または値の配列を文字列から削除します。
 
     use Illuminate\Support\Str;
 
@@ -972,12 +972,12 @@ The `Str::remove` method removes the given value or array of values from the str
 
     // Ptr Pipr pickd a pck of pickld ppprs.
 
-You may also pass `false` as a third argument to the `remove` method to ignore case when removing strings.
+`remove` メソッドに `false` を第三引数として渡すことで、文字列を削除する際に大文字と小文字を区別しないようにすることもできます。
 
 <a name="method-str-repeat"></a>
 #### `Str::repeat()` {.collection-method}
 
-The `Str::repeat` method repeats the given string:
+`Str::repeat` メソッドは、指定された文字列を繰り返します:
 
 ```php
 use Illuminate\Support\Str;
@@ -992,7 +992,7 @@ $repeat = Str::repeat($string, 5);
 <a name="method-str-replace"></a>
 #### `Str::replace()` {.collection-method}
 
-The `Str::replace` method replaces a given string within the string:
+`Str::replace` メソッドは、文字列内の指定された文字列を置換します:
 
     use Illuminate\Support\Str;
 
@@ -1002,14 +1002,14 @@ The `Str::replace` method replaces a given string within the string:
 
     // Laravel 11.x
 
-The `replace` method also accepts a `caseSensitive` argument. By default, the `replace` method is case sensitive:
+`replace` メソッドは `caseSensitive` 引数も受け付けます。デフォルトでは、`replace` メソッドは大文字と小文字を区別します:
 
     Str::replace('Framework', 'Laravel', caseSensitive: false);
 
 <a name="method-str-replace-array"></a>
 #### `Str::replaceArray()` {.collection-method}
 
-The `Str::replaceArray` method replaces a given value in the string sequentially using an array:
+`Str::replaceArray` メソッドは、配列を使用して文字列内の指定された値を順次置換します:
 
     use Illuminate\Support\Str;
 
@@ -1022,7 +1022,7 @@ The `Str::replaceArray` method replaces a given value in the string sequentially
 <a name="method-str-replace-first"></a>
 #### `Str::replaceFirst()` {.collection-method}
 
-The `Str::replaceFirst` method replaces the first occurrence of a given value in a string:
+`Str::replaceFirst` メソッドは、文字列内で最初に出現する指定された値を置換します:
 
     use Illuminate\Support\Str;
 
@@ -1033,7 +1033,7 @@ The `Str::replaceFirst` method replaces the first occurrence of a given value in
 <a name="method-str-replace-last"></a>
 #### `Str::replaceLast()` {.collection-method}
 
-The `Str::replaceLast` method replaces the last occurrence of a given value in a string:
+`Str::replaceLast` メソッドは、文字列内で最後に出現する指定された値を置換します:
 
     use Illuminate\Support\Str;
 
@@ -1044,7 +1044,7 @@ The `Str::replaceLast` method replaces the last occurrence of a given value in a
 <a name="method-str-replace-matches"></a>
 #### `Str::replaceMatches()` {.collection-method}
 
-The `Str::replaceMatches` method replaces all portions of a string matching a pattern with the given replacement string:
+`Str::replaceMatches` メソッドは、パターンに一致する文字列のすべての部分を指定された置換文字列で置換します:
 
     use Illuminate\Support\Str;
 
@@ -1056,7 +1056,7 @@ The `Str::replaceMatches` method replaces all portions of a string matching a pa
 
     // '15015551000'
 
-The `replaceMatches` method also accepts a closure that will be invoked with each portion of the string matching the given pattern, allowing you to perform the replacement logic within the closure and return the replaced value:
+`replaceMatches` メソッドは、指定されたパターンに一致する文字列の各部分で呼び出されるクロージャも受け付けます。クロージャ内で置換ロジックを実行し、置換された値を返すことができます:
 
     use Illuminate\Support\Str;
 
@@ -1069,7 +1069,7 @@ The `replaceMatches` method also accepts a closure that will be invoked with eac
 <a name="method-str-replace-start"></a>
 #### `Str::replaceStart()` {.collection-method}
 
-The `Str::replaceStart` method replaces the first occurrence of the given value only if the value appears at the start of the string:
+`Str::replaceStart` メソッドは、指定された値が文字列の先頭にある場合にのみ、最初に出現する指定された値を置換します:
 
     use Illuminate\Support\Str;
 
@@ -1084,7 +1084,7 @@ The `Str::replaceStart` method replaces the first occurrence of the given value 
 <a name="method-str-replace-end"></a>
 #### `Str::replaceEnd()` {.collection-method}
 
-The `Str::replaceEnd` method replaces the last occurrence of the given value only if the value appears at the end of the string:
+`Str::replaceEnd` メソッドは、指定された値が文字列の末尾にある場合にのみ、最後に出現する指定された値を置換します:
 
     use Illuminate\Support\Str;
 
@@ -1099,7 +1099,7 @@ The `Str::replaceEnd` method replaces the last occurrence of the given value onl
 <a name="method-str-reverse"></a>
 #### `Str::reverse()` {.collection-method}
 
-The `Str::reverse` method reverses the given string:
+`Str::reverse` メソッドは、指定された文字列を反転します:
 
     use Illuminate\Support\Str;
 
@@ -1110,7 +1110,7 @@ The `Str::reverse` method reverses the given string:
 <a name="method-str-singular"></a>
 #### `Str::singular()` {.collection-method}
 
-The `Str::singular` method converts a string to its singular form. This function supports [any of the languages support by Laravel's pluralizer](/docs/{{version}}/localization#pluralization-language):
+`Str::singular` メソッドは、文字列を単数形に変換します。この関数は、[Laravelの複数形化機能がサポートする言語](localization.md#pluralization-language)をサポートしています:
 
     use Illuminate\Support\Str;
 
@@ -1125,7 +1125,7 @@ The `Str::singular` method converts a string to its singular form. This function
 <a name="method-str-slug"></a>
 #### `Str::slug()` {.collection-method}
 
-The `Str::slug` method generates a URL friendly "slug" from the given string:
+`Str::slug` メソッドは、指定された文字列からURLフレンドリーな「スラッグ」を生成します:
 
     use Illuminate\Support\Str;
 
@@ -1136,7 +1136,7 @@ The `Str::slug` method generates a URL friendly "slug" from the given string:
 <a name="method-snake-case"></a>
 #### `Str::snake()` {.collection-method}
 
-The `Str::snake` method converts the given string to `snake_case`:
+`Str::snake` メソッドは、指定された文字列を `snake_case` に変換します:
 
     use Illuminate\Support\Str;
 
@@ -1151,7 +1151,7 @@ The `Str::snake` method converts the given string to `snake_case`:
 <a name="method-str-squish"></a>
 #### `Str::squish()` {.collection-method}
 
-The `Str::squish` method removes all extraneous white space from a string, including extraneous white space between words:
+`Str::squish` メソッドは、文字列からすべての余分な空白を削除します。これには、単語間の余分な空白も含まれます:
 
     use Illuminate\Support\Str;
 
@@ -1162,7 +1162,7 @@ The `Str::squish` method removes all extraneous white space from a string, inclu
 <a name="method-str-start"></a>
 #### `Str::start()` {.collection-method}
 
-The `Str::start` method adds a single instance of the given value to a string if it does not already start with that value:
+`Str::start` メソッドは、文字列が指定された値で始まっていない場合に、その値の1つのインスタンスを文字列に追加します:
 
     use Illuminate\Support\Str;
 
@@ -1177,7 +1177,7 @@ The `Str::start` method adds a single instance of the given value to a string if
 <a name="method-starts-with"></a>
 #### `Str::startsWith()` {.collection-method}
 
-The `Str::startsWith` method determines if the given string begins with the given value:
+`Str::startsWith` メソッドは、指定された文字列が指定された値で始まるかどうかを判断します:
 
     use Illuminate\Support\Str;
 
@@ -1185,7 +1185,7 @@ The `Str::startsWith` method determines if the given string begins with the give
 
     // true
 
-If an array of possible values is passed, the `startsWith` method will return `true` if the string begins with any of the given values:
+配列で可能な値を渡すと、`startsWith` メソッドは文字列がその中のいずれかの値で始まる場合に `true` を返します:
 
     $result = Str::startsWith('This is my name', ['This', 'That', 'There']);
 
@@ -1194,7 +1194,7 @@ If an array of possible values is passed, the `startsWith` method will return `t
 <a name="method-studly-case"></a>
 #### `Str::studly()` {.collection-method}
 
-The `Str::studly` method converts the given string to `StudlyCase`:
+`Str::studly` メソッドは、指定された文字列を `StudlyCase` に変換します:
 
     use Illuminate\Support\Str;
 
@@ -1205,7 +1205,7 @@ The `Str::studly` method converts the given string to `StudlyCase`:
 <a name="method-str-substr"></a>
 #### `Str::substr()` {.collection-method}
 
-The `Str::substr` method returns the portion of string specified by the start and length parameters:
+`Str::substr` メソッドは、開始位置と長さのパラメータで指定された文字列の部分を返します:
 
     use Illuminate\Support\Str;
 
@@ -1216,7 +1216,7 @@ The `Str::substr` method returns the portion of string specified by the start an
 <a name="method-str-substrcount"></a>
 #### `Str::substrCount()` {.collection-method}
 
-The `Str::substrCount` method returns the number of occurrences of a given value in the given string:
+`Str::substrCount` メソッドは、指定された文字列内で指定された値が出現する回数を返します:
 
     use Illuminate\Support\Str;
 
@@ -1227,7 +1227,7 @@ The `Str::substrCount` method returns the number of occurrences of a given value
 <a name="method-str-substrreplace"></a>
 #### `Str::substrReplace()` {.collection-method}
 
-The `Str::substrReplace` method replaces text within a portion of a string, starting at the position specified by the third argument and replacing the number of characters specified by the fourth argument. Passing `0` to the method's fourth argument will insert the string at the specified position without replacing any of the existing characters in the string:
+`Str::substrReplace` メソッドは、文字列の一部のテキストを置換します。第三引数で指定された位置から始まり、第四引数で指定された文字数を置換します。メソッドの第四引数に `0` を渡すと、指定された位置に文字列を挿入し、既存の文字を置換しません:
 
     use Illuminate\Support\Str;
 
@@ -1240,7 +1240,7 @@ The `Str::substrReplace` method replaces text within a portion of a string, star
 <a name="method-str-swap"></a>
 #### `Str::swap()` {.collection-method}
 
-The `Str::swap` method replaces multiple values in the given string using PHP's `strtr` function:
+`Str::swap` メソッドは、PHPの `strtr` 関数を使用して、指定された文字列内の複数の値を置換します:
 
     use Illuminate\Support\Str;
 
@@ -1254,7 +1254,7 @@ The `Str::swap` method replaces multiple values in the given string using PHP's 
 <a name="method-take"></a>
 #### `Str::take()` {.collection-method}
 
-The `Str::take` method returns a specified number of characters from the beginning of a string:
+`Str::take` メソッドは、文字列の先頭から指定された数の文字を返します:
 
     use Illuminate\Support\Str;
 
@@ -1265,7 +1265,7 @@ The `Str::take` method returns a specified number of characters from the beginni
 <a name="method-title-case"></a>
 #### `Str::title()` {.collection-method}
 
-The `Str::title` method converts the given string to `Title Case`:
+`Str::title` メソッドは、指定された文字列を `Title Case` に変換します:
 
     use Illuminate\Support\Str;
 
@@ -1276,7 +1276,7 @@ The `Str::title` method converts the given string to `Title Case`:
 <a name="method-str-to-base64"></a>
 #### `Str::toBase64()` {.collection-method}
 
-The `Str::toBase64` method converts the given string to Base64:
+`Str::toBase64` メソッドは、指定された文字列をBase64に変換します:
 
     use Illuminate\Support\Str;
 
@@ -1287,7 +1287,7 @@ The `Str::toBase64` method converts the given string to Base64:
 <a name="method-str-to-html-string"></a>
 #### `Str::toHtmlString()` {.collection-method}
 
-The `Str::toHtmlString` method converts the string instance to an instance of `Illuminate\Support\HtmlString`, which may be displayed in Blade templates:
+`Str::toHtmlString` メソッドは、文字列インスタンスを `Illuminate\Support\HtmlString` のインスタンスに変換します。これはBladeテンプレートで表示できます:
 
     use Illuminate\Support\Str;
 
@@ -1296,7 +1296,7 @@ The `Str::toHtmlString` method converts the string instance to an instance of `I
 <a name="method-str-transliterate"></a>
 #### `Str::transliterate()` {.collection-method}
 
-The `Str::transliterate` method will attempt to convert a given string into its closest ASCII representation:
+`Str::transliterate` メソッドは、指定された文字列を最も近いASCII表現に変換しようとします:
 
     use Illuminate\Support\Str;
 
@@ -1307,7 +1307,7 @@ The `Str::transliterate` method will attempt to convert a given string into its 
 <a name="method-str-trim"></a>
 #### `Str::trim()` {.collection-method}
 
-The `Str::trim` method strips whitespace (or other characters) from the beginning and end of the given string. Unlike PHP's native `trim` function, the `Str::trim` method also removes unicode whitespace characters:
+`Str::trim` メソッドは、指定された文字列の先頭と末尾から空白文字（または他の文字）を取り除きます。PHPのネイティブ `trim` 関数とは異なり、`Str::trim` メソッドはUnicodeの空白文字も取り除きます:
 
     use Illuminate\Support\Str;
 
@@ -1318,70 +1318,96 @@ The `Str::trim` method strips whitespace (or other characters) from the beginnin
 <a name="method-str-ltrim"></a>
 #### `Str::ltrim()` {.collection-method}
 
-The `Str::ltrim` method strips whitespace (or other characters) from the beginning of the given string. Unlike PHP's native `ltrim` function, the `Str::ltrim` method also removes unicode whitespace characters:
+`Str::ltrim` メソッドは、指定された文字列の先頭から空白文字（または他の文字）を取り除きます。PHPのネイティブ `ltrim` 関数とは異なり、`Str::ltrim` メソッドはUnicodeの空白文字も取り除きます:
+```
 
-    use Illuminate\Support\Str;
+```php
+use Illuminate\Support\Str;
 
-    $string = Str::ltrim('  foo bar  ');
+$char = Str::of('Laravel')->charAt(1);
 
-    // 'foo bar  '
+// 'a'
+```
+
+<a name="method-str-ltrim"></a>
+#### `Str::ltrim()` {.collection-method}
+
+`Str::ltrim`メソッドは、指定された文字列の先頭から空白（または他の文字）を取り除きます。PHPのネイティブ`rtrim`関数とは異なり、`Str::ltrim`メソッドはUnicodeの空白文字も取り除きます。
+
+```php
+use Illuminate\Support\Str;
+
+$string = Str::ltrim('  foo bar  ');
+
+// 'foo bar  '
+```
 
 <a name="method-str-rtrim"></a>
 #### `Str::rtrim()` {.collection-method}
 
-The `Str::rtrim` method strips whitespace (or other characters) from the end of the given string. Unlike PHP's native `rtrim` function, the `Str::rtrim` method also removes unicode whitespace characters:
+`Str::rtrim`メソッドは、指定された文字列の末尾から空白（または他の文字）を取り除きます。PHPのネイティブ`rtrim`関数とは異なり、`Str::rtrim`メソッドはUnicodeの空白文字も取り除きます。
 
-    use Illuminate\Support\Str;
+```php
+use Illuminate\Support\Str;
 
-    $string = Str::rtrim('  foo bar  ');
+$string = Str::rtrim('  foo bar  ');
 
-    // '  foo bar'
+// '  foo bar'
+```
 
 <a name="method-str-ucfirst"></a>
 #### `Str::ucfirst()` {.collection-method}
 
-The `Str::ucfirst` method returns the given string with the first character capitalized:
+`Str::ucfirst`メソッドは、指定された文字列の最初の文字を大文字にして返します。
 
-    use Illuminate\Support\Str;
+```php
+use Illuminate\Support\Str;
 
-    $string = Str::ucfirst('foo bar');
+$string = Str::ucfirst('foo bar');
 
-    // Foo bar
+// Foo bar
+```
 
 <a name="method-str-ucsplit"></a>
 #### `Str::ucsplit()` {.collection-method}
 
-The `Str::ucsplit` method splits the given string into an array by uppercase characters:
+`Str::ucsplit`メソッドは、指定された文字列を大文字で分割して配列にします。
 
-    use Illuminate\Support\Str;
+```php
+use Illuminate\Support\Str;
 
-    $segments = Str::ucsplit('FooBar');
+$segments = Str::ucsplit('FooBar');
 
-    // [0 => 'Foo', 1 => 'Bar']
+// [0 => 'Foo', 1 => 'Bar']
+```
 
 <a name="method-str-upper"></a>
 #### `Str::upper()` {.collection-method}
 
-The `Str::upper` method converts the given string to uppercase:
+`Str::upper`メソッドは、指定された文字列を大文字に変換します。
 
-    use Illuminate\Support\Str;
+```php
+use Illuminate\Support\Str;
 
-    $string = Str::upper('laravel');
+$string = Str::upper('laravel');
 
-    // LARAVEL
+// LARAVEL
+```
 
 <a name="method-str-ulid"></a>
 #### `Str::ulid()` {.collection-method}
 
-The `Str::ulid` method generates a ULID, which is a compact, time-ordered unique identifier:
+`Str::ulid`メソッドは、ULID（コンパクトで時間順の一意の識別子）を生成します。
 
-    use Illuminate\Support\Str;
+```php
+use Illuminate\Support\Str;
 
-    return (string) Str::ulid();
+return (string) Str::ulid();
 
-    // 01gd6r360bp37zj17nxb55yv40
+// 01gd6r360bp37zj17nxb55yv40
+```
 
-If you would like to retrieve a `Illuminate\Support\Carbon` date instance representing the date and time that a given ULID was created, you may use the `createFromId` method provided by Laravel's Carbon integration:
+指定されたULIDが作成された日時を表す`Illuminate\Support\Carbon`の日付インスタンスを取得したい場合は、LaravelのCarbon統合によって提供される`createFromId`メソッドを使用できます。
 
 ```php
 use Illuminate\Support\Carbon;
@@ -1390,58 +1416,70 @@ use Illuminate\Support\Str;
 $date = Carbon::createFromId((string) Str::ulid());
 ```
 
-During testing, it may be useful to "fake" the value that is returned by the `Str::ulid` method. To accomplish this, you may use the `createUlidsUsing` method:
+テスト中に`Str::ulid`メソッドが返す値を「偽装」することが有用な場合があります。これを行うには、`createUlidsUsing`メソッドを使用できます。
 
-    use Symfony\Component\Uid\Ulid;
+```php
+use Symfony\Component\Uid\Ulid;
 
-    Str::createUlidsUsing(function () {
-        return new Ulid('01HRDBNHHCKNW2AK4Z29SN82T9');
-    });
+Str::createUlidsUsing(function () {
+    return new Ulid('01HRDBNHHCKNW2AK4Z29SN82T9');
+});
+```
 
-To instruct the `ulid` method to return to generating ULIDs normally, you may invoke the `createUlidsNormally` method:
+`ulid`メソッドに通常通りULIDを生成させるように指示するには、`createUlidsNormally`メソッドを呼び出します。
 
-    Str::createUlidsNormally();
+```php
+Str::createUlidsNormally();
+```
 
 <a name="method-str-unwrap"></a>
 #### `Str::unwrap()` {.collection-method}
 
-The `Str::unwrap` method removes the specified strings from the beginning and end of a given string:
+`Str::unwrap`メソッドは、指定された文字列の先頭と末尾から指定された文字列を取り除きます。
 
-    use Illuminate\Support\Str;
+```php
+use Illuminate\Support\Str;
 
-    Str::unwrap('-Laravel-', '-');
+Str::unwrap('-Laravel-', '-');
 
-    // Laravel
+// Laravel
 
-    Str::unwrap('{framework: "Laravel"}', '{', '}');
+Str::unwrap('{framework: "Laravel"}', '{', '}');
 
-    // framework: "Laravel"
+// framework: "Laravel"
+```
 
 <a name="method-str-uuid"></a>
 #### `Str::uuid()` {.collection-method}
 
-The `Str::uuid` method generates a UUID (version 4):
+`Str::uuid`メソッドは、UUID（バージョン4）を生成します。
 
-    use Illuminate\Support\Str;
+```php
+use Illuminate\Support\Str;
 
-    return (string) Str::uuid();
+return (string) Str::uuid();
+```
 
-During testing, it may be useful to "fake" the value that is returned by the `Str::uuid` method. To accomplish this, you may use the `createUuidsUsing` method:
+テスト中に`Str::uuid`メソッドが返す値を「偽装」することが有用な場合があります。これを行うには、`createUuidsUsing`メソッドを使用できます。
 
-    use Ramsey\Uuid\Uuid;
+```php
+use Ramsey\Uuid\Uuid;
 
-    Str::createUuidsUsing(function () {
-        return Uuid::fromString('eadbfeac-5258-45c2-bab7-ccb9b5ef74f9');
-    });
+Str::createUuidsUsing(function () {
+    return Uuid::fromString('eadbfeac-5258-45c2-bab7-ccb9b5ef74f9');
+});
+```
 
-To instruct the `uuid` method to return to generating UUIDs normally, you may invoke the `createUuidsNormally` method:
+`uuid`メソッドに通常通りUUIDを生成させるように指示するには、`createUuidsNormally`メソッドを呼び出します。
 
-    Str::createUuidsNormally();
+```php
+Str::createUuidsNormally();
+```
 
 <a name="method-str-word-count"></a>
 #### `Str::wordCount()` {.collection-method}
 
-The `Str::wordCount` method returns the number of words that a string contains:
+`Str::wordCount`メソッドは、文字列に含まれる単語の数を返します。
 
 ```php
 use Illuminate\Support\Str;
@@ -1452,217 +1490,255 @@ Str::wordCount('Hello, world!'); // 2
 <a name="method-str-word-wrap"></a>
 #### `Str::wordWrap()` {.collection-method}
 
-The `Str::wordWrap` method wraps a string to a given number of characters:
+`Str::wordWrap`メソッドは、文字列を指定された文字数で折り返します。
 
-    use Illuminate\Support\Str;
+```php
+use Illuminate\Support\Str;
 
-    $text = "The quick brown fox jumped over the lazy dog."
+$text = "The quick brown fox jumped over the lazy dog."
 
-    Str::wordWrap($text, characters: 20, break: "<br />\n");
+Str::wordWrap($text, characters: 20, break: "<br />\n");
 
-    /*
-    The quick brown fox<br />
-    jumped over the lazy<br />
-    dog.
-    */
+/*
+The quick brown fox<br />
+jumped over the lazy<br />
+dog.
+*/
+```
 
 <a name="method-str-words"></a>
 #### `Str::words()` {.collection-method}
 
-The `Str::words` method limits the number of words in a string. An additional string may be passed to this method via its third argument to specify which string should be appended to the end of the truncated string:
+`Str::words`メソッドは、文字列内の単語数を制限します。このメソッドの第3引数を介して、切り捨てられた文字列の末尾に追加する文字列を指定できます。
 
-    use Illuminate\Support\Str;
+```php
+use Illuminate\Support\Str;
 
-    return Str::words('Perfectly balanced, as all things should be.', 3, ' >>>');
+return Str::words('Perfectly balanced, as all things should be.', 3, ' >>>');
 
-    // Perfectly balanced, as >>>
+// Perfectly balanced, as >>>
+```
 
 <a name="method-str-wrap"></a>
 #### `Str::wrap()` {.collection-method}
 
-The `Str::wrap` method wraps the given string with an additional string or pair of strings:
+`Str::wrap`メソッドは、指定された文字列を追加の文字列または文字列のペアでラップします。
 
-    use Illuminate\Support\Str;
+```php
+use Illuminate\Support\Str;
 
-    Str::wrap('Laravel', '"');
+Str::wrap('Laravel', '"');
 
-    // "Laravel"
+// "Laravel"
 
-    Str::wrap('is', before: 'This ', after: ' Laravel!');
+Str::wrap('is', before: 'This ', after: ' Laravel!');
 
-    // This is Laravel!
+// This is Laravel!
+```
 
 <a name="method-str"></a>
 #### `str()` {.collection-method}
 
-The `str` function returns a new `Illuminate\Support\Stringable` instance of the given string. This function is equivalent to the `Str::of` method:
+`str`関数は、指定された文字列の新しい`Illuminate\Support\Stringable`インスタンスを返します。この関数は`Str::of`メソッドと同等です。
 
-    $string = str('Taylor')->append(' Otwell');
+```php
+$string = str('Taylor')->append(' Otwell');
 
-    // 'Taylor Otwell'
+// 'Taylor Otwell'
+```
 
-If no argument is provided to the `str` function, the function returns an instance of `Illuminate\Support\Str`:
+`str`関数に引数が提供されない場合、関数は`Illuminate\Support\Str`のインスタンスを返します。
 
-    $snake = str()->snake('FooBar');
+```php
+$snake = str()->snake('FooBar');
 
-    // 'foo_bar'
+// 'foo_bar'
+```
 
 <a name="method-trans"></a>
 #### `trans()` {.collection-method}
 
-The `trans` function translates the given translation key using your [language files](/docs/{{version}}/localization):
+`trans`関数は、[言語ファイル](localization.md)を使用して指定された翻訳キーを翻訳します。
 
-    echo trans('messages.welcome');
+```php
+echo trans('messages.welcome');
+```
 
-If the specified translation key does not exist, the `trans` function will return the given key. So, using the example above, the `trans` function would return `messages.welcome` if the translation key does not exist.
+指定された翻訳キーが存在しない場合、`trans`関数は指定されたキーを返します。したがって、上記の例では、翻訳キーが存在しない場合、`trans`関数は`messages.welcome`を返します。
 
 <a name="method-trans-choice"></a>
 #### `trans_choice()` {.collection-method}
 
-The `trans_choice` function translates the given translation key with inflection:
+`trans_choice`関数は、指定された翻訳キーを屈折させて翻訳します。
 
-    echo trans_choice('messages.notifications', $unreadCount);
+```php
+echo trans_choice('messages.notifications', $unreadCount);
+```
 
-If the specified translation key does not exist, the `trans_choice` function will return the given key. So, using the example above, the `trans_choice` function would return `messages.notifications` if the translation key does not exist.
+指定された翻訳キーが存在しない場合、`trans_choice`関数は指定されたキーを返します。したがって、上記の例では、翻訳キーが存在しない場合、`trans_choice`関数は`messages.notifications`を返します。
 
 <a name="fluent-strings"></a>
-## Fluent Strings
+## 流れるような文字列
 
-Fluent strings provide a more fluent, object-oriented interface for working with string values, allowing you to chain multiple string operations together using a more readable syntax compared to traditional string operations.
+流れるような文字列は、文字列値を操作するためのより流暢でオブジェクト指向のインターフェースを提供し、従来の文字列操作と比較して、より読みやすい構文で複数の文字列操作を連鎖させることができます。
 
 <a name="method-fluent-str-after"></a>
 #### `after` {.collection-method}
 
-The `after` method returns everything after the given value in a string. The entire string will be returned if the value does not exist within the string:
+`after`メソッドは、文字列内の指定された値の後にあるすべてを返します。文字列内に値が存在しない場合、文字列全体が返されます。
 
-    use Illuminate\Support\Str;
+```php
+use Illuminate\Support\Str;
 
-    $slice = Str::of('This is my name')->after('This is');
+$slice = Str::of('This is my name')->after('This is');
 
-    // ' my name'
+// ' my name'
+```
 
 <a name="method-fluent-str-after-last"></a>
 #### `afterLast` {.collection-method}
 
-The `afterLast` method returns everything after the last occurrence of the given value in a string. The entire string will be returned if the value does not exist within the string:
+`afterLast`メソッドは、文字列内の指定された値の最後の出現以降のすべてを返します。文字列内に値が存在しない場合、文字列全体が返されます。
 
-    use Illuminate\Support\Str;
+```php
+use Illuminate\Support\Str;
 
-    $slice = Str::of('App\Http\Controllers\Controller')->afterLast('\\');
+$slice = Str::of('App\Http\Controllers\Controller')->afterLast('\\');
 
-    // 'Controller'
+// 'Controller'
+```
 
 <a name="method-fluent-str-apa"></a>
 #### `apa` {.collection-method}
 
-The `apa` method converts the given string to title case following the [APA guidelines](https://apastyle.apa.org/style-grammar-guidelines/capitalization/title-case):
+`apa`メソッドは、指定された文字列を[APAガイドライン](https://apastyle.apa.org/style-grammar-guidelines/capitalization/title-case)に従ってタイトルケースに変換します。
 
-    use Illuminate\Support\Str;
+```php
+use Illuminate\Support\Str;
 
-    $converted = Str::of('a nice title uses the correct case')->apa();
+$converted = Str::of('a nice title uses the correct case')->apa();
 
-    // A Nice Title Uses the Correct Case
+// A Nice Title Uses the Correct Case
+```
 
 <a name="method-fluent-str-append"></a>
 #### `append` {.collection-method}
 
-The `append` method appends the given values to the string:
+`append`メソッドは、指定された値を文字列に追加します。
 
-    use Illuminate\Support\Str;
+```php
+use Illuminate\Support\Str;
 
-    $string = Str::of('Taylor')->append(' Otwell');
+$string = Str::of('Taylor')->append(' Otwell');
 
-    // 'Taylor Otwell'
+// 'Taylor Otwell'
+```
 
 <a name="method-fluent-str-ascii"></a>
 #### `ascii` {.collection-method}
 
-The `ascii` method will attempt to transliterate the string into an ASCII value:
+`ascii`メソッドは、文字列をASCII値に変換しようとします。
 
-    use Illuminate\Support\Str;
+```php
+use Illuminate\Support\Str;
 
-    $string = Str::of('ü')->ascii();
+$string = Str::of('ü')->ascii();
 
-    // 'u'
+// 'u'
+```
 
 <a name="method-fluent-str-basename"></a>
 #### `basename` {.collection-method}
 
-The `basename` method will return the trailing name component of the given string:
+`basename`メソッドは、指定された文字列の末尾の名前コンポーネントを返します。
 
-    use Illuminate\Support\Str;
+```php
+use Illuminate\Support\Str;
 
-    $string = Str::of('/foo/bar/baz')->basename();
+$string = Str::of('/foo/bar/baz')->basename();
 
-    // 'baz'
+// 'baz'
+```
 
-If needed, you may provide an "extension" that will be removed from the trailing component:
+必要に応じて、末尾のコンポーネントから削除する「拡張子」を指定できます。
 
-    use Illuminate\Support\Str;
+```php
+use Illuminate\Support\Str;
 
-    $string = Str::of('/foo/bar/baz.jpg')->basename('.jpg');
+$string = Str::of('/foo/bar/baz.jpg')->basename('.jpg');
 
-    // 'baz'
+// 'baz'
+```
 
 <a name="method-fluent-str-before"></a>
 #### `before` {.collection-method}
 
-The `before` method returns everything before the given value in a string:
+`before`メソッドは、文字列内の指定された値の前にあるすべてを返します。
 
-    use Illuminate\Support\Str;
+```php
+use Illuminate\Support\Str;
 
-    $slice = Str::of('This is my name')->before('my name');
+$slice = Str::of('This is my name')->before('my name');
 
-    // 'This is '
+// 'This is '
+```
 
 <a name="method-fluent-str-before-last"></a>
 #### `beforeLast` {.collection-method}
 
-The `beforeLast` method returns everything before the last occurrence of the given value in a string:
+`beforeLast`メソッドは、文字列内の指定された値の最後の出現の前にあるすべてを返します。
 
-    use Illuminate\Support\Str;
+```php
+use Illuminate\Support\Str;
 
-    $slice = Str::of('This is my name')->beforeLast('is');
+$slice = Str::of('This is my name')->beforeLast('is');
 
-    // 'This '
+// 'This '
+```
 
 <a name="method-fluent-str-between"></a>
 #### `between` {.collection-method}
 
-The `between` method returns the portion of a string between two values:
+`between`メソッドは、2つの値の間の文字列の部分を返します。
 
-    use Illuminate\Support\Str;
+```php
+use Illuminate\Support\Str;
 
-    $converted = Str::of('This is my name')->between('This', 'name');
+$converted = Str::of('This is my name')->between('This', 'name');
 
-    // ' is my '
+// ' is my '
+```
 
 <a name="method-fluent-str-between-first"></a>
 #### `betweenFirst` {.collection-method}
 
-The `betweenFirst` method returns the smallest possible portion of a string between two values:
+`betweenFirst`メソッドは、2つの値の間の文字列の最小の部分を返します。
 
-    use Illuminate\Support\Str;
+```php
+use Illuminate\Support\Str;
 
-    $converted = Str::of('[a] bc [d]')->betweenFirst('[', ']');
+$converted = Str::of('[a] bc [d]')->betweenFirst('[', ']');
 
-    // 'a'
+// 'a'
+```
 
 <a name="method-fluent-str-camel"></a>
 #### `camel` {.collection-method}
 
-The `camel` method converts the given string to `camelCase`:
+`camel`メソッドは、指定された文字列を`camelCase`に変換します。
 
-    use Illuminate\Support\Str;
+```php
+use Illuminate\Support\Str;
 
-    $converted = Str::of('foo_bar')->camel();
+$converted = Str::of('foo_bar')->camel();
 
-    // 'fooBar'
+// 'fooBar'
+```
 
 <a name="method-fluent-str-char-at"></a>
 #### `charAt` {.collection-method}
 
-The `charAt` method returns the character at the specified index. If the index is out of bounds, `false` is returned:
+`charAt`メソッドは、指定されたインデックスの文字を返します。インデックスが範囲外の場合、`false`が返されます。
 
     use Illuminate\Support\Str;
 
@@ -1673,7 +1749,7 @@ The `charAt` method returns the character at the specified index. If the index i
 <a name="method-fluent-str-class-basename"></a>
 #### `classBasename` {.collection-method}
 
-The `classBasename` method returns the class name of the given class with the class's namespace removed:
+`classBasename`メソッドは、指定されたクラスの名前を返しますが、クラスの名前空間は削除されます。
 
     use Illuminate\Support\Str;
 
@@ -1684,7 +1760,7 @@ The `classBasename` method returns the class name of the given class with the cl
 <a name="method-fluent-str-chop-start"></a>
 #### `chopStart` {.collection-method}
 
-The `chopStart` method removes the first occurrence of the given value only if the value appears at the start of the string:
+`chopStart`メソッドは、文字列の先頭に指定された値がある場合に、その値の最初の出現を削除します。
 
     use Illuminate\Support\Str;
 
@@ -1692,7 +1768,7 @@ The `chopStart` method removes the first occurrence of the given value only if t
 
     // 'laravel.com'
 
-You may also pass an array. If the string starts with any of the values in the array then that value will be removed from string:
+配列を渡すこともできます。文字列が配列内のいずれかの値で始まる場合、その値は文字列から削除されます。
 
     use Illuminate\Support\Str;
 
@@ -1703,7 +1779,7 @@ You may also pass an array. If the string starts with any of the values in the a
 <a name="method-fluent-str-chop-end"></a>
 #### `chopEnd` {.collection-method}
 
-The `chopEnd` method removes the last occurrence of the given value only if the value appears at the end of the string:
+`chopEnd`メソッドは、文字列の末尾に指定された値がある場合に、その値の最後の出現を削除します。
 
     use Illuminate\Support\Str;
 
@@ -1711,7 +1787,7 @@ The `chopEnd` method removes the last occurrence of the given value only if the 
 
     // 'https://laravel'
 
-You may also pass an array. If the string ends with any of the values in the array then that value will be removed from string:
+配列を渡すこともできます。文字列が配列内のいずれかの値で終わる場合、その値は文字列から削除されます。
 
     use Illuminate\Support\Str;
 
@@ -1722,7 +1798,7 @@ You may also pass an array. If the string ends with any of the values in the arr
 <a name="method-fluent-str-contains"></a>
 #### `contains` {.collection-method}
 
-The `contains` method determines if the given string contains the given value. By default this method is case sensitive:
+`contains`メソッドは、指定された文字列に指定された値が含まれているかどうかを判断します。デフォルトでは、このメソッドは大文字と小文字を区別します。
 
     use Illuminate\Support\Str;
 
@@ -1730,7 +1806,7 @@ The `contains` method determines if the given string contains the given value. B
 
     // true
 
-You may also pass an array of values to determine if the given string contains any of the values in the array:
+配列の値を渡すこともできます。指定された文字列に配列内のいずれかの値が含まれているかどうかを判断します。
 
     use Illuminate\Support\Str;
 
@@ -1738,7 +1814,7 @@ You may also pass an array of values to determine if the given string contains a
 
     // true
 
-You can disable case sensitivity by setting the `ignoreCase` argument to `true`:
+大文字と小文字を区別しないようにするには、`ignoreCase`引数を`true`に設定します。
 
     use Illuminate\Support\Str;
 
@@ -1749,7 +1825,7 @@ You can disable case sensitivity by setting the `ignoreCase` argument to `true`:
 <a name="method-fluent-str-contains-all"></a>
 #### `containsAll` {.collection-method}
 
-The `containsAll` method determines if the given string contains all of the values in the given array:
+`containsAll`メソッドは、指定された文字列に指定された配列内のすべての値が含まれているかどうかを判断します。
 
     use Illuminate\Support\Str;
 
@@ -1757,7 +1833,7 @@ The `containsAll` method determines if the given string contains all of the valu
 
     // true
 
-You can disable case sensitivity by setting the `ignoreCase` argument to `true`:
+大文字と小文字を区別しないようにするには、`ignoreCase`引数を`true`に設定します。
 
     use Illuminate\Support\Str;
 
@@ -1768,7 +1844,7 @@ You can disable case sensitivity by setting the `ignoreCase` argument to `true`:
 <a name="method-fluent-str-deduplicate"></a>
 #### `deduplicate` {.collection-method}
 
-The `deduplicate` method replaces consecutive instances of a character with a single instance of that character in the given string. By default, the method deduplicates spaces:
+`deduplicate`メソッドは、指定された文字列内の連続する文字のインスタンスを、その文字の単一のインスタンスに置き換えます。デフォルトでは、このメソッドはスペースを重複排除します。
 
     use Illuminate\Support\Str;
 
@@ -1776,7 +1852,7 @@ The `deduplicate` method replaces consecutive instances of a character with a si
 
     // The Laravel Framework
 
-You may specify a different character to deduplicate by passing it in as the second argument to the method:
+重複排除する別の文字を指定するには、その文字をメソッドの第2引数として渡します。
 
     use Illuminate\Support\Str;
 
@@ -1787,7 +1863,7 @@ You may specify a different character to deduplicate by passing it in as the sec
 <a name="method-fluent-str-dirname"></a>
 #### `dirname` {.collection-method}
 
-The `dirname` method returns the parent directory portion of the given string:
+`dirname`メソッドは、指定された文字列の親ディレクトリ部分を返します。
 
     use Illuminate\Support\Str;
 
@@ -1795,7 +1871,7 @@ The `dirname` method returns the parent directory portion of the given string:
 
     // '/foo/bar'
 
-If necessary, you may specify how many directory levels you wish to trim from the string:
+必要に応じて、文字列からトリムするディレクトリレベルの数を指定できます。
 
     use Illuminate\Support\Str;
 
@@ -1806,7 +1882,7 @@ If necessary, you may specify how many directory levels you wish to trim from th
 <a name="method-fluent-str-ends-with"></a>
 #### `endsWith` {.collection-method}
 
-The `endsWith` method determines if the given string ends with the given value:
+`endsWith`メソッドは、指定された文字列が指定された値で終わるかどうかを判断します。
 
     use Illuminate\Support\Str;
 
@@ -1814,7 +1890,7 @@ The `endsWith` method determines if the given string ends with the given value:
 
     // true
 
-You may also pass an array of values to determine if the given string ends with any of the values in the array:
+配列の値を渡すこともできます。指定された文字列が配列内のいずれかの値で終わるかどうかを判断します。
 
     use Illuminate\Support\Str;
 
@@ -1829,7 +1905,7 @@ You may also pass an array of values to determine if the given string ends with 
 <a name="method-fluent-str-exactly"></a>
 #### `exactly` {.collection-method}
 
-The `exactly` method determines if the given string is an exact match with another string:
+`exactly`メソッドは、指定された文字列が別の文字列と完全に一致するかどうかを判断します。
 
     use Illuminate\Support\Str;
 
@@ -1840,7 +1916,7 @@ The `exactly` method determines if the given string is an exact match with anoth
 <a name="method-fluent-str-excerpt"></a>
 #### `excerpt` {.collection-method}
 
-The `excerpt` method extracts an excerpt from the string that matches the first instance of a phrase within that string:
+`excerpt`メソッドは、文字列内で最初に一致するフレーズに一致する抜粋を抽出します。
 
     use Illuminate\Support\Str;
 
@@ -1850,9 +1926,9 @@ The `excerpt` method extracts an excerpt from the string that matches the first 
 
     // '...is my na...'
 
-The `radius` option, which defaults to `100`, allows you to define the number of characters that should appear on each side of the truncated string.
+`radius`オプション（デフォルトは`100`）を使用して、切り捨てられた文字列の両側に表示される文字数を定義できます。
 
-In addition, you may use the `omission` option to change the string that will be prepended and appended to the truncated string:
+さらに、`omission`オプションを使用して、切り捨てられた文字列の前後に追加される文字列を変更できます。
 
     use Illuminate\Support\Str;
 
@@ -1866,7 +1942,7 @@ In addition, you may use the `omission` option to change the string that will be
 <a name="method-fluent-str-explode"></a>
 #### `explode` {.collection-method}
 
-The `explode` method splits the string by the given delimiter and returns a collection containing each section of the split string:
+`explode`メソッドは、指定された区切り文字で文字列を分割し、分割された各部分を含むコレクションを返します。
 
     use Illuminate\Support\Str;
 
@@ -1877,7 +1953,7 @@ The `explode` method splits the string by the given delimiter and returns a coll
 <a name="method-fluent-str-finish"></a>
 #### `finish` {.collection-method}
 
-The `finish` method adds a single instance of the given value to a string if it does not already end with that value:
+`finish`メソッドは、文字列が指定された値で終わっていない場合に、その値の単一のインスタンスを文字列に追加します。
 
     use Illuminate\Support\Str;
 
@@ -1892,7 +1968,7 @@ The `finish` method adds a single instance of the given value to a string if it 
 <a name="method-fluent-str-headline"></a>
 #### `headline` {.collection-method}
 
-The `headline` method will convert strings delimited by casing, hyphens, or underscores into a space delimited string with each word's first letter capitalized:
+`headline`メソッドは、大文字と小文字、ハイフン、またはアンダースコアで区切られた文字列を、各単語の最初の文字が大文字になるスペース区切りの文字列に変換します。
 
     use Illuminate\Support\Str;
 
@@ -1907,7 +1983,7 @@ The `headline` method will convert strings delimited by casing, hyphens, or unde
 <a name="method-fluent-str-inline-markdown"></a>
 #### `inlineMarkdown` {.collection-method}
 
-The `inlineMarkdown` method converts GitHub flavored Markdown into inline HTML using [CommonMark](https://commonmark.thephpleague.com/). However, unlike the `markdown` method, it does not wrap all generated HTML in a block-level element:
+`inlineMarkdown`メソッドは、[CommonMark](https://commonmark.thephpleague.com/)を使用してGitHub風のMarkdownをインラインHTMLに変換します。ただし、`markdown`メソッドとは異なり、生成されたすべてのHTMLをブロックレベル要素でラップしません。
 
     use Illuminate\Support\Str;
 
@@ -1915,9 +1991,9 @@ The `inlineMarkdown` method converts GitHub flavored Markdown into inline HTML u
 
     // <strong>Laravel</strong>
 
-#### Markdown Security
+#### Markdownセキュリティ
 
-By default, Markdown supports raw HTML, which will expose Cross-Site Scripting (XSS) vulnerabilities when used with raw user input. As per the [CommonMark Security documentation](https://commonmark.thephpleague.com/security/), you may use the `html_input` option to either escape or strip raw HTML, and the `allow_unsafe_links` option to specify whether to allow unsafe links. If you need to allow some raw HTML, you should pass your compiled Markdown through an HTML Purifier:
+デフォルトでは、Markdownは生のHTMLをサポートしており、生のユーザー入力と共に使用するとクロスサイトスクリプティング（XSS）の脆弱性が発生します。[CommonMarkセキュリティドキュメント](https://commonmark.thephpleague.com/security/)に従い、`html_input`オプションを使用して生のHTMLをエスケープまたは削除し、`allow_unsafe_links`オプションを使用して安全でないリンクを許可するかどうかを指定できます。生のHTMLを一部許可する必要がある場合は、コンパイルされたMarkdownをHTML Purifierを通して渡すべきです。
 
     use Illuminate\Support\Str;
 
@@ -1931,7 +2007,7 @@ By default, Markdown supports raw HTML, which will expose Cross-Site Scripting (
 <a name="method-fluent-str-is"></a>
 #### `is` {.collection-method}
 
-The `is` method determines if a given string matches a given pattern. Asterisks may be used as wildcard values
+`is`メソッドは、指定された文字列が指定されたパターンに一致するかどうかを判断します。アスタリスクはワイルドカードとして使用できます。
 
     use Illuminate\Support\Str;
 
@@ -1946,7 +2022,7 @@ The `is` method determines if a given string matches a given pattern. Asterisks 
 <a name="method-fluent-str-is-ascii"></a>
 #### `isAscii` {.collection-method}
 
-The `isAscii` method determines if a given string is an ASCII string:
+`isAscii`メソッドは、指定された文字列がASCII文字列であるかどうかを判断します。
 
     use Illuminate\Support\Str;
 
@@ -1961,7 +2037,7 @@ The `isAscii` method determines if a given string is an ASCII string:
 <a name="method-fluent-str-is-empty"></a>
 #### `isEmpty` {.collection-method}
 
-The `isEmpty` method determines if the given string is empty:
+`isEmpty`メソッドは、指定された文字列が空であるかどうかを判断します。
 
     use Illuminate\Support\Str;
 
@@ -1976,7 +2052,7 @@ The `isEmpty` method determines if the given string is empty:
 <a name="method-fluent-str-is-not-empty"></a>
 #### `isNotEmpty` {.collection-method}
 
-The `isNotEmpty` method determines if the given string is not empty:
+`isNotEmpty`メソッドは、指定された文字列が空でないかどうかを判断します。
 
     use Illuminate\Support\Str;
 
@@ -1991,7 +2067,7 @@ The `isNotEmpty` method determines if the given string is not empty:
 <a name="method-fluent-str-is-json"></a>
 #### `isJson` {.collection-method}
 
-The `isJson` method determines if a given string is valid JSON:
+`isJson`メソッドは、指定された文字列が有効なJSONであるかどうかを判断します。
 
     use Illuminate\Support\Str;
 
@@ -2010,7 +2086,7 @@ The `isJson` method determines if a given string is valid JSON:
 <a name="method-fluent-str-is-ulid"></a>
 #### `isUlid` {.collection-method}
 
-The `isUlid` method determines if a given string is a ULID:
+`isUlid`メソッドは、指定された文字列がULIDであるかどうかを判断します。
 
     use Illuminate\Support\Str;
 
@@ -2021,11 +2097,12 @@ The `isUlid` method determines if a given string is a ULID:
     $result = Str::of('Taylor')->isUlid();
 
     // false
+```
 
 <a name="method-fluent-str-is-url"></a>
 #### `isUrl` {.collection-method}
 
-The `isUrl` method determines if a given string is a URL:
+`isUrl`メソッドは、指定された文字列がURLであるかどうかを判定します。
 
     use Illuminate\Support\Str;
 
@@ -2037,14 +2114,14 @@ The `isUrl` method determines if a given string is a URL:
 
     // false
 
-The `isUrl` method considers a wide range of protocols as valid. However, you may specify the protocols that should be considered valid by providing them to the `isUrl` method:
+`isUrl`メソッドは、幅広いプロトコルを有効と見なします。ただし、`isUrl`メソッドにそれらを渡すことで、有効と見なすべきプロトコルを指定できます。
 
     $result = Str::of('http://example.com')->isUrl(['http', 'https']);
 
 <a name="method-fluent-str-is-uuid"></a>
 #### `isUuid` {.collection-method}
 
-The `isUuid` method determines if a given string is a UUID:
+`isUuid`メソッドは、指定された文字列がUUIDであるかどうかを判定します。
 
     use Illuminate\Support\Str;
 
@@ -2059,7 +2136,7 @@ The `isUuid` method determines if a given string is a UUID:
 <a name="method-fluent-str-kebab"></a>
 #### `kebab` {.collection-method}
 
-The `kebab` method converts the given string to `kebab-case`:
+`kebab`メソッドは、指定された文字列を`kebab-case`に変換します。
 
     use Illuminate\Support\Str;
 
@@ -2070,7 +2147,7 @@ The `kebab` method converts the given string to `kebab-case`:
 <a name="method-fluent-str-lcfirst"></a>
 #### `lcfirst` {.collection-method}
 
-The `lcfirst` method returns the given string with the first character lowercased:
+`lcfirst`メソッドは、指定された文字列の最初の文字を小文字にして返します。
 
     use Illuminate\Support\Str;
 
@@ -2081,7 +2158,7 @@ The `lcfirst` method returns the given string with the first character lowercase
 <a name="method-fluent-str-length"></a>
 #### `length` {.collection-method}
 
-The `length` method returns the length of the given string:
+`length`メソッドは、指定された文字列の長さを返します。
 
     use Illuminate\Support\Str;
 
@@ -2092,7 +2169,7 @@ The `length` method returns the length of the given string:
 <a name="method-fluent-str-limit"></a>
 #### `limit` {.collection-method}
 
-The `limit` method truncates the given string to the specified length:
+`limit`メソッドは、指定された文字列を指定された長さに切り詰めます。
 
     use Illuminate\Support\Str;
 
@@ -2100,13 +2177,13 @@ The `limit` method truncates the given string to the specified length:
 
     // The quick brown fox...
 
-You may also pass a second argument to change the string that will be appended to the end of the truncated string:
+切り詰められた文字列の末尾に追加される文字列を変更するために、第二引数を渡すこともできます。
 
     $truncated = Str::of('The quick brown fox jumps over the lazy dog')->limit(20, ' (...)');
 
     // The quick brown fox (...)
 
-If you would like to preserve complete words when truncating the string, you may utilize the `preserveWords` argument. When this argument is `true`, the string will be truncated to the nearest complete word boundary:
+文字列を切り詰める際に完全な単語を保持したい場合は、`preserveWords`引数を使用できます。この引数が`true`の場合、文字列は最も近い完全な単語の境界で切り詰められます。
 
     $truncated = Str::of('The quick brown fox')->limit(12, preserveWords: true);
 
@@ -2115,7 +2192,7 @@ If you would like to preserve complete words when truncating the string, you may
 <a name="method-fluent-str-lower"></a>
 #### `lower` {.collection-method}
 
-The `lower` method converts the given string to lowercase:
+`lower`メソッドは、指定された文字列を小文字に変換します。
 
     use Illuminate\Support\Str;
 
@@ -2126,7 +2203,7 @@ The `lower` method converts the given string to lowercase:
 <a name="method-fluent-str-markdown"></a>
 #### `markdown` {.collection-method}
 
-The `markdown` method converts GitHub flavored Markdown into HTML:
+`markdown`メソッドは、GitHub風のMarkdownをHTMLに変換します。
 
     use Illuminate\Support\Str;
 
@@ -2140,9 +2217,9 @@ The `markdown` method converts GitHub flavored Markdown into HTML:
 
     // <h1>Taylor Otwell</h1>
 
-#### Markdown Security
+#### Markdownセキュリティ
 
-By default, Markdown supports raw HTML, which will expose Cross-Site Scripting (XSS) vulnerabilities when used with raw user input. As per the [CommonMark Security documentation](https://commonmark.thephpleague.com/security/), you may use the `html_input` option to either escape or strip raw HTML, and the `allow_unsafe_links` option to specify whether to allow unsafe links. If you need to allow some raw HTML, you should pass your compiled Markdown through an HTML Purifier:
+デフォルトでは、Markdownは生のHTMLをサポートしており、生のユーザー入力と共に使用するとクロスサイトスクリプティング（XSS）の脆弱性が露呈します。[CommonMarkセキュリティドキュメント](https://commonmark.thephpleague.com/security/)に従い、`html_input`オプションを使用して生のHTMLをエスケープまたは削除し、`allow_unsafe_links`オプションを使用して安全でないリンクを許可するかどうかを指定できます。生のHTMLを一部許可する必要がある場合は、コンパイルされたMarkdownをHTML Purifierを通して渡すべきです。
 
     use Illuminate\Support\Str;
 
@@ -2156,7 +2233,7 @@ By default, Markdown supports raw HTML, which will expose Cross-Site Scripting (
 <a name="method-fluent-str-mask"></a>
 #### `mask` {.collection-method}
 
-The `mask` method masks a portion of a string with a repeated character, and may be used to obfuscate segments of strings such as email addresses and phone numbers:
+`mask`メソッドは、文字列の一部を繰り返し文字でマスクし、メールアドレスや電話番号などの文字列のセグメントを難読化するために使用できます。
 
     use Illuminate\Support\Str;
 
@@ -2164,7 +2241,7 @@ The `mask` method masks a portion of a string with a repeated character, and may
 
     // tay***************
 
-If needed, you may provide negative numbers as the third or fourth argument to the `mask` method, which will instruct the method to begin masking at the given distance from the end of the string:
+必要に応じて、`mask`メソッドに負の数を第三または第四引数として渡すことができます。これにより、文字列の終わりから指定された距離でマスクを開始するようにメソッドに指示します。
 
     $string = Str::of('taylor@example.com')->mask('*', -15, 3);
 
@@ -2177,7 +2254,7 @@ If needed, you may provide negative numbers as the third or fourth argument to t
 <a name="method-fluent-str-match"></a>
 #### `match` {.collection-method}
 
-The `match` method will return the portion of a string that matches a given regular expression pattern:
+`match`メソッドは、指定された正規表現パターンに一致する文字列の部分を返します。
 
     use Illuminate\Support\Str;
 
@@ -2192,7 +2269,7 @@ The `match` method will return the portion of a string that matches a given regu
 <a name="method-fluent-str-match-all"></a>
 #### `matchAll` {.collection-method}
 
-The `matchAll` method will return a collection containing the portions of a string that match a given regular expression pattern:
+`matchAll`メソッドは、指定された正規表現パターンに一致する文字列の部分を含むコレクションを返します。
 
     use Illuminate\Support\Str;
 
@@ -2200,7 +2277,7 @@ The `matchAll` method will return a collection containing the portions of a stri
 
     // collect(['bar', 'bar'])
 
-If you specify a matching group within the expression, Laravel will return a collection of the first matching group's matches:
+式内で一致するグループを指定すると、Laravelは最初の一致するグループの一致を含むコレクションを返します。
 
     use Illuminate\Support\Str;
 
@@ -2208,12 +2285,12 @@ If you specify a matching group within the expression, Laravel will return a col
 
     // collect(['un', 'ly']);
 
-If no matches are found, an empty collection will be returned.
+一致が見つからない場合、空のコレクションが返されます。
 
 <a name="method-fluent-str-is-match"></a>
 #### `isMatch` {.collection-method}
 
-The `isMatch` method will return `true` if the string matches a given regular expression:
+`isMatch`メソッドは、文字列が指定された正規表現に一致する場合に`true`を返します。
 
     use Illuminate\Support\Str;
 
@@ -2228,7 +2305,7 @@ The `isMatch` method will return `true` if the string matches a given regular ex
 <a name="method-fluent-str-new-line"></a>
 #### `newLine` {.collection-method}
 
-The `newLine` method appends an "end of line" character to a string:
+`newLine`メソッドは、文字列に「行末」文字を追加します。
 
     use Illuminate\Support\Str;
 
@@ -2240,7 +2317,7 @@ The `newLine` method appends an "end of line" character to a string:
 <a name="method-fluent-str-padboth"></a>
 #### `padBoth` {.collection-method}
 
-The `padBoth` method wraps PHP's `str_pad` function, padding both sides of a string with another string until the final string reaches the desired length:
+`padBoth`メソッドは、PHPの`str_pad`関数をラップし、最終的な文字列が希望の長さになるまで、文字列の両側を別の文字列でパディングします。
 
     use Illuminate\Support\Str;
 
@@ -2255,7 +2332,7 @@ The `padBoth` method wraps PHP's `str_pad` function, padding both sides of a str
 <a name="method-fluent-str-padleft"></a>
 #### `padLeft` {.collection-method}
 
-The `padLeft` method wraps PHP's `str_pad` function, padding the left side of a string with another string until the final string reaches the desired length:
+`padLeft`メソッドは、PHPの`str_pad`関数をラップし、最終的な文字列が希望の長さになるまで、文字列の左側を別の文字列でパディングします。
 
     use Illuminate\Support\Str;
 
@@ -2270,7 +2347,7 @@ The `padLeft` method wraps PHP's `str_pad` function, padding the left side of a 
 <a name="method-fluent-str-padright"></a>
 #### `padRight` {.collection-method}
 
-The `padRight` method wraps PHP's `str_pad` function, padding the right side of a string with another string until the final string reaches the desired length:
+`padRight`メソッドは、PHPの`str_pad`関数をラップし、最終的な文字列が希望の長さになるまで、文字列の右側を別の文字列でパディングします。
 
     use Illuminate\Support\Str;
 
@@ -2285,7 +2362,7 @@ The `padRight` method wraps PHP's `str_pad` function, padding the right side of 
 <a name="method-fluent-str-pipe"></a>
 #### `pipe` {.collection-method}
 
-The `pipe` method allows you to transform the string by passing its current value to the given callable:
+`pipe`メソッドは、現在の値を指定されたコールバックに渡すことで文字列を変換できます。
 
     use Illuminate\Support\Str;
     use Illuminate\Support\Stringable;
@@ -2303,7 +2380,7 @@ The `pipe` method allows you to transform the string by passing its current valu
 <a name="method-fluent-str-plural"></a>
 #### `plural` {.collection-method}
 
-The `plural` method converts a singular word string to its plural form. This function supports [any of the languages support by Laravel's pluralizer](/docs/{{version}}/localization#pluralization-language):
+`plural`メソッドは、単数形の単語文字列を複数形に変換します。この関数は、[Laravelの複数形化機能がサポートする任意の言語](localization.md#pluralization-language)をサポートします。
 
     use Illuminate\Support\Str;
 
@@ -2315,7 +2392,7 @@ The `plural` method converts a singular word string to its plural form. This fun
 
     // children
 
-You may provide an integer as a second argument to the function to retrieve the singular or plural form of the string:
+関数に第二引数として整数を渡すことで、文字列の単数形または複数形を取得できます。
 
     use Illuminate\Support\Str;
 
@@ -2330,7 +2407,7 @@ You may provide an integer as a second argument to the function to retrieve the 
 <a name="method-fluent-str-position"></a>
 #### `position` {.collection-method}
 
-The `position` method returns the position of the first occurrence of a substring in a string. If the substring does not exist within the string, `false` is returned:
+`position`メソッドは、文字列内で最初に出現する部分文字列の位置を返します。部分文字列が文字列内に存在しない場合、`false`が返されます。
 
     use Illuminate\Support\Str;
 
@@ -2345,7 +2422,7 @@ The `position` method returns the position of the first occurrence of a substrin
 <a name="method-fluent-str-prepend"></a>
 #### `prepend` {.collection-method}
 
-The `prepend` method prepends the given values onto the string:
+`prepend`メソッドは、指定された値を文字列の先頭に追加します。
 
     use Illuminate\Support\Str;
 
@@ -2356,7 +2433,7 @@ The `prepend` method prepends the given values onto the string:
 <a name="method-fluent-str-remove"></a>
 #### `remove` {.collection-method}
 
-The `remove` method removes the given value or array of values from the string:
+`remove`メソッドは、指定された値または値の配列を文字列から削除します。
 
     use Illuminate\Support\Str;
 
@@ -2364,12 +2441,12 @@ The `remove` method removes the given value or array of values from the string:
 
     // Arkansas is beautiful!
 
-You may also pass `false` as a second parameter to ignore case when removing strings.
+文字列を削除する際に大文字と小文字を区別しないようにするには、第二引数に`false`を渡すことができます。
 
 <a name="method-fluent-str-repeat"></a>
 #### `repeat` {.collection-method}
 
-The `repeat` method repeats the given string:
+`repeat`メソッドは、指定された文字列を繰り返します。
 
 ```php
 use Illuminate\Support\Str;
@@ -2382,7 +2459,7 @@ $repeated = Str::of('a')->repeat(5);
 <a name="method-fluent-str-replace"></a>
 #### `replace` {.collection-method}
 
-The `replace` method replaces a given string within the string:
+`replace`メソッドは、文字列内の指定された文字列を置き換えます。
 
     use Illuminate\Support\Str;
 
@@ -2390,7 +2467,7 @@ The `replace` method replaces a given string within the string:
 
     // Laravel 7.x
 
-The `replace` method also accepts a `caseSensitive` argument. By default, the `replace` method is case sensitive:
+`replace`メソッドは、`caseSensitive`引数も受け付けます。デフォルトでは、`replace`メソッドは大文字と小文字を区別します：
 
     $replaced = Str::of('macOS 13.x')->replace(
         'macOS', 'iOS', caseSensitive: false
@@ -2399,7 +2476,7 @@ The `replace` method also accepts a `caseSensitive` argument. By default, the `r
 <a name="method-fluent-str-replace-array"></a>
 #### `replaceArray` {.collection-method}
 
-The `replaceArray` method replaces a given value in the string sequentially using an array:
+`replaceArray`メソッドは、配列を使用して文字列内の指定された値を順次置換します：
 
     use Illuminate\Support\Str;
 
@@ -2412,7 +2489,7 @@ The `replaceArray` method replaces a given value in the string sequentially usin
 <a name="method-fluent-str-replace-first"></a>
 #### `replaceFirst` {.collection-method}
 
-The `replaceFirst` method replaces the first occurrence of a given value in a string:
+`replaceFirst`メソッドは、文字列内で最初に出現する指定された値を置換します：
 
     use Illuminate\Support\Str;
 
@@ -2423,7 +2500,7 @@ The `replaceFirst` method replaces the first occurrence of a given value in a st
 <a name="method-fluent-str-replace-last"></a>
 #### `replaceLast` {.collection-method}
 
-The `replaceLast` method replaces the last occurrence of a given value in a string:
+`replaceLast`メソッドは、文字列内で最後に出現する指定された値を置換します：
 
     use Illuminate\Support\Str;
 
@@ -2434,7 +2511,7 @@ The `replaceLast` method replaces the last occurrence of a given value in a stri
 <a name="method-fluent-str-replace-matches"></a>
 #### `replaceMatches` {.collection-method}
 
-The `replaceMatches` method replaces all portions of a string matching a pattern with the given replacement string:
+`replaceMatches`メソッドは、パターンに一致する文字列のすべての部分を指定された置換文字列で置換します：
 
     use Illuminate\Support\Str;
 
@@ -2442,7 +2519,7 @@ The `replaceMatches` method replaces all portions of a string matching a pattern
 
     // '15015551000'
 
-The `replaceMatches` method also accepts a closure that will be invoked with each portion of the string matching the given pattern, allowing you to perform the replacement logic within the closure and return the replaced value:
+`replaceMatches`メソッドは、指定されたパターンに一致する文字列の各部分でクロージャを呼び出すこともできます。クロージャ内で置換ロジックを実行し、置換された値を返すことができます：
 
     use Illuminate\Support\Str;
 
@@ -2455,7 +2532,7 @@ The `replaceMatches` method also accepts a closure that will be invoked with eac
 <a name="method-fluent-str-replace-start"></a>
 #### `replaceStart` {.collection-method}
 
-The `replaceStart` method replaces the first occurrence of the given value only if the value appears at the start of the string:
+`replaceStart`メソッドは、指定された値が文字列の先頭に現れる場合にのみ、最初に出現する指定された値を置換します：
 
     use Illuminate\Support\Str;
 
@@ -2470,7 +2547,7 @@ The `replaceStart` method replaces the first occurrence of the given value only 
 <a name="method-fluent-str-replace-end"></a>
 #### `replaceEnd` {.collection-method}
 
-The `replaceEnd` method replaces the last occurrence of the given value only if the value appears at the end of the string:
+`replaceEnd`メソッドは、指定された値が文字列の末尾に現れる場合にのみ、最後に出現する指定された値を置換します：
 
     use Illuminate\Support\Str;
 
@@ -2485,7 +2562,7 @@ The `replaceEnd` method replaces the last occurrence of the given value only if 
 <a name="method-fluent-str-scan"></a>
 #### `scan` {.collection-method}
 
-The `scan` method parses input from a string into a collection according to a format supported by the [`sscanf` PHP function](https://www.php.net/manual/en/function.sscanf.php):
+`scan`メソッドは、[`sscanf` PHP関数](https://www.php.net/manual/en/function.sscanf.php)でサポートされている形式に従って、文字列から入力をコレクションに解析します：
 
     use Illuminate\Support\Str;
 
@@ -2496,7 +2573,7 @@ The `scan` method parses input from a string into a collection according to a fo
 <a name="method-fluent-str-singular"></a>
 #### `singular` {.collection-method}
 
-The `singular` method converts a string to its singular form. This function supports [any of the languages support by Laravel's pluralizer](/docs/{{version}}/localization#pluralization-language):
+`singular`メソッドは、文字列を単数形に変換します。この関数は、[Laravelの複数形化サポート](localization.md#pluralization-language)でサポートされている任意の言語をサポートします：
 
     use Illuminate\Support\Str;
 
@@ -2511,7 +2588,7 @@ The `singular` method converts a string to its singular form. This function supp
 <a name="method-fluent-str-slug"></a>
 #### `slug` {.collection-method}
 
-The `slug` method generates a URL friendly "slug" from the given string:
+`slug`メソッドは、指定された文字列からURLフレンドリーな「スラッグ」を生成します：
 
     use Illuminate\Support\Str;
 
@@ -2522,7 +2599,7 @@ The `slug` method generates a URL friendly "slug" from the given string:
 <a name="method-fluent-str-snake"></a>
 #### `snake` {.collection-method}
 
-The `snake` method converts the given string to `snake_case`:
+`snake`メソッドは、指定された文字列を`snake_case`に変換します：
 
     use Illuminate\Support\Str;
 
@@ -2533,7 +2610,7 @@ The `snake` method converts the given string to `snake_case`:
 <a name="method-fluent-str-split"></a>
 #### `split` {.collection-method}
 
-The `split` method splits a string into a collection using a regular expression:
+`split`メソッドは、正規表現を使用して文字列をコレクションに分割します：
 
     use Illuminate\Support\Str;
 
@@ -2544,7 +2621,7 @@ The `split` method splits a string into a collection using a regular expression:
 <a name="method-fluent-str-squish"></a>
 #### `squish` {.collection-method}
 
-The `squish` method removes all extraneous white space from a string, including extraneous white space between words:
+`squish`メソッドは、文字列からすべての余分な空白を削除します。これには、単語間の余分な空白も含まれます：
 
     use Illuminate\Support\Str;
 
@@ -2555,7 +2632,7 @@ The `squish` method removes all extraneous white space from a string, including 
 <a name="method-fluent-str-start"></a>
 #### `start` {.collection-method}
 
-The `start` method adds a single instance of the given value to a string if it does not already start with that value:
+`start`メソッドは、指定された値が文字列の先頭にまだない場合に、その値の単一のインスタンスを文字列に追加します：
 
     use Illuminate\Support\Str;
 
@@ -2570,7 +2647,7 @@ The `start` method adds a single instance of the given value to a string if it d
 <a name="method-fluent-str-starts-with"></a>
 #### `startsWith` {.collection-method}
 
-The `startsWith` method determines if the given string begins with the given value:
+`startsWith`メソッドは、指定された文字列が指定された値で始まるかどうかを判断します：
 
     use Illuminate\Support\Str;
 
@@ -2581,7 +2658,7 @@ The `startsWith` method determines if the given string begins with the given val
 <a name="method-fluent-str-strip-tags"></a>
 #### `stripTags` {.collection-method}
 
-The `stripTags` method removes all HTML and PHP tags from a string:
+`stripTags`メソッドは、文字列からすべてのHTMLおよびPHPタグを削除します：
 
     use Illuminate\Support\Str;
 
@@ -2596,7 +2673,7 @@ The `stripTags` method removes all HTML and PHP tags from a string:
 <a name="method-fluent-str-studly"></a>
 #### `studly` {.collection-method}
 
-The `studly` method converts the given string to `StudlyCase`:
+`studly`メソッドは、指定された文字列を`StudlyCase`に変換します：
 
     use Illuminate\Support\Str;
 
@@ -2607,7 +2684,7 @@ The `studly` method converts the given string to `StudlyCase`:
 <a name="method-fluent-str-substr"></a>
 #### `substr` {.collection-method}
 
-The `substr` method returns the portion of the string specified by the given start and length parameters:
+`substr`メソッドは、指定された開始位置と長さのパラメータによって指定された文字列の部分を返します：
 
     use Illuminate\Support\Str;
 
@@ -2622,7 +2699,7 @@ The `substr` method returns the portion of the string specified by the given sta
 <a name="method-fluent-str-substrreplace"></a>
 #### `substrReplace` {.collection-method}
 
-The `substrReplace` method replaces text within a portion of a string, starting at the position specified by the second argument and replacing the number of characters specified by the third argument. Passing `0` to the method's third argument will insert the string at the specified position without replacing any of the existing characters in the string:
+`substrReplace`メソッドは、文字列の一部のテキストを置換します。これは、第二引数で指定された位置から始まり、第三引数で指定された文字数を置換します。メソッドの第三引数に`0`を渡すと、指定された位置に文字列を挿入し、既存の文字を置換しません：
 
     use Illuminate\Support\Str;
 
@@ -2637,7 +2714,7 @@ The `substrReplace` method replaces text within a portion of a string, starting 
 <a name="method-fluent-str-swap"></a>
 #### `swap` {.collection-method}
 
-The `swap` method replaces multiple values in the string using PHP's `strtr` function:
+`swap`メソッドは、PHPの`strtr`関数を使用して、文字列内の複数の値を置換します：
 
     use Illuminate\Support\Str;
 
@@ -2652,7 +2729,7 @@ The `swap` method replaces multiple values in the string using PHP's `strtr` fun
 <a name="method-fluent-str-take"></a>
 #### `take` {.collection-method}
 
-The `take` method returns a specified number of characters from the beginning of the string:
+`take`メソッドは、文字列の先頭から指定された数の文字を返します：
 
     use Illuminate\Support\Str;
 
@@ -2663,7 +2740,7 @@ The `take` method returns a specified number of characters from the beginning of
 <a name="method-fluent-str-tap"></a>
 #### `tap` {.collection-method}
 
-The `tap` method passes the string to the given closure, allowing you to examine and interact with the string while not affecting the string itself. The original string is returned by the `tap` method regardless of what is returned by the closure:
+`tap`メソッドは、文字列を指定されたクロージャに渡し、文字列自体に影響を与えずに文字列を調査および操作できるようにします。クロージャによって何が返されても、`tap`メソッドは元の文字列を返します：
 
     use Illuminate\Support\Str;
     use Illuminate\Support\Stringable;
@@ -2680,7 +2757,7 @@ The `tap` method passes the string to the given closure, allowing you to examine
 <a name="method-fluent-str-test"></a>
 #### `test` {.collection-method}
 
-The `test` method determines if a string matches the given regular expression pattern:
+`test`メソッドは、文字列が指定された正規表現パターンに一致するかどうかを判断します：
 
     use Illuminate\Support\Str;
 
@@ -2691,7 +2768,7 @@ The `test` method determines if a string matches the given regular expression pa
 <a name="method-fluent-str-title"></a>
 #### `title` {.collection-method}
 
-The `title` method converts the given string to `Title Case`:
+`title`メソッドは、指定された文字列を`Title Case`に変換します：
 
     use Illuminate\Support\Str;
 
@@ -2702,7 +2779,7 @@ The `title` method converts the given string to `Title Case`:
 <a name="method-fluent-str-to-base64"></a>
 #### `toBase64()` {.collection-method}
 
-The `toBase64` method converts the given string to Base64:
+`toBase64`メソッドは、指定された文字列をBase64に変換します：
 
     use Illuminate\Support\Str;
 
@@ -2713,7 +2790,7 @@ The `toBase64` method converts the given string to Base64:
 <a name="method-fluent-str-transliterate"></a>
 #### `transliterate` {.collection-method}
 
-The `transliterate` method will attempt to convert a given string into its closest ASCII representation:
+`transliterate`メソッドは、指定された文字列を最も近いASCII表現に変換しようとします：
 
     use Illuminate\Support\Str;
 
@@ -2724,22 +2801,22 @@ The `transliterate` method will attempt to convert a given string into its close
 <a name="method-fluent-str-trim"></a>
 #### `trim` {.collection-method}
 
-The `trim` method trims the given string. Unlike PHP's native `trim` function, Laravel's `trim` method also removes unicode whitespace characters:
+`trim`メソッドは、指定された文字列をトリミングします。PHPのネイティブ`trim`関数とは異なり、Laravelの`trim`メソッドはUnicodeの空白文字も削除します：
 
     use Illuminate\Support\Str;
 
     $string = Str::of('  Laravel  ')->trim();
-
+    
     // 'Laravel'
-
+    
     $string = Str::of('/Laravel/')->trim('/');
-
+    
     // 'Laravel'
 
 <a name="method-fluent-str-ltrim"></a>
 #### `ltrim` {.collection-method}
 
-The `ltrim` method trims the left side of the string. Unlike PHP's native `ltrim` function, Laravel's `ltrim` method also removes unicode whitespace characters:
+`ltrim`メソッドは文字列の左側をトリムします。PHPのネイティブ`ltrim`関数とは異なり、Laravelの`ltrim`メソッドはUnicodeの空白文字も削除します。
 
     use Illuminate\Support\Str;
 
@@ -2754,7 +2831,7 @@ The `ltrim` method trims the left side of the string. Unlike PHP's native `ltrim
 <a name="method-fluent-str-rtrim"></a>
 #### `rtrim` {.collection-method}
 
-The `rtrim` method trims the right side of the given string. Unlike PHP's native `rtrim` function, Laravel's `rtrim` method also removes unicode whitespace characters:
+`rtrim`メソッドは指定された文字列の右側をトリムします。PHPのネイティブ`rtrim`関数とは異なり、Laravelの`rtrim`メソッドはUnicodeの空白文字も削除します。
 
     use Illuminate\Support\Str;
 
@@ -2769,7 +2846,7 @@ The `rtrim` method trims the right side of the given string. Unlike PHP's native
 <a name="method-fluent-str-ucfirst"></a>
 #### `ucfirst` {.collection-method}
 
-The `ucfirst` method returns the given string with the first character capitalized:
+`ucfirst`メソッドは指定された文字列の最初の文字を大文字にして返します。
 
     use Illuminate\Support\Str;
 
@@ -2780,7 +2857,7 @@ The `ucfirst` method returns the given string with the first character capitaliz
 <a name="method-fluent-str-ucsplit"></a>
 #### `ucsplit` {.collection-method}
 
-The `ucsplit` method splits the given string into a collection by uppercase characters:
+`ucsplit`メソッドは指定された文字列を大文字で分割し、コレクションにします。
 
     use Illuminate\Support\Str;
 
@@ -2791,7 +2868,7 @@ The `ucsplit` method splits the given string into a collection by uppercase char
 <a name="method-fluent-str-unwrap"></a>
 #### `unwrap` {.collection-method}
 
-The `unwrap` method removes the specified strings from the beginning and end of a given string:
+`unwrap`メソッドは指定された文字列の最初と最後から指定された文字列を削除します。
 
     use Illuminate\Support\Str;
 
@@ -2806,7 +2883,7 @@ The `unwrap` method removes the specified strings from the beginning and end of 
 <a name="method-fluent-str-upper"></a>
 #### `upper` {.collection-method}
 
-The `upper` method converts the given string to uppercase:
+`upper`メソッドは指定された文字列を大文字に変換します。
 
     use Illuminate\Support\Str;
 
@@ -2817,7 +2894,7 @@ The `upper` method converts the given string to uppercase:
 <a name="method-fluent-str-when"></a>
 #### `when` {.collection-method}
 
-The `when` method invokes the given closure if a given condition is `true`. The closure will receive the fluent string instance:
+`when`メソッドは指定された条件が`true`の場合に指定されたクロージャを呼び出します。クロージャはフルーエントな文字列インスタンスを受け取ります。
 
     use Illuminate\Support\Str;
     use Illuminate\Support\Stringable;
@@ -2829,12 +2906,12 @@ The `when` method invokes the given closure if a given condition is `true`. The 
 
     // 'Taylor Otwell'
 
-If necessary, you may pass another closure as the third parameter to the `when` method. This closure will execute if the condition parameter evaluates to `false`.
+必要に応じて、`when`メソッドの第3引数として別のクロージャを渡すことができます。このクロージャは条件パラメータが`false`と評価された場合に実行されます。
 
 <a name="method-fluent-str-when-contains"></a>
 #### `whenContains` {.collection-method}
 
-The `whenContains` method invokes the given closure if the string contains the given value. The closure will receive the fluent string instance:
+`whenContains`メソッドは、文字列が指定された値を含む場合に指定されたクロージャを呼び出します。クロージャはフルーエントな文字列インスタンスを受け取ります。
 
     use Illuminate\Support\Str;
     use Illuminate\Support\Stringable;
@@ -2846,9 +2923,9 @@ The `whenContains` method invokes the given closure if the string contains the g
 
     // 'Tony Stark'
 
-If necessary, you may pass another closure as the third parameter to the `when` method. This closure will execute if the string does not contain the given value.
+必要に応じて、`when`メソッドの第3引数として別のクロージャを渡すことができます。このクロージャは文字列が指定された値を含まない場合に実行されます。
 
-You may also pass an array of values to determine if the given string contains any of the values in the array:
+また、文字列が配列内のいずれかの値を含むかどうかを判断するために、配列を渡すこともできます。
 
     use Illuminate\Support\Str;
     use Illuminate\Support\Stringable;
@@ -2863,7 +2940,7 @@ You may also pass an array of values to determine if the given string contains a
 <a name="method-fluent-str-when-contains-all"></a>
 #### `whenContainsAll` {.collection-method}
 
-The `whenContainsAll` method invokes the given closure if the string contains all of the given sub-strings. The closure will receive the fluent string instance:
+`whenContainsAll`メソッドは、文字列が指定されたすべての部分文字列を含む場合に指定されたクロージャを呼び出します。クロージャはフルーエントな文字列インスタンスを受け取ります。
 
     use Illuminate\Support\Str;
     use Illuminate\Support\Stringable;
@@ -2875,12 +2952,12 @@ The `whenContainsAll` method invokes the given closure if the string contains al
 
     // 'Tony Stark'
 
-If necessary, you may pass another closure as the third parameter to the `when` method. This closure will execute if the condition parameter evaluates to `false`.
+必要に応じて、`when`メソッドの第3引数として別のクロージャを渡すことができます。このクロージャは条件パラメータが`false`と評価された場合に実行されます。
 
 <a name="method-fluent-str-when-empty"></a>
 #### `whenEmpty` {.collection-method}
 
-The `whenEmpty` method invokes the given closure if the string is empty. If the closure returns a value, that value will also be returned by the `whenEmpty` method. If the closure does not return a value, the fluent string instance will be returned:
+`whenEmpty`メソッドは、文字列が空の場合に指定されたクロージャを呼び出します。クロージャが値を返す場合、その値も`whenEmpty`メソッドによって返されます。クロージャが値を返さない場合、フルーエントな文字列インスタンスが返されます。
 
     use Illuminate\Support\Str;
     use Illuminate\Support\Stringable;
@@ -2894,7 +2971,7 @@ The `whenEmpty` method invokes the given closure if the string is empty. If the 
 <a name="method-fluent-str-when-not-empty"></a>
 #### `whenNotEmpty` {.collection-method}
 
-The `whenNotEmpty` method invokes the given closure if the string is not empty. If the closure returns a value, that value will also be returned by the `whenNotEmpty` method. If the closure does not return a value, the fluent string instance will be returned:
+`whenNotEmpty`メソッドは、文字列が空でない場合に指定されたクロージャを呼び出します。クロージャが値を返す場合、その値も`whenNotEmpty`メソッドによって返されます。クロージャが値を返さない場合、フルーエントな文字列インスタンスが返されます。
 
     use Illuminate\Support\Str;
     use Illuminate\Support\Stringable;
@@ -2908,7 +2985,7 @@ The `whenNotEmpty` method invokes the given closure if the string is not empty. 
 <a name="method-fluent-str-when-starts-with"></a>
 #### `whenStartsWith` {.collection-method}
 
-The `whenStartsWith` method invokes the given closure if the string starts with the given sub-string. The closure will receive the fluent string instance:
+`whenStartsWith`メソッドは、文字列が指定された部分文字列で始まる場合に指定されたクロージャを呼び出します。クロージャはフルーエントな文字列インスタンスを受け取ります。
 
     use Illuminate\Support\Str;
     use Illuminate\Support\Stringable;
@@ -2922,7 +2999,7 @@ The `whenStartsWith` method invokes the given closure if the string starts with 
 <a name="method-fluent-str-when-ends-with"></a>
 #### `whenEndsWith` {.collection-method}
 
-The `whenEndsWith` method invokes the given closure if the string ends with the given sub-string. The closure will receive the fluent string instance:
+`whenEndsWith`メソッドは、文字列が指定された部分文字列で終わる場合に指定されたクロージャを呼び出します。クロージャはフルーエントな文字列インスタンスを受け取ります。
 
     use Illuminate\Support\Str;
     use Illuminate\Support\Stringable;
@@ -2936,7 +3013,7 @@ The `whenEndsWith` method invokes the given closure if the string ends with the 
 <a name="method-fluent-str-when-exactly"></a>
 #### `whenExactly` {.collection-method}
 
-The `whenExactly` method invokes the given closure if the string exactly matches the given string. The closure will receive the fluent string instance:
+`whenExactly`メソッドは、文字列が指定された文字列と完全に一致する場合に指定されたクロージャを呼び出します。クロージャはフルーエントな文字列インスタンスを受け取ります。
 
     use Illuminate\Support\Str;
     use Illuminate\Support\Stringable;
@@ -2950,7 +3027,7 @@ The `whenExactly` method invokes the given closure if the string exactly matches
 <a name="method-fluent-str-when-not-exactly"></a>
 #### `whenNotExactly` {.collection-method}
 
-The `whenNotExactly` method invokes the given closure if the string does not exactly match the given string. The closure will receive the fluent string instance:
+`whenNotExactly`メソッドは、文字列が指定された文字列と完全に一致しない場合に指定されたクロージャを呼び出します。クロージャはフルーエントな文字列インスタンスを受け取ります。
 
     use Illuminate\Support\Str;
     use Illuminate\Support\Stringable;
@@ -2964,7 +3041,7 @@ The `whenNotExactly` method invokes the given closure if the string does not exa
 <a name="method-fluent-str-when-is"></a>
 #### `whenIs` {.collection-method}
 
-The `whenIs` method invokes the given closure if the string matches a given pattern. Asterisks may be used as wildcard values. The closure will receive the fluent string instance:
+`whenIs`メソッドは、文字列が指定されたパターンに一致する場合に指定されたクロージャを呼び出します。アスタリスクをワイルドカードとして使用できます。クロージャはフルーエントな文字列インスタンスを受け取ります。
 
     use Illuminate\Support\Str;
     use Illuminate\Support\Stringable;
@@ -2978,7 +3055,7 @@ The `whenIs` method invokes the given closure if the string matches a given patt
 <a name="method-fluent-str-when-is-ascii"></a>
 #### `whenIsAscii` {.collection-method}
 
-The `whenIsAscii` method invokes the given closure if the string is 7 bit ASCII. The closure will receive the fluent string instance:
+`whenIsAscii`メソッドは、文字列が7ビットASCIIの場合に指定されたクロージャを呼び出します。クロージャはフルーエントな文字列インスタンスを受け取ります。
 
     use Illuminate\Support\Str;
     use Illuminate\Support\Stringable;
@@ -2992,7 +3069,7 @@ The `whenIsAscii` method invokes the given closure if the string is 7 bit ASCII.
 <a name="method-fluent-str-when-is-ulid"></a>
 #### `whenIsUlid` {.collection-method}
 
-The `whenIsUlid` method invokes the given closure if the string is a valid ULID. The closure will receive the fluent string instance:
+`whenIsUlid`メソッドは、文字列が有効なULIDの場合に指定されたクロージャを呼び出します。クロージャはフルーエントな文字列インスタンスを受け取ります。
 
     use Illuminate\Support\Str;
 
@@ -3005,7 +3082,7 @@ The `whenIsUlid` method invokes the given closure if the string is a valid ULID.
 <a name="method-fluent-str-when-is-uuid"></a>
 #### `whenIsUuid` {.collection-method}
 
-The `whenIsUuid` method invokes the given closure if the string is a valid UUID. The closure will receive the fluent string instance:
+`whenIsUuid`メソッドは、文字列が有効なUUIDの場合に指定されたクロージャを呼び出します。クロージャはフルーエントな文字列インスタンスを受け取ります。
 
     use Illuminate\Support\Str;
     use Illuminate\Support\Stringable;
@@ -3019,7 +3096,7 @@ The `whenIsUuid` method invokes the given closure if the string is a valid UUID.
 <a name="method-fluent-str-when-test"></a>
 #### `whenTest` {.collection-method}
 
-The `whenTest` method invokes the given closure if the string matches the given regular expression. The closure will receive the fluent string instance:
+`whenTest`メソッドは、文字列が指定された正規表現に一致する場合に指定されたクロージャを呼び出します。クロージャはフルーエントな文字列インスタンスを受け取ります。
 
     use Illuminate\Support\Str;
     use Illuminate\Support\Stringable;
@@ -3033,7 +3110,7 @@ The `whenTest` method invokes the given closure if the string matches the given 
 <a name="method-fluent-str-word-count"></a>
 #### `wordCount` {.collection-method}
 
-The `wordCount` method returns the number of words that a string contains:
+`wordCount`メソッドは、文字列に含まれる単語の数を返します。
 
 ```php
 use Illuminate\Support\Str;
@@ -3044,10 +3121,10 @@ Str::of('Hello, world!')->wordCount(); // 2
 <a name="method-fluent-str-words"></a>
 #### `words` {.collection-method}
 
-The `words` method limits the number of words in a string. If necessary, you may specify an additional string that will be appended to the truncated string:
+`words`メソッドは、文字列内の単語数を制限します。必要に応じて、切り捨てられた文字列に追加される文字列を指定できます。
 
     use Illuminate\Support\Str;
 
-    $string = Str::of('Perfectly balanced, as all things should be.')->words(3, ' >>>');
+    $string = Str::of('完璧にバランスが取れている、すべてのものがそうあるべきだ。')->words(3, ' >>>');
 
-    // Perfectly balanced, as >>>
+    // 完璧にバランスが取れている、すべてのものが >>>

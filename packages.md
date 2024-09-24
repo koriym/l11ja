@@ -1,39 +1,39 @@
-# Package Development
+# パッケージ開発
 
-- [Introduction](#introduction)
-    - [A Note on Facades](#a-note-on-facades)
-- [Package Discovery](#package-discovery)
-- [Service Providers](#service-providers)
-- [Resources](#resources)
-    - [Configuration](#configuration)
-    - [Migrations](#migrations)
-    - [Routes](#routes)
-    - [Language Files](#language-files)
-    - [Views](#views)
-    - [View Components](#view-components)
-    - ["About" Artisan Command](#about-artisan-command)
-- [Commands](#commands)
-- [Public Assets](#public-assets)
-- [Publishing File Groups](#publishing-file-groups)
+- [はじめに](#introduction)
+    - [ファサードについての注意](#a-note-on-facades)
+- [パッケージの発見](#package-discovery)
+- [サービスプロバイダ](#service-providers)
+- [リソース](#resources)
+    - [設定](#configuration)
+    - [マイグレーション](#migrations)
+    - [ルート](#routes)
+    - [言語ファイル](#language-files)
+    - [ビュー](#views)
+    - [ビューコンポーネント](#view-components)
+    - ["About" Artisanコマンド](#about-artisan-command)
+- [コマンド](#commands)
+- [公開アセット](#public-assets)
+- [ファイルグループの公開](#publishing-file-groups)
 
 <a name="introduction"></a>
-## Introduction
+## はじめに
 
-Packages are the primary way of adding functionality to Laravel. Packages might be anything from a great way to work with dates like [Carbon](https://github.com/briannesbitt/Carbon) or a package that allows you to associate files with Eloquent models like Spatie's [Laravel Media Library](https://github.com/spatie/laravel-medialibrary).
+パッケージは、Laravelに機能を追加するための主要な方法です。パッケージは、[Carbon](https://github.com/briannesbitt/Carbon)のような日付を扱う素晴らしい方法から、Spatieの[Laravel Media Library](https://github.com/spatie/laravel-medialibrary)のようにEloquentモデルにファイルを関連付けることができるパッケージまで、さまざまなものがあります。
 
-There are different types of packages. Some packages are stand-alone, meaning they work with any PHP framework. Carbon and Pest are examples of stand-alone packages. Any of these packages may be used with Laravel by requiring them in your `composer.json` file.
+パッケージにはさまざまな種類があります。一部のパッケージはスタンドアロンであり、どのPHPフレームワークでも動作します。CarbonやPestはスタンドアロンパッケージの例です。これらのパッケージは、`composer.json`ファイルで要求することでLaravelで使用できます。
 
-On the other hand, other packages are specifically intended for use with Laravel. These packages may have routes, controllers, views, and configuration specifically intended to enhance a Laravel application. This guide primarily covers the development of those packages that are Laravel specific.
+一方、他のパッケージはLaravelでの使用を特に意図しています。これらのパッケージには、Laravelアプリケーションを強化するために意図されたルート、コントローラ、ビュー、設定が含まれる場合があります。このガイドでは、主にLaravel固有のパッケージの開発について説明します。
 
 <a name="a-note-on-facades"></a>
-### A Note on Facades
+### ファサードについての注意
 
-When writing a Laravel application, it generally does not matter if you use contracts or facades since both provide essentially equal levels of testability. However, when writing packages, your package will not typically have access to all of Laravel's testing helpers. If you would like to be able to write your package tests as if the package were installed inside a typical Laravel application, you may use the [Orchestral Testbench](https://github.com/orchestral/testbench) package.
+Laravelアプリケーションを書く際、コントラクトを使用するかファサードを使用するかは、通常、テスト可能性の観点からほぼ同等であるため、問題になりません。しかし、パッケージを書く場合、パッケージは通常、Laravelのすべてのテストヘルパーにアクセスできません。パッケージが典型的なLaravelアプリケーション内にインストールされているかのようにパッケージのテストを書きたい場合は、[Orchestral Testbench](https://github.com/orchestral/testbench)パッケージを使用できます。
 
 <a name="package-discovery"></a>
-## Package Discovery
+## パッケージの発見
 
-A Laravel application's `bootstrap/providers.php` file contains the list of service providers that should be loaded by Laravel. However, instead of requiring users to manually add your service provider to the list, you may define the provider in the `extra` section of your package's `composer.json` file so that it is automatically loaded by Laravel. In addition to service providers, you may also list any [facades](/docs/{{version}}/facades) you would like to be registered:
+Laravelアプリケーションの`bootstrap/providers.php`ファイルには、Laravelによってロードされるべきサービスプロバイダのリストが含まれています。しかし、ユーザーが手動でサービスプロバイダをリストに追加する必要がないように、パッケージの`composer.json`ファイルの`extra`セクションでプロバイダを定義することができます。これにより、Laravelによって自動的にロードされます。サービスプロバイダに加えて、登録したい[ファサード](facades.md)をリストすることもできます：
 
 ```json
 "extra": {
@@ -48,12 +48,12 @@ A Laravel application's `bootstrap/providers.php` file contains the list of serv
 },
 ```
 
-Once your package has been configured for discovery, Laravel will automatically register its service providers and facades when it is installed, creating a convenient installation experience for your package's users.
+パッケージが発見のために設定されると、Laravelはインストール時に自動的にそのサービスプロバイダとファサードを登録し、パッケージのユーザーに便利なインストール体験を提供します。
 
 <a name="opting-out-of-package-discovery"></a>
-#### Opting Out of Package Discovery
+#### パッケージの発見をオプトアウトする
 
-If you are the consumer of a package and would like to disable package discovery for a package, you may list the package name in the `extra` section of your application's `composer.json` file:
+パッケージの利用者として、パッケージの発見を無効にしたい場合は、アプリケーションの`composer.json`ファイルの`extra`セクションにパッケージ名をリストすることができます：
 
 ```json
 "extra": {
@@ -65,7 +65,7 @@ If you are the consumer of a package and would like to disable package discovery
 },
 ```
 
-You may disable package discovery for all packages using the `*` character inside of your application's `dont-discover` directive:
+アプリケーションの`dont-discover`ディレクティブ内で`*`文字を使用して、すべてのパッケージの発見を無効にすることもできます：
 
 ```json
 "extra": {
@@ -78,22 +78,22 @@ You may disable package discovery for all packages using the `*` character insid
 ```
 
 <a name="service-providers"></a>
-## Service Providers
+## サービスプロバイダ
 
-[Service providers](/docs/{{version}}/providers) are the connection point between your package and Laravel. A service provider is responsible for binding things into Laravel's [service container](/docs/{{version}}/container) and informing Laravel where to load package resources such as views, configuration, and language files.
+[サービスプロバイダ](providers.md)は、パッケージとLaravelの接続点です。サービスプロバイダは、Laravelの[サービスコンテナ](container.md)にバインドし、パッケージのリソース（ビュー、設定、言語ファイルなど）をロードする場所をLaravelに通知する役割を担います。
 
-A service provider extends the `Illuminate\Support\ServiceProvider` class and contains two methods: `register` and `boot`. The base `ServiceProvider` class is located in the `illuminate/support` Composer package, which you should add to your own package's dependencies. To learn more about the structure and purpose of service providers, check out [their documentation](/docs/{{version}}/providers).
+サービスプロバイダは`Illuminate\Support\ServiceProvider`クラスを拡張し、`register`と`boot`の2つのメソッドを含みます。ベースの`ServiceProvider`クラスは`illuminate/support` Composerパッケージにあり、独自のパッケージの依存関係に追加する必要があります。サービスプロバイダの構造と目的について詳しくは、[そのドキュメント](providers.md)を参照してください。
 
 <a name="resources"></a>
-## Resources
+## リソース
 
 <a name="configuration"></a>
-### Configuration
+### 設定
 
-Typically, you will need to publish your package's configuration file to the application's `config` directory. This will allow users of your package to easily override your default configuration options. To allow your configuration files to be published, call the `publishes` method from the `boot` method of your service provider:
+通常、パッケージの設定ファイルをアプリケーションの`config`ディレクトリに公開する必要があります。これにより、パッケージのユーザーはデフォルトの設定オプションを簡単にオーバーライドできます。設定ファイルを公開できるようにするには、サービスプロバイダの`boot`メソッドから`publishes`メソッドを呼び出します：
 
     /**
-     * Bootstrap any package services.
+     * パッケージサービスのあらゆる初期化処理を行う。
      */
     public function boot(): void
     {
@@ -102,22 +102,22 @@ Typically, you will need to publish your package's configuration file to the app
         ]);
     }
 
-Now, when users of your package execute Laravel's `vendor:publish` command, your file will be copied to the specified publish location. Once your configuration has been published, its values may be accessed like any other configuration file:
+これで、パッケージのユーザーがLaravelの`vendor:publish`コマンドを実行すると、ファイルが指定された公開場所にコピーされます。設定が公開されると、その値は他の設定ファイルと同様にアクセスできます：
 
     $value = config('courier.option');
 
-> [!WARNING]  
-> You should not define closures in your configuration files. They can not be serialized correctly when users execute the `config:cache` Artisan command.
+> WARNING:  
+> 設定ファイルにクロージャを定義してはいけません。ユーザーが`config:cache` Artisanコマンドを実行すると、正しくシリアライズできません。
 
 <a name="default-package-configuration"></a>
-#### Default Package Configuration
+#### デフォルトのパッケージ設定
 
-You may also merge your own package configuration file with the application's published copy. This will allow your users to define only the options they actually want to override in the published copy of the configuration file. To merge the configuration file values, use the `mergeConfigFrom` method within your service provider's `register` method.
+独自のパッケージ設定ファイルをアプリケーションの公開されたコピーとマージすることもできます。これにより、ユーザーは設定ファイルの公開されたコピーで実際にオーバーライドしたいオプションのみを定義できます。設定ファイルの値をマージするには、サービスプロバイダの`register`メソッド内で`mergeConfigFrom`メソッドを使用します。
 
-The `mergeConfigFrom` method accepts the path to your package's configuration file as its first argument and the name of the application's copy of the configuration file as its second argument:
+`mergeConfigFrom`メソッドは、パッケージの設定ファイルへのパスを最初の引数として受け取り、アプリケーションの設定ファイルの名前を2番目の引数として受け取ります：
 
     /**
-     * Register any application services.
+     * アプリケーションサービスの登録。
      */
     public function register(): void
     {
@@ -126,16 +126,16 @@ The `mergeConfigFrom` method accepts the path to your package's configuration fi
         );
     }
 
-> [!WARNING]  
-> This method only merges the first level of the configuration array. If your users partially define a multi-dimensional configuration array, the missing options will not be merged.
+> WARNING:  
+> このメソッドは設定配列の最初のレベルのみをマージします。ユーザーが多次元設定配列を部分的に定義した場合、不足しているオプションはマージされません。
 
 <a name="routes"></a>
-### Routes
+### ルート
 
-If your package contains routes, you may load them using the `loadRoutesFrom` method. This method will automatically determine if the application's routes are cached and will not load your routes file if the routes have already been cached:
+パッケージにルートが含まれている場合、`loadRoutesFrom`メソッドを使用してそれらをロードできます。このメソッドは、アプリケーションのルートがキャッシュされているかどうかを自動的に判断し、ルートが既にキャッシュされている場合はルートファイルをロードしません：
 
     /**
-     * Bootstrap any package services.
+     * パッケージサービスのあらゆる初期化処理を行う。
      */
     public function boot(): void
     {
@@ -143,12 +143,12 @@ If your package contains routes, you may load them using the `loadRoutesFrom` me
     }
 
 <a name="migrations"></a>
-### Migrations
+### マイグレーション
 
-If your package contains [database migrations](/docs/{{version}}/migrations), you may use the `publishesMigrations` method to inform Laravel that the given directory or file contains migrations. When Laravel publishes the migrations, it will automatically update the timestamp within their filename to reflect the current date and time:
+パッケージに[データベースマイグレーション](migrations.md)が含まれている場合、`publishesMigrations`メソッドを使用して、指定されたディレクトリまたはファイルにマイグレーションが含まれていることをLaravelに通知できます。Laravelがマイグレーションを公開すると、ファイル名内のタイムスタンプが現在の日付と時刻に自動的に更新されます：
 
     /**
-     * Bootstrap any package services.
+     * パッケージサービスのあらゆる初期化処理を行う。
      */
     public function boot(): void
     {
@@ -158,27 +158,27 @@ If your package contains [database migrations](/docs/{{version}}/migrations), yo
     }
 
 <a name="language-files"></a>
-### Language Files
+### 言語ファイル
 
-If your package contains [language files](/docs/{{version}}/localization), you may use the `loadTranslationsFrom` method to inform Laravel how to load them. For example, if your package is named `courier`, you should add the following to your service provider's `boot` method:
+パッケージに[言語ファイル](localization.md)が含まれている場合、`loadTranslationsFrom`メソッドを使用してLaravelにそれらをロードする方法を通知できます。たとえば、パッケージが`courier`という名前の場合、サービスプロバイダの`boot`メソッドに次のように追加する必要があります：
 
     /**
-     * Bootstrap any package services.
+     * パッケージサービスのあらゆる初期化処理を行う。
      */
     public function boot(): void
     {
         $this->loadTranslationsFrom(__DIR__.'/../lang', 'courier');
     }
 
-Package translation lines are referenced using the `package::file.line` syntax convention. So, you may load the `courier` package's `welcome` line from the `messages` file like so:
+パッケージの翻訳行は、`package::file.line`構文規則を使用して参照されます。したがって、`courier`パッケージの`messages`ファイルから`welcome`行を次のようにロードできます：
 
     echo trans('courier::messages.welcome');
 
-You can register JSON translation files for your package using the `loadJsonTranslationsFrom` method. This method accepts the path to the directory that contains your package's JSON translation files:
+`loadJsonTranslationsFrom`メソッドを使用して、パッケージのJSON翻訳ファイルを登録することもできます。このメソッドは、パッケージのJSON翻訳ファイルを含むディレクトリへのパスを受け取ります：
 
 ```php
 /**
- * Bootstrap any package services.
+ * パッケージサービスのあらゆる初期化処理を行う。
  */
 public function boot(): void
 {
@@ -187,12 +187,12 @@ public function boot(): void
 ```
 
 <a name="publishing-language-files"></a>
-#### Publishing Language Files
+#### 言語ファイルの公開
 
-If you would like to publish your package's language files to the application's `lang/vendor` directory, you may use the service provider's `publishes` method. The `publishes` method accepts an array of package paths and their desired publish locations. For example, to publish the language files for the `courier` package, you may do the following:
+パッケージの言語ファイルをアプリケーションの`lang/vendor`ディレクトリに公開したい場合は、サービスプロバイダの`publishes`メソッドを使用できます。`publishes`メソッドは、パッケージパスとその希望する公開場所の配列を受け取ります。たとえば、`courier`パッケージの言語ファイルを公開するには、次のようにします：
 
     /**
-     * Bootstrap any package services.
+     * パッケージサービスのあらゆる初期化処理を行う。
      */
     public function boot(): void
     {
@@ -203,39 +203,39 @@ If you would like to publish your package's language files to the application's 
         ]);
     }
 
-Now, when users of your package execute Laravel's `vendor:publish` Artisan command, your package's language files will be published to the specified publish location.
+これで、パッケージのユーザーがLaravelの`vendor:publish` Artisanコマンドを実行すると、パッケージの言語ファイルが指定された公開場所に公開されます。
 
 <a name="views"></a>
-### Views
+### ビュー
 
-To register your package's [views](/docs/{{version}}/views) with Laravel, you need to tell Laravel where the views are located. You may do this using the service provider's `loadViewsFrom` method. The `loadViewsFrom` method accepts two arguments: the path to your view templates and your package's name. For example, if your package's name is `courier`, you would add the following to your service provider's `boot` method:
+Laravelにパッケージの[ビュー](views.md)を登録するには、Laravelにビューがどこにあるかを教える必要があります。サービスプロバイダの`loadViewsFrom`メソッドを使用してこれを行うことができます。`loadViewsFrom`メソッドは、ビューテンプレートへのパスとパッケージの名前の2つの引数を受け取ります。例えば、パッケージの名前が`courier`の場合、サービスプロバイダの`boot`メソッドに以下を追加します:
 
     /**
-     * Bootstrap any package services.
+     * パッケージサービスのブートストラップ
      */
     public function boot(): void
     {
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'courier');
     }
 
-Package views are referenced using the `package::view` syntax convention. So, once your view path is registered in a service provider, you may load the `dashboard` view from the `courier` package like so:
+パッケージのビューは、`package::view`構文規則を使用して参照されます。したがって、サービスプロバイダでビューパスが登録されると、`courier`パッケージから`dashboard`ビューを次のようにロードできます:
 
     Route::get('/dashboard', function () {
         return view('courier::dashboard');
     });
 
 <a name="overriding-package-views"></a>
-#### Overriding Package Views
+#### パッケージビューのオーバーライド
 
-When you use the `loadViewsFrom` method, Laravel actually registers two locations for your views: the application's `resources/views/vendor` directory and the directory you specify. So, using the `courier` package as an example, Laravel will first check if a custom version of the view has been placed in the `resources/views/vendor/courier` directory by the developer. Then, if the view has not been customized, Laravel will search the package view directory you specified in your call to `loadViewsFrom`. This makes it easy for package users to customize / override your package's views.
+`loadViewsFrom`メソッドを使用すると、Laravelは実際にビューの2つの場所を登録します: アプリケーションの`resources/views/vendor`ディレクトリと、指定したディレクトリです。したがって、`courier`パッケージを例にすると、Laravelはまず開発者によって`resources/views/vendor/courier`ディレクトリにカスタムバージョンのビューが配置されているかどうかを確認します。そして、ビューがカスタマイズされていない場合、Laravelは`loadViewsFrom`の呼び出しで指定したパッケージビューディレクトリを検索します。これにより、パッケージユーザーがパッケージのビューを簡単にカスタマイズ/オーバーライドできます。
 
 <a name="publishing-views"></a>
-#### Publishing Views
+#### ビューの公開
 
-If you would like to make your views available for publishing to the application's `resources/views/vendor` directory, you may use the service provider's `publishes` method. The `publishes` method accepts an array of package view paths and their desired publish locations:
+ビューをアプリケーションの`resources/views/vendor`ディレクトリに公開できるようにしたい場合は、サービスプロバイダの`publishes`メソッドを使用できます。`publishes`メソッドは、パッケージビューパスとその希望する公開場所の配列を受け取ります:
 
     /**
-     * Bootstrap the package services.
+     * パッケージサービスのブートストラップ
      */
     public function boot(): void
     {
@@ -246,72 +246,72 @@ If you would like to make your views available for publishing to the application
         ]);
     }
 
-Now, when users of your package execute Laravel's `vendor:publish` Artisan command, your package's views will be copied to the specified publish location.
+これで、パッケージのユーザーがLaravelの`vendor:publish` Artisanコマンドを実行すると、パッケージのビューが指定された公開場所にコピーされます。
 
 <a name="view-components"></a>
-### View Components
+### ビューコンポーネント
 
-If you are building a package that utilizes Blade components or placing components in non-conventional directories, you will need to manually register your component class and its HTML tag alias so that Laravel knows where to find the component. You should typically register your components in the `boot` method of your package's service provider:
+Bladeコンポーネントを利用するパッケージを構築している場合、またはコンポーネントを非標準的なディレクトリに配置している場合、Laravelがコンポーネントを見つける場所を知るために、コンポーネントクラスとそのHTMLタグエイリアスを手動で登録する必要があります。通常、パッケージのサービスプロバイダの`boot`メソッドでコンポーネントを登録する必要があります:
 
     use Illuminate\Support\Facades\Blade;
     use VendorPackage\View\Components\AlertComponent;
 
     /**
-     * Bootstrap your package's services.
+     * パッケージサービスのブートストラップ
      */
     public function boot(): void
     {
         Blade::component('package-alert', AlertComponent::class);
     }
 
-Once your component has been registered, it may be rendered using its tag alias:
+コンポーネントが登録されると、そのタグエイリアスを使用してレンダリングできます:
 
 ```blade
 <x-package-alert/>
 ```
 
 <a name="autoloading-package-components"></a>
-#### Autoloading Package Components
+#### パッケージコンポーネントの自動読み込み
 
-Alternatively, you may use the `componentNamespace` method to autoload component classes by convention. For example, a `Nightshade` package might have `Calendar` and `ColorPicker` components that reside within the `Nightshade\Views\Components` namespace:
+または、`componentNamespace`メソッドを使用して、規約に従ってコンポーネントクラスを自動読み込みすることもできます。例えば、`Nightshade`パッケージには`Calendar`と`ColorPicker`コンポーネントがあり、これらは`Nightshade\Views\Components`名前空間内にあります:
 
     use Illuminate\Support\Facades\Blade;
 
     /**
-     * Bootstrap your package's services.
+     * パッケージサービスのブートストラップ
      */
     public function boot(): void
     {
         Blade::componentNamespace('Nightshade\\Views\\Components', 'nightshade');
     }
 
-This will allow the usage of package components by their vendor namespace using the `package-name::` syntax:
+これにより、`package-name::`構文を使用してベンダー名前空間でパッケージコンポーネントを使用できます:
 
 ```blade
 <x-nightshade::calendar />
 <x-nightshade::color-picker />
 ```
 
-Blade will automatically detect the class that's linked to this component by pascal-casing the component name. Subdirectories are also supported using "dot" notation.
+Bladeは、コンポーネント名をパスカルケースにして、このコンポーネントにリンクされたクラスを自動的に検出します。サブディレクトリも「ドット」記法でサポートされています。
 
 <a name="anonymous-components"></a>
-#### Anonymous Components
+#### 匿名コンポーネント
 
-If your package contains anonymous components, they must be placed within a `components` directory of your package's "views" directory (as specified by the [`loadViewsFrom` method](#views)). Then, you may render them by prefixing the component name with the package's view namespace:
+パッケージに匿名コンポーネントが含まれている場合、それらはパッケージの「ビュー」ディレクトリの`components`ディレクトリ内に配置する必要があります（[`loadViewsFrom`メソッド](#views)で指定されたとおり）。その後、パッケージのビュー名前空間をプレフィックスとして付けてレンダリングできます:
 
 ```blade
 <x-courier::alert />
 ```
 
 <a name="about-artisan-command"></a>
-### "About" Artisan Command
+### "About" Artisanコマンド
 
-Laravel's built-in `about` Artisan command provides a synopsis of the application's environment and configuration. Packages may push additional information to this command's output via the `AboutCommand` class. Typically, this information may be added from your package service provider's `boot` method:
+Laravelの組み込み`about` Artisanコマンドは、アプリケーションの環境と設定の概要を提供します。パッケージは`AboutCommand`クラスを介してこのコマンドの出力に追加情報をプッシュできます。通常、この情報はパッケージサービスプロバイダの`boot`メソッドから追加されます:
 
     use Illuminate\Foundation\Console\AboutCommand;
 
     /**
-     * Bootstrap any application services.
+     * アプリケーションサービスのブートストラップ
      */
     public function boot(): void
     {
@@ -319,15 +319,15 @@ Laravel's built-in `about` Artisan command provides a synopsis of the applicatio
     }
 
 <a name="commands"></a>
-## Commands
+## コマンド
 
-To register your package's Artisan commands with Laravel, you may use the `commands` method. This method expects an array of command class names. Once the commands have been registered, you may execute them using the [Artisan CLI](/docs/{{version}}/artisan):
+パッケージのArtisanコマンドをLaravelに登録するには、`commands`メソッドを使用できます。このメソッドはコマンドクラス名の配列を期待します。コマンドが登録されると、[Artisan CLI](artisan.md)を使用して実行できます:
 
     use Courier\Console\Commands\InstallCommand;
     use Courier\Console\Commands\NetworkCommand;
 
     /**
-     * Bootstrap any package services.
+     * パッケージサービスのブートストラップ
      */
     public function boot(): void
     {
@@ -340,12 +340,12 @@ To register your package's Artisan commands with Laravel, you may use the `comma
     }
 
 <a name="public-assets"></a>
-## Public Assets
+## 公開アセット
 
-Your package may have assets such as JavaScript, CSS, and images. To publish these assets to the application's `public` directory, use the service provider's `publishes` method. In this example, we will also add a `public` asset group tag, which may be used to easily publish groups of related assets:
+パッケージには、JavaScript、CSS、画像などのアセットが含まれている場合があります。これらのアセットをアプリケーションの`public`ディレクトリに公開するには、サービスプロバイダの`publishes`メソッドを使用します。この例では、関連するアセットのグループを簡単に公開できるように、`public`アセットグループタグも追加します:
 
     /**
-     * Bootstrap any package services.
+     * パッケージサービスのブートストラップ
      */
     public function boot(): void
     {
@@ -354,19 +354,19 @@ Your package may have assets such as JavaScript, CSS, and images. To publish the
         ], 'public');
     }
 
-Now, when your package's users execute the `vendor:publish` command, your assets will be copied to the specified publish location. Since users will typically need to overwrite the assets every time the package is updated, you may use the `--force` flag:
+これで、パッケージのユーザーが`vendor:publish`コマンドを実行すると、アセットが指定された公開場所にコピーされます。パッケージが更新されるたびにアセットを上書きする必要があるため、`--force`フラグを使用できます:
 
 ```shell
 php artisan vendor:publish --tag=public --force
 ```
 
 <a name="publishing-file-groups"></a>
-## Publishing File Groups
+## ファイルグループの公開
 
-You may want to publish groups of package assets and resources separately. For instance, you might want to allow your users to publish your package's configuration files without being forced to publish your package's assets. You may do this by "tagging" them when calling the `publishes` method from a package's service provider. For example, let's use tags to define two publish groups for the `courier` package (`courier-config` and `courier-migrations`) in the `boot` method of the package's service provider:
+パッケージのアセットとリソースのグループを個別に公開したい場合があります。例えば、パッケージの設定ファイルを公開させたいが、パッケージのアセットを公開させたくない場合があります。これを行うには、パッケージのサービスプロバイダから`publishes`メソッドを呼び出す際に「タグ」を付けます。例えば、`courier`パッケージのサービスプロバイダの`boot`メソッドで、2つの公開グループ（`courier-config`と`courier-migrations`）を定義します:
 
     /**
-     * Bootstrap any package services.
+     * パッケージサービスのブートストラップ
      */
     public function boot(): void
     {
@@ -379,7 +379,7 @@ You may want to publish groups of package assets and resources separately. For i
         ], 'courier-migrations');
     }
 
-Now your users may publish these groups separately by referencing their tag when executing the `vendor:publish` command:
+これで、ユーザーは`vendor:publish`コマンドを実行する際にタグを参照することで、これらのグループを個別に公開できます:
 
 ```shell
 php artisan vendor:publish --tag=courier-config

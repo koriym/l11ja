@@ -1,233 +1,238 @@
-# Database: Migrations
+# データベース: マイグレーション
 
-- [Introduction](#introduction)
-- [Generating Migrations](#generating-migrations)
-    - [Squashing Migrations](#squashing-migrations)
-- [Migration Structure](#migration-structure)
-- [Running Migrations](#running-migrations)
-    - [Rolling Back Migrations](#rolling-back-migrations)
-- [Tables](#tables)
-    - [Creating Tables](#creating-tables)
-    - [Updating Tables](#updating-tables)
-    - [Renaming / Dropping Tables](#renaming-and-dropping-tables)
-- [Columns](#columns)
-    - [Creating Columns](#creating-columns)
-    - [Available Column Types](#available-column-types)
-    - [Column Modifiers](#column-modifiers)
-    - [Modifying Columns](#modifying-columns)
-    - [Renaming Columns](#renaming-columns)
-    - [Dropping Columns](#dropping-columns)
-- [Indexes](#indexes)
-    - [Creating Indexes](#creating-indexes)
-    - [Renaming Indexes](#renaming-indexes)
-    - [Dropping Indexes](#dropping-indexes)
-    - [Foreign Key Constraints](#foreign-key-constraints)
-- [Events](#events)
+- [はじめに](#introduction)
+- [マイグレーションの生成](#generating-migrations)
+    - [マイグレーションの圧縮](#squashing-migrations)
+- [マイグレーションの構造](#migration-structure)
+- [マイグレーションの実行](#running-migrations)
+    - [マイグレーションのロールバック](#rolling-back-migrations)
+- [テーブル](#tables)
+    - [テーブルの作成](#creating-tables)
+    - [テーブルの更新](#updating-tables)
+    - [テーブルのリネームと削除](#renaming-and-dropping-tables)
+- [カラム](#columns)
+    - [カラムの作成](#creating-columns)
+    - [利用可能なカラムタイプ](#available-column-types)
+    - [カラム修飾子](#column-modifiers)
+    - [カラムの変更](#modifying-columns)
+    - [カラムのリネーム](#renaming-columns)
+    - [カラムの削除](#dropping-columns)
+- [インデックス](#indexes)
+    - [インデックスの作成](#creating-indexes)
+    - [インデックスのリネーム](#renaming-indexes)
+    - [インデックスの削除](#dropping-indexes)
+    - [外部キー制約](#foreign-key-constraints)
+- [イベント](#events)
 
 <a name="introduction"></a>
-## Introduction
+## はじめに
 
-Migrations are like version control for your database, allowing your team to define and share the application's database schema definition. If you have ever had to tell a teammate to manually add a column to their local database schema after pulling in your changes from source control, you've faced the problem that database migrations solve.
+マイグレーションはデータベースのバージョン管理のようなもので、チームがアプリケーションのデータベーススキーマ定義を共有し、変更を加えることを可能にします。ソース管理から変更を取り込んだ後、チームメイトに手動でローカルデータベーススキーマにカラムを追加するように伝える必要があったことがあるなら、データベースマイグレーションが解決する問題に直面したことになります。
 
-The Laravel `Schema` [facade](/docs/{{version}}/facades) provides database agnostic support for creating and manipulating tables across all of Laravel's supported database systems. Typically, migrations will use this facade to create and modify database tables and columns.
+Laravelの`Schema` [ファサード](facades.md)は、Laravelがサポートするすべてのデータベースシステムに対して、テーブルの作成と操作をデータベースに依存しない形で提供します。通常、マイグレーションはこのファサードを使用して、データベーステーブルとカラムを作成および変更します。
 
 <a name="generating-migrations"></a>
-## Generating Migrations
+## マイグレーションの生成
 
-You may use the `make:migration` [Artisan command](/docs/{{version}}/artisan) to generate a database migration. The new migration will be placed in your `database/migrations` directory. Each migration filename contains a timestamp that allows Laravel to determine the order of the migrations:
+データベースマイグレーションを生成するには、`make:migration` [Artisanコマンド](artisan.md)を使用します。新しいマイグレーションは`database/migrations`ディレクトリに配置されます。各マイグレーションファイル名にはタイムスタンプが含まれており、Laravelはこれを使用してマイグレーションの順序を決定します。
 
 ```shell
 php artisan make:migration create_flights_table
 ```
 
-Laravel will use the name of the migration to attempt to guess the name of the table and whether or not the migration will be creating a new table. If Laravel is able to determine the table name from the migration name, Laravel will pre-fill the generated migration file with the specified table. Otherwise, you may simply specify the table in the migration file manually.
+Laravelはマイグレーション名を使用して、テーブル名とマイグレーションが新しいテーブルを作成するかどうかを推測しようとします。Laravelがマイグレーション名からテーブル名を推測できる場合、Laravelは生成されたマイグレーションファイルに指定されたテーブルを事前に入力します。それ以外の場合は、マイグレーションファイルでテーブルを手動で指定するだけです。
 
-If you would like to specify a custom path for the generated migration, you may use the `--path` option when executing the `make:migration` command. The given path should be relative to your application's base path.
+生成されたマイグレーションのカスタムパスを指定したい場合は、`make:migration`コマンドを実行する際に`--path`オプションを使用できます。指定されたパスは、アプリケーションのベースパスからの相対パスである必要があります。
 
-> [!NOTE]  
-> Migration stubs may be customized using [stub publishing](/docs/{{version}}/artisan#stub-customization).
+> NOTE:  
+> マイグレーションスタブは、[スタブの公開](artisan.md#stub-customization)を使用してカスタマイズできます。
 
 <a name="squashing-migrations"></a>
-### Squashing Migrations
+### マイグレーションの圧縮
 
-As you build your application, you may accumulate more and more migrations over time. This can lead to your `database/migrations` directory becoming bloated with potentially hundreds of migrations. If you would like, you may "squash" your migrations into a single SQL file. To get started, execute the `schema:dump` command:
+アプリケーションを構築するにつれて、時間の経過とともにマイグレーションが増えていく可能性があります。これにより、`database/migrations`ディレクトリが数百のマイグレーションで肥大化する可能性があります。必要に応じて、マイグレーションを1つのSQLファイルに「圧縮」することができます。開始するには、`schema:dump`コマンドを実行します。
 
 ```shell
 php artisan schema:dump
 
-# Dump the current database schema and prune all existing migrations...
+# 現在のデータベーススキーマをダンプし、既存のすべてのマイグレーションを削除する...
 php artisan schema:dump --prune
 ```
 
-When you execute this command, Laravel will write a "schema" file to your application's `database/schema` directory. The schema file's name will correspond to the database connection. Now, when you attempt to migrate your database and no other migrations have been executed, Laravel will first execute the SQL statements in the schema file of the database connection you are using. After executing the schema file's SQL statements, Laravel will execute any remaining migrations that were not part of the schema dump.
+このコマンドを実行すると、Laravelはアプリケーションの`database/schema`ディレクトリに「スキーマ」ファイルを書き込みます。スキーマファイルの名前は、データベース接続に対応します。これで、データベースをマイグレーションしようとしても、他のマイグレーションが実行されていない場合、Laravelは最初に使用しているデータベース接続のスキーマファイル内のSQL文を実行します。スキーマファイルのSQL文が実行された後、Laravelはスキーマダンプの一部ではなかった残りのマイグレーションを実行します。
 
-If your application's tests use a different database connection than the one you typically use during local development, you should ensure you have dumped a schema file using that database connection so that your tests are able to build your database. You may wish to do this after dumping the database connection you typically use during local development:
+アプリケーションのテストが、ローカル開発中に通常使用するものとは異なるデータベース接続を使用している場合、そのデータベース接続を使用してスキーマファイルをダンプしていることを確認する必要があります。これにより、テストがデータベースを構築できるようになります。ローカル開発中に通常使用するデータベース接続をダンプした後に、これを行うことをお勧めします。
 
 ```shell
 php artisan schema:dump
 php artisan schema:dump --database=testing --prune
 ```
 
-You should commit your database schema file to source control so that other new developers on your team may quickly create your application's initial database structure.
+データベーススキーマファイルをソース管理にコミットして、チームの他の新しい開発者がアプリケーションの初期データベース構造をすばやく作成できるようにする必要があります。
 
-> [!WARNING]  
-> Migration squashing is only available for the MariaDB, MySQL, PostgreSQL, and SQLite databases and utilizes the database's command-line client.
+> WARNING:  
+> マイグレーションの圧縮は、MariaDB、MySQL、PostgreSQL、およびSQLiteデータベースでのみ利用可能であり、データベースのコマンドラインクライアントを利用します。
 
 <a name="migration-structure"></a>
-## Migration Structure
+## マイグレーションの構造
 
-A migration class contains two methods: `up` and `down`. The `up` method is used to add new tables, columns, or indexes to your database, while the `down` method should reverse the operations performed by the `up` method.
+マイグレーションクラスには、`up`と`down`の2つのメソッドが含まれています。`up`メソッドは、データベースに新しいテーブル、カラム、またはインデックスを追加するために使用され、`down`メソッドは`up`メソッドによって実行された操作を元に戻す必要があります。
 
-Within both of these methods, you may use the Laravel schema builder to expressively create and modify tables. To learn about all of the methods available on the `Schema` builder, [check out its documentation](#creating-tables). For example, the following migration creates a `flights` table:
+これらのメソッドの両方で、Laravelのスキーマビルダを使用して、テーブルの作成と変更を表現的に行うことができます。`Schema`ビルダで利用可能なすべてのメソッドについては、[そのドキュメント](#creating-tables)を参照してください。例えば、次のマイグレーションは`flights`テーブルを作成します。
 
-    <?php
+```php
+<?php
 
-    use Illuminate\Database\Migrations\Migration;
-    use Illuminate\Database\Schema\Blueprint;
-    use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-    return new class extends Migration
-    {
-        /**
-         * Run the migrations.
-         */
-        public function up(): void
-        {
-            Schema::create('flights', function (Blueprint $table) {
-                $table->id();
-                $table->string('name');
-                $table->string('airline');
-                $table->timestamps();
-            });
-        }
-
-        /**
-         * Reverse the migrations.
-         */
-        public function down(): void
-        {
-            Schema::drop('flights');
-        }
-    };
-
-<a name="setting-the-migration-connection"></a>
-#### Setting the Migration Connection
-
-If your migration will be interacting with a database connection other than your application's default database connection, you should set the `$connection` property of your migration:
-
+return new class extends Migration
+{
     /**
-     * The database connection that should be used by the migration.
-     *
-     * @var string
-     */
-    protected $connection = 'pgsql';
-
-    /**
-     * Run the migrations.
+     * マイグレーションを実行する。
      */
     public function up(): void
     {
-        // ...
+        Schema::create('flights', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('airline');
+            $table->timestamps();
+        });
     }
 
-<a name="running-migrations"></a>
-## Running Migrations
+    /**
+     * マイグレーションを元に戻す。
+     */
+    public function down(): void
+    {
+        Schema::drop('flights');
+    }
+};
+```
 
-To run all of your outstanding migrations, execute the `migrate` Artisan command:
+<a name="setting-the-migration-connection"></a>
+#### マイグレーション接続の設定
+
+マイグレーションがアプリケーションのデフォルトのデータベース接続以外のデータベース接続と対話する場合、マイグレーションの`$connection`プロパティを設定する必要があります。
+
+```php
+/**
+ * マイグレーションで使用するデータベース接続。
+ *
+ * @var string
+ */
+protected $connection = 'pgsql';
+
+/**
+ * マイグレーションを実行する。
+ */
+public function up(): void
+{
+    // ...
+}
+```
+
+<a name="running-migrations"></a>
+## マイグレーションの実行
+
+保留中のすべてのマイグレーションを実行するには、`migrate` Artisanコマンドを実行します。
 
 ```shell
 php artisan migrate
 ```
 
-If you would like to see which migrations have run thus far, you may use the `migrate:status` Artisan command:
+これまでに実行されたマイグレーションを確認したい場合は、`migrate:status` Artisanコマンドを使用できます。
 
 ```shell
 php artisan migrate:status
 ```
 
-If you would like to see the SQL statements that will be executed by the migrations without actually running them, you may provide the `--pretend` flag to the `migrate` command:
+マイグレーションが実行されるSQL文を実際に実行せずに確認したい場合は、`migrate`コマンドに`--pretend`フラグを指定できます。
 
 ```shell
 php artisan migrate --pretend
 ```
 
-#### Isolating Migration Execution
+#### マイグレーション実行の分離
 
-If you are deploying your application across multiple servers and running migrations as part of your deployment process, you likely do not want two servers attempting to migrate the database at the same time. To avoid this, you may use the `isolated` option when invoking the `migrate` command.
+アプリケーションを複数のサーバーにデプロイし、デプロイプロセスの一部としてマイグレーションを実行する場合、2つのサーバーが同時にデータベースをマイグレーションしようとしないようにする必要があります。これを回避するには、`migrate`コマンドを呼び出す際に`isolated`オプションを使用できます。
 
-When the `isolated` option is provided, Laravel will acquire an atomic lock using your application's cache driver before attempting to run your migrations. All other attempts to run the `migrate` command while that lock is held will not execute; however, the command will still exit with a successful exit status code:
+`isolated`オプションが提供されると、Laravelはアプリケーションのキャッシュドライバを使用してアトミックロックを取得し、マイグレーションの実行を試みる前に保持します。そのロックが保持されている間に`migrate`コマンドを実行しようとする他のすべての試みは実行されません。ただし、コマンドは成功した終了ステータスコードで終了します。
 
 ```shell
 php artisan migrate --isolated
 ```
 
-> [!WARNING]  
-> To utilize this feature, your application must be using the `memcached`, `redis`, `dynamodb`, `database`, `file`, or `array` cache driver as your application's default cache driver. In addition, all servers must be communicating with the same central cache server.
+> WARNING:  
+> この機能を利用するには、アプリケーションが`memcached`、`redis`、`dynamodb`、`database`、`file`、または`array`キャッシュドライバをアプリケーションのデフォルトキャッシュドライバとして使用する必要があります。さらに、すべてのサーバーが同じ中央キャッシュサーバーと通信する必要があります。
 
 <a name="forcing-migrations-to-run-in-production"></a>
-#### Forcing Migrations to Run in Production
+#### 本番環境でのマイグレーションの強制実行
 
-Some migration operations are destructive, which means they may cause you to lose data. In order to protect you from running these commands against your production database, you will be prompted for confirmation before the commands are executed. To force the commands to run without a prompt, use the `--force` flag:
+一部のマイグレーション操作は破壊的であり、データを失う可能性があります。本番データベースに対してこれらのコマンドを実行することを保護するために、コマンドの実行前に確認を求められます。確認なしでコマンドを強制実行するには、`--force`フラグを使用します。
 
 ```shell
 php artisan migrate --force
 ```
 
 <a name="rolling-back-migrations"></a>
-### Rolling Back Migrations
+### マイグレーションのロールバック
 
-To roll back the latest migration operation, you may use the `rollback` Artisan command. This command rolls back the last "batch" of migrations, which may include multiple migration files:
+最新のマイグレーション操作をロールバックするには、`rollback` Artisanコマンドを使用できます。このコマンドは、最後の「バッチ」のマイグレーションをロールバックします。これには複数のマイグレーションファイルが含まれる場合があります。
 
 ```shell
 php artisan migrate:rollback
 ```
 
-You may roll back a limited number of migrations by providing the `step` option to the `rollback` command. For example, the following command will roll back the last five migrations:
+`rollback`コマンドに`step`オプションを指定することで、限られた数のマイグレーションをロールバックできます。例えば、次のコマンドは最後の5つのマイグレーションをロールバックします。
 
 ```shell
 php artisan migrate:rollback --step=5
 ```
 
-You may roll back a specific "batch" of migrations by providing the `batch` option to the `rollback` command, where the `batch` option corresponds to a batch value within your application's `migrations` database table. For example, the following command will roll back all migrations in batch three:
+`rollback`コマンドに`batch`オプションを指定することで、特定の「バッチ」のマイグレーションをロールバックできます。`batch`オプションは、アプリケーションの`migrations`データベーステーブル内のバッチ値に対応します。例えば、次のコマンドはバッチ3のすべてのマイグレーションをロールバックします。
 
- ```shell
+```shell
 php artisan migrate:rollback --batch=3
- ```
+```
 
-If you would like to see the SQL statements that will be executed by the migrations without actually running them, you may provide the `--pretend` flag to the `migrate:rollback` command:
+マイグレーションが実行されるSQL文を実際に実行せずに確認したい場合は、`migrate:rollback`コマンドに`--pretend`フラグを指定できます。
 
 ```shell
 php artisan migrate:rollback --pretend
 ```
 
-The `migrate:reset` command will roll back all of your application's migrations:
+`migrate:reset`コマンドは、アプリケーションのすべてのマイグレーションをロールバックします。
 
 ```shell
 php artisan migrate:reset
 ```
 
 <a name="roll-back-migrate-using-a-single-command"></a>
-#### Roll Back and Migrate Using a Single Command
+#### 単一のコマンドでのロールバックとマイグレーション
 
-The `migrate:refresh` command will roll back all of your migrations and then execute the `migrate` command. This command effectively re-creates your entire database:
+`migrate:refresh`コマンドは、すべてのマイグレーションをロールバックし、`migrate`コマンドを実行します。このコマンドは、データベース全体を効果的に再作成します。
 
 ```shell
 php artisan migrate:refresh
+```
 
-# Refresh the database and run all database seeds...
+# データベースをリフレッシュし、すべてのデータベースシードを実行する...
 php artisan migrate:refresh --seed
 ```
 
-You may roll back and re-migrate a limited number of migrations by providing the `step` option to the `refresh` command. For example, the following command will roll back and re-migrate the last five migrations:
+`refresh`コマンドに`step`オプションを指定することで、限られた数のマイグレーションのみをロールバックして再マイグレーションすることができます。例えば、以下のコマンドは最後の5つのマイグレーションをロールバックして再マイグレーションします：
 
 ```shell
 php artisan migrate:refresh --step=5
 ```
 
 <a name="drop-all-tables-migrate"></a>
-#### Drop All Tables and Migrate
+#### すべてのテーブルを削除してマイグレーションを実行
 
-The `migrate:fresh` command will drop all tables from the database and then execute the `migrate` command:
+`migrate:fresh`コマンドは、データベースからすべてのテーブルを削除し、その後`migrate`コマンドを実行します：
 
 ```shell
 php artisan migrate:fresh
@@ -235,22 +240,22 @@ php artisan migrate:fresh
 php artisan migrate:fresh --seed
 ```
 
-By default, the `migrate:fresh` command only drops tables from the default database connection. However, you may use the `--database` option to specify the database connection that should be migrated. The database connection name should correspond to a connection defined in your application's `database` [configuration file](/docs/{{version}}/configuration):
+デフォルトでは、`migrate:fresh`コマンドはデフォルトのデータベース接続からテーブルを削除します。ただし、`--database`オプションを使用して、マイグレーションするデータベース接続を指定できます。データベース接続名は、アプリケーションの`database`[設定ファイル](configuration.md)で定義された接続に対応する必要があります：
 
 ```shell
 php artisan migrate:fresh --database=admin
 ```
 
-> [!WARNING]  
-> The `migrate:fresh` command will drop all database tables regardless of their prefix. This command should be used with caution when developing on a database that is shared with other applications.
+> WARNING:  
+> `migrate:fresh`コマンドは、プレフィックスに関係なくすべてのデータベーステーブルを削除します。このコマンドは、他のアプリケーションと共有されているデータベースで開発する際には注意して使用してください。
 
 <a name="tables"></a>
-## Tables
+## テーブル
 
 <a name="creating-tables"></a>
-### Creating Tables
+### テーブルの作成
 
-To create a new database table, use the `create` method on the `Schema` facade. The `create` method accepts two arguments: the first is the name of the table, while the second is a closure which receives a `Blueprint` object that may be used to define the new table:
+新しいデータベーステーブルを作成するには、`Schema`ファサードの`create`メソッドを使用します。`create`メソッドは2つの引数を受け取ります：最初の引数はテーブルの名前で、2番目の引数は新しいテーブルを定義するために使用できる`Blueprint`オブジェクトを受け取るクロージャです：
 
     use Illuminate\Database\Schema\Blueprint;
     use Illuminate\Support\Facades\Schema;
@@ -262,35 +267,35 @@ To create a new database table, use the `create` method on the `Schema` facade. 
         $table->timestamps();
     });
 
-When creating the table, you may use any of the schema builder's [column methods](#creating-columns) to define the table's columns.
+テーブルを作成する際に、スキーマビルダーの[カラムメソッド](#creating-columns)を使用してテーブルのカラムを定義できます。
 
 <a name="determining-table-column-existence"></a>
-#### Determining Table / Column Existence
+#### テーブル/カラムの存在確認
 
-You may determine the existence of a table, column, or index using the `hasTable`, `hasColumn`, and `hasIndex` methods:
+`hasTable`、`hasColumn`、`hasIndex`メソッドを使用して、テーブル、カラム、またはインデックスの存在を確認できます：
 
     if (Schema::hasTable('users')) {
-        // The "users" table exists...
+        // "users" テーブルが存在する...
     }
 
     if (Schema::hasColumn('users', 'email')) {
-        // The "users" table exists and has an "email" column...
+        // "users" テーブルが存在し、"email" カラムを持つ...
     }
 
     if (Schema::hasIndex('users', ['email'], 'unique')) {
-        // The "users" table exists and has a unique index on the "email" column...
+        // "users" テーブルが存在し、"email" カラムに一意のインデックスがある...
     }
 
 <a name="database-connection-table-options"></a>
-#### Database Connection and Table Options
+#### データベース接続とテーブルオプション
 
-If you want to perform a schema operation on a database connection that is not your application's default connection, use the `connection` method:
+アプリケーションのデフォルト接続以外のデータベース接続でスキーマ操作を実行したい場合は、`connection`メソッドを使用します：
 
     Schema::connection('sqlite')->create('users', function (Blueprint $table) {
         $table->id();
     });
 
-In addition, a few other properties and methods may be used to define other aspects of the table's creation. The `engine` property may be used to specify the table's storage engine when using MariaDB or MySQL:
+さらに、テーブル作成の他の側面を定義するために、いくつかの他のプロパティとメソッドを使用できます。`engine`プロパティは、MariaDBまたはMySQLを使用する際にテーブルのストレージエンジンを指定するために使用できます：
 
     Schema::create('users', function (Blueprint $table) {
         $table->engine('InnoDB');
@@ -298,7 +303,7 @@ In addition, a few other properties and methods may be used to define other aspe
         // ...
     });
 
-The `charset` and `collation` properties may be used to specify the character set and collation for the created table when using MariaDB or MySQL:
+`charset`と`collation`プロパティは、MariaDBまたはMySQLを使用する際に作成されるテーブルの文字セットと照合順序を指定するために使用できます：
 
     Schema::create('users', function (Blueprint $table) {
         $table->charset('utf8mb4');
@@ -307,7 +312,7 @@ The `charset` and `collation` properties may be used to specify the character se
         // ...
     });
 
-The `temporary` method may be used to indicate that the table should be "temporary". Temporary tables are only visible to the current connection's database session and are dropped automatically when the connection is closed:
+`temporary`メソッドは、テーブルが「一時的」であることを示すために使用できます。一時テーブルは現在の接続のデータベースセッションにのみ表示され、接続が閉じられると自動的に削除されます：
 
     Schema::create('calculations', function (Blueprint $table) {
         $table->temporary();
@@ -315,7 +320,7 @@ The `temporary` method may be used to indicate that the table should be "tempora
         // ...
     });
 
-If you would like to add a "comment" to a database table, you may invoke the `comment` method on the table instance. Table comments are currently only supported by MariaDB, MySQL, and PostgreSQL:
+データベーステーブルに「コメント」を追加したい場合は、テーブルインスタンスの`comment`メソッドを呼び出すことができます。テーブルコメントは現在、MariaDB、MySQL、およびPostgreSQLでのみサポートされています：
 
     Schema::create('calculations', function (Blueprint $table) {
         $table->comment('Business calculations');
@@ -324,9 +329,9 @@ If you would like to add a "comment" to a database table, you may invoke the `co
     });
 
 <a name="updating-tables"></a>
-### Updating Tables
+### テーブルの更新
 
-The `table` method on the `Schema` facade may be used to update existing tables. Like the `create` method, the `table` method accepts two arguments: the name of the table and a closure that receives a `Blueprint` instance you may use to add columns or indexes to the table:
+`Schema`ファサードの`table`メソッドは、既存のテーブルを更新するために使用できます。`create`メソッドと同様に、`table`メソッドは2つの引数を受け取ります：テーブルの名前と、テーブルにカラムやインデックスを追加するために使用できる`Blueprint`インスタンスを受け取るクロージャです：
 
     use Illuminate\Database\Schema\Blueprint;
     use Illuminate\Support\Facades\Schema;
@@ -336,32 +341,32 @@ The `table` method on the `Schema` facade may be used to update existing tables.
     });
 
 <a name="renaming-and-dropping-tables"></a>
-### Renaming / Dropping Tables
+### テーブルのリネーム/削除
 
-To rename an existing database table, use the `rename` method:
+既存のデータベーステーブルの名前を変更するには、`rename`メソッドを使用します：
 
     use Illuminate\Support\Facades\Schema;
 
     Schema::rename($from, $to);
 
-To drop an existing table, you may use the `drop` or `dropIfExists` methods:
+既存のテーブルを削除するには、`drop`または`dropIfExists`メソッドを使用できます：
 
     Schema::drop('users');
 
     Schema::dropIfExists('users');
 
 <a name="renaming-tables-with-foreign-keys"></a>
-#### Renaming Tables With Foreign Keys
+#### 外部キーを持つテーブルのリネーム
 
-Before renaming a table, you should verify that any foreign key constraints on the table have an explicit name in your migration files instead of letting Laravel assign a convention based name. Otherwise, the foreign key constraint name will refer to the old table name.
+テーブルの名前を変更する前に、テーブル上の外部キー制約がマイグレーションファイル内で明示的な名前を持っていることを確認してください。そうでない場合、外部キー制約名は古いテーブル名を参照することになります。
 
 <a name="columns"></a>
-## Columns
+## カラム
 
 <a name="creating-columns"></a>
-### Creating Columns
+### カラムの作成
 
-The `table` method on the `Schema` facade may be used to update existing tables. Like the `create` method, the `table` method accepts two arguments: the name of the table and a closure that receives an `Illuminate\Database\Schema\Blueprint` instance you may use to add columns to the table:
+`Schema`ファサードの`table`メソッドは、既存のテーブルを更新するために使用できます。`create`メソッドと同様に、`table`メソッドは2つの引数を受け取ります：テーブルの名前と、テーブルにカラムを追加するために使用できる`Illuminate\Database\Schema\Blueprint`インスタンスを受け取るクロージャです：
 
     use Illuminate\Database\Schema\Blueprint;
     use Illuminate\Support\Facades\Schema;
@@ -371,9 +376,9 @@ The `table` method on the `Schema` facade may be used to update existing tables.
     });
 
 <a name="available-column-types"></a>
-### Available Column Types
+### 利用可能なカラムタイプ
 
-The schema builder blueprint offers a variety of methods that correspond to the different types of columns you can add to your database tables. Each of the available methods are listed in the table below:
+スキーマビルダーブループリントは、データベーステーブルに追加できるさまざまなタイプのカラムに対応するさまざまなメソッドを提供します。以下の表に、利用可能な各メソッドを示します：
 
 <style>
     .collection-method-list > p {
@@ -465,25 +470,25 @@ The schema builder blueprint offers a variety of methods that correspond to the 
 <a name="column-method-bigIncrements"></a>
 #### `bigIncrements()` {.collection-method .first-collection-method}
 
-The `bigIncrements` method creates an auto-incrementing `UNSIGNED BIGINT` (primary key) equivalent column:
+`bigIncrements`メソッドは、自動増分する`UNSIGNED BIGINT`（主キー）相当のカラムを作成します：
 
     $table->bigIncrements('id');
 
 <a name="column-method-bigInteger"></a>
 #### `bigInteger()` {.collection-method}
 
-The `bigInteger` method creates a `BIGINT` equivalent column:
+`bigInteger`メソッドは、`BIGINT`相当のカラムを作成します：
 
     $table->bigInteger('votes');
 
 <a name="column-method-binary"></a>
 #### `binary()` {.collection-method}
 
-The `binary` method creates a `BLOB` equivalent column:
+`binary`メソッドは、`BLOB`相当のカラムを作成します：
 
     $table->binary('photo');
 
-When utilizing MySQL, MariaDB, or SQL Server, you may pass `length` and `fixed` arguments to create `VARBINARY` or `BINARY` equivalent column:
+MySQL、MariaDB、またはSQL Serverを使用する場合、`length`と`fixed`引数を渡して、`VARBINARY`または`BINARY`相当のカラムを作成できます：
 
     $table->binary('data', length: 16); // VARBINARY(16)
 
@@ -492,443 +497,443 @@ When utilizing MySQL, MariaDB, or SQL Server, you may pass `length` and `fixed` 
 <a name="column-method-boolean"></a>
 #### `boolean()` {.collection-method}
 
-The `boolean` method creates a `BOOLEAN` equivalent column:
+`boolean`メソッドは、`BOOLEAN`相当のカラムを作成します。
 
     $table->boolean('confirmed');
 
 <a name="column-method-char"></a>
 #### `char()` {.collection-method}
 
-The `char` method creates a `CHAR` equivalent column with of a given length:
+`char`メソッドは、指定された長さの`CHAR`相当のカラムを作成します。
 
     $table->char('name', length: 100);
 
 <a name="column-method-dateTimeTz"></a>
 #### `dateTimeTz()` {.collection-method}
 
-The `dateTimeTz` method creates a `DATETIME` (with timezone) equivalent column with an optional fractional seconds precision:
+`dateTimeTz`メソッドは、オプションの小数秒精度を持つ`DATETIME`（タイムゾーン付き）相当のカラムを作成します。
 
     $table->dateTimeTz('created_at', precision: 0);
 
 <a name="column-method-dateTime"></a>
 #### `dateTime()` {.collection-method}
 
-The `dateTime` method creates a `DATETIME` equivalent column with an optional fractional seconds precision:
+`dateTime`メソッドは、オプションの小数秒精度を持つ`DATETIME`相当のカラムを作成します。
 
     $table->dateTime('created_at', precision: 0);
 
 <a name="column-method-date"></a>
 #### `date()` {.collection-method}
 
-The `date` method creates a `DATE` equivalent column:
+`date`メソッドは、`DATE`相当のカラムを作成します。
 
     $table->date('created_at');
 
 <a name="column-method-decimal"></a>
 #### `decimal()` {.collection-method}
 
-The `decimal` method creates a `DECIMAL` equivalent column with the given precision (total digits) and scale (decimal digits):
+`decimal`メソッドは、指定された精度（全体の桁数）とスケール（小数点以下の桁数）を持つ`DECIMAL`相当のカラムを作成します。
 
     $table->decimal('amount', total: 8, places: 2);
 
 <a name="column-method-double"></a>
 #### `double()` {.collection-method}
 
-The `double` method creates a `DOUBLE` equivalent column:
+`double`メソッドは、`DOUBLE`相当のカラムを作成します。
 
     $table->double('amount');
 
 <a name="column-method-enum"></a>
 #### `enum()` {.collection-method}
 
-The `enum` method creates a `ENUM` equivalent column with the given valid values:
+`enum`メソッドは、指定された有効な値を持つ`ENUM`相当のカラムを作成します。
 
     $table->enum('difficulty', ['easy', 'hard']);
 
 <a name="column-method-float"></a>
 #### `float()` {.collection-method}
 
-The `float` method creates a `FLOAT` equivalent column with the given precision:
+`float`メソッドは、指定された精度を持つ`FLOAT`相当のカラムを作成します。
 
     $table->float('amount', precision: 53);
 
 <a name="column-method-foreignId"></a>
 #### `foreignId()` {.collection-method}
 
-The `foreignId` method creates an `UNSIGNED BIGINT` equivalent column:
+`foreignId`メソッドは、`UNSIGNED BIGINT`相当のカラムを作成します。
 
     $table->foreignId('user_id');
 
 <a name="column-method-foreignIdFor"></a>
 #### `foreignIdFor()` {.collection-method}
 
-The `foreignIdFor` method adds a `{column}_id` equivalent column for a given model class. The column type will be `UNSIGNED BIGINT`, `CHAR(36)`, or `CHAR(26)` depending on the model key type:
+`foreignIdFor`メソッドは、指定されたモデルクラスに対して`{column}_id`相当のカラムを追加します。カラムの型は、モデルのキータイプに応じて`UNSIGNED BIGINT`、`CHAR(36)`、または`CHAR(26)`になります。
 
     $table->foreignIdFor(User::class);
 
 <a name="column-method-foreignUlid"></a>
 #### `foreignUlid()` {.collection-method}
 
-The `foreignUlid` method creates a `ULID` equivalent column:
+`foreignUlid`メソッドは、`ULID`相当のカラムを作成します。
 
     $table->foreignUlid('user_id');
 
 <a name="column-method-foreignUuid"></a>
 #### `foreignUuid()` {.collection-method}
 
-The `foreignUuid` method creates a `UUID` equivalent column:
+`foreignUuid`メソッドは、`UUID`相当のカラムを作成します。
 
     $table->foreignUuid('user_id');
 
 <a name="column-method-geography"></a>
 #### `geography()` {.collection-method}
 
-The `geography` method creates a `GEOGRAPHY` equivalent column with the given spatial type and SRID (Spatial Reference System Identifier):
+`geography`メソッドは、指定された空間タイプとSRID（空間参照系識別子）を持つ`GEOGRAPHY`相当のカラムを作成します。
 
     $table->geography('coordinates', subtype: 'point', srid: 4326);
 
-> [!NOTE]  
-> Support for spatial types depends on your database driver. Please refer to your database's documentation. If your application is utilizing a PostgreSQL database, you must install the [PostGIS](https://postgis.net) extension before the `geography` method may be used.
+> NOTE:  
+> 空間タイプのサポートは、データベースドライバに依存します。詳細については、データベースのドキュメントを参照してください。アプリケーションがPostgreSQLデータベースを使用している場合、`geography`メソッドを使用する前に[PostGIS](https://postgis.net)拡張機能をインストールする必要があります。
 
 <a name="column-method-geometry"></a>
 #### `geometry()` {.collection-method}
 
-The `geometry` method creates a `GEOMETRY` equivalent column with the given spatial type and SRID (Spatial Reference System Identifier):
+`geometry`メソッドは、指定された空間タイプとSRID（空間参照系識別子）を持つ`GEOMETRY`相当のカラムを作成します。
 
     $table->geometry('positions', subtype: 'point', srid: 0);
 
-> [!NOTE]  
-> Support for spatial types depends on your database driver. Please refer to your database's documentation. If your application is utilizing a PostgreSQL database, you must install the [PostGIS](https://postgis.net) extension before the `geometry` method may be used.
+> NOTE:  
+> 空間タイプのサポートは、データベースドライバに依存します。詳細については、データベースのドキュメントを参照してください。アプリケーションがPostgreSQLデータベースを使用している場合、`geometry`メソッドを使用する前に[PostGIS](https://postgis.net)拡張機能をインストールする必要があります。
 
 <a name="column-method-id"></a>
 #### `id()` {.collection-method}
 
-The `id` method is an alias of the `bigIncrements` method. By default, the method will create an `id` column; however, you may pass a column name if you would like to assign a different name to the column:
+`id`メソッドは、`bigIncrements`メソッドのエイリアスです。デフォルトでは、`id`カラムを作成しますが、カラムに別の名前を付けたい場合はカラム名を渡すことができます。
 
     $table->id();
 
 <a name="column-method-increments"></a>
 #### `increments()` {.collection-method}
 
-The `increments` method creates an auto-incrementing `UNSIGNED INTEGER` equivalent column as a primary key:
+`increments`メソッドは、自動増分する`UNSIGNED INTEGER`相当のカラムを主キーとして作成します。
 
     $table->increments('id');
 
 <a name="column-method-integer"></a>
 #### `integer()` {.collection-method}
 
-The `integer` method creates an `INTEGER` equivalent column:
+`integer`メソッドは、`INTEGER`相当のカラムを作成します。
 
     $table->integer('votes');
 
 <a name="column-method-ipAddress"></a>
 #### `ipAddress()` {.collection-method}
 
-The `ipAddress` method creates a `VARCHAR` equivalent column:
+`ipAddress`メソッドは、`VARCHAR`相当のカラムを作成します。
 
     $table->ipAddress('visitor');
 
-When using PostgreSQL, an `INET` column will be created.
+PostgreSQLを使用する場合、`INET`カラムが作成されます。
 
 <a name="column-method-json"></a>
 #### `json()` {.collection-method}
 
-The `json` method creates a `JSON` equivalent column:
+`json`メソッドは、`JSON`相当のカラムを作成します。
 
     $table->json('options');
 
 <a name="column-method-jsonb"></a>
 #### `jsonb()` {.collection-method}
 
-The `jsonb` method creates a `JSONB` equivalent column:
+`jsonb`メソッドは、`JSONB`相当のカラムを作成します。
 
     $table->jsonb('options');
 
 <a name="column-method-longText"></a>
 #### `longText()` {.collection-method}
 
-The `longText` method creates a `LONGTEXT` equivalent column:
+`longText`メソッドは、`LONGTEXT`相当のカラムを作成します。
 
     $table->longText('description');
 
-When utilizing MySQL or MariaDB, you may apply a `binary` character set to the column in order to create a `LONGBLOB` equivalent column:
+MySQLまたはMariaDBを使用する場合、`binary`文字セットをカラムに適用して`LONGBLOB`相当のカラムを作成できます。
 
     $table->longText('data')->charset('binary'); // LONGBLOB
 
 <a name="column-method-macAddress"></a>
 #### `macAddress()` {.collection-method}
 
-The `macAddress` method creates a column that is intended to hold a MAC address. Some database systems, such as PostgreSQL, have a dedicated column type for this type of data. Other database systems will use a string equivalent column:
+`macAddress`メソッドは、MACアドレスを保持することを意図したカラムを作成します。PostgreSQLなどの一部のデータベースシステムには、このタイプのデータに対して専用のカラムタイプがあります。他のデータベースシステムでは、文字列相当のカラムが使用されます。
 
     $table->macAddress('device');
 
 <a name="column-method-mediumIncrements"></a>
 #### `mediumIncrements()` {.collection-method}
 
-The `mediumIncrements` method creates an auto-incrementing `UNSIGNED MEDIUMINT` equivalent column as a primary key:
+`mediumIncrements`メソッドは、自動増分する`UNSIGNED MEDIUMINT`相当のカラムを主キーとして作成します。
 
     $table->mediumIncrements('id');
 
 <a name="column-method-mediumInteger"></a>
 #### `mediumInteger()` {.collection-method}
 
-The `mediumInteger` method creates a `MEDIUMINT` equivalent column:
+`mediumInteger`メソッドは、`MEDIUMINT`相当のカラムを作成します。
 
     $table->mediumInteger('votes');
 
 <a name="column-method-mediumText"></a>
 #### `mediumText()` {.collection-method}
 
-The `mediumText` method creates a `MEDIUMTEXT` equivalent column:
+`mediumText`メソッドは、`MEDIUMTEXT`相当のカラムを作成します。
 
     $table->mediumText('description');
 
-When utilizing MySQL or MariaDB, you may apply a `binary` character set to the column in order to create a `MEDIUMBLOB` equivalent column:
+MySQLまたはMariaDBを使用する場合、`binary`文字セットをカラムに適用して`MEDIUMBLOB`相当のカラムを作成できます。
 
     $table->mediumText('data')->charset('binary'); // MEDIUMBLOB
 
 <a name="column-method-morphs"></a>
 #### `morphs()` {.collection-method}
 
-The `morphs` method is a convenience method that adds a `{column}_id` equivalent column and a `{column}_type` `VARCHAR` equivalent column. The column type for the `{column}_id` will be `UNSIGNED BIGINT`, `CHAR(36)`, or `CHAR(26)` depending on the model key type.
+`morphs`メソッドは、`{column}_id`相当のカラムと`{column}_type`の`VARCHAR`相当のカラムを追加する便利なメソッドです。`{column}_id`のカラムタイプは、モデルのキータイプに応じて`UNSIGNED BIGINT`、`CHAR(36)`、または`CHAR(26)`になります。
 
-This method is intended to be used when defining the columns necessary for a polymorphic [Eloquent relationship](/docs/{{version}}/eloquent-relationships). In the following example, `taggable_id` and `taggable_type` columns would be created:
+このメソッドは、ポリモーフィックな[Eloquentリレーション](eloquent-relationships.md)に必要なカラムを定義する際に使用されます。以下の例では、`taggable_id`と`taggable_type`カラムが作成されます。
 
     $table->morphs('taggable');
 
 <a name="column-method-nullableTimestamps"></a>
 #### `nullableTimestamps()` {.collection-method}
 
-The `nullableTimestamps` method is an alias of the [timestamps](#column-method-timestamps) method:
+`nullableTimestamps`メソッドは、[timestamps](#column-method-timestamps)メソッドのエイリアスです。
 
     $table->nullableTimestamps(precision: 0);
 
 <a name="column-method-nullableMorphs"></a>
 #### `nullableMorphs()` {.collection-method}
 
-The method is similar to the [morphs](#column-method-morphs) method; however, the columns that are created will be "nullable":
+このメソッドは、[morphs](#column-method-morphs)メソッドと似ていますが、作成されるカラムは「nullable」になります。
 
     $table->nullableMorphs('taggable');
 
 <a name="column-method-nullableUlidMorphs"></a>
 #### `nullableUlidMorphs()` {.collection-method}
 
-The method is similar to the [ulidMorphs](#column-method-ulidMorphs) method; however, the columns that are created will be "nullable":
+このメソッドは、[ulidMorphs](#column-method-ulidMorphs)メソッドと似ていますが、作成されるカラムは「nullable」になります。
 
     $table->nullableUlidMorphs('taggable');
 
 <a name="column-method-nullableUuidMorphs"></a>
 #### `nullableUuidMorphs()` {.collection-method}
 
-The method is similar to the [uuidMorphs](#column-method-uuidMorphs) method; however, the columns that are created will be "nullable":
+このメソッドは、[uuidMorphs](#column-method-uuidMorphs)メソッドと似ていますが、作成されるカラムは「nullable」になります。
 
     $table->nullableUuidMorphs('taggable');
 
 <a name="column-method-rememberToken"></a>
 #### `rememberToken()` {.collection-method}
 
-The `rememberToken` method creates a nullable, `VARCHAR(100)` equivalent column that is intended to store the current "remember me" [authentication token](/docs/{{version}}/authentication#remembering-users):
+`rememberToken`メソッドは、現在の「remember me」[認証トークン](authentication.md#remembering-users)を保存することを意図した、nullableの`VARCHAR(100)`相当のカラムを作成します。
 
     $table->rememberToken();
 
 <a name="column-method-set"></a>
 #### `set()` {.collection-method}
 
-The `set` method creates a `SET` equivalent column with the given list of valid values:
+`set`メソッドは、指定された有効な値のリストを持つ`SET`相当のカラムを作成します。
 
     $table->set('flavors', ['strawberry', 'vanilla']);
 
 <a name="column-method-smallIncrements"></a>
 #### `smallIncrements()` {.collection-method}
 
-The `smallIncrements` method creates an auto-incrementing `UNSIGNED SMALLINT` equivalent column as a primary key:
+`smallIncrements`メソッドは、自動増分する`UNSIGNED SMALLINT`相当のカラムを主キーとして作成します。
 
     $table->smallIncrements('id');
 
 <a name="column-method-smallInteger"></a>
 #### `smallInteger()` {.collection-method}
 
-The `smallInteger` method creates a `SMALLINT` equivalent column:
+`smallInteger`メソッドは、`SMALLINT`相当のカラムを作成します。
 
     $table->smallInteger('votes');
 
 <a name="column-method-softDeletesTz"></a>
 #### `softDeletesTz()` {.collection-method}
 
-The `softDeletesTz` method adds a nullable `deleted_at` `TIMESTAMP` (with timezone) equivalent column with an optional fractional seconds precision. This column is intended to store the `deleted_at` timestamp needed for Eloquent's "soft delete" functionality:
+`softDeletesTz`メソッドは、nullableの`deleted_at`の`TIMESTAMP`（タイムゾーン付き）相当のカラムを、オプションの小数秒精度で追加します。このカラムは、Eloquentの「ソフトデリート」機能に必要な`deleted_at`タイムスタンプを保存することを意図しています。
 
     $table->softDeletesTz('deleted_at', precision: 0);
 
 <a name="column-method-softDeletes"></a>
 #### `softDeletes()` {.collection-method}
 
-The `softDeletes` method adds a nullable `deleted_at` `TIMESTAMP` equivalent column with an optional fractional seconds precision. This column is intended to store the `deleted_at` timestamp needed for Eloquent's "soft delete" functionality:
+`softDeletes`メソッドは、nullableの`deleted_at`の`TIMESTAMP`相当のカラムを、オプションの小数秒精度で追加します。このカラムは、Eloquentの「ソフトデリート」機能に必要な`deleted_at`タイムスタンプを保存することを意図しています。
 
     $table->softDeletes('deleted_at', precision: 0);
 
 <a name="column-method-string"></a>
 #### `string()` {.collection-method}
 
-The `string` method creates a `VARCHAR` equivalent column of the given length:
+`string`メソッドは、指定された長さの`VARCHAR`相当のカラムを作成します。
 
     $table->string('name', length: 100);
 
 <a name="column-method-text"></a>
 #### `text()` {.collection-method}
 
-The `text` method creates a `TEXT` equivalent column:
+`text`メソッドは、`TEXT`相当のカラムを作成します。
 
     $table->text('description');
 
-When utilizing MySQL or MariaDB, you may apply a `binary` character set to the column in order to create a `BLOB` equivalent column:
+MySQLまたはMariaDBを使用する場合、カラムに`binary`文字セットを適用して、`BLOB`相当のカラムを作成できます。
 
     $table->text('data')->charset('binary'); // BLOB
 
 <a name="column-method-timeTz"></a>
 #### `timeTz()` {.collection-method}
 
-The `timeTz` method creates a `TIME` (with timezone) equivalent column with an optional fractional seconds precision:
+`timeTz`メソッドは、オプションの小数点以下の秒精度を持つ`TIME`（タイムゾーン付き）相当のカラムを作成します。
 
     $table->timeTz('sunrise', precision: 0);
 
 <a name="column-method-time"></a>
 #### `time()` {.collection-method}
 
-The `time` method creates a `TIME` equivalent column with an optional fractional seconds precision:
+`time`メソッドは、オプションの小数点以下の秒精度を持つ`TIME`相当のカラムを作成します。
 
     $table->time('sunrise', precision: 0);
 
 <a name="column-method-timestampTz"></a>
 #### `timestampTz()` {.collection-method}
 
-The `timestampTz` method creates a `TIMESTAMP` (with timezone) equivalent column with an optional fractional seconds precision:
+`timestampTz`メソッドは、オプションの小数点以下の秒精度を持つ`TIMESTAMP`（タイムゾーン付き）相当のカラムを作成します。
 
     $table->timestampTz('added_at', precision: 0);
 
 <a name="column-method-timestamp"></a>
 #### `timestamp()` {.collection-method}
 
-The `timestamp` method creates a `TIMESTAMP` equivalent column with an optional fractional seconds precision:
+`timestamp`メソッドは、オプションの小数点以下の秒精度を持つ`TIMESTAMP`相当のカラムを作成します。
 
     $table->timestamp('added_at', precision: 0);
 
 <a name="column-method-timestampsTz"></a>
 #### `timestampsTz()` {.collection-method}
 
-The `timestampsTz` method creates `created_at` and `updated_at` `TIMESTAMP` (with timezone) equivalent columns with an optional fractional seconds precision:
+`timestampsTz`メソッドは、オプションの小数点以下の秒精度を持つ`created_at`と`updated_at` `TIMESTAMP`（タイムゾーン付き）相当のカラムを作成します。
 
     $table->timestampsTz(precision: 0);
 
 <a name="column-method-timestamps"></a>
 #### `timestamps()` {.collection-method}
 
-The `timestamps` method creates `created_at` and `updated_at` `TIMESTAMP` equivalent columns with an optional fractional seconds precision:
+`timestamps`メソッドは、オプションの小数点以下の秒精度を持つ`created_at`と`updated_at` `TIMESTAMP`相当のカラムを作成します。
 
     $table->timestamps(precision: 0);
 
 <a name="column-method-tinyIncrements"></a>
 #### `tinyIncrements()` {.collection-method}
 
-The `tinyIncrements` method creates an auto-incrementing `UNSIGNED TINYINT` equivalent column as a primary key:
+`tinyIncrements`メソッドは、主キーとして自動インクリメントする`UNSIGNED TINYINT`相当のカラムを作成します。
 
     $table->tinyIncrements('id');
 
 <a name="column-method-tinyInteger"></a>
 #### `tinyInteger()` {.collection-method}
 
-The `tinyInteger` method creates a `TINYINT` equivalent column:
+`tinyInteger`メソッドは、`TINYINT`相当のカラムを作成します。
 
     $table->tinyInteger('votes');
 
 <a name="column-method-tinyText"></a>
 #### `tinyText()` {.collection-method}
 
-The `tinyText` method creates a `TINYTEXT` equivalent column:
+`tinyText`メソッドは、`TINYTEXT`相当のカラムを作成します。
 
     $table->tinyText('notes');
 
-When utilizing MySQL or MariaDB, you may apply a `binary` character set to the column in order to create a `TINYBLOB` equivalent column:
+MySQLまたはMariaDBを使用する場合、カラムに`binary`文字セットを適用して、`TINYBLOB`相当のカラムを作成できます。
 
     $table->tinyText('data')->charset('binary'); // TINYBLOB
 
 <a name="column-method-unsignedBigInteger"></a>
 #### `unsignedBigInteger()` {.collection-method}
 
-The `unsignedBigInteger` method creates an `UNSIGNED BIGINT` equivalent column:
+`unsignedBigInteger`メソッドは、`UNSIGNED BIGINT`相当のカラムを作成します。
 
     $table->unsignedBigInteger('votes');
 
 <a name="column-method-unsignedInteger"></a>
 #### `unsignedInteger()` {.collection-method}
 
-The `unsignedInteger` method creates an `UNSIGNED INTEGER` equivalent column:
+`unsignedInteger`メソッドは、`UNSIGNED INTEGER`相当のカラムを作成します。
 
     $table->unsignedInteger('votes');
 
 <a name="column-method-unsignedMediumInteger"></a>
 #### `unsignedMediumInteger()` {.collection-method}
 
-The `unsignedMediumInteger` method creates an `UNSIGNED MEDIUMINT` equivalent column:
+`unsignedMediumInteger`メソッドは、`UNSIGNED MEDIUMINT`相当のカラムを作成します。
 
     $table->unsignedMediumInteger('votes');
 
 <a name="column-method-unsignedSmallInteger"></a>
 #### `unsignedSmallInteger()` {.collection-method}
 
-The `unsignedSmallInteger` method creates an `UNSIGNED SMALLINT` equivalent column:
+`unsignedSmallInteger`メソッドは、`UNSIGNED SMALLINT`相当のカラムを作成します。
 
     $table->unsignedSmallInteger('votes');
 
 <a name="column-method-unsignedTinyInteger"></a>
 #### `unsignedTinyInteger()` {.collection-method}
 
-The `unsignedTinyInteger` method creates an `UNSIGNED TINYINT` equivalent column:
+`unsignedTinyInteger`メソッドは、`UNSIGNED TINYINT`相当のカラムを作成します。
 
     $table->unsignedTinyInteger('votes');
 
 <a name="column-method-ulidMorphs"></a>
 #### `ulidMorphs()` {.collection-method}
 
-The `ulidMorphs` method is a convenience method that adds a `{column}_id` `CHAR(26)` equivalent column and a `{column}_type` `VARCHAR` equivalent column.
+`ulidMorphs`メソッドは、`{column}_id` `CHAR(26)`相当のカラムと`{column}_type` `VARCHAR`相当のカラムを追加する便利なメソッドです。
 
-This method is intended to be used when defining the columns necessary for a polymorphic [Eloquent relationship](/docs/{{version}}/eloquent-relationships) that use ULID identifiers. In the following example, `taggable_id` and `taggable_type` columns would be created:
+このメソッドは、ULID識別子を使用するポリモーフィックな[Eloquentリレーション](eloquent-relationships.md)に必要なカラムを定義するために使用されます。以下の例では、`taggable_id`と`taggable_type`カラムが作成されます。
 
     $table->ulidMorphs('taggable');
 
 <a name="column-method-uuidMorphs"></a>
 #### `uuidMorphs()` {.collection-method}
 
-The `uuidMorphs` method is a convenience method that adds a `{column}_id` `CHAR(36)` equivalent column and a `{column}_type` `VARCHAR` equivalent column.
+`uuidMorphs`メソッドは、`{column}_id` `CHAR(36)`相当のカラムと`{column}_type` `VARCHAR`相当のカラムを追加する便利なメソッドです。
 
-This method is intended to be used when defining the columns necessary for a polymorphic [Eloquent relationship](/docs/{{version}}/eloquent-relationships) that use UUID identifiers. In the following example, `taggable_id` and `taggable_type` columns would be created:
+このメソッドは、UUID識別子を使用するポリモーフィックな[Eloquentリレーション](eloquent-relationships.md)に必要なカラムを定義するために使用されます。以下の例では、`taggable_id`と`taggable_type`カラムが作成されます。
 
     $table->uuidMorphs('taggable');
 
 <a name="column-method-ulid"></a>
 #### `ulid()` {.collection-method}
 
-The `ulid` method creates a `ULID` equivalent column:
+`ulid`メソッドは、`ULID`相当のカラムを作成します。
 
     $table->ulid('id');
 
 <a name="column-method-uuid"></a>
 #### `uuid()` {.collection-method}
 
-The `uuid` method creates a `UUID` equivalent column:
+`uuid`メソッドは、`UUID`相当のカラムを作成します。
 
     $table->uuid('id');
 
 <a name="column-method-year"></a>
 #### `year()` {.collection-method}
 
-The `year` method creates a `YEAR` equivalent column:
+`year`メソッドは、`YEAR`相当のカラムを作成します。
 
     $table->year('birth_year');
 
 <a name="column-modifiers"></a>
-### Column Modifiers
+### カラム修飾子
 
-In addition to the column types listed above, there are several column "modifiers" you may use when adding a column to a database table. For example, to make the column "nullable", you may use the `nullable` method:
+上記のカラムタイプに加えて、データベーステーブルにカラムを追加する際に使用できるいくつかのカラム「修飾子」があります。例えば、カラムを「NULL許容」にするには、`nullable`メソッドを使用できます。
 
     use Illuminate\Database\Schema\Blueprint;
     use Illuminate\Support\Facades\Schema;
@@ -937,36 +942,36 @@ In addition to the column types listed above, there are several column "modifier
         $table->string('email')->nullable();
     });
 
-The following table contains all of the available column modifiers. This list does not include [index modifiers](#creating-indexes):
+以下の表に、利用可能なすべてのカラム修飾子を示します。このリストには、[インデックス修飾子](#creating-indexes)は含まれていません。
 
-<div class="overflow-auto">
+<div class="overflow-auto" markdown=1>
 
-| Modifier                            | Description                                                                                    |
+| 修飾子                            | 説明                                                                                    |
 | ----------------------------------- | ---------------------------------------------------------------------------------------------- |
-| `->after('column')`                 | Place the column "after" another column (MariaDB / MySQL).                                     |
-| `->autoIncrement()`                 | Set `INTEGER` columns as auto-incrementing (primary key).                                      |
-| `->charset('utf8mb4')`              | Specify a character set for the column (MariaDB / MySQL).                                      |
-| `->collation('utf8mb4_unicode_ci')` | Specify a collation for the column.                                                            |
-| `->comment('my comment')`           | Add a comment to a column (MariaDB / MySQL / PostgreSQL).                                      |
-| `->default($value)`                 | Specify a "default" value for the column.                                                      |
-| `->first()`                         | Place the column "first" in the table (MariaDB / MySQL).                                       |
-| `->from($integer)`                  | Set the starting value of an auto-incrementing field (MariaDB / MySQL / PostgreSQL).           |
-| `->invisible()`                     | Make the column "invisible" to `SELECT *` queries (MariaDB / MySQL).                           |
-| `->nullable($value = true)`         | Allow `NULL` values to be inserted into the column.                                            |
-| `->storedAs($expression)`           | Create a stored generated column (MariaDB / MySQL / PostgreSQL / SQLite).                      |
-| `->unsigned()`                      | Set `INTEGER` columns as `UNSIGNED` (MariaDB / MySQL).                                         |
-| `->useCurrent()`                    | Set `TIMESTAMP` columns to use `CURRENT_TIMESTAMP` as default value.                           |
-| `->useCurrentOnUpdate()`            | Set `TIMESTAMP` columns to use `CURRENT_TIMESTAMP` when a record is updated (MariaDB / MySQL). |
-| `->virtualAs($expression)`          | Create a virtual generated column (MariaDB / MySQL / SQLite).                                  |
-| `->generatedAs($expression)`        | Create an identity column with specified sequence options (PostgreSQL).                        |
-| `->always()`                        | Defines the precedence of sequence values over input for an identity column (PostgreSQL).      |
+| `->after('column')`                 | カラムを別のカラムの「後」に配置する（MariaDB / MySQL）。                                     |
+| `->autoIncrement()`                 | `INTEGER`カラムを自動インクリメント（主キー）に設定する。                                      |
+| `->charset('utf8mb4')`              | カラムの文字セットを指定する（MariaDB / MySQL）。                                      |
+| `->collation('utf8mb4_unicode_ci')` | カラムの照合順序を指定する。                                                            |
+| `->comment('my comment')`           | カラムにコメントを追加する（MariaDB / MySQL / PostgreSQL）。                                      |
+| `->default($value)`                 | カラムの「デフォルト」値を指定する。                                                      |
+| `->first()`                         | カラムをテーブルの「最初」に配置する（MariaDB / MySQL）。                                       |
+| `->from($integer)`                  | 自動インクリメントフィールドの開始値を設定する（MariaDB / MySQL / PostgreSQL）。           |
+| `->invisible()`                     | カラムを`SELECT *`クエリで「不可視」にする（MariaDB / MySQL）。                           |
+| `->nullable($value = true)`         | カラムに`NULL`値を挿入できるようにする。                                            |
+| `->storedAs($expression)`           | 保存された生成カラムを作成する（MariaDB / MySQL / PostgreSQL / SQLite）。                      |
+| `->unsigned()`                      | `INTEGER`カラムを`UNSIGNED`に設定する（MariaDB / MySQL）。                                         |
+| `->useCurrent()`                    | `TIMESTAMP`カラムが`CURRENT_TIMESTAMP`をデフォルト値として使用するように設定する。                           |
+| `->useCurrentOnUpdate()`            | `TIMESTAMP`カラムがレコードが更新されたときに`CURRENT_TIMESTAMP`を使用するように設定する（MariaDB / MySQL）。 |
+| `->virtualAs($expression)`          | 仮想生成カラムを作成する（MariaDB / MySQL / SQLite）。                                  |
+| `->generatedAs($expression)`        | 指定されたシーケンスオプションを持つIDカラムを作成する（PostgreSQL）。                        |
+| `->always()`                        | IDカラムのシーケンス値と入力の優先順位を定義する（PostgreSQL）。      |
 
 </div>
 
 <a name="default-expressions"></a>
-#### Default Expressions
+#### デフォルト式
 
-The `default` modifier accepts a value or an `Illuminate\Database\Query\Expression` instance. Using an `Expression` instance will prevent Laravel from wrapping the value in quotes and allow you to use database specific functions. One situation where this is particularly useful is when you need to assign default values to JSON columns:
+`default`修飾子は、値または`Illuminate\Database\Query\Expression`インスタンスを受け入れます。`Expression`インスタンスを使用すると、Laravelが値を引用符で囲むのを防ぎ、データベース固有の関数を使用できるようになります。これは、特にJSONカラムにデフォルト値を割り当てる必要がある場合に特に便利です。
 
     <?php
 
@@ -975,276 +980,319 @@ The `default` modifier accepts a value or an `Illuminate\Database\Query\Expressi
     use Illuminate\Database\Query\Expression;
     use Illuminate\Database\Migrations\Migration;
 
-    return new class extends Migration
+```php
+return new class extends Migration
+{
+    /**
+     * マイグレーションを実行する。
+     */
+    public function up(): void
     {
-        /**
-         * Run the migrations.
-         */
-        public function up(): void
-        {
-            Schema::create('flights', function (Blueprint $table) {
-                $table->id();
-                $table->json('movies')->default(new Expression('(JSON_ARRAY())'));
-                $table->timestamps();
-            });
-        }
-    };
+        Schema::create('flights', function (Blueprint $table) {
+            $table->id();
+            $table->json('movies')->default(new Expression('(JSON_ARRAY())'));
+            $table->timestamps();
+        });
+    }
+};
+```
 
-> [!WARNING]  
-> Support for default expressions depends on your database driver, database version, and the field type. Please refer to your database's documentation.
+> WARNING:  
+> デフォルト式のサポートは、データベースドライバ、データベースのバージョン、およびフィールドタイプに依存します。データベースのドキュメントを参照してください。
 
 <a name="column-order"></a>
-#### Column Order
+#### カラムの順序
 
-When using the MariaDB or MySQL database, the `after` method may be used to add columns after an existing column in the schema:
-
-    $table->after('password', function (Blueprint $table) {
-        $table->string('address_line1');
-        $table->string('address_line2');
-        $table->string('city');
-    });
-
-<a name="modifying-columns"></a>
-### Modifying Columns
-
-The `change` method allows you to modify the type and attributes of existing columns. For example, you may wish to increase the size of a `string` column. To see the `change` method in action, let's increase the size of the `name` column from 25 to 50. To accomplish this, we simply define the new state of the column and then call the `change` method:
-
-    Schema::table('users', function (Blueprint $table) {
-        $table->string('name', 50)->change();
-    });
-
-When modifying a column, you must explicitly include all the modifiers you want to keep on the column definition - any missing attribute will be dropped. For example, to retain the `unsigned`, `default`, and `comment` attributes, you must call each modifier explicitly when changing the column:
-
-    Schema::table('users', function (Blueprint $table) {
-        $table->integer('votes')->unsigned()->default(1)->comment('my comment')->change();
-    });
-
-The `change` method does not change the indexes of the column. Therefore, you may use index modifiers to explicitly add or drop an index when modifying the column:
+MariaDBまたはMySQLデータベースを使用する場合、スキーマ内の既存のカラムの後にカラムを追加するために`after`メソッドを使用できます。
 
 ```php
-// Add an index...
+$table->after('password', function (Blueprint $table) {
+    $table->string('address_line1');
+    $table->string('address_line2');
+    $table->string('city');
+});
+```
+
+<a name="modifying-columns"></a>
+### カラムの変更
+
+`change`メソッドを使用すると、既存のカラムのタイプと属性を変更できます。例えば、`string`カラムのサイズを増やしたい場合があります。`change`メソッドを実際に見るために、`name`カラムのサイズを25から50に増やしてみましょう。これを行うには、カラムの新しい状態を定義してから`change`メソッドを呼び出します。
+
+```php
+Schema::table('users', function (Blueprint $table) {
+    $table->string('name', 50)->change();
+});
+```
+
+カラムを変更する際には、カラム定義に保持したいすべての修飾子を明示的に含める必要があります。欠落している属性は削除されます。例えば、`unsigned`、`default`、および`comment`属性を保持するには、カラムを変更する際に各修飾子を明示的に呼び出す必要があります。
+
+```php
+Schema::table('users', function (Blueprint $table) {
+    $table->integer('votes')->unsigned()->default(1)->comment('my comment')->change();
+});
+```
+
+`change`メソッドはカラムのインデックスを変更しません。したがって、カラムを変更する際にインデックス修飾子を使用して明示的にインデックスを追加または削除することができます。
+
+```php
+// インデックスを追加...
 $table->bigIncrements('id')->primary()->change();
 
-// Drop an index...
+// インデックスを削除...
 $table->char('postal_code', 10)->unique(false)->change();
 ```
 
 <a name="renaming-columns"></a>
-### Renaming Columns
+### カラムの名前変更
 
-To rename a column, you may use the `renameColumn` method provided by the schema builder:
+カラムの名前を変更するには、スキーマビルダーが提供する`renameColumn`メソッドを使用できます。
 
-    Schema::table('users', function (Blueprint $table) {
-        $table->renameColumn('from', 'to');
-    });
+```php
+Schema::table('users', function (Blueprint $table) {
+    $table->renameColumn('from', 'to');
+});
+```
 
 <a name="dropping-columns"></a>
-### Dropping Columns
+### カラムの削除
 
-To drop a column, you may use the `dropColumn` method on the schema builder:
+カラムを削除するには、スキーマビルダーの`dropColumn`メソッドを使用できます。
 
-    Schema::table('users', function (Blueprint $table) {
-        $table->dropColumn('votes');
-    });
+```php
+Schema::table('users', function (Blueprint $table) {
+    $table->dropColumn('votes');
+});
+```
 
-You may drop multiple columns from a table by passing an array of column names to the `dropColumn` method:
+`dropColumn`メソッドにカラム名の配列を渡すことで、テーブルから複数のカラムを削除できます。
 
-    Schema::table('users', function (Blueprint $table) {
-        $table->dropColumn(['votes', 'avatar', 'location']);
-    });
+```php
+Schema::table('users', function (Blueprint $table) {
+    $table->dropColumn(['votes', 'avatar', 'location']);
+});
+```
 
 <a name="available-command-aliases"></a>
-#### Available Command Aliases
+#### 利用可能なコマンドエイリアス
 
-Laravel provides several convenient methods related to dropping common types of columns. Each of these methods is described in the table below:
+Laravelは、一般的なタイプのカラムを削除するための便利なメソッドをいくつか提供しています。以下の表に各メソッドが記載されています。
 
-<div class="overflow-auto">
+<div class="overflow-auto" markdown=1>
 
-| Command                             | Description                                           |
-| ----------------------------------- | ----------------------------------------------------- |
-| `$table->dropMorphs('morphable');`  | Drop the `morphable_id` and `morphable_type` columns. |
-| `$table->dropRememberToken();`      | Drop the `remember_token` column.                     |
-| `$table->dropSoftDeletes();`        | Drop the `deleted_at` column.                         |
-| `$table->dropSoftDeletesTz();`      | Alias of `dropSoftDeletes()` method.                  |
-| `$table->dropTimestamps();`         | Drop the `created_at` and `updated_at` columns.       |
-| `$table->dropTimestampsTz();`       | Alias of `dropTimestamps()` method.                   |
+| コマンド                             | 説明                                           |
+| ----------------------------------- | --------------------------------------------- |
+| `$table->dropMorphs('morphable');`  | `morphable_id`と`morphable_type`カラムを削除。 |
+| `$table->dropRememberToken();`      | `remember_token`カラムを削除。                 |
+| `$table->dropSoftDeletes();`        | `deleted_at`カラムを削除。                     |
+| `$table->dropSoftDeletesTz();`      | `dropSoftDeletes()`メソッドのエイリアス。      |
+| `$table->dropTimestamps();`         | `created_at`と`updated_at`カラムを削除。       |
+| `$table->dropTimestampsTz();`       | `dropTimestamps()`メソッドのエイリアス。       |
 
 </div>
 
 <a name="indexes"></a>
-## Indexes
+## インデックス
 
 <a name="creating-indexes"></a>
-### Creating Indexes
+### インデックスの作成
 
-The Laravel schema builder supports several types of indexes. The following example creates a new `email` column and specifies that its values should be unique. To create the index, we can chain the `unique` method onto the column definition:
+Laravelのスキーマビルダーは、いくつかのタイプのインデックスをサポートしています。以下の例では、新しい`email`カラムを作成し、その値が一意であることを指定しています。インデックスを作成するために、カラム定義に`unique`メソッドをチェーンできます。
 
-    use Illuminate\Database\Schema\Blueprint;
-    use Illuminate\Support\Facades\Schema;
+```php
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-    Schema::table('users', function (Blueprint $table) {
-        $table->string('email')->unique();
-    });
+Schema::table('users', function (Blueprint $table) {
+    $table->string('email')->unique();
+});
+```
 
-Alternatively, you may create the index after defining the column. To do so, you should call the `unique` method on the schema builder blueprint. This method accepts the name of the column that should receive a unique index:
+または、カラムを定義した後にインデックスを作成することもできます。そのためには、スキーマビルダーブループリントの`unique`メソッドを呼び出す必要があります。このメソッドは、一意のインデックスを受け取るカラムの名前を受け取ります。
 
-    $table->unique('email');
+```php
+$table->unique('email');
+```
 
-You may even pass an array of columns to an index method to create a compound (or composite) index:
+インデックスメソッドにカラムの配列を渡すことで、複合（または複合）インデックスを作成できます。
 
-    $table->index(['account_id', 'created_at']);
+```php
+$table->index(['account_id', 'created_at']);
+```
 
-When creating an index, Laravel will automatically generate an index name based on the table, column names, and the index type, but you may pass a second argument to the method to specify the index name yourself:
+インデックスを作成する際、Laravelは自動的にテーブル名、カラム名、およびインデックスタイプに基づいてインデックス名を生成しますが、メソッドの2番目の引数を渡してインデックス名を自分で指定することもできます。
 
-    $table->unique('email', 'unique_email');
+```php
+$table->unique('email', 'unique_email');
+```
 
 <a name="available-index-types"></a>
-#### Available Index Types
+#### 利用可能なインデックスタイプ
 
-Laravel's schema builder blueprint class provides methods for creating each type of index supported by Laravel. Each index method accepts an optional second argument to specify the name of the index. If omitted, the name will be derived from the names of the table and column(s) used for the index, as well as the index type. Each of the available index methods is described in the table below:
+Laravelのスキーマビルダーブループリントクラスは、Laravelがサポートする各タイプのインデックスを作成するためのメソッドを提供しています。各インデックスメソッドは、インデックスの名前を指定するためのオプションの2番目の引数を受け取ります。省略した場合、名前はテーブル名、カラム名、およびインデックスタイプから派生します。以下の表に、利用可能な各インデックスメソッドが記載されています。
 
-<div class="overflow-auto">
+<div class="overflow-auto" markdown=1>
 
-| Command                                          | Description                                                    |
-| ------------------------------------------------ | -------------------------------------------------------------- |
-| `$table->primary('id');`                         | Adds a primary key.                                            |
-| `$table->primary(['id', 'parent_id']);`          | Adds composite keys.                                           |
-| `$table->unique('email');`                       | Adds a unique index.                                           |
-| `$table->index('state');`                        | Adds an index.                                                 |
-| `$table->fullText('body');`                      | Adds a full text index (MariaDB / MySQL / PostgreSQL).         |
-| `$table->fullText('body')->language('english');` | Adds a full text index of the specified language (PostgreSQL). |
-| `$table->spatialIndex('location');`              | Adds a spatial index (except SQLite).                          |
+| コマンド                                          | 説明                                                    |
+| ------------------------------------------------ | ------------------------------------------------------- |
+| `$table->primary('id');`                         | 主キーを追加。                                           |
+| `$table->primary(['id', 'parent_id']);`          | 複合キーを追加。                                         |
+| `$table->unique('email');`                       | 一意のインデックスを追加。                               |
+| `$table->index('state');`                        | インデックスを追加。                                     |
+| `$table->fullText('body');`                      | 全文インデックスを追加（MariaDB / MySQL / PostgreSQL）。 |
+| `$table->fullText('body')->language('english');` | 指定された言語の全文インデックスを追加（PostgreSQL）。   |
+| `$table->spatialIndex('location');`              | 空間インデックスを追加（SQLite以外）。                   |
 
 </div>
 
 <a name="renaming-indexes"></a>
-### Renaming Indexes
+### インデックスの名前変更
 
-To rename an index, you may use the `renameIndex` method provided by the schema builder blueprint. This method accepts the current index name as its first argument and the desired name as its second argument:
+インデックスの名前を変更するには、スキーマビルダーブループリントが提供する`renameIndex`メソッドを使用できます。このメソッドは、現在のインデックス名を最初の引数として、希望する名前を2番目の引数として受け取ります。
 
-    $table->renameIndex('from', 'to')
+```php
+$table->renameIndex('from', 'to')
+```
 
 <a name="dropping-indexes"></a>
-### Dropping Indexes
+### インデックスの削除
 
-To drop an index, you must specify the index's name. By default, Laravel automatically assigns an index name based on the table name, the name of the indexed column, and the index type. Here are some examples:
+インデックスを削除するには、インデックスの名前を指定する必要があります。デフォルトでは、Laravelは自動的にテーブル名、インデックスされたカラムの名前、およびインデックスタイプに基づいてインデックス名を割り当てます。以下にいくつかの例を示します。
 
-<div class="overflow-auto">
+<div class="overflow-auto" markdown=1>
 
-| Command                                                  | Description                                                 |
-| -------------------------------------------------------- | ----------------------------------------------------------- |
-| `$table->dropPrimary('users_id_primary');`               | Drop a primary key from the "users" table.                  |
-| `$table->dropUnique('users_email_unique');`              | Drop a unique index from the "users" table.                 |
-| `$table->dropIndex('geo_state_index');`                  | Drop a basic index from the "geo" table.                    |
-| `$table->dropFullText('posts_body_fulltext');`           | Drop a full text index from the "posts" table.              |
-| `$table->dropSpatialIndex('geo_location_spatialindex');` | Drop a spatial index from the "geo" table  (except SQLite). |
+| コマンド                                                  | 説明                                                 |
+| -------------------------------------------------------- | ---------------------------------------------------- |
+| `$table->dropPrimary('users_id_primary');`               | "users"テーブルから主キーを削除。                    |
+| `$table->dropUnique('users_email_unique');`              | "users"テーブルから一意のインデックスを削除。        |
+| `$table->dropIndex('geo_state_index');`                  | "geo"テーブルから基本インデックスを削除。            |
+| `$table->dropFullText('posts_body_fulltext');`           | "posts"テーブルから全文インデックスを削除。          |
+| `$table->dropSpatialIndex('geo_location_spatialindex');` | "geo"テーブルから空間インデックスを削除（SQLite以外）。 |
 
 </div>
 
-If you pass an array of columns into a method that drops indexes, the conventional index name will be generated based on the table name, columns, and index type:
+インデックスを削除するメソッドにカラムの配列を渡すと、テーブル名、カラム、およびインデックスタイプに基づいて従来のインデックス名が生成されます。
 
-    Schema::table('geo', function (Blueprint $table) {
-        $table->dropIndex(['state']); // Drops index 'geo_state_index'
-    });
+```php
+Schema::table('geo', function (Blueprint $table) {
+    $table->dropIndex(['state']); // 'geo_state_index'インデックスを削除
+});
+```
 
 <a name="foreign-key-constraints"></a>
-### Foreign Key Constraints
+### 外部キー制約
 
-Laravel also provides support for creating foreign key constraints, which are used to force referential integrity at the database level. For example, let's define a `user_id` column on the `posts` table that references the `id` column on a `users` table:
+Laravelは、データベースレベルで参照整合性を強制するために使用される外部キー制約の作成もサポートしています。例えば、`posts`テーブルに`user_id`カラムを定義し、`users`テーブルの`id`カラムを参照します。
 
-    use Illuminate\Database\Schema\Blueprint;
-    use Illuminate\Support\Facades\Schema;
+```php
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-    Schema::table('posts', function (Blueprint $table) {
-        $table->unsignedBigInteger('user_id');
+Schema::table('posts', function (Blueprint $table) {
+    $table->unsignedBigInteger('user_id');
 
-        $table->foreign('user_id')->references('id')->on('users');
-    });
+    $table->foreign('user_id')->references('id')->on('users');
+});
+```
 
-Since this syntax is rather verbose, Laravel provides additional, terser methods that use conventions to provide a better developer experience. When using the `foreignId` method to create your column, the example above can be rewritten like so:
+この構文はかなり冗長であるため、Laravelは規約を使用して開発者エクスペリエンスを向上させる追加の簡潔なメソッドを提供しています。`foreignId`メソッドを使用してカラムを作成する場合、上記の例は次のように書き換えることができます。
 
-    Schema::table('posts', function (Blueprint $table) {
-        $table->foreignId('user_id')->constrained();
-    });
+```php
+Schema::table('posts', function (Blueprint $table) {
+    $table->foreignId('user_id')->constrained();
+});
+```
 
-The `foreignId` method creates an `UNSIGNED BIGINT` equivalent column, while the `constrained` method will use conventions to determine the table and column being referenced. If your table name does not match Laravel's conventions, you may manually provide it to the `constrained` method. In addition, the name that should be assigned to the generated index may be specified as well:
+`foreignId`メソッドは`UNSIGNED BIGINT`相当のカラムを作成し、`constrained`メソッドは規約を使用して参照されるテーブルとカラムを決定します。テーブル名がLaravelの規約に一致しない場合は、`constrained`メソッドに手動で指定することができます。さらに、生成されるインデックスに割り当てるべき名前を指定することもできます。
 
-    Schema::table('posts', function (Blueprint $table) {
-        $table->foreignId('user_id')->constrained(
-            table: 'users', indexName: 'posts_user_id'
-        );
-    });
+```php
+Schema::table('posts', function (Blueprint $table) {
+    $table->foreignId('user_id')->constrained(
+        table: 'users', indexName: 'posts_user_id'
+    );
+});
+```
 
-You may also specify the desired action for the "on delete" and "on update" properties of the constraint:
+"on delete" および "on update" プロパティの制約に対して、希望するアクションを指定することもできます:
 
-    $table->foreignId('user_id')
-          ->constrained()
-          ->onUpdate('cascade')
-          ->onDelete('cascade');
+```php
+$table->foreignId('user_id')
+      ->constrained()
+      ->onUpdate('cascade')
+      ->onDelete('cascade');
+```
 
-An alternative, expressive syntax is also provided for these actions:
+これらのアクションに対して、代替的で表現力豊かな構文も提供されています:
 
-<div class="overflow-auto">
+<div class="overflow-auto" markdown=1>
 
-| Method                        | Description                                       |
+| メソッド                        | 説明                                       |
 | ----------------------------- | ------------------------------------------------- |
-| `$table->cascadeOnUpdate();`  | Updates should cascade.                           |
-| `$table->restrictOnUpdate();` | Updates should be restricted.                     |
-| `$table->noActionOnUpdate();` | No action on updates.                             |
-| `$table->cascadeOnDelete();`  | Deletes should cascade.                           |
-| `$table->restrictOnDelete();` | Deletes should be restricted.                     |
-| `$table->nullOnDelete();`     | Deletes should set the foreign key value to null. |
+| `$table->cascadeOnUpdate();`  | 更新時にカスケードする。                           |
+| `$table->restrictOnUpdate();` | 更新時に制限する。                     |
+| `$table->noActionOnUpdate();` | 更新時に何もしない。                             |
+| `$table->cascadeOnDelete();`  | 削除時にカスケードする。                           |
+| `$table->restrictOnDelete();` | 削除時に制限する。                     |
+| `$table->nullOnDelete();`     | 削除時に外部キーの値をnullに設定する。 |
 
 </div>
 
-Any additional [column modifiers](#column-modifiers) must be called before the `constrained` method:
+追加の[カラム修飾子](#column-modifiers)は、`constrained`メソッドの前に呼び出す必要があります:
 
-    $table->foreignId('user_id')
-          ->nullable()
-          ->constrained();
+```php
+$table->foreignId('user_id')
+      ->nullable()
+      ->constrained();
+```
 
 <a name="dropping-foreign-keys"></a>
-#### Dropping Foreign Keys
+#### 外部キーの削除
 
-To drop a foreign key, you may use the `dropForeign` method, passing the name of the foreign key constraint to be deleted as an argument. Foreign key constraints use the same naming convention as indexes. In other words, the foreign key constraint name is based on the name of the table and the columns in the constraint, followed by a "\_foreign" suffix:
+外部キーを削除するには、`dropForeign`メソッドを使用し、削除する外部キー制約の名前を引数として渡します。外部キー制約はインデックスと同じ命名規則を使用します。つまり、外部キー制約名はテーブル名と制約内のカラム名に基づき、その後に "\_foreign" サフィックスが付きます:
 
-    $table->dropForeign('posts_user_id_foreign');
+```php
+$table->dropForeign('posts_user_id_foreign');
+```
 
-Alternatively, you may pass an array containing the column name that holds the foreign key to the `dropForeign` method. The array will be converted to a foreign key constraint name using Laravel's constraint naming conventions:
+または、外部キーを保持するカラム名を含む配列を`dropForeign`メソッドに渡すこともできます。配列はLaravelの制約命名規則を使用して外部キー制約名に変換されます:
 
-    $table->dropForeign(['user_id']);
+```php
+$table->dropForeign(['user_id']);
+```
 
 <a name="toggling-foreign-key-constraints"></a>
-#### Toggling Foreign Key Constraints
+#### 外部キー制約の切り替え
 
-You may enable or disable foreign key constraints within your migrations by using the following methods:
+マイグレーション内で外部キー制約を有効または無効にするには、以下のメソッドを使用します:
 
-    Schema::enableForeignKeyConstraints();
+```php
+Schema::enableForeignKeyConstraints();
 
-    Schema::disableForeignKeyConstraints();
+Schema::disableForeignKeyConstraints();
 
-    Schema::withoutForeignKeyConstraints(function () {
-        // Constraints disabled within this closure...
-    });
+Schema::withoutForeignKeyConstraints(function () {
+    // このクロージャ内では制約が無効になります...
+});
+```
 
-> [!WARNING]  
-> SQLite disables foreign key constraints by default. When using SQLite, make sure to [enable foreign key support](/docs/{{version}}/database#configuration) in your database configuration before attempting to create them in your migrations.
+> WARNING:  
+> SQLiteはデフォルトで外部キー制約を無効にしています。SQLiteを使用する場合、マイグレーションで外部キーを作成しようとする前に、データベース設定で[外部キーのサポートを有効にする](database.md#configuration)ようにしてください。
 
 <a name="events"></a>
-## Events
+## イベント
 
-For convenience, each migration operation will dispatch an [event](/docs/{{version}}/events). All of the following events extend the base `Illuminate\Database\Events\MigrationEvent` class:
+便宜上、各マイグレーション操作は[イベント](events.md)を発行します。以下のすべてのイベントは、基本クラス`Illuminate\Database\Events\MigrationEvent`を拡張しています:
 
-<div class="overflow-auto">
+<div class="overflow-auto" markdown=1>
 
-| Class                                            | Description                                      |
+| クラス                                            | 説明                                      |
 | ------------------------------------------------ | ------------------------------------------------ |
-| `Illuminate\Database\Events\MigrationsStarted`   | A batch of migrations is about to be executed.   |
-| `Illuminate\Database\Events\MigrationsEnded`     | A batch of migrations has finished executing.    |
-| `Illuminate\Database\Events\MigrationStarted`    | A single migration is about to be executed.      |
-| `Illuminate\Database\Events\MigrationEnded`      | A single migration has finished executing.       |
-| `Illuminate\Database\Events\NoPendingMigrations` | A migration command found no pending migrations. |
-| `Illuminate\Database\Events\SchemaDumped`        | A database schema dump has completed.            |
-| `Illuminate\Database\Events\SchemaLoaded`        | An existing database schema dump has loaded.     |
+| `Illuminate\Database\Events\MigrationsStarted`   | マイグレーションのバッチが実行されようとしています。   |
+| `Illuminate\Database\Events\MigrationsEnded`     | マイグレーションのバッチが実行を終了しました。    |
+| `Illuminate\Database\Events\MigrationStarted`    | 単一のマイグレーションが実行されようとしています。      |
+| `Illuminate\Database\Events\MigrationEnded`      | 単一のマイグレーションが実行を終了しました。       |
+| `Illuminate\Database\Events\NoPendingMigrations` | マイグレーションコマンドが保留中のマイグレーションを見つけませんでした。 |
+| `Illuminate\Database\Events\SchemaDumped`        | データベーススキーマのダンプが完了しました。            |
+| `Illuminate\Database\Events\SchemaLoaded`        | 既存のデータベーススキーマのダンプが読み込まれました。     |
 
 </div>
+

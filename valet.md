@@ -1,35 +1,35 @@
 # Laravel Valet
 
-- [Introduction](#introduction)
-- [Installation](#installation)
-    - [Upgrading Valet](#upgrading-valet)
-- [Serving Sites](#serving-sites)
-    - [The "Park" Command](#the-park-command)
-    - [The "Link" Command](#the-link-command)
-    - [Securing Sites With TLS](#securing-sites)
-    - [Serving a Default Site](#serving-a-default-site)
-    - [Per-Site PHP Versions](#per-site-php-versions)
-- [Sharing Sites](#sharing-sites)
-    - [Sharing Sites on Your Local Network](#sharing-sites-on-your-local-network)
-- [Site Specific Environment Variables](#site-specific-environment-variables)
-- [Proxying Services](#proxying-services)
-- [Custom Valet Drivers](#custom-valet-drivers)
-    - [Local Drivers](#local-drivers)
-- [Other Valet Commands](#other-valet-commands)
-- [Valet Directories and Files](#valet-directories-and-files)
-    - [Disk Access](#disk-access)
+- [はじめに](#introduction)
+- [インストール](#installation)
+    - [Valetのアップグレード](#upgrading-valet)
+- [サイトの提供](#serving-sites)
+    - [The "Park" コマンド](#the-park-command)
+    - [The "Link" コマンド](#the-link-command)
+    - [TLSでサイトを保護する](#securing-sites)
+    - [デフォルトサイトの提供](#serving-a-default-site)
+    - [サイトごとのPHPバージョン](#per-site-php-versions)
+- [サイトの共有](#sharing-sites)
+    - [ローカルネットワーク上でのサイト共有](#sharing-sites-on-your-local-network)
+- [サイト固有の環境変数](#site-specific-environment-variables)
+- [プロキシサービス](#proxying-services)
+- [カスタムValetドライバー](#custom-valet-drivers)
+    - [ローカルドライバー](#local-drivers)
+- [その他のValetコマンド](#other-valet-commands)
+- [Valetのディレクトリとファイル](#valet-directories-and-files)
+    - [ディスクアクセス](#disk-access)
 
 <a name="introduction"></a>
-## Introduction
+## はじめに
 
-> [!NOTE]  
-> Looking for an even easier way to develop Laravel applications on macOS or Windows? Check out [Laravel Herd](https://herd.laravel.com). Herd includes everything you need to get started with Laravel development, including Valet, PHP, and Composer.
+> NOTE:  
+> macOSやWindowsでLaravelアプリケーションを開発するためのさらに簡単な方法を探していますか？ [Laravel Herd](https://herd.laravel.com)をチェックしてください。Herdには、Laravel開発を始めるために必要なすべてが含まれています。Valet、PHP、Composerなどが含まれています。
 
-[Laravel Valet](https://github.com/laravel/valet) is a development environment for macOS minimalists. Laravel Valet configures your Mac to always run [Nginx](https://www.nginx.com/) in the background when your machine starts. Then, using [DnsMasq](https://en.wikipedia.org/wiki/Dnsmasq), Valet proxies all requests on the `*.test` domain to point to sites installed on your local machine.
+[Laravel Valet](https://github.com/laravel/valet)は、macOSミニマリストのための開発環境です。Laravel Valetは、マシンの起動時に常に[Nginx](https://www.nginx.com/)をバックグラウンドで実行するようにMacを設定します。そして、[DnsMasq](https://en.wikipedia.org/wiki/Dnsmasq)を使用して、`*.test`ドメインへのすべてのリクエストをローカルマシンにインストールされたサイトにプロキシします。
 
-In other words, Valet is a blazing fast Laravel development environment that uses roughly 7 MB of RAM. Valet isn't a complete replacement for [Sail](/docs/{{version}}/sail) or [Homestead](/docs/{{version}}/homestead), but provides a great alternative if you want flexible basics, prefer extreme speed, or are working on a machine with a limited amount of RAM.
+言い換えれば、Valetは約7MBのRAMを使用する、非常に高速なLaravel開発環境です。Valetは[Sail](sail.md)や[Homestead](homestead.md)の完全な代替品ではありませんが、柔軟な基本機能を好む場合、極端な速度を好む場合、またはRAMが限られたマシンで作業している場合には、優れた代替手段を提供します。
 
-Out of the box, Valet support includes, but is not limited to:
+デフォルトで、Valetは以下を含むがこれに限定されないサポートを提供します：
 
 <style>
     #valet-support > ul {
@@ -57,56 +57,56 @@ Out of the box, Valet support includes, but is not limited to:
 - [Sculpin](https://sculpin.io/)
 - [Slim](https://www.slimframework.com)
 - [Statamic](https://statamic.com)
-- Static HTML
+- 静的HTML
 - [Symfony](https://symfony.com)
 - [WordPress](https://wordpress.org)
 - [Zend](https://framework.zend.com)
 
 </div>
 
-However, you may extend Valet with your own [custom drivers](#custom-valet-drivers).
+ただし、独自の[カスタムドライバー](#custom-valet-drivers)を使用してValetを拡張することもできます。
 
 <a name="installation"></a>
-## Installation
+## インストール
 
-> [!WARNING]  
-> Valet requires macOS and [Homebrew](https://brew.sh/). Before installation, you should make sure that no other programs such as Apache or Nginx are binding to your local machine's port 80.
+> WARNING:  
+> ValetはmacOSと[Homebrew](https://brew.sh/)を必要とします。インストール前に、ApacheやNginxなどの他のプログラムがローカルマシンのポート80をバインドしていないことを確認してください。
 
-To get started, you first need to ensure that Homebrew is up to date using the `update` command:
+まず、Homebrewを`update`コマンドを使用して最新の状態にする必要があります：
 
 ```shell
 brew update
 ```
 
-Next, you should use Homebrew to install PHP:
+次に、Homebrewを使用してPHPをインストールする必要があります：
 
 ```shell
 brew install php
 ```
 
-After installing PHP, you are ready to install the [Composer package manager](https://getcomposer.org). In addition, you should make sure the `$HOME/.composer/vendor/bin` directory is in your system's "PATH". After Composer has been installed, you may install Laravel Valet as a global Composer package:
+PHPをインストールした後、[Composerパッケージマネージャ](https://getcomposer.org)をインストールする準備が整います。さらに、`$HOME/.composer/vendor/bin`ディレクトリがシステムの"PATH"に含まれていることを確認する必要があります。Composerがインストールされたら、Laravel ValetをグローバルComposerパッケージとしてインストールできます：
 
 ```shell
 composer global require laravel/valet
 ```
 
-Finally, you may execute Valet's `install` command. This will configure and install Valet and DnsMasq. In addition, the daemons Valet depends on will be configured to launch when your system starts:
+最後に、Valetの`install`コマンドを実行できます。これにより、ValetとDnsMasqが設定およびインストールされます。さらに、Valetが依存するデーモンがシステムの起動時に起動するように設定されます：
 
 ```shell
 valet install
 ```
 
-Once Valet is installed, try pinging any `*.test` domain on your terminal using a command such as `ping foobar.test`. If Valet is installed correctly you should see this domain responding on `127.0.0.1`.
+Valetがインストールされたら、ターミナルで`ping foobar.test`などのコマンドを使用して、任意の`*.test`ドメインにpingを打ってみてください。Valetが正しくインストールされていれば、このドメインは`127.0.0.1`で応答するはずです。
 
-Valet will automatically start its required services each time your machine boots.
+Valetは、マシンの起動時に必要なサービスを自動的に開始します。
 
 <a name="php-versions"></a>
-#### PHP Versions
+#### PHPバージョン
 
-> [!NOTE]  
-> Instead of modifying your global PHP version, you can instruct Valet to use per-site PHP versions via the `isolate` [command](#per-site-php-versions).
+> NOTE:  
+> グローバルなPHPバージョンを変更する代わりに、`isolate` [コマンド](#per-site-php-versions)を介してValetにサイトごとのPHPバージョンを使用するよう指示できます。
 
-Valet allows you to switch PHP versions using the `valet use php@version` command. Valet will install the specified PHP version via Homebrew if it is not already installed:
+Valetでは、`valet use php@version`コマンドを使用してPHPバージョンを切り替えることができます。Valetは、まだインストールされていない場合、Homebrewを介して指定されたPHPバージョンをインストールします：
 
 ```shell
 valet use php@8.2
@@ -114,54 +114,54 @@ valet use php@8.2
 valet use php
 ```
 
-You may also create a `.valetrc` file in the root of your project. The `.valetrc` file should contain the PHP version the site should use:
+プロジェクトのルートに`.valetrc`ファイルを作成することもできます。`.valetrc`ファイルには、サイトが使用するPHPバージョンを含める必要があります：
 
 ```shell
 php=php@8.2
 ```
 
-Once this file has been created, you may simply execute the `valet use` command and the command will determine the site's preferred PHP version by reading the file.
+このファイルが作成されたら、単に`valet use`コマンドを実行するだけで、コマンドはファイルを読み取ってサイトの優先PHPバージョンを決定します。
 
-> [!WARNING]  
-> Valet only serves one PHP version at a time, even if you have multiple PHP versions installed.
+> WARNING:  
+> Valetは一度に1つのPHPバージョンのみを提供します。複数のPHPバージョンがインストールされている場合でも同様です。
 
 <a name="database"></a>
-#### Database
+#### データベース
 
-If your application needs a database, check out [DBngin](https://dbngin.com), which provides a free, all-in-one database management tool that includes MySQL, PostgreSQL, and Redis. After DBngin has been installed, you can connect to your database at `127.0.0.1` using the `root` username and an empty string for the password.
+アプリケーションがデータベースを必要とする場合は、[DBngin](https://dbngin.com)をチェックしてください。DBnginは、MySQL、PostgreSQL、Redisを含む無料のオールインワンデータベース管理ツールを提供します。DBnginがインストールされたら、`127.0.0.1`でデータベースに接続できます。ユーザー名は`root`、パスワードは空文字列を使用します。
 
 <a name="resetting-your-installation"></a>
-#### Resetting Your Installation
+#### インストールのリセット
 
-If you are having trouble getting your Valet installation to run properly, executing the `composer global require laravel/valet` command followed by `valet install` will reset your installation and can solve a variety of problems. In rare cases, it may be necessary to "hard reset" Valet by executing `valet uninstall --force` followed by `valet install`.
+Valetのインストールが正しく実行されない場合、`composer global require laravel/valet`コマンドを実行してから`valet install`を実行すると、インストールをリセットし、さまざまな問題を解決できます。まれに、`valet uninstall --force`を実行してから`valet install`を実行することで、Valetを「ハードリセット」する必要があるかもしれません。
 
 <a name="upgrading-valet"></a>
-### Upgrading Valet
+### Valetのアップグレード
 
-You may update your Valet installation by executing the `composer global require laravel/valet` command in your terminal. After upgrading, it is good practice to run the `valet install` command so Valet can make additional upgrades to your configuration files if necessary.
+ターミナルで`composer global require laravel/valet`コマンドを実行することで、Valetのインストールをアップグレードできます。アップグレード後、`valet install`コマンドを実行して、必要に応じてValetが設定ファイルに追加のアップグレードを行うようにするのが良い習慣です。
 
 <a name="upgrading-to-valet-4"></a>
-#### Upgrading to Valet 4
+#### Valet 4へのアップグレード
 
-If you're upgrading from Valet 3 to Valet 4, take the following steps to properly upgrade your Valet installation:
+Valet 3からValet 4にアップグレードする場合は、以下の手順に従ってValetのインストールを適切にアップグレードしてください：
 
 <div class="content-list" markdown="1">
 
-- If you've added `.valetphprc` files to customize your site's PHP version, rename each `.valetphprc` file to `.valetrc`. Then, prepend `php=` to the existing content of the `.valetrc` file.
-- Update any custom drivers to match the namespace, extension, type-hints, and return type-hints of the new driver system. You may consult Valet's [SampleValetDriver](https://github.com/laravel/valet/blob/d7787c025e60abc24a5195dc7d4c5c6f2d984339/cli/stubs/SampleValetDriver.php) as an example.
-- If you use PHP 7.1 - 7.4 to serve your sites, make sure you still use Homebrew to install a version of PHP that's 8.0 or higher, as Valet will use this version, even if it's not your primary linked version, to run some of its scripts.
+- サイトのPHPバージョンをカスタマイズするために`.valetphprc`ファイルを追加した場合、各`.valetphprc`ファイルの名前を`.valetrc`に変更してください。そして、`.valetrc`ファイルの既存の内容の前に`php=`を付けてください。
+- カスタムドライバーを新しいドライバーシステムの名前空間、拡張子、タイプヒント、および戻り値のタイプヒントに一致するように更新してください。Valetの[SampleValetDriver](https://github.com/laravel/valet/blob/d7787c025e60abc24a5195dc7d4c5c6f2d984339/cli/stubs/SampleValetDriver.php)を例として参照できます。
+- PHP 7.1 - 7.4を使用してサイトを提供している場合、Valetが一部のスクリプトを実行するために使用するバージョン8.0以上のPHPをHomebrewを使用してインストールしていることを確認してください。これは、プライマリリンクされたバージョンではない場合でも、Valetがこのバージョンを使用することを意味します。
 
 </div>
 
 <a name="serving-sites"></a>
-## Serving Sites
+## サイトの提供
 
-Once Valet is installed, you're ready to start serving your Laravel applications. Valet provides two commands to help you serve your applications: `park` and `link`.
+Valetがインストールされたら、Laravelアプリケーションの提供を開始する準備が整いました。Valetは、アプリケーションを提供するのに役立つ2つのコマンドを提供します：`park`と`link`。
 
 <a name="the-park-command"></a>
-### The `park` Command
+### The `park` コマンド
 
-The `park` command registers a directory on your machine that contains your applications. Once the directory has been "parked" with Valet, all of the directories within that directory will be accessible in your web browser at `http://<directory-name>.test`:
+`park`コマンドは、マシン上のディレクトリを登録します。このディレクトリに含まれるすべてのディレクトリは、`http://<directory-name>.test`でWebブラウザからアクセスできるようになります：
 
 ```shell
 cd ~/Sites
@@ -169,12 +169,12 @@ cd ~/Sites
 valet park
 ```
 
-That's all there is to it. Now, any application you create within your "parked" directory will automatically be served using the `http://<directory-name>.test` convention. So, if your parked directory contains a directory named "laravel", the application within that directory will be accessible at `http://laravel.test`. In addition, Valet automatically allows you to access the site using wildcard subdomains (`http://foo.laravel.test`).
+それでおしまいです。これで、「パークされた」ディレクトリ内に作成したすべてのアプリケーションは、`http://<directory-name>.test`の規則を使用して自動的に提供されます。したがって、パークされたディレクトリに「laravel」という名前のディレクトリが含まれている場合、そのディレクトリ内のアプリケーションは`http://laravel.test`でアクセスできます。さらに、Valetはワイルドカードサブドメイン（`http://foo.laravel.test`）を使用してサイトにアクセスできるように自動的に許可します。
 
 <a name="the-link-command"></a>
-### The `link` Command
+### The `link` コマンド
 
-The `link` command can also be used to serve your Laravel applications. This command is useful if you want to serve a single site in a directory and not the entire directory:
+`link`コマンドは、Laravelアプリケーションを提供するためにも使用できます。このコマンドは、ディレクトリ全体ではなく、単一のサイトを提供する場合に便利です：
 
 ```shell
 cd ~/Sites/laravel
@@ -182,9 +182,9 @@ cd ~/Sites/laravel
 valet link
 ```
 
-Once an application has been linked to Valet using the `link` command, you may access the application using its directory name. So, the site that was linked in the example above may be accessed at `http://laravel.test`. In addition, Valet automatically allows you to access the site using wildcard sub-domains (`http://foo.laravel.test`).
+`link`コマンドを使用してValetにアプリケーションをリンクした後、アプリケーションにはディレクトリ名を使用してアクセスできます。したがって、上記の例でリンクされたサイトは`http://laravel.test`でアクセスできます。さらに、Valetはワイルドカードサブドメイン（`http://foo.laravel.test`）を使用してサイトにアクセスできるように自動的に許可します。
 
-If you would like to serve the application at a different hostname, you may pass the hostname to the `link` command. For example, you may run the following command to make an application available at `http://application.test`:
+アプリケーションを別のホスト名で提供したい場合は、`link`コマンドにホスト名を渡すことができます。たとえば、次のコマンドを実行して、アプリケーションを`http://application.test`で利用できるようにすることができます：
 
 ```shell
 cd ~/Sites/laravel
@@ -192,19 +192,19 @@ cd ~/Sites/laravel
 valet link application
 ```
 
-Of course, you may also serve applications on subdomains using the `link` command:
+もちろん、`link`コマンドを使用してサブドメインでアプリケーションを提供することもできます：
 
 ```shell
 valet link api.application
 ```
 
-You may execute the `links` command to display a list of all of your linked directories:
+リンクされたすべてのディレクトリのリストを表示するには、`links`コマンドを実行できます：
 
 ```shell
 valet links
 ```
 
-The `unlink` command may be used to destroy the symbolic link for a site:
+サイトのシンボリックリンクを破棄するには、`unlink`コマンドを使用できます：
 
 ```shell
 cd ~/Sites/laravel
@@ -213,31 +213,31 @@ valet unlink
 ```
 
 <a name="securing-sites"></a>
-### Securing Sites With TLS
+### TLSでサイトを保護する
 
-By default, Valet serves sites over HTTP. However, if you would like to serve a site over encrypted TLS using HTTP/2, you may use the `secure` command. For example, if your site is being served by Valet on the `laravel.test` domain, you should run the following command to secure it:
+デフォルトで、ValetはHTTP経由でサイトを提供します。ただし、HTTP/2を使用して暗号化されたTLSでサイトを提供したい場合は、`secure`コマンドを使用できます。たとえば、サイトが`laravel.test`ドメインでValetによって提供されている場合、次のコマンドを実行してサイトを保護する必要があります：
 
 ```shell
 valet secure laravel
 ```
 
-To "unsecure" a site and revert back to serving its traffic over plain HTTP, use the `unsecure` command. Like the `secure` command, this command accepts the hostname that you wish to unsecure:
+サイトを「非セキュア」にし、プレーンなHTTP経由でトラフィックを提供するように戻すには、`unsecure`コマンドを使用します。`secure`コマンドと同様に、このコマンドはセキュアにしたいホスト名を受け付けます：
 
 ```shell
 valet unsecure laravel
 ```
 
 <a name="serving-a-default-site"></a>
-### Serving a Default Site
+### デフォルトサイトの提供
 
-Sometimes, you may wish to configure Valet to serve a "default" site instead of a `404` when visiting an unknown `test` domain. To accomplish this, you may add a `default` option to your `~/.config/valet/config.json` configuration file containing the path to the site that should serve as your default site:
+未知の`test`ドメインにアクセスした際に`404`ではなく、「デフォルト」サイトを提供するようにValetを設定したい場合があります。これを実現するには、`~/.config/valet/config.json`設定ファイルに`default`オプションを追加し、デフォルトサイトとして提供するサイトのパスを指定します：
 
     "default": "/Users/Sally/Sites/example-site",
 
 <a name="per-site-php-versions"></a>
-### Per-Site PHP Versions
+### サイトごとのPHPバージョン
 
-By default, Valet uses your global PHP installation to serve your sites. However, if you need to support multiple PHP versions across various sites, you may use the `isolate` command to specify which PHP version a particular site should use. The `isolate` command configures Valet to use the specified PHP version for the site located in your current working directory:
+デフォルトでは、ValetはグローバルなPHPインストールを使用してサイトを提供します。しかし、複数のサイトで異なるPHPバージョンをサポートする必要がある場合、`isolate`コマンドを使用して特定のサイトが使用するPHPバージョンを指定できます。`isolate`コマンドは、現在の作業ディレクトリにあるサイトに対して指定されたPHPバージョンを使用するようにValetを設定します：
 
 ```shell
 cd ~/Sites/example-site
@@ -245,13 +245,13 @@ cd ~/Sites/example-site
 valet isolate php@8.0
 ```
 
-If your site name does not match the name of the directory that contains it, you may specify the site name using the `--site` option:
+サイト名がそのディレクトリ名と一致しない場合、`--site`オプションを使用してサイト名を指定できます：
 
 ```shell
 valet isolate php@8.0 --site="site-name"
 ```
 
-For convenience, you may use the `valet php`, `composer`, and `which-php` commands to proxy calls to the appropriate PHP CLI or tool based on the site's configured PHP version:
+便宜上、`valet php`、`valet composer`、`valet which-php`コマンドを使用して、サイトの設定されたPHPバージョンに基づいて適切なPHP CLIまたはツールへのプロキシコールを行うことができます：
 
 ```shell
 valet php
@@ -259,32 +259,32 @@ valet composer
 valet which-php
 ```
 
-You may execute the `isolated` command to display a list of all of your isolated sites and their PHP versions:
+`isolated`コマンドを実行して、すべての分離されたサイトとそのPHPバージョンのリストを表示できます：
 
 ```shell
 valet isolated
 ```
 
-To revert a site back to Valet's globally installed PHP version, you may invoke the `unisolate` command from the site's root directory:
+サイトをValetのグローバルにインストールされたPHPバージョンに戻すには、サイトのルートディレクトリから`unisolate`コマンドを呼び出します：
 
 ```shell
 valet unisolate
 ```
 
 <a name="sharing-sites"></a>
-## Sharing Sites
+## サイトの共有
 
-Valet includes a command to share your local sites with the world, providing an easy way to test your site on mobile devices or share it with team members and clients.
+Valetには、ローカルサイトを世界と共有するためのコマンドが含まれており、モバイルデバイスでのサイトテストやチームメンバーやクライアントとの共有を簡単に行うことができます。
 
-Out of the box, Valet supports sharing your sites via ngrok or Expose. Before sharing a site, you should update your Valet configuration using the `share-tool` command, specifying either `ngrok` or `expose`:
+デフォルトでは、Valetはサイトの共有をngrokまたはExpose経由でサポートしています。サイトを共有する前に、`share-tool`コマンドを使用してValetの設定を更新し、`ngrok`または`expose`を指定します：
 
 ```shell
 valet share-tool ngrok
 ```
 
-If you choose a tool and don't have it installed via Homebrew (for ngrok) or Composer (for Expose), Valet will automatically prompt you to install it. Of course, both tools require you to authenticate your ngrok or Expose account before you can start sharing sites.
+ツールを選択し、Homebrew（ngrokの場合）またはComposer（Exposeの場合）経由でインストールしていない場合、Valetは自動的にインストールを促します。もちろん、両方のツールでは、サイトの共有を開始する前にngrokまたはExposeアカウントを認証する必要があります。
 
-To share a site, navigate to the site's directory in your terminal and run Valet's `share` command. A publicly accessible URL will be placed into your clipboard and is ready to paste directly into your browser or to be shared with your team:
+サイトを共有するには、ターミナルでサイトのディレクトリに移動し、Valetの`share`コマンドを実行します。公開可能なURLがクリップボードにコピーされ、ブラウザに直接貼り付けるか、チームと共有する準備が整います：
 
 ```shell
 cd ~/Sites/laravel
@@ -292,45 +292,45 @@ cd ~/Sites/laravel
 valet share
 ```
 
-To stop sharing your site, you may press `Control + C`.
+サイトの共有を停止するには、`Control + C`を押します。
 
-> [!WARNING]  
-> If you're using a custom DNS server (like `1.1.1.1`), ngrok sharing may not work correctly. If this is the case on your machine, open your Mac's system settings, go to the Network settings, open the Advanced settings, then go the DNS tab and add `127.0.0.1` as your first DNS server.
+> WARNING:  
+> カスタムDNSサーバー（例：`1.1.1.1`）を使用している場合、ngrokの共有が正しく機能しないことがあります。この場合、Macのシステム設定を開き、ネットワーク設定に移動し、詳細設定を開き、DNSタブに移動して、`127.0.0.1`を最初のDNSサーバーとして追加してください。
 
 <a name="sharing-sites-via-ngrok"></a>
-#### Sharing Sites via Ngrok
+#### Ngrok経由でのサイト共有
 
-Sharing your site using ngrok requires you to [create an ngrok account](https://dashboard.ngrok.com/signup) and [set up an authentication token](https://dashboard.ngrok.com/get-started/your-authtoken). Once you have an authentication token, you can update your Valet configuration with that token:
+ngrokを使用してサイトを共有するには、[ngrokアカウントを作成](https://dashboard.ngrok.com/signup)し、[認証トークンを設定](https://dashboard.ngrok.com/get-started/your-authtoken)する必要があります。認証トークンを取得したら、Valetの設定をそのトークンで更新できます：
 
 ```shell
 valet set-ngrok-token YOUR_TOKEN_HERE
 ```
 
-> [!NOTE]  
-> You may pass additional ngrok parameters to the share command, such as `valet share --region=eu`. For more information, consult the [ngrok documentation](https://ngrok.com/docs).
+> NOTE:  
+> `valet share --region=eu`のように、追加のngrokパラメータをshareコマンドに渡すことができます。詳細については、[ngrokのドキュメント](https://ngrok.com/docs)を参照してください。
 
 <a name="sharing-sites-via-expose"></a>
-#### Sharing Sites via Expose
+#### Expose経由でのサイト共有
 
-Sharing your site using Expose requires you to [create an Expose account](https://expose.dev/register) and [authenticate with Expose via your authentication token](https://expose.dev/docs/getting-started/getting-your-token).
+Exposeを使用してサイトを共有するには、[Exposeアカウントを作成](https://expose.dev/register)し、[認証トークンを使用してExposeを認証](https://expose.dev/docs/getting-started/getting-your-token)する必要があります。
 
-You may consult the [Expose documentation](https://expose.dev/docs) for information regarding the additional command-line parameters it supports.
+追加のコマンドラインパラメータについては、[Exposeのドキュメント](https://expose.dev/docs)を参照してください。
 
 <a name="sharing-sites-on-your-local-network"></a>
-### Sharing Sites on Your Local Network
+### ローカルネットワーク上でのサイト共有
 
-Valet restricts incoming traffic to the internal `127.0.0.1` interface by default so that your development machine isn't exposed to security risks from the Internet.
+Valetは、デフォルトでは内部の`127.0.0.1`インターフェースへの着信トラフィックを制限するため、開発マシンがインターネットからのセキュリティリスクにさらされることはありません。
 
-If you wish to allow other devices on your local network to access the Valet sites on your machine via your machine's IP address (eg: `192.168.1.10/application.test`), you will need to manually edit the appropriate Nginx configuration file for that site to remove the restriction on the `listen` directive. You should remove the `127.0.0.1:` prefix on the `listen` directive for ports 80 and 443.
+ローカルネットワーク上の他のデバイスが、マシンのIPアドレス（例：`192.168.1.10/application.test`）を介してValetサイトにアクセスできるようにするには、そのサイトの適切なNginx設定ファイルを手動で編集して、`listen`ディレクティブの制限を削除する必要があります。ポート80と443の`listen`ディレクティブから`127.0.0.1:`プレフィックスを削除する必要があります。
 
-If you have not run `valet secure` on the project, you can open up network access for all non-HTTPS sites by editing the `/usr/local/etc/nginx/valet/valet.conf` file. However, if you're serving the project site over HTTPS (you have run `valet secure` for the site) then you should edit the `~/.config/valet/Nginx/app-name.test` file.
+プロジェクトに対して`valet secure`を実行していない場合、すべての非HTTPSサイトのネットワークアクセスを開放するには、`/usr/local/etc/nginx/valet/valet.conf`ファイルを編集します。ただし、プロジェクトサイトをHTTPS経由で提供している場合（サイトに対して`valet secure`を実行している場合）、`~/.config/valet/Nginx/app-name.test`ファイルを編集する必要があります。
 
-Once you have updated your Nginx configuration, run the `valet restart` command to apply the configuration changes.
+Nginxの設定を更新したら、`valet restart`コマンドを実行して設定の変更を適用します。
 
 <a name="site-specific-environment-variables"></a>
-## Site Specific Environment Variables
+## サイト固有の環境変数
 
-Some applications using other frameworks may depend on server environment variables but do not provide a way for those variables to be configured within your project. Valet allows you to configure site specific environment variables by adding a `.valet-env.php` file within the root of your project. This file should return an array of site / environment variable pairs which will be added to the global `$_SERVER` array for each site specified in the array:
+他のフレームワークを使用する一部のアプリケーションは、サーバー環境変数に依存している場合がありますが、プロジェクト内でそれらの変数を設定する方法を提供していないことがあります。Valetでは、プロジェクトのルートに`.valet-env.php`ファイルを追加することで、サイト固有の環境変数を設定できます。このファイルは、配列を返す必要があり、配列内の各サイトに対してグローバルな`$_SERVER`配列に追加される環境変数のペアを指定します：
 
     <?php
 
@@ -347,49 +347,47 @@ Some applications using other frameworks may depend on server environment variab
     ];
 
 <a name="proxying-services"></a>
-## Proxying Services
+## サービスのプロキシ
 
-Sometimes you may wish to proxy a Valet domain to another service on your local machine. For example, you may occasionally need to run Valet while also running a separate site in Docker; however, Valet and Docker can't both bind to port 80 at the same time.
-
-To solve this, you may use the `proxy` command to generate a proxy. For example, you may proxy all traffic from `http://elasticsearch.test` to `http://127.0.0.1:9200`:
+ValetとDockerが同時にポート80をバインドできないため、Valetを実行しながらDockerで別のサイトを実行する必要がある場合があります。これを解決するには、`proxy`コマンドを使用してプロキシを生成できます。例えば、`http://elasticsearch.test`から`http://127.0.0.1:9200`へのすべてのトラフィックをプロキシするには：
 
 ```shell
-# Proxy over HTTP...
+# HTTP経由でプロキシ...
 valet proxy elasticsearch http://127.0.0.1:9200
 
-# Proxy over TLS + HTTP/2...
+# TLS + HTTP/2経由でプロキシ...
 valet proxy elasticsearch http://127.0.0.1:9200 --secure
 ```
 
-You may remove a proxy using the `unproxy` command:
+プロキシを削除するには、`unproxy`コマンドを使用します：
 
 ```shell
 valet unproxy elasticsearch
 ```
 
-You may use the `proxies` command to list all site configurations that are proxied:
+プロキシされたすべてのサイト設定をリストするには、`proxies`コマンドを使用します：
 
 ```shell
 valet proxies
 ```
 
 <a name="custom-valet-drivers"></a>
-## Custom Valet Drivers
+## カスタムValetドライバ
 
-You can write your own Valet "driver" to serve PHP applications running on a framework or CMS that is not natively supported by Valet. When you install Valet, a `~/.config/valet/Drivers` directory is created which contains a `SampleValetDriver.php` file. This file contains a sample driver implementation to demonstrate how to write a custom driver. Writing a driver only requires you to implement three methods: `serves`, `isStaticFile`, and `frontControllerPath`.
+独自のValet「ドライバ」を作成して、ValetにネイティブでサポートされていないフレームワークやCMSで実行されているPHPアプリケーションを提供することができます。Valetをインストールすると、`~/.config/valet/Drivers`ディレクトリが作成され、その中に`SampleValetDriver.php`ファイルが含まれます。このファイルには、カスタムドライバの実装方法を示すサンプルドライバの実装が含まれています。ドライバを作成するには、`serves`、`isStaticFile`、`frontControllerPath`の3つのメソッドを実装する必要があります。
 
-All three methods receive the `$sitePath`, `$siteName`, and `$uri` values as their arguments. The `$sitePath` is the fully qualified path to the site being served on your machine, such as `/Users/Lisa/Sites/my-project`. The `$siteName` is the "host" / "site name" portion of the domain (`my-project`). The `$uri` is the incoming request URI (`/foo/bar`).
+これらの3つのメソッドは、`$sitePath`、`$siteName`、`$uri`の値を引数として受け取ります。`$sitePath`は、マシン上で提供されるサイトへの完全修飾パスです（例：`/Users/Lisa/Sites/my-project`）。`$siteName`は、ドメインの「ホスト」/「サイト名」部分です（`my-project`）。`$uri`は、着信リクエストのURIです（`/foo/bar`）。
 
-Once you have completed your custom Valet driver, place it in the `~/.config/valet/Drivers` directory using the `FrameworkValetDriver.php` naming convention. For example, if you are writing a custom valet driver for WordPress, your filename should be `WordPressValetDriver.php`.
+カスタムValetドライバを作成したら、`FrameworkValetDriver.php`の命名規則に従って`~/.config/valet/Drivers`ディレクトリに配置します。例えば、WordPress用のカスタムValetドライバを作成する場合、ファイル名は`WordPressValetDriver.php`とする必要があります。
 
-Let's take a look at a sample implementation of each method your custom Valet driver should implement.
+カスタムValetドライバが実装する必要のある各メソッドのサンプル実装を見てみましょう。
 
 <a name="the-serves-method"></a>
-#### The `serves` Method
+#### `serves`メソッド
 
-The `serves` method should return `true` if your driver should handle the incoming request. Otherwise, the method should return `false`. So, within this method, you should attempt to determine if the given `$sitePath` contains a project of the type you are trying to serve.
+`serves`メソッドは、ドライバが着信リクエストを処理する必要がある場合に`true`を返す必要があります。それ以外の場合、メソッドは`false`を返す必要があります。そのため、このメソッド内で、指定された`$sitePath`に試行しているプロジェクトのタイプが含まれているかどうかを判断する必要があります。
 
-For example, let's imagine we are writing a `WordPressValetDriver`. Our `serves` method might look something like this:
+例えば、`WordPressValetDriver`を作成するとします。`serves`メソッドは次のようになります：
 
     /**
      * Determine if the driver serves the request.
@@ -400,9 +398,9 @@ For example, let's imagine we are writing a `WordPressValetDriver`. Our `serves`
     }
 
 <a name="the-isstaticfile-method"></a>
-#### The `isStaticFile` Method
+#### `isStaticFile`メソッド
 
-The `isStaticFile` should determine if the incoming request is for a file that is "static", such as an image or a stylesheet. If the file is static, the method should return the fully qualified path to the static file on disk. If the incoming request is not for a static file, the method should return `false`:
+`isStaticFile`メソッドは、着信リクエストが画像やスタイルシートなどの「静的」ファイルであるかどうかを判断する必要があります。静的ファイルである場合、メソッドはディスク上の静的ファイルへの完全修飾パスを返す必要があります。着信リクエストが静的ファイルでない場合、メソッドは`false`を返す必要があります：
 
     /**
      * Determine if the incoming request is for a static file.
@@ -418,13 +416,13 @@ The `isStaticFile` should determine if the incoming request is for a file that i
         return false;
     }
 
-> [!WARNING]  
-> The `isStaticFile` method will only be called if the `serves` method returns `true` for the incoming request and the request URI is not `/`.
+> WARNING:  
+> `isStaticFile`メソッドは、`serves`メソッドが着信リクエストに対して`true`を返し、リクエストURIが`/`でない場合にのみ呼び出されます。
 
 <a name="the-frontcontrollerpath-method"></a>
-#### The `frontControllerPath` Method
+#### `frontControllerPath`メソッド
 
-The `frontControllerPath` method should return the fully qualified path to your application's "front controller", which is typically an "index.php" file or equivalent:
+`frontControllerPath`メソッドは、アプリケーションの「フロントコントローラ」への完全修飾パスを返す必要があります。通常は「index.php」ファイルです：
 
     /**
      * Get the fully resolved path to the application's front controller.
@@ -435,16 +433,16 @@ The `frontControllerPath` method should return the fully qualified path to your 
     }
 
 <a name="local-drivers"></a>
-### Local Drivers
+### ローカルドライバ
 
-If you would like to define a custom Valet driver for a single application, create a `LocalValetDriver.php` file in the application's root directory. Your custom driver may extend the base `ValetDriver` class or extend an existing application specific driver such as the `LaravelValetDriver`:
+単一のアプリケーションに対してカスタムValetドライバを定義したい場合は、アプリケーションのルートディレクトリに`LocalValetDriver.php`ファイルを作成します。カスタムドライバは、基本の`ValetDriver`クラスを拡張するか、`LaravelValetDriver`などの既存のアプリケーション固有のドライバを拡張することができます。
 
     use Valet\Drivers\LaravelValetDriver;
 
     class LocalValetDriver extends LaravelValetDriver
     {
         /**
-         * Determine if the driver serves the request.
+         * ドライバがリクエストを処理するかどうかを判断します。
          */
         public function serves(string $sitePath, string $siteName, string $uri): bool
         {
@@ -452,7 +450,7 @@ If you would like to define a custom Valet driver for a single application, crea
         }
 
         /**
-         * Get the fully resolved path to the application's front controller.
+         * アプリケーションのフロントコントローラへの完全解決パスを取得します。
          */
         public function frontControllerPath(string $sitePath, string $siteName, string $uri): string
         {
@@ -461,90 +459,90 @@ If you would like to define a custom Valet driver for a single application, crea
     }
 
 <a name="other-valet-commands"></a>
-## Other Valet Commands
+## その他のValetコマンド
 
-<div class="overflow-auto">
+<div class="overflow-auto" markdown=1>
 
-| Command | Description |
+| コマンド | 説明 |
 | --- | --- |
-| `valet list` | Display a list of all Valet commands. |
-| `valet diagnose` | Output diagnostics to aid in debugging Valet. |
-| `valet directory-listing` | Determine directory-listing behavior. Default is "off", which renders a 404 page for directories. |
-| `valet forget` | Run this command from a "parked" directory to remove it from the parked directory list. |
-| `valet log` | View a list of logs which are written by Valet's services. |
-| `valet paths` | View all of your "parked" paths. |
-| `valet restart` | Restart the Valet daemons. |
-| `valet start` | Start the Valet daemons. |
-| `valet stop` | Stop the Valet daemons. |
-| `valet trust` | Add sudoers files for Brew and Valet to allow Valet commands to be run without prompting for your password. |
-| `valet uninstall` | Uninstall Valet: shows instructions for manual uninstall. Pass the `--force` option to aggressively delete all of Valet's resources. |
+| `valet list` | すべてのValetコマンドのリストを表示します。 |
+| `valet diagnose` | Valetのデバッグに役立つ診断情報を出力します。 |
+| `valet directory-listing` | ディレクトリリスティングの動作を決定します。デフォルトは "off" で、ディレクトリに対して404ページを表示します。 |
+| `valet forget` | "parked" ディレクトリからこのコマンドを実行して、parkedディレクトリリストから削除します。 |
+| `valet log` | Valetのサービスによって書き込まれたログのリストを表示します。 |
+| `valet paths` | すべての "parked" パスを表示します。 |
+| `valet restart` | Valetデーモンを再起動します。 |
+| `valet start` | Valetデーモンを起動します。 |
+| `valet stop` | Valetデーモンを停止します。 |
+| `valet trust` | BrewとValetのsudoersファイルを追加して、パスワードを要求せずにValetコマンドを実行できるようにします。 |
+| `valet uninstall` | Valetをアンインストールします。手動でのアンインストール手順を表示します。`--force`オプションを渡すと、Valetのすべてのリソースを積極的に削除します。 |
 
 </div>
 
 <a name="valet-directories-and-files"></a>
-## Valet Directories and Files
+## Valetのディレクトリとファイル
 
-You may find the following directory and file information helpful while troubleshooting issues with your Valet environment:
+Valet環境のトラブルシューティング中に、以下のディレクトリとファイル情報が役立つ場合があります。
 
 #### `~/.config/valet`
 
-Contains all of Valet's configuration. You may wish to maintain a backup of this directory.
+Valetのすべての設定が含まれています。このディレクトリのバックアップを維持することをお勧めします。
 
 #### `~/.config/valet/dnsmasq.d/`
 
-This directory contains DNSMasq's configuration.
+このディレクトリには、DNSMasqの設定が含まれています。
 
 #### `~/.config/valet/Drivers/`
 
-This directory contains Valet's drivers. Drivers determine how a particular framework / CMS is served.
+このディレクトリには、Valetのドライバが含まれています。ドライバは、特定のフレームワーク/CMSがどのように提供されるかを決定します。
 
 #### `~/.config/valet/Nginx/`
 
-This directory contains all of Valet's Nginx site configurations. These files are rebuilt when running the `install` and `secure` commands.
+このディレクトリには、ValetのすべてのNginxサイト設定が含まれています。これらのファイルは、`install`および`secure`コマンドを実行すると再構築されます。
 
 #### `~/.config/valet/Sites/`
 
-This directory contains all of the symbolic links for your [linked projects](#the-link-command).
+このディレクトリには、[リンクされたプロジェクト](#the-link-command)のすべてのシンボリックリンクが含まれています。
 
 #### `~/.config/valet/config.json`
 
-This file is Valet's master configuration file.
+このファイルは、Valetのマスター設定ファイルです。
 
 #### `~/.config/valet/valet.sock`
 
-This file is the PHP-FPM socket used by Valet's Nginx installation. This will only exist if PHP is running properly.
+このファイルは、ValetのNginxインストールで使用されるPHP-FPMソケットです。PHPが正しく実行されている場合にのみ存在します。
 
 #### `~/.config/valet/Log/fpm-php.www.log`
 
-This file is the user log for PHP errors.
+このファイルは、PHPエラーのユーザーログです。
 
 #### `~/.config/valet/Log/nginx-error.log`
 
-This file is the user log for Nginx errors.
+このファイルは、Nginxエラーのユーザーログです。
 
 #### `/usr/local/var/log/php-fpm.log`
 
-This file is the system log for PHP-FPM errors.
+このファイルは、PHP-FPMエラーのシステムログです。
 
 #### `/usr/local/var/log/nginx`
 
-This directory contains the Nginx access and error logs.
+このディレクトリには、Nginxのアクセスログとエラーログが含まれています。
 
 #### `/usr/local/etc/php/X.X/conf.d`
 
-This directory contains the `*.ini` files for various PHP configuration settings.
+このディレクトリには、さまざまなPHP設定の`*.ini`ファイルが含まれています。
 
 #### `/usr/local/etc/php/X.X/php-fpm.d/valet-fpm.conf`
 
-This file is the PHP-FPM pool configuration file.
+このファイルは、PHP-FPMプール設定ファイルです。
 
 #### `~/.composer/vendor/laravel/valet/cli/stubs/secure.valet.conf`
 
-This file is the default Nginx configuration used for building SSL certificates for your sites.
+このファイルは、サイトのSSL証明書を構築するために使用されるデフォルトのNginx設定です。
 
 <a name="disk-access"></a>
-### Disk Access
+### ディスクアクセス
 
-Since macOS 10.14, [access to some files and directories is restricted by default](https://manuals.info.apple.com/MANUALS/1000/MA1902/en_US/apple-platform-security-guide.pdf). These restrictions include the Desktop, Documents, and Downloads directories. In addition, network volume and removable volume access is restricted. Therefore, Valet recommends your site folders are located outside of these protected locations.
+macOS 10.14以降、[一部のファイルとディレクトリへのアクセスはデフォルトで制限されています](https://manuals.info.apple.com/MANUALS/1000/MA1902/en_US/apple-platform-security-guide.pdf)。これらの制限には、デスクトップ、ドキュメント、ダウンロードディレクトリが含まれます。さらに、ネットワークボリュームとリムーバブルボリュームへのアクセスも制限されています。したがって、Valetはサイトフォルダがこれらの保護された場所の外にあることを推奨します。
 
-However, if you wish to serve sites from within one of those locations, you will need to give Nginx "Full Disk Access". Otherwise, you may encounter server errors or other unpredictable behavior from Nginx, especially when serving static assets. Typically, macOS will automatically prompt you to grant Nginx full access to these locations. Or, you may do so manually via `System Preferences` > `Security & Privacy` > `Privacy` and selecting `Full Disk Access`. Next, enable any `nginx` entries in the main window pane.
+しかし、これらの場所からサイトを提供したい場合は、Nginxに「フルディスクアクセス」権限を与える必要があります。そうしないと、特に静的アセットの提供時に、サーバーエラーやその他の予期せぬ動作がNginxで発生する可能性があります。通常、macOSは自動的にこれらの場所へのフルアクセスをNginxに許可するようプロンプトを表示します。または、手動で`システム環境設定` > `セキュリティとプライバシー` > `プライバシー`から`フルディスクアクセス`を選択し、メインウィンドウペインで`nginx`のエントリを有効にすることもできます。
