@@ -3322,7 +3322,7 @@
                   
 
   
-    <a href="https://github.com/koriym/l11ja/edit/ja/database-testing.md" title="Edit this page" class="md-content__button md-icon">
+    <a href="https://github.com/koriym/l11ja/edit/11.x-ja/database-testing.md" title="Edit this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -3346,11 +3346,9 @@
 <p><a name="resetting-the-database-after-each-test"></a></p>
 <h3 id="_3">各テスト後のデータベースリセット<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <p>さらに進む前に、各テスト後にデータベースをリセットする方法について説明しましょう。これにより、前のテストのデータが後続のテストに干渉しないようになります。Laravelに含まれる<code>Illuminate\Foundation\Testing\RefreshDatabase</code>トレイトが、これを処理します。テストクラスでトレイトを使用するだけです：</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:1"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Pest</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Pest</label><label for="__tabbed_1_2">PHPUnit</label></div>
 <div class="tabbed-content">
-<div class="tabbed-block"></div>
-</div>
-</div>
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="o">&lt;?</span><span class="nx">php</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">use</span> <span class="nx">Illuminate\Foundation\Testing\RefreshDatabase</span><span class="p">;</span>
@@ -3363,11 +3361,8 @@
 <a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="c1">// ...</span>
 <a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="p">});</span>
 </code></pre></div>
-<div class="tabbed-set tabbed-alternate" data-tabs="2:1"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">PHPUnit</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block"></div>
 </div>
-</div>
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="o">&lt;?</span><span class="nx">php</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">namespace</span> <span class="nx">Tests\Feature</span><span class="p">;</span>
@@ -3390,17 +3385,18 @@
 <a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>    <span class="p">}</span>
 <a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="p">}</span>
 </code></pre></div>
+</div>
+</div>
+</div>
 <p><code>Illuminate\Foundation\Testing\RefreshDatabase</code>トレイトは、スキーマが最新の場合、データベースをマイグレートしません。代わりに、データベーストランザクション内でテストを実行するだけです。したがって、このトレイトを使用しないテストケースによってデータベースに追加されたレコードは、データベースに残る可能性があります。</p>
 <p>データベースを完全にリセットしたい場合は、代わりに<code>Illuminate\Foundation\Testing\DatabaseMigrations</code>または<code>Illuminate\Foundation\Testing\DatabaseTruncation</code>トレイトを使用できます。ただし、これらのオプションは<code>RefreshDatabase</code>トレイトよりも大幅に遅くなります。</p>
 <p><a name="model-factories"></a></p>
 <h2 id="_4">モデルファクトリ<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <p>テストを行う際、テストを実行する前にデータベースにいくつかのレコードを挿入する必要があるかもしれません。このテストデータを作成する際に、各列の値を手動で指定する代わりに、Laravelでは<a href="eloquent-factories.html">モデルファクトリ</a>を使用して、各<a href="eloquent.html">Eloquentモデル</a>のデフォルト属性のセットを定義できます。</p>
 <p>モデルファクトリの作成と使用方法について詳しくは、完全な<a href="eloquent-factories.html">モデルファクトリのドキュメント</a>を参照してください。モデルファクトリを定義したら、テスト内でファクトリを使用してモデルを作成できます：</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="3:1"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Pest</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Pest</label><label for="__tabbed_2_2">PHPUnit</label></div>
 <div class="tabbed-content">
-<div class="tabbed-block"></div>
-</div>
-</div>
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">use</span> <span class="nx">App\Models\User</span><span class="p">;</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nx">test</span><span class="p">(</span><span class="s1">&#39;models can be instantiated&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
@@ -3409,11 +3405,8 @@
 <a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="c1">// ...</span>
 <a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="p">});</span>
 </code></pre></div>
-<div class="tabbed-set tabbed-alternate" data-tabs="4:1"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">PHPUnit</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block"></div>
 </div>
-</div>
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">use</span> <span class="nx">App\Models\User</span><span class="p">;</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">public</span> <span class="k">function</span> <span class="nf">test_models_can_be_instantiated</span><span class="p">()</span><span class="o">:</span> <span class="nx">void</span>
@@ -3423,14 +3416,15 @@
 <a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    <span class="c1">// ...</span>
 <a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="p">}</span>
 </code></pre></div>
+</div>
+</div>
+</div>
 <p><a name="running-seeders"></a></p>
 <h2 id="_5">シーダーの実行<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <p>機能テスト中に<a href="seeding.html">データベースシーダー</a>を使用してデータベースをデータで埋めたい場合は、<code>seed</code>メソッドを呼び出すことができます。デフォルトでは、<code>seed</code>メソッドは<code>DatabaseSeeder</code>を実行し、これにより他のすべてのシーダーが実行されます。または、特定のシーダークラス名を<code>seed</code>メソッドに渡すこともできます：</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="5:1"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Pest</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Pest</label><label for="__tabbed_3_2">PHPUnit</label></div>
 <div class="tabbed-content">
-<div class="tabbed-block"></div>
-</div>
-</div>
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="o">&lt;?</span><span class="nx">php</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">use</span> <span class="nx">Database\Seeders\OrderStatusSeeder</span><span class="p">;</span>
@@ -3456,11 +3450,8 @@
 <a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a>    <span class="p">]);</span>
 <a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a><span class="p">});</span>
 </code></pre></div>
-<div class="tabbed-set tabbed-alternate" data-tabs="6:1"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">PHPUnit</label></div>
-<div class="tabbed-content">
-<div class="tabbed-block"></div>
 </div>
-</div>
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="o">&lt;?</span><span class="nx">php</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="k">namespace</span> <span class="nx">Tests\Feature</span><span class="p">;</span>
@@ -3496,6 +3487,9 @@
 <a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a>    <span class="p">}</span>
 <a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a><span class="p">}</span>
 </code></pre></div>
+</div>
+</div>
+</div>
 <p>または、<code>RefreshDatabase</code>トレイトを使用する各テストの前に、Laravelにデータベースを自動的にシードするように指示できます。これは、ベーステストクラスに<code>$seed</code>プロパティを定義することで実現できます：</p>
 <div class="highlight"><pre><span></span><code><span class="o">&lt;?</span><span class="nx">php</span>
 
