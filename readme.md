@@ -1,7 +1,22 @@
-# Laravel Documentation
+# L11JA
 
-You can find the online version of the Laravel documentation at [https://laravel.com/docs](https://laravel.com/docs)
+MITライセンスで公開されているLaravel Documentation (11.x)を翻訳したサイトです。
 
-## Contribution Guidelines
+## 原著
 
-If you are submitting documentation for the **current stable release**, submit it to the corresponding branch. For example, documentation for Laravel 11 would be submitted to the `11.x` branch. Documentation intended for the next release of Laravel should be submitted to the `master` branch.
+- オリジナルドキュメント: [https://github.com/laravel/docs/tree/11.x](https://github.com/laravel/docs/tree/11.x)
+- 公開サイト: [https://laravel.com/docs/11.x/readme](https://laravel.com/docs/11.x/readme)
+- 著者: Taylor Otwell
+- コントリビューター: [https://github.com/laravel/docs/graphs/contributors](https://github.com/laravel/docs/graphs/contributors)
+- ライセンス: MIT License
+
+## 翻訳版
+
+- 対象バージョン: 11.x
+- 翻訳ドキュメント: [https://github.com/koriym/l11ja](https://github.com/koriym/l11ja)
+- カットオーバー日: 2024-09-20
+- 製作者: Akihito Koriyama
+- ライセンス: MIT License
+
+---
+©️2024
