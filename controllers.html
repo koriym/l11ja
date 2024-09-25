@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://github.com/koriym/laravel11-ja/controllers.html">
+        <link rel="canonical" href="https://github.com/koriym/l11ja/controllers.html">
       
       
         <link rel="prev" href="csrf.html">
@@ -43,7 +43,7 @@
     
       <link rel="stylesheet" href="assets/css/extra.css">
     
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <link rel="stylesheet" href="assets/css/giscuss.css">
     
     <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -3781,7 +3781,7 @@
 
 <span class="nx">Route</span><span class="o">::</span><span class="na">resource</span><span class="p">(</span><span class="s1">&#39;photos&#39;</span><span class="p">,</span> <span class="nx">PhotoController</span><span class="o">::</span><span class="na">class</span><span class="p">);</span>
 </code></pre></div>
-<p>この単一のルート宣言により、リソースに対するさまざまなアクションを処理する複数のルートが作成されます。生成されたコントローラには、これらのアクションごとにスタブされたメソッドが既に含まれています。<code>route:list</code> Artisanコマンドを実行することで、アプリケーションのルートの概要をいつでも確認できます。</p>
+<p>この単一のルート宣言により、リソースに対するさまざまなアクションを処理する複数のルートが作成されます。生成されたコントローラには、これらのアクションごとにスタブ化されたメソッドが既に含まれています。<code>route:list</code> Artisanコマンドを実行することで、アプリケーションのルートの概要をいつでも確認できます。</p>
 <p><code>resources</code>メソッドに配列を渡すことで、一度に多くのリソースコントローラを登録することもできます。</p>
 <div class="highlight"><pre><span></span><code><span class="nx">Route</span><span class="o">::</span><span class="na">resources</span><span class="p">([</span>
     <span class="s1">&#39;photos&#39;</span> <span class="o">=&gt;</span> <span class="nx">PhotoController</span><span class="o">::</span><span class="na">class</span><span class="p">,</span>
@@ -3880,7 +3880,7 @@
 </code></pre></div>
 <p><a name="restful-partial-resource-routes"></a></p>
 <h3 id="_13">部分的なリソースルート<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
-<p>リソースルートを宣言する際、コントローラが処理すべきアクションのサブセットを指定することができます。デフォルトの全アクションセットの代わりに、次のように指定します。</p>
+<p>リソースルートを宣言する際、コントローラが処理すべきアクションのサブセットを指定できます。デフォルトの全アクションセットの代わりに、次のように指定します。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">use</span> <span class="nx">App\Http\Controllers\PhotoController</span><span class="p">;</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nx">Route</span><span class="o">::</span><span class="na">resource</span><span class="p">(</span><span class="s1">&#39;photos&#39;</span><span class="p">,</span> <span class="nx">PhotoController</span><span class="o">::</span><span class="na">class</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">only</span><span class="p">([</span>
@@ -3925,7 +3925,7 @@
 <p>Laravelの<a href="routing.html#implicit-model-binding-scoping">暗黙的なモデルバインディング</a>機能は、自動的にネストされたバインディングをスコープし、解決された子モデルが親モデルに属していることを確認できます。ネストされたリソースを定義する際に<code>scoped</code>メソッドを使用することで、自動スコーピングを有効にし、Laravelに子リソースを取得するフィールドを指示できます。これを実現する方法の詳細については、<a href="#restful-scoping-resource-routes">リソースルートのスコーピング</a>に関するドキュメントを参照してください。</p>
 <p><a name="shallow-nesting"></a></p>
 <h4 id="_16">浅いネスト<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h4>
-<p>多くの場合、URI内に親と子の両方のIDを持つ必要はありません。子IDはすでに一意の識別子であるためです。URIセグメント内で自動インクリメント主キーなどの一意の識別子を使用してモデルを識別する場合、「浅いネスト」を使用することを選択できます。</p>
+<p>多くの場合、URI内に親と子の両方のIDを持つ必要はありません。子IDはすでに一意の識別子であるためです。URIセグメント内で自動インクリメント主キーなどの一意の識別子を使用してモデルを識別する場合は、「浅いネスト」を使用することを選択できます。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">use</span> <span class="nx">App\Http\Controllers\CommentController</span><span class="p">;</span>
 <a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>
 <a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="nx">Route</span><span class="o">::</span><span class="na">resource</span><span class="p">(</span><span class="s1">&#39;photos.comments&#39;</span><span class="p">,</span> <span class="nx">CommentController</span><span class="o">::</span><span class="na">class</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">shallow</span><span class="p">();</span>
@@ -4023,7 +4023,7 @@
 <p>ネストされたルートパラメータとしてカスタムキー付きの暗黙的なバインディングを使用する場合、Laravelは自動的にクエリをスコープし、親モデルのリレーション名を推測して子モデルを取得します。この場合、<code>Photo</code>モデルには<code>comments</code>（ルートパラメータ名の複数形）というリレーションがあると想定され、これを使用して<code>Comment</code>モデルを取得します。</p>
 <p><a name="restful-localizing-resource-uris"></a></p>
 <h3 id="uri">リソースURIのローカライズ<a class="headerlink" href="#uri" title="Permanent link">&para;</a></h3>
-<p>デフォルトでは、<code>Route::resource</code>はリソースURIを英語の動詞と複数形規則を使用して作成します。<code>create</code>と<code>edit</code>アクション動詞をローカライズする必要がある場合は、<code>Route::resourceVerbs</code>メソッドを使用できます。これは、アプリケーションの<code>App\Providers\AppServiceProvider</code>内の<code>boot</code>メソッドの先頭で行うことができます。</p>
+<p>デフォルトでは、<code>Route::resource</code>はリソースURIを英語の動詞と複数形規則を使用して作成します。<code>create</code>と<code>edit</code>アクション動詞をローカライズする必要がある場合は、<code>Route::resourceVerbs</code>メソッドを使用できます。これは、アプリケーションの<code>App\Providers\AppServiceProvider</code>の<code>boot</code>メソッドの先頭で行うことができます。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="sd">/**</span>
 <a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="sd"> * 任意のアプリケーションサービスのブートストラップ。</span>
 <a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="sd"> */</span>
@@ -4313,6 +4313,57 @@
 
 
 
+
+<h2>ユーザーノート</h2>
+<div id="user-contribution-section">
+    <a href="#" id="toggle-contribution" class="toggle-link" aria-expanded="false" aria-controls="contribution-content">+ ユーザーノートを表示する</a>
+    <div id="contribution-content" style="display: none;">
+        <div id="giscus-container">
+            <!-- Giscus script here -->
+            <script src="https://giscus.app/client.js"
+                    data-repo="koriym/l11ja"
+                    data-repo-id="R_kgDOM2Kucw"
+                    data-category="Announcements"
+                    data-category-id="DIC_kwDOM2Kuc84Civbh"
+                    data-mapping="pathname"
+                    data-strict="0"
+                    data-reactions-enabled="0"
+                    data-emit-metadata="0"
+                    data-input-position="bottom"
+                    data-theme="light"
+                    data-lang="en"
+                    crossorigin="anonymous"
+                    async>
+            </script>
+            <div id="terms-of-service">
+                <h4>ユーザーノートについて</h4>
+                <p>PHPマニュアルのように、マニュアルを補足する情報の共有を目的としてます。</p>
+                <ul>
+                    <li>掲示板ではありません。議論、質問、別のノートへの返信はできません。</li>
+                    <li>バグや改善要望、または翻訳の Issue は、該当する GitHub リポジトリで報告してください。</li>
+                    <li>ノートは事前の通知なく削除される場合があります。</li>
+                    <li>Giscussのコメントシステムを流用しています。そのためノートとしては最適化されてないことをご了承ください。</li>
+                    <li>保証されていません。投稿したノートが消失する事やノート機能全体が閉鎖する可能性があります。</li>
+                    <li>お願い：いいノートにはup voteを、この規約に違反しているノートを見つけた場合は、優しくdown voteしてください。</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    (function() {
+        const toggleLink = document.getElementById('toggle-contribution');
+        const contributionContent = document.getElementById('contribution-content');
+
+        toggleLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            const isHidden = contributionContent.style.display === 'none';
+            contributionContent.style.display = isHidden ? 'block' : 'none';
+            toggleLink.textContent = isHidden ? '- ノートを非表示にする' : '+ ノートを表示する';
+            toggleLink.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
+        });
+    })();
+</script>
 
                 
               </article>

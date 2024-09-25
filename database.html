@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://github.com/koriym/laravel11-ja/database.html">
+        <link rel="canonical" href="https://github.com/koriym/l11ja/database.html">
       
       
         <link rel="prev" href="passwords.html">
@@ -43,7 +43,7 @@
     
       <link rel="stylesheet" href="assets/css/extra.css">
     
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <link rel="stylesheet" href="assets/css/giscuss.css">
     
     <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -3680,7 +3680,7 @@
 </div>
 <p><a name="configuration"></a></p>
 <h3 id="_3">設定<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
-<p>Laravelのデータベースサービスの設定は、アプリケーションの<code>config/database.php</code>設定ファイルにあります。このファイルでは、すべてのデータベース接続を定義し、デフォルトで使用する接続を指定できます。このファイル内のほとんどの設定オプションは、アプリケーションの環境変数の値によって駆動されます。Laravelがサポートするほとんどのデータベースシステムの例がこのファイルに提供されています。</p>
+<p>Laravelのデータベースサービスの設定は、アプリケーションの<code>config/database.php</code>設定ファイルにあります。このファイルでは、すべてのデータベース接続を定義し、デフォルトで使用する接続を指定できます。このファイル内のほとんどの設定オプションは、アプリケーションの環境変数の値によって制御されます。Laravelがサポートするほとんどのデータベースシステムの例がこのファイルに提供されています。</p>
 <p>デフォルトでは、Laravelのサンプル<a href="configuration.html#environment-configuration">環境設定</a>は、<a href="sail.html">Laravel Sail</a>で使用する準備ができています。これは、ローカルマシン上でLaravelアプリケーションを開発するためのDocker設定です。ただし、必要に応じてローカルデータベースの設定を自由に変更できます。</p>
 <p><a name="sqlite-configuration"></a></p>
 <h4 id="sqlite">SQLite設定<a class="headerlink" href="#sqlite" title="Permanent link">&para;</a></h4>
@@ -3688,7 +3688,7 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="na">DB_CONNECTION</span><span class="o">=</span><span class="s">sqlite</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="na">DB_DATABASE</span><span class="o">=</span><span class="s">/absolute/path/to/database.sqlite</span>
 </code></pre></div>
-<p>デフォルトでは、SQLite接続の外部キー制約が有効になっています。無効にしたい場合は、<code>DB_FOREIGN_KEYS</code>環境変数を<code>false</code>に設定する必要があります:</p>
+<p>デフォルトでは、SQLite接続の外部キー制約が有効になっています。無効にしたい場合は、<code>DB_FOREIGN_KEYS</code>環境変数を<code>false</code>に設定してください:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="na">DB_FOREIGN_KEYS</span><span class="o">=</span><span class="s">false</span>
 </code></pre></div>
 <div class="admonition note">
@@ -3710,7 +3710,7 @@
 <p>利便性のために、LaravelはこれらのURLを複数の設定オプションでデータベースを設定する代わりに使用することをサポートしています。<code>url</code>（または対応する<code>DB_URL</code>環境変数）設定オプションが存在する場合、データベース接続と資格情報の情報を抽出するために使用されます。</p>
 <p><a name="read-and-write-connections"></a></p>
 <h3 id="_4">読み取りと書き込みの接続<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
-<p>SELECTステートメントにはあるデータベース接続を使用し、INSERT、UPDATE、DELETEステートメントには別のデータベース接続を使用したい場合があります。Laravelはこれを簡単にし、生のクエリ、クエリビルダ、またはEloquent ORMを使用しているかどうかに関係なく、適切な接続が常に使用されます。</p>
+<p>SELECTステートメントには一つのデータベース接続を使用し、INSERT、UPDATE、DELETEステートメントには別のデータベース接続を使用したい場合があります。Laravelはこれを簡単にし、生のクエリ、クエリビルダ、またはEloquent ORMを使用しているかどうかに関係なく、適切な接続が常に使用されます。</p>
 <p>読み取り/書き込み接続を設定する方法を見てみましょう。この例を見てください:</p>
 <div class="highlight"><pre><span></span><code><span class="s1">&#39;mysql&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
     <span class="s1">&#39;read&#39;</span> <span class="o">=&gt;</span> <span class="p">[</span>
@@ -3745,7 +3745,7 @@
 <p>メインの<code>mysql</code>配列から値を上書きしたい場合にのみ、<code>read</code>と<code>write</code>配列にアイテムを配置する必要があります。したがって、この場合、<code>192.168.1.1</code>が「読み取り」接続のホストとして使用され、<code>192.168.1.3</code>が「書き込み」接続のホストとして使用されます。メインの<code>mysql</code>配列内のデータベース資格情報、プレフィックス、文字セット、およびその他のすべてのオプションは、両方の接続で共有されます。<code>host</code>設定配列に複数の値が存在する場合、データベースホストは各リクエストに対してランダムに選択されます。</p>
 <p><a name="the-sticky-option"></a></p>
 <h4 id="sticky"><code>sticky</code>オプション<a class="headerlink" href="#sticky" title="Permanent link">&para;</a></h4>
-<p><code>sticky</code>オプションは、<em>オプションの</em>値で、現在のリクエストサイクル中にデータベースに書き込まれたレコードをすぐに読み取ることを許可するために使用できます。<code>sticky</code>オプションが有効になっていて、現在のリクエストサイクル中にデータベースに対して「書き込み」操作が実行された場合、それ以降の「読み取り」操作は「書き込み」接続を使用します。これにより、リクエストサイクル中に書き込まれたデータを同じリクエスト中にすぐにデータベースから読み戻すことができます。これがアプリケーションにとって望ましい動作であるかどうかは、あなた次第です。</p>
+<p><code>sticky</code>オプションは、<em>オプションの</em>値で、現在のリクエストサイクル中にデータベースに書き込まれたレコードをすぐに読み取ることを可能にするために使用できます。<code>sticky</code>オプションが有効になっていて、現在のリクエストサイクル中にデータベースに対して「書き込み」操作が実行された場合、それ以降の「読み取り」操作は「書き込み」接続を使用します。これにより、リクエストサイクル中に書き込まれたデータを同じリクエスト中にすぐにデータベースから読み戻すことができます。これがアプリケーションにとって望ましい動作であるかどうかは、あなた次第です。</p>
 <p><a name="running-queries"></a></p>
 <h2 id="sql">SQLクエリの実行<a class="headerlink" href="#sql" title="Permanent link">&para;</a></h2>
 <p>データベース接続を設定したら、<code>DB</code>ファサードを使用してクエリを実行できます。<code>DB</code>ファサードは、各タイプのクエリに対して<code>select</code>、<code>update</code>、<code>insert</code>、<code>delete</code>、および<code>statement</code>メソッドを提供します。</p>
@@ -3792,14 +3792,14 @@
 </code></pre></div>
 <p><a name="selecting-multiple-result-sets"></a></p>
 <h4 id="_6">複数の結果セットの選択<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h4>
-<p>アプリケーションが複数の結果セットを返すストアドプロシージャを呼び出す場合、<code>selectResultSets</code>メソッドを使用してストアドプロシージャによって返されるすべての結果セットを取得できます:</p>
+<p>アプリケーションが複数の結果セットを返すストアドプロシージャを呼び出す場合、<code>selectResultSets</code>メソッドを使用してストアドプロシージャによって返されるすべての結果セットを取得できます。</p>
 <div class="highlight"><pre><span></span><code><span class="p">[</span><span class="nv">$options</span><span class="p">,</span> <span class="nv">$notifications</span><span class="p">]</span> <span class="o">=</span> <span class="nx">DB</span><span class="o">::</span><span class="na">selectResultSets</span><span class="p">(</span>
     <span class="s2">&quot;CALL get_user_options_and_notifications(?)&quot;</span><span class="p">,</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">user</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">id</span>
 <span class="p">);</span>
 </code></pre></div>
 <p><a name="using-named-bindings"></a></p>
 <h4 id="_7">名前付きバインディングの使用<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h4>
-<p>パラメータバインディングを表すために <code>?</code> を使用する代わりに、名前付きバインディングを使用してクエリを実行することができます。</p>
+<p>パラメータバインディングを表すために <code>?</code> を使用する代わりに、名前付きバインディングを使用してクエリを実行できます。</p>
 <div class="highlight"><pre><span></span><code><span class="nv">$results</span> <span class="o">=</span> <span class="nx">DB</span><span class="o">::</span><span class="na">select</span><span class="p">(</span><span class="s1">&#39;select * from users where id = :id&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">]);</span>
 </code></pre></div>
 <p><a name="running-an-insert-statement"></a></p>
@@ -3858,7 +3858,7 @@
 </code></pre></div>
 <p><a name="listening-for-query-events"></a></p>
 <h3 id="_12">クエリイベントのリスニング<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
-<p>アプリケーションによって実行される各 SQL クエリに対して呼び出されるクロージャを指定したい場合は、<code>DB</code> ファサードの <code>listen</code> メソッドを使用できます。このメソッドは、クエリのログ記録やデバッグに役立ちます。クエリリスナーのクロージャは、<a href="providers.html">サービスプロバイダ</a>の <code>boot</code> メソッドに登録できます。</p>
+<p>アプリケーションが実行する各 SQL クエリに対して呼び出されるクロージャを指定したい場合は、<code>DB</code> ファサードの <code>listen</code> メソッドを使用できます。このメソッドは、クエリのログ記録やデバッグに役立ちます。クエリリスナーのクロージャは、<a href="providers.html">サービスプロバイダ</a>の <code>boot</code> メソッドに登録できます。</p>
 <div class="highlight"><pre><span></span><code><span class="o">&lt;?</span><span class="nx">php</span>
 
 <span class="k">namespace</span> <span class="nx">App\Providers</span><span class="p">;</span>
@@ -3893,7 +3893,7 @@
 </code></pre></div>
 <p><a name="monitoring-cumulative-query-time"></a></p>
 <h3 id="_13">累積クエリ時間の監視<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
-<p>現代のウェブアプリケーションの一般的なパフォーマンスボトルネックは、データベースのクエリに費やす時間の量です。幸いなことに、Laravel は、単一のリクエスト中にデータベースのクエリに時間がかかりすぎる場合に、選択したクロージャまたはコールバックを呼び出すことができます。開始するには、クエリ時間のしきい値（ミリ秒単位）とクロージャを <code>whenQueryingForLongerThan</code> メソッドに提供します。このメソッドは、<a href="providers.html">サービスプロバイダ</a>の <code>boot</code> メソッドで呼び出すことができます。</p>
+<p>現代のウェブアプリケーションにおける一般的なパフォーマンスのボトルネックは、データベースのクエリに費やす時間の量です。幸いなことに、Laravel では単一のリクエスト中にデータベースのクエリに時間がかかりすぎる場合に、選択したクロージャまたはコールバックを呼び出すことができます。使用するには、クエリ時間のしきい値（ミリ秒単位）とクロージャを <code>whenQueryingForLongerThan</code> メソッドに提供します。このメソッドは、<a href="providers.html">サービスプロバイダ</a>の <code>boot</code> メソッドで呼び出してください。</p>
 <div class="highlight"><pre><span></span><code><span class="o">&lt;?</span><span class="nx">php</span>
 
 <span class="k">namespace</span> <span class="nx">App\Providers</span><span class="p">;</span>
@@ -3979,7 +3979,7 @@
 <p>検査するデータベース接続を指定するには、<code>--database</code> オプションを介してデータベース接続名をコマンドに渡します。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>db:show<span class="w"> </span>--database<span class="o">=</span>pgsql
 </code></pre></div>
-<p>コマンドの出力にテーブルの行数とデータベースビューの詳細を含めたい場合は、それぞれ <code>--counts</code> および <code>--views</code> オプションを提供できます。大規模なデータベースでは、行数とビューの詳細を取得することが遅くなる可能性があります。</p>
+<p>コマンドの出力にテーブルの行数とデータベースビューの詳細を含めたい場合は、それぞれ <code>--counts</code> および <code>--views</code> オプションを指定できます。大規模なデータベースでは、行数とビューの詳細の取得に時間がかかる可能性があります。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>db:show<span class="w"> </span>--counts<span class="w"> </span>--views
 </code></pre></div>
 <p>さらに、以下の <code>Schema</code> メソッドを使用してデータベースを検査できます。</p>
@@ -4040,6 +4040,57 @@
 
 
 
+
+<h2>ユーザーノート</h2>
+<div id="user-contribution-section">
+    <a href="#" id="toggle-contribution" class="toggle-link" aria-expanded="false" aria-controls="contribution-content">+ ユーザーノートを表示する</a>
+    <div id="contribution-content" style="display: none;">
+        <div id="giscus-container">
+            <!-- Giscus script here -->
+            <script src="https://giscus.app/client.js"
+                    data-repo="koriym/l11ja"
+                    data-repo-id="R_kgDOM2Kucw"
+                    data-category="Announcements"
+                    data-category-id="DIC_kwDOM2Kuc84Civbh"
+                    data-mapping="pathname"
+                    data-strict="0"
+                    data-reactions-enabled="0"
+                    data-emit-metadata="0"
+                    data-input-position="bottom"
+                    data-theme="light"
+                    data-lang="en"
+                    crossorigin="anonymous"
+                    async>
+            </script>
+            <div id="terms-of-service">
+                <h4>ユーザーノートについて</h4>
+                <p>PHPマニュアルのように、マニュアルを補足する情報の共有を目的としてます。</p>
+                <ul>
+                    <li>掲示板ではありません。議論、質問、別のノートへの返信はできません。</li>
+                    <li>バグや改善要望、または翻訳の Issue は、該当する GitHub リポジトリで報告してください。</li>
+                    <li>ノートは事前の通知なく削除される場合があります。</li>
+                    <li>Giscussのコメントシステムを流用しています。そのためノートとしては最適化されてないことをご了承ください。</li>
+                    <li>保証されていません。投稿したノートが消失する事やノート機能全体が閉鎖する可能性があります。</li>
+                    <li>お願い：いいノートにはup voteを、この規約に違反しているノートを見つけた場合は、優しくdown voteしてください。</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    (function() {
+        const toggleLink = document.getElementById('toggle-contribution');
+        const contributionContent = document.getElementById('contribution-content');
+
+        toggleLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            const isHidden = contributionContent.style.display === 'none';
+            contributionContent.style.display = isHidden ? 'block' : 'none';
+            toggleLink.textContent = isHidden ? '- ノートを非表示にする' : '+ ノートを表示する';
+            toggleLink.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
+        });
+    })();
+</script>
 
                 
               </article>

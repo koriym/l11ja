@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://github.com/koriym/laravel11-ja/lifecycle.html">
+        <link rel="canonical" href="https://github.com/koriym/l11ja/lifecycle.html">
       
       
         <link rel="prev" href="deployment.html">
@@ -43,7 +43,7 @@
     
       <link rel="stylesheet" href="assets/css/extra.css">
     
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <link rel="stylesheet" href="assets/css/giscuss.css">
     
     <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -3244,7 +3244,7 @@
 <p><a name="introduction"></a></p>
 <h2 id="_2">はじめに<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>"現実世界"のどんなツールを使うにしても、そのツールがどのように動作するかを理解していると、より自信を持って使えます。アプリケーション開発も同じです。開発ツールがどのように機能するかを理解していると、すべてがより「魔法のよう」ではなくなり、アプリケーションを構築する際により自信を持てるようになります。</p>
-<p>このドキュメントの目的は、Laravelフレームワークがどのように動作するかについて、良い、高レベルの概要を提供することです。フレームワーク全体をよりよく理解することで、すべてがより「魔法のよう」ではなくなり、アプリケーションを構築する際により自信を持てるようになります。すべての用語をすぐに理解できなくても、落胆しないでください！何が起こっているかの基本的な理解を得るために努め、ドキュメントの他のセクションを調べるにつれて知識が増えていくでしょう。</p>
+<p>このドキュメントの目的は、Laravelフレームワークがどのように動作するかについて、良い、高レベルの概要を提供することです。フレームワーク全体をよりよく理解することで、すべてがより「魔法のよう」ではなくなり、アプリケーションを構築する際により自信を持てるようになります。すべての用語をすぐに理解できなくても、落胆しないでください。何が起こっているかの基本的な理解を得るために努め、ドキュメントの他のセクションを調べるにつれて知識が増えていくでしょう。</p>
 <p><a name="lifecycle-overview"></a></p>
 <h2 id="_3">ライフサイクルの概要<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p><a name="first-steps"></a></p>
@@ -3254,7 +3254,7 @@
 <p><a name="http-console-kernels"></a></p>
 <h3 id="http">HTTP / コンソールカーネル<a class="headerlink" href="#http" title="Permanent link">&para;</a></h3>
 <p>次に、入ってくるリクエストは、アプリケーションに入るリクエストのタイプに応じて、HTTPカーネルまたはコンソールカーネルのいずれかに送られます。これらのカーネルは、すべてのリクエストが流れる中心の場所として機能します。今のところ、HTTPカーネルに焦点を当てましょう。これは、<code>Illuminate\Foundation\Http\Kernel</code>のインスタンスです。</p>
-<p>HTTPカーネルは、リクエストが実行される前に実行される<code>bootstrappers</code>の配列を定義します。これらのブートストラッパーは、エラー処理の設定、ログの設定、<a href="configuration.html#environment-configuration">アプリケーション環境の検出</a>、およびリクエストが実際に処理される前に行う必要があるその他のタスクを行います。通常、これらのクラスは、ユーザーが気にする必要のない内部のLaravel設定を処理します。</p>
+<p>HTTPカーネルは、リクエストが実行される前に実行される<code>bootstrappers</code>の配列を定義します。これらのブートストラッパーは、エラー処理の設定、ログの設定、<a href="configuration.html#environment-configuration">アプリケーション環境の検出</a>、およびリクエストが実際に処理される前に実行する必要があるその他のタスクを行います。通常、これらのクラスは、ユーザーが気にする必要のない内部のLaravel設定を処理します。</p>
 <p>HTTPカーネルは、アプリケーションのミドルウェアスタックを通じてリクエストを渡す責任もあります。これらのミドルウェアは、<a href="session.html">HTTPセッション</a>の読み書き、アプリケーションがメンテナンスモードかどうかの判定、<a href="csrf.html">CSRFトークンの検証</a>などを行います。これらについては後で詳しく説明します。</p>
 <p>HTTPカーネルの<code>handle</code>メソッドのシグネチャは非常にシンプルです：<code>Request</code>を受け取り、<code>Response</code>を返します。カーネルを、アプリケーション全体を表す大きなブラックボックスと考えてください。HTTPリクエストを与えると、HTTPレスポンスを返します。</p>
 <p><a name="service-providers"></a></p>
@@ -3266,12 +3266,12 @@
 <p><a name="routing"></a></p>
 <h3 id="_6">ルーティング<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
 <p>アプリケーションがブートストラップされ、すべてのサービスプロバイダが登録されると、<code>Request</code>はルーターに渡されてディスパッチされます。ルーターは、リクエストをルートまたはコントローラにディスパッチし、ルート固有のミドルウェアを実行します。</p>
-<p>ミドルウェアは、アプリケーションに入るHTTPリクエストをフィルタリングまたは検査するための便利なメカニズムを提供します。例えば、Laravelには、アプリケーションのユーザーが認証されているかどうかを検証するミドルウェアが含まれています。ユーザーが認証されていない場合、ミドルウェアはユーザーをログイン画面にリダイレクトします。しかし、ユーザーが認証されている場合、ミドルウェアはリクエストがアプリケーションのさらに深くに進むことを許可します。一部のミドルウェアはアプリケーション内のすべてのルートに割り当てられますが、一部は特定のルートまたはルートグループにのみ割り当てられます。ミドルウェアの詳細については、<a href="middleware.html">ミドルウェアのドキュメント</a>を読むことで学ぶことができます。</p>
+<p>ミドルウェアは、アプリケーションに入るHTTPリクエストをフィルタリングまたは検査するための便利なメカニズムを提供します。例えば、Laravelには、アプリケーションのユーザーが認証されているかどうかを検証するミドルウェアが含まれています。ユーザーが認証されていない場合、ミドルウェアはユーザーをログイン画面にリダイレクトします。しかし、ユーザーが認証されている場合、ミドルウェアはリクエストがアプリケーションのさらに深くに進むことを許可します。一部のミドルウェアはアプリケーション内のすべてのルートに割り当てられますが、一部は特定のルートまたはルートグループにのみ割り当てられます。ミドルウェアの詳細については、<a href="middleware.html">ミドルウェアのドキュメント</a>で学ぶことができます。</p>
 <p>リクエストが一致したルートに割り当てられたすべてのミドルウェアを通過すると、ルートまたはコントローラメソッドが実行され、ルートまたはコントローラメソッドから返されたレスポンスがルートのミドルウェアチェーンを通じて返されます。</p>
 <p><a name="finishing-up"></a></p>
 <h3 id="_7">仕上げ<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
 <p>ルートまたはコントローラメソッドがレスポンスを返すと、レスポンスはルートのミドルウェアを通じて外側に戻り、アプリケーションが送信レスポンスを変更または検査する機会を与えられます。</p>
-<p>最後に、レスポンスがミドルウェアを通じて戻ると、HTTPカーネルの<code>handle</code>メソッドはレスポンスオブジェクトをアプリケーションインスタンスの<code>handleRequest</code>に返し、このメソッドは返されたレスポンスの<code>send</code>メソッドを呼び出します。<code>send</code>メソッドは、レスポンスコンテンツをユーザーのWebブラウザに送信します。これで、Laravelリクエストライフサイクル全体の旅が完了しました！</p>
+<p>最後に、レスポンスがミドルウェアを通じて戻ると、HTTPカーネルの<code>handle</code>メソッドはレスポンスオブジェクトをアプリケーションインスタンスの<code>handleRequest</code>に返し、このメソッドは返されたレスポンスの<code>send</code>メソッドを呼び出します。<code>send</code>メソッドは、レスポンスコンテンツをユーザーのWebブラウザに送信します。これで、これでLaravelリクエストライフサイクル全体のプロセスが完了しました。</p>
 <p><a name="focus-on-service-providers"></a></p>
 <h2 id="_8">サービスプロバイダに注目<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
 <p>サービスプロバイダは、Laravelアプリケーションをブートストラップする際の本当の鍵です。アプリケーションインスタンスが作成され、サービスプロバイダが登録され、リクエストがブートストラップされたアプリケーションに渡されます。それは本当にそれだけです！</p>
@@ -3290,6 +3290,57 @@
 
 
 
+
+<h2>ユーザーノート</h2>
+<div id="user-contribution-section">
+    <a href="#" id="toggle-contribution" class="toggle-link" aria-expanded="false" aria-controls="contribution-content">+ ユーザーノートを表示する</a>
+    <div id="contribution-content" style="display: none;">
+        <div id="giscus-container">
+            <!-- Giscus script here -->
+            <script src="https://giscus.app/client.js"
+                    data-repo="koriym/l11ja"
+                    data-repo-id="R_kgDOM2Kucw"
+                    data-category="Announcements"
+                    data-category-id="DIC_kwDOM2Kuc84Civbh"
+                    data-mapping="pathname"
+                    data-strict="0"
+                    data-reactions-enabled="0"
+                    data-emit-metadata="0"
+                    data-input-position="bottom"
+                    data-theme="light"
+                    data-lang="en"
+                    crossorigin="anonymous"
+                    async>
+            </script>
+            <div id="terms-of-service">
+                <h4>ユーザーノートについて</h4>
+                <p>PHPマニュアルのように、マニュアルを補足する情報の共有を目的としてます。</p>
+                <ul>
+                    <li>掲示板ではありません。議論、質問、別のノートへの返信はできません。</li>
+                    <li>バグや改善要望、または翻訳の Issue は、該当する GitHub リポジトリで報告してください。</li>
+                    <li>ノートは事前の通知なく削除される場合があります。</li>
+                    <li>Giscussのコメントシステムを流用しています。そのためノートとしては最適化されてないことをご了承ください。</li>
+                    <li>保証されていません。投稿したノートが消失する事やノート機能全体が閉鎖する可能性があります。</li>
+                    <li>お願い：いいノートにはup voteを、この規約に違反しているノートを見つけた場合は、優しくdown voteしてください。</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    (function() {
+        const toggleLink = document.getElementById('toggle-contribution');
+        const contributionContent = document.getElementById('contribution-content');
+
+        toggleLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            const isHidden = contributionContent.style.display === 'none';
+            contributionContent.style.display = isHidden ? 'block' : 'none';
+            toggleLink.textContent = isHidden ? '- ノートを非表示にする' : '+ ノートを表示する';
+            toggleLink.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
+        });
+    })();
+</script>
 
                 
               </article>

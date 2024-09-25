@@ -394,3 +394,34 @@ span.md-ellipsis span {
 .md-nav__source {
     background-color: var(--title-header-color);
 }
+
+.toggle-link {
+    font-size: 0.9em;
+    color: #0366d6;
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+#contribution-content {
+    margin-top: 10px;
+}
+#terms-of-service {
+    margin-top: 20px;
+    font-size: 0.9em;
+    background-color: #f6f8fa;
+    border: 1px solid #e1e4e8;
+    border-radius: 6px;
+    padding: 15px;
+}
+#terms-of-service h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+#terms-of-service ul {
+    padding-left: 20px;
+    margin-bottom: 0;
+}
+#terms-of-service li {
+    margin-bottom: 5px;
+}

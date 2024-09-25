@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://github.com/koriym/laravel11-ja/authentication.html">
+        <link rel="canonical" href="https://github.com/koriym/l11ja/authentication.html">
       
       
         <link rel="prev" href="scheduling.html">
@@ -43,7 +43,7 @@
     
       <link rel="stylesheet" href="assets/css/extra.css">
     
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <link rel="stylesheet" href="assets/css/giscuss.css">
     
     <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -1844,7 +1844,7 @@
           <li class="md-nav__item">
   <a href="#laravel" class="md-nav__link">
     <span class="md-ellipsis">
-      Laravelの組み込みブラウザ認証サービス
+      Laravelの組み込みブラウザ認証サービスの概要
     </span>
   </a>
   
@@ -1853,7 +1853,7 @@
           <li class="md-nav__item">
   <a href="#laravelapi" class="md-nav__link">
     <span class="md-ellipsis">
-      LaravelのAPI認証サービス
+      LaravelのAPI認証サービスの概要
     </span>
   </a>
   
@@ -1862,7 +1862,7 @@
           <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
-      まとめとスタックの選択
+      認証スタックの選択ガイド
     </span>
   </a>
   
@@ -2112,11 +2112,11 @@
         <li class="md-nav__item">
   <a href="#_24" class="md-nav__link">
     <span class="md-ellipsis">
-      パスワードの確認
+      パスワード確認機能
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="パスワードの確認">
+    <nav class="md-nav" aria-label="パスワード確認機能">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2150,7 +2150,7 @@
           <li class="md-nav__item">
   <a href="#_28" class="md-nav__link">
     <span class="md-ellipsis">
-      パスワードの確認
+      パスワード確認機能
     </span>
   </a>
   
@@ -3537,7 +3537,7 @@
           <li class="md-nav__item">
   <a href="#laravel" class="md-nav__link">
     <span class="md-ellipsis">
-      Laravelの組み込みブラウザ認証サービス
+      Laravelの組み込みブラウザ認証サービスの概要
     </span>
   </a>
   
@@ -3546,7 +3546,7 @@
           <li class="md-nav__item">
   <a href="#laravelapi" class="md-nav__link">
     <span class="md-ellipsis">
-      LaravelのAPI認証サービス
+      LaravelのAPI認証サービスの概要
     </span>
   </a>
   
@@ -3555,7 +3555,7 @@
           <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
-      まとめとスタックの選択
+      認証スタックの選択ガイド
     </span>
   </a>
   
@@ -3805,11 +3805,11 @@
         <li class="md-nav__item">
   <a href="#_24" class="md-nav__link">
     <span class="md-ellipsis">
-      パスワードの確認
+      パスワード確認機能
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="パスワードの確認">
+    <nav class="md-nav" aria-label="パスワード確認機能">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -3843,7 +3843,7 @@
           <li class="md-nav__item">
   <a href="#_28" class="md-nav__link">
     <span class="md-ellipsis">
-      パスワードの確認
+      パスワード確認機能
     </span>
   </a>
   
@@ -3994,7 +3994,7 @@
 <li><a href="#invalidating-sessions-on-other-devices">他のデバイス上のセッションの無効化</a></li>
 </ul>
 </li>
-<li><a href="#password-confirmation">パスワードの確認</a><ul>
+<li><a href="#password-confirmation">パスワード確認機能</a><ul>
 <li><a href="#password-confirmation-configuration">設定</a></li>
 <li><a href="#password-confirmation-routing">ルーティング</a></li>
 <li><a href="#password-confirmation-protecting-routes">ルートの保護</a></li>
@@ -4025,7 +4025,7 @@
 </div>
 <p><a name="starter-kits"></a></p>
 <h3 id="_3">スターターキット<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
-<p>すぐに始めたいですか？新しいLaravelアプリケーションに<a href="starter-kits.html">Laravelアプリケーションスターターキット</a>をインストールしてください。データベースをマイグレーションした後、ブラウザで<code>/register</code>またはアプリケーションに割り当てられた他のURLに移動してください。スターターキットは、認証システム全体のスキャフォールディングを行います！</p>
+<p>すぐに始めたいですか？新しいLaravelアプリケーションに<a href="starter-kits.html">Laravelアプリケーションスターターキットについて</a>をインストールしてください。データベースをマイグレーションした後、ブラウザで<code>/register</code>またはアプリケーションに割り当てられた他のURLに移動してください。スターターキットは、認証システム全体のスキャフォールディングを行います！</p>
 <p><strong>最終的なLaravelアプリケーションでスターターキットを使用しない場合でも、<a href="starter-kits.html#laravel-breeze">Laravel Breeze</a>スターターキットをインストールすることは、Laravelの認証機能を実際のLaravelプロジェクトでどのように実装するかを学ぶための素晴らしい機会です。</strong> Laravel Breezeは認証コントローラ、ルート、ビューを作成するため、これらのファイル内のコードを調べて、Laravelの認証機能がどのように実装されるかを学ぶことができます。</p>
 <p><a name="introduction-database-considerations"></a></p>
 <h3 id="_4">データベースの考慮事項<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
@@ -4038,24 +4038,24 @@
 <p>まず、認証がどのように機能するかを考えてみましょう。Webブラウザを使用する場合、ユーザーはログインフォームを介してユーザー名とパスワードを提供します。これらの資格情報が正しい場合、アプリケーションは認証済みユーザーに関する情報をユーザーの<a href="session.html">セッション</a>に保存します。ブラウザに発行されるクッキーにはセッションIDが含まれており、後続のアプリケーションへのリクエストでユーザーを正しいセッションに関連付けることができます。セッションクッキーを受け取った後、アプリケーションはセッションIDに基づいてセッションデータを取得し、認証情報がセッションに保存されていることを確認し、ユーザーを「認証済み」と見なします。</p>
 <p>リモートサービスがAPIにアクセスするために認証する必要がある場合、通常、認証にクッキーは使用されません。代わりに、リモートサービスは各リクエストでAPIトークンをAPIに送信します。アプリケーションは、有効なAPIトークンのテーブルに対して受信トークンを検証し、そのAPIトークンに関連付けられたユーザーによってリクエストが実行されたと「認証」します。</p>
 <p><a name="laravels-built-in-browser-authentication-services"></a></p>
-<h4 id="laravel">Laravelの組み込みブラウザ認証サービス<a class="headerlink" href="#laravel" title="Permanent link">&para;</a></h4>
+<h4 id="laravel">Laravelの組み込みブラウザ認証サービスの概要<a class="headerlink" href="#laravel" title="Permanent link">&para;</a></h4>
 <p>Laravelには、<code>Auth</code>と<code>Session</code>ファサードを介してアクセスできる組み込みの認証およびセッションサービスが含まれています。これらの機能は、Webブラウザから開始されるリクエストに対してクッキーベースの認証を提供します。これらは、ユーザーの資格情報を検証し、ユーザーを認証するためのメソッドを提供します。さらに、これらのサービスはユーザーのセッションに適切な認証データを自動的に保存し、ユーザーのセッションクッキーを発行します。これらのサービスの使用方法についての説明は、このドキュメントに含まれています。</p>
-<p><strong>アプリケーションスターターキット</strong></p>
+<p><strong>アプリケーションスターターキットについて</strong></p>
 <p>このドキュメントで説明されているように、これらの認証サービスを手動で操作して、アプリケーションの独自の認証レイヤーを構築することができます。ただし、より迅速に開始するために、<a href="starter-kits.html">無料のパッケージ</a>をリリースしています。これらのパッケージは、認証レイヤー全体の堅牢な、現代的なスキャフォールディングを提供します。これらのパッケージは、<a href="starter-kits.html#laravel-breeze">Laravel Breeze</a>、<a href="starter-kits.html#laravel-jetstream">Laravel Jetstream</a>、および<a href="fortify.html">Laravel Fortify</a>です。</p>
-<p>_Laravel Breeze_は、ログイン、登録、パスワードリセット、メール確認、パスワード確認など、Laravelのすべての認証機能のシンプルで最小限の実装です。Laravel Breezeのビューレイヤーは、<a href="blade.html">Bladeテンプレート</a>で構成され、<a href="https://tailwindcss.com">Tailwind CSS</a>でスタイリングされています。開始するには、Laravelの<a href="starter-kits.html">アプリケーションスターターキット</a>のドキュメントを確認してください。</p>
+<p>_Laravel Breeze_は、ログイン、登録、パスワードリセット、メール確認、パスワード確認など、Laravelのすべての認証機能のシンプルで最小限の実装です。Laravel Breezeのビューレイヤーは、<a href="blade.html">Bladeテンプレート</a>で構成され、<a href="https://tailwindcss.com">Tailwind CSS</a>でスタイリングされています。開始するには、Laravelの<a href="starter-kits.html">アプリケーションスターターキットについて</a>のドキュメントを確認してください。</p>
 <p>_Laravel Fortify_は、Laravelのヘッドレス認証バックエンドで、クッキーベースの認証や2要素認証、メール確認など、このドキュメントに記載されている多くの機能を実装しています。FortifyはLaravel Jetstreamの認証バックエンドを提供するか、<a href="sanctum.html">Laravel Sanctum</a>と組み合わせて使用することで、Laravelで認証する必要があるSPAの認証バックエンドを提供できます。</p>
-<p>_<a href="https://jetstream.laravel.com">Laravel Jetstream</a>_は、<a href="https://tailwindcss.com">Tailwind CSS</a>、<a href="https://livewire.laravel.com">Livewire</a>、および/または<a href="https://inertiajs.com">Inertia</a>によって強化された美しい、現代的なUIを備えた堅牢なアプリケーションスターターキットで、Laravel Fortifyの認証サービスを消費および公開します。Laravel Jetstreamには、2要素認証、チームサポート、ブラウザセッション管理、プロフィール管理、および<a href="sanctum.html">Laravel Sanctum</a>との組み込み統合を含むAPIトークン認証のオプションサポートが含まれています。LaravelのAPI認証オファリングについては、以下で説明します。</p>
+<p>_<a href="https://jetstream.laravel.com">Laravel Jetstream</a>_は、<a href="https://tailwindcss.com">Tailwind CSS</a>、<a href="https://livewire.laravel.com">Livewire</a>、および/または<a href="https://inertiajs.com">Inertia</a>によって強化された美しい、現代的なUIを備えた堅牢なアプリケーションスターターキットについてで、Laravel Fortifyの認証サービスを消費および公開します。Laravel Jetstreamには、2要素認証、チームサポート、ブラウザセッション管理、プロフィール管理、および<a href="sanctum.html">Laravel Sanctum</a>との組み込み統合を含むAPIトークン認証のオプションサポートが含まれています。LaravelのAPI認証オファリングについては、以下で説明します。</p>
 <p><a name="laravels-api-authentication-services"></a></p>
-<h4 id="laravelapi">LaravelのAPI認証サービス<a class="headerlink" href="#laravelapi" title="Permanent link">&para;</a></h4>
+<h4 id="laravelapi">LaravelのAPI認証サービスの概要<a class="headerlink" href="#laravelapi" title="Permanent link">&para;</a></h4>
 <p>Laravelは、APIトークンの管理とAPIトークンを使用したリクエストの認証を支援するための2つのオプションパッケージを提供しています：<a href="passport.html">Passport</a>と<a href="sanctum.html">Sanctum</a>です。これらのライブラリとLaravelの組み込みのクッキーベースの認証ライブラリは相互に排他的ではないことに注意してください。これらのライブラリは主にAPIトークン認証に焦点を当てており、組み込みの認証サービスはクッキーベースのブラウザ認証に焦点を当てています。多くのアプリケーションは、Laravelの組み込みのクッキーベースの認証サービスとLaravelのAPI認証パッケージの両方を使用します。</p>
 <p><strong>Passport</strong></p>
 <p>PassportはOAuth2認証プロバイダであり、さまざまな種類のトークンを発行できるようにするさまざまなOAuth2の「付与タイプ」を提供します。一般的に、これはAPI認証のための堅牢で複雑なパッケージです。しかし、ほとんどのアプリケーションはOAuth2仕様が提供する複雑な機能を必要とせず、ユーザーや開発者の両方にとって混乱を招く可能性があります。さらに、開発者はこれまで、PassportのようなOAuth2認証プロバイダを使用してSPAアプリケーションやモバイルアプリケーションを認証する方法について混乱してきました。</p>
 <p><strong>Sanctum</strong></p>
 <p>OAuth2の複雑さと開発者の混乱に対応して、よりシンプルで合理化された認証パッケージを構築し、ウェブブラウザからのファーストパーティのウェブリクエストとトークンを介したAPIリクエストの両方を処理できるようにすることを目指しました。この目標は、<a href="sanctum.html">Laravel Sanctum</a>のリリースによって実現されました。これは、ファーストパーティのウェブUIとAPIを提供するアプリケーション、またはバックエンドのLaravelアプリケーションとは別に存在するシングルページアプリケーション（SPA）によって駆動されるアプリケーション、またはモバイルクライアントを提供するアプリケーションにとって、推奨される認証パッケージと考えるべきです。</p>
 <p>Laravel Sanctumは、ウェブ/API認証のハイブリッドパッケージであり、アプリケーションの認証プロセス全体を管理できます。これが可能なのは、Sanctumベースのアプリケーションがリクエストを受け取ると、Sanctumはまず、認証されたセッションを参照するセッションクッキーがリクエストに含まれているかどうかを判断するためです。Sanctumは、以前に説明したLaravelの組み込み認証サービスを呼び出すことでこれを実現します。セッションクッキーを介してリクエストが認証されていない場合、SanctumはリクエストにAPIトークンが含まれているかどうかを検査します。APIトークンが存在する場合、Sanctumはそのトークンを使用してリクエストを認証します。このプロセスの詳細については、Sanctumの<a href="sanctum.html#how-it-works">"how it works"</a>ドキュメントを参照してください。</p>
-<p>Laravel Sanctumは、<a href="https://jetstream.laravel.com">Laravel Jetstream</a>アプリケーションスターターキットに含めるAPIパッケージとして選択されました。これは、ほとんどのウェブアプリケーションの認証ニーズに最適であると考えているためです。</p>
+<p>Laravel Sanctumは、<a href="https://jetstream.laravel.com">Laravel Jetstream</a>アプリケーションスターターキットについてに含めるAPIパッケージとして選択されました。これは、ほとんどのウェブアプリケーションの認証ニーズに最適であると考えているためです。</p>
 <p><a name="summary-choosing-your-stack"></a></p>
-<h4 id="_6">まとめとスタックの選択<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h4>
+<h4 id="_6">認証スタックの選択ガイド<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h4>
 <p>まとめると、アプリケーションがブラウザを介してアクセスされ、モノリシックなLaravelアプリケーションを構築している場合、アプリケーションはLaravelの組み込み認証サービスを使用します。</p>
 <p>次に、アプリケーションがサードパーティによって消費されるAPIを提供する場合、アプリケーションのAPIトークン認証を提供するために<a href="passport.html">Passport</a>または<a href="sanctum.html">Sanctum</a>のいずれかを選択します。一般的に、可能な限りSanctumを優先するべきです。これは、API認証、SPA認証、モバイル認証のためのシンプルで完全なソリューションであり、「スコープ」や「能力」のサポートも含まれています。</p>
 <p>Laravelバックエンドによって駆動されるシングルページアプリケーション（SPA）を構築している場合、<a href="sanctum.html">Laravel Sanctum</a>を使用するべきです。Sanctumを使用する場合、<a href="#authenticating-users">バックエンド認証ルートを手動で実装する</a>か、<a href="fortify.html">Laravel Fortify</a>を使用して、登録、パスワードリセット、メール確認などの機能のためのルートとコントローラを提供するヘッドレス認証バックエンドサービスとして利用する必要があります。</p>
@@ -4065,13 +4065,13 @@
 <h2 id="_7">認証のクイックスタート<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>この部分のドキュメントでは、<a href="starter-kits.html">Laravelアプリケーションスターターキット</a>を介してユーザーを認証する方法について説明します。これには、迅速に開始できるようにUIのスキャフォールディングが含まれています。Laravelの認証システムと直接統合したい場合は、<a href="#authenticating-users">ユーザーの手動認証</a>に関するドキュメントを確認してください。</p>
+<p>この部分のドキュメントでは、<a href="starter-kits.html">Laravelアプリケーションスターターキットについて</a>を介してユーザーを認証する方法について説明します。これには、迅速に開始できるようにUIのスキャフォールディングが含まれています。Laravelの認証システムと直接統合したい場合は、<a href="#authenticating-users">ユーザーの手動認証</a>に関するドキュメントを確認してください。</p>
 </div>
 <p><a name="install-a-starter-kit"></a></p>
 <h3 id="_8">スターターキットのインストール<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
-<p>まず、<a href="starter-kits.html">Laravelアプリケーションスターターキットをインストール</a>する必要があります。現在のスターターキットであるLaravel BreezeとLaravel Jetstreamは、新しいLaravelアプリケーションに認証を組み込むための美しくデザインされた出発点を提供します。</p>
+<p>まず、<a href="starter-kits.html">Laravelアプリケーションスターターキットについてをインストール</a>する必要があります。現在のスターターキットであるLaravel BreezeとLaravel Jetstreamは、新しいLaravelアプリケーションに認証を組み込むための美しくデザインされた出発点を提供します。</p>
 <p>Laravel Breezeは、ログイン、登録、パスワードリセット、メール確認、パスワード確認を含む、Laravelのすべての認証機能の最小限のシンプルな実装です。Laravel Breezeのビューレイヤーは、<a href="https://tailwindcss.com">Tailwind CSS</a>でスタイルされたシンプルな<a href="blade.html">Bladeテンプレート</a>で構成されています。さらに、Breezeは<a href="https://livewire.laravel.com">Livewire</a>または<a href="https://inertiajs.com">Inertia</a>に基づくスキャフォールディングオプションを提供し、InertiaベースのスキャフォールディングにはVueまたはReactを使用する選択肢があります。</p>
-<p><a href="https://jetstream.laravel.com">Laravel Jetstream</a>は、より堅牢なアプリケーションスターターキットであり、<a href="https://livewire.laravel.com">Livewire</a>または<a href="https://inertiajs.com">InertiaとVue</a>を使用してアプリケーションのスキャフォールディングをサポートします。さらに、Jetstreamは、二要素認証、チーム、プロフィール管理、ブラウザセッション管理、<a href="sanctum.html">Laravel Sanctum</a>を介したAPIサポート、アカウント削除などのオプション機能を備えています。</p>
+<p><a href="https://jetstream.laravel.com">Laravel Jetstream</a>は、より堅牢なアプリケーションスターターキットについてであり、<a href="https://livewire.laravel.com">Livewire</a>または<a href="https://inertiajs.com">InertiaとVue</a>を使用してアプリケーションのスキャフォールディングをサポートします。さらに、Jetstreamは、二要素認証、チーム、プロフィール管理、ブラウザセッション管理、<a href="sanctum.html">Laravel Sanctum</a>を介したAPIサポート、アカウント削除などのオプション機能を備えています。</p>
 <p><a name="retrieving-the-authenticated-user"></a></p>
 <h3 id="_9">認証済みユーザーの取得<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
 <p>認証スターターキットをインストールし、ユーザーがアプリケーションに登録して認証できるようにした後、現在認証されているユーザーとやり取りする必要があることがよくあります。受信リクエストを処理する際、<code>Auth</code>ファサードの<code>user</code>メソッドを介して認証済みユーザーにアクセスできます:</p>
@@ -4154,7 +4154,7 @@
 </div>
 <p><a name="authenticating-users"></a></p>
 <h2 id="_15">ユーザーの手動認証<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h2>
-<p>Laravelの<a href="starter-kits.html">アプリケーションスターターキット</a>に含まれる認証スカフォールディングを使用する必要はありません。このスカフォールディングを使用しないことを選択した場合、Laravelの認証クラスを直接使用してユーザー認証を管理する必要があります。心配はいりません、簡単です！</p>
+<p>Laravelの<a href="starter-kits.html">アプリケーションスターターキットについて</a>に含まれる認証スカフォールディングを使用する必要はありません。このスカフォールディングを使用しないことを選択した場合、Laravelの認証クラスを直接使用してユーザー認証を管理する必要があります。心配はいりません、簡単です！</p>
 <p>Laravelの認証サービスには、<code>Auth</code> <a href="facades.html">ファサード</a>を介してアクセスしますので、クラスの先頭で<code>Auth</code>ファサードをインポートする必要があります。次に、<code>attempt</code>メソッドを見てみましょう。<code>attempt</code>メソッドは通常、アプリケーションの「ログイン」フォームからの認証試行を処理するために使用されます。認証が成功した場合、<a href="session.html">セッション</a>を再生成して<a href="https://en.wikipedia.org/wiki/Session_fixation">セッション固定攻撃</a>を防ぐ必要があります：</p>
 <div class="highlight"><pre><span></span><code><span class="o">&lt;?</span><span class="nx">php</span>
 
@@ -4190,7 +4190,7 @@
 </code></pre></div>
 <p><code>attempt</code>メソッドは、キー/値ペアの配列を最初の引数として受け取ります。配列内の値は、データベーステーブル内のユーザーを見つけるために使用されます。したがって、上記の例では、<code>email</code>列の値でユーザーが取得されます。ユーザーが見つかった場合、データベースに保存されたハッシュ化されたパスワードは、配列を介してメソッドに渡された<code>password</code>値と比較されます。受信リクエストの<code>password</code>値をハッシュ化する必要はありません。フレームワークは、データベース内のハッシュ化されたパスワードと比較する前に、値を自動的にハッシュ化します。2つのハッシュ化されたパスワードが一致する場合、ユーザーの認証済みセッションが開始されます。</p>
 <p>Laravelの認証サービスは、認証ガードの「プロバイダ」設定に基づいてデータベースからユーザーを取得します。デフォルトの<code>config/auth.php</code>設定ファイルでは、Eloquentユーザープロバイダが指定されており、ユーザーを取得する際に<code>App\Models\User</code>モデルを使用するように指示されています。アプリケーションのニーズに基づいて、設定ファイル内でこれらの値を変更できます。</p>
-<p><code>attempt</code>メソッドは、認証が成功した場合に<code>true</code>を返します。それ以外の場合は<code>false</code>が返されます。</p>
+<p><code>attempt</code>メソッドは、認証が成功した場合は<code>true</code>を、失敗した場合は<code>false</code>を返します。</p>
 <p>Laravelのリダイレクタが提供する<code>intended</code>メソッドは、認証ミドルウェアによってインターセプトされる前にユーザーがアクセスしようとしていたURLにユーザーをリダイレクトします。意図された宛先が利用できない場合、このメソッドにフォールバックURIを指定できます。</p>
 <p><a name="specifying-additional-conditions"></a></p>
 <h4 id="_16">追加の条件の指定<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h4>
@@ -4242,7 +4242,7 @@
     <span class="c1">// ユーザーは記憶されています...</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>アプリケーションが「記憶する」機能を提供している場合、<code>viaRemember</code>メソッドを使用して、現在認証されているユーザーが「記憶する」クッキーを使用して認証されたかどうかを判断できます：</p>
+<p>アプリケーションが「ログイン状態を維持する」機能を提供している場合、<code>viaRemember</code>メソッドを使用して、現在認証されているユーザーが「記憶する」クッキーを使用して認証されたかどうかを判断できます：</p>
 <div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Auth</span><span class="p">;</span>
 
 <span class="k">if</span> <span class="p">(</span><span class="nx">Auth</span><span class="o">::</span><span class="na">viaRemember</span><span class="p">())</span> <span class="p">{</span>
@@ -4253,7 +4253,7 @@
 <h3 id="_19">その他の認証方法<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h3>
 <p><a name="authenticate-a-user-instance"></a></p>
 <h4 id="_20">ユーザーインスタンスの認証<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h4>
-<p>既存のユーザーインスタンスを現在認証されているユーザーとして設定する必要がある場合、ユーザーインスタンスを<code>Auth</code>ファサードの<code>login</code>メソッドに渡すことができます。指定されたユーザーインスタンスは、<code>Illuminate\Contracts\Auth\Authenticatable</code> <a href="contracts.html">契約</a>の実装である必要があります。Laravelに含まれる<code>App\Models\User</code>モデルは、すでにこのインターフェースを実装しています。この認証方法は、ユーザーがアプリケーションに登録した直後など、すでに有効なユーザーインスタンスを持っている場合に便利です：</p>
+<p>既存の既存のユーザーインスタンスを現在認証されているユーザーとして設定したい場合、ユーザーインスタンスを<code>Auth</code>ファサードの<code>login</code>メソッドに渡すことができます。指定されたユーザーインスタンスは、<code>Illuminate\Contracts\Auth\Authenticatable</code> <a href="contracts.html">契約</a>の実装である必要があります。Laravelに含まれる<code>App\Models\User</code>モデルは、すでにこのインターフェースを実装しています。この認証方法は、ユーザーがアプリケーションに登録した直後など、既に有効なユーザーインスタンスが存在する場合に便利です：</p>
 <div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Auth</span><span class="p">;</span>
 
 <span class="nx">Auth</span><span class="o">::</span><span class="na">login</span><span class="p">(</span><span class="nv">$user</span><span class="p">);</span>
@@ -4286,7 +4286,7 @@
     <span class="c1">// 認証されたユーザーのみがこのルートにアクセスできます...</span>
 <span class="p">})</span><span class="o">-&gt;</span><span class="na">middleware</span><span class="p">(</span><span class="s1">&#39;auth.basic&#39;</span><span class="p">);</span>
 </code></pre></div>
-<p>ミドルウェアがルートにアタッチされると、ブラウザでそのルートにアクセスする際に自動的に資格情報の入力を求められるようになります。デフォルトでは、<code>auth.basic</code>ミドルウェアは、<code>users</code>データベーステーブルの<code>email</code>カラムをユーザーの「ユーザー名」とみなします。</p>
+<p>ミドルウェアがこのミドルウェアがルートにアタッチされると、ブラウザでそのルートにアクセスする際に自動的に認証情報の入力が求められます。デフォルトでは、<code>auth.basic</code>ミドルウェアは、<code>users</code>データベーステーブルの<code>email</code>カラムをユーザーの「ユーザー名」とみなします。</p>
 <p><a name="a-note-on-fastcgi"></a></p>
 <h4 id="fastcgi">FastCGIに関する注意<a class="headerlink" href="#fastcgi" title="Permanent link">&para;</a></h4>
 <p>LaravelアプリケーションをPHP FastCGIとApacheで提供している場合、HTTP Basic認証が正しく機能しない可能性があります。これらの問題を修正するには、アプリケーションの<code>.htaccess</code>ファイルに以下の行を追加してください。</p>
@@ -4295,7 +4295,7 @@
 </code></pre></div>
 <p><a name="stateless-http-basic-authentication"></a></p>
 <h3 id="http-basic">ステートレスなHTTP Basic認証<a class="headerlink" href="#http-basic" title="Permanent link">&para;</a></h3>
-<p>セッションにユーザー識別子のクッキーを設定せずにHTTP Basic認証を使用することもできます。これは主に、アプリケーションのAPIへのリクエストを認証するためにHTTP認証を使用する場合に便利です。これを実現するには、<code>onceBasic</code>メソッドを呼び出す<a href="middleware.html">ミドルウェアを定義</a>します。<code>onceBasic</code>メソッドがレスポンスを返さない場合、リクエストはアプリケーションにさらに渡されます。</p>
+<p>セッションにユーザー識別子のクッキーを設定せずに、ステートレスなHTTP Basic認証を使用することもできます。これは主に、アプリケーションのAPIへのリクエストを認証するためにHTTP認証を使用する場合に便利です。これを実現するには、<code>onceBasic</code>メソッドを呼び出す<a href="middleware.html">ミドルウェアを定義</a>します。<code>onceBasic</code>メソッドがレスポンスを返さない場合、リクエストはアプリケーションにさらに渡されます。</p>
 <div class="highlight"><pre><span></span><code><span class="o">&lt;?</span><span class="nx">php</span>
 
 <span class="k">namespace</span> <span class="nx">App\Http\Middleware</span><span class="p">;</span>
@@ -4348,7 +4348,7 @@
 </code></pre></div>
 <p><a name="invalidating-sessions-on-other-devices"></a></p>
 <h3 id="_23">他のデバイスでのセッションの無効化<a class="headerlink" href="#_23" title="Permanent link">&para;</a></h3>
-<p>Laravelは、ユーザーの現在のデバイスのセッションを無効にせずに、他のデバイスでアクティブなセッションを無効化して「ログアウト」させるメカニズムも提供しています。この機能は、通常、ユーザーがパスワードを変更または更新した際に、他のデバイスのセッションを無効化したいが、現在のデバイスは認証されたままにしたい場合に利用されます。</p>
+<p>Laravelは、ユーザーの現在のデバイスのセッションを維持したまま、他のデバイスでアクティブなセッションを無効化して「ログアウト」させるメカニズムも提供しています。この機能は、通常、ユーザーがパスワードを変更または更新した際に、他のデバイスのセッションを無効化したいが、現在のデバイスは認証されたままにしたい場合に利用されます。</p>
 <p>開始する前に、<code>Illuminate\Session\Middleware\AuthenticateSession</code>ミドルウェアがセッション認証を受けるルートに含まれていることを確認する必要があります。通常、このミドルウェアをルートグループの定義に配置して、アプリケーションの大部分のルートに適用できるようにします。デフォルトでは、<code>AuthenticateSession</code>ミドルウェアは<code>auth.session</code><a href="middleware.html#middleware-aliases">ミドルウェアエイリアス</a>を使用してルートにアタッチできます。</p>
 <div class="highlight"><pre><span></span><code><span class="nx">Route</span><span class="o">::</span><span class="na">middleware</span><span class="p">([</span><span class="s1">&#39;auth&#39;</span><span class="p">,</span> <span class="s1">&#39;auth.session&#39;</span><span class="p">])</span><span class="o">-&gt;</span><span class="na">group</span><span class="p">(</span><span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
     <span class="nx">Route</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
@@ -4363,27 +4363,27 @@
 </code></pre></div>
 <p><code>logoutOtherDevices</code>メソッドが呼び出されると、ユーザーの他のセッションは完全に無効化され、以前に認証されていたすべてのガードから「ログアウト」されます。</p>
 <p><a name="password-confirmation"></a></p>
-<h2 id="_24">パスワードの確認<a class="headerlink" href="#_24" title="Permanent link">&para;</a></h2>
-<p>アプリケーションを構築する際、ユーザーがアクションを実行する前、またはユーザーがアプリケーションの機密性の高い領域にリダイレクトされる前に、パスワードの確認を求めるアクションがあるかもしれません。Laravelには、このプロセスを簡単にするための組み込みミドルウェアが含まれています。この機能を実装するには、2つのルートを定義する必要があります。1つはユーザーにパスワードの確認を求めるビューを表示するルート、もう1つはパスワードが有効であることを確認し、ユーザーを目的の宛先にリダイレクトするルートです。</p>
+<h2 id="_24">パスワード確認機能<a class="headerlink" href="#_24" title="Permanent link">&para;</a></h2>
+<p>アプリケーションを構築する際、ユーザーがアクションを実行する前、またはユーザーがアプリケーションの機密性の高い領域にリダイレクトされる前に、パスワード確認機能を求めるアクションがあるかもしれません。Laravelには、このプロセスを簡単にするための組み込みミドルウェアが含まれています。この機能を実装するには、2つのルートを定義する必要があります。1つはユーザーにパスワード確認機能を求めるビューを表示するルート、もう1つはパスワードが有効であることを確認し、ユーザーを目的の宛先にリダイレクトするルートです。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>以下のドキュメントでは、Laravelのパスワード確認機能と直接統合する方法について説明します。ただし、より迅速に開始したい場合は、<a href="starter-kits.html">Laravelアプリケーションスターターキット</a>にはこの機能が含まれています。</p>
+<p>以下のドキュメントでは、Laravelのパスワード確認機能と直接統合する方法について説明します。ただし、より迅速に開始したい場合は、<a href="starter-kits.html">Laravelアプリケーションスターターキットについて</a>にはこの機能が含まれています。</p>
 </div>
 <p><a name="password-confirmation-configuration"></a></p>
 <h3 id="_25">設定<a class="headerlink" href="#_25" title="Permanent link">&para;</a></h3>
-<p>パスワードを確認した後、ユーザーは3時間以内に再度パスワードの確認を求められることはありません。ただし、アプリケーションの<code>config/auth.php</code>設定ファイル内の<code>password_timeout</code>設定値を変更することで、ユーザーが再度パスワードの確認を求められるまでの時間を設定できます。</p>
+<p>パスワードを確認した後、ユーザーは3時間以内に再度パスワード確認機能を求められることはありません。ただし、アプリケーションの<code>config/auth.php</code>設定ファイル内の<code>password_timeout</code>設定値を変更することで、ユーザーが再度パスワード確認機能を求められるまでの時間を設定できます。</p>
 <p><a name="password-confirmation-routing"></a></p>
 <h3 id="_26">ルーティング<a class="headerlink" href="#_26" title="Permanent link">&para;</a></h3>
 <p><a name="the-password-confirmation-form"></a></p>
 <h4 id="_27">パスワード確認フォーム<a class="headerlink" href="#_27" title="Permanent link">&para;</a></h4>
-<p>まず、ユーザーにパスワードの確認を求めるビューを表示するルートを定義します。</p>
+<p>まず、ユーザーにパスワード確認機能を求めるビューを表示するルートを定義します。</p>
 <div class="highlight"><pre><span></span><code><span class="nx">Route</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;/confirm-password&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;auth.confirm-password&#39;</span><span class="p">);</span>
 <span class="p">})</span><span class="o">-&gt;</span><span class="na">middleware</span><span class="p">(</span><span class="s1">&#39;auth&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">(</span><span class="s1">&#39;password.confirm&#39;</span><span class="p">);</span>
 </code></pre></div>
-<p>予想されるように、このルートによって返されるビューには<code>password</code>フィールドを含むフォームが必要です。さらに、ユーザーがアプリケーションの保護された領域に入力しており、パスワードの確認が必要であることを説明するテキストをビューに含めることもできます。</p>
+<p>予想されるように、このルートによって返されるビューには<code>password</code>フィールドを含むフォームが必要です。さらに、ユーザーがアプリケーションの保護された領域に入力しており、パスワード確認機能が必要であることを説明するテキストをビューに含めることもできます。</p>
 <p><a name="confirming-the-password"></a></p>
-<h4 id="_28">パスワードの確認<a class="headerlink" href="#_28" title="Permanent link">&para;</a></h4>
+<h4 id="_28">パスワード確認機能<a class="headerlink" href="#_28" title="Permanent link">&para;</a></h4>
 <p>次に、「パスワード確認」ビューからのフォームリクエストを処理するルートを定義します。このルートは、パスワードを検証し、ユーザーを目的の宛先にリダイレクトする役割を果たします。</p>
 <div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">Illuminate\Http\Request</span><span class="p">;</span>
 <span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Hash</span><span class="p">;</span>
@@ -4453,7 +4453,7 @@
 <p><a name="closure-request-guards"></a></p>
 <h3 id="_31">クロージャリクエストガード<a class="headerlink" href="#_31" title="Permanent link">&para;</a></h3>
 <p>カスタムのHTTPリクエストベースの認証システムを実装する最も簡単な方法は、<code>Auth::viaRequest</code>メソッドを使用することです。このメソッドを使用すると、単一のクロージャを使用して認証プロセスを迅速に定義できます。</p>
-<p>始めるには、アプリケーションの<code>AppServiceProvider</code>の<code>boot</code>メソッド内で<code>Auth::viaRequest</code>メソッドを呼び出します。<code>viaRequest</code>メソッドは、認証ドライバ名を最初の引数として受け取ります。この名前は、カスタムガードを説明する任意の文字列にすることができます。メソッドに渡される2番目の引数は、受信したHTTPリクエストを受け取り、ユーザーインスタンスを返すか、認証が失敗した場合は<code>null</code>を返すクロージャである必要があります。</p>
+<p>始めるには、アプリケーションの<code>AppServiceProvider</code>の<code>boot</code>メソッド内で<code>Auth::viaRequest</code>メソッドを呼び出します。<code>viaRequest</code>メソッドは、認証ドライバ名を最初の引数として受け取ります。この名前は、カスタムガードを説明する任意の文字列にすることができます。メソッドに渡される2番目の引数は、受信したHTTPリクエストを受け取り、認証が成功した場合はユーザーインスタンスを、失敗した場合は<code>null</code>を返すクロージャである必要があります。</p>
 <div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">App\Models\User</span><span class="p">;</span>
 <span class="k">use</span> <span class="nx">Illuminate\Http\Request</span><span class="p">;</span>
 <span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Auth</span><span class="p">;</span>
@@ -4641,6 +4641,57 @@
 
 
 
+
+<h2>ユーザーノート</h2>
+<div id="user-contribution-section">
+    <a href="#" id="toggle-contribution" class="toggle-link" aria-expanded="false" aria-controls="contribution-content">+ ユーザーノートを表示する</a>
+    <div id="contribution-content" style="display: none;">
+        <div id="giscus-container">
+            <!-- Giscus script here -->
+            <script src="https://giscus.app/client.js"
+                    data-repo="koriym/l11ja"
+                    data-repo-id="R_kgDOM2Kucw"
+                    data-category="Announcements"
+                    data-category-id="DIC_kwDOM2Kuc84Civbh"
+                    data-mapping="pathname"
+                    data-strict="0"
+                    data-reactions-enabled="0"
+                    data-emit-metadata="0"
+                    data-input-position="bottom"
+                    data-theme="light"
+                    data-lang="en"
+                    crossorigin="anonymous"
+                    async>
+            </script>
+            <div id="terms-of-service">
+                <h4>ユーザーノートについて</h4>
+                <p>PHPマニュアルのように、マニュアルを補足する情報の共有を目的としてます。</p>
+                <ul>
+                    <li>掲示板ではありません。議論、質問、別のノートへの返信はできません。</li>
+                    <li>バグや改善要望、または翻訳の Issue は、該当する GitHub リポジトリで報告してください。</li>
+                    <li>ノートは事前の通知なく削除される場合があります。</li>
+                    <li>Giscussのコメントシステムを流用しています。そのためノートとしては最適化されてないことをご了承ください。</li>
+                    <li>保証されていません。投稿したノートが消失する事やノート機能全体が閉鎖する可能性があります。</li>
+                    <li>お願い：いいノートにはup voteを、この規約に違反しているノートを見つけた場合は、優しくdown voteしてください。</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    (function() {
+        const toggleLink = document.getElementById('toggle-contribution');
+        const contributionContent = document.getElementById('contribution-content');
+
+        toggleLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            const isHidden = contributionContent.style.display === 'none';
+            contributionContent.style.display = isHidden ? 'block' : 'none';
+            toggleLink.textContent = isHidden ? '- ノートを非表示にする' : '+ ノートを表示する';
+            toggleLink.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
+        });
+    })();
+</script>
 
                 
               </article>

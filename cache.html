@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://github.com/koriym/laravel11-ja/cache.html">
+        <link rel="canonical" href="https://github.com/koriym/l11ja/cache.html">
       
       
         <link rel="prev" href="broadcasting.html">
@@ -43,7 +43,7 @@
     
       <link rel="stylesheet" href="assets/css/extra.css">
     
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+      <link rel="stylesheet" href="assets/css/giscuss.css">
     
     <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -3701,12 +3701,12 @@
 </ul>
 <p><a name="introduction"></a></p>
 <h2 id="_2">はじめに<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>アプリケーションが実行するデータの取得や処理のタスクの中には、CPUに負荷がかかったり、完了までに数秒かかるものがあります。このような場合、取得したデータを一定期間キャッシュしておくことで、後続の同じデータのリクエストで迅速に取得できるようになります。キャッシュされたデータは通常、<a href="https://memcached.org">Memcached</a>や<a href="https://redis.io">Redis</a>のような非常に高速なデータストアに保存されます。</p>
+<p>アプリケーションが実行するデータの取得や処理のタスクの中には、CPUに負荷がかかったり、完了までに数秒かかったりするものがあります。このような場合、取得したデータを一定期間キャッシュしておくことで、後続の同じデータのリクエストで迅速に取得できるようになります。キャッシュされたデータは通常、<a href="https://memcached.org">Memcached</a>や<a href="https://redis.io">Redis</a>などの非常に高速なデータストアに保存されます。</p>
 <p>幸いなことに、Laravelはさまざまなキャッシュバックエンドに対して表現力豊かで統一されたAPIを提供しており、これにより高速なデータ取得とWebアプリケーションのスピードアップを実現できます。</p>
 <p><a name="configuration"></a></p>
 <h2 id="_3">設定<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<p>アプリケーションのキャッシュ設定ファイルは<code>config/cache.php</code>にあります。このファイルで、アプリケーション全体でデフォルトで使用するキャッシュストアを指定できます。Laravelは、<a href="https://memcached.org">Memcached</a>、<a href="https://redis.io">Redis</a>、<a href="https://aws.amazon.com/dynamodb">DynamoDB</a>、リレーショナルデータベースなど、一般的なキャッシュバックエンドをすぐにサポートしています。さらに、ファイルベースのキャッシュドライバも利用可能で、<code>array</code>と"null"キャッシュドライバは自動テスト用の便利なキャッシュバックエンドを提供します。</p>
-<p>キャッシュ設定ファイルには、他にもさまざまなオプションが含まれていますが、これらについては後で確認できます。デフォルトでは、Laravelは<code>database</code>キャッシュドライバを使用するように設定されており、シリアライズされたキャッシュオブジェクトをアプリケーションのデータベースに保存します。</p>
+<p>アプリケーションのキャッシュ設定ファイルは<code>config/cache.php</code>にあります。このファイルで、アプリケーション全体でデフォルトで使用するキャッシュストアを指定できます。Laravelは、<a href="https://memcached.org">Memcached</a>、<a href="https://redis.io">Redis</a>、<a href="https://aws.amazon.com/dynamodb">DynamoDB</a>、リレーショナルデータベースなど、一般的なキャッシュバックエンドをすぐにサポートしています。さらに、ファイルベースのキャッシュドライバも利用可能で、<code>array</code>と`null`キャッシュドライバは自動テスト用の便利なキャッシュバックエンドを提供します。</p>
+<p>キャッシュ設定ファイルには、他にもさまざまなオプションが含まれていますが、これらについては後で確認できます。デフォルトでは、Laravelは<code>database</code>キャッシュドライバを使用するように設定されており、シリアライズされたキャッシュデータをアプリケーションのデータベースに保存します。</p>
 <p><a name="driver-prerequisites"></a></p>
 <h3 id="_4">ドライバの前提条件<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <p><a name="prerequisites-database"></a></p>
@@ -3805,7 +3805,7 @@
 
 <span class="nv">$value</span> <span class="o">=</span> <span class="nx">Cache</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;key&#39;</span><span class="p">,</span> <span class="s1">&#39;default&#39;</span><span class="p">);</span>
 </code></pre></div>
-<p>デフォルト値としてクロージャを渡すこともできます。指定されたアイテムがキャッシュに存在しない場合、クロージャの結果が返されます。クロージャを渡すことで、データベースや他の外部サービスからデフォルト値を取得するのを遅延させることができます。</p>
+<p>デフォルト値としてクロージャを渡すこともできます。指定されたアイテムがキャッシュに存在しない場合、クロージャの結果が返されます。クロージャを渡すことで、データベースや他の外部サービスからデフォルト値の取得を遅延させることができます。</p>
 <div class="highlight"><pre><span></span><code><span class="nv">$value</span> <span class="o">=</span> <span class="nx">Cache</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;key&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
     <span class="k">return</span> <span class="nx">DB</span><span class="o">::</span><span class="na">table</span><span class="p">(</span><span class="cm">/* ... */</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
 <span class="p">});</span>
@@ -3846,7 +3846,7 @@
 <h4 id="stale-while-revalidate">Stale While Revalidate<a class="headerlink" href="#stale-while-revalidate" title="Permanent link">&para;</a></h4>
 <p><code>Cache::remember</code>メソッドを使用する際、キャッシュされた値が期限切れになった場合、一部のユーザーは遅い応答時間を経験するかもしれません。特定の種類のデータに対しては、キャッシュされた値が再計算されている間に部分的に古いデータを提供することで、キャッシュされた値が計算されている間に一部のユーザーが遅い応答時間を経験することを防ぐことができます。これはしばしば「stale-while-revalidate」パターンと呼ばれ、<code>Cache::flexible</code>メソッドはこのパターンの実装を提供します。</p>
 <p>flexibleメソッドは、キャッシュされた値が「新鮮」であると見なされる期間と、「古く」なる期間を指定する配列を受け取ります。配列の最初の値はキャッシュが新鮮であると見なされる秒数を表し、2番目の値は再計算が必要になるまで古いデータとして提供できる期間を定義します。</p>
-<p>リクエストが新鮮な期間内（最初の値の前）に行われた場合、キャッシュは再計算なしで即座に返されます。リクエストが古い期間内（2つの値の間）に行われた場合、古い値がユーザーに提供され、応答がユーザーに送信された後にキャッシュされた値を更新するための<a href="helpers.html#deferred-functions">遅延関数</a>が登録されます。リクエストが2番目の値の後に行われた場合、キャッシュは期限切れと見なされ、値は即座に再計算されます。これにより、ユーザーにとって遅い応答が発生する可能性があります。</p>
+<p>リクエストが新鮮な期間内（最初の値の前）に行われた場合、キャッシュは再計算なしで即座に返されます。リクエストが古い期間内（2つの値の間）に行われた場合、古い値がユーザーに提供された後に、応答が送信され、キャッシュ値の更新のために<a href="helpers.html#deferred-functions">遅延関数</a>が登録されます。リクエストが2番目の値の後に行われた場合、キャッシュは期限切れと見なされ、値は即座に再計算されます。これにより、ユーザーにとって遅い応答が発生する可能性があります。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nv">$value</span> <span class="o">=</span> <span class="nx">Cache</span><span class="o">::</span><span class="na">flexible</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="k">return</span> <span class="nx">DB</span><span class="o">::</span><span class="na">table</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="p">});</span>
@@ -3902,7 +3902,7 @@
 </div>
 <p><a name="the-cache-helper"></a></p>
 <h3 id="_18">キャッシュヘルパー<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h3>
-<p><code>Cache</code>ファサードを使用するだけでなく、グローバルな<code>cache</code>関数を使用してキャッシュを介してデータを取得および保存することもできます。<code>cache</code>関数が単一の文字列引数で呼び出されると、指定されたキーの値が返されます。</p>
+<p><code>Cache</code>ファサードを使用するだけでなく、グローバルな<code>cache</code>関数を使用してキャッシュを通じてデータを取得および保存することもできます。<code>cache</code>関数が単一の文字列引数で呼び出されると、指定されたキーの値が返されます。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nv">$value</span> <span class="o">=</span> <span class="nx">cache</span><span class="p">(</span><span class="s1">&#39;key&#39;</span><span class="p">);</span>
 </code></pre></div>
 <p>キーと値のペアの配列と有効期限を関数に渡すと、指定された期間の間、キャッシュに値が保存されます。</p>
@@ -3958,7 +3958,7 @@
 <a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a>    <span class="nv">$lock</span><span class="o">-&gt;</span><span class="na">release</span><span class="p">();</span>
 <a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a><span class="p">}</span>
 </code></pre></div>
-<p>この例は、クロージャを<code>block</code>メソッドに渡すことで簡略化できます。このメソッドにクロージャが渡されると、Laravelは指定された秒数の間ロックを取得しようとし、クロージャが実行された後に自動的にロックを解放します。</p>
+<p>上記の例は、クロージャを<code>block</code>メソッドに渡すことで簡略化できます。このメソッドにクロージャが渡されると、Laravelは指定された秒数の間ロックを取得しようとし、クロージャ実行後、自動的にロックが解放されます。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nx">Cache</span><span class="o">::</span><span class="na">lock</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">block</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="p">{</span>
 <a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>    <span class="c1">// 最大5秒間待機してロックが取得されました...</span>
 <a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="p">});</span>
@@ -4006,7 +4006,7 @@
 <a id="__codelineno-23-18" name="__codelineno-23-18" href="#__codelineno-23-18"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">getPrefix</span><span class="p">()</span> <span class="p">{}</span>
 <a id="__codelineno-23-19" name="__codelineno-23-19" href="#__codelineno-23-19"></a><span class="p">}</span>
 </code></pre></div>
-<p>各メソッドをMongoDB接続を使用して実装する必要があります。各メソッドの実装例については、<a href="https://github.com/laravel/framework">Laravelフレームワークのソースコード</a>内の<code>Illuminate\Cache\MemcachedStore</code>を参照してください。実装が完了したら、<code>Cache</code>ファサードの<code>extend</code>メソッドを呼び出してカスタムドライバの登録を完了できます。</p>
+<p>各メソッドをMongoDB接続を使用して実装する必要があります。各メソッドの実装例については、<a href="https://github.com/laravel/framework">Laravelフレームワークのソースコード</a>内の<code>Illuminate\Cache\MemcachedStore</code>を参照してください。実装が完了したら、<code>Cache</code>ファサードの<code>extend</code>メソッドを呼び出してカスタムドライバの登録を完了することができます。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="nx">Cache</span><span class="o">::</span><span class="na">extend</span><span class="p">(</span><span class="s1">&#39;mongo&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Application</span> <span class="nv">$app</span><span class="p">)</span> <span class="p">{</span>
 <a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>    <span class="k">return</span> <span class="nx">Cache</span><span class="o">::</span><span class="na">repository</span><span class="p">(</span><span class="k">new</span> <span class="nx">MongoStore</span><span class="p">);</span>
 <a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="p">});</span>
@@ -4017,7 +4017,7 @@
 </div>
 <p><a name="registering-the-driver"></a></p>
 <h3 id="_24">ドライバの登録<a class="headerlink" href="#_24" title="Permanent link">&para;</a></h3>
-<p>Laravelにカスタムキャッシュドライバを登録するために、<code>Cache</code>ファサードの<code>extend</code>メソッドを使用します。他のサービスプロバイダが<code>boot</code>メソッド内でキャッシュされた値を読み取ろうとする可能性があるため、カスタムドライバを<code>booting</code>コールバック内で登録します。<code>booting</code>コールバックを使用することで、アプリケーションのサービスプロバイダの<code>boot</code>メソッドが呼び出される直前に、すべてのサービスプロバイダの<code>register</code>メソッドが呼び出された後に、カスタムドライバが登録されることを保証できます。アプリケーションの<code>App\Providers\AppServiceProvider</code>クラスの<code>register</code>メソッド内で<code>booting</code>コールバックを登録します。</p>
+<p>Laravelにカスタムキャッシュドライバを登録するために、<code>Cache</code>ファサードの<code>extend</code>メソッドを使用します。他のサービスプロバイダが<code>boot</code>メソッド内でキャッシュされた値を読み取ろうとする可能性があるため、カスタムドライバは<code>booting</code>コールバック内で登録する必要があります。<code>booting</code>コールバックを使用することで、アプリケーションのサービスプロバイダの<code>boot</code>メソッドが呼び出される直前に、すべてのサービスプロバイダの<code>register</code>メソッドが呼び出された後に、カスタムドライバが登録されることを保証できます。アプリケーションの<code>App\Providers\AppServiceProvider</code>クラスの<code>register</code>メソッド内で<code>booting</code>コールバックを登録します。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="o">&lt;?</span><span class="nx">php</span>
 <a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>
 <a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="k">namespace</span> <span class="nx">App\Providers</span><span class="p">;</span>
@@ -4098,6 +4098,57 @@
 
 
 
+
+<h2>ユーザーノート</h2>
+<div id="user-contribution-section">
+    <a href="#" id="toggle-contribution" class="toggle-link" aria-expanded="false" aria-controls="contribution-content">+ ユーザーノートを表示する</a>
+    <div id="contribution-content" style="display: none;">
+        <div id="giscus-container">
+            <!-- Giscus script here -->
+            <script src="https://giscus.app/client.js"
+                    data-repo="koriym/l11ja"
+                    data-repo-id="R_kgDOM2Kucw"
+                    data-category="Announcements"
+                    data-category-id="DIC_kwDOM2Kuc84Civbh"
+                    data-mapping="pathname"
+                    data-strict="0"
+                    data-reactions-enabled="0"
+                    data-emit-metadata="0"
+                    data-input-position="bottom"
+                    data-theme="light"
+                    data-lang="en"
+                    crossorigin="anonymous"
+                    async>
+            </script>
+            <div id="terms-of-service">
+                <h4>ユーザーノートについて</h4>
+                <p>PHPマニュアルのように、マニュアルを補足する情報の共有を目的としてます。</p>
+                <ul>
+                    <li>掲示板ではありません。議論、質問、別のノートへの返信はできません。</li>
+                    <li>バグや改善要望、または翻訳の Issue は、該当する GitHub リポジトリで報告してください。</li>
+                    <li>ノートは事前の通知なく削除される場合があります。</li>
+                    <li>Giscussのコメントシステムを流用しています。そのためノートとしては最適化されてないことをご了承ください。</li>
+                    <li>保証されていません。投稿したノートが消失する事やノート機能全体が閉鎖する可能性があります。</li>
+                    <li>お願い：いいノートにはup voteを、この規約に違反しているノートを見つけた場合は、優しくdown voteしてください。</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    (function() {
+        const toggleLink = document.getElementById('toggle-contribution');
+        const contributionContent = document.getElementById('contribution-content');
+
+        toggleLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            const isHidden = contributionContent.style.display === 'none';
+            contributionContent.style.display = isHidden ? 'block' : 'none';
+            toggleLink.textContent = isHidden ? '- ノートを非表示にする' : '+ ノートを表示する';
+            toggleLink.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
+        });
+    })();
+</script>
 
                 
               </article>
