@@ -1,3 +1,6 @@
+---
+comments: false
+---
 # L11JA
 
 MITライセンスで公開されているLaravel Documentation (11.x)を翻訳したサイトです。

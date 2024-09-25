@@ -169,7 +169,7 @@ php artisan make:controller PhotoController --resource
 
     Route::resource('photos', PhotoController::class);
 
-この単一のルート宣言により、リソースに対するさまざまなアクションを処理する複数のルートが作成されます。生成されたコントローラには、これらのアクションごとにスタブされたメソッドが既に含まれています。`route:list` Artisanコマンドを実行することで、アプリケーションのルートの概要をいつでも確認できます。
+この単一のルート宣言により、リソースに対するさまざまなアクションを処理する複数のルートが作成されます。生成されたコントローラには、これらのアクションごとにスタブ化されたメソッドが既に含まれています。`route:list` Artisanコマンドを実行することで、アプリケーションのルートの概要をいつでも確認できます。
 
 `resources`メソッドに配列を渡すことで、一度に多くのリソースコントローラを登録することもできます。
 
@@ -243,7 +243,7 @@ php artisan make:controller PhotoController --model=Photo --resource --requests
 <a name="restful-partial-resource-routes"></a>
 ### 部分的なリソースルート
 
-リソースルートを宣言する際、コントローラが処理すべきアクションのサブセットを指定することができます。デフォルトの全アクションセットの代わりに、次のように指定します。
+リソースルートを宣言する際、コントローラが処理すべきアクションのサブセットを指定できます。デフォルトの全アクションセットの代わりに、次のように指定します。
 
 ```php
 use App\Http\Controllers\PhotoController;
@@ -311,7 +311,7 @@ Laravelの[暗黙的なモデルバインディング](routing.md#implicit-model
 <a name="shallow-nesting"></a>
 #### 浅いネスト
 
-多くの場合、URI内に親と子の両方のIDを持つ必要はありません。子IDはすでに一意の識別子であるためです。URIセグメント内で自動インクリメント主キーなどの一意の識別子を使用してモデルを識別する場合、「浅いネスト」を使用することを選択できます。
+多くの場合、URI内に親と子の両方のIDを持つ必要はありません。子IDはすでに一意の識別子であるためです。URIセグメント内で自動インクリメント主キーなどの一意の識別子を使用してモデルを識別する場合は、「浅いネスト」を使用することを選択できます。
 
 ```php
 use App\Http\Controllers\CommentController;
@@ -391,7 +391,7 @@ Route::resource('photos.comments', PhotoCommentController::class)->scoped([
 <a name="restful-localizing-resource-uris"></a>
 ### リソースURIのローカライズ
 
-デフォルトでは、`Route::resource`はリソースURIを英語の動詞と複数形規則を使用して作成します。`create`と`edit`アクション動詞をローカライズする必要がある場合は、`Route::resourceVerbs`メソッドを使用できます。これは、アプリケーションの`App\Providers\AppServiceProvider`内の`boot`メソッドの先頭で行うことができます。
+デフォルトでは、`Route::resource`はリソースURIを英語の動詞と複数形規則を使用して作成します。`create`と`edit`アクション動詞をローカライズする必要がある場合は、`Route::resourceVerbs`メソッドを使用できます。これは、アプリケーションの`App\Providers\AppServiceProvider`の`boot`メソッドの先頭で行うことができます。
 
 ```php
 /**

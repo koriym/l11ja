@@ -18,7 +18,7 @@
     - [顧客の作成](#creating-customers)
     - [顧客の更新](#updating-customers)
     - [残高](#balances)
-    - [税金ID](#tax-ids)
+    - [税務ID](#tax-ids)
     - [顧客データのStripeとの同期](#syncing-customer-data-with-stripe)
     - [請求ポータル](#billing-portal)
 - [支払い方法](#payment-methods)
@@ -56,7 +56,7 @@
     - [商品のチェックアウト](#product-checkouts)
     - [一括支払いのチェックアウト](#single-charge-checkouts)
     - [サブスクリプションのチェックアウト](#subscription-checkouts)
-    - [税金IDの収集](#collecting-tax-ids)
+    - [税務IDの収集](#collecting-tax-ids)
     - [ゲストチェックアウト](#guest-checkouts)
 - [請求書](#invoices)
     - [請求書の取得](#retrieving-invoices)
@@ -198,7 +198,7 @@ CASHIER_CURRENCY_LOCALE=nl_BE
 
 税金計算が有効になると、新しいサブスクリプションと生成される一括請求書に対して自動税金計算が行われます。
 
-この機能が正しく機能するためには、顧客の請求詳細（顧客の名前、住所、税金IDなど）をStripeに同期する必要があります。Cashierが提供する[顧客データの同期](#syncing-customer-data-with-stripe)と[税金ID](#tax-ids)のメソッドを使用してこれを実現できます。
+この機能が正しく機能するためには、顧客の請求詳細（顧客の名前、住所、税務IDなど）をStripeに同期する必要があります。Cashierが提供する[顧客データの同期](#syncing-customer-data-with-stripe)と[税務ID](#tax-ids)のメソッドを使用してこれを実現できます。
 
 <a name="logging"></a>
 ### ログ
@@ -272,7 +272,7 @@ Route::view('/checkout/success', 'checkout.success')->name('checkout-success');
 Route::view('/checkout/cancel', 'checkout.cancel')->name('checkout-cancel');
 ```
 
-上記の例でわかるように、指定された「価格識別子」に対して顧客をStripe Checkoutにリダイレクトするために、Cashierが提供する`checkout`メソッドを使用します。Stripeを使用する場合、「価格」は[特定の商品の定義された価格](https://stripe.com/docs/products-prices/how-products-and-prices-work)を指します。
+上記の例でわかるように、Cashierが提供する`checkout`メソッドを使用して、指定された「価格識別子」に対して顧客をStripe Checkoutにリダイレクトします。Stripeを使用する場合、「価格」は[特定の商品の定義された価格](https://stripe.com/docs/products-prices/how-products-and-prices-work)を指します。
 
 必要に応じて、`checkout`メソッドは自動的にStripeに顧客を作成し、そのStripe顧客レコードをアプリケーションのデータベース内の対応するユーザーに接続します。チェックアウトセッションが完了すると、顧客は専用の成功またはキャンセルページにリダイレクトされ、そこで情報メッセージを表示できます。
 
@@ -303,7 +303,7 @@ Route::get('/cart/{cart}/checkout', function (Request $request, Cart $cart) {
 })->name('checkout');
 ```
 
-上記の例でわかるように、顧客がチェックアウトプロセスを開始すると、カート/注文に関連するすべてのStripe価格識別子を`checkout`メソッドに提供します。もちろん、これらのアイテムを顧客が追加する際に「ショッピングカート」または注文に関連付けるのはアプリケーションの責任です。また、`metadata`配列を介して注文のIDをStripe Checkoutセッションに提供します。最後に、Checkout成功ルートに`CHECKOUT_SESSION_ID`テンプレート変数を追加しました。Stripeが顧客をアプリケーションにリダイレクトする際、このテンプレート変数は自動的にCheckoutセッションIDで埋められます。
+上記の例でわかるように、顧客がチェックアウトプロセスを開始する際、カート/注文に関連するすべてのStripe価格識別子を`checkout`メソッドに提供します。もちろん、これらのアイテムを顧客が追加する際に「ショッピングカート」または注文に関連付けるのはアプリケーションの責任です。また、`metadata`配列を介して注文のIDをStripe Checkoutセッションに提供します。最後に、Checkout成功ルートに`CHECKOUT_SESSION_ID`テンプレート変数を追加しました。Stripeが顧客をアプリケーションにリダイレクトする際、このテンプレート変数は自動的にCheckoutセッションIDで埋められます。
 
 次に、Checkout成功ルートを構築しましょう。これは、顧客がStripe Checkoutを通じて購入を完了した後にリダイレクトされるルートです。このルート内で、Stripe CheckoutセッションIDと関連するStripe Checkoutインスタンスを取得し、提供されたメタデータにアクセスして顧客の注文を適切に更新できます。
 
@@ -512,7 +512,7 @@ $stripeCustomer = $user->createOrGetStripeCustomer();
 <a name="updating-customers"></a>
 ### 顧客の更新
 
-場合によっては、追加情報を使用してStripe顧客を直接更新したいことがあります。これは、`updateStripeCustomer`メソッドを使用して行うことができます。このメソッドは、[Stripe APIがサポートする顧客更新オプション](https://stripe.com/docs/api/customers/update)の配列を受け取ります。
+場合によっては、追加情報を使用してStripe上の顧客情報を直接更新したいことがあります。これは、`updateStripeCustomer`メソッドを使用して行うことができます。このメソッドは、[Stripe APIがサポートする顧客更新オプション](https://stripe.com/docs/api/customers/update)の配列を受け取ります。
 
 ```php
 $stripeCustomer = $user->updateStripeCustomer($options);
@@ -1315,7 +1315,7 @@ if ($user->subscribedToProduct(['prod_basic', 'prod_premium'], 'default')) {
     $user->subscription('default')->removePrice('price_chat');
 
 > WARNING:  
-> サブスクリプションの最後の価格を削除することはできません。代わりに、サブスクリプションをキャンセルするだけです。
+> サブスクリプションの最後の価格を削除することはできません。代わりに、サブスクリプションをキャンセルする必要があります。
 
 <a name="swapping-prices"></a>
 #### 価格の入れ替え
@@ -1600,7 +1600,7 @@ Cashierは、顧客が税免除かどうかを判断するための`isNotTaxExem
 
     $user->subscription('default')->cancelNow();
 
-サブスクリプションを即座にキャンセルし、未請求の従量制使用料金や新規/保留中の比例配分請求項目を請求したい場合は、ユーザーのサブスクリプションで`cancelNowAndInvoice`メソッドを呼び出します：
+サブスクリプションを即座にキャンセルし、未請求の従量制使用料金や新規/保留中の按分請求項目を請求したい場合は、ユーザーのサブスクリプションで`cancelNowAndInvoice`メソッドを呼び出します：
 
     $user->subscription('default')->cancelNowAndInvoice();
 
@@ -1656,7 +1656,7 @@ Cashierは、顧客が税免除かどうかを判断するための`isNotTaxExem
                 ->trialUntil(Carbon::now()->addDays(10))
                 ->create($paymentMethod);
 
-ユーザーが試用期間内にいるかどうかを判断するには、ユーザーインスタンスの`onTrial`メソッドまたはサブスクリプションインスタンスの`onTrial`メソッドを使用できます。以下の2つの例は同等です：
+ユーザーが試用期間内かどうかを判断するには、ユーザーインスタンスの`onTrial`メソッドまたはサブスクリプションインスタンスの`onTrial`メソッドを使用できます。以下の2つの例は同等です：
 
     if ($user->onTrial('default')) {
         // ...
@@ -1670,7 +1670,7 @@ Cashierは、顧客が税免除かどうかを判断するための`isNotTaxExem
 
     $user->subscription('default')->endTrial();
 
-既存の試用が期限切れかどうかを判断するには、`hasExpiredTrial`メソッドを使用できます：
+既存の試用期間が期限切れかどうかを判断するには、`hasExpiredTrial`メソッドを使用できます：
 
     if ($user->hasExpiredTrial('default')) {
         // ...

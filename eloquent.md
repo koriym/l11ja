@@ -430,7 +430,7 @@ $flights = Flight::where('active', 1)
 <a name="refreshing-models"></a>
 #### モデルのリフレッシュ
 
-データベースから取得されたEloquentモデルのインスタンスが既にある場合、`fresh`および`refresh`メソッドを使用してモデルを「リフレッシュ」できます。`fresh`メソッドは、モデルをデータベースから再取得します。既存のモデルインスタンスには影響しません。
+データベースから取得したEloquentモデルのインスタンスがすでにある場合、`fresh`および`refresh`メソッドを使用してモデルを「リフレッシュ」できます。`fresh`メソッドは、モデルをデータベースから再取得します。既存のモデルインスタンスには影響しません。
 
 ```php
 $flight = Flight::where('number', 'FR 900')->first();
@@ -756,7 +756,7 @@ $flight = Flight::create([
 <a name="updates"></a>
 ### 更新
 
-`save`メソッドは、データベースに既に存在するモデルを更新するためにも使用できます。モデルを更新するには、それを取得し、更新したい属性を設定します。その後、モデルの`save`メソッドを呼び出します。ここでも、`updated_at`タイムスタンプは自動的に更新されるため、手動で設定する必要はありません。
+`save`メソッドは、データベースに既に存在するモデルを更新するためにも使用できます。モデルを更新するには、それを取得し、更新したい属性を設定します。その後、モデルの`save`メソッドを呼び出します。この場合も、`updated_at`タイムスタンプは自動的に更新されるため、手動で設定する必要はありません。
 
 ```php
 use App\Models\Flight;
@@ -849,7 +849,7 @@ $user->wasChanged('first_name'); // false
 $user->wasChanged(['first_name', 'title']); // true
 ```
 
-`getOriginal`メソッドは、モデルが取得されてからの変更に関係なく、モデルの元の属性を含む配列を返します。必要に応じて、特定の属性の元の値を取得するために属性名を渡すことができます。
+`getOriginal`メソッドは、モデルが取得されてからの変更に関係なく、モデルの元の属性を含む配列を返します。必要に応じて、特定の属性の元の値を取得するため、属性名を渡すことができます。
 
 ```php
 $user = User::find(1);
@@ -1661,7 +1661,7 @@ php artisan make:observer UserObserver --model=User
         //
     }
 
-または、観察したいモデルで `observe` メソッドを呼び出して手動でオブザーバーを登録することもできます。アプリケーションの `AppServiceProvider` クラスの `boot` メソッドでオブザーバーを登録できます。
+または、観察したいモデルで `observe` メソッドを呼び出して手動でオブザーバーを登録することもできます。アプリケーションの `AppServiceProvider` クラスの `boot` メソッドでオブザーバーを登録することができます。
 
     use App\Models\User;
     use App\Observers\UserObserver;
