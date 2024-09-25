@@ -70,38 +70,40 @@ Laravelのドキュメント全体で、多くの例でファサードを使用�
 Laravelのファサードテストメソッドを使用して、`Cache::get`メソッドが期待する引数で呼び出されたことを確認する次のテストを記述できます。
 
 ===  "Pest"
-```php
-use Illuminate\Support\Facades\Cache;
 
-test('basic example', function () {
-    Cache::shouldReceive('get')
-         ->with('key')
-         ->andReturn('value');
-
-    $response = $this->get('/cache');
-
-    $response->assertSee('value');
-});
-```
+  ```php
+  use Illuminate\Support\Facades\Cache;
+  
+  test('basic example', function () {
+      Cache::shouldReceive('get')
+           ->with('key')
+           ->andReturn('value');
+  
+      $response = $this->get('/cache');
+  
+      $response->assertSee('value');
+  });
+  ```
 
 ===  "PHPUnit"
-```php
-use Illuminate\Support\Facades\Cache;
 
-/**
- * 基本的な機能テストの例
- */
-public function test_basic_example(): void
-{
-    Cache::shouldReceive('get')
-         ->with('key')
-         ->andReturn('value');
-
-    $response = $this->get('/cache');
-
-    $response->assertSee('value');
-}
-```
+  ```php
+  use Illuminate\Support\Facades\Cache;
+  
+  /**
+   * 基本的な機能テストの例
+   */
+  public function test_basic_example(): void
+  {
+      Cache::shouldReceive('get')
+           ->with('key')
+           ->andReturn('value');
+  
+      $response = $this->get('/cache');
+  
+      $response->assertSee('value');
+  }
+  ```
 
 <a name="facades-vs-helper-functions"></a>
 ### ファサード vs. ヘルパー関数
