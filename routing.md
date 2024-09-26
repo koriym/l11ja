@@ -458,9 +458,9 @@ Laravelのルーティングコンポーネントは、`/`を除くすべての�
 <a name="route-groups"></a>
 ## ルートグループ
 
-ルートグループを使用すると、ミドルウェアなどのルート属性を大量のルートに共有できます。個々のルートにそれらの属性を定義する必要がありません。
+ルートグループを使用すると、ミドルウェアなどのルート属性を多数のルートで共有できます。個々のルートにそれらの属性を定義する必要がありません。
 
-ネストされたグループは、親グループとの属性を賢く「マージ」しようとします。ミドルウェアと`where`条件はマージされ、名前とプレフィックスは追加されます。名前空間の区切り文字とURIプレフィックスのスラッシュは、必要に応じて自動的に追加されます。
+ネストされたグループは、親グループの属性を賢く「マージ」しようとします。ミドルウェアと`where`条件はマージされ、名前とプレフィックスは追加されます。名前空間の区切り文字とURIプレフィックスのスラッシュは、必要に応じて自動的に追加されます。
 
 <a name="route-group-middleware"></a>
 ### ミドルウェア
@@ -806,7 +806,7 @@ protected function boot(): void
 }
 ```
 
-着信リクエストが指定されたレート制限を超えた場合、Laravelは自動的に429 HTTPステータスコードのレスポンスを返します。レート制限によって返されるべき独自のレスポンスを定義したい場合は、`response`メソッドを使用できます。
+着信リクエストが指定されたレート制限を超えた場合、Laravelは自動的に429 HTTPステータスコードのレスポンスを返します。レート制限によって返される独自のレスポンスを定義したい場合は、`response`メソッドを使用できます。
 
 ```php
 RateLimiter::for('global', function (Request $request) {
@@ -883,7 +883,7 @@ Route::middleware(['throttle:uploads'])->group(function () {
 <a name="throttling-with-redis"></a>
 #### Redisによるスロットリング
 
-デフォルトでは、`throttle`ミドルウェアは`Illuminate\Routing\Middleware\ThrottleRequests`クラスにマッピングされています。ただし、アプリケーションのキャッシュドライバとしてRedisを使用している場合、LaravelにRedisを使用してレート制限を管理するよう指示したい場合があります。そのためには、アプリケーションの`bootstrap/app.php`ファイルで`throttleWithRedis`メソッドを使用する必要があります。このメソッドは、`throttle`ミドルウェアを`Illuminate\Routing\Middleware\ThrottleRequestsWithRedis`ミドルウェアクラスにマッピングします。
+デフォルトでは、`throttle`ミドルウェアは`Illuminate\Routing\Middleware\ThrottleRequests`クラスにマッピングされています。ただし、アプリケーションのキャッシュドライバとしてRedisを使用している場合、LaravelにRedisを使用してレート制限を管理するよう指示したいことがあります。そのためには、アプリケーションの`bootstrap/app.php`ファイルで`throttleWithRedis`メソッドを使用する必要があります。このメソッドは、`throttle`ミドルウェアを`Illuminate\Routing\Middleware\ThrottleRequestsWithRedis`ミドルウェアクラスにマッピングします。
 
 ```php
 ->withMiddleware(function (Middleware $middleware) {
@@ -895,7 +895,7 @@ Route::middleware(['throttle:uploads'])->group(function () {
 <a name="form-method-spoofing"></a>
 ## フォームメソッドのスプーフィング
 
-HTMLフォームは`PUT`、`PATCH`、または`DELETE`アクションをサポートしていません。したがって、HTMLフォームから呼び出される`PUT`、`PATCH`、または`DELETE`ルートを定義する場合、フォームに隠し`_method`フィールドを追加する必要があります。`_method`フィールドの値はHTTPリクエストメソッドとして使用されます。
+HTMLフォームは`PUT`、`PATCH`、または`DELETE`アクションをサポートしていません。そのため、HTMLフォームから呼び出される`PUT`、`PATCH`、または`DELETE`ルートを定義する場合、フォームに隠し`_method`フィールドを追加する必要があります。`_method`フィールドの値はHTTPリクエストメソッドとして使用されます。
 
 ```html
 <form action="/example" method="POST">
@@ -904,7 +904,7 @@ HTMLフォームは`PUT`、`PATCH`、または`DELETE`アクションをサポ�
 </form>
 ```
 
-便宜上、`@method`[Bladeディレクティブ](blade.md)を使用して`_method`入力フィールドを生成できます。
+利便性のため、`@method`[Bladeディレクティブ](blade.md)を使用して`_method`入力フィールドを生成できます。
 
 ```html
 <form action="/example" method="POST">
@@ -933,7 +933,7 @@ $action = Route::currentRouteAction(); // string
 
 Laravelは、設定した値に基づいてCORS `OPTIONS` HTTPリクエストに自動的に応答できます。`OPTIONS`リクエストは、アプリケーションのグローバルミドルウェアスタックに自動的に含まれる`HandleCors`[ミドルウェア](middleware.md)によって自動的に処理されます。
 
-時には、アプリケーションのCORS設定値をカスタマイズする必要があるかもしれません。これを行うには、`config:publish` Artisanコマンドを使用して`cors`設定ファイルを公開します。
+場合によっては、アプリケーションのCORS設定値をカスタマイズする必要があるかもしれません。これを行うには、`config:publish` Artisanコマンドを使用して`cors`設定ファイルを公開します。
 
 ```shell
 php artisan config:publish cors
@@ -947,13 +947,13 @@ php artisan config:publish cors
 <a name="route-caching"></a>
 ## ルートキャッシュ
 
-アプリケーションを本番環境にデプロイする際、Laravelのルートキャッシュを利用する必要があります。ルートキャッシュを使用すると、アプリケーションのすべてのルートを登録するのにかかる時間が大幅に短縮されます。ルートキャッシュを生成するには、`route:cache` Artisanコマンドを実行します。
+アプリケーションを本番環境にデプロイする際は、Laravelのルートキャッシュを利用する必要があります。ルートキャッシュを使用すると、アプリケーションのすべてのルートを登録する時間が大幅に短縮されます。ルートキャッシュを生成するには、`route:cache` Artisanコマンドを実行します。
 
 ```shell
 php artisan route:cache
 ```
 
-このコマンドを実行すると、キャッシュされたルートファイルがすべてのリクエストで読み込まれます。新しいルートを追加する場合は、新しいルートキャッシュを生成する必要があることに注意してください。このため、`route:cache`コマンドはプロジェクトのデプロイ中にのみ実行するべきです。
+このコマンドを実行すると、キャッシュされたルートファイルがすべてのリクエストで読み込まれます。新しいルートを追加する場合は、新しいルートキャッシュを生成する必要があることに注意してください。そのため、`route:cache`コマンドはプロジェクトのデプロイ中にのみ実行するべきです。
 
 ルートキャッシュをクリアするには、`route:clear`コマンドを使用します。
 

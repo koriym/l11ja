@@ -217,7 +217,7 @@ Cashierが内部で使用するモデルを独自のモデルで拡張するこ�
         return view('buy', ['checkout' => $checkout]);
     })->name('checkout');
 
-上記の例でわかるように、Cashierが提供する`checkout`メソッドを利用して、指定された「価格識別子」に対して顧客にPaddleのチェックアウトオーバーレイを提示するためのチェックアウトオブジェクトを作成します。Paddleを使用する場合、「価格」とは、特定の製品に対して定義された価格を指します。
+上記の例でわかるように、Cashierが提供する`checkout`メソッドを利用して、指定された「価格識別子」に対して、顧客にPaddleのチェックアウトオーバーレイを提示するためのチェックアウトオブジェクトを作成します。Paddleを使用する場合、「価格」とは、特定の製品に対して定義された価格を指します。
 
 必要に応じて、`checkout`メソッドはPaddleに顧客を自動的に作成し、そのPaddleの顧客レコードをアプリケーションのデータベース内の対応するユーザーに接続します。チェックアウトセッションが完了すると、顧客は専用の成功ページにリダイレクトされ、そこで顧客に情報メッセージを表示できます。
 
@@ -287,7 +287,7 @@ use Laravel\Paddle\Events\TransactionCompleted;
 class CompleteOrder
 {
     /**
-     * 着信Cashier Webhookイベントを処理する。
+     * 着信Cashier Webhookイベントを処理します。
      */
     public function handle(TransactionCompleted $event): void
     {
@@ -1210,7 +1210,7 @@ $user->subscription()->cancel();
 Cashierはこのタイプのトライアルを「ジェネリックトライアル」と呼び、既存のサブスクリプションに関連付けられていません。`User`インスタンスの`onTrial`メソッドは、現在の日付が`trial_ends_at`の値を過ぎていない場合に`true`を返します:
 
     if ($user->onTrial()) {
-        // ユーザーはトライアル期間内です...
+        // ユーザーはトライアル期間内です。
     }
 
 ユーザーのために実際のサブスクリプションを作成する準備ができたら、通常通り`subscribe`メソッドを使用できます:
@@ -1233,7 +1233,7 @@ Cashierはこのタイプのトライアルを「ジェネリックトライア�
 ユーザーがまだ実際のサブスクリプションを作成していない「ジェネリック」トライアル期間内にいるかどうかを知りたい場合は、`onGenericTrial`メソッドを使用できます:
 
     if ($user->onGenericTrial()) {
-        // ユーザーは「ジェネリック」トライアル期間内です...
+        // ユーザーは「ジェネリック」トライアル期間内です。
     }
 
 <a name="extend-or-activate-a-trial"></a>
@@ -1402,7 +1402,7 @@ Webhookの検証を有効にするには、アプリケーションの`.env`フ�
 
     $response = $transaction->refund('Accidental charge');
 
-返金の詳細については、[Paddleの返金ドキュメント](https://developer.paddle.com/build/transactions/create-transaction-adjustments)を参照してください。
+返金の詳細については、[Paddleの返金に関するドキュメント](https://developer.paddle.com/build/transactions/create-transaction-adjustments)を参照してください。
 
 > WARNING:  
 > 返金は、完全に処理される前に常にPaddleによって承認される必要があります。
@@ -1484,5 +1484,5 @@ Webhookの検証を有効にするには、アプリケーションの`.env`フ�
 
 テスト中は、請求フローを手動でテストして、統合が期待どおりに機能することを確認する必要があります。
 
-自動テスト（CI環境内で実行されるものを含む）の場合、[LaravelのHTTPクライアント](http-client.md#testing)を使用して、PaddleへのHTTP呼び出しをフェイクすることができます。これにより、実際にPaddleのAPIを呼び出すことなくアプリケーションをテストする方法が提供されますが、Paddleからの実際のレスポンスはテストされません。
+自動テスト（CI環境内で実行されるものを含む）の場合、[LaravelのHTTPクライアント](http-client.md#testing)を使用して、PaddleへのHTTPリクエストをモックすることができます。これにより、実際にPaddleのAPIを呼び出すことなくアプリケーションをテストする方法が提供されますが、Paddleからの実際のレスポンスはテストされません。
 

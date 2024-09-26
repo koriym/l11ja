@@ -728,7 +728,7 @@ OrderShipmentStatusUpdated::dispatch($order);
 <a name="only-to-others"></a>
 ### 他のユーザーのみにブロードキャスト
 
-イベントブロードキャストを利用するアプリケーションを構築する際、特定のチャンネルのすべてのサブスクライバーにイベントをブロードキャストする必要がある場合がありますが、現在のユーザーを除きます。`broadcast`ヘルパーと`toOthers`メソッドを使用してこれを実現できます：
+イベントブロードキャストを利用するアプリケーションを構築する際、特定のチャンネルのすべてのサブスクライバーにイベントをブロードキャストする必要がある場合がありますが、現在のユーザーを除く必要があります。`broadcast`ヘルパーと`toOthers`メソッドを使用してこれを実現できます：
 
 ```php
 use App\Events\OrderShipmentStatusUpdated;
@@ -748,7 +748,7 @@ axios.post('/task', task)
 ただし、タスクの作成もブロードキャストしていることを忘れないでください。JavaScriptアプリケーションがこのイベントをリッスンしてタスクリストにタスクを追加している場合、リストに重複したタスクが表示されます：エンドポイントからのものとブロードキャストからのものです。これを解決するために、`toOthers`メソッドを使用してブロードキャスタに現在のユーザーにイベントをブロードキャストしないように指示できます。
 
 > WARNING:  
-> `toOthers`メソッドを呼び出すには、イベントが`Illuminate\Broadcasting\InteractsWithSockets`トレイトを使用する必要があります。
+> `toOthers`メソッドを呼び出すには、イベントが`Illuminate\Broadcasting\InteractsWithSockets`トレイトを使用している必要があります。
 
 <a name="only-to-others-configuration"></a>
 #### 設定
@@ -1195,7 +1195,7 @@ public function broadcastWith(string $event): array
 
 まず、`private`メソッドを使用してチャンネルのインスタンスを取得し、`listen`メソッドを呼び出して特定のイベントをリスニングします。通常、`private`メソッドに与えられるチャンネル名は、Laravelの[モデルブロードキャスト規約](#model-broadcasting-conventions)に対応する必要があります。
 
-チャンネルインスタンスを取得したら、`listen`メソッドを使用して特定のイベントをリスニングできます。モデルブロードキャストイベントは、アプリケーションの`App\Events`ディレクトリ内の「実際の」イベントに関連付けられていないため、[イベント名](#model-broadcasting-event-conventions)の前に`.`を付けて、特定の名前空間に属していないことを示す必要があります。各モデルブロードキャストイベントには、モデルのすべてのブロードキャスト可能なプロパティを含む`model`プロパティがあります。
+チャンネルインスタンスを取得したら、`listen`メソッドを使用して特定のイベントをリッスンできます。モデルブロードキャストイベントは、アプリケーションの`App\Events`ディレクトリ内の「実際の」イベントに関連付けられていないため、[イベント名](#model-broadcasting-event-conventions)の前に`.`を付けて、特定の名前空間に属していないことを示す必要があります。各モデルブロードキャストイベントには、モデルのすべてのブロードキャスト可能なプロパティを含む`model`プロパティがあります。
 
 ```js
 Echo.private(`App.Models.User.${this.user.id}`)
@@ -1221,7 +1221,7 @@ Echo.private(`chat.${roomId}`)
     });
 ```
 
-クライアントイベントをリスニングするには、`listenForWhisper`メソッドを使用できます。
+クライアントイベントをリッスンするには、`listenForWhisper`メソッドを使用できます。
 
 ```js
 Echo.private(`chat.${roomId}`)
@@ -1233,9 +1233,9 @@ Echo.private(`chat.${roomId}`)
 <a name="notifications"></a>
 ## 通知
 
-イベントブロードキャストと[通知](notifications.md)を組み合わせることで、JavaScriptアプリケーションはページを更新することなく、新しい通知を受け取ることができます。開始する前に、[ブロードキャスト通知チャンネル](notifications.md#broadcast-notifications)の使用に関するドキュメントを確認してください。
+イベントブロードキャストと[通知](notifications.md)を組み合わせることで、JavaScriptアプリケーションは、ページを更新することなく新しい通知を受け取ることができます。開始する前に、[ブロードキャスト通知チャンネル](notifications.md#broadcast-notifications)の使用に関するドキュメントを確認してください。
 
-ブロードキャストチャンネルを使用するように通知を設定したら、Echoの`notification`メソッドを使用してブロードキャストイベントをリスニングできます。通知を受け取るエンティティのクラス名と一致するチャンネル名を使用することを忘れないでください。
+ブロードキャストチャンネルを使用するように通知を設定したら、Echoの`notification`メソッドを使用してブロードキャストイベントをリッスンできます。通知を受け取るエンティティのクラス名と一致するチャンネル名を使用することを忘れないでください。
 
 ```js
 Echo.private(`App.Models.User.${userId}`)

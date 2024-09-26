@@ -73,7 +73,7 @@ Laravelのクエリビルダは、PDOパラメータバインディングを使�
         }
     }
 
-`get`メソッドは、クエリの結果を含む`Illuminate\Support\Collection`インスタンスを返します。各結果はPHPの`stdClass`オブジェクトのインスタンスです。オブジェクトのプロパティとしてカラムにアクセスできます。
+`get`メソッドは、クエリの結果を含む`Illuminate\Support\Collection`インスタンスを返します。各結果はPHPの`stdClass`オブジェクトのインスタンスであり、オブジェクトのプロパティとしてカラムにアクセスできます。
 
     use Illuminate\Support\Facades\DB;
 
@@ -99,7 +99,7 @@ Laravelのクエリビルダは、PDOパラメータバインディングを使�
 
     $user = DB::table('users')->where('name', 'John')->firstOrFail();
 
-行全体を必要としない場合、`value`メソッドを使用してレコードから単一の値を抽出できます。このメソッドは、カラムの値を直接返します。
+行全体が必要ない場合、`value`メソッドを使用してレコードから単一の値を抽出できます。このメソッドは、指定したカラムの値を直接返します。
 
     $email = DB::table('users')->where('name', 'John')->value('email');
 
@@ -150,7 +150,7 @@ Laravelのクエリビルダは、PDOパラメータバインディングを使�
         return false;
     });
 
-結果をチャンク化しながらデータベースレコードを更新する場合、チャンク結果が予期せぬ方法で変更される可能性があります。チャンク化中に取得したレコードを更新する予定がある場合は、代わりに`chunkById`メソッドを使用することを常にお勧めします。このメソッドは、レコードの主キーに基づいて結果を自動的にページングします。
+結果をチャンク化しながらデータベースレコードを更新する場合、チャンク結果が予期せぬ方法で変更される可能性があります。チャンク化中に取得したレコードを更新する予定がある場合は、`chunkById`メソッドを代わりに使用することを常にお勧めします。このメソッドは、レコードの主キーに基づいて結果を自動的にページングします。
 
     DB::table('users')->where('active', false)
         ->chunkById(100, function (Collection $users) {
@@ -167,7 +167,7 @@ Laravelのクエリビルダは、PDOパラメータバインディングを使�
 <a name="streaming-results-lazily"></a>
 ### 結果の遅延ストリーミング
 
-`lazy`メソッドは、[`chunk`メソッド](#chunking-results)と同様に、クエリをチャンクで実行します。ただし、`lazy()`メソッドは[`LazyCollection`](collections.md#lazy-collections)を返し、結果を単一のストリームとして操作できるようにします。
+`lazy`メソッドは、[`chunk`メソッド](#chunking-results)と同様に、クエリをチャンクで実行します。ただし、`lazy()`メソッドは[`LazyCollection`](collections.md#lazy-collections)を返し、結果を単一のストリームとして操作することができます。
 
 ```php
 use Illuminate\Support\Facades\DB;
@@ -862,7 +862,7 @@ select * from users where name = 'John' and (votes > 100 or title = 'Admin')
 <a name="where-exists-clauses"></a>
 ### Where Exists句
 
-`whereExists`メソッドを使用すると、「where exists」SQL句を記述できます。`whereExists`メソッドは、クロージャを受け取り、クエリビルダーインスタンスを受け取り、「exists」句内に配置するクエリを定義できます。
+`whereExists`メソッドを使用すると、「where exists」SQL句を記述できます。`whereExists`メソッドはクロージャを受け取り、そのクロージャはクエリビルダーインスタンスを受け取ります。このクロージャ内で、「exists」句内に配置するクエリを定義できます。
 
     $users = DB::table('users')
                ->whereExists(function (Builder $query) {
@@ -896,7 +896,7 @@ where exists (
 <a name="subquery-where-clauses"></a>
 ### サブクエリWhere句
 
-場合によっては、サブクエリの結果を特定の値と比較する「where」句を構築する必要があります。これを行うには、クロージャと値を`where`メソッドに渡すことができます。たとえば、次のクエリは、特定のタイプの最近の「メンバーシップ」を持つすべてのユーザーを取得します。
+場合によっては、サブクエリの結果を特定の値と比較する「where」句を構築する必要があります。これを行うには、`where`メソッドにクロージャと値を渡すことができます。たとえば、次のクエリは、特定のタイプの最近の「メンバーシップ」を持つすべてのユーザーを取得します。
 
     use App\Models\User;
     use Illuminate\Database\Query\Builder;
@@ -955,7 +955,7 @@ where exists (
 <a name="latest-oldest"></a>
 #### `latest`および`oldest`メソッド
 
-`latest`および`oldest`メソッドを使用すると、日付で結果を簡単に並べ替えることができます。デフォルトでは、結果はテーブルの`created_at`カラムで並べ替えられます。または、並べ替えたいカラム名を渡すこともできます。
+`latest`および`oldest`メソッドを使用すると、日付で結果を簡単に並べ替えることができます。デフォルトでは、結果はテーブルの`created_at`カラムで並べ替えられます。あるいは、並べ替えたいカラム名を指定することもできます。
 
     $user = DB::table('users')
                     ->latest()
@@ -991,7 +991,7 @@ where exists (
 <a name="groupby-having"></a>
 #### `groupBy`および`having`メソッド
 
-予想されるように、`groupBy`および`having`メソッドを使用してクエリ結果をグループ化できます。`having`メソッドのシグネチャは`where`メソッドのシグネチャに似ています。
+予想通り、`groupBy`および`having`メソッドを使用してクエリ結果をグループ化できます。`having`メソッドの署名は`where`メソッドの署名と似ています。
 
     $users = DB::table('users')
                     ->groupBy('account_id')
@@ -1035,7 +1035,7 @@ where exists (
 <a name="conditional-clauses"></a>
 ## 条件付き句
 
-場合によっては、特定のクエリ句を別の条件に基づいてクエリに適用したいことがあります。例えば、特定の入力値が受信HTTPリクエストに存在する場合にのみ `where` ステートメントを適用したい場合があります。これは `when` メソッドを使用して実現できます:
+場合によっては、特定の条件に基づいてクエリに特定のクエリ句を適用したいことがあります。例えば、特定の入力値が受信HTTPリクエストに存在する場合にのみ `where` 文を適用したい場合があります。これは `when` メソッドを使用して実現できます:
 
     $role = $request->input('role');
 
@@ -1134,7 +1134,7 @@ where exists (
 <a name="update-or-insert"></a>
 #### 更新または挿入
 
-場合によっては、データベース内の既存のレコードを更新するか、一致するレコードが存在しない場合に作成したいことがあります。このシナリオでは、`updateOrInsert` メソッドを使用できます。`updateOrInsert` メソッドは、レコードを見つけるための条件の配列と、更新するカラムと値のペアの配列の2つの引数を受け取ります。
+場合によっては、データベース内の既存のレコードを更新するか、一致するレコードが存在しない場合に新しく作成したいことがあります。このシナリオでは、`updateOrInsert` メソッドを使用できます。`updateOrInsert` メソッドは、2つの引数を受け取ります。1つ目はレコードを見つけるための条件の配列、2つ目は更新するカラムと値のペアの配列です。
 
 `updateOrInsert` メソッドは、最初の引数のカラムと値のペアを使用して一致するデータベースレコードを見つけようとします。レコードが存在する場合、2番目の引数の値で更新されます。レコードが見つからない場合、両方の引数の属性をマージした新しいレコードが挿入されます:
 
@@ -1172,7 +1172,7 @@ JSONカラムを更新する場合、JSONオブジェクト内の適切なキー
 <a name="increment-and-decrement"></a>
 ### 増分と減分
 
-クエリビルダは、指定されたカラムの値を増減するための便利なメソッドも提供します。これらのメソッドは、少なくとも1つの引数（変更するカラム）を受け取ります。カラムを増減する量を指定するために2番目の引数を提供することもできます:
+クエリビルダは、指定されたカラムの値を増減するための便利なメソッドも提供しています。これらのメソッドは、少なくとも1つの引数（変更するカラム）を受け取ります。カラムを増減する量を指定するために、2番目の引数を提供することもできます:
 
     DB::table('users')->increment('votes');
 

@@ -22,7 +22,7 @@
 
 アプリケーションのテストやデータベースのシーディングを行う際に、データベースにいくつかのレコードを挿入する必要があるかもしれません。各カラムの値を手動で指定する代わりに、Laravelでは[Eloquentモデル](eloquent.md)ごとにデフォルトの属性セットを定義することができます。
 
-ファクトリの書き方の例を見るには、アプリケーションの `database/factories/UserFactory.php` ファイルを見てください。このファクトリはすべての新しいLaravelアプリケーションに含まれており、以下のファクトリ定義が含まれています。
+ファクトリの記述例を見るには、アプリケーションの `database/factories/UserFactory.php` ファイルを参照してください。このファクトリはすべての新しいLaravelアプリケーションに含まれており、以下のファクトリ定義が含まれています。
 
     namespace Database\Factories;
 
@@ -67,7 +67,7 @@
         }
     }
 
-最も基本的な形では、ファクトリはLaravelの基本ファクトリクラスを拡張し、`definition` メソッドを定義するクラスです。`definition` メソッドは、ファクトリを使用してモデルを作成する際に適用されるデフォルトの属性値のセットを返します。
+最も基本的な形式では、ファクトリはLaravelの基本ファクトリクラスを拡張し、`definition` メソッドを定義するクラスです。`definition` メソッドは、ファクトリを使用してモデルを作成する際に適用されるデフォルトの属性値のセットを返します。
 
 `fake` ヘルパーを介して、ファクトリは [Faker](https://github.com/FakerPHP/Faker) PHP ライブラリにアクセスできます。これにより、テストやシーディングのためにさまざまな種類のランダムデータを簡単に生成できます。
 
@@ -80,7 +80,7 @@
 <a name="generating-factories"></a>
 ### ファクトリの生成
 
-ファクトリを作成するには、`make:factory` [Artisanコマンド](artisan.md)を実行します。
+ファクトリを作成するには、`make:factory` [Artisanコマンド](artisan.md)を実行してください。
 
 ```shell
 php artisan make:factory PostFactory
@@ -91,7 +91,7 @@ php artisan make:factory PostFactory
 <a name="factory-and-model-discovery-conventions"></a>
 #### モデルとファクトリの検出規約
 
-ファクトリを定義したら、`Illuminate\Database\Eloquent\Factories\HasFactory` トレイトによってモデルに提供される静的 `factory` メソッドを使用して、そのモデルのファクトリインスタンスをインスタンス化できます。
+ファクトリを定義したら、`Illuminate\Database\Eloquent\Factories\HasFactory` トレイトによってモデルに提供される静的 `factory` メソッドを使用して、そのモデルのファクトリインスタンスを生成できます。
 
 `HasFactory` トレイトの `factory` メソッドは、規約を使用して適切なファクトリを決定します。具体的には、メソッドは `Database\Factories` 名前空間内で、モデル名に一致し、`Factory` で終わるクラス名を持つファクトリを探します。これらの規約が特定のアプリケーションやファクトリに適用されない場合は、モデルの `newFactory` メソッドをオーバーライドして、モデルの対応するファクトリのインスタンスを直接返すことができます。
 
@@ -124,7 +124,7 @@ php artisan make:factory PostFactory
 <a name="factory-states"></a>
 ### ファクトリの状態
 
-状態操作メソッドを使用すると、モデルファクトリに適用できる離散的な変更を定義できます。たとえば、`Database\Factories\UserFactory` ファクトリには、デフォルトの属性値の1つを変更する `suspended` 状態メソッドが含まれているかもしれません。
+状態変更メソッドを使用すると、モデルファクトリに適用できる個別の変更を定義できます。たとえば、`Database\Factories\UserFactory` ファクトリには、デフォルトの属性値の1つを変更する `suspended` 状態メソッドが含まれているかもしれません。
 
 状態変換メソッドは通常、Laravelの基本ファクトリクラスによって提供される `state` メソッドを呼び出します。`state` メソッドは、ファクトリに定義された生の属性の配列を受け取り、変更する属性の配列を返すクロージャを受け取ります。
 
@@ -154,7 +154,7 @@ Eloquentモデルが[ソフトデリート](eloquent.md#soft-deleting)可能な�
 <a name="factory-callbacks"></a>
 ### ファクトリのコールバック
 
-ファクトリコールバックは、`afterMaking` および `afterCreating` メソッドを使用して登録され、モデルの作成または作成後に追加のタスクを実行できるようにします。これらのコールバックは、ファクトリクラスに `configure` メソッドを定義することで登録する必要があります。このメソッドは、ファクトリがインスタンス化されるときにLaravelによって自動的に呼び出されます。
+ファクトリコールバックは、`afterMaking` および `afterCreating` メソッドを使用して登録され、モデルの生成または作成後に追加のタスクを実行できるようにします。これらのコールバックは、ファクトリクラスに `configure` メソッドを定義することで登録する必要があります。このメソッドは、ファクトリがインスタンス化されるときにLaravelによって自動的に呼び出されます。
 
     namespace Database\Factories;
 
@@ -205,7 +205,7 @@ Eloquentモデルが[ソフトデリート](eloquent.md#soft-deleting)可能な�
 <a name="instantiating-models"></a>
 ### モデルのインスタンス化
 
-ファクトリを定義したら、`Illuminate\Database\Eloquent\Factories\HasFactory` トレイトによってモデルに提供される静的 `factory` メソッドを使用して、そのモデルのファクトリインスタンスをインスタンス化できます。モデルの作成例をいくつか見てみましょう。まず、データベースに永続化せずにモデルを作成するために `make` メソッドを使用します。
+ファクトリを定義したら、`Illuminate\Database\Eloquent\Factories\HasFactory` トレイトによってモデルに提供される静的 `factory` メソッドを使用して、そのモデルのファクトリインスタンスを生成できます。モデルの作成例をいくつか見てみましょう。まず、データベースに永続化せずにモデルを作成するために `make` メソッドを使用します。
 
     use App\Models\User;
 
@@ -259,7 +259,7 @@ Eloquentモデルが[ソフトデリート](eloquent.md#soft-deleting)可能な�
 <a name="sequences"></a>
 ### シーケンス
 
-場合によっては、作成される各モデルの特定の属性の値を交互に変更したいことがあります。これは、状態変換をシーケンスとして定義することで実現できます。たとえば、作成される各ユーザーの`admin`カラムの値を`Y`と`N`で交互に変更したい場合があります。
+場合によっては、生成される各モデルの特定の属性の値を交互に変更したいことがあります。これは、状態変換をシーケンスとして定義することで実現できます。たとえば、作成される各ユーザーの`admin`カラムの値を`Y`と`N`で交互に変更したい場合があります。
 
     use App\Models\User;
     use Illuminate\Database\Eloquent\Factories\Sequence;
@@ -308,7 +308,7 @@ Eloquentモデルが[ソフトデリート](eloquent.md#soft-deleting)可能な�
 <a name="has-many-relationships"></a>
 ### Has Many リレーションシップ
 
-次に、Laravelの流暢なファクトリメソッドを使用してEloquentモデルのリレーションシップを構築する方法を探ってみましょう。まず、アプリケーションに`App\Models\User`モデルと`App\Models\Post`モデルがあるとします。また、`User`モデルが`Post`モデルとの`hasMany`リレーションシップを定義しているとします。Laravelのファクトリが提供する`has`メソッドを使用して、3つの投稿を持つユーザーを作成できます。`has`メソッドはファクトリインスタンスを受け取ります。
+次に、Laravelの流暢なファクトリメソッドを使用してEloquentモデルのリレーションシップを構築する方法を見てみましょう。まず、アプリケーションに`App\Models\User`モデルと`App\Models\Post`モデルがあるとします。また、`User`モデルが`Post`モデルとの`hasMany`リレーションシップを定義しているとします。Laravelのファクトリが提供する`has`メソッドを使用して、3つの投稿を持つユーザーを作成できます。`has`メソッドはファクトリインスタンスを受け取ります。
 
     use App\Models\Post;
     use App\Models\User;
@@ -323,7 +323,7 @@ Eloquentモデルが[ソフトデリート](eloquent.md#soft-deleting)可能な�
                 ->has(Post::factory()->count(3), 'posts')
                 ->create();
 
-もちろん、関連モデルに対して状態操作を実行できます。さらに、状態変更が親モデルにアクセスする必要がある場合、クロージャベースの状態変換を渡すことができます。
+もちろん、関連モデルに対して状態変更を適用できます。さらに、状態変更が親モデルにアクセスする必要がある場合、クロージャベースの状態変換を渡すことができます。
 
     $user = User::factory()
                 ->has(

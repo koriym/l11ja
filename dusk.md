@@ -2110,7 +2110,7 @@ Duskをインストールすると、ベースの`Page`クラスが`tests/Browse
 <a name="components"></a>
 ## コンポーネント
 
-コンポーネントはDuskの「ページオブジェクト」に似ていますが、アプリケーション全体で再利用されるUIや機能のピース、例えばナビゲーションバーや通知ウィンドウに対して意図されています。そのため、コンポーネントは特定のURLにバインドされません。
+コンポーネントはDuskの「ページオブジェクト」に似ていますが、アプリケーション全体で再利用されるUIや機能の部品、例えばナビゲーションバーや通知ウィンドウに対して意図されています。そのため、コンポーネントは特定のURLにバインドされません。
 
 <a name="generating-components"></a>
 ### コンポーネントの生成
@@ -2243,7 +2243,7 @@ class ExampleTest extends DuskTestCase
 <a name="running-tests-on-heroku-ci"></a>
 ### Heroku CI
 
-[Heroku CI](https://www.heroku.com/continuous-integration)でDuskテストを実行するには、以下のGoogle ChromeビルドパックとスクリプトをHerokuの`app.json`ファイルに追加します。
+[Heroku CI](https://www.heroku.com/continuous-integration)でDuskテストを実行するには、以下のGoogle Chromeビルドパックとスクリプトをherokuの`app.json`ファイルに追加します:
 
 ```json
 {
