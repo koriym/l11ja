@@ -9343,7 +9343,7 @@
 </code></pre></div>
 <p><a name="components"></a></p>
 <h2 id="_63">コンポーネント<a class="headerlink" href="#_63" title="Permanent link">&para;</a></h2>
-<p>コンポーネントはDuskの「ページオブジェクト」に似ていますが、アプリケーション全体で再利用されるUIや機能のピース、例えばナビゲーションバーや通知ウィンドウに対して意図されています。そのため、コンポーネントは特定のURLにバインドされません。</p>
+<p>コンポーネントはDuskの「ページオブジェクト」に似ていますが、アプリケーション全体で再利用されるUIや機能の部品、例えばナビゲーションバーや通知ウィンドウに対して意図されています。そのため、コンポーネントは特定のURLにバインドされません。</p>
 <p><a name="generating-components"></a></p>
 <h3 id="_64">コンポーネントの生成<a class="headerlink" href="#_64" title="Permanent link">&para;</a></h3>
 <p>コンポーネントを生成するには、<code>dusk:component</code> Artisanコマンドを実行します。新しいコンポーネントは、<code>tests/Browser/Components</code>ディレクトリに配置されます:</p>
@@ -9473,7 +9473,7 @@
 </div>
 <p><a name="running-tests-on-heroku-ci"></a></p>
 <h3 id="heroku-ci">Heroku CI<a class="headerlink" href="#heroku-ci" title="Permanent link">&para;</a></h3>
-<p><a href="https://www.heroku.com/continuous-integration">Heroku CI</a>でDuskテストを実行するには、以下のGoogle ChromeビルドパックとスクリプトをHerokuの<code>app.json</code>ファイルに追加します。</p>
+<p><a href="https://www.heroku.com/continuous-integration">Heroku CI</a>でDuskテストを実行するには、以下のGoogle Chromeビルドパックとスクリプトをherokuの<code>app.json</code>ファイルに追加します:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-68-1" name="__codelineno-68-1" href="#__codelineno-68-1"></a><span class="p">{</span>
 <a id="__codelineno-68-2" name="__codelineno-68-2" href="#__codelineno-68-2"></a><span class="w">  </span><span class="nt">&quot;environments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-68-3" name="__codelineno-68-3" href="#__codelineno-68-3"></a><span class="w">    </span><span class="nt">&quot;test&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>

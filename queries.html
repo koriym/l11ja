@@ -4402,7 +4402,7 @@
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p><code>get</code>メソッドは、クエリの結果を含む<code>Illuminate\Support\Collection</code>インスタンスを返します。各結果はPHPの<code>stdClass</code>オブジェクトのインスタンスです。オブジェクトのプロパティとしてカラムにアクセスできます。</p>
+<p><code>get</code>メソッドは、クエリの結果を含む<code>Illuminate\Support\Collection</code>インスタンスを返します。各結果はPHPの<code>stdClass</code>オブジェクトのインスタンスであり、オブジェクトのプロパティとしてカラムにアクセスできます。</p>
 <div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">Illuminate\Support\Facades\DB</span><span class="p">;</span>
 
 <span class="nv">$users</span> <span class="o">=</span> <span class="nx">DB</span><span class="o">::</span><span class="na">table</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">();</span>
@@ -4425,7 +4425,7 @@
 <p>データベーステーブルから単一の行を取得したいが、一致する行が見つからない場合に<code>Illuminate\Database\RecordNotFoundException</code>をスローする場合は、<code>firstOrFail</code>メソッドを使用できます。<code>RecordNotFoundException</code>がキャッチされない場合、404 HTTPレスポンスが自動的にクライアントに返されます。</p>
 <div class="highlight"><pre><span></span><code><span class="nv">$user</span> <span class="o">=</span> <span class="nx">DB</span><span class="o">::</span><span class="na">table</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;John&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">firstOrFail</span><span class="p">();</span>
 </code></pre></div>
-<p>行全体を必要としない場合、<code>value</code>メソッドを使用してレコードから単一の値を抽出できます。このメソッドは、カラムの値を直接返します。</p>
+<p>行全体が必要ない場合、<code>value</code>メソッドを使用してレコードから単一の値を抽出できます。このメソッドは、指定したカラムの値を直接返します。</p>
 <div class="highlight"><pre><span></span><code><span class="nv">$email</span> <span class="o">=</span> <span class="nx">DB</span><span class="o">::</span><span class="na">table</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;John&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">value</span><span class="p">(</span><span class="s1">&#39;email&#39;</span><span class="p">);</span>
 </code></pre></div>
 <p><code>id</code>カラムの値によって単一の行を取得するには、<code>find</code>メソッドを使用します。</p>
@@ -4468,7 +4468,7 @@
     <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
 <span class="p">});</span>
 </code></pre></div>
-<p>結果をチャンク化しながらデータベースレコードを更新する場合、チャンク結果が予期せぬ方法で変更される可能性があります。チャンク化中に取得したレコードを更新する予定がある場合は、代わりに<code>chunkById</code>メソッドを使用することを常にお勧めします。このメソッドは、レコードの主キーに基づいて結果を自動的にページングします。</p>
+<p>結果をチャンク化しながらデータベースレコードを更新する場合、チャンク結果が予期せぬ方法で変更される可能性があります。チャンク化中に取得したレコードを更新する予定がある場合は、<code>chunkById</code>メソッドを代わりに使用することを常にお勧めします。このメソッドは、レコードの主キーに基づいて結果を自動的にページングします。</p>
 <div class="highlight"><pre><span></span><code><span class="nx">DB</span><span class="o">::</span><span class="na">table</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;active&#39;</span><span class="p">,</span> <span class="k">false</span><span class="p">)</span>
     <span class="o">-&gt;</span><span class="na">chunkById</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Collection</span> <span class="nv">$users</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">foreach</span> <span class="p">(</span><span class="nv">$users</span> <span class="k">as</span> <span class="nv">$user</span><span class="p">)</span> <span class="p">{</span>
@@ -4484,7 +4484,7 @@
 </div>
 <p><a name="streaming-results-lazily"></a></p>
 <h3 id="_8">結果の遅延ストリーミング<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
-<p><code>lazy</code>メソッドは、<a href="#chunking-results"><code>chunk</code>メソッド</a>と同様に、クエリをチャンクで実行します。ただし、<code>lazy()</code>メソッドは<a href="collections.html#lazy-collections"><code>LazyCollection</code></a>を返し、結果を単一のストリームとして操作できるようにします。</p>
+<p><code>lazy</code>メソッドは、<a href="#chunking-results"><code>chunk</code>メソッド</a>と同様に、クエリをチャンクで実行します。ただし、<code>lazy()</code>メソッドは<a href="collections.html#lazy-collections"><code>LazyCollection</code></a>を返し、結果を単一のストリームとして操作することができます。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">use</span> <span class="nx">Illuminate\Support\Facades\DB</span><span class="p">;</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nx">DB</span><span class="o">::</span><span class="na">table</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">orderBy</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">lazy</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">each</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nx">object</span> <span class="nv">$user</span><span class="p">)</span> <span class="p">{</span>
@@ -5012,7 +5012,7 @@
 <h3 id="where_2">高度なWhere句<a class="headerlink" href="#where_2" title="Permanent link">&para;</a></h3>
 <p><a name="where-exists-clauses"></a></p>
 <h3 id="where-exists">Where Exists句<a class="headerlink" href="#where-exists" title="Permanent link">&para;</a></h3>
-<p><code>whereExists</code>メソッドを使用すると、「where exists」SQL句を記述できます。<code>whereExists</code>メソッドは、クロージャを受け取り、クエリビルダーインスタンスを受け取り、「exists」句内に配置するクエリを定義できます。</p>
+<p><code>whereExists</code>メソッドを使用すると、「where exists」SQL句を記述できます。<code>whereExists</code>メソッドはクロージャを受け取り、そのクロージャはクエリビルダーインスタンスを受け取ります。このクロージャ内で、「exists」句内に配置するクエリを定義できます。</p>
 <div class="highlight"><pre><span></span><code><span class="nv">$users</span> <span class="o">=</span> <span class="nx">DB</span><span class="o">::</span><span class="na">table</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">)</span>
            <span class="o">-&gt;</span><span class="na">whereExists</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nx">Builder</span> <span class="nv">$query</span><span class="p">)</span> <span class="p">{</span>
                <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">select</span><span class="p">(</span><span class="nx">DB</span><span class="o">::</span><span class="na">raw</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
@@ -5040,7 +5040,7 @@
 </code></pre></div>
 <p><a name="subquery-where-clauses"></a></p>
 <h3 id="where_3">サブクエリWhere句<a class="headerlink" href="#where_3" title="Permanent link">&para;</a></h3>
-<p>場合によっては、サブクエリの結果を特定の値と比較する「where」句を構築する必要があります。これを行うには、クロージャと値を<code>where</code>メソッドに渡すことができます。たとえば、次のクエリは、特定のタイプの最近の「メンバーシップ」を持つすべてのユーザーを取得します。</p>
+<p>場合によっては、サブクエリの結果を特定の値と比較する「where」句を構築する必要があります。これを行うには、<code>where</code>メソッドにクロージャと値を渡すことができます。たとえば、次のクエリは、特定のタイプの最近の「メンバーシップ」を持つすべてのユーザーを取得します。</p>
 <div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">App\Models\User</span><span class="p">;</span>
 <span class="k">use</span> <span class="nx">Illuminate\Database\Query\Builder</span><span class="p">;</span>
 
@@ -5090,7 +5090,7 @@
 </code></pre></div>
 <p><a name="latest-oldest"></a></p>
 <h4 id="latestoldest"><code>latest</code>および<code>oldest</code>メソッド<a class="headerlink" href="#latestoldest" title="Permanent link">&para;</a></h4>
-<p><code>latest</code>および<code>oldest</code>メソッドを使用すると、日付で結果を簡単に並べ替えることができます。デフォルトでは、結果はテーブルの<code>created_at</code>カラムで並べ替えられます。または、並べ替えたいカラム名を渡すこともできます。</p>
+<p><code>latest</code>および<code>oldest</code>メソッドを使用すると、日付で結果を簡単に並べ替えることができます。デフォルトでは、結果はテーブルの<code>created_at</code>カラムで並べ替えられます。あるいは、並べ替えたいカラム名を指定することもできます。</p>
 <div class="highlight"><pre><span></span><code><span class="nv">$user</span> <span class="o">=</span> <span class="nx">DB</span><span class="o">::</span><span class="na">table</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">)</span>
                 <span class="o">-&gt;</span><span class="na">latest</span><span class="p">()</span>
                 <span class="o">-&gt;</span><span class="na">first</span><span class="p">();</span>
@@ -5118,7 +5118,7 @@
 <h3 id="_25">グループ化<a class="headerlink" href="#_25" title="Permanent link">&para;</a></h3>
 <p><a name="groupby-having"></a></p>
 <h4 id="groupbyhaving"><code>groupBy</code>および<code>having</code>メソッド<a class="headerlink" href="#groupbyhaving" title="Permanent link">&para;</a></h4>
-<p>予想されるように、<code>groupBy</code>および<code>having</code>メソッドを使用してクエリ結果をグループ化できます。<code>having</code>メソッドのシグネチャは<code>where</code>メソッドのシグネチャに似ています。</p>
+<p>予想通り、<code>groupBy</code>および<code>having</code>メソッドを使用してクエリ結果をグループ化できます。<code>having</code>メソッドの署名は<code>where</code>メソッドの署名と似ています。</p>
 <div class="highlight"><pre><span></span><code><span class="nv">$users</span> <span class="o">=</span> <span class="nx">DB</span><span class="o">::</span><span class="na">table</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">)</span>
                 <span class="o">-&gt;</span><span class="na">groupBy</span><span class="p">(</span><span class="s1">&#39;account_id&#39;</span><span class="p">)</span>
                 <span class="o">-&gt;</span><span class="na">having</span><span class="p">(</span><span class="s1">&#39;account_id&#39;</span><span class="p">,</span> <span class="s1">&#39;&gt;&#39;</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
@@ -5153,7 +5153,7 @@
 </code></pre></div>
 <p><a name="conditional-clauses"></a></p>
 <h2 id="_27">条件付き句<a class="headerlink" href="#_27" title="Permanent link">&para;</a></h2>
-<p>場合によっては、特定のクエリ句を別の条件に基づいてクエリに適用したいことがあります。例えば、特定の入力値が受信HTTPリクエストに存在する場合にのみ <code>where</code> ステートメントを適用したい場合があります。これは <code>when</code> メソッドを使用して実現できます:</p>
+<p>場合によっては、特定の条件に基づいてクエリに特定のクエリ句を適用したいことがあります。例えば、特定の入力値が受信HTTPリクエストに存在する場合にのみ <code>where</code> 文を適用したい場合があります。これは <code>when</code> メソッドを使用して実現できます:</p>
 <div class="highlight"><pre><span></span><code><span class="nv">$role</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">input</span><span class="p">(</span><span class="s1">&#39;role&#39;</span><span class="p">);</span>
 
 <span class="nv">$users</span> <span class="o">=</span> <span class="nx">DB</span><span class="o">::</span><span class="na">table</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">)</span>
@@ -5238,7 +5238,7 @@
 </code></pre></div>
 <p><a name="update-or-insert"></a></p>
 <h4 id="_30">更新または挿入<a class="headerlink" href="#_30" title="Permanent link">&para;</a></h4>
-<p>場合によっては、データベース内の既存のレコードを更新するか、一致するレコードが存在しない場合に作成したいことがあります。このシナリオでは、<code>updateOrInsert</code> メソッドを使用できます。<code>updateOrInsert</code> メソッドは、レコードを見つけるための条件の配列と、更新するカラムと値のペアの配列の2つの引数を受け取ります。</p>
+<p>場合によっては、データベース内の既存のレコードを更新するか、一致するレコードが存在しない場合に新しく作成したいことがあります。このシナリオでは、<code>updateOrInsert</code> メソッドを使用できます。<code>updateOrInsert</code> メソッドは、2つの引数を受け取ります。1つ目はレコードを見つけるための条件の配列、2つ目は更新するカラムと値のペアの配列です。</p>
 <p><code>updateOrInsert</code> メソッドは、最初の引数のカラムと値のペアを使用して一致するデータベースレコードを見つけようとします。レコードが存在する場合、2番目の引数の値で更新されます。レコードが見つからない場合、両方の引数の属性をマージした新しいレコードが挿入されます:</p>
 <div class="highlight"><pre><span></span><code><span class="nx">DB</span><span class="o">::</span><span class="na">table</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">)</span>
     <span class="o">-&gt;</span><span class="na">updateOrInsert</span><span class="p">(</span>
@@ -5268,7 +5268,7 @@
 </code></pre></div>
 <p><a name="increment-and-decrement"></a></p>
 <h3 id="_31">増分と減分<a class="headerlink" href="#_31" title="Permanent link">&para;</a></h3>
-<p>クエリビルダは、指定されたカラムの値を増減するための便利なメソッドも提供します。これらのメソッドは、少なくとも1つの引数（変更するカラム）を受け取ります。カラムを増減する量を指定するために2番目の引数を提供することもできます:</p>
+<p>クエリビルダは、指定されたカラムの値を増減するための便利なメソッドも提供しています。これらのメソッドは、少なくとも1つの引数（変更するカラム）を受け取ります。カラムを増減する量を指定するために、2番目の引数を提供することもできます:</p>
 <div class="highlight"><pre><span></span><code><span class="nx">DB</span><span class="o">::</span><span class="na">table</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">increment</span><span class="p">(</span><span class="s1">&#39;votes&#39;</span><span class="p">);</span>
 
 <span class="nx">DB</span><span class="o">::</span><span class="na">table</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">increment</span><span class="p">(</span><span class="s1">&#39;votes&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>

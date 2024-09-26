@@ -4976,7 +4976,7 @@
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p><code>hasOne</code>メソッドに渡される最初の引数は、関連モデルクラスの名前です。リレーションシップが定義されると、Eloquentの動的プロパティを使用して関連レコードを取得できます。動的プロパティを使用すると、リレーションシップメソッドにアクセスすることができます。</p>
+<p><code>hasOne</code>メソッドに渡される最初の引数は、関連モデルクラスの名前です。リレーションシップが定義されると、Eloquentの動的プロパティを使用して関連レコードを取得できます。動的プロパティを使用すると、リレーションメソッドにアクセスできます。</p>
 <div class="highlight"><pre><span></span><code><span class="nv">$phone</span> <span class="o">=</span> <span class="nx">User</span><span class="o">::</span><span class="na">find</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">phone</span><span class="p">;</span>
 </code></pre></div>
 <p>Eloquentは、リレーションシップの外部キーを親モデル名に基づいて決定します。この場合、<code>Phone</code>モデルは自動的に<code>user_id</code>外部キーを持つと想定されます。この規約をオーバーライドしたい場合は、<code>hasOne</code>メソッドに2番目の引数を渡すことができます。</p>
@@ -5047,7 +5047,7 @@
 <span class="p">}</span>
 </code></pre></div>
 <p>Eloquentは、<code>Comment</code>モデルの適切な外部キーカラムを自動的に決定します。慣例により、Eloquentは親モデルの「スネークケース」名を取り、それに<code>_id</code>を付けます。したがって、この例では、Eloquentは<code>Comment</code>モデルの外部キーカラムが<code>post_id</code>であると想定します。</p>
-<p>リレーションシップメソッドが定義されると、<code>comments</code>プロパティにアクセスすることで関連するコメントの<a href="eloquent-collections.html">コレクション</a>にアクセスできます。Eloquentは「動的リレーションシッププロパティ」を提供するため、リレーションシップメソッドにアクセスできます。</p>
+<p>リレーションシップメソッドが定義されると、<code>comments</code>プロパティにアクセスすることで関連するコメントの<a href="eloquent-collections.html">コレクション</a>にアクセスできます。Eloquentは「動的リレーションプロパティ」を提供するため、リレーションメソッドにアクセスできます。</p>
 <div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">App\Models\Post</span><span class="p">;</span>
 
 <span class="nv">$comments</span> <span class="o">=</span> <span class="nx">Post</span><span class="o">::</span><span class="na">find</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">comments</span><span class="p">;</span>
@@ -5056,7 +5056,7 @@
     <span class="c1">// ...</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>すべてのリレーションシップはクエリビルダとしても機能するため、<code>comments</code>メソッドを呼び出し、クエリに条件をチェーンすることでリレーションシップクエリにさらに制約を追加できます。</p>
+<p>すべてのリレーションはクエリビルダとしても機能するため、<code>comments</code>メソッドを呼び出し、クエリに条件をチェーンすることでリレーションシップクエリにさらに制約を追加できます。</p>
 <div class="highlight"><pre><span></span><code><span class="nv">$comment</span> <span class="o">=</span> <span class="nx">Post</span><span class="o">::</span><span class="na">find</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">comments</span><span class="p">()</span>
                     <span class="o">-&gt;</span><span class="na">where</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span><span class="p">)</span>
                     <span class="o">-&gt;</span><span class="na">first</span><span class="p">();</span>
@@ -5311,7 +5311,7 @@
 <span class="p">}</span>
 </code></pre></div>
 <p><code>hasOneThrough</code> メソッドに渡される最初の引数は、アクセスしたい最終モデルの名前で、2番目の引数は中間モデルの名前です。</p>
-<p>また、関係に関わるすべてのモデルで関係がすでに定義されている場合、<code>through</code> メソッドを呼び出し、それらの関係の名前を指定することで、"has-one-through" 関係を流れるように定義できます。例えば、<code>Mechanic</code> モデルが <code>cars</code> 関係を持ち、<code>Car</code> モデルが <code>owner</code> 関係を持つ場合、メカニックとオーナーを接続する "has-one-through" 関係を次のように定義できます：</p>
+<p>また、リレーションに関わるすべてのモデルでリレーションがすでに定義されている場合、<code>through</code> メソッドを呼び出し、それらのリレーションの名前を指定することで、"has-one-through" 関係を流れるように定義できます。例えば、<code>Mechanic</code> モデルが <code>cars</code> 関係を持ち、<code>Car</code> モデルが <code>owner</code> 関係を持つ場合、メカニックとオーナーを接続する "has-one-through" 関係を次のように定義できます：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1">// 文字列ベースの構文...</span>
 <a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">through</span><span class="p">(</span><span class="s1">&#39;cars&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">has</span><span class="p">(</span><span class="s1">&#39;owner&#39;</span><span class="p">);</span>
 <a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>
@@ -5320,7 +5320,7 @@
 </code></pre></div>
 <p><a name="has-one-through-key-conventions"></a></p>
 <h4 id="_10">キーの規約<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h4>
-<p>関係のクエリを実行する際には、典型的なEloquentの外部キー規約が使用されます。関係のキーをカスタマイズしたい場合は、<code>hasOneThrough</code> メソッドに3番目と4番目の引数として渡すことができます。3番目の引数は中間モデルの外部キーの名前です。4番目の引数は最終モデルの外部キーの名前です。5番目の引数はローカルキーで、6番目の引数は中間モデルのローカルキーです：</p>
+<p>リレーションのクエリを実行する際には、一般的なEloquentの外部キー規約が使用されます。リレーションのキーをカスタマイズしたい場合は、<code>hasOneThrough</code> メソッドに3番目と4番目の引数として渡すことができます。3番目の引数は中間モデルの外部キーの名前です。4番目の引数は最終モデルの外部キーの名前です。5番目の引数はローカルキーで、6番目の引数は中間モデルのローカルキーです：</p>
 <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Mechanic</span> <span class="k">extends</span> <span class="nx">Model</span>
 <span class="p">{</span>
     <span class="sd">/**</span>
@@ -5339,7 +5339,7 @@
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>また、前述のように、関係に関わるすべてのモデルで関係がすでに定義されている場合、<code>through</code> メソッドを呼び出し、それらの関係の名前を指定することで、"has-one-through" 関係を流れるように定義できます。このアプローチは、既存の関係で定義されたキー規約を再利用する利点があります：</p>
+<p>また、前述のように、リレーションに関わるすべてのモデルでリレーションがすでに定義されている場合、<code>through</code> メソッドを呼び出し、それらのリレーションの名前を指定することで、"has-one-through" 関係を流れるように定義できます。このアプローチは、既存の関係で定義されたキー規約を再利用する利点があります：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="c1">// 文字列ベースの構文...</span>
 <a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">through</span><span class="p">(</span><span class="s1">&#39;cars&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">has</span><span class="p">(</span><span class="s1">&#39;owner&#39;</span><span class="p">);</span>
 <a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>
@@ -5363,7 +5363,7 @@
     <span class="nx">environment_id</span> <span class="o">-</span> <span class="nx">integer</span>
     <span class="nx">commit_hash</span> <span class="o">-</span> <span class="nx">string</span>
 </code></pre></div>
-<p>関係のためのテーブル構造を見たので、<code>Project</code> モデルでこの関係を定義しましょう：</p>
+<p>リレーションのためのテーブル構造を見たので、<code>Project</code> モデルでこのリレーションを定義しましょう：</p>
 <div class="highlight"><pre><span></span><code><span class="o">&lt;?</span><span class="nx">php</span>
 
 <span class="k">namespace</span> <span class="nx">App\Models</span><span class="p">;</span>
@@ -5383,7 +5383,7 @@
 <span class="p">}</span>
 </code></pre></div>
 <p><code>hasManyThrough</code> メソッドに渡される最初の引数は、アクセスしたい最終モデルの名前で、2番目の引数は中間モデルの名前です。</p>
-<p>また、関係に関わるすべてのモデルで関係がすでに定義されている場合、<code>through</code> メソッドを呼び出し、それらの関係の名前を指定することで、"has-many-through" 関係を流れるように定義できます。例えば、<code>Project</code> モデルが <code>environments</code> 関係を持ち、<code>Environment</code> モデルが <code>deployments</code> 関係を持つ場合、プロジェクトとデプロイメントを接続する "has-many-through" 関係を次のように定義できます：</p>
+<p>また、リレーションに関わるすべてのモデルでリレーションがすでに定義されている場合、<code>through</code> メソッドを呼び出し、それらのリレーションの名前を指定することで、"has-many-through" 関係を流れるように定義できます。例えば、<code>Project</code> モデルが <code>environments</code> 関係を持ち、<code>Environment</code> モデルが <code>deployments</code> 関係を持つ場合、プロジェクトとデプロイメントを接続する "has-many-through" 関係を次のように定義できます：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="c1">// 文字列ベースの構文...</span>
 <a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">through</span><span class="p">(</span><span class="s1">&#39;environments&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">has</span><span class="p">(</span><span class="s1">&#39;deployments&#39;</span><span class="p">);</span>
 <a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>
@@ -5393,7 +5393,7 @@
 <p><code>Deployment</code> モデルのテーブルには <code>project_id</code> 列が含まれていませんが、<code>hasManyThrough</code> 関係は <code>$project-&gt;deployments</code> を通じてプロジェクトのデプロイメントにアクセスできます。これらのモデルを取得するために、Eloquent は中間の <code>Environment</code> モデルのテーブルの <code>project_id</code> 列を調べます。関連する環境IDを見つけた後、それらを使用して <code>Deployment</code> モデルのテーブルをクエリします。</p>
 <p><a name="has-many-through-key-conventions"></a></p>
 <h4 id="_11">キーの規約<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h4>
-<p>関係のクエリを実行する際には、典型的なEloquentの外部キー規約が使用されます。関係のキーをカスタマイズしたい場合は、<code>hasManyThrough</code> メソッドに3番目と4番目の引数として渡すことができます。3番目の引数は中間モデルの外部キーの名前です。4番目の引数は最終モデルの外部キーの名前です。5番目の引数はローカルキーで、6番目の引数は中間モデルのローカルキーです：</p>
+<p>リレーションのクエリを実行する際には、一般的なEloquentの外部キー規約が使用されます。リレーションのキーをカスタマイズしたい場合は、<code>hasManyThrough</code> メソッドに3番目と4番目の引数として渡すことができます。3番目の引数は中間モデルの外部キーの名前です。4番目の引数は最終モデルの外部キーの名前です。5番目の引数はローカルキーで、6番目の引数は中間モデルのローカルキーです：</p>
 <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Project</span> <span class="k">extends</span> <span class="nx">Model</span>
 <span class="p">{</span>
     <span class="k">public</span> <span class="k">function</span> <span class="nf">deployments</span><span class="p">()</span><span class="o">:</span> <span class="nx">HasManyThrough</span>
@@ -5409,7 +5409,7 @@
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>また、前述のように、関係に関わるすべてのモデルで関係がすでに定義されている場合、<code>through</code> メソッドを呼び出し、それらの関係の名前を指定することで、"has-many-through" 関係を流れるように定義できます。このアプローチは、既存の関係で定義されたキー規約を再利用する利点があります：</p>
+<p>また、前述のように、リレーションに関わるすべてのモデルでリレーションがすでに定義されている場合、<code>through</code> メソッドを呼び出し、それらのリレーションの名前を指定することで、"has-many-through" 関係を流れるように定義できます。このアプローチは、既存の関係で定義されたキー規約を再利用する利点があります：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="c1">// 文字列ベースの構文...</span>
 <a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">through</span><span class="p">(</span><span class="s1">&#39;environments&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">has</span><span class="p">(</span><span class="s1">&#39;deployments&#39;</span><span class="p">);</span>
 <a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>
@@ -5418,7 +5418,7 @@
 </code></pre></div>
 <p><a name="many-to-many"></a></p>
 <h2 id="_12">多対多関係<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
-<p>多対多関係は、<code>hasOne</code> や <code>hasMany</code> 関係よりも少し複雑です。多対多関係の例としては、ユーザーが多くの役割を持ち、それらの役割がアプリケーション内の他のユーザーと共有される場合があります。例えば、ユーザーは "Author" と "Editor" の役割を割り当てられるかもしれませんが、それらの役割は他のユーザーにも割り当てられるかもしれません。つまり、ユーザーは多くの役割を持ち、役割は多くのユーザーを持ちます。</p>
+<p>多対多関係は、<code>hasOne</code> や <code>hasMany</code> 関係よりも少し複雑です。多対多関係の例としては、ユーザーが多くのロールを持ち、それらのロールがアプリケーション内の他のユーザーと共有される場合があります。例えば、ユーザーは "Author" と "Editor" の役割を割り当てられるかもしれませんが、それらの役割は他のユーザーにも割り当てられるかもしれません。つまり、ユーザーは多くの役割を持ち、役割は多くのユーザーを持ちます。</p>
 <p><a name="many-to-many-table-structure"></a></p>
 <h4 id="_13">テーブル構造<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h4>
 <p>この関係を定義するには、<code>users</code>、<code>roles</code>、<code>role_user</code> の3つのデータベーステーブルが必要です。<code>role_user</code> テーブルは関連するモデル名のアルファベット順から派生し、<code>user_id</code> と <code>role_id</code> 列を含みます。このテーブルは、ユーザーと役割をリンクする中間テーブルとして使用されます。</p>
@@ -5471,7 +5471,7 @@
 <p>リレーションの中間テーブルのテーブル名を決定するために、Eloquent は2つの関連するモデル名をアルファベット順に結合します。ただし、この規則を自由に上書きできます。<code>belongsToMany</code> メソッドに2番目の引数を渡すことでこれを行うことができます:</p>
 <div class="highlight"><pre><span></span><code><span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">belongsToMany</span><span class="p">(</span><span class="nx">Role</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="s1">&#39;role_user&#39;</span><span class="p">);</span>
 </code></pre></div>
-<p>中間テーブルの名前をカスタマイズするだけでなく、テーブルのキーの列名もカスタマイズできます。<code>belongsToMany</code> メソッドに追加の引数を渡すことでこれを行います。3番目の引数は、リレーションを定義しているモデルの外部キー名で、4番目の引数は、結合しているモデルの外部キー名です:</p>
+<p>中間テーブルの名前をカスタマイズするだけでなく、テーブルのキーのカラム名もカスタマイズできます。<code>belongsToMany</code> メソッドに追加の引数を渡すことでこれを行います。3番目の引数は、リレーションを定義しているモデルの外部キー名で、4番目の引数は、結合しているモデルの外部キー名です:</p>
 <div class="highlight"><pre><span></span><code><span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">belongsToMany</span><span class="p">(</span><span class="nx">Role</span><span class="o">::</span><span class="na">class</span><span class="p">,</span> <span class="s1">&#39;role_user&#39;</span><span class="p">,</span> <span class="s1">&#39;user_id&#39;</span><span class="p">,</span> <span class="s1">&#39;role_id&#39;</span><span class="p">);</span>
 </code></pre></div>
 <p><a name="many-to-many-defining-the-inverse-of-the-relationship"></a></p>
@@ -5507,7 +5507,7 @@
     <span class="k">echo</span> <span class="nv">$role</span><span class="o">-&gt;</span><span class="na">pivot</span><span class="o">-&gt;</span><span class="na">created_at</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>取得した各 <code>Role</code> モデルには自動的に <code>pivot</code> 属性が割り当てられていることに注意してください。この属性には中間テーブルを表すモデルが含まれています。</p>
+<p>取得した各 <code>Role</code> モデルには自動的に <code>pivot</code> 属性が割り当てられることに注意してください。この属性には中間テーブルを表すモデルが含まれています。</p>
 <p>デフォルトでは、<code>pivot</code> モデルにはモデルキーのみが存在します。中間テーブルに追加の属性が含まれている場合は、リレーションを定義するときにそれらを指定する必要があります:</p>
 <div class="highlight"><pre><span></span><code><span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">belongsToMany</span><span class="p">(</span><span class="nx">Role</span><span class="o">::</span><span class="na">class</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">withPivot</span><span class="p">(</span><span class="s1">&#39;active&#39;</span><span class="p">,</span> <span class="s1">&#39;created_by&#39;</span><span class="p">);</span>
 </code></pre></div>
@@ -5618,7 +5618,7 @@
 </code></pre></div>
 <p><a name="polymorphic-relationships"></a></p>
 <h2 id="_20">ポリモーフィックリレーションシップ<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h2>
-<p>ポリモーフィックリレーションシップにより、子モデルは単一の関連付けを使用して複数のタイプのモデルに属することができます。たとえば、ブログ投稿とビデオを共有するアプリケーションを構築しているとします。このようなアプリケーションでは、<code>Comment</code> モデルが <code>Post</code> モデルと <code>Video</code> モデルの両方に属することができます。</p>
+<p>ポリモーフィックリレーションにより、子モデルは単一の関連付けを使用して複数のタイプのモデルに属することができます。たとえば、ブログ投稿とビデオを共有するアプリケーションを構築しているとします。このようなアプリケーションでは、<code>Comment</code> モデルが <code>Post</code> モデルと <code>Video</code> モデルの両方に属することができます。</p>
 <p><a name="one-to-one-polymorphic-relations"></a></p>
 <h3 id="_21">一対一 (ポリモーフィック)<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h3>
 <p><a name="one-to-one-polymorphic-table-structure"></a></p>
@@ -5690,7 +5690,7 @@
 </code></pre></div>
 <p><a name="one-to-one-polymorphic-retrieving-the-relationship"></a></p>
 <h4 id="_24">リレーションの取得<a class="headerlink" href="#_24" title="Permanent link">&para;</a></h4>
-<p>データベーステーブルとモデルが定義されたら、モデルを介してリレーションにアクセスできます。例えば、投稿の画像を取得するには、<code>image</code> 動的リレーションプロパティにアクセスします：</p>
+<p>データベーステーブルとモデルが定義されたら、モデルを通じてリレーションにアクセスできます。例えば、投稿の画像を取得するには、<code>image</code> 動的リレーションプロパティにアクセスします：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="k">use</span> <span class="nx">App\Models\Post</span><span class="p">;</span>
 <a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>
 <a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="nv">$post</span> <span class="o">=</span> <span class="nx">Post</span><span class="o">::</span><span class="na">find</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
@@ -5874,7 +5874,7 @@
 <h3 id="_32">多対多（ポリモーフィック）<a class="headerlink" href="#_32" title="Permanent link">&para;</a></h3>
 <p><a name="many-to-many-polymorphic-table-structure"></a></p>
 <h4 id="_33">テーブル構造<a class="headerlink" href="#_33" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="nx">多対多のポリモーフィックリレーションは、「モルフ1」と「モルフ多」のリレーションよりも少し複雑です。例えば、</span><span class="sb">`Post`</span><span class="nx">モデルと</span><span class="sb">`Video`</span><span class="nx">モデルが</span><span class="sb">`Tag`</span><span class="nx">モデルとポリモーフィックリレーションを共有することができます。この状況で多対多のポリモーフィックリレーションを使用すると、アプリケーションは投稿やビデオに関連付けられる一意のタグの単一のテーブルを持つことができます。まず、このリレーションを構築するために必要なテーブル構造を見てみましょう。</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="nx">多対多のポリモーフィックリレーションは、「モルフ・ワン」と「モルフ・マニー」のリレーションよりも少し複雑です。例えば、</span><span class="sb">`Post`</span><span class="nx">モデルと</span><span class="sb">`Video`</span><span class="nx">モデルが</span><span class="sb">`Tag`</span><span class="nx">モデルとポリモーフィックリレーションを共有することができます。この状況で多対多のポリモーフィックリレーションを使用すると、アプリケーションは投稿やビデオに関連付けられる一意のタグの単一のテーブルを持つことができます。まず、このリレーションを構築するために必要なテーブル構造を見てみましょう。</span>
 <a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>
 <a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a><span class="sb">``</span><span class="err">`</span><span class="nx">plaintext</span>
 <a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a><span class="nx">posts</span>
@@ -5952,7 +5952,7 @@
 </code></pre></div>
 <p><a name="many-to-many-polymorphic-retrieving-the-relationship"></a></p>
 <h4 id="_36">リレーションの取得<a class="headerlink" href="#_36" title="Permanent link">&para;</a></h4>
-<p>データベーステーブルとモデルが定義されたら、モデルを介してリレーションにアクセスできます。例えば、投稿のすべてのタグにアクセスするには、<code>tags</code>動的リレーションプロパティを使用できます。</p>
+<p>データベーステーブルとモデルが定義されたら、モデルを通じてリレーションにアクセスできます。例えば、投稿のすべてのタグにアクセスするには、<code>tags</code>動的リレーションプロパティを使用できます。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="k">use</span> <span class="nx">App\Models\Post</span><span class="p">;</span>
 <a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a>
 <a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a><span class="nv">$post</span> <span class="o">=</span> <span class="nx">Post</span><span class="o">::</span><span class="na">find</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
@@ -5961,7 +5961,7 @@
 <a id="__codelineno-39-6" name="__codelineno-39-6" href="#__codelineno-39-6"></a>    <span class="c1">// ...</span>
 <a id="__codelineno-39-7" name="__codelineno-39-7" href="#__codelineno-39-7"></a><span class="p">}</span>
 </code></pre></div>
-<p>ポリモーフィックな子モデルからポリモーフィックリレーションの親を取得するには、<code>morphedByMany</code>を呼び出すメソッドの名前にアクセスします。この場合、<code>Tag</code>モデルの<code>posts</code>メソッドまたは<code>videos</code>メソッドです。</p>
+<p>ポリモーフィックな子モデルからポリモーフィックリレーションの親を取得するには、<code>morphedByMany</code>を呼び出すメソッドにアクセスします。この場合、<code>Tag</code>モデルの<code>posts</code>メソッドまたは<code>videos</code>メソッドです。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="k">use</span> <span class="nx">App\Models\Tag</span><span class="p">;</span>
 <a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>
 <a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a><span class="nv">$tag</span> <span class="o">=</span> <span class="nx">Tag</span><span class="o">::</span><span class="na">find</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
@@ -5986,7 +5986,7 @@
 <a id="__codelineno-41-6" name="__codelineno-41-6" href="#__codelineno-41-6"></a><span class="p">]);</span>
 </code></pre></div>
 <p><code>enforceMorphMap</code>メソッドは、<code>App\Providers\AppServiceProvider</code>クラスの<code>boot</code>メソッドで呼び出すか、別のサービスプロバイダを作成することができます。</p>
-<p>実行時に特定のモデルのモルフアリアスを決定するには、モデルの<code>getMorphClass</code>メソッドを使用します。逆に、モルフアリアスに関連付けられた完全修飾クラス名を決定するには、<code>Relation::getMorphedModel</code>メソッドを使用します。</p>
+<p>実行時に特定のモデルのモーフエイリアスを決定するには、モデルの<code>getMorphClass</code>メソッドを使用します。逆に、モルフアリアスに関連付けられた完全修飾クラス名を決定するには、<code>Relation::getMorphedModel</code>メソッドを使用します。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="k">use</span> <span class="nx">Illuminate\Database\Eloquent\Relations\Relation</span><span class="p">;</span>
 <a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a>
 <a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a><span class="nv">$alias</span> <span class="o">=</span> <span class="nv">$post</span><span class="o">-&gt;</span><span class="na">getMorphClass</span><span class="p">();</span>
@@ -5995,7 +5995,7 @@
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>既存のアプリケーションに「モルフアリアスマップ」を追加する場合、データベース内のすべてのポリモーフィックな<code>*_type</code>列の値が完全修飾クラス名のままである場合、それらを「マップ」名に変換する必要があります。</p>
+<p>既存のアプリケーションに「モーフエイリアスマップ」を追加する場合、データベース内のすべてのポリモーフィックな<code>*_type</code>カラムの値が完全修飾クラス名のままである場合、それらを「マップ」名に変換する必要があります。</p>
 </div>
 <p><a name="dynamic-relationships"></a></p>
 <h3 id="_38">動的リレーション<a class="headerlink" href="#_38" title="Permanent link">&para;</a></h3>
@@ -6055,7 +6055,7 @@
 <a id="__codelineno-47-2" name="__codelineno-47-2" href="#__codelineno-47-2"></a><span class="k">from</span><span class="w"> </span><span class="n">posts</span>
 <a id="__codelineno-47-3" name="__codelineno-47-3" href="#__codelineno-47-3"></a><span class="k">where</span><span class="w"> </span><span class="n">user_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">active</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="n">votes</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">100</span>
 </code></pre></div>
-<p>ほとんどの状況では、条件チェックを括弧で囲む<a href="queries.html#logical-grouping">論理グループ</a>を使用して、条件チェックをグループ化する必要があります。</p>
+<p>ほとんどの状況では、<a href="queries.html#logical-grouping">論理グループ</a>を使用して、条件チェックを括弧で囲んでグループ化する必要があります。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="k">use</span> <span class="nx">Illuminate\Database\Eloquent\Builder</span><span class="p">;</span>
 <a id="__codelineno-48-2" name="__codelineno-48-2" href="#__codelineno-48-2"></a>
 <a id="__codelineno-48-3" name="__codelineno-48-3" href="#__codelineno-48-3"></a><span class="nv">$user</span><span class="o">-&gt;</span><span class="na">posts</span><span class="p">()</span>

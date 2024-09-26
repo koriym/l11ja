@@ -4585,7 +4585,7 @@
     <span class="k">return</span> <span class="nx">view</span><span class="p">(</span><span class="s1">&#39;buy&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;checkout&#39;</span> <span class="o">=&gt;</span> <span class="nv">$checkout</span><span class="p">]);</span>
 <span class="p">})</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">(</span><span class="s1">&#39;checkout&#39;</span><span class="p">);</span>
 </code></pre></div>
-<p>上記の例でわかるように、Cashierが提供する<code>checkout</code>メソッドを利用して、指定された「価格識別子」に対して顧客にPaddleのチェックアウトオーバーレイを提示するためのチェックアウトオブジェクトを作成します。Paddleを使用する場合、「価格」とは、特定の製品に対して定義された価格を指します。</p>
+<p>上記の例でわかるように、Cashierが提供する<code>checkout</code>メソッドを利用して、指定された「価格識別子」に対して、顧客にPaddleのチェックアウトオーバーレイを提示するためのチェックアウトオブジェクトを作成します。Paddleを使用する場合、「価格」とは、特定の製品に対して定義された価格を指します。</p>
 <p>必要に応じて、<code>checkout</code>メソッドはPaddleに顧客を自動的に作成し、そのPaddleの顧客レコードをアプリケーションのデータベース内の対応するユーザーに接続します。チェックアウトセッションが完了すると、顧客は専用の成功ページにリダイレクトされ、そこで顧客に情報メッセージを表示できます。</p>
 <p><code>buy</code>ビューでは、チェックアウトオーバーレイを表示するためのボタンを含めます。<code>paddle-button</code> BladeコンポーネントはCashier Paddleに含まれていますが、<a href="#manually-rendering-an-overlay-checkout">手動でオーバーレイチェックアウトをレンダリング</a>することもできます。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="p">&lt;</span><span class="nt">x-paddle-button</span> <span class="na">:checkout</span><span class="o">=</span><span class="s">&quot;$checkout&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;px-8 py-4&quot;</span><span class="p">&gt;</span>
@@ -4638,7 +4638,7 @@
 <a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="k">class</span> <span class="nc">CompleteOrder</span>
 <a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="p">{</span>
 <a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>    <span class="sd">/**</span>
-<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="sd">     * 着信Cashier Webhookイベントを処理する。</span>
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="sd">     * 着信Cashier Webhookイベントを処理します。</span>
 <a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="sd">     */</span>
 <a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">handle</span><span class="p">(</span><span class="nx">TransactionCompleted</span> <span class="nv">$event</span><span class="p">)</span><span class="o">:</span> <span class="nx">void</span>
 <a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>    <span class="p">{</span>
@@ -5338,7 +5338,7 @@
 </code></pre></div>
 <p>Cashierはこのタイプのトライアルを「ジェネリックトライアル」と呼び、既存のサブスクリプションに関連付けられていません。<code>User</code>インスタンスの<code>onTrial</code>メソッドは、現在の日付が<code>trial_ends_at</code>の値を過ぎていない場合に<code>true</code>を返します:</p>
 <div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="p">(</span><span class="nv">$user</span><span class="o">-&gt;</span><span class="na">onTrial</span><span class="p">())</span> <span class="p">{</span>
-    <span class="c1">// ユーザーはトライアル期間内です...</span>
+    <span class="c1">// ユーザーはトライアル期間内です。</span>
 <span class="p">}</span>
 </code></pre></div>
 <p>ユーザーのために実際のサブスクリプションを作成する準備ができたら、通常通り<code>subscribe</code>メソッドを使用できます:</p>
@@ -5358,7 +5358,7 @@
 </code></pre></div>
 <p>ユーザーがまだ実際のサブスクリプションを作成していない「ジェネリック」トライアル期間内にいるかどうかを知りたい場合は、<code>onGenericTrial</code>メソッドを使用できます:</p>
 <div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="p">(</span><span class="nv">$user</span><span class="o">-&gt;</span><span class="na">onGenericTrial</span><span class="p">())</span> <span class="p">{</span>
-    <span class="c1">// ユーザーは「ジェネリック」トライアル期間内です...</span>
+    <span class="c1">// ユーザーは「ジェネリック」トライアル期間内です。</span>
 <span class="p">}</span>
 </code></pre></div>
 <p><a name="extend-or-activate-a-trial"></a></p>
@@ -5495,7 +5495,7 @@
 <p>上記の例は、トランザクション内の特定の明細項目を返金します。トランザクション全体を返金したい場合は、単に理由を指定します：</p>
 <div class="highlight"><pre><span></span><code><span class="nv">$response</span> <span class="o">=</span> <span class="nv">$transaction</span><span class="o">-&gt;</span><span class="na">refund</span><span class="p">(</span><span class="s1">&#39;Accidental charge&#39;</span><span class="p">);</span>
 </code></pre></div>
-<p>返金の詳細については、<a href="https://developer.paddle.com/build/transactions/create-transaction-adjustments">Paddleの返金ドキュメント</a>を参照してください。</p>
+<p>返金の詳細については、<a href="https://developer.paddle.com/build/transactions/create-transaction-adjustments">Paddleの返金に関するドキュメント</a>を参照してください。</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>返金は、完全に処理される前に常にPaddleによって承認される必要があります。</p>
@@ -5561,7 +5561,7 @@
 <p><a name="testing"></a></p>
 <h2 id="_51">テスト<a class="headerlink" href="#_51" title="Permanent link">&para;</a></h2>
 <p>テスト中は、請求フローを手動でテストして、統合が期待どおりに機能することを確認する必要があります。</p>
-<p>自動テスト（CI環境内で実行されるものを含む）の場合、<a href="http-client.html#testing">LaravelのHTTPクライアント</a>を使用して、PaddleへのHTTP呼び出しをフェイクすることができます。これにより、実際にPaddleのAPIを呼び出すことなくアプリケーションをテストする方法が提供されますが、Paddleからの実際のレスポンスはテストされません。</p>
+<p>自動テスト（CI環境内で実行されるものを含む）の場合、<a href="http-client.html#testing">LaravelのHTTPクライアント</a>を使用して、PaddleへのHTTPリクエストをモックすることができます。これにより、実際にPaddleのAPIを呼び出すことなくアプリケーションをテストする方法が提供されますが、Paddleからの実際のレスポンスはテストされません。</p>
 
 
 

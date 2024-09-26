@@ -3419,10 +3419,10 @@
 </ul>
 <p><a name="introduction"></a></p>
 <h2 id="_2">はじめに<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>Laravelアプリケーションを本番環境にデプロイする準備ができたら、アプリケーションが可能な限り効率的に実行されるようにするために、いくつか重要なことを行うことができます。このドキュメントでは、Laravelアプリケーションが適切にデプロイされるようにするためのいくつかの優れた出発点を紹介します。</p>
+<p>Laravelアプリケーションを本番環境にデプロイする準備ができたら、アプリケーションを可能な限り効率的に実行させるために、いくつかの重要な手順を踏むことができます。このドキュメントでは、Laravelアプリケーションが適切にデプロイされるようにするためのいくつかの優れた出発点を紹介します。</p>
 <p><a name="server-requirements"></a></p>
 <h2 id="_3">サーバー要件<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<p>Laravelフレームワークにはいくつかのシステム要件があります。Webサーバーに以下の最小限のPHPバージョンと拡張機能があることを確認する必要があります。</p>
+<p>Laravelフレームワークにはいくつかのシステム要件があります。Webサーバーに以下の最小限のPHPバージョンと拡張機能が導入されていることを確認する必要があります。</p>
 <div class="content-list">
 <ul>
 <li>PHP &gt;= 8.2</li>
@@ -3445,8 +3445,8 @@
 <h2 id="_4">サーバー設定<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <p><a name="nginx"></a></p>
 <h3 id="nginx">Nginx<a class="headerlink" href="#nginx" title="Permanent link">&para;</a></h3>
-<p>アプリケーションをNginxを実行しているサーバーにデプロイする場合、Webサーバーの設定の出発点として以下の設定ファイルを使用できます。ほとんどの場合、このファイルはサーバーの設定に応じてカスタマイズする必要があります。<strong>サーバーの管理を手助けしてほしい場合は、<a href="https://forge.laravel.com">Laravel Forge</a>のようなLaravelの公式サーバー管理およびデプロイサービスの使用を検討してください。</strong></p>
-<p>以下の設定のように、Webサーバーがすべてのリクエストをアプリケーションの<code>public/index.php</code>ファイルに転送するようにしてください。<code>index.php</code>ファイルをプロジェクトのルートに移動しようとしないでください。プロジェクトのルートからアプリケーションを提供すると、多くの機密設定ファイルが公開インターネットに公開されることになります。</p>
+<p>アプリケーションをNginxを実行しているサーバーにデプロイする場合、Webサーバーの設定の出発点として以下の設定ファイルを使用できます。ほとんどの場合、このファイルはサーバーの設定に応じてカスタマイズする必要があります。<strong>サーバーの管理を支援してほしい場合は、<a href="https://forge.laravel.com">Laravel Forge</a>のようなLaravelの公式サーバー管理およびデプロイサービスの利用を検討してください。</strong></p>
+<p>以下の設定のように、Webサーバーがすべてのリクエストをアプリケーションの<code>public/index.php</code>ファイルに転送するようにしてください。<code>index.php</code>ファイルをプロジェクトのルートに移動しようとしないでください。プロジェクトのルートからアプリケーションを提供すると、多くの機密設定ファイルが公開インターネット上に露出することになります。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">server</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="kn">listen</span><span class="w"> </span><span class="mi">80</span><span class="p">;</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="kn">listen</span><span class="w"> </span><span class="s">[::]:80</span><span class="p">;</span>
@@ -3486,13 +3486,13 @@
 <p><a href="https://frankenphp.dev/">FrankenPHP</a> もLaravelアプリケーションの提供に使用できます。FrankenPHPはGoで書かれたモダンなPHPアプリケーションサーバーです。FrankenPHPを使用してLaravel PHPアプリケーションを提供するには、単に<code>php-server</code>コマンドを呼び出すことができます。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>frankenphp<span class="w"> </span>php-server<span class="w"> </span>-r<span class="w"> </span>public/
 </code></pre></div>
-<p>FrankenPHPのより強力な機能、例えば<a href="octane.html">Laravel Octane</a>統合、HTTP/3、モダンな圧縮、Laravelアプリケーションをスタンドアロンバイナリとしてパッケージ化する機能などを利用するには、FrankenPHPの<a href="https://frankenphp.dev/docs/laravel/">Laravelドキュメント</a>を参照してください。</p>
+<p>FrankenPHPのより高度な機能（例：<a href="octane.html">Laravel Octane</a>との統合、HTTP/3、最新の圧縮技術、Laravelアプリケーションをスタンドアロンバイナリとしてパッケージ化する機能など）を利用するには、FrankenPHPの<a href="https://frankenphp.dev/docs/laravel/">Laravelドキュメント</a>を参照してください。</p>
 <p><a name="directory-permissions"></a></p>
 <h3 id="_5">ディレクトリ権限<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
-<p>Laravelは<code>bootstrap/cache</code>と<code>storage</code>ディレクトリに書き込みが必要なので、Webサーバープロセスの所有者がこれらのディレクトリに書き込み権限を持っていることを確認してください。</p>
+<p>LaravelはWebサーバープロセスが<code>bootstrap/cache</code>と<code>storage</code>ディレクトリに書き込む必要があるため、Webサーバープロセスの所有者がこれらのディレクトリへの書き込み権限を持っていることを確認してください。</p>
 <p><a name="optimization"></a></p>
 <h2 id="_6">最適化<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
-<p>アプリケーションを本番環境にデプロイする際、設定、イベント、ルート、ビューなど、さまざまなファイルをキャッシュする必要があります。Laravelは、これらすべてのファイルをキャッシュするための単一の便利な<code>optimize</code> Artisanコマンドを提供します。このコマンドは通常、アプリケーションのデプロイプロセスの一部として呼び出されるべきです。</p>
+<p>アプリケーションを本番環境にデプロイする際、設定、イベント、ルート、ビューなど、様々なファイルをキャッシュすることが推奨されます。Laravelは、これらすべてのファイルをキャッシュするための単一の便利な<code>optimize</code> Artisanコマンドを提供します。このコマンドは通常、アプリケーションのデプロイプロセスの一部として呼び出されるべきです。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>optimize
 </code></pre></div>
 <p><code>optimize:clear</code>メソッドを使用して、<code>optimize</code>コマンドによって生成されたすべてのキャッシュファイルと、デフォルトのキャッシュドライバー内のすべてのキーを削除できます。</p>
@@ -3504,7 +3504,7 @@
 <p>アプリケーションを本番環境にデプロイする際、デプロイプロセス中に<code>config:cache</code> Artisanコマンドを実行する必要があります。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>config:cache
 </code></pre></div>
-<p>このコマンドは、Laravelのすべての設定ファイルを単一のキャッシュファイルに結合し、フレームワークが設定値を読み込む際にファイルシステムにアクセスする回数を大幅に減らします。</p>
+<p>このコマンドは、Laravelのすべての設定ファイルを単一のキャッシュファイルに結合し、フレームワークが設定値を読み込む際のファイルシステムへのアクセス回数を大幅に減少させます。</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>デプロイプロセス中に<code>config:cache</code>コマンドを実行する場合、設定ファイル内でのみ<code>env</code>関数を呼び出すようにしてください。設定がキャッシュされると、<code>.env</code>ファイルは読み込まれず、<code>.env</code>変数に対する<code>env</code>関数の呼び出しはすべて<code>null</code>を返します。</p>
@@ -3516,26 +3516,26 @@
 </code></pre></div>
 <p><a name="optimizing-route-loading"></a></p>
 <h3 id="_9">ルートのキャッシュ<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
-<p>多くのルートを持つ大規模なアプリケーションを構築している場合、デプロイプロセス中に<code>route:cache</code> Artisanコマンドを実行する必要があります。</p>
+<p>多数のルートを持つ大規模なアプリケーションを構築している場合、デプロイプロセス中に<code>route:cache</code> Artisanコマンドを実行することが推奨されます。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>route:cache
 </code></pre></div>
-<p>このコマンドは、すべてのルート登録をキャッシュファイル内の単一のメソッド呼び出しに減らし、数百のルートを登録する際のパフォーマンスを向上させます。</p>
+<p>このコマンドは、すべてのルート登録をキャッシュファイル内の単一のメソッド呼び出しに集約し、数百のルートを登録する際のパフォーマンスを向上させます。</p>
 <p><a name="optimizing-view-loading"></a></p>
 <h3 id="_10">ビューのキャッシュ<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
 <p>アプリケーションを本番環境にデプロイする際、デプロイプロセス中に<code>view:cache</code> Artisanコマンドを実行する必要があります。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>view:cache
 </code></pre></div>
-<p>このコマンドは、すべてのBladeビューを事前にコンパイルし、ビューが返されるたびにオンデマンドでコンパイルされないようにします。これにより、各リクエストのパフォーマンスが向上します。</p>
+<p>このコマンドは、すべてのBladeビューを事前にコンパイルし、ビューが返される度にオンデマンドでコンパイルされるのを防ぎます。これにより、各リクエストのパフォーマンスが向上します。</p>
 <p><a name="debug-mode"></a></p>
 <h2 id="_11">デバッグモード<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
 <p><code>config/app.php</code>設定ファイルのdebugオプションは、エラーに関するどの程度の情報がユーザーに表示されるかを決定します。デフォルトでは、このオプションはアプリケーションの<code>.env</code>ファイルに保存されている<code>APP_DEBUG</code>環境変数の値を尊重するように設定されています。</p>
 <div class="admonition warning">
-<p class="admonition-title">本番環境では、この値は常に<code>false</code>である必要があります。本番環境で<code>APP_DEBUG</code>変数が<code>true</code>に設定されている場合、アプリケーションのエンドユーザーに機密設定値が公開されるリスクがあります。</p>
+<p class="admonition-title">本番環境では、この値を常に<code>false</code>に設定する必要があります。本番環境で<code>APP_DEBUG</code>変数が<code>true</code>に設定されていると、アプリケーションのエンドユーザーに機密設定値が露出するリスクがあります。</p>
 </div>
 <p><a name="the-health-route"></a></p>
 <h2 id="_12">ヘルスルート<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
 <p>Laravelには、アプリケーションのステータスを監視するために使用できる組み込みのヘルスチェックルートが含まれています。本番環境では、このルートを使用して、アプリケーションのステータスをアップタイムモニター、ロードバランサー、またはKubernetesなどのオーケストレーションシステムに報告できます。</p>
-<p>デフォルトでは、ヘルスチェックルートは<code>/up</code>で提供され、アプリケーションが例外なく起動した場合は200 HTTPレスポンスを返します。それ以外の場合は500 HTTPレスポンスが返されます。このルートのURIは、アプリケーションの<code>bootstrap/app</code>ファイルで設定できます。</p>
+<p>デフォルトでは、ヘルスチェックルートは<code>/up</code>で提供され、アプリケーションが例外なく起動した場合には200 HTTPレスポンスを返します。それ以外の場合は500 HTTPレスポンスが返されます。このルートのURIは、アプリケーションの<code>bootstrap/app</code>ファイルで設定できます。</p>
 <div class="highlight"><pre><span></span><code><span class="o">-&gt;</span><span class="na">withRouting</span><span class="p">(</span>
     <span class="nx">web</span><span class="o">:</span> <span class="no">__DIR__</span><span class="o">.</span><span class="s1">&#39;/../routes/web.php&#39;</span><span class="p">,</span>
     <span class="nx">commands</span><span class="o">:</span> <span class="no">__DIR__</span><span class="o">.</span><span class="s1">&#39;/../routes/console.php&#39;</span><span class="p">,</span>
@@ -3548,7 +3548,7 @@
 <h2 id="forge-vapor">Forge / Vapor による簡単なデプロイ<a class="headerlink" href="#forge-vapor" title="Permanent link">&para;</a></h2>
 <p><a name="laravel-forge"></a></p>
 <h4 id="laravel-forge">Laravel Forge<a class="headerlink" href="#laravel-forge" title="Permanent link">&para;</a></h4>
-<p>サーバーの設定を自分で管理する準備ができていない場合や、Laravelアプリケーションを実行するために必要なさまざまなサービスを設定するのに慣れていない場合、<a href="https://forge.laravel.com">Laravel Forge</a>は素晴らしい代替手段です。</p>
+<p>サーバーの設定を自分で管理する準備ができていない場合や、Laravelアプリケーションを実行するために必要な様々なサービスの設定に慣れていない場合、<a href="https://forge.laravel.com">Laravel Forge</a>は優れた代替手段となります。</p>
 <p>Laravel Forgeは、DigitalOcean、Linode、AWSなどのさまざまなインフラストラクチャプロバイダーでサーバーを作成できます。さらに、ForgeはNginx、MySQL、Redis、Memcached、Beanstalkなど、堅牢なLaravelアプリケーションを構築するために必要なすべてのツールをインストールおよび管理します。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -3556,7 +3556,7 @@
 </div>
 <p><a name="laravel-vapor"></a></p>
 <h4 id="laravel-vapor">Laravel Vapor<a class="headerlink" href="#laravel-vapor" title="Permanent link">&para;</a></h4>
-<p>もしあなたがLaravel向けに調整された、完全サーバーレスで自動スケーリング可能なデプロイメントプラットフォームをお探しなら、<a href="https://vapor.laravel.com">Laravel Vapor</a>をチェックしてみてください。Laravel Vaporは、AWSによって動力を与えられたLaravelのためのサーバーレスデプロイメントプラットフォームです。VaporでLaravelのインフラを立ち上げ、サーバーレスのスケーラブルなシンプルさに恋をしてください。Laravel Vaporは、Laravelのクリエイターによってフレームワークとシームレスに連携するように微調整されているため、今まで通りにLaravelアプリケーションを書き続けることができます。</p>
+<p>Laravelのためのフルマネージドのサーバーレスでオートスケーリングが可能なデプロイメントプラットフォームをお探しの場合は、<a href="https://vapor.laravel.com">Laravel Vapor</a>をご検討ください。Laravel Vaporは、AWSによって動力を与えられたLaravelのためのサーバーレスデプロイメントプラットフォームです。VaporでLaravelのインフラを構築し、サーバーレスで拡張性に優れたシンプルさを体験してください。Laravel Vaporは、Laravelのクリエイターによってフレームワークとシームレスに連携するように微調整されているため、今まで通りにLaravelアプリケーションを書き続けることができます。</p>
 
 
 

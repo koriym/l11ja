@@ -3500,7 +3500,7 @@
 </ul>
 <p><a name="introduction"></a></p>
 <h2 id="_1">イントロダクション<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>Eloquentのメソッドで複数のモデルを返すものは、<code>get</code>メソッドを介して取得した結果やリレーションを介してアクセスした結果を含め、<code>Illuminate\Database\Eloquent\Collection</code>クラスのインスタンスを返します。Eloquentコレクションオブジェクトは、Laravelの<a href="collections.html">基本コレクション</a>を拡張しているため、Eloquentモデルの基になる配列を流暢に操作するために使用される数十のメソッドを自然に継承しています。これらの便利なメソッドについては、Laravelコレクションのドキュメントを必ず確認してください！</p>
+<p>Eloquentのメソッドで複数のモデルを返すもの（<code>get</code>メソッドを介して取得した結果やリレーションを介してアクセスした結果を含む）は、<code>Illuminate\Database\Eloquent\Collection</code>クラスのインスタンスを返します。Eloquentコレクションオブジェクトは、Laravelの<a href="collections.html">基本コレクション</a>を拡張しているため、Eloquentモデルの基となる配列を流暢に操作するための数多くのメソッドを自然に継承しています。これらの便利なメソッドについては、Laravelコレクションのドキュメントを必ず確認してください！</p>
 <p>すべてのコレクションはイテレータとしても機能し、単純なPHP配列のようにループ処理できます：</p>
 <div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">App\Models\User</span><span class="p">;</span>
 
@@ -3510,7 +3510,7 @@
     <span class="k">echo</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">name</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>しかし、前述のように、コレクションは配列よりもはるかに強力で、直感的なインターフェースを使用して連鎖させることができるさまざまなmap/reduce操作を公開しています。例えば、非アクティブなモデルをすべて削除し、残りのユーザーの名前を収集することができます：</p>
+<p>しかし、前述のように、コレクションは配列よりもはるかに強力で、直感的なインターフェースを使用して連鎖させることができる様々なmap/reduce操作を提供しています。例えば、非アクティブなモデルをすべて削除し、残りのユーザーの名前を収集することができます：</p>
 <div class="highlight"><pre><span></span><code><span class="nv">$names</span> <span class="o">=</span> <span class="nx">User</span><span class="o">::</span><span class="na">all</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">reject</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nx">User</span> <span class="nv">$user</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="na">active</span> <span class="o">===</span> <span class="k">false</span><span class="p">;</span>
 <span class="p">})</span><span class="o">-&gt;</span><span class="na">map</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nx">User</span> <span class="nv">$user</span><span class="p">)</span> <span class="p">{</span>
@@ -3567,14 +3567,14 @@
 </div>
 <p><a name="method-append"></a></p>
 <h4 class="collection-method first-collection-method" id="appendattributes"><code>append($attributes)</code><a class="headerlink" href="#appendattributes" title="Permanent link">&para;</a></h4>
-<p><code>append</code>メソッドは、コレクション内のすべてのモデルに対して<a href="eloquent-serialization.html#appending-values-to-json">追加</a>する属性を指定するために使用できます。このメソッドは、属性の配列または単一の属性を受け入れます：</p>
+<p><code>append</code>メソッドは、コレクション内のすべてのモデルに対して<a href="eloquent-serialization.html#appending-values-to-json">追加</a>する属性を指定するために使用できます。このメソッドは、属性の配列または単一の属性を受け入れます。このメソッドは、属性の配列または単一の属性を受け入れます：</p>
 <div class="highlight"><pre><span></span><code><span class="nv">$users</span><span class="o">-&gt;</span><span class="na">append</span><span class="p">(</span><span class="s1">&#39;team&#39;</span><span class="p">);</span>
 
 <span class="nv">$users</span><span class="o">-&gt;</span><span class="na">append</span><span class="p">([</span><span class="s1">&#39;team&#39;</span><span class="p">,</span> <span class="s1">&#39;is_admin&#39;</span><span class="p">]);</span>
 </code></pre></div>
 <p><a name="method-contains"></a></p>
 <h4 class="collection-method" id="containskey-operator-null-value-null"><code>contains($key, $operator = null, $value = null)</code><a class="headerlink" href="#containskey-operator-null-value-null" title="Permanent link">&para;</a></h4>
-<p><code>contains</code>メソッドは、指定されたモデルインスタンスがコレクションに含まれているかどうかを判断するために使用できます。このメソッドは、主キーまたはモデルインスタンスを受け入れます：</p>
+<p><code>contains</code>メソッドは、指定されたモデルインスタンスがコレクションに含まれているかどうかを判断するために使用できます。このメソッドは、主キーまたはモデルインスタンスを受け入れます。このメソッドは、主キーまたはモデルインスタンスを受け入れます：</p>
 <div class="highlight"><pre><span></span><code><span class="nv">$users</span><span class="o">-&gt;</span><span class="na">contains</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
 
 <span class="nv">$users</span><span class="o">-&gt;</span><span class="na">contains</span><span class="p">(</span><span class="nx">User</span><span class="o">::</span><span class="na">find</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
@@ -3593,7 +3593,7 @@
 </code></pre></div>
 <p><a name="method-find"></a></p>
 <h4 class="collection-method" id="findkey"><code>find($key)</code><a class="headerlink" href="#findkey" title="Permanent link">&para;</a></h4>
-<p><code>find</code>メソッドは、指定されたキーに一致する主キーを持つモデルを返します。<code>$key</code>がモデルインスタンスの場合、<code>find</code>は主キーに一致するモデルを返そうとします。<code>$key</code>がキーの配列の場合、<code>find</code>は指定された配列内の主キーを持つすべてのモデルを返します：</p>
+<p><code>find</code>メソッドは、指定されたキーに一致する主キーを持つモデルを返します。<code>$key</code>がモデルインスタンスの場合、<code>find</code>はその主キーに一致するモデルを返そうとします。<code>$key</code>がモデルインスタンスの場合、<code>find</code>は主キーに一致するモデルを返そうとします。<code>$key</code>がキーの配列の場合、<code>find</code>は指定された配列内の主キーを持つすべてのモデルを返します：</p>
 <div class="highlight"><pre><span></span><code><span class="nv">$users</span> <span class="o">=</span> <span class="nx">User</span><span class="o">::</span><span class="na">all</span><span class="p">();</span>
 
 <span class="nv">$user</span> <span class="o">=</span> <span class="nv">$users</span><span class="o">-&gt;</span><span class="na">find</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
@@ -3607,7 +3607,7 @@
 </code></pre></div>
 <p><a name="method-fresh"></a></p>
 <h4 class="collection-method" id="freshwith"><code>fresh($with = [])</code><a class="headerlink" href="#freshwith" title="Permanent link">&para;</a></h4>
-<p><code>fresh</code>メソッドは、コレクション内の各モデルの新しいインスタンスをデータベースから取得します。さらに、指定されたリレーションは積極的に読み込まれます：</p>
+<p><code>fresh</code>メソッドは、コレクション内の各モデルの新しいインスタンスをデータベースから取得します。さらに、指定されたリレーションは積極的に読み込まれます。さらに、指定されたリレーションは積極的に読み込まれます：</p>
 <div class="highlight"><pre><span></span><code><span class="nv">$users</span> <span class="o">=</span> <span class="nv">$users</span><span class="o">-&gt;</span><span class="na">fresh</span><span class="p">();</span>
 
 <span class="nv">$users</span> <span class="o">=</span> <span class="nv">$users</span><span class="o">-&gt;</span><span class="na">fresh</span><span class="p">(</span><span class="s1">&#39;comments&#39;</span><span class="p">);</span>
@@ -3710,7 +3710,7 @@
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p><code>newCollection</code>メソッドを定義したら、Eloquentが通常<code>Illuminate\Database\Eloquent\Collection</code>インスタンスを返すときはいつでも、カスタムコレクションのインスタンスを受け取ることになります。アプリケーション内のすべてのモデルに対してカスタムコレクションを使用したい場合は、アプリケーションのすべてのモデルが拡張する基本モデルクラスに<code>newCollection</code>メソッドを定義する必要があります。</p>
+<p><code>newCollection</code>メソッドを定義すると、Eloquentが通常<code>Illuminate\Database\Eloquent\Collection</code>インスタンスを返す場合には、代わりにカスタムコレクションのインスタンスを受け取ることになります。アプリケーション内のすべてのモデルに対してカスタムコレクションを使用したい場合は、アプリケーションのすべてのモデルが継承する基本モデルクラスに<code>newCollection</code>メソッドを定義する必要があります。</p>
 
 
 

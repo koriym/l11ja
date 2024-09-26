@@ -4027,14 +4027,14 @@
 </ul>
 <p><a name="introduction"></a></p>
 <h2 id="_2">はじめに<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>Laravelは、Frank de Jongeによる素晴らしい<a href="https://github.com/thephpleague/flysystem">Flysystem</a> PHPパッケージのおかげで、強力なファイルシステムの抽象化を提供しています。Laravel Flysystemの統合により、ローカルファイルシステム、SFTP、Amazon S3を操作するためのシンプルなドライバが提供されます。さらに良いことに、ローカルの開発マシンと本番サーバーの間でこれらのストレージオプションを切り替えるのは驚くほど簡単で、APIはどのシステムでも同じままです。</p>
+<p>Laravelは、Frank de Jongeによる優れた<a href="https://github.com/thephpleague/flysystem">Flysystem</a> PHPパッケージのおかげで、強力なファイルシステムの抽象化を提供しています。Laravel Flysystemの統合により、ローカルファイルシステム、SFTP、Amazon S3を操作するためのシンプルなドライバが提供されます。さらに良いことに、ローカルの開発マシンと本番サーバーの間でこれらのストレージオプションを切り替えるのは驚くほど簡単で、APIはどのシステムでも同じままです。</p>
 <p><a name="configuration"></a></p>
 <h2 id="_3">設定<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>Laravelのファイルシステムの設定ファイルは、<code>config/filesystems.php</code>にあります。このファイル内で、すべてのファイルシステムの「ディスク」を設定できます。各ディスクは、特定のストレージドライバとストレージ場所を表します。サポートされている各ドライバの設定例が設定ファイルに含まれているため、設定をストレージの好みと資格情報に反映するように変更できます。</p>
 <p><code>local</code>ドライバは、Laravelアプリケーションを実行しているサーバー上にローカルに保存されたファイルと対話し、<code>s3</code>ドライバはAmazonのS3クラウドストレージサービスに書き込むために使用されます。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>必要なだけ多くのディスクを設定でき、同じドライバを使用する複数のディスクを持つこともできます。</p>
+<p>必要な数のディスkを設定でき、同じドライバを使用する複数のディスクを持つこともできます。</p>
 </div>
 <p><a name="the-local-driver"></a></p>
 <h3 id="_4">ローカルドライバ<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
@@ -4045,9 +4045,9 @@
 </code></pre></div>
 <p><a name="the-public-disk"></a></p>
 <h3 id="_5">パブリックディスク<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
-<p>アプリケーションの<code>filesystems</code>設定ファイルに含まれる<code>public</code>ディスクは、公開アクセス可能になるファイルを対象としています。デフォルトでは、<code>public</code>ディスクは<code>local</code>ドライバを使用し、そのファイルを<code>storage/app/public</code>に保存します。</p>
+<p>アプリケーションの<code>filesystems</code>設定ファイルに含まれる<code>public</code>ディスクは、公開アクセス可能なファイルを対象としています。デフォルトでは、<code>public</code>ディスクは<code>local</code>ドライバを使用し、そのファイルを<code>storage/app/public</code>に保存します。</p>
 <p>これらのファイルをWebからアクセス可能にするには、<code>public/storage</code>から<code>storage/app/public</code>へのシンボリックリンクを作成する必要があります。このフォルダの規則を使用すると、公開アクセス可能なファイルを1つのディレクトリにまとめることができ、<a href="https://envoyer.io">Envoyer</a>のようなゼロダウンタイムデプロイメントシステムを使用する際に簡単に共有できます。</p>
-<p>シンボリックリンクを作成するには、<code>storage:link</code> Artisanコマンドを使用できます。</p>
+<p>シンボリックリンクを作成するには、<code>storage:link</code> Artisanコマンドを使用します。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>storage:link
 </code></pre></div>
 <p>ファイルが保存され、シンボリックリンクが作成されたら、<code>asset</code>ヘルパーを使用してファイルへのURLを作成できます。</p>
@@ -4066,7 +4066,7 @@
 <h3 id="_6">ドライバの前提条件<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
 <p><a name="s3-driver-configuration"></a></p>
 <h4 id="s3">S3ドライバの設定<a class="headerlink" href="#s3" title="Permanent link">&para;</a></h4>
-<p>S3ドライバを使用する前に、Composerパッケージマネージャを介してFlysystem S3パッケージをインストールする必要があります。</p>
+<p>S3ドライバを使用する前に、Composerパッケージマネージャを通じてFlysystem S3パッケージをインストールする必要があります。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>composer<span class="w"> </span>require<span class="w"> </span>league/flysystem-aws-s3-v3<span class="w"> </span><span class="s2">&quot;^3.0&quot;</span><span class="w"> </span>--with-all-dependencies
 </code></pre></div>
 <p>S3ディスク設定配列は、<code>config/filesystems.php</code>設定ファイルにあります。通常、S3情報と資格情報を以下の環境変数を使用して設定する必要があります。これらの環境変数は、<code>config/filesystems.php</code>設定ファイルによって参照されます。</p>
@@ -4159,7 +4159,7 @@
 </code></pre></div>
 <p><a name="minio"></a></p>
 <h4 id="minio">MinIO<a class="headerlink" href="#minio" title="Permanent link">&para;</a></h4>
-<p>LaravelのFlysystem統合がMinIOを使用する際に適切なURLを生成するために、アプリケーションのローカルURLに一致し、URLパスにバケット名を含めるように<code>AWS_URL</code>環境変数を定義する必要があります。</p>
+<p>LaravelのFlysystem統合がMinIOを使用する際に適切なURLを生成するために、アプリケーションのローカルURLに一致し、URLパスにバケット名を含める<code>AWS_URL</code>環境変数を定義する必要があります。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="na">AWS_URL</span><span class="o">=</span><span class="s">http://localhost:9000/local</span>
 </code></pre></div>
 <div class="admonition warning">
@@ -4173,7 +4173,7 @@
 
 <span class="nx">Storage</span><span class="o">::</span><span class="na">put</span><span class="p">(</span><span class="s1">&#39;avatars/1&#39;</span><span class="p">,</span> <span class="nv">$content</span><span class="p">);</span>
 </code></pre></div>
-<p>アプリケーションが複数のディスクとやり取りする場合、<code>Storage</code>ファサードの<code>disk</code>メソッドを使用して、特定のディスク上のファイルを操作できます。</p>
+<p>アプリケーションが複数のディスクとやり取りする場合、<code>Storage</code>ファサードの<code>disk</code>メソッドを使用して、特定のディスク上のファイルを操作します。</p>
 <div class="highlight"><pre><span></span><code><span class="nx">Storage</span><span class="o">::</span><span class="na">disk</span><span class="p">(</span><span class="s1">&#39;s3&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">put</span><span class="p">(</span><span class="s1">&#39;avatars/1&#39;</span><span class="p">,</span> <span class="nv">$content</span><span class="p">);</span>
 </code></pre></div>
 <p><a name="on-demand-disks"></a></p>
@@ -4314,7 +4314,7 @@
 <p>このメソッドは、クライアントサイドアプリケーションがAmazon S3などのクラウドストレージシステムに直接ファイルをアップロードする必要があるサーバーレス環境で主に役立ちます。</p>
 <p><a name="file-metadata"></a></p>
 <h3 id="_12">ファイルメタデータ<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
-<p>ファイルの読み書きに加えて、Laravelはファイル自体に関する情報も提供できます。例えば、<code>size</code>メソッドを使用して、ファイルのサイズをバイト単位で取得できます。</p>
+<p>ファイルの読み書きに加えて、Laravelはファイル自体に関する情報も提供します。例えば、<code>size</code>メソッドを使用して、ファイルのサイズをバイト単位で取得できます。</p>
 <div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Storage</span><span class="p">;</span>
 
 <span class="nv">$size</span> <span class="o">=</span> <span class="nx">Storage</span><span class="o">::</span><span class="na">size</span><span class="p">(</span><span class="s1">&#39;file.jpg&#39;</span><span class="p">);</span>
@@ -4387,7 +4387,7 @@
 </code></pre></div>
 <p><a name="file-uploads"></a></p>
 <h3 id="_19">ファイルアップロード<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h3>
-<p>Webアプリケーションでファイルを保存する最も一般的なユースケースの1つは、写真やドキュメントなどのユーザーがアップロードしたファイルを保存することです。Laravelは、アップロードされたファイルインスタンスの<code>store</code>メソッドを使用して、アップロードされたファイルを保存するのが非常に簡単です。アップロードされたファイルを保存したいパスを指定して<code>store</code>メソッドを呼び出します。</p>
+<p>Webアプリケーションでファイルを保存する最も一般的なユースケースの1つは、写真やドキュメントなどのユーザーがアップロードしたファイルを保存することです。Laravelでは、アップロードされたファイルインスタンスの<code>store</code>メソッドを使用して、アップロードされたファイルを簡単に保存できます。アップロードされたファイルを保存したいパスを指定して<code>store</code>メソッドを呼び出します。</p>
 <div class="highlight"><pre><span></span><code><span class="o">&lt;?</span><span class="nx">php</span>
 
 <span class="k">namespace</span> <span class="nx">App\Http\Controllers</span><span class="p">;</span>
@@ -4458,13 +4458,13 @@
 </code></pre></div>
 <p><a name="file-visibility"></a></p>
 <h3 id="_23">ファイルの可視性<a class="headerlink" href="#_23" title="Permanent link">&para;</a></h3>
-<p>LaravelのFlysystem統合では、「可視性」は複数のプラットフォーム間でのファイル権限の抽象化です。ファイルは<code>public</code>または<code>private</code>として宣言できます。ファイルが<code>public</code>と宣言されている場合、通常は他のユーザーがファイルにアクセスできることを示します。たとえば、S3ドライバーを使用する場合、<code>public</code>ファイルのURLを取得できます。</p>
+<p>LaravelのFlysystem統合では、「可視性」は複数のプラットフォーム間でのファイル権限を抽象化したものです。ファイルは<code>public</code>または<code>private</code>として宣言できます。ファイルが<code>public</code>と宣言されている場合、通常は他のユーザーがファイルにアクセスできることを示します。たとえば、S3ドライバーを使用する場合、<code>public</code>ファイルのURLを取得できます。</p>
 <p><code>put</code>メソッドを介してファイルを書き込む際に可視性を設定できます。</p>
 <div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">Illuminate\Support\Facades\Storage</span><span class="p">;</span>
 
 <span class="nx">Storage</span><span class="o">::</span><span class="na">put</span><span class="p">(</span><span class="s1">&#39;file.jpg&#39;</span><span class="p">,</span> <span class="nv">$contents</span><span class="p">,</span> <span class="s1">&#39;public&#39;</span><span class="p">);</span>
 </code></pre></div>
-<p>ファイルがすでに保存されている場合、<code>getVisibility</code>および<code>setVisibility</code>メソッドを介してその可視性を取得および設定できます。</p>
+<p>ファイルがすでに保存されている場合、<code>getVisibility</code>および<code>setVisibility</code>メソッドを通じてその可視性を取得および設定できます。</p>
 <div class="highlight"><pre><span></span><code><span class="nv">$visibility</span> <span class="o">=</span> <span class="nx">Storage</span><span class="o">::</span><span class="na">getVisibility</span><span class="p">(</span><span class="s1">&#39;file.jpg&#39;</span><span class="p">);</span>
 
 <span class="nx">Storage</span><span class="o">::</span><span class="na">setVisibility</span><span class="p">(</span><span class="s1">&#39;file.jpg&#39;</span><span class="p">,</span> <span class="s1">&#39;public&#39;</span><span class="p">);</span>
@@ -4607,7 +4607,7 @@
 </div>
 <p><a name="custom-filesystems"></a></p>
 <h2 id="_32">カスタムファイルシステム<a class="headerlink" href="#_32" title="Permanent link">&para;</a></h2>
-<p>LaravelのFlysystem統合は、いくつかの「ドライバ」をすぐにサポートしています。しかし、Flysystemはこれらに限定されず、他の多くのストレージシステム用のアダプタを持っています。Laravelアプリケーションでこれらの追加アダプタのいずれかを使用したい場合は、カスタムドライバを作成できます。</p>
+<p>LaravelのFlysystem統合は、いくつかの「ドライバ」を標準でサポートしています。しかし、Flysystemはこれらに限定されず、他の多くのストレージシステム用のアダプタを持っています。Laravelアプリケーションでこれらの追加アダプタのいずれかを使用したい場合は、カスタムドライバを作成できます。</p>
 <p>カスタムファイルシステムを定義するには、Flysystemアダプタが必要です。コミュニティが管理するDropboxアダプタをプロジェクトに追加しましょう：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>composer<span class="w"> </span>require<span class="w"> </span>spatie/flysystem-dropbox
 </code></pre></div>
@@ -4654,7 +4654,7 @@
 <span class="p">}</span>
 </code></pre></div>
 <p><code>extend</code>メソッドの最初の引数はドライバの名前で、2番目の引数は<code>$app</code>と<code>$config</code>変数を受け取るクロージャです。クロージャは<code>Illuminate\Filesystem\FilesystemAdapter</code>のインスタンスを返す必要があります。<code>$config</code>変数には、指定されたディスクの<code>config/filesystems.php</code>で定義された値が含まれます。</p>
-<p>拡張機能のサービスプロバイダを作成して登録したら、<code>config/filesystems.php</code>設定ファイルで<code>dropbox</code>ドライバを使用できます。</p>
+<p>拡張機能のサービスプロバイダを作成して登録したら、<code>config/filesystems.php</code>設定ファイルで<code>dropbox</code>ドライバを使用できるようになります。</p>
 
 
 

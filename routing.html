@@ -4452,8 +4452,8 @@
 </code></pre></div>
 <p><a name="route-groups"></a></p>
 <h2 id="_19">ルートグループ<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h2>
-<p>ルートグループを使用すると、ミドルウェアなどのルート属性を大量のルートに共有できます。個々のルートにそれらの属性を定義する必要がありません。</p>
-<p>ネストされたグループは、親グループとの属性を賢く「マージ」しようとします。ミドルウェアと<code>where</code>条件はマージされ、名前とプレフィックスは追加されます。名前空間の区切り文字とURIプレフィックスのスラッシュは、必要に応じて自動的に追加されます。</p>
+<p>ルートグループを使用すると、ミドルウェアなどのルート属性を多数のルートで共有できます。個々のルートにそれらの属性を定義する必要がありません。</p>
+<p>ネストされたグループは、親グループの属性を賢く「マージ」しようとします。ミドルウェアと<code>where</code>条件はマージされ、名前とプレフィックスは追加されます。名前空間の区切り文字とURIプレフィックスのスラッシュは、必要に応じて自動的に追加されます。</p>
 <p><a name="route-group-middleware"></a></p>
 <h3 id="_20">ミドルウェア<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h3>
 <p>グループ内のすべてのルートに<a href="middleware.html">ミドルウェア</a>を割り当てるには、グループを定義する前に<code>middleware</code>メソッドを使用します。ミドルウェアは配列にリストされた順序で実行されます。</p>
@@ -4738,7 +4738,7 @@
 <a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a>    <span class="p">});</span>
 <a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a><span class="p">}</span>
 </code></pre></div>
-<p>着信リクエストが指定されたレート制限を超えた場合、Laravelは自動的に429 HTTPステータスコードのレスポンスを返します。レート制限によって返されるべき独自のレスポンスを定義したい場合は、<code>response</code>メソッドを使用できます。</p>
+<p>着信リクエストが指定されたレート制限を超えた場合、Laravelは自動的に429 HTTPステータスコードのレスポンスを返します。レート制限によって返される独自のレスポンスを定義したい場合は、<code>response</code>メソッドを使用できます。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="nx">RateLimiter</span><span class="o">::</span><span class="na">for</span><span class="p">(</span><span class="s1">&#39;global&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="nx">Request</span> <span class="nv">$request</span><span class="p">)</span> <span class="p">{</span>
 <a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>    <span class="k">return</span> <span class="nx">Limit</span><span class="o">::</span><span class="na">perMinute</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">response</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nx">Request</span> <span class="nv">$request</span><span class="p">,</span> <span class="k">array</span> <span class="nv">$headers</span><span class="p">)</span> <span class="p">{</span>
 <a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>        <span class="k">return</span> <span class="nx">response</span><span class="p">(</span><span class="s1">&#39;Custom response...&#39;</span><span class="p">,</span> <span class="mi">429</span><span class="p">,</span> <span class="nv">$headers</span><span class="p">);</span>
@@ -4793,7 +4793,7 @@
 </code></pre></div>
 <p><a name="throttling-with-redis"></a></p>
 <h4 id="redis">Redisによるスロットリング<a class="headerlink" href="#redis" title="Permanent link">&para;</a></h4>
-<p>デフォルトでは、<code>throttle</code>ミドルウェアは<code>Illuminate\Routing\Middleware\ThrottleRequests</code>クラスにマッピングされています。ただし、アプリケーションのキャッシュドライバとしてRedisを使用している場合、LaravelにRedisを使用してレート制限を管理するよう指示したい場合があります。そのためには、アプリケーションの<code>bootstrap/app.php</code>ファイルで<code>throttleWithRedis</code>メソッドを使用する必要があります。このメソッドは、<code>throttle</code>ミドルウェアを<code>Illuminate\Routing\Middleware\ThrottleRequestsWithRedis</code>ミドルウェアクラスにマッピングします。</p>
+<p>デフォルトでは、<code>throttle</code>ミドルウェアは<code>Illuminate\Routing\Middleware\ThrottleRequests</code>クラスにマッピングされています。ただし、アプリケーションのキャッシュドライバとしてRedisを使用している場合、LaravelにRedisを使用してレート制限を管理するよう指示したいことがあります。そのためには、アプリケーションの<code>bootstrap/app.php</code>ファイルで<code>throttleWithRedis</code>メソッドを使用する必要があります。このメソッドは、<code>throttle</code>ミドルウェアを<code>Illuminate\Routing\Middleware\ThrottleRequestsWithRedis</code>ミドルウェアクラスにマッピングします。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="o">-&gt;</span><span class="na">withMiddleware</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nx">Middleware</span> <span class="nv">$middleware</span><span class="p">)</span> <span class="p">{</span>
 <a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>    <span class="nv">$middleware</span><span class="o">-&gt;</span><span class="na">throttleWithRedis</span><span class="p">();</span>
 <a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>    <span class="c1">// ...</span>
@@ -4801,13 +4801,13 @@
 </code></pre></div>
 <p><a name="form-method-spoofing"></a></p>
 <h2 id="_39">フォームメソッドのスプーフィング<a class="headerlink" href="#_39" title="Permanent link">&para;</a></h2>
-<p>HTMLフォームは<code>PUT</code>、<code>PATCH</code>、または<code>DELETE</code>アクションをサポートしていません。したがって、HTMLフォームから呼び出される<code>PUT</code>、<code>PATCH</code>、または<code>DELETE</code>ルートを定義する場合、フォームに隠し<code>_method</code>フィールドを追加する必要があります。<code>_method</code>フィールドの値はHTTPリクエストメソッドとして使用されます。</p>
+<p>HTMLフォームは<code>PUT</code>、<code>PATCH</code>、または<code>DELETE</code>アクションをサポートしていません。そのため、HTMLフォームから呼び出される<code>PUT</code>、<code>PATCH</code>、または<code>DELETE</code>ルートを定義する場合、フォームに隠し<code>_method</code>フィールドを追加する必要があります。<code>_method</code>フィールドの値はHTTPリクエストメソッドとして使用されます。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="p">&lt;</span><span class="nt">form</span> <span class="na">action</span><span class="o">=</span><span class="s">&quot;/example&quot;</span> <span class="na">method</span><span class="o">=</span><span class="s">&quot;POST&quot;</span><span class="p">&gt;</span>
 <a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;hidden&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;_method&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;PUT&quot;</span><span class="p">&gt;</span>
 <a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;hidden&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;_token&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;{{ csrf_token() }}&quot;</span><span class="p">&gt;</span>
 <a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
 </code></pre></div>
-<p>便宜上、<code>@method</code><a href="blade.html">Bladeディレクティブ</a>を使用して<code>_method</code>入力フィールドを生成できます。</p>
+<p>利便性のため、<code>@method</code><a href="blade.html">Bladeディレクティブ</a>を使用して<code>_method</code>入力フィールドを生成できます。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="p">&lt;</span><span class="nt">form</span> <span class="na">action</span><span class="o">=</span><span class="s">&quot;/example&quot;</span> <span class="na">method</span><span class="o">=</span><span class="s">&quot;POST&quot;</span><span class="p">&gt;</span>
 <a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>    @method(&#39;PUT&#39;)
 <a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>    @csrf
@@ -4826,7 +4826,7 @@
 <p><a name="cors"></a></p>
 <h2 id="cors">クロスオリジンリソース共有 (CORS)<a class="headerlink" href="#cors" title="Permanent link">&para;</a></h2>
 <p>Laravelは、設定した値に基づいてCORS <code>OPTIONS</code> HTTPリクエストに自動的に応答できます。<code>OPTIONS</code>リクエストは、アプリケーションのグローバルミドルウェアスタックに自動的に含まれる<code>HandleCors</code><a href="middleware.html">ミドルウェア</a>によって自動的に処理されます。</p>
-<p>時には、アプリケーションのCORS設定値をカスタマイズする必要があるかもしれません。これを行うには、<code>config:publish</code> Artisanコマンドを使用して<code>cors</code>設定ファイルを公開します。</p>
+<p>場合によっては、アプリケーションのCORS設定値をカスタマイズする必要があるかもしれません。これを行うには、<code>config:publish</code> Artisanコマンドを使用して<code>cors</code>設定ファイルを公開します。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>config:publish<span class="w"> </span>cors
 </code></pre></div>
 <p>このコマンドは、アプリケーションの<code>config</code>ディレクトリ内に<code>cors.php</code>設定ファイルを配置します。</p>
@@ -4836,10 +4836,10 @@
 </div>
 <p><a name="route-caching"></a></p>
 <h2 id="_41">ルートキャッシュ<a class="headerlink" href="#_41" title="Permanent link">&para;</a></h2>
-<p>アプリケーションを本番環境にデプロイする際、Laravelのルートキャッシュを利用する必要があります。ルートキャッシュを使用すると、アプリケーションのすべてのルートを登録するのにかかる時間が大幅に短縮されます。ルートキャッシュを生成するには、<code>route:cache</code> Artisanコマンドを実行します。</p>
+<p>アプリケーションを本番環境にデプロイする際は、Laravelのルートキャッシュを利用する必要があります。ルートキャッシュを使用すると、アプリケーションのすべてのルートを登録する時間が大幅に短縮されます。ルートキャッシュを生成するには、<code>route:cache</code> Artisanコマンドを実行します。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>route:cache
 </code></pre></div>
-<p>このコマンドを実行すると、キャッシュされたルートファイルがすべてのリクエストで読み込まれます。新しいルートを追加する場合は、新しいルートキャッシュを生成する必要があることに注意してください。このため、<code>route:cache</code>コマンドはプロジェクトのデプロイ中にのみ実行するべきです。</p>
+<p>このコマンドを実行すると、キャッシュされたルートファイルがすべてのリクエストで読み込まれます。新しいルートを追加する場合は、新しいルートキャッシュを生成する必要があることに注意してください。そのため、<code>route:cache</code>コマンドはプロジェクトのデプロイ中にのみ実行するべきです。</p>
 <p>ルートキャッシュをクリアするには、<code>route:clear</code>コマンドを使用します。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>route:clear
 </code></pre></div>

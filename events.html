@@ -3824,7 +3824,7 @@
 </code></pre></div>
 <p><a name="defining-events"></a></p>
 <h2 id="_11">イベントの定義<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
-<p>イベントクラスは基本的に、イベントに関連する情報を保持するデータコンテナです。たとえば、<code>App\Events\OrderShipped</code>イベントが<a href="eloquent.html">Eloquent ORM</a>オブジェクトを受け取るとします：</p>
+<p>イベントクラスは基本的に、イベントに関連する情報を保持するデータコンテナです。例えば、<code>App\Events\OrderShipped</code>イベントが<a href="eloquent.html">Eloquent ORM</a>オブジェクトを受け取るとしましょう：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="o">&lt;?</span><span class="nx">php</span>
 <a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
 <a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="k">namespace</span> <span class="nx">App\Events</span><span class="p">;</span>
@@ -3846,7 +3846,7 @@
 <a id="__codelineno-12-19" name="__codelineno-12-19" href="#__codelineno-12-19"></a>    <span class="p">)</span> <span class="p">{}</span>
 <a id="__codelineno-12-20" name="__codelineno-12-20" href="#__codelineno-12-20"></a><span class="p">}</span>
 </code></pre></div>
-<p>ご覧のとおり、このイベントクラスにはロジックは含まれていません。購入された<code>App\Models\Order</code>インスタンスのコンテナです。イベントで使用される<code>SerializesModels</code>トレイトは、イベントオブジェクトがPHPの<code>serialize</code>関数を使用してシリアライズされる場合、Eloquentモデルを適切にシリアライズします。たとえば、<a href="#queued-event-listeners">キューイベントリスナー</a>を使用する場合などです。</p>
+<p>ご覧の通り、このイベントクラスにはロジックは含まれていません。購入された<code>App\Models\Order</code>インスタンスのコンテナです。イベントで使用される<code>SerializesModels</code>トレイトは、イベントオブジェクトがPHPの<code>serialize</code>関数を使用してシリアライズされる場合、Eloquentモデルを適切にシリアライズします。例えば、<a href="#queued-event-listeners">キューイベントリスナー</a>を使用する場合などです。</p>
 <p><a name="defining-listeners"></a></p>
 <h2 id="_12">リスナーの定義<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
 <p>次に、例のイベントのリスナーを見てみましょう。イベントリスナーは、<code>handle</code>メソッドでイベントインスタンスを受け取ります。<code>make:listener</code>のArtisanコマンドは、<code>--event</code>オプションを指定して呼び出すと、適切なイベントクラスを自動的にインポートし、<code>handle</code>メソッドでイベントを型ヒントします。<code>handle</code>メソッド内で、イベントに応答するために必要なアクションを実行できます：</p>
@@ -3878,10 +3878,10 @@
 </div>
 <p><a name="stopping-the-propagation-of-an-event"></a></p>
 <h4 id="_13">イベントの伝播を停止する<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h4>
-<p>時には、イベントが他のリスナーに伝播されるのを止めたい場合があるかもしれません。その場合、リスナーの <code>handle</code> メソッドから <code>false</code> を返すことで実現できます。</p>
+<p>時には、イベントが他のリスナーに伝播されるのを止めたい場合があります。その場合、リスナーの <code>handle</code> メソッドから <code>false</code> を返すことで実現できます。</p>
 <p><a name="queued-event-listeners"></a></p>
 <h2 id="_14">キューイベントリスナー<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
-<p>リスナーがメールの送信やHTTPリクエストの実行などの遅いタスクを実行する場合、リスナーをキューに入れることが有益です。キューリスナーを使用する前に、<a href="queues.html">キューの設定</a>を行い、サーバーまたはローカル開発環境でキューワーカーを起動しておく必要があります。</p>
+<p>リスナーがメールの送信やHTTPリクエストの実行などの時間のかかるタスクを実行する場合、リスナーをキューに入れることが有益です。キューリスナーを使用する前に、<a href="queues.html">キューの設定</a>を行い、サーバーまたはローカル開発環境でキューワーカーを起動しておく必要があります。</p>
 <p>リスナーをキューに入れるように指定するには、リスナークラスに <code>ShouldQueue</code> インターフェースを追加します。<code>make:listener</code> Artisanコマンドで生成されたリスナーは、このインターフェースが既に現在の名前空間にインポートされているため、すぐに使用できます：</p>
 <div class="highlight"><pre><span></span><code><span class="o">&lt;?</span><span class="nx">php</span>
 
@@ -3957,7 +3957,7 @@
 </code></pre></div>
 <p><a name="conditionally-queueing-listeners"></a></p>
 <h4 id="_16">条件付きでリスナーをキューに入れる<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h4>
-<p>時には、実行時にのみ利用可能なデータに基づいてリスナーをキューに入れるかどうかを決定する必要があるかもしれません。これを実現するには、リスナーに <code>shouldQueue</code> メソッドを追加して、リスナーをキューに入れるかどうかを決定できます。<code>shouldQueue</code> メソッドが <code>false</code> を返す場合、リスナーはキューに入れられません：</p>
+<p>場合によっては、実行時にのみ利用可能なデータに基づいてリスナーをキューに入れるかどうかを決定する必要があるかもしれません。これを実現するには、リスナーに <code>shouldQueue</code> メソッドを追加して、リスナーをキューに入れるかどうかを決定できます。<code>shouldQueue</code> メソッドが <code>false</code> を返す場合、リスナーはキューに入れられません：</p>
 <div class="highlight"><pre><span></span><code><span class="o">&lt;?</span><span class="nx">php</span>
 
 <span class="k">namespace</span> <span class="nx">App\Listeners</span><span class="p">;</span>
@@ -4032,7 +4032,7 @@
 </div>
 <p><a name="handling-failed-jobs"></a></p>
 <h3 id="_19">失敗したジョブの処理<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h3>
-<p>時には、キューイベントリスナーが失敗することがあります。キューリスナーがキューワーカーによって定義された最大試行回数を超えると、リスナーの <code>failed</code> メソッドが呼び出されます。<code>failed</code> メソッドは、イベントインスタンスと失敗の原因となった <code>Throwable</code> を受け取ります：</p>
+<p>キューイベントリスナーが失敗することもあります。キューリスナーがキューワーカーによって定義された最大試行回数を超えると、リスナーの <code>failed</code> メソッドが呼び出されます。<code>failed</code> メソッドは、イベントインスタンスと失敗の原因となった <code>Throwable</code> を受け取ります：</p>
 <div class="highlight"><pre><span></span><code><span class="o">&lt;?</span><span class="nx">php</span>
 
 <span class="k">namespace</span> <span class="nx">App\Listeners</span><span class="p">;</span>
@@ -4065,7 +4065,7 @@
 </code></pre></div>
 <p><a name="specifying-queued-listener-maximum-attempts"></a></p>
 <h4 id="_20">キューリスナーの最大試行回数の指定<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h4>
-<p>キューリスナーのいずれかでエラーが発生した場合、無限に再試行し続けることは望ましくないでしょう。そのため、Laravelはリスナーの試行回数や試行時間を指定するためのさまざまな方法を提供しています。</p>
+<p>キューリスナーのいずれかでエラーが発生した場合、無限に再試行し続けることは望ましくありません。そのため、Laravelはリスナーの試行回数や試行時間を指定するためのさまざまな方法を提供しています。</p>
 <p>リスナークラスに <code>$tries</code> プロパティを定義して、リスナーが失敗と見なされるまでに試行できる回数を指定できます：</p>
 <div class="highlight"><pre><span></span><code><span class="o">&lt;?</span><span class="nx">php</span>
 
@@ -4139,7 +4139,7 @@
 </div>
 <p><a name="dispatching-events-after-database-transactions"></a></p>
 <h3 id="_22">データベーストランザクション後のイベントディスパッチ<a class="headerlink" href="#_22" title="Permanent link">&para;</a></h3>
-<p>場合によっては、アクティブなデータベーストランザクションがコミットされた後にのみイベントをディスパッチするようにLaravelに指示したいことがあります。そのためには、イベントクラスに <code>ShouldDispatchAfterCommit</code> インターフェースを実装します。</p>
+<p>アクティブなデータベーストランザクションがコミットされた後にのみイベントをディスパッチするようにLaravelに指示したい場合があります。そのためには、イベントクラスに <code>ShouldDispatchAfterCommit</code> インターフェースを実装します。</p>
 <p>このインターフェースは、現在のデータベーストランザクションがコミットされるまでイベントをディスパッチしないようにLaravelに指示します。トランザクションが失敗した場合、イベントは破棄されます。イベントがディスパッチされたときにデータベーストランザクションが進行中でない場合、イベントはすぐにディスパッチされます。</p>
 <div class="highlight"><pre><span></span><code><span class="o">&lt;?</span><span class="nx">php</span>
 
@@ -4167,7 +4167,7 @@
 <h2 id="_23">イベントサブスクライバ<a class="headerlink" href="#_23" title="Permanent link">&para;</a></h2>
 <p><a name="writing-event-subscribers"></a></p>
 <h3 id="_24">イベントサブスクライバの作成<a class="headerlink" href="#_24" title="Permanent link">&para;</a></h3>
-<p>イベントサブスクライバは、サブスクライバクラス自体から複数のイベントをサブスクライブできるクラスであり、単一のクラス内で複数のイベントハンドラを定義できます。サブスクライバは <code>subscribe</code> メソッドを定義する必要があり、これにはイベントディスパッチャインスタンスが渡されます。与えられたディスパッチャの <code>listen</code> メソッドを呼び出して、イベントリスナーを登録できます。</p>
+<p>イベントサブスクライバは、サブスクライバクラス自体から複数のイベントをサブスクライブできるクラスで、単一のクラス内で複数のイベントハンドラを定義できます。サブスクライバは <code>subscribe</code> メソッドを定義する必要があり、これにはイベントディスパッチャインスタンスが渡されます。与えられたディスパッチャの <code>listen</code> メソッドを呼び出して、イベントリスナーを登録できます。</p>
 <div class="highlight"><pre><span></span><code><span class="o">&lt;?</span><span class="nx">php</span>
 
 <span class="k">namespace</span> <span class="nx">App\Listeners</span><span class="p">;</span>

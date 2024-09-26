@@ -4795,7 +4795,7 @@
 </code></pre></div>
 <p><a name="only-to-others"></a></p>
 <h3 id="_26">他のユーザーのみにブロードキャスト<a class="headerlink" href="#_26" title="Permanent link">&para;</a></h3>
-<p>イベントブロードキャストを利用するアプリケーションを構築する際、特定のチャンネルのすべてのサブスクライバーにイベントをブロードキャストする必要がある場合がありますが、現在のユーザーを除きます。<code>broadcast</code>ヘルパーと<code>toOthers</code>メソッドを使用してこれを実現できます：</p>
+<p>イベントブロードキャストを利用するアプリケーションを構築する際、特定のチャンネルのすべてのサブスクライバーにイベントをブロードキャストする必要がある場合がありますが、現在のユーザーを除く必要があります。<code>broadcast</code>ヘルパーと<code>toOthers</code>メソッドを使用してこれを実現できます：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="k">use</span> <span class="nx">App\Events\OrderShipmentStatusUpdated</span><span class="p">;</span>
 <a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>
 <a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a><span class="nx">broadcast</span><span class="p">(</span><span class="k">new</span> <span class="nx">OrderShipmentStatusUpdated</span><span class="p">(</span><span class="nv">$update</span><span class="p">))</span><span class="o">-&gt;</span><span class="na">toOthers</span><span class="p">();</span>
@@ -4809,7 +4809,7 @@
 <p>ただし、タスクの作成もブロードキャストしていることを忘れないでください。JavaScriptアプリケーションがこのイベントをリッスンしてタスクリストにタスクを追加している場合、リストに重複したタスクが表示されます：エンドポイントからのものとブロードキャストからのものです。これを解決するために、<code>toOthers</code>メソッドを使用してブロードキャスタに現在のユーザーにイベントをブロードキャストしないように指示できます。</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p><code>toOthers</code>メソッドを呼び出すには、イベントが<code>Illuminate\Broadcasting\InteractsWithSockets</code>トレイトを使用する必要があります。</p>
+<p><code>toOthers</code>メソッドを呼び出すには、イベントが<code>Illuminate\Broadcasting\InteractsWithSockets</code>トレイトを使用している必要があります。</p>
 </div>
 <p><a name="only-to-others-configuration"></a></p>
 <h4 id="_27">設定<a class="headerlink" href="#_27" title="Permanent link">&para;</a></h4>
@@ -5137,7 +5137,7 @@
 <h3 id="_44">モデルブロードキャストのリスニング<a class="headerlink" href="#_44" title="Permanent link">&para;</a></h3>
 <p><code>BroadcastsEvents</code>トレイトをモデルに追加し、モデルの<code>broadcastOn</code>メソッドを定義したら、クライアントサイドアプリケーション内でブロードキャストされたモデルイベントのリスニングを開始する準備が整いました。開始する前に、<a href="#listening-for-events">イベントのリスニング</a>に関する完全なドキュメントを確認することをお勧めします。</p>
 <p>まず、<code>private</code>メソッドを使用してチャンネルのインスタンスを取得し、<code>listen</code>メソッドを呼び出して特定のイベントをリスニングします。通常、<code>private</code>メソッドに与えられるチャンネル名は、Laravelの<a href="#model-broadcasting-conventions">モデルブロードキャスト規約</a>に対応する必要があります。</p>
-<p>チャンネルインスタンスを取得したら、<code>listen</code>メソッドを使用して特定のイベントをリスニングできます。モデルブロードキャストイベントは、アプリケーションの<code>App\Events</code>ディレクトリ内の「実際の」イベントに関連付けられていないため、<a href="#model-broadcasting-event-conventions">イベント名</a>の前に<code>.</code>を付けて、特定の名前空間に属していないことを示す必要があります。各モデルブロードキャストイベントには、モデルのすべてのブロードキャスト可能なプロパティを含む<code>model</code>プロパティがあります。</p>
+<p>チャンネルインスタンスを取得したら、<code>listen</code>メソッドを使用して特定のイベントをリッスンできます。モデルブロードキャストイベントは、アプリケーションの<code>App\Events</code>ディレクトリ内の「実際の」イベントに関連付けられていないため、<a href="#model-broadcasting-event-conventions">イベント名</a>の前に<code>.</code>を付けて、特定の名前空間に属していないことを示す必要があります。各モデルブロードキャストイベントには、モデルのすべてのブロードキャスト可能なプロパティを含む<code>model</code>プロパティがあります。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-72-1" name="__codelineno-72-1" href="#__codelineno-72-1"></a><span class="nx">Echo</span><span class="p">.</span><span class="kr">private</span><span class="p">(</span><span class="sb">`App.Models.User.</span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">user</span><span class="p">.</span><span class="nx">id</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
 <a id="__codelineno-72-2" name="__codelineno-72-2" href="#__codelineno-72-2"></a><span class="w">    </span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="s1">&#39;.PostUpdated&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-72-3" name="__codelineno-72-3" href="#__codelineno-72-3"></a><span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">model</span><span class="p">);</span>
@@ -5156,7 +5156,7 @@
 <a id="__codelineno-73-3" name="__codelineno-73-3" href="#__codelineno-73-3"></a><span class="w">        </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">user</span><span class="p">.</span><span class="nx">name</span>
 <a id="__codelineno-73-4" name="__codelineno-73-4" href="#__codelineno-73-4"></a><span class="w">    </span><span class="p">});</span>
 </code></pre></div>
-<p>クライアントイベントをリスニングするには、<code>listenForWhisper</code>メソッドを使用できます。</p>
+<p>クライアントイベントをリッスンするには、<code>listenForWhisper</code>メソッドを使用できます。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-74-1" name="__codelineno-74-1" href="#__codelineno-74-1"></a><span class="nx">Echo</span><span class="p">.</span><span class="kr">private</span><span class="p">(</span><span class="sb">`chat.</span><span class="si">${</span><span class="nx">roomId</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
 <a id="__codelineno-74-2" name="__codelineno-74-2" href="#__codelineno-74-2"></a><span class="w">    </span><span class="p">.</span><span class="nx">listenForWhisper</span><span class="p">(</span><span class="s1">&#39;typing&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-74-3" name="__codelineno-74-3" href="#__codelineno-74-3"></a><span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
@@ -5164,8 +5164,8 @@
 </code></pre></div>
 <p><a name="notifications"></a></p>
 <h2 id="_46">通知<a class="headerlink" href="#_46" title="Permanent link">&para;</a></h2>
-<p>イベントブロードキャストと<a href="notifications.html">通知</a>を組み合わせることで、JavaScriptアプリケーションはページを更新することなく、新しい通知を受け取ることができます。開始する前に、<a href="notifications.html#broadcast-notifications">ブロードキャスト通知チャンネル</a>の使用に関するドキュメントを確認してください。</p>
-<p>ブロードキャストチャンネルを使用するように通知を設定したら、Echoの<code>notification</code>メソッドを使用してブロードキャストイベントをリスニングできます。通知を受け取るエンティティのクラス名と一致するチャンネル名を使用することを忘れないでください。</p>
+<p>イベントブロードキャストと<a href="notifications.html">通知</a>を組み合わせることで、JavaScriptアプリケーションは、ページを更新することなく新しい通知を受け取ることができます。開始する前に、<a href="notifications.html#broadcast-notifications">ブロードキャスト通知チャンネル</a>の使用に関するドキュメントを確認してください。</p>
+<p>ブロードキャストチャンネルを使用するように通知を設定したら、Echoの<code>notification</code>メソッドを使用してブロードキャストイベントをリッスンできます。通知を受け取るエンティティのクラス名と一致するチャンネル名を使用することを忘れないでください。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-75-1" name="__codelineno-75-1" href="#__codelineno-75-1"></a><span class="nx">Echo</span><span class="p">.</span><span class="kr">private</span><span class="p">(</span><span class="sb">`App.Models.User.</span><span class="si">${</span><span class="nx">userId</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
 <a id="__codelineno-75-2" name="__codelineno-75-2" href="#__codelineno-75-2"></a><span class="w">    </span><span class="p">.</span><span class="nx">notification</span><span class="p">((</span><span class="nx">notification</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-75-3" name="__codelineno-75-3" href="#__codelineno-75-3"></a><span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">notification</span><span class="p">.</span><span class="nx">type</span><span class="p">);</span>

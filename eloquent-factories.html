@@ -3670,7 +3670,7 @@
 <p><a name="introduction"></a></p>
 <h2 id="_1">はじめに<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>アプリケーションのテストやデータベースのシーディングを行う際に、データベースにいくつかのレコードを挿入する必要があるかもしれません。各カラムの値を手動で指定する代わりに、Laravelでは<a href="eloquent.html">Eloquentモデル</a>ごとにデフォルトの属性セットを定義することができます。</p>
-<p>ファクトリの書き方の例を見るには、アプリケーションの <code>database/factories/UserFactory.php</code> ファイルを見てください。このファクトリはすべての新しいLaravelアプリケーションに含まれており、以下のファクトリ定義が含まれています。</p>
+<p>ファクトリの記述例を見るには、アプリケーションの <code>database/factories/UserFactory.php</code> ファイルを参照してください。このファクトリはすべての新しいLaravelアプリケーションに含まれており、以下のファクトリ定義が含まれています。</p>
 <div class="highlight"><pre><span></span><code><span class="k">namespace</span> <span class="nx">Database\Factories</span><span class="p">;</span>
 
 <span class="k">use</span> <span class="nx">Illuminate\Database\Eloquent\Factories\Factory</span><span class="p">;</span>
@@ -3714,7 +3714,7 @@
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>最も基本的な形では、ファクトリはLaravelの基本ファクトリクラスを拡張し、<code>definition</code> メソッドを定義するクラスです。<code>definition</code> メソッドは、ファクトリを使用してモデルを作成する際に適用されるデフォルトの属性値のセットを返します。</p>
+<p>最も基本的な形式では、ファクトリはLaravelの基本ファクトリクラスを拡張し、<code>definition</code> メソッドを定義するクラスです。<code>definition</code> メソッドは、ファクトリを使用してモデルを作成する際に適用されるデフォルトの属性値のセットを返します。</p>
 <p><code>fake</code> ヘルパーを介して、ファクトリは <a href="https://github.com/FakerPHP/Faker">Faker</a> PHP ライブラリにアクセスできます。これにより、テストやシーディングのためにさまざまな種類のランダムデータを簡単に生成できます。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -3724,13 +3724,13 @@
 <h2 id="_2">モデルファクトリの定義<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p><a name="generating-factories"></a></p>
 <h3 id="_3">ファクトリの生成<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
-<p>ファクトリを作成するには、<code>make:factory</code> <a href="artisan.html">Artisanコマンド</a>を実行します。</p>
+<p>ファクトリを作成するには、<code>make:factory</code> <a href="artisan.html">Artisanコマンド</a>を実行してください。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>make:factory<span class="w"> </span>PostFactory
 </code></pre></div>
 <p>新しいファクトリクラスは、<code>database/factories</code> ディレクトリに配置されます。</p>
 <p><a name="factory-and-model-discovery-conventions"></a></p>
 <h4 id="_4">モデルとファクトリの検出規約<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
-<p>ファクトリを定義したら、<code>Illuminate\Database\Eloquent\Factories\HasFactory</code> トレイトによってモデルに提供される静的 <code>factory</code> メソッドを使用して、そのモデルのファクトリインスタンスをインスタンス化できます。</p>
+<p>ファクトリを定義したら、<code>Illuminate\Database\Eloquent\Factories\HasFactory</code> トレイトによってモデルに提供される静的 <code>factory</code> メソッドを使用して、そのモデルのファクトリインスタンスを生成できます。</p>
 <p><code>HasFactory</code> トレイトの <code>factory</code> メソッドは、規約を使用して適切なファクトリを決定します。具体的には、メソッドは <code>Database\Factories</code> 名前空間内で、モデル名に一致し、<code>Factory</code> で終わるクラス名を持つファクトリを探します。これらの規約が特定のアプリケーションやファクトリに適用されない場合は、モデルの <code>newFactory</code> メソッドをオーバーライドして、モデルの対応するファクトリのインスタンスを直接返すことができます。</p>
 <div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">Illuminate\Database\Eloquent\Factories\Factory</span><span class="p">;</span>
 <span class="k">use</span> <span class="nx">Database\Factories\Administration\FlightFactory</span><span class="p">;</span>
@@ -3759,7 +3759,7 @@
 </code></pre></div>
 <p><a name="factory-states"></a></p>
 <h3 id="_5">ファクトリの状態<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
-<p>状態操作メソッドを使用すると、モデルファクトリに適用できる離散的な変更を定義できます。たとえば、<code>Database\Factories\UserFactory</code> ファクトリには、デフォルトの属性値の1つを変更する <code>suspended</code> 状態メソッドが含まれているかもしれません。</p>
+<p>状態変更メソッドを使用すると、モデルファクトリに適用できる個別の変更を定義できます。たとえば、<code>Database\Factories\UserFactory</code> ファクトリには、デフォルトの属性値の1つを変更する <code>suspended</code> 状態メソッドが含まれているかもしれません。</p>
 <p>状態変換メソッドは通常、Laravelの基本ファクトリクラスによって提供される <code>state</code> メソッドを呼び出します。<code>state</code> メソッドは、ファクトリに定義された生の属性の配列を受け取り、変更する属性の配列を返すクロージャを受け取ります。</p>
 <div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">Illuminate\Database\Eloquent\Factories\Factory</span><span class="p">;</span>
 
@@ -3784,7 +3784,7 @@
 </code></pre></div>
 <p><a name="factory-callbacks"></a></p>
 <h3 id="_6">ファクトリのコールバック<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
-<p>ファクトリコールバックは、<code>afterMaking</code> および <code>afterCreating</code> メソッドを使用して登録され、モデルの作成または作成後に追加のタスクを実行できるようにします。これらのコールバックは、ファクトリクラスに <code>configure</code> メソッドを定義することで登録する必要があります。このメソッドは、ファクトリがインスタンス化されるときにLaravelによって自動的に呼び出されます。</p>
+<p>ファクトリコールバックは、<code>afterMaking</code> および <code>afterCreating</code> メソッドを使用して登録され、モデルの生成または作成後に追加のタスクを実行できるようにします。これらのコールバックは、ファクトリクラスに <code>configure</code> メソッドを定義することで登録する必要があります。このメソッドは、ファクトリがインスタンス化されるときにLaravelによって自動的に呼び出されます。</p>
 <div class="highlight"><pre><span></span><code><span class="k">namespace</span> <span class="nx">Database\Factories</span><span class="p">;</span>
 
 <span class="k">use</span> <span class="nx">App\Models\User</span><span class="p">;</span>
@@ -3831,7 +3831,7 @@
 <h2 id="_7">ファクトリを使用したモデルの作成<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
 <p><a name="instantiating-models"></a></p>
 <h3 id="_8">モデルのインスタンス化<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
-<p>ファクトリを定義したら、<code>Illuminate\Database\Eloquent\Factories\HasFactory</code> トレイトによってモデルに提供される静的 <code>factory</code> メソッドを使用して、そのモデルのファクトリインスタンスをインスタンス化できます。モデルの作成例をいくつか見てみましょう。まず、データベースに永続化せずにモデルを作成するために <code>make</code> メソッドを使用します。</p>
+<p>ファクトリを定義したら、<code>Illuminate\Database\Eloquent\Factories\HasFactory</code> トレイトによってモデルに提供される静的 <code>factory</code> メソッドを使用して、そのモデルのファクトリインスタンスを生成できます。モデルの作成例をいくつか見てみましょう。まず、データベースに永続化せずにモデルを作成するために <code>make</code> メソッドを使用します。</p>
 <div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">App\Models\User</span><span class="p">;</span>
 
 <span class="nv">$user</span> <span class="o">=</span> <span class="nx">User</span><span class="o">::</span><span class="na">factory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">make</span><span class="p">();</span>
@@ -3876,7 +3876,7 @@
 </code></pre></div>
 <p><a name="sequences"></a></p>
 <h3 id="_11">シーケンス<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
-<p>場合によっては、作成される各モデルの特定の属性の値を交互に変更したいことがあります。これは、状態変換をシーケンスとして定義することで実現できます。たとえば、作成される各ユーザーの<code>admin</code>カラムの値を<code>Y</code>と<code>N</code>で交互に変更したい場合があります。</p>
+<p>場合によっては、生成される各モデルの特定の属性の値を交互に変更したいことがあります。これは、状態変換をシーケンスとして定義することで実現できます。たとえば、作成される各ユーザーの<code>admin</code>カラムの値を<code>Y</code>と<code>N</code>で交互に変更したい場合があります。</p>
 <div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">App\Models\User</span><span class="p">;</span>
 <span class="k">use</span> <span class="nx">Illuminate\Database\Eloquent\Factories\Sequence</span><span class="p">;</span>
 
@@ -3918,7 +3918,7 @@
 <h2 id="_12">ファクトリのリレーションシップ<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
 <p><a name="has-many-relationships"></a></p>
 <h3 id="has-many">Has Many リレーションシップ<a class="headerlink" href="#has-many" title="Permanent link">&para;</a></h3>
-<p>次に、Laravelの流暢なファクトリメソッドを使用してEloquentモデルのリレーションシップを構築する方法を探ってみましょう。まず、アプリケーションに<code>App\Models\User</code>モデルと<code>App\Models\Post</code>モデルがあるとします。また、<code>User</code>モデルが<code>Post</code>モデルとの<code>hasMany</code>リレーションシップを定義しているとします。Laravelのファクトリが提供する<code>has</code>メソッドを使用して、3つの投稿を持つユーザーを作成できます。<code>has</code>メソッドはファクトリインスタンスを受け取ります。</p>
+<p>次に、Laravelの流暢なファクトリメソッドを使用してEloquentモデルのリレーションシップを構築する方法を見てみましょう。まず、アプリケーションに<code>App\Models\User</code>モデルと<code>App\Models\Post</code>モデルがあるとします。また、<code>User</code>モデルが<code>Post</code>モデルとの<code>hasMany</code>リレーションシップを定義しているとします。Laravelのファクトリが提供する<code>has</code>メソッドを使用して、3つの投稿を持つユーザーを作成できます。<code>has</code>メソッドはファクトリインスタンスを受け取ります。</p>
 <div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">App\Models\Post</span><span class="p">;</span>
 <span class="k">use</span> <span class="nx">App\Models\User</span><span class="p">;</span>
 
@@ -3931,7 +3931,7 @@
             <span class="o">-&gt;</span><span class="na">has</span><span class="p">(</span><span class="nx">Post</span><span class="o">::</span><span class="na">factory</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">count</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="s1">&#39;posts&#39;</span><span class="p">)</span>
             <span class="o">-&gt;</span><span class="na">create</span><span class="p">();</span>
 </code></pre></div>
-<p>もちろん、関連モデルに対して状態操作を実行できます。さらに、状態変更が親モデルにアクセスする必要がある場合、クロージャベースの状態変換を渡すことができます。</p>
+<p>もちろん、関連モデルに対して状態変更を適用できます。さらに、状態変更が親モデルにアクセスする必要がある場合、クロージャベースの状態変換を渡すことができます。</p>
 <div class="highlight"><pre><span></span><code><span class="nv">$user</span> <span class="o">=</span> <span class="nx">User</span><span class="o">::</span><span class="na">factory</span><span class="p">()</span>
             <span class="o">-&gt;</span><span class="na">has</span><span class="p">(</span>
                 <span class="nx">Post</span><span class="o">::</span><span class="na">factory</span><span class="p">()</span>

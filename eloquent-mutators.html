@@ -3699,12 +3699,12 @@
 </ul>
 <p><a name="introduction"></a></p>
 <h2 id="_1">はじめに<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>アクセサ、ミューテータ、および属性キャストを使用すると、Eloquentモデルインスタンスで属性値を取得または設定する際に、それらを変換できます。例えば、データベースに保存される際に<a href="encryption.html">Laravelの暗号化機能</a>を使用して値を暗号化し、Eloquentモデルでアクセスする際に自動的に復号化することができます。または、データベースに保存されているJSON文字列を、Eloquentモデル経由でアクセスする際に配列に変換することもできます。</p>
+<p>アクセサ、ミューテータ、および属性キャストを使用すると、Eloquentモデルインスタンスで属性値を取得または設定する際に、それらの値を変換できます。例えば、データベースに保存される際に<a href="encryption.html">Laravelの暗号化機能</a>を使用して値を暗号化し、Eloquentモデルでアクセスする際に自動的に復号化することができます。または、データベースに保存されているJSON文字列を、Eloquentモデル経由でアクセスする際に配列に変換することもできます。</p>
 <p><a name="accessors-and-mutators"></a></p>
 <h2 id="_2">アクセサとミューテータ<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p><a name="defining-an-accessor"></a></p>
 <h3 id="_3">アクセサの定義<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
-<p>アクセサは、Eloquent属性値がアクセスされる際にその値を変換します。アクセサを定義するには、モデル上に保護されたメソッドを作成して、アクセス可能な属性を表します。このメソッド名は、該当する場合、実際の基礎となるモデル属性/データベースカラムの「キャメルケース」表現に対応する必要があります。</p>
+<p>アクセサは、Eloquent属性値がアクセスされる際にその値を変換します。アクセサを定義するには、モデル上に保護されたメソッドを作成し、アクセスする属性を表現します。このメソッド名は、該当する場合、実際の基礎となるモデル属性/データベースカラムの「キャメルケース」表現に対応する必要があります。</p>
 <p>この例では、<code>first_name</code>属性のアクセサを定義します。アクセサは、<code>first_name</code>属性の値を取得しようとする際にEloquentによって自動的に呼び出されます。すべての属性アクセサ/ミューテータメソッドは、<code>Illuminate\Database\Eloquent\Casts\Attribute</code>の戻り値の型ヒントを宣言する必要があります。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="o">&lt;?</span><span class="nx">php</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
@@ -3793,7 +3793,7 @@
 </code></pre></div>
 <p><a name="defining-a-mutator"></a></p>
 <h3 id="_6">ミューテータの定義<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
-<p>ミューテータは、Eloquent属性値が設定される際にその値を変換します。ミューテータを定義するには、属性を定義する際に<code>set</code>引数を提供することができます。<code>first_name</code>属性のミューテータを定義しましょう。このミューテータは、モデルの<code>first_name</code>属性の値を設定しようとする際に自動的に呼び出されます。</p>
+<p>ミューテータは、Eloquent属性の値が設定される際にその値を変換します。ミューテータを定義するには、属性を定義する際に<code>set</code>引数を提供することができます。<code>first_name</code>属性のミューテータを定義しましょう。このミューテータは、モデルの<code>first_name</code>属性の値を設定しようとする際に自動的に呼び出されます。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="o">&lt;?</span><span class="nx">php</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
 <a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="k">namespace</span> <span class="nx">App\Models</span><span class="p">;</span>
@@ -3848,8 +3848,8 @@
 </code></pre></div>
 <p><a name="attribute-casting"></a></p>
 <h2 id="_8">属性キャスト<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
-<p>属性キャストは、アクセサやミューテータと同様の機能を提供しますが、モデルに追加のメソッドを定義する必要はありません。代わりに、モデルの<code>casts</code>メソッドは、属性を一般的なデータ型に変換する便利な方法を提供します。</p>
-<p><code>casts</code>メソッドは、キーがキャストされる属性の名前で、値がカラムをキャストしたい型である配列を返す必要があります。サポートされているキャスト型は以下の通りです。</p>
+<p>属性キャストは、アクセサやミューテータと同様の機能を提供しますが、モデルに追加のメソッドを定義する必要がありません。代わりに、モデルの<code>casts</code>メソッドが、属性を一般的なデータ型に変換する便利な方法を提供します。</p>
+<p><code>casts</code>メソッドは、キーがキャストする属性の名前で、値がカラムをキャストしたい型である配列を返す必要があります。サポートされているキャスト型は以下の通りです。</p>
 <div class="content-list">
 <ul>
 <li><code>array</code></li>
@@ -3897,14 +3897,14 @@
 <a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a>    <span class="p">}</span>
 <a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a><span class="p">}</span>
 </code></pre></div>
-<p>キャストを定義した後、<code>is_admin</code>属性は常にブール値にキャストされます。基礎となる値がデータベースに整数として保存されていてもです。</p>
+<p>キャストを定義すると、<code>is_admin</code>属性は常にブール値にキャストされます。基礎となる値がデータベースに整数として保存されていてもです。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nv">$user</span> <span class="o">=</span> <span class="nx">App\Models\User</span><span class="o">::</span><span class="na">find</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
 <a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
 <a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="k">if</span> <span class="p">(</span><span class="nv">$user</span><span class="o">-&gt;</span><span class="na">is_admin</span><span class="p">)</span> <span class="p">{</span>
 <a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>    <span class="c1">// ...</span>
 <a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="p">}</span>
 </code></pre></div>
-<p>実行時に新しい一時的なキャストを追加する必要がある場合は、<code>mergeCasts</code>メソッドを使用できます。これらのキャスト定義は、モデルに既に定義されているキャストに追加されます。</p>
+<p>実行時に新しい一時的なキャストを追加する必要がある場合は、<code>mergeCasts</code>メソッドを使用することができます。これらのキャスト定義は、モデルに既に定義されているキャストに追加されます。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nv">$user</span><span class="o">-&gt;</span><span class="na">mergeCasts</span><span class="p">([</span>
 <a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>    <span class="s1">&#39;is_admin&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;integer&#39;</span><span class="p">,</span>
 <a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>    <span class="s1">&#39;options&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;object&#39;</span><span class="p">,</span>
@@ -4147,7 +4147,7 @@
 <p>Laravelには、さまざまな組み込みの便利なキャストタイプがありますが、独自のキャストタイプを定義する必要がある場合もあります。キャストを作成するには、<code>make:cast</code> Artisanコマンドを実行します。新しいキャストクラスは<code>app/Casts</code>ディレクトリに配置されます。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>make:cast<span class="w"> </span>Json
 </code></pre></div>
-<p>すべてのカスタムキャストクラスは<code>CastsAttributes</code>インターフェースを実装します。このインターフェースを実装するクラスは、<code>get</code>メソッドと<code>set</code>メソッドを定義する必要があります。<code>get</code>メソッドはデータベースからの生の値をキャストされた値に変換する役割を持ち、<code>set</code>メソッドはキャストされた値をデータベースに保存できる生の値に変換する必要があります。例として、組み込みの<code>json</code>キャストタイプをカスタムキャストタイプとして再実装します。</p>
+<p>すべてのすべてのカスタムキャストクラスは<code>CastsAttributes</code>インターフェースを実装する必要があります。このインターフェースを実装するクラスは、<code>get</code>メソッドと<code>set</code>メソッドを定義する必要があります。<code>get</code>メソッドはデータベースからの生の値をキャストされた値に変換する役割を持ち、<code>set</code>メソッドはキャストされた値をデータベースに保存できる生の値に変換する必要があります。例として、組み込みの<code>json</code>キャストタイプをカスタムキャストタイプとして再実装します。</p>
 <div class="highlight"><pre><span></span><code><span class="o">&lt;?</span><span class="nx">php</span>
 
 <span class="k">namespace</span> <span class="nx">App\Casts</span><span class="p">;</span>
@@ -4290,7 +4290,7 @@
 <p><a name="inbound-casting"></a></p>
 <h3 id="_18">インバウンドキャスト<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h3>
 <p>モデルに設定されている値のみを変換し、属性がモデルから取得されるときに操作を実行しないカスタムキャストクラスを作成する必要がある場合があります。</p>
-<p>インバウンドのみのカスタムキャストは、<code>CastsInboundAttributes</code>インターフェースを実装する必要があります。これは、<code>set</code>メソッドのみを定義する必要があります。<code>make:cast</code> Artisanコマンドは、<code>--inbound</code>オプションを使用してインバウンドのみのキャストクラスを生成できます。</p>
+<p>インバウンド専用のカスタムキャストは、<code>CastsInboundAttributes</code>インターフェースを実装する必要があります。これは、<code>set</code>メソッドのみを定義する必要があります。<code>make:cast</code> Artisanコマンドは、<code>--inbound</code>オプションを使用してインバウンドのみのキャストクラスを生成できます。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>php<span class="w"> </span>artisan<span class="w"> </span>make:cast<span class="w"> </span>Hash<span class="w"> </span>--inbound
 </code></pre></div>
 <p>インバウンドのみのキャストの古典的な例は、「ハッシュ」キャストです。例えば、指定されたアルゴリズムを介してインバウンド値をハッシュするキャストを定義できます。</p>
@@ -4325,7 +4325,7 @@
 </code></pre></div>
 <p><a name="cast-parameters"></a></p>
 <h3 id="_19">キャストパラメータ<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h3>
-<p>モデルにカスタムキャストをアタッチする際に、クラス名を<code>:</code>文字で区切り、複数のパラメータをカンマで区切ることでキャストパラメータを指定できます。パラメータはキャストクラスのコンストラクタに渡されます。</p>
+<p>モデルにカスタムキャストをアタッチする際、クラス名を<code>:</code>文字で区切り、複数のパラメータをカンマで区切ることでキャストパラメータを指定できます。パラメータはキャストクラスのコンストラクタに渡されます。</p>
 <div class="highlight"><pre><span></span><code><span class="sd">/**</span>
 <span class="sd"> * キャストする必要がある属性を取得します。</span>
 <span class="sd"> *</span>

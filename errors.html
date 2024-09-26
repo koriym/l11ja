@@ -3476,7 +3476,7 @@
 </ul>
 <p><a name="introduction"></a></p>
 <h2 id="_2">はじめに<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>新しいLaravelプロジェクトを開始すると、エラーと例外の処理はすでに設定されています。しかし、いつでもアプリケーションの<code>bootstrap/app.php</code>で<code>withExceptions</code>メソッドを使用して、アプリケーションによって例外がどのように報告およびレンダリングされるかを管理できます。</p>
+<p>新しいLaravelプロジェクトを開始すると、エラーと例外の処理はすでに設定済みです。しかし、いつでもアプリケーションの<code>bootstrap/app.php</code>で<code>withExceptions</code>メソッドを使用して、アプリケーションによって例外がどのように報告およびレンダリングされるかを管理できます。</p>
 <p><code>withExceptions</code>クロージャに提供される<code>$exceptions</code>オブジェクトは、<code>Illuminate\Foundation\Configuration\Exceptions</code>のインスタンスであり、アプリケーション内の例外処理を管理する役割を担っています。このドキュメント全体を通して、このオブジェクトについて詳しく説明します。</p>
 <p><a name="configuration"></a></p>
 <h2 id="_3">設定<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
@@ -3487,7 +3487,7 @@
 <p><a name="reporting-exceptions"></a></p>
 <h3 id="_5">例外の報告<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
 <p>Laravelでは、例外の報告は例外をログに記録したり、外部サービス<a href="https://github.com/getsentry/sentry-laravel">Sentry</a>や<a href="https://flareapp.io">Flare</a>に送信するために使用されます。デフォルトでは、例外は<a href="logging.html">ログ</a>設定に基づいてログに記録されます。ただし、例外をどのようにログに記録するかは自由に選択できます。</p>
-<p>異なるタイプの例外を異なる方法で報告する必要がある場合、アプリケーションの<code>bootstrap/app.php</code>で<code>report</code>例外メソッドを使用して、特定のタイプの例外を報告する必要があるときに実行されるクロージャを登録できます。Laravelは、クロージャのタイプヒントを調べることで、クロージャがどのタイプの例外を報告するかを判断します。</p>
+<p>異なるタイプの例外を異なる方法で報告する必要がある場合、アプリケーションの<code>bootstrap/app.php</code>ファイルで<code>report</code>例外メソッドを使用して、特定のタイプの例外を報告する際に実行されるクロージャを登録できます。Laravelは、クロージャの型ヒントを調べることで、クロージャがどのタイプの例外を報告するかを判断します。</p>
 <div class="highlight"><pre><span></span><code><span class="o">-&gt;</span><span class="na">withExceptions</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nx">Exceptions</span> <span class="nv">$exceptions</span><span class="p">)</span> <span class="p">{</span>
     <span class="nv">$exceptions</span><span class="o">-&gt;</span><span class="na">report</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nx">InvalidOrderException</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
         <span class="c1">// ...</span>
@@ -3558,7 +3558,7 @@
 </code></pre></div>
 <p><a name="deduplicating-reported-exceptions"></a></p>
 <h4 id="_8">報告された例外の重複排除<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h4>
-<p>アプリケーション全体で<code>report</code>関数を使用している場合、同じ例外を複数回報告し、ログに重複エントリを作成することがあります。</p>
+<p>アプリケーション全体で<code>report</code>関数を使用している場合、同じ例外を複数回報告し、ログに重複したエントリを作成することがあります。</p>
 <p>特定の例外の単一インスタンスが一度だけ報告されるようにする場合、アプリケーションの<code>bootstrap/app.php</code>ファイルで<code>dontReportDuplicates</code>例外メソッドを呼び出すことができます。</p>
 <div class="highlight"><pre><span></span><code><span class="o">-&gt;</span><span class="na">withExceptions</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nx">Exceptions</span> <span class="nv">$exceptions</span><span class="p">)</span> <span class="p">{</span>
     <span class="nv">$exceptions</span><span class="o">-&gt;</span><span class="na">dontReportDuplicates</span><span class="p">();</span>
@@ -3582,7 +3582,7 @@
 <h3 id="_9">例外ログレベル<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
 <p>アプリケーションの<a href="logging.html">ログ</a>にメッセージが書き込まれるとき、メッセージは指定された<a href="logging.html#log-levels">ログレベル</a>で書き込まれます。これは、ログされるメッセージの重大度や重要性を示します。</p>
 <p>前述のように、<code>report</code>メソッドを使用してカスタム例外報告コールバックを登録する場合でも、Laravelはアプリケーションのデフォルトログ設定を使用して例外をログに記録します。ただし、ログレベルによってはメッセージがログされるチャネルに影響を与える場合があるため、特定の例外がログされるログレベルを設定したい場合があります。</p>
-<p>これを実現するには、アプリケーションの<code>bootstrap/app.php</code>ファイルで<code>level</code>例外メソッドを使用できます。このメソッドは、最初の引数として例外タイプ、2番目の引数としてログレベルを受け取ります。</p>
+<p>これを実現するには、アプリケーションの<code>bootstrap/app.php</code>ファイルで<code>level</code>例外メソッドを使用できます。このメソッドは、第1引数として例外タイプ、第2引数としてログレベルを受け取ります。</p>
 <div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">PDOException</span><span class="p">;</span>
 <span class="k">use</span> <span class="nx">Psr\Log\LogLevel</span><span class="p">;</span>
 
@@ -3614,7 +3614,7 @@
 <a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    <span class="c1">//</span>
 <a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="p">}</span>
 </code></pre></div>
-<p>内部的には、Laravelはすでに404 HTTPエラーや無効なCSRFトークンによって生成された419 HTTPレスポンスなど、いくつかのタイプのエラーを無視しています。特定のタイプの例外を無視するのをやめさせたい場合は、アプリケーションの<code>bootstrap/app.php</code>ファイルで<code>stopIgnoring</code>例外メソッドを使用できます。</p>
+<p>内部的には、Laravelはすでに404 HTTPエラーや無効なCSRFトークンによって生成された419 HTTPレスポンスなど、いくつかのタイプのエラーを無視しています。特定のタイプの例外を無視しないようにしたい場合は、アプリケーションの<code>bootstrap/app.php</code>ファイルで<code>stopIgnoring</code>例外メソッドを使用できます。</p>
 <div class="highlight"><pre><span></span><code><span class="k">use</span> <span class="nx">Symfony\Component\HttpKernel\Exception\HttpException</span><span class="p">;</span>
 
 <span class="o">-&gt;</span><span class="na">withExceptions</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nx">Exceptions</span> <span class="nv">$exceptions</span><span class="p">)</span> <span class="p">{</span>
@@ -3666,7 +3666,7 @@
 </code></pre></div>
 <p><a name="customizing-the-exception-response"></a></p>
 <h4 id="_12">例外レスポンスのカスタマイズ<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h4>
-<p>まれに、Laravelの例外ハンドラによってレンダリングされるHTTPレスポンス全体をカスタマイズする必要があるかもしれません。これを実現するには、<code>respond</code>メソッドを使用してレスポンスカスタマイズクロージャを登録できます。</p>
+<p>まれに、Laravelの例外ハンドラによってレンダリングされるHTTPレスポンス全体をカスタマイズする必要が生じる場合があります。これを実現するには、<code>respond</code>メソッドを使用してレスポンスカスタマイズクロージャを登録できます。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">use</span> <span class="nx">Symfony\Component\HttpFoundation\Response</span><span class="p">;</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="o">-&gt;</span><span class="na">withExceptions</span><span class="p">(</span><span class="k">function</span> <span class="p">(</span><span class="nx">Exceptions</span> <span class="nv">$exceptions</span><span class="p">)</span> <span class="p">{</span>
@@ -3711,7 +3711,7 @@
 <a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a>    <span class="p">}</span>
 <a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a><span class="p">}</span>
 </code></pre></div>
-<p>例外がLaravelやSymfonyの組み込み例外のように既にレンダリング可能な例外を拡張している場合、例外の<code>render</code>メソッドから<code>false</code>を返すことで、例外のデフォルトのHTTPレスポンスをレンダリングすることができます。</p>
+<p>例外がLaravelやSymfonyの組み込み例外のように、既にレンダリング可能な例外を拡張している場合、例外の<code>render</code>メソッドから<code>false</code>を返すことで、例外のデフォルトのHTTPレスポンスをレンダリングすることができます。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="sd">/**</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="sd"> * 例外をHTTPレスポンスにレンダリングする。</span>
 <a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="sd"> */</span>
@@ -3725,7 +3725,7 @@
 <a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>    <span class="k">return</span> <span class="k">false</span><span class="p">;</span>
 <a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="p">}</span>
 </code></pre></div>
-<p>例外に、特定の条件が満たされた場合にのみ必要なカスタムレポートロジックが含まれている場合、Laravelにデフォルトの例外処理設定を使用して例外をレポートするように指示する必要があるかもしれません。これを実現するには、例外の<code>report</code>メソッドから<code>false</code>を返すことができます。</p>
+<p>例外に、特定の条件が満たされた場合にのみ必要なカスタムレポートロジックが含まれている場合、Laravelにデフォルトの例外処理設定を使用して例外をレポートするよう指示する必要があるかもしれません。これを実現するには、例外の<code>report</code>メソッドから<code>false</code>を返すことができます。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="sd">/**</span>
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="sd"> * 例外をレポートする。</span>
 <a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="sd"> */</span>
@@ -3747,7 +3747,7 @@
 </div>
 <p><a name="throttling-reported-exceptions"></a></p>
 <h3 id="_14">レポートされる例外のスロットリング<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
-<p>アプリケーションが非常に多くの例外をレポートする場合、実際にログに記録される例外やアプリケーションの外部エラー追跡サービスに送信される例外の数をスロットリングしたい場合があります。</p>
+<p>アプリケーションが非常に多くの例外をレポートする場合、実際にログに記録される例外やアプリケーションの外部エラー追跡サービスに送信される例外の数を制限したい場合があります。</p>
 <p>例外のランダムなサンプリングレートを取るには、アプリケーションの<code>bootstrap/app.php</code>ファイルで<code>throttle</code>例外メソッドを使用できます。<code>throttle</code>メソッドは、<code>Lottery</code>インスタンスを返すべきクロージャを受け取ります。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">use</span> <span class="nx">Illuminate\Support\Lottery</span><span class="p">;</span>
 <a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="k">use</span> <span class="nx">Throwable</span><span class="p">;</span>
@@ -3784,7 +3784,7 @@
 <a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>    <span class="p">});</span>
 <a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="p">})</span>
 </code></pre></div>
-<p>デフォルトでは、制限は例外のクラスをレートリミットキーとして使用します。これをカスタマイズするには、<code>Limit</code>の<code>by</code>メソッドを使用して独自のキーを指定できます。</p>
+<p>デフォルトでは、制限は例外のクラスをレートリミットキーとして使用します。これをカスタマイズするには、<code>Limit</code>クラスの<code>by</code>メソッドを使用して独自のキーを指定できます。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">use</span> <span class="nx">Illuminate\Broadcasting\BroadcastException</span><span class="p">;</span>
 <a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="k">use</span> <span class="nx">Illuminate\Cache\RateLimiting\Limit</span><span class="p">;</span>
 <a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="k">use</span> <span class="nx">Throwable</span><span class="p">;</span>
@@ -3816,12 +3816,12 @@
 </code></pre></div>
 <p><a name="http-exceptions"></a></p>
 <h2 id="http">HTTP例外<a class="headerlink" href="#http" title="Permanent link">&para;</a></h2>
-<p>サーバーからのHTTPエラーコードを記述する例外もあります。例えば、これは「ページが見つかりません」エラー（404）、「認証エラー」（401）、または開発者が生成した500エラーです。アプリケーションのどこからでもこのようなレスポンスを生成するには、<code>abort</code>ヘルパーを使用できます。</p>
+<p>サーバーからのHTTPエラーコードを表す例外もあります。例えば、「ページが見つかりません」エラー（404）、「認証エラー」（401）、または開発者が生成した500エラーなどです。アプリケーションのどこからでもこのようなレスポンスを生成するには、<code>abort</code>ヘルパー関数を使用できます。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nx">abort</span><span class="p">(</span><span class="mi">404</span><span class="p">);</span>
 </code></pre></div>
 <p><a name="custom-http-error-pages"></a></p>
 <h3 id="http_1">カスタムHTTPエラーページ<a class="headerlink" href="#http_1" title="Permanent link">&para;</a></h3>
-<p>Laravelを使用すると、さまざまなHTTPステータスコードのカスタムエラーページを簡単に表示できます。例えば、404 HTTPステータスコードのエラーページをカスタマイズするには、<code>resources/views/errors/404.blade.php</code>ビューテンプレートを作成します。このビューは、アプリケーションによって生成されるすべての404エラーに対してレンダリングされます。このディレクトリ内のビューは、対応するHTTPステータスコードと一致するように名前を付ける必要があります。<code>abort</code>関数によって発生する<code>Symfony\Component\HttpKernel\Exception\HttpException</code>インスタンスは、<code>$exception</code>変数としてビューに渡されます。</p>
+<p>Laravelを使用すると、さまざまなHTTPステータスコードに対するカスタムエラーページを簡単に表示できます。例えば、404 HTTPステータスコードのエラーページをカスタマイズするには、<code>resources/views/errors/404.blade.php</code>ビューテンプレートを作成します。このビューは、アプリケーションによって生成されるすべての404エラーに対してレンダリングされます。このディレクトリ内のビューは、対応するHTTPステータスコードと一致するように名前を付ける必要があります。<code>abort</code>関数によって発生する<code>Symfony\Component\HttpKernel\Exception\HttpException</code>インスタンスは、<code>$exception</code>変数としてビューに渡されます。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>{{ $exception-&gt;getMessage() }}<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
 </code></pre></div>
 <p>Laravelのデフォルトのエラーページテンプレートを<code>vendor:publish</code> Artisanコマンドを使用して公開することができます。テンプレートが公開されたら、好みに合わせてカスタマイズできます。</p>
@@ -3830,7 +3830,7 @@
 <p><a name="fallback-http-error-pages"></a></p>
 <h4 id="http_2">フォールバックHTTPエラーページ<a class="headerlink" href="#http_2" title="Permanent link">&para;</a></h4>
 <p>特定の一連のHTTPステータスコードに対して「フォールバック」エラーページを定義することもできます。このページは、発生した特定のHTTPステータスコードに対応するページがない場合にレンダリングされます。これを実現するには、アプリケーションの<code>resources/views/errors</code>ディレクトリに<code>4xx.blade.php</code>テンプレートと<code>5xx.blade.php</code>テンプレートを定義します。</p>
-<p>フォールバックエラーページを定義する際、フォールバックページは<code>404</code>、<code>500</code>、<code>503</code>エラーレスポンスには影響しません。Laravelにはこれらのステータスコードに対する専用の内部ページがあるためです。これらのステータスコードに対してレンダリングされるページをカスタマイズするには、それぞれに対して個別にカスタムエラーページを定義する必要があります。</p>
+<p>フォールバックエラーページを定義する際、フォールバックページは<code>404</code>、<code>500</code>、<code>503</code>エラーレスポンスには影響しません。これは、Laravelがこれらのステータスコードに対する専用の内部ページを持っているためです。これらのステータスコードに対してレンダリングされるページをカスタマイズするには、それぞれに対して個別にカスタムエラーページを定義する必要があります。</p>
 
 
 
