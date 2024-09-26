@@ -1,3 +1,4 @@
+
 # L11JA
 
 MITライセンスで公開されているLaravel Documentation (11.x)を翻訳したサイトです。
@@ -17,6 +18,8 @@ MITライセンスで公開されているLaravel Documentation (11.x)を翻訳�
 - カットオーバー日: 2024-09-20
 - 製作者: Akihito Koriyama
 - ライセンス: MIT License
+
+<img src="https://koriym.github.io/l11ja/assets/images/logo.png" alt="logo" height="100px">
 
 ---
 ©️2024
